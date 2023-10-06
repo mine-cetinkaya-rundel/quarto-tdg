@@ -1,0 +1,70 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Quarto: The Definitive Guide"
+  reader-mode: true
+
+  page-footer:
+    left: |
+      "Quarto: The Definitive Guide was written by Mine Çetinkaya-Rundel and Charlotte Wickham."
+    right: |
+      "This book was built with <a href="https://quarto.org/">Quarto</a>."
+  cover-image: cover.png
+  favicon: cover.png
+  site-url: https://quarto-tdf.org/
+  repo-url: https://github.com/mine-cetinkaya-rundel/quarto-tdf/
+  repo-branch: main
+  repo-actions: [edit, issue]
+  chapters:
+    - index.qmd
+
+    - part: hello.qmd
+      chapters:
+        - quarto.qmd
+        - installation.qmd
+        - authoring.qmd
+        - computation.qmd
+        - tools.qmd
+        - projects.qmd
+        - publishing.qmd
+        - look-under-hood.qmd
+
+    - part: computations.qmd
+      chapters:
+        - r.qmd
+        - python.qmd
+        - julia.qmd
+        - figure-table.qmd
+        - freeze-cache.qmd
+
+    - part: formats.qmd
+      chapters:
+        - documents.qmd
+        - presentations.qmd
+        - manuscripts.qmd
+        - dashboards.qmd
+        - websites.qmd
+        - books.qmd
+
+    - part: more.qmd
+      chapters:
+        - templates.qmd
+        - extensions.qmd
+        - dig-under-hood.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - quarto-tdf.scss
+    code-link: true
+
+    author-meta: "Mine Çetinkaya-Rundel and Charlotte Wickham"
+    callout-appearance: simple
+
+editor: visual
+
+execute:
+  freeze: auto
