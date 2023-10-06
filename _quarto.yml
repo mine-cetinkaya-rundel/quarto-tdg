@@ -8,9 +8,9 @@ book:
 
   page-footer:
     left: |
-      "Quarto: The Definitive Guide was written by Mine Çetinkaya-Rundel and Charlotte Wickham."
+      Quarto: The Definitive Guide was written by Mine Çetinkaya-Rundel and Charlotte Wickham.
     right: |
-      "This book was built with <a href="https://quarto.org/">Quarto</a>."
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.png
   favicon: cover.png
   site-url: https://quarto-tdf.org/
