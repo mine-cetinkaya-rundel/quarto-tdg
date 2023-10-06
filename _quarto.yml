@@ -13,8 +13,8 @@ book:
       This book was built with <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.png
   favicon: cover.png
-  site-url: https://quarto-tdf.org/
-  repo-url: https://github.com/mine-cetinkaya-rundel/quarto-tdf/
+  site-url: https://quarto-tdg.org/
+  repo-url: https://github.com/mine-cetinkaya-rundel/quarto-tdg/
   repo-branch: main
   repo-actions: [edit, issue]
   chapters:
@@ -58,7 +58,7 @@ format:
   html:
     theme:
       - cosmo
-      - quarto-tdf.scss
+      - quarto-tdg.scss
     code-link: true
 
     author-meta: "Mine Çetinkaya-Rundel and Charlotte Wickham"
