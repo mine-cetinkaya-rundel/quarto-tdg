@@ -8,11 +8,6 @@
       }
     ]
   },
-  "Python": {
-    "Version": "3.12.0",
-    "Type": "virtualenv",
-    "Name": "./env"
-  },
   "Packages": {
     "R6": {
       "Package": "R6",

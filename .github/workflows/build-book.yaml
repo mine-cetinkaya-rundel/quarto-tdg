@@ -31,6 +31,14 @@ jobs:
           # uncomment below and fill to pin a version
           # version: 0.9.105
 
+      - name: Install Python and Dependencies
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      - run: pip install jupyter
+      - run: pip install -r requirements.txt
+
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
