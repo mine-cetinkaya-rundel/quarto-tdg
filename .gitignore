@@ -1,4 +1,4 @@
 /.quarto/
 _book/
 .Rproj.user
-env/
+/env/
