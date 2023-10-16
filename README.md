@@ -23,6 +23,8 @@ If your contribution adds a dependency on an R package, make sure you run `renv:
 
 ### Reproducing the python environment locally
 
+#### Creating or recreating the environment
+
 Use Python 3.12.
 
 Create a virtual environment in the `env/` folder, in Terminal:
@@ -43,4 +45,22 @@ Install packages from `requirements.txt`:
 python3 -m pip install -r requirements.txt
 ```
 
+#### Using the environment
+
 VS Code + Python extension should pick up this environment automatically. 
+
+Or on Terminal, activate the environment:
+
+```bash
+source env/bin/activate
+```
+
+#### Adding python packages
+
+1. Activate the environment
+2. Install the additional packages using `pip`
+3. Update `requirements.txt`
+    ```
+    python3 -m pip freeze > requirements.txt
+    ```
+4. Commit `requirements.txt`
