@@ -5,3 +5,9 @@ title: Quarto and R
 ```{r}
 1 + 1
 ```
+
+```{r}
+# some more code
+2 + 2
+```
+
