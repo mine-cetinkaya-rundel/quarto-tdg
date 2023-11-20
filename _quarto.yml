@@ -59,7 +59,6 @@ format:
     theme:
       - cosmo
       - quarto-tdg.scss
-    code-link: true
 
     author-meta: "Mine Çetinkaya-Rundel and Charlotte Wickham"
     callout-appearance: simple
