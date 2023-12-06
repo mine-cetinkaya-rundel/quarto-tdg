@@ -33,6 +33,15 @@ jobs:
         with:
           cache-version: 1
           
+      - name: Install Python and Dependencies
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Python Packages
+        run: pip install -r requirements.txt
+
       - name: Remove freezer
         run: |
           rm -rf _freeze/
