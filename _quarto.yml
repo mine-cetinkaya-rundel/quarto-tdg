@@ -20,13 +20,11 @@ book:
   chapters:
     - index.qmd
 
-    - part: hello.qmd
+    - part: overview.qmd
       chapters:
-        - quarto.qmd
-        - installation.qmd
-        - authoring.qmd
-        - computation.qmd
+        - hello.qmd
         - tools.qmd
+        - authoring.qmd
         - projects.qmd
         - publishing.qmd
         - look-under-hood.qmd
