@@ -1,9 +1,10 @@
 {
-  "hash": "9f354181a4a6305f302a87b48b329054",
+  "hash": "6f1f7e4bdb62c1cbbd623e412fe75ee0",
   "result": {
-    "markdown": "---\ntitle: Quarto and Python\n---\n\n::: {#a3915c45 .cell execution_count=1}\n``` {.python .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-display execution_count=1}\n```\n2\n```\n:::\n:::\n\n\n::: {#e4d3783e .cell execution_count=2}\n``` {.python .cell-code}\nimport seaborn as sns\npenguins = sns.load_dataset(\"penguins\")\nsns.displot(penguins, x=\"flipper_length_mm\")\n```\n\n::: {.cell-output .cell-output-display}\n![](python_files/figure-html/cell-3-output-1.png){width=470 height=470}\n:::\n:::\n\n\n",
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Quarto and Python\n---\n\n::: {#42986f11 .cell execution_count=1}\n``` {.python .cell-code}\n2 + 2\n```\n\n::: {.cell-output .cell-output-display execution_count=1}\n```\n4\n```\n:::\n:::\n\n\n::: {#2275c8e1 .cell execution_count=2}\n``` {.python .cell-code}\nimport seaborn as sns\npenguins = sns.load_dataset(\"penguins\")\nsns.displot(penguins, x=\"flipper_length_mm\")\n```\n\n::: {.cell-output .cell-output-display}\n![](python_files/figure-html/cell-3-output-1.png){width=470 height=470}\n:::\n:::\n\n\n",
     "supporting": [
-      "python_files"
+      "python_files/figure-html"
     ],
     "filters": [],
     "includes": {}

@@ -3,7 +3,7 @@ title: Quarto and Python
 ---
 
 ```{python}
-1 + 1
+2 + 2
 ```
 
 ```{python}
