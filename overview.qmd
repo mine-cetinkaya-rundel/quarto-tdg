@@ -1,0 +1,14 @@
+---
+title: Hello Quarto
+---
+
+In this section we introduce you to Quarto...
+
+- In [Chapter -@sec-quarto] we tell you what Quarto is...
+- In [Chapter -@sec-installation] we tell you how to install Quarto...
+- [Chapter -@sec-authoring] introduces you to components of a Quarto document such as markdown text, figures, tables, etc.
+- [Chapter -@sec-computation] discusses using executable code cells with Quarto in Python, R, Julia, and Observable. In this chapter we also go deeper into the execution engines: Jupyter and knitr.
+- In [Chapter -@sec-tools], we walk you through the experience of authoring with Quarto in JupyterLab, RStudio, and VSCode.
+- [Chapter -@sec-projects] introduces you to the concept of Quarto projects which allow you to combine and render Quarto documents in a given directory in harmony.
+- In [Chapter -@sec-publishing] is an overview of publishing options.
+- In [Chapter -@sec-look-under-hood] you can find more details on the orchestration Quarto does in going from plain text source code (or mixed-format Jupyter notebooks) to elegant outputs in multiple formats.
