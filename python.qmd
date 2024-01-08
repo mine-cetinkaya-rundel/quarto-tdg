@@ -1,3 +1,13 @@
 ---
 title: Quarto and Python
 ---
+
+```{python}
+2 + 2
+```
+
+```{python}
+import seaborn as sns
+penguins = sns.load_dataset("penguins")
+sns.displot(penguins, x="flipper_length_mm")
+```
