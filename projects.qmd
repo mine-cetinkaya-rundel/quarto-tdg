@@ -10,7 +10,7 @@ library(fs)
 library(quarto)
 ```
 
-So far, we've concentrated on single Quarto documents: a single `.qmd` which defines all of its Quarto options in its header. In this chapter, you'll learn about Quarto projects: a way to organize collections of Quarto documents. You learn how
+So far, we've concentrated on single Quarto documents: a single `.qmd` which defines all of its Quarto options in its header. In this chapter, you'll learn about Quarto projects: a way to organize collections of Quarto documents. You learn
 
 -   what a Quarto project is
 -   how to create one, or turn an existing folder into one
@@ -22,13 +22,16 @@ So far, we've concentrated on single Quarto documents: a single `.qmd` which def
 
 ## What is a Quarto Project?
 
-From a technical perspective, a Quarto project is simply a folder that contains the file `_quarto.yml`. From a practical perspective, a Quarto project allows you to: easily render all the Quarto documents in the folder; and set options common to the documents in a single place.
+From a technical perspective, a Quarto project is simply a folder that contains the file `_quarto.yml`. From a practical perspective, using a Quarto project has two benefits:
+
+1.  You can easily render all the Quarto documents in the project folder.
+2.  You can set options common to the documents in a single place.
 
 Consider the folder `ds-project`, a simple example of a data science project, that contains some Quarto documents:
 
 ```{r}
-# Code to generate a pretty tree
 # TODO: prettify output so only see `ds-project` at top, not the full path
+# Code to generate a pretty tree
 dir <- path(tempdir(), "ds-project")
 dir_create(dir, c(NA,"data"))
 file_create(dir, c("data/records.csv", "README.md", "01-import.qmd", "02-visualize.qmd"))
@@ -59,14 +62,11 @@ quarto_render(dir)
 dir_tree(dir, recurse = 1)
 ```
 
-You'll learn more about rendering projects in 
+You'll learn more about previewing and rendering projects in [Rendering a Project](#render-a-project).
 
-Something here about other role of `_quarto.yml`
-Something here about specific kinds of project, and `project: default`
-Something here about general use cases for projects
+Beyond indicating that the folder is a Quarto project, the file `_quarto.yml` also stores Quarto YAML options. These can be project-level options or document-level options common to the documents in the project. You'll learn more about these
 
-
-
+Something here about other role of Something here about specific kinds of project, and `project: default` Something here about general use cases for projects
 
 The file `_quarto.yml` has two roles:
 
@@ -74,15 +74,13 @@ The file `_quarto.yml` has two roles:
 
 2.  The contents of `_quarto.yml` can provide project-level, and document-level YAML options.
 
-
 `_quarto.yml` contains project level YAML metadata. Some apply to project types. Also specify any document level metadata to apply to all files.
-
 
 Use cases:
 
 -   A collection of .qmd files that you want to apply the same Quarto format settings too. E.g. homeworks for a specific class (set `author`, `echo`, `pdf: toc` etc). E.g. a series of reports based on same data.
 
-A collection of documents that you naturally render into a single unit, e.g. pages that make up a website, or chapters that make up a book. Quarto has special project types for these examples. You'll learn more about them in [Websites](#sec-websites) and [Books](#sec-books).
+A collection of documents that you naturally render into a single unit, e.g. pages that make up a website, or chapters that make up a book. Quarto has special project types for these examples. You'll learn more about them in the chapters on [Websites](websites.qmd) and [Books](books.qmd).
 
 that contains the yaml
 
@@ -110,7 +108,7 @@ Examples: websites, book, manuscript
 
 Don't nest `_quarto.yml` files
 
-## Render a Project
+## Render a Project {#render-a-project}
 
 ``` {.bash filename="Terminal"}
 quarto render
@@ -216,7 +214,6 @@ Examples of moving document YAML to `_quarto.yml`: simple one reducing repetitio
 
 `output-dir`, `jupyter`
 
-
 Directory level metadata `_metadata.yml`
 
 If you are curious what a more complicated `_quarto.yml` might look like, you could look at the [`_quarto.yml` for the project that builds this book on GitHub](https://github.com/mine-cetinkaya-rundel/quarto-tdg/blob/main/_quarto.yml).
@@ -246,4 +243,3 @@ Find yourself creating many projects with the same structure or settings, you mi
 ```{r}
 dir_delete(dir)
 ```
-
