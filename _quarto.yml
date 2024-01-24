@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: _book
+  pre-render: R/create-temp-dirs.R
+  post-render: R/clean-up-temp-dirs.R
 
 book:
   title: "Quarto: The Definitive Guide"
