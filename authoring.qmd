@@ -1,8 +1,4 @@
----
-title: Authoring
-fig-width: 2
-fig-height: 2
----
+# Authoring {#sec-authoring}
 
 ## Markdown text
 
