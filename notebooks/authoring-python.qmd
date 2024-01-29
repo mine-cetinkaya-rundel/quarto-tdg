@@ -1,4 +1,6 @@
-# Authoring
+---
+title: Authoring - Python
+---
 
 ## Markdown text
 

@@ -1,5 +1,5 @@
 ---
-title: Authoring
+title: Authoring - R
 ---
 
 ## Markdown text
@@ -15,5 +15,8 @@ title: Authoring
 ```{r}
 #| label: plot
 
-plot(cars)
+df <- data.frame(x = 1:8, y = 3:10)
+m <- lm(y ~ x, data = df)
+plot(df$x, df$y)
+abline(m)
 ```
