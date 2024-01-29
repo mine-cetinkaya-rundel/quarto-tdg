@@ -1,0 +1,19 @@
+---
+title: Authoring
+---
+
+## Markdown text
+
+## Code cells
+
+```{r}
+#| label: add
+
+1 + 1
+```
+
+```{r}
+#| label: plot
+
+plot(cars)
+```
