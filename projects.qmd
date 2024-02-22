@@ -1,6 +1,7 @@
 ---
 execute:
   echo: false
+
 ---
 
 # Projects {#sec-projects}
@@ -9,6 +10,7 @@ execute:
 library(fs)
 library(quarto)
 library(yaml)
+dir_create("temp-dirs")
 ```
 
 So far, we've concentrated on single Quarto documents: a single `.qmd` which defines all of its Quarto options in its header.
@@ -117,8 +119,12 @@ fs::dir_tree("temp-dirs/project-name")
 
 The file `_quarto.yml` is also populated with the project title:
 
-``` {.yaml filename="_quarto.yml"}
-{{< include temp-dirs/project-name/_quarto.yml >}}
+```{r}
+#| results: asis
+lines <- readLines("temp-dirs/project-name/_quarto.yml")
+cat('``` {.yaml filename="_quarto.yml"}\n')
+writeLines(lines)
+cat('```\n')
 ```
 
 ::: {.callout-caution}
@@ -173,7 +179,22 @@ quarto preview index.qmd
 Quarto will render just enough of the project to display the requested document and open a preview. 
 As you interact with the preview, e.g. follow a link in one document to another, Quarto will render any additional files as needed.
 
-## Project Level Options {#sec-project-options}
+## Project Configuration --- `_quarto.yml`
+
+The file `_quarto.yml` provides project configuration. Here's a typical 
+
+Typically it will include project-level options under the `project` key, project options specific to its project type, and document level options common to documents in the project.
+
+```{.yaml filename="_quarto.yml"}
+
+
+```
+
+If you are curious what a more complicated `_quarto.yml` might look like, you could look at the [`_quarto.yml` for the project that builds this book on GitHub](https://github.com/mine-cetinkaya-rundel/quarto-tdg/blob/main/_quarto.yml).
+
+Anatomy of `_quarto.yml`, project settings, options specific to a project type, options that apply to all formats, format specific options.
+
+### Project Level Options {#sec-project-options}
 
 Project level options are set under the `project` key. You've already seen projects might have a `type` and `title`. 
 
@@ -195,12 +216,6 @@ dir_tree(dir, recurse = 1)
 To share results without sharing the source documents, it may be easier to have your outputs in their own directory. 
 You could set `output-dir` to `reports`:
 
-``` {.yaml filename="_quarto.yml"}
-{{< include temp-dirs/ds-project2/_quarto.yml >}}
-```
-
-Now when the project is rendered the output files end up in `reports/` folder:
-
 ```{r}
 dir2 <- path("temp-dirs", "ds-project2")
 dir_create(dir2, "data")
@@ -208,6 +223,19 @@ file_create(dir2, c("data/records.csv", "README.md", "01-import.qmd", "02-visual
 config_path <- file_create(dir2, "_quarto.yml")
 write_yaml(list(project = list(`output-dir` = "reports")), config_path)
 system("cd temp-dirs/ds-project2 && quarto render")
+```
+
+```{r}
+#| results: asis
+lines <- readLines(config_path)
+cat('``` {.yaml filename="_quarto.yml"}\n')
+writeLines(lines)
+cat('```\n')
+```
+
+Now when the project is rendered the output files end up in `reports/` folder:
+
+```{r}
 dir_tree(dir2, recurse = 1)
 ```
 
@@ -228,7 +256,7 @@ website:
     search: true
 ```
 
-## Common Metadata {#sec-common-metadata}
+### Common Metadata {#sec-common-metadata}
 
 Document options, like those you normally set in a YAML header, can also be set in `_quarto.yml`. 
 Options set in `_quarto.yml` will be applied to all Quarto files in the project, and reduce repetition by specifying common options in a single location.
@@ -320,23 +348,11 @@ author: Aurelius Garcia
 
 ## Directory level metadata 
 
-If you would like to specify common metadata for documents inside a sub-directory our your project, you can do so by adding a file called `_metadata.yml` to the sub-directory. Read more in the Quarto Documentation at (Directory Metadata)[https://quarto.org/docs/projects/quarto-projects.html#directory-metadata]
+If you would like to specify common metadata for documents inside a sub-directory our your project, you can do so by adding a file called `_metadata.yml` to the sub-directory. Read more in the Quarto Documentation at [Directory Metadata](https://quarto.org/docs/projects/quarto-projects.html#directory-metadata).
 
 :::
 
-If you are curious what a more complicated `_quarto.yml` might look like, you could look at the [`_quarto.yml` for the project that builds this book on GitHub](https://github.com/mine-cetinkaya-rundel/quarto-tdg/blob/main/_quarto.yml).
-
-Anatomy of `_quarto.yml`, project settings, options specific to a project type, options that apply to all formats, format specific options.
-
-## Project Configuration --- `_quarto.yml`
-
-## Common Content
-
-Using `_quarto.yml` can help reduce duplication in the metadata of your documents, but once you have related documents in a project, you often also find you have duplicated content. 
-
-To avoid duplicating content across documents you can make use of includes and embeds.
-
-See ... Or talk about here.
+Using `_quarto.yml` can help reduce duplication in the metadata of your documents, but once you have related documents in a project, you often also find you have duplicated content. Point at inlcudes in Authoring chapter.
 
 ## Tools
 
@@ -362,3 +378,8 @@ Virtual Environment -\> Computation chapters
 
 Find yourself creating many projects with the same structure or settings, you might want to define your own custom project type.
 See Extensions.
+
+
+```{r}
+dir_delete("temp-dirs")
+```
