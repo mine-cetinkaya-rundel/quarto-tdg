@@ -4,6 +4,8 @@ title: Authoring - R
 
 ## Markdown text
 
+Hello
+
 ## Code cells
 
 ```{r}
