@@ -8,6 +8,7 @@ execute:
 ```{r}
 library(fs)
 library(quarto)
+library(yaml)
 ```
 
 So far, we've concentrated on single Quarto documents: a single `.qmd` which defines all of its Quarto options in its header.
@@ -22,7 +23,7 @@ You learn
 -   how to specify common metadata for documents in the project
 -   how to share content across documents in a project
 
-## What is a Quarto Project?
+## What is a Quarto Project? {#sec-overview}
 
 From a technical perspective, a Quarto project is simply a folder that contains the file `_quarto.yml`.
 From a practical perspective, using a Quarto project has two benefits:
@@ -36,7 +37,7 @@ Consider the folder `ds-project`, a simple example of a data science project, th
 # TODO: prettify output so only see `ds-project` at top, not the full path
 # Code to generate a pretty tree
 dir <- path("temp-dirs", "ds-project")
-dir_create(dir, c(NA,"data"))
+dir_create(dir, "data")
 file_create(dir, c("data/records.csv", "README.md", "01-import.qmd", "02-visualize.qmd"))
 dir_tree(dir)
 ```
@@ -91,7 +92,7 @@ However, in practice the concept of what makes a folder a "project" is the same,
 
 :::
 
-## Create a project
+## Create a Project
 
 You've already seen how you can create a project in an exisiting directory by adding the file `_quarto.yml`. 
 You can also create a project in a new directory using the `quarto create` command:
@@ -100,21 +101,21 @@ You can also create a project in a new directory using the `quarto create` comma
 quarto create project
 ```
 
-Quarto will give you an interactive prompt asking for the project type and then directory. 
+Quarto will give you an interactive prompt asking for the project type, directory name and project title. 
 You can also specify these directly to the command:
 
 ``` {.bash filename="Terminal"}
-quarto create project default project-name
+quarto create project default project-name project-title
 ```
 
-Quarto will then create the folder, e.g. `project-name` and populate it with `_quarto.yml` and a Quarto document with the same name as the project folder, `project-name.qmd`:
+Quarto will then create the folder, e.g. `project-name` and populate it with `_quarto.yml` and a Quarto document with the same name as the project title, `project-title.qmd`:
 
 ```{r}
-system("cd temp-dirs && quarto create project default project-name")
+system("cd temp-dirs && quarto create project default project-name project-title")
 fs::dir_tree("temp-dirs/project-name")
 ```
 
-The file `_quarto.yml` is also populated with a project `title`:
+The file `_quarto.yml` is also populated with the project title:
 
 ``` {.yaml filename="_quarto.yml"}
 {{< include temp-dirs/project-name/_quarto.yml >}}
@@ -155,9 +156,11 @@ quarto render
 
 ## What gets rendered?
 
-Quarto will render all valid Quarto input files (e.g. `.qmd`, `.ipynb`, `.md`, `.Rmd` etc.) except files or folders that start with `_`, or `.`, or the file `README.*md`. 
+Quarto will render all valid Quarto input files (e.g. `.qmd`, `.ipynb`, `.md`, `.Rmd` etc.) except files or folders that start with `_`, or `.`, or a file matching `README.*md`. 
 
-You can also specify exactly what you do and do not want rendered with the `render` key. See [Render Targets](https://quarto.org/docs/projects/quarto-projects.html#render-targets) in the Quarto documentation for more information.
+All formats specifed in each file will be rendered.
+
+You can also specify exactly what you do and do not want rendered with the `render` key in `_quarto.yml`. See [Render Targets](https://quarto.org/docs/projects/quarto-projects.html#render-targets) in the Quarto documentation for more information.
 
 ::: 
 
@@ -167,19 +170,70 @@ To preview a project when using the `default` project type, you must specify a f
 quarto preview index.qmd
 ```
 
-Quarto will render just enough of the project to display the requested document and open a preview. As you interact with the preview, e.g. follow a link in one document to another, Quarto will render any additional files as needed.
+Quarto will render just enough of the project to display the requested document and open a preview. 
+As you interact with the preview, e.g. follow a link in one document to another, Quarto will render any additional files as needed.
 
 ## Project Level Options {#sec-project-options}
 
-`type`
-`title`
-`output-dir`
+Project level options are set under the `project` key. You've already seen projects might have a `type` and `title`. 
 
-You can see all the available options on the [Project Options](https://quarto.org/docs/reference/projects/core.html) reference page in the Quarto documentation.
+``` {.yaml filename="_quarto.yml"}
+project:
+  type: default
+  title: Data Exploration 
+```
+
+Another commonly set option is `output-dir` which specifes a location for rendered output. 
+
+Without setting `output-dir` outputs are rendered alongside their source documents. 
+For example, as you saw in the example in @sec-overview, the output `01-import.html` is rendered in the same location as `01-import.qmd`:
+
+```{r}
+dir_tree(dir, recurse = 1)
+```
+
+To share results without sharing the source documents, it may be easier to have your outputs in their own directory. 
+You could set `output-dir` to `reports`:
+
+``` {.yaml filename="_quarto.yml"}
+{{< include temp-dirs/ds-project2/_quarto.yml >}}
+```
+
+Now when the project is rendered the output files end up in `reports/` folder:
+
+```{r}
+dir2 <- path("temp-dirs", "ds-project2")
+dir_create(dir2, "data")
+file_create(dir2, c("data/records.csv", "README.md", "01-import.qmd", "02-visualize.qmd"))
+config_path <- file_create(dir2, "_quarto.yml")
+write_yaml(list(project = list(`output-dir` = "reports")), config_path)
+system("cd temp-dirs/ds-project2 && quarto render")
+dir_tree(dir2, recurse = 1)
+```
+
+The heirachical structure of the project is maintained in the output directory. 
+So, if there was another document `provenance.qmd` inside the `data/` folder, it would render to `reports/data/provencance.html`.
+
+You can see other available project options on the [Project Options](https://quarto.org/docs/reference/projects/core.html) reference page in the Quarto documentation.
+
+Some project types also set project-level options under a key that matches their type. 
+For instance, when a project is a website, site level settings are set under the `website` key:
+
+``` {.yaml filename="_quarto.yml"}
+project:
+  type: website
+
+website:
+  navbar:
+    search: true
+```
 
 ## Common Metadata {#sec-common-metadata}
 
-Truncated versions of the two Quarto documents, `01-import.qmd` and `02-visualize.qmd`, are shown below:
+Document options, like those you normally set in a YAML header, can also be set in `_quarto.yml`. 
+Options set in `_quarto.yml` will be applied to all Quarto files in the project, and reduce repetition by specifying common options in a single location.
+
+As an example, consider a project with two Quarto documents, `01-import.qmd` and `02-visualize.qmd`, where truncated versions are shown below:
 
 ::: {layout-ncol="2"}
 ``` {.markdown filename="01-import.qmd"}
@@ -213,7 +267,7 @@ format:
 ```
 :::
 
-As is often the case for documents that are part of a larger project, these two documents share common settings in the document YAML: `author`, and the `html` format options `toc` and `code-fold`.
+These two documents share common settings in the document YAML: `author`, and the `html` format options `toc` and `code-fold`.
 If these options are moved to the file `_quarto.yml`, they will be applied to every Quarto document in the project.
 So, if `_quarto.yml` is:
 
@@ -253,29 +307,52 @@ title: Exploratory Visualization
 
 As an added advantage, if you add more Quarto documents, you don't need to remember the exact settings you used, and can just let your new document inherit them from `_quarto.yml`.
 
-Examples of moving document YAML to `_quarto.yml`: simple one reducing repetition, another one where formats are only used in some documents.
+If a document specifies a different option to `_quarto.yml`, if will override the default value. For instance, if there is another document `03-modelling.qmd` with a different author, specifying `author` in the document YAML will override the value set in `_quarto.yml`:
 
-`output-dir`, `jupyter`
+``` {.markdown filename="03-modelling.qmd"}
+---
+title: Modelling
+author: Aurelius Garcia
+---
+```
 
-Directory level metadata `_metadata.yml`
+::: {.callout-tip}
+
+## Directory level metadata 
+
+If you would like to specify common metadata for documents inside a sub-directory our your project, you can do so by adding a file called `_metadata.yml` to the sub-directory. Read more in the Quarto Documentation at (Directory Metadata)[https://quarto.org/docs/projects/quarto-projects.html#directory-metadata]
+
+:::
 
 If you are curious what a more complicated `_quarto.yml` might look like, you could look at the [`_quarto.yml` for the project that builds this book on GitHub](https://github.com/mine-cetinkaya-rundel/quarto-tdg/blob/main/_quarto.yml).
 
 Anatomy of `_quarto.yml`, project settings, options specific to a project type, options that apply to all formats, format specific options.
 
+## Project Configuration --- `_quarto.yml`
+
 ## Common Content
 
-What if I want to reduce repetition of content?
-`include` shortcode Another way to reduce repetition `include`?
-Also needs knowledge of `_`
+Using `_quarto.yml` can help reduce duplication in the metadata of your documents, but once you have related documents in a project, you often also find you have duplicated content. 
 
-Works outside projects, but commonly turns up once you have more than one Quarto documents and are probably using a project.
+To avoid duplicating content across documents you can make use of includes and embeds.
+
+See ... Or talk about here.
 
 ## Tools
 
 ### RStudio
 
+**File** > **New Project**: Quarto Project 
+
+(Might need to discuss engine, venv/renv options, or refer to other chapters)
+
+**Build Pane** **Render Project** 
+
 ### VS Code
+
+**Quarto: Create Project**
+
+**Quarto: Render Project**
 
 ## Advanced: Project Profiles
 
@@ -285,7 +362,3 @@ Virtual Environment -\> Computation chapters
 
 Find yourself creating many projects with the same structure or settings, you might want to define your own custom project type.
 See Extensions.
-
-```{r}
-dir_delete(dir)
-```
