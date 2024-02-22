@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Authoring - Python</title>
+<title>Authoring - R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,16 +57,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="authoring-python_files/libs/clipboard/clipboard.min.js"></script>
-<script src="authoring-python_files/libs/quarto-html/quarto.js"></script>
-<script src="authoring-python_files/libs/quarto-html/popper.min.js"></script>
-<script src="authoring-python_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="authoring-python_files/libs/quarto-html/anchor.min.js"></script>
-<link href="authoring-python_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="authoring-python_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="authoring-python_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="authoring-python_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="authoring-python_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="authoring-r_files/libs/clipboard/clipboard.min.js"></script>
+<script src="authoring-r_files/libs/quarto-html/quarto.js"></script>
+<script src="authoring-r_files/libs/quarto-html/popper.min.js"></script>
+<script src="authoring-r_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="authoring-r_files/libs/quarto-html/anchor.min.js"></script>
+<link href="authoring-r_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="authoring-r_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="authoring-r_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="authoring-r_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="authoring-r_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Authoring - Python</h1>
+<h1 class="title">Authoring - R</h1>
 </div>
 
 
@@ -101,25 +101,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="code-cells" class="level2">
 <h2 class="anchored" data-anchor-id="code-cells">Code cells</h2>
-<div id="cell-add" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="add" class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>2</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
 </div>
 </div>
-<div id="cell-plot" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>xpoints <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">8</span>])</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ypoints <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">10</span>])</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.plot(xpoints, ypoints)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">y =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> df)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>x, df<span class="sc">$</span>y)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="authoring-python_files/figure-html/plot-output-1.png" id="plot" width="566" height="411" class="figure-img"></p>
+<p><img src="authoring-r_files/figure-html/plot-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

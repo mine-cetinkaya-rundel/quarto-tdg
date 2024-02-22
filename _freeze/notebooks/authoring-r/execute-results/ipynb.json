@@ -1,0 +1,17 @@
+{
+  "hash": "6b8409b42019399776b9b9e6f5047a7d",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: Authoring - R\n---\n\n\n## Markdown text\n\n## Code cells\n\n\n::: {.cell}\n\n```{.r .cell-code}\n#| label: add\n\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n#| label: plot\n\ndf <- data.frame(x = 1:8, y = 3:10)\nm <- lm(y ~ x, data = df)\nplot(df$x, df$y)\nabline(m)\n```\n\n::: {.cell-output-display}\n![](authoring-r_files/figure-ipynb/plot-1.png)\n:::\n:::\n",
+    "supporting": [
+      "authoring-r_files/figure-ipynb"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

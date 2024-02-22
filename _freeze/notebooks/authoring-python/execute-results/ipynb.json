@@ -1,0 +1,11 @@
+{
+  "hash": "e88442e1fbac13ccfd9668193b8ef340",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Authoring - Python\n---\n\n:::{#912d3273 .cell .markdown}\n## Markdown text\n\n## Code cells\n:::\n\n::: {#cell-add .cell execution_count=1}\n``` {}\n#| label: add\n1 + 1\n```\n\n::: {#add .cell-output .cell-output-display execution_count=1}\n```\n2\n```\n:::\n:::\n\n\n::: {#cell-plot .cell execution_count=2}\n``` {}\n#| label: plot\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nxpoints = np.array([1, 8])\nypoints = np.array([3, 10])\n\nplt.plot(xpoints, ypoints)\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![](authoring-python_files/figure-ipynb/plot-output-1.png){#plot}\n:::\n:::\n\n\n---\njupyter:\n  kernelspec:\n    display_name: Python 3 (ipykernel)\n    language: python\n    name: python3\n  language_info:\n    codemirror_mode:\n      name: ipython\n      version: 3\n    file_extension: .py\n    mimetype: text/x-python\n    name: python\n    nbconvert_exporter: python\n    pygments_lexer: ipython3\n    version: 3.10.13\n---\n",
+    "supporting": [
+      "authoring-python_files/figure-ipynb"
+    ],
+    "filters": []
+  }
+}
