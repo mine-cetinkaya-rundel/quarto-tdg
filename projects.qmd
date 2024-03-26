@@ -1,7 +1,6 @@
 ---
 execute:
   echo: false
-
 ---
 
 # Projects {#sec-projects}
@@ -15,15 +14,14 @@ dir_create("temp-dirs")
 
 So far, we've concentrated on single Quarto documents: a single `.qmd` which defines all of its Quarto options in its header.
 In this chapter, you'll learn about Quarto projects: a way to organize collections of Quarto documents.
-You learn
+You'll learn:
 
--   what a Quarto project is
--   how to create one, or turn an existing folder into one
--   how working with a project differs to working with single files
--   how to render all or part of a Quarto project
--   how to set project level Quarto settings
--   how to specify common metadata for documents in the project
--   how to share content across documents in a project
+-   What a Quarto project is
+-   How to create one, or turn an existing folder into one
+-   How working with a project differs to working with single files
+-   How to render all or part of a Quarto project
+-   How to set project level Quarto settings
+-   How to specify common metadata for documents in the project
 
 ## What is a Quarto Project? {#sec-overview}
 
@@ -74,7 +72,7 @@ You'll learn more about previewing and rendering projects in @sec-render-a-proje
 Beyond indicating that the folder is a Quarto project, the file `_quarto.yml` also stores Quarto YAML options.
 These can be project-level options or document-level options common to the documents in the project. 
 Project-level options are set under `project`, one of which is `type`. 
-If the file `_quarto.yml` is empty, or if `type` is unspecified, the `type` is assumed to be `default`, i.e. it's equivalent to:
+If the file `_quarto.yml` is empty, or if `type` is unspecified, the `type` is assumed to be `default`, that is, it's equivalent to:
 
 ``` {.yaml filename="_quarto.yml"}
 project:
@@ -143,7 +141,7 @@ From the project directory, you can render all the files in the project by rende
 quarto render
 ```
 
-All Quarto documents, with some exceptions as explained in @nte-render-targets below, will be rendered. 
+All Quarto documents, with some exceptions as explained in @nte-render-targets, will be rendered. 
 
 You can also render the contents of a subdirectory of the project by specifying the subdirectory:
 
@@ -181,18 +179,31 @@ As you interact with the preview, e.g. follow a link in one document to another,
 
 ## Project Configuration --- `_quarto.yml`
 
-The file `_quarto.yml` provides project configuration. Here's a typical 
+The file `_quarto.yml` provides project configuration. Typically it will include project-level options, project options specific to the project type, and document-level options common to documents in the project.
 
-Typically it will include project-level options under the `project` key, project options specific to its project type, and document level options common to documents in the project.
+Here's a typical example:
 
 ```{.yaml filename="_quarto.yml"}
+project:                         #<1>
+  type: website                  #<1>
+  title: "Quarterly Reports"     #<1>
 
+website:                         #<2>
+  navbar:                        #<2>
+    search: true                 #<2>
 
+execute:                         #<3>
+  echo: false                    #<3>
+
+format:                          #<3>
+  html:                          #<3>
+    toc: true                    #<3>
 ```
+1. Project level options are set under `project`. You'll learn more about these in @sec-project-options.
+2. Project type specific options are set under the option that matches the type, e.g. `website`. You learn about these in the later chapters on the different project types.
+3. Document-level defaults that apply to all documents in the project. You'll learn more about these below in @sec-common-metadata.
 
-If you are curious what a more complicated `_quarto.yml` might look like, you could look at the [`_quarto.yml` for the project that builds this book on GitHub](https://github.com/mine-cetinkaya-rundel/quarto-tdg/blob/main/_quarto.yml).
-
-Anatomy of `_quarto.yml`, project settings, options specific to a project type, options that apply to all formats, format specific options.
+If you are curious what a more complicated `_quarto.yml` might look like, you could look at the [`_quarto.yml` file on GitHub](https://github.com/mine-cetinkaya-rundel/quarto-tdg/blob/main/_quarto.yml) for the project that builds this book.
 
 ### Project Level Options {#sec-project-options}
 
@@ -240,7 +251,15 @@ dir_tree(dir2, recurse = 1)
 ```
 
 The heirachical structure of the project is maintained in the output directory. 
-So, if there was another document `provenance.qmd` inside the `data/` folder, it would render to `reports/data/provencance.html`.
+So, if there was another document `provenance.qmd` inside the `data/` folder, it would render to `reports/data/provenance.html`.
+
+::: {.callout-tip}
+
+## Other types of project have a default output directory
+
+You usually don't need to set `output-dir` for other project types because they have a default. For example, websites render to a `_site/` folder, and books to a `_book/` folder.
+
+:::
 
 You can see other available project options on the [Project Options](https://quarto.org/docs/reference/projects/core.html) reference page in the Quarto documentation.
 
@@ -303,6 +322,7 @@ So, if `_quarto.yml` is:
 project: default
 
 author: Soraya Drake
+
 format: 
   html:
     toc: true
@@ -335,7 +355,7 @@ title: Exploratory Visualization
 
 As an added advantage, if you add more Quarto documents, you don't need to remember the exact settings you used, and can just let your new document inherit them from `_quarto.yml`.
 
-If a document specifies a different option to `_quarto.yml`, if will override the default value. For instance, if there is another document `03-modelling.qmd` with a different author, specifying `author` in the document YAML will override the value set in `_quarto.yml`:
+If a document specifies a different option to `_quarto.yml`, it will override the default value. For instance, if there is another document `03-modelling.qmd` with a different author, specifying `author` in the document YAML will override the value set in `_quarto.yml`:
 
 ``` {.markdown filename="03-modelling.qmd"}
 ---
@@ -352,32 +372,129 @@ If you would like to specify common metadata for documents inside a sub-director
 
 :::
 
-Using `_quarto.yml` can help reduce duplication in the metadata of your documents, but once you have related documents in a project, you often also find you have duplicated content. Point at inlcudes in Authoring chapter.
+Using `_quarto.yml` can help reduce duplication in the metadata of your documents, but once you have related documents in a project, you often also find you have duplicated content. You can reduce duplication of content by using the include shortcode described in @sec-includes.
+#### Multiple Formats
+
+You can set defaults for more than one format in `_quarto.yml` by nesting them under `format`:
+
+```{.yaml filename="_quarto.yml"}
+format:  
+  pdf: 
+    toc: true
+    toc-title: "Contents"
+  html: 
+    toc: true
+    toc-title: "On this page"
+```
+
+If an option applies to all formats you can list it at the top-level. For example, you could pull out `toc: true` to the top-level:
+
+```{.yaml filename="_quarto.yml"}
+toc: true
+
+format:  
+  pdf: 
+    toc-title: Contents
+  html: 
+    toc-title: On this page
+```
+
+If a file doesn't specify a format, all formats described in `_quarto.yml` will be rendered when the project is rendered. However, if a document specifies any formats only those will be rendered. For example, you could specify a document should only be rendered to `html`:
+
+```{.yaml filename="report.qmd"}
+---
+title: "Report"
+format: html
+---
+```
+
+If you need to override options for one format, but still want the other formats rendered, you'll need to specify all formats. 
+Use  `default` as the value for any formats with no options overridden. 
+For example, you might set the table of contents depth for the `html` format, but use all the default settings for `pdf`:
+
+```{.yaml filename="report.qmd"}
+---
+title: "Report"
+format: 
+  html:
+    toc-depth: 3
+  pdf: default
+---
+```
+
+You can use the same idea to add additional formats for a single document that aren't specified at all in `_quarto.yml`:
+
+```{.yaml filename="report.qmd"}
+---
+title: "Report"
+format: 
+  html: default
+  pdf: default
+  docx: default
+---
+```
 
 ## Tools
 
+There are a few tool-specific shortcuts when you are working with a Quarto Project. 
+You can read more them for your tool in this section.
+
 ### RStudio
 
-**File** > **New Project**: Quarto Project 
+#### Creating a Project
 
-(Might need to discuss engine, venv/renv options, or refer to other chapters)
+You can create a new project in RStudio using with **File** > **New Project**. Select to create a project in a **New Directory** then select **Quarto Project**. 
 
-**Build Pane** **Render Project** 
+![New Project dialog in RStudio. Quarto project options include Quarto Project, Quarto Website, Quarto Blog and Quarto Book.](images/projects-rstudio-new.png){fig-alt="A screenshot of the new project dialog in RStudio."}
 
-### VS Code
+#### Rendering a Project
 
-**Quarto: Create Project**
+RStudio will detect when an RStudio project is also a Quarto project and display a **Build** pane. The **Render** button in this pane will render the entire project. You can also access this command via the shortcut {{< kbd mac=Shift-Command-B win=Shift-Control-B linux=win=Shift-Control-B >}}. 
 
-**Quarto: Render Project**
+![The Render Project button is available in the Build Pane when RStudiio detects a Quarto project.](images/projects-rstudio-build.png){fig-alt="Screenshot of the Build Pane in RStudio showing a button labelled Render Project."}
 
-## Advanced: Project Profiles
+::: {.callout-tip}
+
+If you add `_quarto.yml` to an existing RStudio project, you may need to close and reopen the project to see the Build Pane.
+
+:::
+
+#### Previewing a Document
+
+If you have a document in your project open in the Editor window you can use the usual Render button (or shortcut) to preview the document. This command is equivalant to running:
+
+```{.bash filename="Terminal"}
+quarto preview document.qmd --to default --no-watch-inputs --no-browse
+```
+
+This is useful when you are editing the file, but it is not equivalent to rendering the project. In particular, it won't render all formats, nor render other files unless they are explicitly needed. 
+
+### VS Code w/ Quarto Extension
+
+#### Creating a Project
+
+You can create a new project with the **Quarto: Create Project** command. You will be prompted for a type, location and directory name. 
+
+#### Rendering a Project
+
+Render your entire project with the **Quarto: Render Project** command.
+
+#### Previewing a Document
+
+If you have a document in your project open you can use the usual Preview button, shortcut or **Quarto: Preview** command preview the document. This is useful when you are editing the file, but it is not equivalent to rendering the project. In particular, it won't render all formats, nor render other files unless they are explicitly needed. 
 
 ## Wrapping Up
 
-Virtual Environment -\> Computation chapters
+You've seen how a Quarto project allows you to organize, configure and render a folder of documents.
+Project are particularly useful when you have a set of documents that share some metadata. 
+But, even without shared metadata, the ability to easily render a directory of documents is a good reason to use a project. 
+And as you'll see later websites, books and manuscripts are special types of projects.
 
-Find yourself creating many projects with the same structure or settings, you might want to define your own custom project type.
-See Extensions.
+As you start using projects you might find these other sections of the book useful: 
+
+* To control computational dependencies for a project it is common to set up a computational environment. You can learn more in @sec-computations.
+
+* If you find yourself creating many project with the same structure or settings you might want to define a custom project type. You can read more in @sec-extensions.
 
 
 ```{r}
