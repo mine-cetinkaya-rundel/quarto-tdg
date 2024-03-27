@@ -32,6 +32,4 @@
 
 a change
 
-another change
-
-yet another change
+## Includes {#sec-includes}
