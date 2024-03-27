@@ -1,3 +1,57 @@
 ---
 title: Presentations
 ---
+
+Quarto supports a variety of formats for creating presentations, including:
+
+-   `revealjs` (HTML)
+
+-   `pptx` (MS Office)
+
+-   `beamer` (LaTeX/PDF)
+
+There are pros and cons to each of these formats.
+The most capable format by far is `revealjs` so is highly recommended unless you have specific requirements for Office or LaTeX output.
+Note that `revealjs` presentations can be presented as HTML slides or can be printed to PDF for easier distribution.
+
+We start this chapter by describing the basic syntax for presentations that applies to all formats.
+In later sections we will also touch on format-specific features.
+
+## Sections and slides
+
+Level 1 headings identify sections and Level 2 headings identify slides.
+These headings also create breaks between slides.
+For breaks between slides without titles, use dashes `---`.
+
+``` markdown
+---
+title: "Slide deck"
+author: "John Doe"
+format: revealjs
+---
+
+# Section 1 title
+
+## Slide 1 title
+
+- Bullet point 1
+- Bullet point 2
+
+## Slide 2 title
+
+- Bullet point 1
+- Bullet point 2
+
+---
+
+Slide without title:
+
+- Bullet point 1
+- Bullet point 2
+```
+
+::: callout-note
+We will continue to use level 1 headings for section brakes and level 2 headings for slide breaks.
+However it's possible to customize this using the `slide-level` option, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
+See the Pandoc documentation on [structuring the slide show](https://pandoc.org/MANUAL.html#structuring-the-slide-show) (<https://pandoc.org/MANUAL.html#structuring-the-slide-show>) for additional details.
+:::

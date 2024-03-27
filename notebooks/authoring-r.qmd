@@ -1,0 +1,24 @@
+---
+title: "Authoring - R"
+---
+
+## Markdown text
+
+hello
+
+## Code cells
+
+```{r}
+#| label: add
+
+1 + 1
+```
+
+```{r}
+#| label: plot
+
+df <- data.frame(x = 1:8, y = 3:10)
+m <- lm(y ~ x, data = df)
+plot(df$x, df$y)
+abline(m)
+```

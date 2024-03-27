@@ -4,6 +4,26 @@
 
 ## Code cells
 
+::: panel-tabset
+### R
+
+{{< embed notebooks/authoring-r.qmd#add echo=true >}}
+
+### Python
+
+{{< embed notebooks/authoring-python.qmd#add echo=true >}}
+:::
+
+::: panel-tabset
+### R
+
+{{< embed notebooks/authoring-r.qmd#plot echo=true >}}
+
+### Python
+
+{{< embed notebooks/authoring-python.qmd#plot echo=true >}}
+:::
+
 ## Tables
 
 ## Figures

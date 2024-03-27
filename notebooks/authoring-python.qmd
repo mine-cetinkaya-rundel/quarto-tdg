@@ -1,0 +1,26 @@
+---
+title: Authoring - Python
+---
+
+## Markdown text
+
+## Code cells
+
+```{python}
+#| label: add
+
+1 + 1
+```
+
+```{python}
+#| label: plot
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+xpoints = np.array([1, 8])
+ypoints = np.array([3, 10])
+
+plt.plot(xpoints, ypoints)
+plt.show()
+```
