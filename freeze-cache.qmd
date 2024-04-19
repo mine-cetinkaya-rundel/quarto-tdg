@@ -1,3 +1,2 @@
----
-title: Freezing and caching
----
+# Freezing and caching {#sec-freeze-cache}
+

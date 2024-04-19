@@ -58,23 +58,21 @@ You can share the URL and anyone can view your rendered content.
 
 ## The Publishing Process
 
-The `quarto publish` command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local copy of the Quarto CLI. Only the output files are then transferred to the publishing provider. In @fig-pub-process we illustrate this a two separate steps—render then publish— but they both occur when you run the quarto publish command.
+The `quarto publish` command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local copy of the Quarto CLI. Only the output files are then transferred to the publishing provider.
+In @fig-pub-process we illustrate this a two separate steps—render then publish— but they both occur when you run the quarto publish command.
 
 ![The `quarto publish` process. Input files are rendered locally, then the output files and their dependencies are transmitted to the publishing provider.](images/publishing-process.jpg){#fig-pub-process fig-alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on quartopub.com."}
 
-By default, any computations are also executed locally using knitr or jupyter
+Quarto generates a single self-contained output file for some output formats, like PDF or Word documents. 
+This single output file is the only thing that needs to be transfered to the provider to share it with others.
+However, for some formats, notably HTML, Quarto generates a collection of files and those files might depend on other local files like images. 
+All of these files and their dependencies need to be transfered to the provider to successfully publish the content. The advantage of `quarto publish` is that Quarto identifies all these required files for you.
 
-When you run `quarto publish`,
+Any computations are also executed locally using your version of knitr or jupyter. 
+However, if you use freeze (see @sec-freeze-cache for details) the computations might have been executed elsewhere (or at another time). 
 
-For some output formats, like PDF or Word documents, Quarto generates a single self-contained output file.
-But for others, notably HTML, Quarto generates a collection of files (`hello.qmd` and files in `hello_files/`) and the output file may depend on other files like images.
-
-If you find Quarto isn't identifying a file dependency you can also explicitly describe them using the `resources` option to the `html` format.
-
-Other models of publishing involve local code execution but remote rendering, or both remote code execution and rendering.
-When remote rendering is automated based on changes to the source documents it is known as Continuous Integration.
-
-
+Other publishing models involve local code execution combined with remote rendering, or both remote code execution and remote rendering. 
+Remote rendering is particularly useful when it is automated whenever source documents change---a worflow known as Continuous Integration which you'll learn more about in @sec-ci.
 
 ## Updating Published Documents
 
