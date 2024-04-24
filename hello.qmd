@@ -23,8 +23,7 @@ The best place to learn about Quarto and explore its capabilities, aside from th
 Quarto is available under the [MIT license](https://quarto.org/license.html).
 
 Sometimes when we say "Quarto" we mean "a Quarto document", i.e., a plain-text file with the extension `.qmd`, a Quarto markdown file.
-And sometimes when we say "Quarto" we mean the Quarto Command Line Interface (CLI), which can render `.qmd` files as well as `.ipynb` (Jupyter Notebook), `.Rmd` (R Markdown) and `.md` (Markdown) files.
-<!--# MCR: Check for other types of files to list. -->
+And sometimes when we say "Quarto" we mean the Quarto Command Line Interface (CLI), which can render `.qmd` files as well as `.ipynb` (Jupyter Notebook), `.Rmd` (R Markdown), and `.md` (Markdown) files.
 
 ## Installation
 
@@ -37,12 +36,10 @@ You can also download development versions of Quarto at <https://quarto.org/docs
 ## Tools for authoring
 
 You do not need a specific tool for authoring and rendering Quarto documents.
-You can author Quarto documents in any plain text editor and render them with the `quarto render` command.
+You can author Quarto documents in any plain text editor and render them with the `quarto render` command in your computer's terminal.
 
 However we recommend using an integrated development environment (IDE) when working with Quarto as they can enhance your authoring experience.
 Some compelling reasons for using an IDE with Quarto include preview and live rendering features that allow you to see how your content will look as you write it, syntax highlighting, project management features, version control integration, debugging tools, and efficiency and productivity features like snippets, templates, and keyboard shortcuts.
 Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting which can help you quickly find the right syntax and catch errors.
 
-In the next chapter we will discuss in authoring
-
-<!--# MCR: RStudio, VS Code, Jupyter... -->
+In the next chapter we go into further detail about using Quarto in various editors including RStudio, VS Code, and Jupyter Lab.
