@@ -4,6 +4,11 @@ $primary: #39729E !default;
 $font-size-root: 18px !default;
 
 /*-- scss:rules --*/
+.dir-str {
+  @extend .p-2;
+  @extend .border;
+  @extend .rounded
+}
 
 .sidebar-title {
   color: #39729E;
