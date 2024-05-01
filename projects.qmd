@@ -72,14 +72,14 @@ You'll learn more about previewing and rendering projects in @sec-render-a-proje
 Beyond indicating that the folder is a Quarto project, the file `_quarto.yml` also stores Quarto YAML options.
 These can be project-level options or document-level options common to the documents in the project. 
 Project-level options are set under `project`, one of which is `type`. 
-If the file `_quarto.yml` is empty, or if `type` is unspecified, the `type` is assumed to be `default`, that is, it's equivalent to:
+If the file `_quarto.yml` is empty, or if `type` is unspecified, the `type` is assumed to be `default`. That is, it's equivalent to:
 
 ``` {.yaml filename="_quarto.yml"}
 project:
   type: default
 ```
 
-Other project types include `manuscript`, `website` and `book`, which you'll learn more about in @sec-manuscripts, @sec-websites and @sec-books.
+Other project types include `manuscript`, `website`, and `book`, which you'll learn more about in @sec-manuscripts, @sec-websites and @sec-books.
 
 You'll learn about a few more project-level options in @sec-project-options and about setting common document options in @sec-common-metadata.
 
@@ -135,7 +135,7 @@ Each project should have one, and only one, `_quarto.yml` file. Its location def
 
 ## Render and Preview a Project {#sec-render-a-project}
 
-From the project directory, you can render all the files in the project by rendering without specifying a file:
+From the project directory, you can render all of the files in the project by rendering without specifying a file:
 
 ``` {.bash filename="Terminal"}
 quarto render
@@ -160,7 +160,7 @@ quarto render
 
 ## What gets rendered?
 
-Quarto will render all valid Quarto input files (e.g. `.qmd`, `.ipynb`, `.md`, `.Rmd` etc.) except files or folders that start with `_`, or `.`, or a file matching `README.*md`. 
+Quarto will render all valid Quarto input files (e.g. `.qmd`, `.ipynb`, `.md`, `.Rmd`, etc.) except files or folders that start with `_`, or `.`, or a file matching `README.*md`. 
 
 All formats specifed in each file will be rendered.
 
@@ -437,7 +437,7 @@ format:
 ## Tools
 
 There are a few tool-specific shortcuts when you are working with a Quarto Project. 
-You can read more them for your tool in this section.
+You can read more about them for your tool in this section.
 
 ### RStudio
 
@@ -481,7 +481,7 @@ Render your entire project with the **Quarto: Render Project** command.
 
 #### Previewing a Document
 
-If you have a document in your project open you can use the usual Preview button, shortcut or **Quarto: Preview** command preview the document. This is useful when you are editing the file, but it is not equivalent to rendering the project. In particular, it won't render all formats, nor render other files unless they are explicitly needed. 
+If you have a document in your project open, you can use the usual Preview button, shortcut or **Quarto: Preview** command preview the document. This is useful when you are editing the file, but it is not equivalent to rendering the project. In particular, it won't render all formats, nor render other files unless they are explicitly needed. 
 
 ## Wrapping Up
 
