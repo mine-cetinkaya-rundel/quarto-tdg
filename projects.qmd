@@ -224,7 +224,7 @@ For example, as you saw in the example in @sec-overview, the output `01-import.h
 dir_tree(dir, recurse = 1)
 ```
 
-To share results without sharing the source documents, it may be easier to have your outputs in their own directory. 
+It might be easier to have your outputs written to their own directory. 
 You could set `output-dir` to `reports`:
 
 ```{r}
