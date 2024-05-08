@@ -26,7 +26,9 @@ And sometimes when we say "Quarto" we mean the Quarto Command Line Interface (CL
 
 ## Installation
 
-You can download the latest release version of Quarto at [https://quarto.org/docs/get-started](https://quarto.org/docs/get-started/) and install it.
+The Quarto CLI is the tool you need to render Quarto documents.
+Specifically, it gives you the command `quarto render`.
+You can download the latest release version of the Quarto CLI at [https://quarto.org/docs/get-started](https://quarto.org/docs/get-started/) and install it.
 
 ::: callout-note
 You can also download development versions of Quarto at <https://quarto.org/docs/download/prerelease.html> however note that pre-release builds are intended for testing purposes, and are not recommended for general use.
