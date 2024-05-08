@@ -2,9 +2,12 @@
 
 ## What is Quarto?
 
-Quarto is an open-source scientific and technical publishing system built on Pandoc.
+Quarto is an open-source scientific and technical publishing system built on Pandoc[^hello-1].
 It provides a unified authoring framework for data science, combining code, results, and narrative to produce outputs like HTML, PDF, Word, and more in a seamless manner.
 A few of the key features of Quarto that are applicable to Quarto users at any level are listed below:
+
+[^hello-1]: Pandoc is a tool that converts documents to different formats.
+    Quarto leverages it to convert markdown to a variety of output formats.
 
 1.  **Markdown authoring**: Quarto documents are authored using **markdown**, a straightforward plain text format that allows you to add formatting elements to plain text documents using a simple syntax.
 
