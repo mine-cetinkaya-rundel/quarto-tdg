@@ -8,8 +8,7 @@ A few of the key features of Quarto that are applicable to Quarto users at any l
 
 1.  **Markdown authoring**: Quarto documents are authored using **markdown**, a straightforward plain text format that allows you to add formatting elements to plain text documents using a simple syntax.
 
-2.  **Code integration**: Quarto extends the code capabilities of Pandoc by embedding code and output from various languages, including Python, R, Julia, and JavaScript.
-    This is made possible by execution engines like Jupyter, knitr, and Observable.
+2.  **Code integration**: Quarto coordinates the execution of knitr, Jupyter or Observable to embed code and output from various languages, including Python, R, Julia, and JavaScript.
 
 3.  **Technical writing extensions**: Quarto includes extensions to Pandoc markdown specifically designed for technical writing that cover features like cross-references, sub-figures, layout panels, hoverable citations and footnotes, and more.
 
