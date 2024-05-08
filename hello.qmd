@@ -10,7 +10,7 @@ A few of the key features of Quarto that are applicable to Quarto users at any l
 
 2.  **Code integration**: Quarto coordinates the execution of knitr, Jupyter or Observable to embed code and output from various languages, including Python, R, Julia, and JavaScript.
 
-3.  **Technical writing extensions**: Quarto includes extensions to Pandoc markdown specifically designed for technical writing that cover features like cross-references, sub-figures, layout panels, hoverable citations and footnotes, and more.
+3.  **Technical writing extensions**: Quarto markdown adds syntax for technical writing that covers features like cross-references, sub-figures, layout panels, hoverable citations and footnotes, and more.
 
 4.  **Project system**: Quarto provides a project system for managing groups of documents with shared options to produce aggregate output such as manuscripts, websites, and books.
 
