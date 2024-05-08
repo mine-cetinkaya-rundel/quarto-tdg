@@ -21,7 +21,7 @@ The best place to learn about Quarto and explore its capabilities, aside from th
 
 Quarto is available under the [MIT license](https://quarto.org/license.html).
 
-Sometimes when we say "Quarto" we mean "a Quarto document", i.e., a plain-text file with the extension `.qmd`, a Quarto markdown file.
+Sometimes when we say "Quarto" we mean "a Quarto document", i.e., a plain-text Quarto markdown file with the extension `.qmd`.
 And sometimes when we say "Quarto" we mean the Quarto Command Line Interface (CLI), which can render `.qmd` files as well as `.ipynb` (Jupyter Notebook), `.Rmd` (R Markdown), and `.md` (Markdown) files.
 
 ## Installation
