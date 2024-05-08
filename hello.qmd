@@ -43,4 +43,4 @@ However we recommend using an integrated development environment (IDE) when work
 Some compelling reasons for using an IDE with Quarto include preview and live rendering features that allow you to see how your content will look as you write it, syntax highlighting, project management features, version control integration, debugging tools, and efficiency and productivity features like snippets, templates, and keyboard shortcuts.
 Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting which can help you quickly find the right syntax and catch errors.
 
-In the next chapter we go into further detail about using Quarto in various editors including RStudio, VS Code, and Jupyter Lab.
+In the next chapter we go into further detail about using Quarto in various IDEs including RStudio, VS Code, and Jupyter Lab.
