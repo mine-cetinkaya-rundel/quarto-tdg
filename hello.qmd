@@ -15,7 +15,7 @@ A few of the key features of Quarto that are applicable to Quarto users at any l
 4.  **Project system**: Quarto provides a project system for managing groups of documents with shared options to produce aggregate output such as manuscripts, websites, and books.
 
 5.  **Editor compatibility:** Quarto supports authoring in various editors and notebooks, including JupyterLab, RStudio, and VS Code.
-    Many of these editors generally offer a visual markdown editor that is specifically designed to work well with Quarto, providing a productive writing interface for composing long-form documents.
+    Many of these editors offer a visual markdown editor that is specifically designed to work well with Quarto, providing a productive writing interface for composing long-form documents.
 
 The best place to learn about Quarto and explore its capabilities, aside from this book, is [quarto.org](https://quarto.org/).
 
