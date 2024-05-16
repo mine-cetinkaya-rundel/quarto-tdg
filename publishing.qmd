@@ -143,7 +143,7 @@ quarto publish quarto-pub document.qmd
 quarto publish gh-pages document.qmd
 ```
 
-GitHub Pages is a hosting service provided by GitHub at the repository level.
+[GitHub Pages](https://pages.github.com) is a hosting service provided by GitHub at the repository level.
 If you are storing your source on GitHub anyway, it makes sense to also publish via GitHub Pages.
 
 When you publish, Quarto creates a special `gh-pages` branch, renders your document or project to this branch, and pushes this branch to GitHub.
@@ -163,7 +163,7 @@ You can read more about this workflow at [Render to `docs`](https://quarto.org/d
 quarto publish netlify document.qmd
 ```
 
-Netlify provides services for building, deploying, and managing websites.
+[Netlify](https://www.netlify.com) provides services for building, deploying, and managing websites.
 When you publish to Netlify using `quarto publish`, your document or site will be set up as what Netlify calls a [manual deploy](https://docs.netlify.com/cli/get-started/#manual-deploys) — you deploy by *manually* running `quarto publish`.
 Your output files are sent to Netlify and Netlify serves them at a URL of the form `{ random identifier }.netlify.app`.
 
@@ -180,8 +180,8 @@ The features require a more complicated publishing set up you'll touch on in @se
 
 ### Other Providers
 
-You are most likely to use Posit Connect or Confluence in organizational settings where your IT department will manage them.
-Hugging Face has a more complicated set up and probably only makes sense if you are using Hugging Face beyond Quarto already.
+You are most likely to use [Posit Connect](https://posit.co/products/enterprise/connect/) or [Confluence](https://www.atlassian.com/software/confluence) in organizational settings where your IT department will manage them.
+[Hugging Face](https://huggingface.co) has a more complicated set up and probably only makes sense if you are using Hugging Face beyond Quarto already.
 
 The `quarto publish` model described in @sec-publishing-process also applies to these providers.
 You can read more about the details of publishing in the [Publishing Guide](https://quarto.org/docs/publishing/) on the Quarto documentation website.
