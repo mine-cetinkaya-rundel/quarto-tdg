@@ -4,7 +4,7 @@ When we talk about *publishing* Quarto documents, we usually mean making the ren
 In this chapter, you'll learn about Quarto's built-in tools for publishing your content.
 However, publishing rendered documents to the web isn't the only way to share Quarto documents, so you'll also learn a little about sharing documents in other ways.
 
-## Publishing to the Web {#sec-publish-web}
+## Publishing to the web {#sec-publish-web}
 
 The quickest way to publish a single document is via the `quarto publish` command, providing the document filename as an argument:
 
@@ -57,7 +57,7 @@ If you aren't logged in to Quarto Pubs your browser will open to the public URL,
 Pages published on Quarto Pub have public URLs of the form: `{ username }.quarto.pub/{ document_title }/`.
 You can share the URL and anyone can view your rendered content.
 
-## The Publishing Process {#sec-publishing-process}
+## The publishing process {#sec-publishing-process}
 
 The `quarto publish` command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local installation of the Quarto CLI. Only the output files are then transferred to the publishing provider.
 In @fig-pub-process we illustrate this as two separate steps—render then publish— but they both occur when you run the `quarto publish` command.
@@ -76,7 +76,7 @@ However, if you use freeze (see @sec-freeze-cache for details) the computations 
 Other publishing models involve local code execution combined with remote rendering, or both remote code execution and remote rendering.
 Remote rendering is particularly useful when it is automated whenever source documents change---a workflow known as Continuous Integration---you'll learn more in @sec-ci.
 
-## Updating Published Documents
+## Updating published documents
 
 When you use `quarto publish` details about what and where you publish are stored in a file called `_publish.yml`:
 
@@ -91,7 +91,7 @@ This means when you run `quarto publish` on a document or project a second time,
 
 The details in `_publish.yml` aren't sensitive (there are no authentication details) so you can check it into version control.
 
-## Publishing Projects
+## Publishing projects
 
 Rather than publishing a single document, you can also publish a Quarto project.
 From the project directory, run `quarto publish` without specifying a filename:
@@ -178,7 +178,7 @@ You can read more about this on the Quarto documentation website at [Publish fro
 Netlify excels in continuous integration and you can set it up to preview deployments based on branches or pull requests.
 The features require a more complicated publishing set up you'll touch on in @sec-ci.
 
-### Other Providers
+### Other providers
 
 You are most likely to use [Posit Connect](https://posit.co/products/enterprise/connect/) or [Confluence](https://www.atlassian.com/software/confluence) in organizational settings where your IT department will manage them.
 [Hugging Face](https://huggingface.co) has a more complicated set up and probably only makes sense if you are using Hugging Face beyond Quarto already.
@@ -186,7 +186,7 @@ You are most likely to use [Posit Connect](https://posit.co/products/enterprise/
 The `quarto publish` model described in @sec-publishing-process also applies to these providers.
 You can read more about the details of publishing in the [Publishing Guide](https://quarto.org/docs/publishing/) on the Quarto documentation website.
 
-## Sharing Documents in Other Ways {#sec-sharing-other-ways}
+## Sharing documents in other ways {#sec-sharing-other-ways}
 
 You can share self-contained output files like PDFs or MS Word documents in any usual way: by email, placing on a shared drive, or using cloud storage.
 You can do the same with other output files but you need to be careful to also share any dependencies of those files.
@@ -225,12 +225,12 @@ format:
 
 Another option for HTML output is to use a project, set an output directory (`output-dir`), render and share the entire directory.
 
-## Sharing Document Source
+## Sharing document source
 
 Since `.qmd` files are plain text, they can be shared in pretty much any way you usually share code.
 In this section, we'll cover a few details about sharing Quarto documents as reproducible examples, and using version control.
 
-### Reproducible Examples
+### Reproducible examples
 
 A huge advantage of plain text is that you can share snippets that others can copy and paste.
 You've seen plenty of examples in this book already, but to be concrete here's another one:
@@ -275,7 +275,7 @@ format:
 The same quadruple backtick approach works in many other venues that use Markdown like GitHub Issues, GitHub Discussions and the [Posit Community Forum](forum.posit.co).
 You generally don't need to double curly braces in these venues because they won't attempt to execute any code.
 
-### Version Control
+### Version control
 
 Since `.qmd` files are plain text, they are also ideal for storing in a version control system like Git.
 A common approach is to have a Git repository for each Quarto project, and to commit all source files (`.qmd`, `_quarto.yml`, images, etc.).
@@ -291,7 +291,7 @@ In particular, the folder `.quarto/` will generally be added.
 This folder is used for temporary artifacts of the Quarto rendering process and never needs to be committed.
 You should generally commit any changes Quarto makes to `.gitignore`.
 
-#### Output Files and Directories
+#### Output files and directories
 
 In general, you don't need to commit rendered document files or the output directory (e.g. `_site/` for websites, `_book/` for books, `_manuscript` for manuscripts, or the value of `output-dir`) because they can always be recreated by rendering them.
 However, there are some circumstances it makes sense to commit them:
@@ -311,7 +311,7 @@ In RStudio when you have a Quarto document or project open, you'll see a **Publi
 This button can facilitate publishing to RPubs, Posit Connect and Posit Cloud.
 Behind the scenes, this button uses the rsconnect R package rather than `quarto publish`. If you use RStudio and are publishing to one of RPubs, Posit Connect or Posit Cloud we reccomend reading the RStudio documentation on Publishing (<https://docs.posit.co/ide/user/ide/guide/publish/publishing.html>).
 
-## Wrapping Up
+## Wrapping up
 
 In this chapter, you've seen that sharing your rendered Quarto documents is as simple as running `quarto publish`.
 You've learned this model of publishing relies on local rendering, but more complicated models exist and you'll touch on them in later chapters.
