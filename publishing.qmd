@@ -6,7 +6,7 @@ However, publishing rendered documents to the web isn't the only way to share Qu
 
 ## Publishing to the Web {#sec-publish-web}
 
-The quickest way to publish a document is via the `quarto publish` command, providing the document filename as an argument:
+The quickest way to publish a single document is via the `quarto publish` command, providing the document filename as an argument:
 
 ``` {.bash filename="Terminal"}
 quarto publish document.qmd
@@ -59,7 +59,7 @@ You can share the URL and anyone can view your rendered content.
 
 ## The Publishing Process {#sec-publishing-process}
 
-The `quarto publish` command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local copy of the Quarto CLI. Only the output files are then transferred to the publishing provider.
+The `quarto publish` command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local installation of the Quarto CLI. Only the output files are then transferred to the publishing provider.
 In @fig-pub-process we illustrate this as two separate steps—render then publish— but they both occur when you run the `quarto publish` command.
 
 ![The `quarto publish` process. Input files are rendered locally, then the output files and their dependencies are uploaded to the publishing provider.](images/publishing-process.jpg){#fig-pub-process fig-alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on quartopub.com."}
@@ -100,10 +100,10 @@ From the project directory, run `quarto publish` without specifying a filename:
 quarto publish
 ```
 
-Only website, book and manuscript projects can be published this way.
+Only website, book, and manuscript projects can be published this way.
 
 ::: callout-tip
-If you are trying to publish a project that isn't a website, book or manuscript, consider making it a website.
+If you are trying to publish a project that isn't a website, book, or manuscript, consider making it a website.
 This only requires adding `type: website` to the `project` key in `_quarto.yml`:
 
 ``` {.yaml filename="_quarto.yml"}
@@ -316,4 +316,4 @@ Behind the scenes, this button uses the rsconnect R package rather than `quarto 
 In this chapter, you've seen that sharing your rendered Quarto documents is as simple as running `quarto publish`.
 You've learned this model of publishing relies on local rendering, but more complicated models exist and you'll touch on them in later chapters.
 
-There's nothing special about the Quarto source documents, or stand-alone outputs, so you can share them in your usual ways.
+There's nothing special about Quarto source documents, or stand-alone outputs, so you can share them in your usual ways.
