@@ -103,7 +103,7 @@ quarto publish
 Only website, book, and manuscript projects can be published this way.
 
 ::: callout-tip
-If you are trying to publish a project that isn't a website, book, or manuscript, consider making it a website.
+If you are trying to publish a project, i.e., a collection of documents, that isn't a website, book, or manuscript, consider making it a website.
 This only requires adding `type: website` to the `project` key in `_quarto.yml`:
 
 ``` {.yaml filename="_quarto.yml"}
