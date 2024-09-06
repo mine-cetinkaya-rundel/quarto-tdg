@@ -4,6 +4,7 @@ engine: markdown
 ---
 
 So far, we haven't talked much about what happens behind the scenes when you run `quarto render`.
+
 In this chapter, you'll learn more about what Quarto does under the hood, so you can troubleshoot problems when they occur.
 
 ## What does Quarto do?
