@@ -1,5 +1,549 @@
 ---
 title: Looking under the hood
+engine: markdown
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel volutpat dui. Praesent vitae urna nec lorem feugiat consequat. Nunc ex nisi, posuere a lorem a, iaculis euismod tellus. Sed laoreet justo sit amet commodo suscipit. Curabitur gravida elit fermentum leo pulvinar, ac laoreet lectus iaculis. Quisque eu fringilla tellus, sit amet sollicitudin massa. In justo lorem, imperdiet laoreet interdum non, finibus in risus. In egestas fringilla nisl eu blandit.
+So far, we haven't talked much about what happens behind the scenes when you run `quarto render`.
+In this chapter, you'll learn more about what Quarto does under the hood, so you can troubleshoot problems when they occur.
+
+## What does Quarto do?
+
+At a high level, rendering a Quarto document involves two steps:
+
+1.  **Code execution via the computational engine (Knitr, jupyter, or Julia):** the computational engine executes all the code cells in the source document and replaces the cells with static Markdown content containing the results.
+    The result is a Markdown file (`.md`).
+
+2.  **Format conversion via pandoc:** the Markdown file generated in the previous step, is passed to pandoc which converts from Markdown to the required output format.
+
+This process, with a few extra details, is illustrated in @fig-quarto-process.
+You'll dive into the details below, but two key takeaways are that Quarto coordinates two other tools (the computational engine and pandoc), and all files, regardless of engine and format, pass through an intermediate Markdown file.
+
+![](images/look-under-hood-quarto.jpg){#fig-quarto-process fig-alt="Diagram of Quarto's rendering process. A QMD file enters Quarto on the left, and HTML, DOCX, PPTX and PDF files exit Quarto on the right. Inside Quarto, arrows lead from the input file through the Computational Engine to a Markdown file, and then through pandoc to the output files."}
+
+You can also see this process in the messages Quarto prints as it runs.
+These messages are generated when you run `quarto render` or `quarto preview`, but you may have missed them because they scroll quickly past or are hidden in a pane in your IDE.
+In @fig-r-output, you can see the messages Quarto prints in the Terminal during a successful render of the `document-r.qmd`—a document with `format: html` and three R code cells.
+Knitr generates the first chunk of output as it processes the document and runs the code in the three (unnamed) chunks, resulting in the file `document-r.knit.md`.
+The remaining output gives some information on the settings being passed along to pandoc.
+
+@fig-py-output shows the output for rendering `document-python.qmd` — a very similar document, except instead of R code cells, it has Python code cells.
+You can see the engine's progress, now Jupyter, appears different, but the hand-off to pandoc is identical.
+
+::::: panel-tabset
+### Knitr
+
+::: {#fig-r-output}
+``` {.default filename="Terminal"}
+$ quarto render document-r.qmd 
+
+processing file: document-r.qmd  
+1/6                              
+2/6 [unnamed-chunk-1]            
+3/6                              
+4/6 [unnamed-chunk-2]            
+5/6                              
+6/6 [unnamed-chunk-3]            
+output file: document-r.knit.md   
+
+pandoc                           
+  to: html                       
+  output-file: document-r.html   
+  standalone: true               
+  section-divs: true             
+  html-math-method: mathjax      
+  wrap: none                     
+  default-image-extension: png   
+  
+metadata
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: A Document
+  
+Output created: document-r.html
+```
+
+The output printed by `quarto render` when run on a file with three R code cells.
+:::
+
+### Jupyter
+
+::: {#fig-py-output}
+``` {.default filename="Terminal"}
+$ quarto render document-python.qmd
+
+Starting python3 kernel...Done
+
+Executing 'document-python.quarto_ipynb'
+  Cell 1/3: ''...Done
+  Cell 2/3: ''...Done
+  Cell 3/3: ''...Done
+
+pandoc 
+  to: html
+  output-file: document-python.html
+  standalone: true
+  section-divs: true
+  html-math-method: mathjax
+  wrap: none
+  default-image-extension: png
+  
+metadata
+  document-css: false
+  link-citations: true
+  date-format: long
+  lang: en
+  title: A Document
+  
+Output created: document-python.html
+```
+
+The output printed by `quarto render` when run on a file with three Python code cells.
+:::
+:::::
+
+Below you'll learn a bit more about each step.
+To help describe the transformations a document undergoes, we'll use `render-process.qmd` a Quarto document that targets `format: pdf`, has two executable R code cells, and some placeholder text added by the `lipsum` shortcode:
+
+::: {#lst-render-process-raw}
+```` {.markdown shortcodes="false"}
+---
+title: My document
+format: 
+  pdf:
+    toc: true
+---
+
+## A computation
+
+```{r}
+#| code-line-numbers: true
+
+1 + 1
+```  
+
+```{r}
+plot(1:10)
+```
+
+## Some placeholder text
+
+{{< lipsum 14-14 >}}
+````
+
+`render-process.qmd`, an example Quarto document you'll track through the render process.
+:::
+
+### Before the computational engine
+
+Before anything else, Quarto first resolves any `include` shortcodes, then parses your file to extract the YAML header and code cells.
+The combination of YAML options and the language of code cells is used to select the appropriate computational engine.
+
+It's at this stage you'll get errors about malformed YAML — these start with `ERROR: YAMLError:`.
+Learn more about common YAML issues in @sec-yaml.
+
+### Computational engine
+
+Each file is only ever run through one computational engine: Knitr, jupyter, or Julia.
+
+With no additional information from the YAML metadata (e.g. none of `engine`, `jupyter`, nor `knitr`) Quarto will choose the engine based on the file extension and the language of executable code cells in the document.
+For `.qmd` documents, Quarto will use:
+
+-   Knitr, if there are **any** `{r}` code cells.
+
+-   Jupyter, if there are any executable code cells other than `{r}`.
+    The jupyter kernel will be chosen based on the first executable code cell.
+
+-   The `markdown` engine, equivalent to using no computational engine, if there are no executable cells.
+
+::: callout-note
+## Avoiding execution
+
+For the purposes of choosing an engine, a code cell with the option `eval: false` is still considered an executable code cell, even though the code inside will not be executed.
+This means you might see an engine starting even if you've set `eval: false` at the document level.
+To avoid even starting an engine, and executing any code, you can explicitly use the markdown engine:
+
+``` yaml
+---
+engine: markdown
+---
+```
+:::
+
+For files other than `.qmd` the engine is chosen based on the file type: jupyter for `.ipynb` , but see @nte-ipynb below; Knitr for `.Rmd` ; and markdown for`.md`.
+
+The computational engine runs the executable code cells and replaces them with appropriate markdown, abiding by the `execute` options specified in the YAML metadata, and options set in code cells.
+The result is a Markdown file.
+You can examine this markdown file by adding `keep-md` to your document metadata:
+
+``` yaml
+---
+title: My document
+keep-md: true
+---
+```
+
+Since `render-process.qmd` contains executable R code cells (and doesn't specify engine otherwise) the Knitr engine is selected.
+@lst-render-process-md shows the resulting Markdown file.
+Notice the YAML header, and any Markdown content, including the shortcode, has passed through unchanged.
+However, there are now no `{r}` code cells.
+These are replaced by markdown, albeit with some special classes attached.
+
+::: {#lst-render-process-md}
+```` {.markdown shortcodes="false"}
+---
+title: My document
+keep-md: true
+format: 
+  pdf:
+    toc: true
+---
+
+## A computation
+
+::: {.cell}
+
+```{.r .cell-code  code-line-numbers="true"}
+1 + 1
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 2
+```
+
+
+:::
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
+plot(1:10)
+```
+
+::: {.cell-output-display}
+![](render-process_files/figure-pdf/unnamed-chunk-2-1.pdf){fig-pos='H'}
+:::
+:::
+
+
+## Some placeholder text
+
+{{< lipsum 14-14 >}}
+````
+
+`render-process.pdf.md` the intermediate Markdown created after passing `render-process.md` through Knitr.
+:::
+
+For example, the executable code cell that does some addition, @lst-code-cell-raw, is replaced by @lst-code-cell-md, a fenced div with the class `.cell` that contains:
+
+1.  A non-executable code cell `{.r}` with class `.cell-code` and the attribute `code-line-numbers="true"` that contains the code --- this is the "echo".
+
+2.  A fenced div with classes `.cell-output` and `.cell-output-stdout` that contains a code cell with the result.
+
+::::: {#lst-code-cell layout-ncol="2"}
+::: {#lst-code-cell-raw}
+```` markdown
+```{r}
+#| code-line-numbers: true
+
+1 + 1
+``` 
+````
+:::
+
+::: {#lst-code-cell-md}
+```` markdown
+::: {.cell}
+
+```{.r .cell-code  code-line-numbers="true"}
+1 + 1
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 2
+```
+
+
+:::
+:::
+````
+:::
+:::::
+
+You can see a similar thing has happened to the code cell that creates a plot.
+However, the output in that case is an image stored in `render-process_files/`.
+
+You might notice the name of this intermediate file, `render-process.pdf.md`, included the format, `.pdf`.
+That's because the engine is run once per format and you'll get an intermediate markdown file for each format specified in the YAML metadata (or via command-line arguments).
+
+Running the engine is necessary for each format because the engine may treat outputs differently based on the format.
+For example, different formats often have different default sizes or file formats for plots.
+
+If you receive an error from the computational engine, you won't get the get the intermediate markdown file.
+Common errors that arise during execution by the computational engine are discussed below in @sec-computational-errors.
+
+::: {#nte-ipynb .callout-note}
+## Python notebooks aren't normally executed
+
+Since `.ipynb` files store their output alongside the source, the code cells are not executed by default when you run `quarto render`.
+To execute the cells, pass the `--execute` flag to `quarto render`:
+
+``` {.bash filename="Terminal"}
+quarto render document.ipynb --execute
+```
+:::
+
+### Pandoc
+
+The Markdown file is passed along to pandoc for conversion into the desired output formats.
+Pandoc's role in rendering provides many of the features for [authoring](#sec-authoring) Quarto documents.
+For example, the syntax you learned for headings, quotations, lists, tables, links and footnotes is the syntax defined by pandoc (see [Pandoc's Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) on the pandoc documentation site).
+Other more complicated features, like the default handling of citations with `citeproc`, also come directly from pandoc (see [Citations](https://pandoc.org/MANUAL.html#citations) on the pandoc documentation site).
+
+::: callout-note
+## Quarto includes pandoc
+
+Quarto includes a particular version of pandoc.
+You don't need to install or manage it separately, and it won't interfere with any other version of pandoc you have installed.
+If you ever need to run Quarto's pandoc, you can with:
+
+``` {.bash filename="Terminal"}
+quarto pandoc 
+```
+:::
+
+However, Quarto adds many of its own features beyond those available in pandoc.
+These are added via an established mechanism for customizing pandoc output: filters.
+When pandoc reads an input file, it translates it into an abstract representation known as an abstract syntax tree.
+Filters are functions that operate on this abstract syntax tree transforming it before it is written out to the desired format.
+Cross-references, shortcodes, and code annotation are examples of features that Quarto adds via filters.
+
+Sometimes Quarto returns the file unchanged to you from pandoc, but for some formats Quarto does some additional processing.
+When you generate PDF output, either via `format: pdf` or `format: typst` , there is an additional step in the process.
+Quarto uses pandoc to generate an intermediate file `.tex` for `format: pdf`, or `.typ` for `format: typst`, but then calls LaTeX or Typst itself to generate the PDF.
+
+You can examine the intermediate file with the `keep-tex` and `keep-typst` options respectively.
+For example, to examine the `.tex` file from `render-process.qmd` we could add:
+
+``` yaml
+---
+title: My document
+keep-tex: true
+format: 
+  pdf:
+    toc: true
+---
+```
+
+An excerpt of the resulting `.tex` file is shown in @lst-render-process-tex.
+Above this excerpt is almost 200 lines of other TeX commands setting up the document.
+
+We've excluded that code here to focus on the part of the document that reflects our content.
+
+::: callout-tip
+## Templates contribute document boilerplate
+
+Converting the Markdown to TeX commands isn't enough to have a complete TeX document. The converted content is pasted into a template that adds the boilerplate required to form a complete document. You'll learn more about templates and customizing them in @sec-templates.
+:::
+
+::: {#lst-render-process-tex}
+``` {.tex shortcodes="false"}
+\title{My document}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\subsection{A computation}\label{a-computation}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{render-process_files/figure-pdf/unnamed-chunk-2-1.pdf}
+
+\subsection{Some placeholder text}\label{some-placeholder-text}
+
+Duis urna urna, pellentesque eu urna ut, malesuada bibendum dolor.
+Suspendisse potenti. Vivamus ornare, arcu quis molestie ultrices, magna
+est accumsan augue, auctor vulputate erat quam quis neque. Nullam
+scelerisque odio vel ultricies facilisis. Ut porta arcu non magna
+sagittis lacinia. Cras ornare vulputate lectus a tristique. Pellentesque
+ac arcu congue, rhoncus mi id, dignissim ligula.
+
+\end{document}
+```
+
+An **excerpt** from `render-process.tex`, the Tex file created after passing `render-process.pdf.md` through pandoc.
+:::
+
+Now the markdown syntax has been converted to TeX syntax.
+You can see some lines devoted to generating the title and table of contents:
+
+``` tex
+\title{My document}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+```
+
+Then, the content like section headings using the TeX command `\subsection`, code cells using `Shaded` and `Highlighting` environments, and output using appropriate commands like the `verbatim` environment for the code output, and the `\includegraphics` command for the image file.
+
+Notice the shortcode has also been evaluated (since it's a feature implemented as a filter) and is replaced by its result --- a paragraph of Lorem Ipsum text.
+
+
+### After pandoc
+
+For documents with `format: pdf` or `format: typst` the last step involves running LaTeX and Typst respectively, to produce the output documents.
+
+For `format: pdf` Quarto uses an external installation of TeX. 
+It's highly reccomended you install TeX via:
+```{.bash filename="Terminal"}
+quarto install tinytex
+```
+
+However, Quarto will detect and use other TeX installations if they exist. 
+Quarto will process the `.tex` file as many times as needed to resolve all cross references and citations.
+
+@fig-render-process-pdf shows part of the PDF output that results for `render-process.qmd`.
+
+[![A portion of the final PDF document produced by `render-process.qmd`](images/look-under-hood-pdf.png){#fig-render-process-pdf fig-alt="A screenshot of a PDF document with the title 'My document'. Below the title is a table of contents followed by a section called `A computation`."}](_examples/look-under-hood/render-process.pdf)
+
+In contrast, for `format: typst`, Quarto runs the Typst version provided internally with Quarto. This is equivalent to:
+
+```{.bash filename="Terminal"}
+quarto typst compile document.typ
+```
+
+## Troubleshooting
+
+Run:
+``` {.bash filename="Terminal"}
+quarto check
+```
+
+* Check your Quarto version against the latest release.
+Particularly when documented features don't seem to work for you.
+
+* Check Python/R install is the one you expect.
+
+::: {#fig-quarto-check}
+``` default
+Quarto 1.5.56
+[✓] Checking versions of quarto binary dependencies...
+      Pandoc version 3.2.0: OK
+      Dart Sass version 1.70.0: OK
+      Deno version 1.41.0: OK
+      Typst version 0.11.0: OK
+[✓] Checking versions of quarto dependencies......OK
+[✓] Checking Quarto installation......OK
+      Version: 1.5.56
+      Path: /Applications/quarto/bin
+
+[✓] Checking tools....................OK
+      TinyTeX: v2024.03.13
+      Chromium: (not installed)
+
+[✓] Checking LaTeX....................OK
+      Using: TinyTex
+      Path: /Users/charlottewickham/Library/TinyTeX/bin/universal-darwin
+      Version: 2024
+
+[✓] Checking basic markdown render....OK
+
+[✓] Checking Python 3 installation....OK
+      Version: 3.12.2
+      Path: /Users/charlottewickham/.pyenv/versions/3.12.2/bin/python3
+      Jupyter: 5.7.2
+      Kernels: julia-1.10, python3
+
+[✓] Checking Jupyter engine render....OK
+
+[✓] Checking R installation...........OK
+      Version: 4.3.3
+      Path: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources
+      LibPaths:
+        - /Users/charlottewickham/Documents/posit/quarto-tdg/renv/library/R-4.3/aarch64-apple-darwin20
+        - /Users/charlottewickham/Library/Caches/org.R-project.R/R/renv/sandbox/R-4.3/aarch64-apple-darwin20/ac5c2659
+      knitr: 1.44
+      rmarkdown: 2.25
+
+[✓] Checking Knitr engine render......OK
+```
+
+An example of the result of running `quarto check` 
+
+:::
+
+
+## Errors from the computational engine {#sec-computational-errors}
+
+If your Quarto document fails to make it through the computational engine there are generally three culprits:
+
+-   The wrong engine is being used
+
+-   Your code has errors in it: label chunks, and check code interactively
+
+-   The enviroment Quarto sees isn't the one you expect/want. See R/Python chapters
+
+
+### Wrong Engine
+
+Check the correct engine is selected. To override the automatic choice you can explicitly set the engine with the `engine` key:
+
+``` yaml
+---
+engine: jupyter
+---
+```
+
+In particular, Quarto will never select the `julia` engine, you must opt-in via the `engine` key.
+
+### Code Errors
+
+### Wrong Environment
+
+## Asking for help
+
+Minimal reproducible example.
+
+GitHub discussions, Posit community
+
+## Preview process vs. Render process
+
+## What does Quarto do when rendering projects?
