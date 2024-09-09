@@ -5,3 +5,16 @@ title: Quarto and R
 ```{r}
 1 + 1
 ```
+
+assume knitr
+
+- https://quarto.org/docs/computations/r.html#data-frames -- Is this relevant to other languages or R specific at all? 
+
+- figuring out R installation Quarto is seeing: https://quarto.org/docs/troubleshooting/#knitr
+
+- https://quarto.org/docs/computations/inline-code.html - use in other chapters too, and https://quarto.org/docs/computations/render-scripts.html
+
+- apply at document level: https://quarto.org/docs/computations/execution-options.html
+    - apply at cell level https://quarto.org/docs/reference/cells/cells-knitr.html, and only some of them work at document level (and not all of these work for other engines)
+
+end with other combinations of engines and why you might use them -- 2 languages in the same document without embedding and passing objects between languages

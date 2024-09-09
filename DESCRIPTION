@@ -1,0 +1,12 @@
+Package: quartotdg
+Title: Quarto - The Definitive Guide.
+Version: 0.1
+Authors@R: c(
+    person("Mine", "\u00C7etinkaya-Rundel", , "mine@posit.co", role = c("aut", "cre")),
+    person("Charlotte", "Wickham", , "charlotte.wickham@posit.co", role = "aut")
+  )
+URL: https://github.com/mine-cetinkaya-rundel/quarto-tdg
+Suggests:
+    addmins,
+    usethis
+Remotes: mine-cetinkaya-rundel/addmins

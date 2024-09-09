@@ -1,8 +1,8 @@
 {
-  "hash": "6f1f7e4bdb62c1cbbd623e412fe75ee0",
+  "hash": "04427fa54c94a5da979fdb783cc09add",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: Quarto and Python\n---\n\n::: {#17567338 .cell execution_count=1}\n``` {.python .cell-code}\n2 + 2\n```\n\n::: {.cell-output .cell-output-display execution_count=1}\n```\n4\n```\n:::\n:::\n\n\n::: {#da418fc2 .cell execution_count=2}\n``` {.python .cell-code}\nimport seaborn as sns\npenguins = sns.load_dataset(\"penguins\")\nsns.displot(penguins, x=\"flipper_length_mm\")\n```\n\n::: {.cell-output .cell-output-display}\n![](python_files/figure-html/cell-3-output-1.png){width=470 height=470}\n:::\n:::\n\n\n",
+    "markdown": "---\ntitle: Quarto and Python\n---\n\n::: {#c13421f2 .cell execution_count=1}\n``` {.python .cell-code}\n2 + 2\n```\n\n::: {.cell-output .cell-output-display execution_count=1}\n```\n4\n```\n:::\n:::\n\n\nassume jupyter, not reticulate\n\n::: {#6d6167fe .cell execution_count=2}\n``` {.python .cell-code}\nimport seaborn as sns\npenguins = sns.load_dataset(\"penguins\")\nsns.displot(penguins, x=\"flipper_length_mm\")\n```\n\n::: {.cell-output .cell-output-display}\n![](python_files/figure-html/cell-3-output-1.png){width=470 height=470}\n:::\n:::\n\n\nend with other combinations of engines and why you might use them -- 2 languages in the same document without embedding and passing objects between languages\n\n",
     "supporting": [
       "python_files"
     ],

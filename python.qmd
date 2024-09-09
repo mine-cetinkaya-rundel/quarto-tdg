@@ -6,8 +6,12 @@ title: Quarto and Python
 2 + 2
 ```
 
+assume jupyter, not reticulate
+
 ```{python}
 import seaborn as sns
 penguins = sns.load_dataset("penguins")
 sns.displot(penguins, x="flipper_length_mm")
 ```
+
+end with other combinations of engines and why you might use them -- 2 languages in the same document without embedding and passing objects between languages
