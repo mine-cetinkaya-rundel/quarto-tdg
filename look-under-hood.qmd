@@ -19,7 +19,9 @@ At a high level, rendering a Quarto document involves two steps:
 This process, with a few extra details, is illustrated in @fig-quarto-process.
 You'll dive into the details below, but two key takeaways are that Quarto coordinates two other tools (the computational engine and pandoc), and all files, regardless of engine and format, pass through an intermediate Markdown file.
 
-![](images/look-under-hood-quarto.jpg){#fig-quarto-process fig-alt="Diagram of Quarto's rendering process. A QMD file enters Quarto on the left, and HTML, DOCX, PPTX and PDF files exit Quarto on the right. Inside Quarto, arrows lead from the input file through the Computational Engine to a Markdown file, and then through pandoc to the output files."}
+![The Quarto render process](images/look-under-hood-quarto.jpg){#fig-quarto-process fig-alt="Diagram of Quarto's rendering process. A QMD file enters Quarto on the left, and HTML, DOCX, PPTX and PDF files exit Quarto on the right. Inside Quarto, arrows lead from the input file through the Computational Engine to a Markdown file, and then through pandoc to the output files."}
+
+(TODO: think about whether this picture should just illustrate one format, to reenforce the idea that each format flows through largely in parallel.)
 
 You can also see this process in the messages Quarto prints as it runs.
 These messages are generated when you run `quarto render` or `quarto preview`, but you may have missed them because they scroll quickly past or are hidden in a pane in your IDE.
@@ -138,17 +140,21 @@ plot(1:10)
 
 ### Before the computational engine
 
-Before anything else, Quarto first resolves any `include` shortcodes, then parses your file to extract the YAML header and code cells.
-The combination of YAML options and the language of code cells is used to select the appropriate computational engine.
+Before anything else, Quarto first resolves any `include` shortcodes, then parses your file to extract the document header and code cells.
 
-It's at this stage you'll get errors about malformed YAML — these start with `ERROR: YAMLError:`.
+It's at this stage you'll get errors about malformed YAML in your document header--— these start with `ERROR: YAMLError:`.
 Learn more about common YAML issues in @sec-yaml.
+
+Quarto will also determine the set of formats that needs to be rendered. 
+Each format is handled independently --- the document, along with the format specific metadata, travels through the computational engine and Pandoc independently of any other formats.
+
+The combination of metadata and the language of code cells is used to select the appropriate computational engine.
 
 ### Computational engine
 
-Each file is only ever run through one computational engine: Knitr, jupyter, or Julia.
+Each documemt is only ever run through one computational engine: Knitr, jupyter, or Julia.
 
-With no additional information from the YAML metadata (e.g. none of `engine`, `jupyter`, nor `knitr`) Quarto will choose the engine based on the file extension and the language of executable code cells in the document.
+With no additional information from the metadata (e.g. none of `engine`, `jupyter`, nor `knitr`) Quarto will choose the engine based on the file extension and the language of executable code cells in the document.
 For `.qmd` documents, Quarto will use:
 
 -   Knitr, if there are **any** `{r}` code cells.
@@ -174,7 +180,7 @@ engine: markdown
 
 For files other than `.qmd` the engine is chosen based on the file type: jupyter for `.ipynb` , but see @nte-ipynb below; Knitr for `.Rmd` ; and markdown for`.md`.
 
-The computational engine runs the executable code cells and replaces them with appropriate markdown, abiding by the `execute` options specified in the YAML metadata, and options set in code cells.
+The computational engine runs the executable code cells and replaces them with appropriate markdown, abiding by the `execute` options specified in the metadata, and options set in code cells.
 The result is a Markdown file.
 You can examine this markdown file by adding `keep-md` to your document metadata:
 
@@ -187,7 +193,7 @@ keep-md: true
 
 Since `render-process.qmd` contains executable R code cells (and doesn't specify engine otherwise) the Knitr engine is selected.
 @lst-render-process-md shows the resulting Markdown file.
-Notice the YAML header, and any Markdown content, including the shortcode, has passed through unchanged.
+Notice the document header, and any Markdown content, including the shortcode, has passed through unchanged.
 However, there are now no `{r}` code cells.
 These are replaced by markdown, albeit with some special classes attached.
 
@@ -281,7 +287,7 @@ You can see a similar thing has happened to the code cell that creates a plot.
 However, the output in that case is an image stored in `render-process_files/`.
 
 You might notice the name of this intermediate file, `render-process.pdf.md`, included the format, `.pdf`.
-That's because the engine is run once per format and you'll get an intermediate markdown file for each format specified in the YAML metadata (or via command-line arguments).
+That's because the engine is run once per format and you'll get an intermediate markdown file for each format specified in the metadata (or via command-line arguments).
 
 Running the engine is necessary for each format because the engine may treat outputs differently based on the format.
 For example, different formats often have different default sizes or file formats for plots.
@@ -350,7 +356,9 @@ We've excluded that code here to focus on the part of the document that reflects
 ::: callout-tip
 ## Templates contribute document boilerplate
 
-Converting the Markdown to TeX commands isn't enough to have a complete TeX document. The converted content is pasted into a template that adds the boilerplate required to form a complete document. You'll learn more about templates and customizing them in @sec-templates.
+Converting the Markdown to TeX commands isn't enough to have a complete TeX document. 
+The converted content is pasted into a template that adds the boilerplate required to form a complete document. 
+You'll learn more about templates and customizing them in @sec-templates.
 :::
 
 ::: {#lst-render-process-tex}
@@ -445,13 +453,21 @@ Quarto will process the `.tex` file as many times as needed to resolve all cross
 
 [![A portion of the final PDF document produced by `render-process.qmd`](images/look-under-hood-pdf.png){#fig-render-process-pdf fig-alt="A screenshot of a PDF document with the title 'My document'. Below the title is a table of contents followed by a section called `A computation`."}](_examples/look-under-hood/render-process.pdf)
 
-In contrast, for `format: typst`, Quarto runs the Typst version provided internally with Quarto. This is equivalent to:
+In contrast, for `format: typst`, Quarto runs the Typst version provided internally with Quarto. 
+This is equivalent to:
 
 ```{.bash filename="Terminal"}
 quarto typst compile document.typ
 ```
 
 ## Troubleshooting
+
+In this section, you'll learn some tips for troubleshooting problems when they do occur. 
+
+### `quarto check`
+
+The command `quarto check` runs and reports some diagnostics. 
+It's a good first step to verify.
 
 Run:
 ``` {.bash filename="Terminal"}
@@ -518,10 +534,9 @@ If your Quarto document fails to make it through the computational engine there 
 
 -   The wrong engine is being used
 
--   Your code has errors in it: label chunks, and check code interactively
+-   The enviroment Quarto sees isn't the one you expect
 
--   The enviroment Quarto sees isn't the one you expect/want. See R/Python chapters
-
+-   Your code has errors in it
 
 ### Wrong Engine
 
@@ -535,9 +550,22 @@ engine: jupyter
 
 In particular, Quarto will never select the `julia` engine, you must opt-in via the `engine` key.
 
+### Wrong Environment
+
 ### Code Errors
 
-### Wrong Environment
+When your code itslef generates an error, the computational engine will halt and Quarto will exit. 
+
+
+: label chunks, and check code interactively
+
+::: callout-tip
+
+## Keeping an error in your output
+
+If you want to show an error in your document, set the option `error: true` in the corresponding code cell. This will prevent the error from halting execution, and include the error message in your rendered document.
+
+:::
 
 ## Asking for help
 
@@ -548,3 +576,8 @@ GitHub discussions, Posit community
 ## Preview process vs. Render process
 
 ## What does Quarto do when rendering projects?
+
+What about the `./quarto` folder? Why is it automatically added to `.gitignore`?
+
+
+
