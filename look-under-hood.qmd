@@ -1,6 +1,7 @@
 ---
 title: Looking under the hood
 engine: markdown
+code-overflow: wrap
 ---
 
 So far, we haven't talked much about what happens behind the scenes when you run `quarto render`.
@@ -14,7 +15,7 @@ At a high level, rendering a Quarto document involves two steps:
 1.  **Code execution via the computational engine (`knitr`, `jupyter`, or `julia`):** the computational engine executes all the code cells in the source document and replaces the cells with static Markdown content containing the results.
     The result is a Markdown file (`.md`).
 
-2.  **Format conversion via pandoc:** the Markdown file generated in the previous step, is passed to pandoc which converts from Markdown to the required output format.
+2.  **Format conversion via Pandoc:** the Markdown file generated in the previous step, is passed to Pandoc which converts from Markdown to the required output format.
 
 To help you understand this process, you'll follow a series of documents through these steps.
 You'll start with a document that targets the HTML format, and has only R code chunks, then you'll see how the process alters for a document with Python code cells, and a document that targets PDF.
@@ -24,28 +25,8 @@ You'll start with a document that targets the HTML format, and has only R code c
 The document in @lst-render-html-r-raw, `html-r.qmd`, is a Quarto document that targets the HTML format and contains two R code cells.
 
 ::: {#lst-render-html-r-raw}
-```` {.markdown shortcodes="false"}
----
-title: My document
-format: html
-toc: true
----
-
-## A computation
-
-```{r}
-#| code-line-numbers: true
-
-1 + 1
-```  
-
-```{r}
-plot(1:10)
-```
-
-## Some placeholder text
-
-{{< lipsum 14-14 >}}
+````{.markdown}
+{{< include _examples/look-under-hood/html-r.qmd >}}
 ````
 
 `html-r.qmd` a Quarto document with R code cells and placeholder text, targeting HTML output.
@@ -61,33 +42,32 @@ You'll dive into the details of each step below.
 Before anything else, Quarto parses your file to extract the document header and code cells.
 Quarto will determine the set of formats that need to be rendered and select the appropriate computational engine.
 
-It's at this stage you'll get errors about malformed YAML in your document header--- these start with `ERROR: YAMLError:`.
-You can learn more about common YAML issues in @sec-yaml.
-
-Each input file is only ever run through one computational engine: `knitr`, `jupyter`, or `julia`.
-[^look-under-hood-1]
-
-[^look-under-hood-1]: We use lower-case engine names, e.g. `knitr` vs. Knitr, because a computational engine is more than the tool that does the execution.
-    For example, although the Jupyter project [NBClient](https://github.com/jupyter/nbclient) does the execution when the engine is `jupyter`, the `jupyter` engine also encompasses translating the `.qmd` to an `.ipynb` and back again after execution, tasks that are handled by Quarto itself.
-
-With no additional information from the metadata (e.g. none of `engine`, `jupyter`, nor `knitr`) Quarto will choose the engine based on the file extension and the language of executable code cells in the document.
-For `.qmd` documents, Quarto will use:
-
--   `knitr`, if there are **any** `{r}` code cells.
-
--   `jupyter`, if there are any executable code cells other than `{r}`.
-    The jupyter kernel will be chosen based on the first executable code cell.
-
--   The `markdown` engine, equivalent to using no computational engine, if there are no executable cells.
-
-HTML is the only format specified in the header of `html-r.qmd`, and assuming no `--to` argument was specified in `quarto render`, Quarto will know to target it.
-Since, `html-r.qmd` contains executable R code cells (and doesn't specify engine otherwise) the `knitr` engine is selected.
-
 ::: callout-tip
 ## Include shortcodes are also resolved
 
 Include shortcodes are also resolved at this stage because they may contribute code cells to the document.
 :::
+
+It's at this stage you'll get errors about malformed YAML in your document header--- these start with `ERROR: YAMLError:`.
+You can learn more about common YAML issues in @sec-yaml.
+
+Each input file is only ever run through one computational engine: `knitr`, `jupyter`, or `julia`.
+[^look-under-hood-1] With no additional information from the metadata (e.g. none of `engine`, `jupyter`, nor `knitr`) Quarto will choose the engine based on the file extension and the language of executable code cells in the document.
+
+[^look-under-hood-1]: We use lower-case engine names, e.g. `knitr` vs. Knitr, because a computational engine is more than the tool that does the execution.
+    For example, although the Jupyter project [NBClient](https://github.com/jupyter/nbclient) does the execution when the engine is `jupyter`, the `jupyter` engine also encompasses translating the `.qmd` to an `.ipynb` and back again after execution---tasks that are handled by Quarto itself.
+
+For `.qmd` documents, Quarto will use:
+
+-   `knitr`, if there are **any** `{r}` code cells.
+
+-   `jupyter`, if there are any executable code cells other than `{r}`.
+    The Jupyter kernel will be chosen based on the first executable code cell.
+
+-   The `markdown` engine, equivalent to using no computational engine, if there are no executable cells.
+
+For `html-r.qmd`, HTML is the only format specified in the header, and assuming no `--to` argument was specified in `quarto render`, Quarto will know to target it.
+Since, `html-r.qmd` contains executable R code cells (and doesn't specify engine otherwise) Quarto selects the `knitr` engine.
 
 ### Computational engine
 
@@ -102,53 +82,14 @@ keep-md: true
 ---
 ```
 
-@lst-render-html-r-md shows the resulting Markdown file.
-Notice the document header, and any Markdown content, including the shortcode, has passed through unchanged.
+@lst-render-html-r-md shows the resulting Markdown file for `html-r.qmd`.
+Notice the document header, and Markdown content has passed through unchanged.
 However, there are now no `{r}` code cells.
 These are replaced by markdown, albeit with some special classes attached.
 
 ::: {#lst-render-html-r-md}
-```` {.markdown shortcodes="false"}
----
-title: My document
-format: html
-toc: true
-keep-md: true
----
-
-## A computation
-
-::: {.cell}
-
-```{.r .cell-code  code-line-numbers="true"}
-1 + 1
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 2
-```
-
-
-:::
-:::
-
-::: {.cell}
-
-```{.r .cell-code}
-plot(1:10)
-```
-
-::: {.cell-output-display}
-![](html-r_files/figure-html/unnamed-chunk-2-1.png){width=672}
-:::
-:::
-
-
-## Some placeholder text
-
-{{< lipsum 14-14 >}}
+```` markdown
+{{< include _examples/look-under-hood/html-r.html.md >}}
 ````
 
 `html-r.html.md` the intermediate Markdown created after passing `html-r.qmd` through the `knitr` engine.
@@ -198,49 +139,39 @@ The code cell after being processed by the `knitr` engine.
 A code cell in `html-r.qmd` before and after being processed by the `knitr` computational engine.
 :::::
 
-You can see a similar thing has happened to the code cell that creates a plot.
-However, the output in that case is an image stored in `html-r_files/figure-html`.
+You can see a similar transformation has occurred on the code cell creating a plot.
+However, now there is no "echo", because the code cell included the option `echo: false`, and the output is an image stored in `html-r_files/figure-html/`.
 
-You might notice the name of this intermediate file, `html-r.html.md`, includes the format, `.html`.
-That is because the engine is run separately for each format, and the Markdown output and supporting files are format specific.
-For example, different formats often have different default sizes or file formats for plots.
+The name of the intermediate file, `html-r.html.md`, includes the format, `.html` because the engine is run separately for each format.
+The Markdown output and supporting files are format specific.
+You'll see an example in @sec-pdf-r.
 
-If you receive an error from the computational engine, you won't get the get the intermediate markdown file.
-Common errors that arise during execution by the computational engine are discussed below in @sec-computational-errors.
+If you receive an error from the computational engine, you won't get the get the intermediate Markdown file.
+Common errors that arise during execution by the computational engine are discussed in @sec-computational-errors.
 
 ### Pandoc
 
-The Markdown file is passed along to pandoc for conversion into the desired output format.
+The Markdown file is passed along to Pandoc for conversion into the desired output format.
 Pandoc's role in rendering provides many of the features for [authoring](#sec-authoring) Quarto documents.
-For example, the syntax you learned for headings, quotations, lists, tables, links and footnotes is the syntax defined by pandoc (see [Pandoc's Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) on the pandoc documentation site).
+For example, the syntax you learned for headings, quotations, lists, tables, links and footnotes is the syntax defined by Pandoc (see [Pandoc's Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) on the pandoc documentation site).
 Other more complicated features, like the default handling of citations with `citeproc`, also come directly from pandoc (see [Citations](https://pandoc.org/MANUAL.html#citations) on the pandoc documentation site).
-
-::: callout-note
-## Quarto includes pandoc
-
-Quarto includes a particular version of pandoc.
-You don't need to install or manage it separately, and it won't interfere with any other version of pandoc you have installed.
-If you ever need to run Quarto's pandoc, you can with:
-
-``` {.bash filename="Terminal"}
-quarto pandoc 
-```
-:::
 
 However, Quarto adds many of its own features beyond those available in pandoc.
 These are added via an established mechanism for customizing pandoc output: filters.
 When pandoc reads an input file, it translates it into an abstract representation known as an abstract syntax tree.
 Filters are functions that operate on this abstract syntax tree transforming it before it is written out to the desired format.
-Cross-references, shortcodes, and code annotation are examples of features that Quarto adds via filters.
+Cross-references, shortcodes[^look-under-hood-2], and code annotation are examples of features that Quarto adds via filters.
+
+[^look-under-hood-2]: Most shortcodes are implemented as filters, but there are two exceptions `include` and `embed`.
 
 For documents targeting the HTML format the output file returned to you is the output returned from Pandoc.
 An excerpt from `html-r.html`, the HTML file returned from `quarto render html-r.qmd` is shown in @lst-render-html-r-html.
 There are more than 100 lines of HTML prior to this excerpt, but we've excluded that code here to focus on the part of the document that reflects our content.
 
 ::: {#lst-render-html-r-html}
-``` html
-<section id="a-computation" class="level2">
-<h2 class="anchored" data-anchor-id="a-computation">A computation</h2>
+```{.html}
+<section id="some-computation" class="level2">
+<h2 class="anchored" data-anchor-id="some-computation">Some computation</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -248,7 +179,6 @@ There are more than 100 lines of HTML prior to this excerpt, but we've excluded 
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -257,10 +187,6 @@ There are more than 100 lines of HTML prior to this excerpt, but we've excluded 
 </div>
 </div>
 </div>
-</section>
-<section id="some-placeholder-text" class="level2">
-<h2 class="anchored" data-anchor-id="some-placeholder-text">Some placeholder text</h2>
-<p>Duis urna urna, pellentesque eu urna ut, malesuada bibendum dolor. Suspendisse potenti. Vivamus ornare, arcu quis molestie ultrices, magna est accumsan augue, auctor vulputate erat quam quis neque. Nullam scelerisque odio vel ultricies facilisis. Ut porta arcu non magna sagittis lacinia. Cras ornare vulputate lectus a tristique. Pellentesque ac arcu congue, rhoncus mi id, dignissim ligula.</p>
 </section>
 ```
 
@@ -271,11 +197,10 @@ The Markdown is now converted to HTML.
 For example, the Markdown section heading `## A computation` is represented by a `<h2>` heading:
 
 ``` html
-<h2 class="anchored" data-anchor-id="a-computation">A computation</h2>
+<h2 class="anchored" data-anchor-id="some-computation">Some computation</h2>
 ```
 
 The fenced divs have been literally converted to `<div>` elements, and code blocks to `<pre>` elements.
-Notice the shortcode has also been evaluated (since it's a feature implemented as a filter) and is replaced by its result --- a paragraph of Lorem Ipsum text.
 
 This HTML file requires some additional resources for a browser to correctly render it, but Quarto provides them all in `html-r_files/`.
 When you open `html-r.qmd` in a browser you'll see the final rendered document (@fig-html-r-html).
@@ -320,7 +245,6 @@ pandoc                         #<3>
   html-math-method: mathjax    #<3>
   wrap: none                   #<3>  
   default-image-extension: png #<3>
-  toc: true                    #<3>
                                #<3>
 metadata                       #<3>
   document-css: false          #<3>
@@ -346,34 +270,8 @@ The output printed by `quarto render` when run on `html-r.qmd`.
 @lst-render-html-python-raw shows `html-python.qmd`, a file that is very similar to `html-r.qmd` except instead of R code cells, it has Python code cells.
 
 ::: {#lst-render-html-python-raw}
-```` {.markdown shortcodes="false"}
----
-title: My document
-format: html
-toc: true
----
-
-## A computation
-
-```{python}
-#| include: false
-import matplotlib.pyplot as plt
-```
-
-```{python}
-#| code-line-numbers: true
-
-1 + 1
-```  
-
-```{python}
-plt.plot(range(1, 11)) 
-plt.show()
-```
-
-## Some placeholder text
-
-{{< lipsum 14-14 >}}
+```` {.markdown}
+{{< include _examples/look-under-hood/html-python.qmd >}}
 ````
 
 `html-python.qmd` a Quarto document with Python code cells and placeholder text, targeting HTML output.
@@ -397,43 +295,8 @@ The intermediate file `html-python.md.html` is shown in @lst-render-html-python-
 Just like when `knitr` processed `html-r.qmd`, the `jupyter` engine has replaced the executable code cells (`{python}`) with non-executable ones (`{.python}`), and placed the code and output in fenced divs with appropriate classes.
 
 ::: {#lst-render-html-python-md}
-```` {.markdown shortcodes="false"}
----
-title: My document
-format: html
-toc: true
-keep-md: true
----
-
-## A computation
-
-::: {#c6c4d9bc .cell execution_count=2}
-``` {.python .cell-code code-line-numbers="true"}
-1 + 1
-```
-
-::: {.cell-output .cell-output-display execution_count=5}
-```
-2
-```
-:::
-:::
-
-
-::: {#705d6513 .cell execution_count=3}
-``` {.python .cell-code}
-plt.plot(range(1, 11)) 
-plt.show()
-```
-
-::: {.cell-output .cell-output-display}
-![](html-python_files/figure-html/cell-4-output-1.png){width=566 height=411}
-:::
-:::
-
-## Some placeholder text
-
-{{< lipsum 14-14 >}}
+```` {.markdown}
+{{< include _examples/look-under-hood/html-python.html.md >}}
 ````
 
 `html-python.html.md` the intermediate Markdown created after passing `html-python.qmd` through the `jupyter` engine.
@@ -449,8 +312,8 @@ The intermediate markdown is passed to Pandoc with the exact same settings as in
 
 ### Monitoring the process on the command line
 
-You can also see the similarities in the messages Quarto prints the command line (@fig-render-html-python-output).
-Only the step where the computational engine runs is different.
+You can also see the similarities in the process through messages Quarto prints on the command line (@fig-render-html-python-output).
+The only difference is where the computational engine runs.
 
 :::: {#fig-render-html-python-output}
 ::: {style="text-align: left"}
@@ -493,34 +356,14 @@ Output created: html-python.html     #<4>
 The output printed by `quarto render` when run on `html-python.qmd`.
 ::::
 
-## A PDF document with R code cells
+## A PDF document with R code cells {#sec-pdf-r}
 
 Now consider the document `pdf-r.qmd` shown in @lst-render-pdf-r-raw.
 This document is identical to `html-r.qmd` except instead of targeting the HTML format, it targets PDF.
 
 ::: {#lst-render-pdf-r-raw}
-```` {.markdown shortcodes="false"}
----
-title: My document
-format: pdf
-toc: true
----
-
-## A computation
-
-```{r}
-#| code-line-numbers: true
-
-1 + 1
-```  
-
-```{r}
-plot(1:10)
-```
-
-## Some placeholder text
-
-{{< lipsum 14-14 >}}
+```` {.markdown}
+{{< include _examples/look-under-hood/pdf-r.qmd >}}
 ````
 
 `pdf-r.qmd` a Quarto document with R code cells that targets the PDF format.
@@ -541,73 +384,52 @@ This means the the engine can tailor output to the target format.
 In @lst-render-pdf-r-md you can see the intermediate Markdown file that is produced.
 
 ::: {#lst-render-pdf-r-md}
-```` {.markdown shortcodes="false"}
----
-title: My document
-format: pdf
-toc: true
-keep-md: true
----
-
-## A computation
-
-::: {.cell}
-
-```{.r .cell-code  code-line-numbers="true"}
-1 + 1
-```
-
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 2
-```
-
-
-:::
-:::
-
-::: {.cell}
-
-```{.r .cell-code}
-plot(1:10)
-```
-
-::: {.cell-output-display}
-![](pdf-r_files/figure-pdf/unnamed-chunk-2-1.pdf){fig-pos='H'}
-:::
-:::
-
-## Some placeholder text
-
-{{< lipsum 14-14 >}}
+```` {.markdown}
+{{< include _examples/look-under-hood/pdf-r.pdf.md >}}
 ````
 
 `pdf-r.pdf.md` the intermediate Markdown file after the `knitr` engine has exectuted the code in `pdf-r.qmd`
 :::
 
 It is mostly identical to that produced when the target format was HTML, but there are some differences.
-In particular, consider the markdown used to include the plot:
+In particular, compare the markdown used to include the plot (@fig-plot-md).
 
+::: {#fig-plot-md layout-ncol=2}
+:::{#fig-plot-html}
+``` markdown
+![](html-r_files/figure-html/unnamed-chunk-2-1.png){width=672}
+```
+
+Targeting HTML
+:::
+
+:::{#fig-plot-pdf}
 ``` markdown
 ![](pdf-r_files/figure-pdf/unnamed-chunk-2-1.pdf){fig-pos='H'}
 ```
 
-There is a LaTeX specific attribute added, `fig-pos='H'`, and the file included is a PDF (compared to a PNG in @lst-render-html-r-md).
+Targeting PDF
+
+:::
+
+Markdown produced by `knitr` engine for when targeting (a) HTML, and (b) PDF.
+
+:::
+
+When targeting PDF there is a LaTeX specific attribute added, `fig-pos='H'`, and the file included is a PDF, compared to a PNG.
 
 ### Pandoc
 
 When the target format was HTML, Pandoc handled the conversion, and Quarto returned the HTML document directly from Pandoc.
 When the target format is PDF, Pandoc only converts to LaTeX, and Quarto handles the remaining conversion from LaTeX to PDF.
 
-This means Pandoc is called on `pdf-r.pdf.md` in the same way as on `pdf-r.html.md`, but with the `to` format set to `latex`.
+This means Pandoc is called on `pdf-r.pdf.md` in the same way as on `pdf-r.html.md`, but with the format set to `latex`.
 You can examine the `.tex` file Pandoc returns by setting `keep-tex` to `true`:
 
 ``` yaml
 ---
 title: My document
 format: pdf
-toc: true
 keep-tex: true
 ---
 ```
@@ -617,21 +439,7 @@ Above this excerpt is almost 200 lines of other TeX commands setting up the docu
 
 ::: {#lst-render-pdf-r-tex}
 ``` tex
-\title{My document}
-\author{}
-\date{}
-
-\begin{document}
-\maketitle
-
-\renewcommand*\contentsname{Table of contents}
-{
-\hypersetup{linkcolor=}
-\setcounter{tocdepth}{3}
-\tableofcontents
-}
-
-\subsection{A computation}\label{a-computation}
+\subsection{Some computation}\label{some-computation}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
@@ -643,49 +451,14 @@ Above this excerpt is almost 200 lines of other TeX commands setting up the docu
 [1] 2
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \includegraphics{pdf-r_files/figure-pdf/unnamed-chunk-2-1.pdf}
-
-\subsection{Some placeholder text}\label{some-placeholder-text}
-
-Duis urna urna, pellentesque eu urna ut, malesuada bibendum dolor.
-Suspendisse potenti. Vivamus ornare, arcu quis molestie ultrices, magna
-est accumsan augue, auctor vulputate erat quam quis neque. Nullam
-scelerisque odio vel ultricies facilisis. Ut porta arcu non magna
-sagittis lacinia. Cras ornare vulputate lectus a tristique. Pellentesque
-ac arcu congue, rhoncus mi id, dignissim ligula.
-
-\end{document}
 ```
 
 An **excerpt** from `pdf-r.tex`, the TeX file created after passing `pdf-r.pdf.md` through Pandoc.
 :::
 
-Now the markdown syntax has been converted to TeX syntax.
-You can see some lines devoted to generating the title and table of contents:
-
-``` tex
-\title{My document}
-\author{}
-\date{}
-
-\begin{document}
-\maketitle
-
-\renewcommand*\contentsname{Table of contents}
-{
-\hypersetup{linkcolor=}
-\setcounter{tocdepth}{3}
-\tableofcontents
-}
-```
-
-Then, the content like section headings using the TeX command `\subsection`, code cells using `Shaded` and `Highlighting` environments, and output using appropriate commands like the `verbatim` environment for the code output, and the `\includegraphics` command for the image file.
+Now the markdown syntax has been converted to TeX syntax:
+section headings are created with the TeX command `\subsection`, code cells use `Shaded` and `Highlighting` environments, and output uses appropriate commands like the `verbatim` environment for code output, and the `\includegraphics` command for the image file.
 
 ### After Pandoc
 
@@ -701,7 +474,7 @@ Quarto will use the detected installation and process the `.tex` file as many ti
 
 @fig-render-process-pdf shows part of the PDF output that results for `pdf-r.qmd`.
 
-[![A portion of the final PDF document produced by `pdf-r.qmd`](images/look-under-hood-pdf.png){#fig-render-process-pdf fig-alt="A screenshot of a PDF document with the title 'My document'. Below the title is a table of contents followed by a section called `A computation`."}](_examples/look-under-hood/render-process.pdf)
+[![A portion of the final PDF document produced by pdf-r.qmd](images/look-under-hood-pdf.png){#fig-render-process-pdf fig-alt="A screenshot of a PDF document with the title 'My document'. Below the title is a table of contents followed by a section called `A computation`."}](_examples/look-under-hood/render-process.pdf)
 
 ## A multi-format document
 
@@ -837,6 +610,19 @@ Quarto 1.5.56
 
 An example of the result of running `quarto check`
 :::
+
+::: callout-note
+## Quarto includes pandoc
+
+Quarto includes a particular version of pandoc.
+You don't need to install or manage it separately, and it won't interfere with any other version of pandoc you have installed.
+If you ever need to run Quarto's pandoc, you can with:
+
+``` {.bash filename="Terminal"}
+quarto pandoc 
+```
+:::
+
 
 ## Errors from the computational engine {#sec-computational-errors}
 

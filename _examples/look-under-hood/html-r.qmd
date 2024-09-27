@@ -1,11 +1,9 @@
 ---
 title: My document
 format: html
-toc: true
-keep-md: true
 ---
 
-## A computation
+## Some computation
 
 ```{r}
 #| code-line-numbers: true
@@ -14,9 +12,6 @@ keep-md: true
 ```  
 
 ```{r}
+#| echo: false
 plot(1:10)
 ```
-
-## Some placeholder text
-
-{{< lipsum 14-14 >}}

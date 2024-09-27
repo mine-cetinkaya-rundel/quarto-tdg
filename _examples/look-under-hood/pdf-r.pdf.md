@@ -1,17 +1,9 @@
 ---
 title: My document
 format: pdf
-toc: true
-keep-md: true
-keep-tex: true
 ---
 
-
-
-
-## A computation
-
-
+## Some computation
 
 ::: {.cell}
 
@@ -30,22 +22,7 @@ keep-tex: true
 :::
 
 ::: {.cell}
-
-```{.r .cell-code}
-plot(1:10)
-```
-
 ::: {.cell-output-display}
-![](pdf-r_files/figure-pdf/unnamed-chunk-2-1.pdf){fig-pos='H'}
+![](pdf-r_files/figure-pdf/unnamed-chunk-2-1.pdf)
 :::
 :::
-
-
-
-## Some placeholder text
-
-
-
-
-{{< lipsum 14-14 >}}
-
