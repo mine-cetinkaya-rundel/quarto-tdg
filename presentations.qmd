@@ -55,3 +55,5 @@ We will continue to use level 1 headings for section brakes and level 2 headings
 However it's possible to customize this using the `slide-level` option, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
 See the Pandoc documentation on [structuring the slide show](https://pandoc.org/MANUAL.html#structuring-the-slide-show) (<https://pandoc.org/MANUAL.html#structuring-the-slide-show>) for additional details.
 :::
+
+- figure sizing / stretch
