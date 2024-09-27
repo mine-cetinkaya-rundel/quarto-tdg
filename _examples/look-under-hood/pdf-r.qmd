@@ -1,0 +1,23 @@
+---
+title: My document
+format: pdf
+toc: true
+keep-md: true
+keep-tex: true
+---
+
+## A computation
+
+```{r}
+#| code-line-numbers: true
+
+1 + 1
+```  
+
+```{r}
+plot(1:10)
+```
+
+## Some placeholder text
+
+{{< lipsum 14-14 >}}

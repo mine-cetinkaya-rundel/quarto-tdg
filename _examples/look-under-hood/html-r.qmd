@@ -1,10 +1,8 @@
 ---
 title: My document
+format: html
+toc: true
 keep-md: true
-keep-tex: true
-format: 
-  pdf:
-    toc: true
 ---
 
 ## A computation

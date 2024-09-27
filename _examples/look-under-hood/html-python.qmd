@@ -1,0 +1,28 @@
+---
+title: My document
+format: html
+toc: true
+keep-md: true
+---
+
+## A computation
+
+```{python}
+#| include: false
+import matplotlib.pyplot as plt
+```
+
+```{python}
+#| code-line-numbers: true
+
+1 + 1
+```  
+
+```{python}
+plt.plot(range(1, 11)) 
+plt.show()
+```
+
+## Some placeholder text
+
+{{< lipsum 14-14 >}}

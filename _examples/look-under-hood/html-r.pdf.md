@@ -1,16 +1,16 @@
 ---
 title: My document
+format: html
+toc: true
 keep-md: true
-keep-tex: true
-format: 
-  pdf:
-    toc: true
 ---
 
 
 
 
+
 ## A computation
+
 
 
 
@@ -37,13 +37,15 @@ plot(1:10)
 ```
 
 ::: {.cell-output-display}
-![](render-process_files/figure-pdf/unnamed-chunk-2-1.pdf){fig-pos='H'}
+![](html-r_files/figure-pdf/unnamed-chunk-2-1.pdf){fig-pos='H'}
 :::
 :::
+
 
 
 
 ## Some placeholder text
+
 
 
 
