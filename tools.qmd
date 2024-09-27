@@ -2,18 +2,51 @@
 
 ## Whole game
 
-Here is a qmd file, go to the folder in your terminal, run quarto render
+### Rendering
+
+In the Terminal:
+
+``` bash
+quarto render
+```
 
 ## RStudio
 
+### New file...
+
+New file, in directory, etc.
+
+### Editors
+
+...
+
+-   outline
+
+-   dropdown
+
+### Running code
+
+...
+
+### Rendering
+
+Use the ![](https://quarto.org/docs/get-started/hello/images/rstudio-render-button.png){width="30" height="25"} **Render** button in the RStudio IDE to render the file and preview the output with a single click or keyboard shortcut (⇧⌘K).
+
+![](images/rstudio-render.png)
+
+If you prefer to automatically render whenever you save, you can check the Render on Save option on the editor toolbar.
+The preview will update whenever you re-render the document.
+Side-by-side preview works for both HTML and PDF outputs.
+
+![](images/clipboard-2945463692.png)
+
 ## JupyterLab
 
-- ipynb vs. qmd: from now on Quarto document usually means qmd but things translate to ipynb -- orient for qmd-specific language throughout book and how that translates to ipynb
-   		* and maybe another chapter somewhere specifically about this if this gets too long
+-   ipynb vs. qmd: from now on Quarto document usually means qmd but things translate to ipynb -- orient for qmd-specific language throughout book and how that translates to ipynb \* and maybe another chapter somewhere specifically about this if this gets too long
 
 ## VSCode
 
 ## Choosing a tool
 
-- whatever you already use
-- one possible criterion: visual editor with various tools and mention how it will be called out
+-   whatever you already use
+-   one possible criterion: visual editor with various tools and mention how it will be called out
