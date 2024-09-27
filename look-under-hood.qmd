@@ -394,7 +394,8 @@ In @lst-render-pdf-r-md you can see the intermediate Markdown file that is produ
 It is mostly identical to that produced when the target format was HTML, but there are some differences.
 In particular, compare the markdown used to include the plot (@fig-plot-md).
 
-::: {#fig-plot-md layout-ncol=2}
+::: {#fig-plot-md .column-body-outset layout-ncol="2"}
+
 :::{#fig-plot-html}
 ``` markdown
 ![](html-r_files/figure-html/unnamed-chunk-2-1.png){width=672}
