@@ -1,0 +1,49 @@
+# Quarto {#sec-quarto}
+
+## What is Quarto?
+
+Quarto is an open-source scientific and technical publishing system built on Pandoc[^quarto-1].
+It provides a unified authoring framework for reproducible data science, combining code, results, and narrative to produce outputs like HTML, PDF, Word, and more in a seamless manner.
+A few of the key features of Quarto that are applicable to Quarto users at any level are listed below:
+
+[^quarto-1]: Pandoc is a tool that converts documents to different formats.
+    Quarto leverages it to convert markdown to a variety of output formats.
+
+1.  **Markdown authoring**: Quarto documents are authored using **markdown**, a straightforward plain text format that allows you to add formatting elements to plain text documents using a simple syntax.
+
+2.  **Code integration**: Quarto coordinates the execution of knitr, Jupyter or Observable to embed code and output from various languages, including Python, R, Julia, and JavaScript.
+
+3.  **Technical writing extensions**: Quarto markdown adds syntax for technical writing that covers features like cross-references, sub-figures, layout panels, hoverable citations and footnotes, and more.
+
+4.  **Project system**: Quarto provides a project system for managing groups of documents with shared options to produce aggregate output such as manuscripts, websites, and books.
+
+5.  **Editor compatibility:** Quarto supports authoring in various editors and notebooks, including JupyterLab, RStudio, and VS Code.
+    Many of these editors offer a visual markdown editor that is specifically designed to work well with Quarto, providing a productive writing interface for composing long-form documents.
+
+The best place to learn about Quarto and explore its capabilities, aside from this book, is [quarto.org](https://quarto.org/).
+
+Quarto is available under the [MIT license](https://quarto.org/license.html).
+
+Sometimes when we say "Quarto" we mean "a Quarto document", i.e., a plain-text Quarto markdown file with the extension `.qmd`.
+And sometimes when we say "Quarto" we mean the Quarto Command Line Interface (CLI), which can render `.qmd` files as well as `.ipynb` (Jupyter Notebook), `.Rmd` (R Markdown), and `.md` (Markdown) files.
+
+## Installation
+
+The Quarto CLI is the tool you need to render Quarto documents.
+Specifically, it gives you the command `quarto render`.
+You can download the latest release version of the Quarto CLI at [https://quarto.org/docs/get-started](https://quarto.org/docs/get-started/) and install it.
+
+::: callout-note
+You can also download development versions of Quarto at <https://quarto.org/docs/download/prerelease.html> however note that pre-release builds are intended for testing purposes, and are not recommended for general use.
+:::
+
+## Tools for authoring
+
+You do not need a specific tool for authoring and rendering Quarto documents.
+You can author Quarto documents in any plain text editor and render them with the `quarto render` command in your computer's terminal.
+
+However we recommend using an integrated development environment (IDE) when working with Quarto as they can enhance your authoring experience.
+Some compelling reasons for using an IDE with Quarto include preview and live rendering features that allow you to see how your content will look as you write it, syntax highlighting, project management features, version control integration, debugging tools, and efficiency and productivity features like snippets, templates, and keyboard shortcuts.
+Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting which can help you quickly find the right syntax and catch errors.
+
+In the next chapter we go into further detail about using Quarto in various IDEs including RStudio, VS Code, and Jupyter Lab.
