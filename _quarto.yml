@@ -22,9 +22,10 @@ book:
 
     - part: overview.qmd
       chapters:
-        - hello.qmd
+        - quarto.qmd
         - tools.qmd
         - authoring.qmd
+        - computation.qmd
         - projects.qmd
         - publishing.qmd
         - look-under-hood.qmd
