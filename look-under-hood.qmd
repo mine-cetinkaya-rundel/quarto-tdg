@@ -151,25 +151,29 @@ Common errors that arise during execution by the computational engine are discus
 
 ### Pandoc
 
-The Markdown file is passed along to Pandoc for conversion into the desired output format.
+The Markdown file is passed along to Pandoc[^look-under-hood-2] for conversion into the desired output format.
 Pandoc's role in rendering provides many of the features for [authoring](#sec-authoring) Quarto documents.
-For example, the syntax you learned for headings, quotations, lists, tables, links and footnotes is the syntax defined by Pandoc (see [Pandoc's Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) on the pandoc documentation site).
-Other more complicated features, like the default handling of citations with `citeproc`, also come directly from pandoc (see [Citations](https://pandoc.org/MANUAL.html#citations) on the pandoc documentation site).
+For example, the syntax you learned for headings, quotations, lists, tables, links and footnotes is the syntax defined by Pandoc (see [Pandoc's Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) on the Pandoc documentation site).
+Other more complicated features, like the default handling of citations with `citeproc`, also come directly from Pandoc (see [Citations](https://pandoc.org/MANUAL.html#citations) on the Pandoc documentation site).
 
-However, Quarto adds many of its own features beyond those available in pandoc.
-These are added via an established mechanism for customizing pandoc output: filters.
-When pandoc reads an input file, it translates it into an abstract representation known as an abstract syntax tree.
+[^look-under-hood-2]: Quarto includes a particular version of Pandoc.
+    You don't need to install or manage it separately, and it won't interfere with any other version of Pandoc you have installed.
+    If you ever need to run Quarto's Pandoc, you can with `quarto pandoc`.
+
+However, Quarto adds many of its own features beyond those available in Pandoc.
+These are added via an established mechanism for customizing Pandoc output: filters.
+When Pandoc reads an input file, it translates it into an abstract representation known as an abstract syntax tree.
 Filters are functions that operate on this abstract syntax tree transforming it before it is written out to the desired format.
-Cross-references, shortcodes[^look-under-hood-2], and code annotation are examples of features that Quarto adds via filters.
+Cross-references, shortcodes[^look-under-hood-3], and code annotation are examples of features that Quarto adds via filters.
 
-[^look-under-hood-2]: Most shortcodes are implemented as filters, but there are two exceptions `include` and `embed`.
+[^look-under-hood-3]: Most shortcodes are implemented as filters, but there are two exceptions `include` and `embed`.
 
 For documents targeting the HTML format the output file returned to you is the output returned from Pandoc.
 An excerpt from `html-r.html`, the HTML file returned from `quarto render html-r.qmd` is shown in @lst-render-html-r-html.
 There are more than 100 lines of HTML prior to this excerpt, but we've excluded that code here to focus on the part of the document that reflects our content.
 
 ::: {#lst-render-html-r-html}
-```{.html}
+``` html
 <section id="some-computation" class="level2">
 <h2 class="anchored" data-anchor-id="some-computation">Some computation</h2>
 <div class="cell">
@@ -394,9 +398,8 @@ In @lst-render-pdf-r-md you can see the intermediate Markdown file that is produ
 It is mostly identical to that produced when the target format was HTML, but there are some differences.
 In particular, compare the markdown used to include the plot (@fig-plot-md).
 
-::: {#fig-plot-md .column-body-outset layout-ncol="2"}
-
-:::{#fig-plot-html}
+::::: {#fig-plot-md .column-body-outset layout-ncol="2"}
+::: {#fig-plot-html}
 ``` markdown
 ![](html-r_files/figure-html/unnamed-chunk-2-1.png){width=672}
 ```
@@ -404,18 +407,16 @@ In particular, compare the markdown used to include the plot (@fig-plot-md).
 Targeting HTML
 :::
 
-:::{#fig-plot-pdf}
+::: {#fig-plot-pdf}
 ``` markdown
 ![](pdf-r_files/figure-pdf/unnamed-chunk-2-1.pdf){fig-pos='H'}
 ```
 
 Targeting PDF
-
 :::
 
 Markdown produced by `knitr` engine for when targeting (a) HTML, and (b) PDF.
-
-:::
+:::::
 
 When targeting PDF there is a LaTeX specific attribute added, `fig-pos='H'`, and the file included is a PDF, compared to a PNG.
 
@@ -458,8 +459,7 @@ Above this excerpt is almost 200 lines of other TeX commands setting up the docu
 An **excerpt** from `pdf-r.tex`, the TeX file created after passing `pdf-r.pdf.md` through Pandoc.
 :::
 
-Now the markdown syntax has been converted to TeX syntax:
-section headings are created with the TeX command `\subsection`, code cells use `Shaded` and `Highlighting` environments, and output uses appropriate commands like the `verbatim` environment for code output, and the `\includegraphics` command for the image file.
+Now the markdown syntax has been converted to TeX syntax: section headings are created with the TeX command `\subsection`, code cells use `Shaded` and `Highlighting` environments, and output uses appropriate commands like the `verbatim` environment for code output, and the `\includegraphics` command for the image file.
 
 ### After Pandoc
 
@@ -549,83 +549,101 @@ When freezing a document it is the intermediate Markdown file that gets put in t
 
 In this section, you'll learn some tips for troubleshooting problems when they do occur.
 
-### `quarto check`
+### Run `quarto check`
 
-The command `quarto check` runs and reports some diagnostics.
-It's a good first step to verify.
+As you've seen Quarto potentially accesses and runs many other tools.
+The `quarto check` command is a good way to check the versions of these tools, and exactly which ones Quarto is finding.
 
-Run:
+Run `quarto check` on the command line in your project, after activating the relevant environment (if any):
 
 ``` {.bash filename="Terminal"}
 quarto check
 ```
 
--   Check your Quarto version against the latest release.
-    Particularly when documented features don't seem to work for you.
+@fig-quarto-check shows example output from `quarto check` with the following highlighted:
 
--   Check Python/R install is the one you expect.
+-   **Quarto version**: Check your Quarto version against the latest release, particularly when documented features don't seem to work for you.
+    Before reporting a bug, at minimum you should confirm your problem exists on the latest release, and it is good practice to also confirm it exists on the latest pre-release version.
 
-::: {#fig-quarto-check}
+-   **Internal dependencies**: Tools listed here are bundled with Quarto, and you cannot link Quarto to newer versions yourself.
+    However, sometimes for trouble-shooting it can be useful to know these versions --- for instance, you might be trying to use a feature of Typst that is newer than the version bundled with Quarto.
+
+-   **Quarto installation**: The version here will match the one reported on the first line, but adds the path to Quarto.
+    If you manage multiple installations of Quarto, check you are getting the one you expect here.
+
+-   **Tools installed by Quarto**: These tools aren't included with Quarto but they can be installed with `quarto install`.
+    TinyTex is recommended for producing PDFs via `format: pdf`; and Chromium is required for producing versions of Mermaid and Grapviz diagrams suitable for use in PDF or DOCX.
+    You can also check these tools by running `quarto tools` which will inform you if they are out of date.
+    You can update them with `quarto update`.
+
+-   **LaTeX**: Information about the LaTeX distribution Quarto will use.
+    If you are having trouble with `format: pdf` output, and this isn't TinyTex, you should install TinyTex with `quarto install tinytex`.
+
+-   **Python**: The Python 3 interpreter discovered by Quarto—check it is the Python you expect.
+    This is most often controlled by a virtual environment, but can also be set with the environment variable `QUARTO_PYTHON`.
+    If you are using a language other than Python with the `jupyter` engine, check the kernel you need is listed here.
+
+-   **R**: The R interpreter discovered by Quarto—check it is the R you expect.
+    It can be set with the environment variable `QUARTO_R`.
+
+:::: {#fig-quarto-check}
+::: {style="text-align: left"}
 ``` default
-Quarto 1.5.56
+Quarto 1.5.56                                           #<1>
 [✓] Checking versions of quarto binary dependencies...
-      Pandoc version 3.2.0: OK
-      Dart Sass version 1.70.0: OK
-      Deno version 1.41.0: OK
-      Typst version 0.11.0: OK
+      Pandoc version 3.2.0: OK                          #<2>
+      Dart Sass version 1.70.0: OK                      #<2>
+      Deno version 1.41.0: OK                           #<2>
+      Typst version 0.11.0: OK                          #<2>
 [✓] Checking versions of quarto dependencies......OK
 [✓] Checking Quarto installation......OK
-      Version: 1.5.56
-      Path: /Applications/quarto/bin
+      Version: 1.5.56                                   #<3>
+      Path: /Applications/quarto/bin                    #<3>
 
-[✓] Checking tools....................OK
-      TinyTeX: v2024.03.13
-      Chromium: (not installed)
+[✓] Checking tools....................OK      
+      TinyTeX: v2024.03.13                              #<4>
+      Chromium: (not installed)                         #<4>
 
-[✓] Checking LaTeX....................OK
-      Using: TinyTex
-      Path: /Users/charlottewickham/Library/TinyTeX/bin/universal-darwin
-      Version: 2024
+[✓] Checking LaTeX....................OK                  #<5>
+      Using: TinyTex                                      #<5>
+      Path: /xxx/Library/TinyTeX/bin/universal-darwin     #<5>
+      Version: 2024                                       #<5>
 
-[✓] Checking basic markdown render....OK
+[✓] Checking basic markdown render....OK                
 
-[✓] Checking Python 3 installation....OK
-      Version: 3.12.2
-      Path: /Users/charlottewickham/.pyenv/versions/3.12.2/bin/python3
-      Jupyter: 5.7.2
-      Kernels: julia-1.10, python3
+[✓] Checking Python 3 installation....OK                 #<6>
+      Version: 3.12.2                                    #<6>
+      Path: /xxx/.pyenv/versions/3.12.2/bin/python3      #<6>
+      Jupyter: 5.7.2                                     #<6>
+      Kernels: julia-1.10, python3                       #<6>
 
-[✓] Checking Jupyter engine render....OK
+[✓] Checking Jupyter engine render....OK                 
 
-[✓] Checking R installation...........OK
-      Version: 4.3.3
-      Path: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources
-      LibPaths:
-        - /Users/charlottewickham/Documents/posit/quarto-tdg/renv/library/R-4.3/aarch64-apple-darwin20
-        - /Users/charlottewickham/Library/Caches/org.R-project.R/R/renv/sandbox/R-4.3/aarch64-apple-darwin20/ac5c2659
-      knitr: 1.44
-      rmarkdown: 2.25
+[✓] Checking R installation...........OK                 #<7>
+      Version: 4.3.3                                     #<7>
+      Path: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources   #<7>
+      LibPaths:                                          #<7>
+        - /xxx/Library/R/arm64/4.3/library               #<7>
+        - /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/library   #<7>
+      knitr: 1.44                                        #<7>
+      rmarkdown: 2.25                                    #<7>
 
 [✓] Checking Knitr engine render......OK
 ```
 
+1.  Quarto version
+2.  Internal dependencies
+3.  Quarto installation
+4.  Tools installed by Quarto
+5.  LaTeX
+6.  Python
+7.  R
+:::
+
 An example of the result of running `quarto check`
-:::
+::::
 
-::: callout-note
-## Quarto includes pandoc
-
-Quarto includes a particular version of pandoc.
-You don't need to install or manage it separately, and it won't interfere with any other version of pandoc you have installed.
-If you ever need to run Quarto's pandoc, you can with:
-
-``` {.bash filename="Terminal"}
-quarto pandoc 
-```
-:::
-
-
-## Errors from the computational engine {#sec-computational-errors}
+### Errors from the computational engine {#sec-computational-errors}
 
 If your Quarto document fails to make it through the computational engine there are generally three culprits:
 
@@ -635,10 +653,10 @@ If your Quarto document fails to make it through the computational engine there 
 
 -   Your code has errors in it
 
-### Wrong Engine
+#### Wrong Engine
 
-Check the correct engine is selected.
-To override the automatic choice you can explicitly set the engine with the `engine` key:
+The heuristics Quarto selects when selecting an engine are sometimes wrong.
+If you see some indication Knitr is running when you expected Jupyter, override the automatic choice by explicitly setting the engine with the `engine` key:
 
 ``` yaml
 ---
@@ -646,9 +664,9 @@ engine: jupyter
 ---
 ```
 
-In particular, Quarto will never select the `julia` engine, you must opt-in via the `engine` key.
+If you want the `julia` engine, Quarto will never select it, you must opt-in via the `engine` key.
 
-::: callout-note
+::: callout-tip
 ## Avoiding execution
 
 For the purposes of choosing an engine, a code cell with the option `eval: false` is still considered an executable code cell, even though the code inside will not be executed.
@@ -662,13 +680,78 @@ engine: markdown
 ```
 :::
 
-### Wrong Environment
+#### Wrong Environment
 
-### Code Errors
+The usual symptom of Quarto not using the right environment is the failure to load packages you are sure you installed.
+Trouble-shooting your environment is language specific and you should refer back to the relevant sections of @sec-r, @sec-python and @sec-julia.
 
-When your code itslef generates an error, the computational engine will halt and Quarto will exit.
+#### Code Errors
 
-:   label chunks, and check code interactively
+When the code in your executable code cells generates an error, the computational engine will halt and Quarto will exit.
+@fig-errors shows an example of this for the three engines--—in all cases the code cell producing the error requests the variable `x` which hasn't been defined.
+The output differs by engine, but you'll generally see the engine start progressing through the cells (e.g. `Cell 1/1` in @fig-errors-jupyter) then an error report native to the language of your cells (e.g. `NameError: name 'x' is not defined` from Python in @fig-errors-jupyter).
+
+::: {#fig-errors}
+
+::: {#fig-errors-jupyter}
+``` default
+Executing 'python-error.quarto_ipynb'
+  Cell 1/1: ''...ERROR: 
+
+An error occurred while executing the following cell:
+------------------
+x
+------------------
+
+
+-------------------------------------------------------
+NameError             Traceback (most recent call last)
+Cell In[2], line 1
+----> 1 x
+
+NameError: name 'x' is not defined
+```
+A computational error when using the `jupyter` engine
+
+:::
+
+::: {#fig-errors-knitr}
+``` default
+processing file: r-error.qmd
+1/2                  
+2/2 [unnamed-chunk-1]
+
+
+
+Quitting from lines 7-8 [unnamed-chunk-1] (r-error.qmd)
+Error:
+! object 'x' not found
+Execution halted
+```
+
+A computational error when using the `knitr` engine
+
+:::
+
+:::{#fig-errors-julia}
+``` default
+Running [1/1] at line 7:  x
+ERROR: Julia server returned error after receiving "run" command:
+Failed to run notebook: /Users/charlottewickham/Documents/posit/weekly-log/2024-09-30/julia-error.qmd
+ERROR: EvaluationError: Encountered 1 error during evaluation
+
+Error 1 of 1
+@ /Users/charlottewickham/Documents/posit/weekly-log/2024-09-30/julia-error.qmd:7
+UndefVarError: `x` not defined
+```
+
+A computational error when using the `julia` engine
+
+::: 
+
+Example output from `quarto render` when there is an execution error.
+
+:::
 
 ::: callout-tip
 ## Keeping an error in your output
@@ -677,17 +760,55 @@ If you want to show an error in your document, set the option `error: true` in t
 This will prevent the error from halting execution, and include the error message in your rendered document.
 :::
 
-## Things that aren't errors
+You are now in the realm of debugging your R, Python or Julia code.
+The first way to make your life easier is to label your code cells:
 
-Get output, but it looks wrong.
+````{.markdown}
+```{r}
+#| label: get-x
+x
+```
+````
 
-## Asking for help
+When the engines process your code cells, they will include the label helping you to quickly identify which code cell caused the error.
 
-Minimal reproducible example.
+If the error isn't obvious, run your code from top to bottom interactively in a clean session of your interpreter.
 
-GitHub discussions, Posit community
+::: {.callout-tip}
+## Run all 
 
+In RStudio use the command **Restart R Session and Run All Chunks**.
+
+In the Quarto extension for VS Code and Positron use the command **Quarto: Run All Cells**.
+:::
+
+### Things that aren't errors
+
+Some problems don't rise to the level of errors. 
+You get output from `quarto render` it just doesn't look right.
+In this case, a general troubleshooting process might look like:
+
+* Verify you're working with the current release of Quarto (e.g. with `quarto check`).
+
+* Find an example of what you are trying to do in the documentation and verify it works. If it does work, gradually alter it to match your example, until it no longer works---you'll either discover what you are doing wrong, or you'll produce a minimal reproducible example. 
+
+* Ask for help using your reproducible example.
+
+### Asking for help
+
+If you can't figure out the problem yourself, your next step is to ask someone. 
+A good question includes:
+
+* A decription of your problem, including what you expected to happen and what actually happened
+* A minimal reproducible example (see @sec-repro)
+* The output from `quarto check`
+
+Some good venues to ask questions are the [discussion board on the `quarto-cli` repository](https://github.com/quarto-dev/quarto-cli/discussions) and [Posit community](https://forum.posit.co).
+
+<!-- 
 ## Misc
 
 What about the `./quarto` folder?
-Why is it automatically added to `.gitignore`?
+Why is it automatically added to `.gitignore`? -->
+
+## Wrapping Up
