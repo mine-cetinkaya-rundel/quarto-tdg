@@ -1,9 +1,11 @@
 {
-  "hash": "be2de29346e80cfebae922beb88e5daf",
+  "hash": "971d5a3c78121638eb9c3268b0574ff5",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: Quarto and R\n---\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n\n\n\n\nassume knitr\n\n- https://quarto.org/docs/computations/r.html#data-frames -- Is this relevant to other languages or R specific at all? \n\n- figuring out R installation Quarto is seeing: https://quarto.org/docs/troubleshooting/#knitr\n\n- https://quarto.org/docs/computations/inline-code.html - use in other chapters too, and https://quarto.org/docs/computations/render-scripts.html\n\n- apply at document level: https://quarto.org/docs/computations/execution-options.html\n    - apply at cell level https://quarto.org/docs/reference/cells/cells-knitr.html, and only some of them work at document level (and not all of these work for other engines)\n\nend with other combinations of engines and why you might use them -- 2 languages in the same document without embedding and passing objects between languages",
-    "supporting": [],
+    "markdown": "# Quarto and R {#sec-r}\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n\n\n\n\n\nassume knitr\n\n- https://quarto.org/docs/computations/r.html#data-frames -- Is this relevant to other languages or R specific at all? \n\n- figuring out R installation Quarto is seeing: https://quarto.org/docs/troubleshooting/#knitr\n\n- https://quarto.org/docs/computations/inline-code.html - use in other chapters too, and https://quarto.org/docs/computations/render-scripts.html\n\n- apply at document level: https://quarto.org/docs/computations/execution-options.html\n    - apply at cell level https://quarto.org/docs/reference/cells/cells-knitr.html, and only some of them work at document level (and not all of these work for other engines)\n\nend with other combinations of engines and why you might use them -- 2 languages in the same document without embedding and passing objects between languages",
+    "supporting": [
+      "r_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
