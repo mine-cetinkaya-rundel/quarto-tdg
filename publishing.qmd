@@ -230,7 +230,7 @@ Another option for HTML output is to use a project, set an output directory (`ou
 Since `.qmd` files are plain text, they can be shared in pretty much any way you usually share code.
 In this section, we'll cover a few details about sharing Quarto documents as reproducible examples, and using version control.
 
-### Reproducible examples
+### Reproducible examples {#sec-repro}
 
 A huge advantage of plain text is that you can share snippets that others can copy and paste.
 You've seen plenty of examples in this book already, but to be concrete here's another one:

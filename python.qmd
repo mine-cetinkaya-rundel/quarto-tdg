@@ -1,6 +1,5 @@
----
-title: Quarto and Python
----
+# Quarto and Python {#sec-python}
+
 
 ```{python}
 2 + 2
