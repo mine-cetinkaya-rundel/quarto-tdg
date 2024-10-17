@@ -65,3 +65,7 @@ editor: visual
 
 execute:
   freeze: auto
+
+crossref:
+  lst-title: Snippet
+  lst-prefix: Snippet
