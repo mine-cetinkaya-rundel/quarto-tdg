@@ -1,0 +1,396 @@
+---
+title: Setting options with YAML
+---
+
+## Setting options with YAML
+
+What do you want the option to apply to?
+
+## General YAML syntax
+
+`key: value`
+
+Indentation matters, adds heirachy
+
+Arrays `[` syntax and `-` syntax
+
+Options for long strings: `>`, `|`
+
+When to use quotes.
+
+You'll start by diving into the details of setting YAML options in the document header.
+
+`default`
+
+## Where do options go?
+
+By now you've seen options set using YAML syntax in a number of places:
+
+-   in he document header, i.e. between the `---` at the top of the file
+-   in the project configuration file `_quarto.yml`
+-   in code cells, on lines prefaced by `#|`
+
+You'll start by learning more about options set in the document header.
+
+Useful principles:
+
+-   Everything is a format option
+-   Top-level options are applied to all formats
+-   Options in `_quarto.yml` apply to all documents
+
+## Everything is a format option
+
+Consider the following document header:
+
+``` yaml
+---
+title: My document
+toc: true
+format: html
+---
+```
+
+From Quarto's perspective, this is equivalent to the header:
+
+``` yaml
+---
+format:
+  html:
+    title: My document
+    toc: true
+---
+```
+
+That is, the options `title` and `toc` are HTML format options.
+It's convenient to be able to put things at the top-level, but internally, Quarto will move those options under each format.
+This is why Quarto's [reference pages](https://quarto.org/docs/reference/) are laid out by format---options are supported, or not, depending on the output format.
+
+::: callout-note
+## OK, not quite everything...
+
+`engine` is an option that isn't applied at a format level---you cannot specify different engines for different formats.
+:::
+
+## Top-level options are applied to all formats
+
+Quarto assumes any options you specify at the top-level should be applied to all formats.
+For example, if we extend our document header to add the `pdf` format:
+
+``` yaml
+---
+title: My document
+toc: true
+format: 
+  html: default
+  pdf: default
+---
+```
+
+Quarto interprets this as:
+
+``` yaml
+format:
+  html:
+    title: My document
+    toc: true
+  pdf: 
+    title: My document
+    toc: true
+```
+
+This is a good example of why this behavior exists---you'll want many options to be the same across formats, and being able to specify them at the top-level saves a lot of typing.
+
+Option values nested under a format will override any specified at the top level.
+For example, you might want `toc: true` for most formats, but override it for `revealjs`:
+
+``` yaml
+---
+title: My document
+toc: true
+format: 
+  html: default
+  pdf: default
+  revealjs:
+    toc: false
+---
+```
+
+There are a couple of consequences of this behavior to be aware of:
+
+-   Options are silently ignored by formats that don't support them.
+    While this is true regardless of where you set the option, it can be harder to remember when you set options at the top-level.
+    For example, you can set `cold-fold: true` at the top-level, and it will work great for `format: html`, but it isn't supported by `format: pdf`.
+
+-   YAML completion will suggest options at the top-level that are supported by at least one format, but that might not be the format you targeting.
+    For example, the completion `fig-pos` is suggested at the top-level, but it only applies to `format: pdf`.
+
+Both are reminders that understanding whether an option is supported by a format is up to you, and the best way to check is on the Quarto reference pages for the formats you are targeting.
+
+## Options in `_quarto.yml` apply to all documents
+
+You can move any options you've set in the document header to `_quarto.yml` and they'll apply to all documents in your project.
+
+For example, if you want all documents in the project to have a table of contents you could include `toc: true` in your `_quarto.yml` file:
+
+``` {.yaml filename="_quarto.yml"}
+toc: true
+```
+
+Options specified in `_quarto.yml` follow the same principles as those in the document header.
+By specifying `toc: true` at the top-level it will apply to all formats.
+Alternatively, you could specify it for a specific format, e.g. `pdf`, by nesting it under the format:
+
+``` {.yaml filename="_quarto.yml"}
+format: 
+  pdf:
+    toc: true
+```
+
+As discussed in @sec-common-metadata you can override any options in `_quarto.yml` at a document-level by setting them in the document header.
+
+However, if you specify any formats via `format` in a document header, 
+only those specified will be rendered, regardless of which formats are specified in `_quarto.yml`.
+This gets a little tricky, so let's look at a couple of examples.
+Consider this `_quarto.yml` that sets one top-level option, `toc`, for all formats, an `html` option `code-fold`, and specifies default options for the `pdf` format:
+
+``` {.yaml filename="_quarto.yml"}
+toc: true
+format: 
+  html:
+    code-fold: true
+  pdf: default
+```
+
+For any document in the project, that would be equivalent to setting the following in the document header:
+
+``` yaml
+---
+format:
+  html:
+    toc: true
+    code-fold: true
+  pdf:
+    toc: true
+---
+```
+
+The result of `quarto render` would be an HTML file (with a table of contents and using code fold), **and** a PDF file (with a table of contents).
+
+When a document sets a format via `format`, either with no options (@lst-format-no-opts) or as the result of setting an option nested under the format (@lst-format-opts),
+only the options for that format are merged from `_quarto.yml` ( and respectively).
+When rendered that document will only be output in the target format 
+
+
+::: {#lst-format}
+
+::: {#lst-format-no-opts}
+``` yaml
+---
+format: html
+---
+```
+:::
+
+`format: html` set with no other options.
+
+::: {#lst-format-opts}
+
+``` yaml
+---
+format: 
+  html:
+    toc: false
+---
+```
+
+`format: html` set with additional options.
+
+:::
+
+A document that sets a format in the document header
+
+::: 
+
+
+:::: {#lst-format-result}
+
+::: {#lst-format-result-no-opts}
+``` yaml
+---
+format: 
+  html:
+    toc: true
+    code-fold: true
+---
+```
+:::
+
+::: {#lst-format-result-opts}
+``` yaml
+---
+format: 
+  html:
+    toc: false
+    code-fold: true
+---
+```
+:::
+
+The equivalent header for the files in @lst-format when merged with the settings in `_quarto.yml`.
+
+:::: 
+
+
++---------------------+---------------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Document header     | Expanded/merged document header | Formats rendered | Explanation                                                                                                                                                       |
++---------------------+---------------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ---                 | ---                             | HTML only        | The document specifies the `html` format.                                                                                                                         |
+| format: html        | format:                         |                  |                                                                                                                                                                   |
+| ---                 |   html:                         |                  | Only the `html` format options are merged in from `_quarto.yml`, including options that apply to all formats.                                                     |
+|                     |     toc: true                   |                  |                                                                                                                                                                   |
+|                     |     code-fold: true             |                  |                                                                                                                                                                   |
+|                     | ---                             |                  |                                                                                                                                                                   |
++---------------------+---------------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``` yaml            | ---                             | HTML and PDF     | The document specifies an additional top-level option. This overrides the options set it in `_quarto.yml` for all formats. \                                      |
+| ---                 | format:                         |                  | The document specifies no specific formats, so both `html` and `pdf` are inherited from `_quarto.yml`.                                                            |
+| toc: false          |   html:                         |                  |                                                                                                                                                                   |
+| ---                 |     toc: false                  |                  |                                                                                                                                                                   |
+| ```                 |     code-fold: true             |                  |                                                                                                                                                                   |
+|                     |   pdf:                          |                  |                                                                                                                                                                   |
+|                     |     toc: false                  |                  |                                                                                                                                                                   |
+|                     | ---                             |                  |                                                                                                                                                                   |
++---------------------+---------------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ---                 | ---                             | HTML only        | The document specifies an HTML format option.                                                                                                                     |
+| format:             | format:                         |                  |                                                                                                                                                                   |
+|   html:             |   html:                         |                  | The `html` format options are merged in from `_quarto.yml`, including options that apply to all formats. Document options override any project options.           |
+|     toc: false      |     toc: false                  |                  |                                                                                                                                                                   |
+| ---                 |     code-fold: true             |                  |                                                                                                                                                                   |
+|                     | ---                             |                  |                                                                                                                                                                   |
++---------------------+---------------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ---                 | ---                             | HTML and PDF     | The document specifies and HTML format option, and explicitly lists PDF as a format.                                                                              |
+| format:             | format:                         |                  |                                                                                                                                                                   |
+|   html:             |   html:                         |                  | The `html` and `pdf` format options are merged in from `_quarto.yml`, including options that apply to all formats. Document options override any project options. |
+|     toc: false      |     toc: false                  |                  |                                                                                                                                                                   |
+|   pdf: default      |     code-fold: true             |                  |                                                                                                                                                                   |
+| ---                 |   pdf:                          |                  |                                                                                                                                                                   |
+|                     |     toc: true                   |                  |                                                                                                                                                                   |
+|                     | ---                             |                  |                                                                                                                                                                   |
++---------------------+---------------------------------+------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Options specified in the document header are merged with those set in `_quarto.yml`.
+
+When a document specifies no `format` options, e.g.
+
+``` {.yaml filename="document.qmd"}
+---
+title: My document
+toc: false
+---
+```
+
+Then the options from the document header and those specified in `_quarto.yml`
+
+When a document specifies a `format` While the document will inherit options for any formats also specified in `_quarto.yml`
+
+::: callout-important
+## `engine` is the exception again
+
+You can't set `engine` at the project level by putting in in `_quarto.yml`.
+:::
+
+## Format options and default formats
+
+When you set `format`, either in the document header, or in `_quarto.yml`, you are actually doing two things: setting options for the formats you specify, and specifying which formats will be rendered.
+
+For example, you've seen to have both HTML and PDF document rendered when you run `quarto render` you could specify both in the document header:
+
+``` yaml
+---
+format: 
+  html: default
+  pdf: default
+---
+```
+
+-   Specifying the default formats to be rendered,
+
+::: callout-caution
+## Projects with multiple formats
+
+When you specify `format` in `_quarto.yml`, just like when you set it in the document header, you are specifying which formats should be rendered.
+For example, for a project where files should render to both `pdf` and `html`
+:::
+
+When you specify `format` options in `_quarto.yml`.
+
+## How should I nest options?
+
+## Where can I put options?
+
+## Execution Options
+
+## Quarto options structure
+
+Everything is a format option, everything is nested within one of "identifier" "execute" "render" "pandoc" "language" "metadata"
+
+https://github.com/quarto-dev/quarto-cli/blob/98b7fec8d3daf0c549d91785d4afa104eb899748/src/config/metadata.ts#L199-L210
+
+Quarto will try to infer what you mean
+
+-   Is the logic on parsing YAML in `_quarto.yml` any different to that in document header?
+
+df
+
+-   Foramts have their own set of default metadata values
+-   
+
+---
+title: "My Document"
+format: 
+  html:
+    fig-width: 8
+    fig-height: 6
+  pdf:
+    fig-width: 7
+    fig-height: 5
+---
+
+What are **execution options**?
+
+-   Keys that get filed into top level key `execute`?
+-   Keys that are documented in schema as `contexts: [document-execute]`?
+
+Why do we say put `echo` under `execute`, but `fig-width` not?
+
+From Quarto's perspective, I think all of these are equivalent:
+
+::: {ncol-layout="3"}
+``` yaml
+---
+title: My Document
+format: html
+echo: false
+---
+```
+
+``` yaml
+---
+title: My Document
+format: html
+execute: 
+  echo: false
+---
+```
+
+``` yaml
+---
+title: My Document
+format: 
+  html:
+    execute: 
+      echo: false
+---
+```
+:::
+
+## Exceptions
