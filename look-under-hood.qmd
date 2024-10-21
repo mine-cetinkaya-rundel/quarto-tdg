@@ -12,13 +12,13 @@ In this chapter, you'll learn more about what Quarto does under the hood, so you
 
 At a high level, rendering a Quarto document involves two steps:
 
-1.  **Code execution via the computational engine (`knitr`, `jupyter`, or `julia`):** the computational engine executes all the code cells in the source document and replaces the cells with static Markdown content containing the results.
+1.  **Code execution via the computational engine (`knitr`, `jupyter`, or `julia`):** The computational engine executes all the code cells in the source document and replaces the cells with static Markdown content containing the results.
     The result is a Markdown file (`.md`).
 
-2.  **Format conversion via Pandoc:** the Markdown file generated in the previous step, is passed to Pandoc which converts from Markdown to the required output format.
+2.  **Format conversion via Pandoc:** The Markdown file generated in the previous step is passed to Pandoc which converts from Markdown to the required output format.
 
 To help you understand this process, you'll follow a series of documents through these steps.
-You'll start with a document that targets the HTML format, and has only R code chunks, then you'll see how the process alters for a document with Python code cells, and a document that targets PDF.
+You'll start with a document that targets the HTML format and has only R code chunks, then see how the process alters for a document with Python code cells and a document that targets PDF.
 
 ## An HTML document with R code cells
 
@@ -29,7 +29,7 @@ The document in @lst-render-html-r-raw, `html-r.qmd`, is a Quarto document that 
 {{< include _examples/look-under-hood/html-r.qmd >}}
 ````
 
-`html-r.qmd` a Quarto document with R code cells and placeholder text, targeting HTML output.
+`html-r.qmd` is a Quarto document with R code cells and placeholder text, targeting HTML output.
 :::
 
 The process this file undergoes when you call `quarto render` is illustrated in @fig-render-html-r.
@@ -40,7 +40,7 @@ You'll dive into the details of each step below.
 ### Before the computational engine
 
 Before anything else, Quarto parses your file to extract the document header and code cells.
-Quarto will determine the set of formats that need to be rendered and select the appropriate computational engine.
+Quarto determines the set of formats that need to be rendered and select the appropriate computational engine.
 
 ::: callout-tip
 ## Include shortcodes are also resolved
@@ -52,7 +52,7 @@ It's at this stage you'll get errors about malformed YAML in your document heade
 You can learn more about common YAML issues in @sec-yaml.
 
 Each input file is only ever run through one computational engine: `knitr`, `jupyter`, or `julia`.
-[^look-under-hood-1] With no additional information from the metadata (e.g. none of `engine`, `jupyter`, nor `knitr`) Quarto will choose the engine based on the file extension and the language of executable code cells in the document.
+[^look-under-hood-1] With no additional information from the metadata (e.g. none of `engine`, `jupyter`, nor `knitr`), Quarto will choose the engine based on the file extension and the language of executable code cells in the document.
 
 [^look-under-hood-1]: We use lower-case engine names, e.g. `knitr` vs. Knitr, because a computational engine is more than the tool that does the execution.
     For example, although the Jupyter project [NBClient](https://github.com/jupyter/nbclient) does the execution when the engine is `jupyter`, the `jupyter` engine also encompasses translating the `.qmd` to an `.ipynb` and back again after execution---tasks that are handled by Quarto itself.
@@ -66,12 +66,13 @@ For `.qmd` documents, Quarto will use:
 
 -   The `markdown` engine, equivalent to using no computational engine, if there are no executable cells.
 
-For `html-r.qmd`, HTML is the only format specified in the header, and assuming no `--to` argument was specified in `quarto render`, Quarto will know to target it.
+For `html-r.qmd`, HTML is the only format specified in the header, and assuming no `--to` argument was specified in the `quarto render` call, Quarto will know to target it.
 Since, `html-r.qmd` contains executable R code cells (and doesn't specify engine otherwise) Quarto selects the `knitr` engine.
 
 ### Computational engine
 
-The selected computational engine is informed of the target format, and runs the executable code cells, and any inline code expressions, replacing them with appropriate markdown, abiding by the execution options specified in the metadata, and code cells.
+The selected computational engine is informed of the target format. 
+It runs the executable code cells and any inline code expressions, replacing them with appropriate markdown, abiding by the execution options specified in the metadata and code cells.
 The result is a Markdown file.
 You can examine this markdown file by adding `keep-md` to your document metadata:
 
@@ -83,7 +84,7 @@ keep-md: true
 ```
 
 @lst-render-html-r-md shows the resulting Markdown file for `html-r.qmd`.
-Notice the document header, and Markdown content has passed through unchanged.
+Notice that the document header and Markdown content have passed through unchanged.
 However, there are now no `{r}` code cells.
 These are replaced by markdown, albeit with some special classes attached.
 
@@ -95,7 +96,7 @@ These are replaced by markdown, albeit with some special classes attached.
 `html-r.html.md` the intermediate Markdown created after passing `html-r.qmd` through the `knitr` engine.
 :::
 
-For example, the executable code cell that does some addition, @lst-code-cell-raw, is replaced by @lst-code-cell-md, a fenced div with the class `.cell` that contains:
+For example, the executable code cell that does some addition in @lst-code-cell-raw is replaced in @lst-code-cell-md by a fenced div with the class `.cell` that contains:
 
 1.  A non-executable code cell `{.r}` with class `.cell-code` and the attribute `code-line-numbers="true"` that contains the code --- this is the "echo".
 
@@ -144,7 +145,7 @@ However, now there is no "echo", because the code cell included the option `echo
 
 The name of the intermediate file, `html-r.html.md`, includes the format, `.html` because the engine is run separately for each format.
 The Markdown output and supporting files are format specific.
-You'll see an example in @sec-pdf-r.
+You'll see an example of this in @sec-pdf-r.
 
 If you receive an error from the computational engine, you won't get the get the intermediate Markdown file.
 Common errors that arise during execution by the computational engine are discussed in @sec-computational-errors.
@@ -163,7 +164,7 @@ Other more complicated features, like the default handling of citations with `ci
 However, Quarto adds many of its own features beyond those available in Pandoc.
 These are added via an established mechanism for customizing Pandoc output: filters.
 When Pandoc reads an input file, it translates it into an abstract representation known as an abstract syntax tree.
-Filters are functions that operate on this abstract syntax tree transforming it before it is written out to the desired format.
+Filters are functions that operate on this abstract syntax tree, transforming it before it is written out to the desired format.
 Cross-references, shortcodes[^look-under-hood-3], and code annotation are examples of features that Quarto adds via filters.
 
 [^look-under-hood-3]: Most shortcodes are implemented as filters, but there are two exceptions `include` and `embed`.
@@ -289,11 +290,11 @@ In @fig-render-html-python we show the process of rendering `html-python.qmd`, g
 
 Like `html-r.qmd`, the only format specified in the header of `html-python.qmd` is HTML.
 Unlike `html-r.qmd`, `html-python.qmd` contains only Python code cells, so Quarto will select the `jupyter` engine.
-The fact the first code cell is a Python code cell, means the `python` kernel will be selected.
+Since the first code cell is a Python code cell, the `python` kernel will be selected.
 
 ### Computational engine
 
-Now rather than `knitr`, the `jupyter` engine is responsible for executing the code cells, and replacing them with Markdown.
+Now rather than `knitr`, the `jupyter` engine is responsible for executing the code cells and replacing them with Markdown.
 
 The intermediate file `html-python.md.html` is shown in @lst-render-html-python-md.
 Just like when `knitr` processed `html-r.qmd`, the `jupyter` engine has replaced the executable code cells (`{python}`) with non-executable ones (`{.python}`), and placed the code and output in fenced divs with appropriate classes.
@@ -303,7 +304,7 @@ Just like when `knitr` processed `html-r.qmd`, the `jupyter` engine has replaced
 {{< include _examples/look-under-hood/html-python.html.md >}}
 ````
 
-`html-python.html.md` the intermediate Markdown created after passing `html-python.qmd` through the `jupyter` engine.
+`html-python.html.md`, the intermediate Markdown created after passing `html-python.qmd` through the `jupyter` engine.
 :::
 
 Functionally, the different engines should produce very similar output given the same code, but they do have their own idiosyncrasies.
@@ -501,7 +502,7 @@ Each format is then generated in series and passes through the render process in
 
 ### Other types of input file
 
-You've seen the render process specifically for `.qmd` inputs, but Quarto accepts other types of input file.
+You've seen the render process specifically for `.qmd` inputs, but Quarto accepts other types of input files.
 For `.Rmd`, `.ipynb`, and `.md`, the primary difference is that the engine is selected based on the file type: `jupyter` for `.ipynb` , but see @nte-ipynb; `knitr` for `.Rmd` ; and `markdown` for`.md`.
 
 For script files (`.R`,`.py`,`.jl` etc.) the file is pre-processed into a `.qmd` file before continuing the render process as described above.
@@ -533,7 +534,7 @@ quarto typst compile document.typ
 ### Preview vs. render
 
 When you are working with a Quarto document, you'll often be running `quarto preview` as opposed to `quarto render`.
-Think about the `quarto preview` process as: first, run `quarto render`; then, serve the document.
+Think about `quarto preview` as a two-step process: first, run `quarto render`; then, serve the document.
 For HTML documents this means starting up a webserver, for other formats, opening some other form of viewer.
 
 ### Rendering projects
@@ -551,10 +552,10 @@ In this section, you'll learn some tips for troubleshooting problems when they d
 
 ### Run `quarto check`
 
-As you've seen Quarto potentially accesses and runs many other tools.
-The `quarto check` command is a good way to check the versions of these tools, and exactly which ones Quarto is finding.
+As you've seen, Quarto potentially accesses and runs many other tools.
+The `quarto check` command is a good way to check the versions of these tools and the exact ones Quarto is finding.
 
-Run `quarto check` on the command line in your project, after activating the relevant environment (if any):
+Run `quarto check` on the command line in your project after activating the relevant environment (if any):
 
 ``` {.bash filename="Terminal"}
 quarto check
@@ -563,13 +564,13 @@ quarto check
 @fig-quarto-check shows example output from `quarto check` with the following highlighted:
 
 -   **Quarto version**: Check your Quarto version against the latest release, particularly when documented features don't seem to work for you.
-    Before reporting a bug, at minimum you should confirm your problem exists on the latest release, and it is good practice to also confirm it exists on the latest pre-release version.
+    Before reporting a bug, you should confirm that your problem exists on the latest release, and it is good practice to also confirm that it exists on the latest pre-release version.
 
--   **Internal dependencies**: Tools listed here are bundled with Quarto, and you cannot link Quarto to newer versions yourself.
-    However, sometimes for trouble-shooting it can be useful to know these versions --- for instance, you might be trying to use a feature of Typst that is newer than the version bundled with Quarto.
+-   **Internal dependencies**: Tools listed here are bundled with Quarto, and you cannot link Quarto to newer versions of those tools yourself.
+    However, knowing these versions can be useful for troubleshooting. For instance, you might be trying to use a feature of Typst that is newer than the version bundled with Quarto.
 
 -   **Quarto installation**: The version here will match the one reported on the first line, but adds the path to Quarto.
-    If you manage multiple installations of Quarto, check you are getting the one you expect here.
+    If you manage multiple installations of Quarto, you should check that you are getting the one you expect here.
 
 -   **Tools installed by Quarto**: These tools aren't included with Quarto but they can be installed with `quarto install`.
     TinyTex is recommended for producing PDFs via `format: pdf`; and Chromium is required for producing versions of Mermaid and Grapviz diagrams suitable for use in PDF or DOCX.
@@ -581,7 +582,7 @@ quarto check
 
 -   **Python**: The Python 3 interpreter discovered by Quarto—check it is the Python you expect.
     This is most often controlled by a virtual environment, but can also be set with the environment variable `QUARTO_PYTHON`.
-    If you are using a language other than Python with the `jupyter` engine, check the kernel you need is listed here.
+    If you are using a language other than Python with the `jupyter` engine, confirm that the kernel you need is listed here.
 
 -   **R**: The R interpreter discovered by Quarto—check it is the R you expect.
     It can be set with the environment variable `QUARTO_R`.
@@ -645,17 +646,17 @@ An example of the result of running `quarto check`
 
 ### Errors from the computational engine {#sec-computational-errors}
 
-If your Quarto document fails to make it through the computational engine there are generally three culprits:
+If your Quarto document fails to make it through the computational engine, the culprit is likely one of the following three issues:
 
--   The wrong engine is being used
+-   The wrong engine is being used.
 
--   The enviroment Quarto sees isn't the one you expect
+-   The environment Quarto sees isn't the one you expect.
 
--   Your code has errors in it
+-   Your code has errors in it.
 
 #### Wrong Engine
 
-The heuristics Quarto selects when selecting an engine are sometimes wrong.
+The heuristics Quarto uses when selecting an engine can sometimes be wrong.
 If you see some indication Knitr is running when you expected Jupyter, override the automatic choice by explicitly setting the engine with the `engine` key:
 
 ``` yaml
@@ -664,12 +665,12 @@ engine: jupyter
 ---
 ```
 
-If you want the `julia` engine, Quarto will never select it, you must opt-in via the `engine` key.
+If you want the `julia` engine, Quarto will never automatically select it; you must opt-in via the `engine` key.
 
 ::: callout-tip
 ## Avoiding execution
 
-For the purposes of choosing an engine, a code cell with the option `eval: false` is still considered an executable code cell, even though the code inside will not be executed.
+For the purpose of choosing an engine, a code cell with the option `eval: false` is still considered an executable code cell, even though the code inside will not be executed.
 This means you might see an engine starting even if you've set `eval: false` at the document level.
 To avoid even starting an engine, and executing any code, you can explicitly use the markdown engine:
 
@@ -683,7 +684,7 @@ engine: markdown
 #### Wrong Environment
 
 The usual symptom of Quarto not using the right environment is the failure to load packages you are sure you installed.
-Trouble-shooting your environment is language specific and you should refer back to the relevant sections of @sec-r, @sec-python and @sec-julia.
+Troubleshooting your environment is language-specific, and you should refer back to the relevant sections of @sec-r, @sec-python, and @sec-julia.
 
 #### Code Errors
 
@@ -760,7 +761,7 @@ If you want to show an error in your document, set the option `error: true` in t
 This will prevent the error from halting execution, and include the error message in your rendered document.
 :::
 
-You are now in the realm of debugging your R, Python or Julia code.
+You are now in the realm of debugging your R, Python, or Julia code.
 The first way to make your life easier is to label your code cells:
 
 ````{.markdown}
@@ -770,22 +771,22 @@ x
 ```
 ````
 
-When the engines process your code cells, they will include the label helping you to quickly identify which code cell caused the error.
+When the engines process your code cells, they will include the label, helping you to identify which code cell caused the error quickly.
 
 If the error isn't obvious, run your code from top to bottom interactively in a clean session of your interpreter.
 
 ::: {.callout-tip}
 ## Run all 
 
-In RStudio use the command **Restart R Session and Run All Chunks**.
+In RStudio, use the command **Restart R Session and Run All Chunks**.
 
-In the Quarto extension for VS Code and Positron use the command **Quarto: Run All Cells**.
+In the Quarto extension for VS Code and Positron, use the command **Quarto: Run All Cells**.
 :::
 
 ### Things that aren't errors
 
 Some problems don't rise to the level of errors. 
-You get output from `quarto render` it just doesn't look right.
+You might get output from `quarto render` but it might not look right.
 In this case, a general troubleshooting process might look like:
 
 * Verify you're working with the current release of Quarto (e.g. with `quarto check`).
@@ -799,9 +800,9 @@ In this case, a general troubleshooting process might look like:
 If you can't figure out the problem yourself, your next step is to ask someone. 
 A good question includes:
 
-* A decription of your problem, including what you expected to happen and what actually happened
-* A minimal reproducible example (see @sec-repro)
-* The output from `quarto check`
+* A description of your problem, including what you expected to happen and what actually happened.
+* A minimal reproducible example (see @sec-repro).
+* The output from `quarto check`.
 
 Some good venues to ask questions are the [discussion board on the `quarto-cli` repository](https://github.com/quarto-dev/quarto-cli/discussions) and [Posit community](https://forum.posit.co).
 
