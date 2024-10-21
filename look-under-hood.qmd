@@ -72,9 +72,9 @@ Since, `html-r.qmd` contains executable R code cells (and doesn't specify engine
 ### Computational engine
 
 The selected computational engine is informed of the target format. 
-It runs the executable code cells and any inline code expressions, replacing them with appropriate markdown, abiding by the execution options specified in the metadata and code cells.
+It runs the executable code cells and any inline code expressions, replacing them with appropriate Markdown, abiding by the execution options specified in the metadata and code cells.
 The result is a Markdown file.
-You can examine this markdown file by adding `keep-md` to your document metadata:
+You can examine this Markdown file by adding `keep-md` to your document metadata:
 
 ``` yaml
 ---
@@ -86,7 +86,7 @@ keep-md: true
 @lst-render-html-r-md shows the resulting Markdown file for `html-r.qmd`.
 Notice that the document header and Markdown content have passed through unchanged.
 However, there are now no `{r}` code cells.
-These are replaced by markdown, albeit with some special classes attached.
+These are replaced by Markdown, albeit with some special classes attached.
 
 ::: {#lst-render-html-r-md}
 ```` markdown
@@ -313,7 +313,7 @@ For instance, you can see the `jupyter` engine has added unique code cell identi
 ### Pandoc
 
 Nothing changes in the Pandoc step.
-The intermediate markdown is passed to Pandoc with the exact same settings as in the `html-r.qmd` example.
+The intermediate Markdown is passed to Pandoc with the exact same settings as in the `html-r.qmd` example.
 
 ### Monitoring the process on the command line
 
@@ -397,7 +397,7 @@ In @lst-render-pdf-r-md you can see the intermediate Markdown file that is produ
 :::
 
 It is mostly identical to that produced when the target format was HTML, but there are some differences.
-In particular, compare the markdown used to include the plot (@fig-plot-md).
+In particular, compare the Markdown used to include the plot (@fig-plot-md).
 
 ::::: {#fig-plot-md .column-body-outset layout-ncol="2"}
 ::: {#fig-plot-html}
@@ -460,7 +460,7 @@ Above this excerpt is almost 200 lines of other TeX commands setting up the docu
 An **excerpt** from `pdf-r.tex`, the TeX file created after passing `pdf-r.pdf.md` through Pandoc.
 :::
 
-Now the markdown syntax has been converted to TeX syntax: section headings are created with the TeX command `\subsection`, code cells use `Shaded` and `Highlighting` environments, and output uses appropriate commands like the `verbatim` environment for code output, and the `\includegraphics` command for the image file.
+Now the Markdown syntax has been converted to TeX syntax: section headings are created with the TeX command `\subsection`, code cells use `Shaded` and `Highlighting` environments, and output uses appropriate commands like the `verbatim` environment for code output, and the `\includegraphics` command for the image file.
 
 ### After Pandoc
 
@@ -672,7 +672,7 @@ If you want the `julia` engine, Quarto will never automatically select it; you m
 
 For the purpose of choosing an engine, a code cell with the option `eval: false` is still considered an executable code cell, even though the code inside will not be executed.
 This means you might see an engine starting even if you've set `eval: false` at the document level.
-To avoid even starting an engine, and executing any code, you can explicitly use the markdown engine:
+To avoid even starting an engine, and executing any code, you can explicitly use the `markdown` engine:
 
 ``` yaml
 ---
