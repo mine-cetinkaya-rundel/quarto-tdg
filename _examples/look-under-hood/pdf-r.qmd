@@ -1,0 +1,16 @@
+---
+title: My document
+format: pdf
+---
+
+## Some computation
+
+```{r}
+#| code-line-numbers: true
+1 + 1
+```  
+
+```{r}
+#| echo: false
+plot(1:10)
+```
