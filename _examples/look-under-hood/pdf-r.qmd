@@ -7,7 +7,6 @@ format: pdf
 
 ```{r}
 #| code-line-numbers: true
-
 1 + 1
 ```  
 
