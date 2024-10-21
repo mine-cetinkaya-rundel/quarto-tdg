@@ -1,4 +1,4 @@
-# Setting options with YAML
+# Setting options with YAML {#sec-yaml}
 
 
 * How do I set options?
