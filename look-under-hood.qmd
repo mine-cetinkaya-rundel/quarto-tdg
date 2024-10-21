@@ -217,6 +217,7 @@ When you open `html-r.qmd` in a browser you'll see the final rendered document (
 
 Converting the Markdown to HTML commands isn't enough to have a complete HTML document.
 The converted content is pasted into a template that adds the boilerplate required to form a complete document.
+Quarto has default templates it uses unless otherwise specified.
 You'll learn more about templates and customizing them in @sec-templates.
 :::
 
@@ -399,7 +400,7 @@ In @lst-render-pdf-r-md you can see the intermediate Markdown file that is produ
 It is mostly identical to that produced when the target format was HTML, but there are some differences.
 In particular, compare the Markdown used to include the plot (@fig-plot-md).
 
-::::: {#fig-plot-md .column-body-outset layout-ncol="2"}
+::::: {#fig-plot-md}
 ::: {#fig-plot-html}
 ``` markdown
 ![](html-r_files/figure-html/unnamed-chunk-2-1.png){width=672}
@@ -466,11 +467,12 @@ Now the Markdown syntax has been converted to TeX syntax: section headings are c
 
 There is an additional step now required---Quarto runs the `.tex` document through LaTeX to produce the PDF.
 
-Quarto will look for, and use an installation of LaTeX, preferring the one installed by:
-
+Quarto will look for, and use an installation of TeX.
+If TeX is not installed, you can install it with:
 ``` {.bash filename="Terminal"}
 quarto install tinytex
 ```
+Quarto will prefer the version installed this way over other installations.
 
 Quarto will use the detected installation and process the `.tex` file as many times as needed to resolve all cross references and citations.
 
@@ -577,7 +579,7 @@ quarto check
     You can also check these tools by running `quarto tools` which will inform you if they are out of date.
     You can update them with `quarto update`.
 
--   **LaTeX**: Information about the LaTeX distribution Quarto will use.
+-   **LaTeX**: Information about the TeX distribution Quarto will use.
     If you are having trouble with `format: pdf` output, and this isn't TinyTex, you should install TinyTex with `quarto install tinytex`.
 
 -   **Python**: The Python 3 interpreter discovered by Quarto—check it is the Python you expect.
