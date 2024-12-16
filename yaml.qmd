@@ -1,17 +1,24 @@
 # Setting options with YAML {#sec-yaml}
 
-There's a lot going on when you set a Quarto option. You need to:
+There's a lot going on when you set a Quarto option.
+You need to:
 
-* know the name of the option and the values it can take,
-* figure out where to set the option, and
-* get the YAML syntax right for setting the option to its value.
+-   know the name of the option and the values it can take,
+-   figure out where to set the option, and
+-   get the YAML syntax right for setting the option to its value.
 
 In this chapter ...
 
-
 Options for Quarto projects, documents and code cells are set using a language called [YAML](https://yaml.org).
-YAML describes the syntax of setting options, 
-but the options that are available and the values they can take are defined by Quarto.
+YAML describes the syntax of setting options, but the options that are available and the values they can take are defined by Quarto.
+
+By now you've seen Quarto options set using YAML syntax in a number of places:
+
+-   in the project configuration file `_quarto.yml`
+-   in the document header, i.e. between the `---` at the top of a Quarto document
+-   in code cells, on lines prefaced by `#|`
+
+You'll also learn about one new place you can set options, `_metadata.yml`.
 
 ## General YAML syntax
 
@@ -23,7 +30,7 @@ Although the syntax applies generally to any YAML, all the examples you'll see a
 A YAML mapping is the specification of a key-value pair using the syntax `key: value`.
 Values can be simple, like a string, boolean, or number:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: My Document  # A string
 toc: true           # A boolean, `true`/`false`
@@ -31,19 +38,17 @@ toc-depth: 2        # A number
 ---
 ```
 
-::: {.callout-tip}
-
+::: callout-tip
 ## YAML comments
 
-The hash symbol (`#`) indicates the start of a comment, which is ended by the end of the line. 
-
+The hash symbol (`#`) indicates the start of a comment, which is ended by the end of the line.
 :::
 
-Or, values can be more complicated like another mapping. 
+Or, values can be more complicated like another mapping.
 When the value of a key is another mapping, indentation is used to keep track of scope.
 For example, here the value of the `author` key is another mapping, setting `name` to the value `Soraya Drake`:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: My document
 author:
@@ -55,7 +60,7 @@ It doesn't matter how many spaces you indent as long as you use spaces (as oppos
 A common style convention, and the one we follow in this book, is to use two spaces for each level of indentation.
 For example, the `name` key nested under `author` is indented two spaces, whereas the `name` key nested under `affiliation`, which itself is nested under `author`, is indented four spaces:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: My document
 author:
@@ -66,16 +71,15 @@ author:
 ---
 ```
 
-The names you can use in Quarto, along with the types of values they take, 
-are not specified by the YAML language, but by Quarto's own schema.
+The names you can use in Quarto, along with the types of values they take, are not specified by the YAML language, but by Quarto's own schema.
 
 ### YAML Sequences
 
-A YAML sequence is a way to provide a key a set of ordered values. 
+A YAML sequence is a way to provide a key a set of ordered values.
 There are two syntaxes to specify a YAML sequence.
 When the values in the sequence are simple, separate them with commas inside square brackets:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 theme: [cosmo, styles.scss]
 ---
@@ -83,7 +87,7 @@ theme: [cosmo, styles.scss]
 
 The alternate syntax puts each value on their own line, and adds a dash prefix:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 theme: 
   - cosmo
@@ -94,7 +98,7 @@ theme:
 This alternate syntax can also handle situations where the values are further mappings.
 For example, here the value of `author` is a sequence of length two, where each element is a mapping of `name` and `affiliation`:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: My document
 author:
@@ -108,9 +112,9 @@ author:
 ### YAML Scalars
 
 YAML uses the term *scalar* to talk about the simplest types of value: strings, numbers, and booleans.
-You saw an example of each earlier: 
+You saw an example of each earlier:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: My Document  # A string
 toc: true           # A boolean, `true`/`false`
@@ -118,15 +122,13 @@ toc-depth: 2        # A number
 ---
 ```
 
-The only values recognized as boolean are `true` and `false`, 
-numbers can be single integers (`2`), decimal (`2.1`) or scientific (`2.1e+2`),
-and anything else is treated as a string.
+The only values recognized as boolean are `true` and `false`, numbers can be single integers (`2`), decimal (`2.1`) or scientific (`2.1e+2`), and anything else is treated as a string.
 
-### Quotes 
+### Quotes
 
 Strings don't require quotes, but you may need them if your string contains characters that have special meaning in YAML (e.g. `#`, `:`, etc.), or is something that would otherwise be interpreted as a number or boolean:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: "Quotes: and things that need them"  
 author: "#quarto"
@@ -134,33 +136,30 @@ subtitle: "100"
 ---
 ```
 
-In YAML double quoted strings (`"`) allow escape characters in them, 
-whereas single quoted strings (`'`) are interpreted literally:
+In YAML double quoted strings (`"`) allow escape characters in them, whereas single quoted strings (`'`) are interpreted literally:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: "Quotes: \U0001F4E8"
 subtitle: 'Quotes: \U0001F4E8'
 ---
 ```
 
-Q: where does the `\U` go in `subtitle` go? YAML might be interpreting literally but Quarto/Pandoc might escape somewhere?
+Q: where does the `\U` go in `subtitle` go?
+YAML might be interpreting literally but Quarto/Pandoc might escape somewhere?
 
 ### Long strings
 
-For strings that are longer than you'd comfortably put on a single line, or need explicit line breaks, 
-you can use what YAML calls block scalars.
+For strings that are longer than you'd comfortably put on a single line, or need explicit line breaks, you can use what YAML calls block scalars.
 
 There are two styles: literal and folded.
 
-Literal block scalars are indicated by a pipe (`|`), and line breaks
-are considered significant, whereas folded block scalars are indicated by a greater than symbol (`>`), and line breaks are collapsed to spaces.
+Literal block scalars are indicated by a pipe (`|`), and line breaks are considered significant, whereas folded block scalars are indicated by a greater than symbol (`>`), and line breaks are collapsed to spaces.
 
 In both cases, start your string on a new line indented under the key:
 
-:::{layout-ncol="2"}
-
-```{.yaml filename="literal.qmd"}
+::: {layout-ncol="2"}
+``` {.yaml filename="literal.qmd"}
 ---
 title: |
   A title
@@ -169,7 +168,7 @@ title: |
 ---
 ```
 
-```{.yaml filename="folded.qmd"}
+``` {.yaml filename="folded.qmd"}
 ---
 title: >
   A title
@@ -180,23 +179,20 @@ title: >
 :::
 
 ::: {#fig-block-strings layout-ncol="2"}
-
 ![Rendered title using literal (`|`) block scalar](images/yaml-block-literal.png){#fig-block-strings-literal .border fig-alt="A screenshot of a title that reads 'A title' then a line break followed by 'spanning two lines'."}
 
 ![Rendered title using folded (`>`) block scalar](images/yaml-block-folded.png){#fig-block-strings-folded .border fig-alt="A screenshot of a title that reads 'A title collapsed into one line' all on a single line."}
-
 :::
 
-
 Depending on where the string value is used, line breaks may or may not mean anything to Quarto.
-For instance, when interpreted as markdown, a single line break doesn't usually result in anything in the output. 
+For instance, when interpreted as markdown, a single line break doesn't usually result in anything in the output.
 However, a double line break will be interpreted as a new paragraph.
 
 ### Using `default`
 
 You'll come across examples where the value of a Quarto option is `default`, like when you are specifying multiple formats:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 format:
   html: default
@@ -204,27 +200,24 @@ format:
 ---
 ```
 
-The value `default` doesn't have a special YAML meaning---
-it's something Quarto adds for certain options where the value is usually another mapping, but you just want the default values.
-
+The value `default` doesn't have a special YAML meaning--- it's something Quarto adds for certain options where the value is usually another mapping, but you just want the default values.
 
 ## What happens when you get it wrong?
 
 When you render a project or document, one the first things that happens is the options are parsed and validated.
 When you make a mistake in setting an option there are a few possible outcomes:
 
-1. You get an error message, and the error message clearly points out your mistake.
+1.  You get an error message, and the error message clearly points out your mistake.
 
-2. You get an error message, but it's not clear from that message what or where your mistake is.
+2.  You get an error message, but it's not clear from that message what or where your mistake is.
 
-3. You don't get an error message at all.
+3.  You don't get an error message at all.
 
-It's hard to enumerate all the ways you can make a mistake, 
-but we'll give a couple of examples for each of these outcomes in the hope it helps you track down yours. 
+It's hard to enumerate all the ways you can make a mistake, but we'll give a couple of examples for each of these outcomes in the hope it helps you track down yours.
 
 Some examples in this chapter will result in an error from `quarto render`---we've highlighted these examples with a red border (TODO: what will we do in PDF), like this:
 
-```{.yaml .error filename="render_error.qmd"}
+``` {.yaml .error filename="render_error.qmd"}
 ---
 title: Bad YAML : (
 ---
@@ -234,20 +227,19 @@ The error messages shown in the text are current as of Quarto 1.6.
 
 We've split the examples by the kind of mistake you make:
 
-* Using the wrong YAML syntax
-* Using the wrong name for an option
-* Using the wrong type of value for an option
+-   Using the wrong YAML syntax
+-   Using the wrong name for an option
+-   Using the wrong type of value for an option
 
 ### Using the wrong YAML syntax
 
-When your YAML can't be parsed by Quarto you'll get a `YAMLException` error. 
-These are actually surprisingly rare, not because everyone is great at YAML,
-but because most YAML syntax mistakes don't result in invalid YAML.
+When your YAML can't be parsed by Quarto you'll get a `YAMLException` error.
+These are actually surprisingly rare, not because everyone is great at YAML, but because most YAML syntax mistakes don't result in invalid YAML.
 The YAML remains valid, it just won't be interpreted in the way you intended.
 
 For example, if you forget the space after a colon when setting an option like `code-fold`:
 
-```{.yaml .error filename="document.qmd"}
+``` {.yaml .error filename="document.qmd"}
 ---
 title: "Untitled"
 format:
@@ -258,7 +250,7 @@ format:
 
 Then you don't get a `YAMLException` but instead a validation error:
 
-```{.default}
+``` default
 Validation of YAML front matter failed.
 (line 5, columns 5--18) Field "html" has value code-fold:true, which must instead be an object
 
@@ -273,12 +265,12 @@ Quarto does a good job here suggesting what your mistake might have been and a s
 
 Generally, if you get a validation error, make a careful check of your syntax first.
 
-### Specifying the wrong key 
+### Specifying the wrong key
 
-There are some instances where when you use the wrong name for an option you'll get an error. 
+There are some instances where when you use the wrong name for an option you'll get an error.
 For example, if you pluralize the `lightbox` option `loop`:
 
-```{.yaml .error filename="document.qmd"}
+``` {.yaml .error filename="document.qmd"}
 title: "Presentation"
 format: html
 lightbox: 
@@ -287,7 +279,7 @@ lightbox:
 
 You'll get a YAML validation error that catches and reports the problem:
 
-```default
+``` default
 ERROR: Validation of YAML front matter failed.
 ERROR: In file long-string.qmd
 (line 5, columns 3--8) property name loops is invalid
@@ -300,13 +292,12 @@ ERROR: In file long-string.qmd
 
 Options where Quarto only allows a certain set of property names are known as *closed schemas*.
 I.e. the `lightbox` option has a closed schema.
-However, not all Quarto options have closed schemas. 
+However, not all Quarto options have closed schemas.
 
-When the schema is *open*, 
-Quarto simply accepts an unknown option name and you get no error.
+When the schema is *open*, Quarto simply accepts an unknown option name and you get no error.
 For example, you might use an underscore instead of a hyphen in `code-fold`:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: My document
 format: 
@@ -315,16 +306,15 @@ format:
 ---
 ```
 
-Even though `code_fold` isn't a recognized option for `html`, you'll get no error. 
+Even though `code_fold` isn't a recognized option for `html`, you'll get no error.
 But, you also won't get any cold folding.
-Why does Quarto have open schemas? 
-There's lots of places it makes sense to let users define their own keys,
-for example, when you want to use the `meta` shortcode and define some custom keys in your meta data.
+Why does Quarto have open schemas?
+There's lots of places it makes sense to let users define their own keys, for example, when you want to use the `meta` shortcode and define some custom keys in your meta data.
 
-A similar problem occurs when you nest options incorrectly. 
+A similar problem occurs when you nest options incorrectly.
 For example, you might get `code-fold` right, but forget to nest `html` under `format`:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: My document
 html:
@@ -332,13 +322,11 @@ html:
 ---
 ```
 
-As a top-level option `html` isn't something Quarto knows about,
-but it passes validation. 
+As a top-level option `html` isn't something Quarto knows about, but it passes validation.
 The result is no error, and no folded code.
 
 [Code completion](#yaml-completion) can be a useful indicator for these problems.
-If you aren't getting the completion you expect, 
-perhaps you've got the wrong name, or you've nested it under the wrong option.
+If you aren't getting the completion you expect, perhaps you've got the wrong name, or you've nested it under the wrong option.
 
 ### Specifying the wrong type of value
 
@@ -346,7 +334,7 @@ Checking the type of value you've passed is something Quarto is good at, assumin
 
 For example, consider trying to add a table of contents like this:
 
-```{.yaml .error filename="document.qmd"}
+``` {.yaml .error filename="document.qmd"}
 ---
 title: My document
 toc: yes
@@ -355,7 +343,7 @@ toc: yes
 
 On render Quarto returns the error:
 
-```{.default}
+``` default
 ERROR: Validation of YAML front matter failed.
 ERROR: (line 3, columns 6--8) Field "toc" has value yes, which must instead be `true` or `false`
 
@@ -367,14 +355,13 @@ ERROR: (line 3, columns 6--8) Field "toc" has value yes, which must instead be `
 ERROR: Render failed due to invalid YAML
 ```
 
-This is a really useful message---it tells you the YAML front matter validation failed;
-it tells you where the problem is, `(line 3, columns 6--8) Field "toc"`; and it tells you what the problem was, Quarto expected a boolean, but got a string. 
+This is a really useful message---it tells you the YAML front matter validation failed; it tells you where the problem is, `(line 3, columns 6--8) Field "toc"`; and it tells you what the problem was, Quarto expected a boolean, but got a string.
 It even suggests a solution `try using true instead`.
 
 Not all validation error messages are as illuminating.
 For example, consider trying to add an "Other Link" like this:
 
-```{.yaml .error filename="document.qmd"}
+``` {.yaml .error filename="document.qmd"}
 ---
 title: "Untitled"
 format:
@@ -384,7 +371,8 @@ format:
 ```
 
 The validation error returned is:
-```{.default}
+
+``` default
 ERROR: Validation of YAML front matter failed.
 ERROR: In file type-errors.qmd
 (line 5, columns 18--34) Field "other-links" has value http://quarto.org, which must instead be 'false'
@@ -394,25 +382,23 @@ ERROR: In file type-errors.qmd
 6: ---
 ```
 
-It's clear where the error is (`(line 5, columns 18--34) Field "other-links"`), and that the wrong type of value has been encountered. 
-But it's unclear what Quarto actually wants. 
-It says it was expecting `false`, but that doesn't help us figure out how to actually specify a link. 
+It's clear where the error is (`(line 5, columns 18--34) Field "other-links"`), and that the wrong type of value has been encountered.
+But it's unclear what Quarto actually wants.
+It says it was expecting `false`, but that doesn't help us figure out how to actually specify a link.
 
-::: {.callout-tip}
-
+::: callout-tip
 ## Obtuse messages
 
 Quarto tries not to overwhelm you with output in an error message, but sometimes the process of shortening an error message leads to a message that isn't very helpful.
 
-This particular form of message that ends with `which must instead be x`, is a common culprit of being too brief to be helpful. 
-Quarto will often report one value `x`, but in reality there are many values that the option could take. 
-
+This particular form of message that ends with `which must instead be x`, is a common culprit of being too brief to be helpful.
+Quarto will often report one value `x`, but in reality there are many values that the option could take.
 :::
 
-For validation errors like this you should look for an example in the Guide section of Quarto. 
+For validation errors like this you should look for an example in the Guide section of Quarto.
 In the section ["Code and Other Links"](https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links) you can see an example showing Quarto was expecting an array of objects:
 
-```{.yaml filename="document.qmd"}
+``` {.yaml filename="document.qmd"}
 ---
 title: "Untitled"
 format:
@@ -427,35 +413,31 @@ format:
 
 Quarto ships with YAML intelligence which encompasses two tools you can use to help you get your YAML right: YAML completion, and YAML validation.
 
-These tools are available in RStudio, and the Quarto extension for VS Code and Positron. 
-The code to implement them comes with the Quarto CLI, which means they'll always represent your current version of Quarto. 
+These tools are available in RStudio, and the Quarto extension for VS Code and Positron.
+The code to implement them comes with the Quarto CLI, which means they'll always represent your current version of Quarto.
 
-#### YAML completion
+#### YAML completion {#yaml-completion}
 
 YAML completion suggests code completions when you are editing YAML in your Quarto documents and projects.
 You can hit a shortcut to see suggested completions of option names, and values.
 
 Use completion:
 
-*  At the top-level without typing anything to remind yourself of available options. 
-*  When you have started typing an option name to avoid mis-spelling it. 
-   If the option doesn't appear as a completion, check you have it nested correctly.
-*  After completing the option name to get suggested values. 
-   This is particularly useful for options that take one of a few special strings.
+-   At the top-level without typing anything to remind yourself of available options.
+-   When you have started typing an option name to avoid mis-spelling it. If the option doesn't appear as a completion, check you have it nested correctly.
+-   After completing the option name to get suggested values. This is particularly useful for options that take one of a few special strings.
 
 #### YAML validation
 
-YAML validation performs the same validation that occurs when you render,
-but provides feedback and help where and when you are editing. 
+YAML validation performs the same validation that occurs when you render, but provides feedback and help where and when you are editing.
 It is activated when you save your file.
 
 It will warn you when:
 
-* a value has the incorrect type
-* a value isn't one of the enumerated allowable values
-* the name of an option isn't valid (but only in situations where free-form options aren't allowed)
-* indention is inconsistent
-
+-   a value has the incorrect type
+-   a value isn't one of the enumerated allowable values
+-   the name of an option isn't valid (but only in situations where free-form options aren't allowed)
+-   indention is inconsistent
 
 ## What are the possible options?
 
@@ -463,48 +445,90 @@ The best place to find out what options are available is the [Reference section 
 These pages are automatically generated from the YAML schema defined in the source code of the Quarto CLI.
 
 The options available depend on where the option will be applied.
-From smallest to largest scope these are: to a code cell, to a document format, or to a project. 
+From smallest to largest scope these are: to a code cell, to a document format, or to a project.
 
 Those scopes also map to where you put the option: inside the code cell, in the document header, or in `_quarto.yml`.
-However, you can generally apply options to a larger scope, 
-by placing them in the corresponding location.
-For example, `echo` is a code cell option, 
-but you can use it in the document header to apply to formats, 
-or you can use it in `_quarto.yml` to apply to all documents in a project. 
+However, you can generally apply options to a larger scope, by placing them in the corresponding location.
+For example, `echo` is a code cell option, but you can use it in the document header to apply to formats, or you can use it in `_quarto.yml` to apply to all documents in a project.
 
-| Reference Guide Section | Other names       | Where they might occur |
-|-------------------------|-------------------|------------------------|
-| Code Cells              | Execution Options |                        |
-
+Table @tbl-options matches the sections of the Reference Guide, 
+to the other names for the same options, and where the options might be found.
 In the following sections, you'll work through these scopes from largest to smallest and learn some general principles to help you put your options in the right place.
+
++-------------------------+-------------------+-----------------------------+
+| Reference Guide Section | Other names       | Where they might occur      |
++:========================+:==================+:============================+
+| Projects                | Project options   | `_quarto.yml`               |
+|                         |                   |                             |
+|                         | Project metadata  |                             |
++-------------------------+-------------------+-----------------------------+
+| Formats                 | Document options  | Document header             |
+|                         |                   |                             |
+|                         | Document metadata | `_quarto.yml`               |
+|                         |                   |                             |
++-------------------------+-------------------+-----------------------------+
+| Code Cells              | Execution options | Code cells, i.e. after `#|` |
+|                         |                   |                             |
+|                         |                   | Document header             |
+|                         |                   |                             |
+|                         |                   | `_quarto.yml`               |
++-------------------------+-------------------+-----------------------------+
+
+: The three kinds of options you can set in Quarto {#tbl-options}
+
 
 ## Project options
 
-Project options are those that are set in `_quarto.yml`.
+Project options are literally those listed under `project` in `_quarto.yml`, 
+or under a project type (e.g. `website`, `book` or `manuscript`) in `_quarto.yml`.
+You cannot modify them on a document or code-cell level, 
+nor does it generally make sense to.
+For example, options under the `website` key set up global navigation, and
+website level metadata.
 
-
-
-## Where do options go?
-
-By now you've seen Quarto options set using YAML syntax in a number of places:
-
--   in the project configuration file `_quarto.yml`
--   in the document header, i.e. between the `---` at the top of a Quarto document
--   in code cells, on lines prefaced by `#|`
-
-You'll start by learning more 
-
-You'll start by learning more about options set in the document header.
+Project options aren't the only thing you might find in `_quarto.yml`. 
+You can also set document options that should apply to all documents in `_quarto.yml`,
+you'll learn more about this next.
 
 ## Document options
 
-Useful principles:
+Document options can be tricky because they can appear in lots of different ways.
+For example, the `toc` option might appear:
+
+*  at the top-level of a document header:
+
+    ```{.yaml filename="document.qmd"}
+    ---
+    title: My document
+    format: html
+    toc: true
+    ---
+    ```
+
+* nested under a format in the document header:
+
+    ```{.yaml filename="document.qmd"}
+    ---
+    title: My document
+    format: 
+      html:
+        toc: true
+    ---
+    ```
+
+* or in `_quarto.yml`:
+
+    ```{.yaml filename="_quarto.yml"}
+    toc: true
+    ```
+
+To understand what these variations mean, and when to use them, you'll dive into the following principles:
 
 -   Everything is a format option
 -   Top-level options are applied to all formats
 -   Options in `_quarto.yml` apply to all documents
 
-## Everything is a format option
+### Everything is a format option
 
 Consider the following document header:
 
@@ -537,7 +561,7 @@ This is why Quarto's [reference pages](https://quarto.org/docs/reference/) are l
 `engine` is an option that isn't applied at a format level---you cannot specify different engines for different formats.
 :::
 
-## Top-level options are applied to all formats
+### Top-level options are applied to all formats
 
 Quarto assumes any options you specify at the top-level should be applied to all formats.
 For example, if we extend our document header to add the `pdf` format:
@@ -592,7 +616,7 @@ There are a couple of consequences of this behavior to be aware of:
 
 Both are reminders that understanding whether an option is supported by a format is up to you, and the best way to check is on the Quarto reference pages for the formats you are targeting.
 
-## Options in `_quarto.yml` apply to all documents
+### Options in `_quarto.yml` apply to all documents
 
 You can move any options you've set in the document header to `_quarto.yml` and they'll apply to all documents in your project.
 
@@ -619,13 +643,11 @@ format:
 ```
 
 As discussed in @sec-common-metadata you can override any options in `_quarto.yml` at a document-level by setting them in the document header.
-However, if you specify any formats via `format` in a document header, 
-only those specified will be rendered, regardless of which formats are specified in `_quarto.yml`.
+However, if you specify any formats via `format` in a document header, only those specified will be rendered, regardless of which formats are specified in `_quarto.yml`.
 This gets a little tricky, so let's look at a couple of examples.
 Consider @lst-project-opts: a `_quarto.yml` that sets one top-level option, `toc`, for all formats, an `html` option `code-fold`, and specifies default options for the `pdf` format.
 
 ::: {#lst-project-opts}
-
 ``` {.yaml filename="_quarto.yml"}
 toc: true
 format: 
@@ -652,12 +674,10 @@ format:
 
 The result of `quarto render` would be an HTML document (with a table of contents and using code fold), **and** a PDF document (with a table of contents).
 
-When a document sets a format via `format` either with no options (@lst-format-no-opts) or as the result of setting an option nested under the format (@lst-format-opts),
-only the options for that format are merged from `_quarto.yml` (@lst-format-result-no-opts and @lst-format-result-opts respectively).
+When a document sets a format via `format` either with no options (@lst-format-no-opts) or as the result of setting an option nested under the format (@lst-format-opts), only the options for that format are merged from `_quarto.yml` (@lst-format-result-no-opts and @lst-format-result-opts respectively).
 The result of `quarto render` on @lst-format-no-opts and @lst-format-opts is only an HTML document.
 
-::: {#lst-format}
-
+::::: {#lst-format}
 ::: {#lst-format-no-opts}
 ``` yaml
 ---
@@ -669,7 +689,6 @@ format: html
 :::
 
 ::: {#lst-format-opts}
-
 ``` yaml
 ---
 format: 
@@ -679,16 +698,12 @@ format:
 ```
 
 `format: html` set with additional options.
-
 :::
 
 A document that sets a format in the document header
+:::::
 
-::: 
-
-
-:::: {#lst-format-result}
-
+::::: {#lst-format-result}
 ::: {#lst-format-result-no-opts}
 ``` yaml
 ---
@@ -712,16 +727,12 @@ format:
 :::
 
 The equivalent header for the files in @lst-format when merged with the settings in `_quarto.yml`.
+:::::
 
-:::: 
+If you want to specify some format specific options in a document, but maintain the full list of target formats from `_quarto.yml`, specify all formats in the document header.
+For example, to override some HTML options, but use the PDF options from `_quarto.yml`, add `pdf: default` to the list of formats:
 
-If you want to specify some format specific options in a document,
-but maintain the full list of target formats from `_quarto.yml`, 
-specify all formats in the document header.
-For example, to override some HTML options, 
-but use the PDF options from `_quarto.yml`, add `pdf: default` to the list of formats:
-
-```{.yaml}
+``` yaml
 ---
 format: 
   html:
@@ -730,42 +741,132 @@ format:
 ---
 ```
 
-## Command line metadata
+### `_metadata.yml`
+
+There is one additional place you can put document options: in a `_metadata.yml` file.
+Options placed in `_metadata.yml` will apply to all documents in the same directory as the `_metadata.yml`.
+
+Only for document options (and execution options if they have a document equivalent), not project options.
+
+### Command line metadata
 
 Command line metadata overrides metadata set in files:
 
-```{.bash filename="Terminal"}
+``` {.bash filename="Terminal"}
 quarto render document.qmd -M toc:false
 ```
 
-Careful: not really YAML because there is no space after `:`. Also can't set options that need sub-elements.
-
-## `_metadata.yml`
-
-In this chapter you'll also learn about one new place you can set options, `_metadata.yml`.
-
 ## Execution options
 
-We use the term **execution options** to describe options you can set in code cells.
+We use the term **execution options** to describe options you can set in code cells. 
+The set of options available depends on your execution engine:
+[`knitr`](https://quarto.org/docs/reference/cells/cells-knitr.html), [`jupyter`](https://quarto.org/docs/reference/cells/cells-jupyter.html) or [`ojs`](https://quarto.org/docs/reference/cells/cells-ojs.html).
 
-General principles:
+You can generally split execution options into two types:
 
-* Execution options set in code cells apply only to the code cell
-* Execution options set in the document header apply to all code cells in the document
-* Execution options set in `_quarto.yml` apply to all code cells in the project
+-  information that is unique to a code cell like identifiers (`label`, `lst-label`), captions (`fig-cap`, `tbl-cap`, `lst-cap`, `fig-subcap`, `tbl-subcap`, `fig-scap`) or other annotation (`fig-alt`, `fig-link`).
+
+-  settings that could conceivably apply to many code cells that control things like: if the code is executed (`eval`), or how code and results appear in the output(`echo`, `output`, `warning`, `error`), where output appears (`column`, `panel`, `output-location`), or how code is presented (`code-fold`, `code-overflow`, `code-line-numbers`).
+
+For options in the later category, just like document options, you can increase their scope by moving them: to the document header to apply to all code cells in the document; or to `_quarto.yml` to apply to all code cells in the project.
 
 ### Execution options set in code cells
 
-Documented by engine https://quarto.org/docs/reference/cells/
+Execution options are set in code cells using YAML syntax after a special comment:
 
-Many set things that should be unique to a code cell  e.g. `label`/`lst-label`, `fig-cap`/`tbl-cap`/`lst-cap`, `fig-alt`, `fig-subcap`/`tbl-subcap`, `fig-link`, `layout`/`layout-ncol`/`layout-nrow`
+````
+```{{r}}
+#| echo: false
 
+```
+````
 
-### Execution options set in the document header 
+Execution options need to be specified before any code, 
+and are prefaced by the native comment character for the 
+code cell language (`#` for `r`, `python` and `julia`),
+followed by a pipe (`|`), and a space.
 
-Doesn't apply to code cell options that are unique to code cells, e.g. `label`, `fig-cap`, `fig-alt`.
+You can use the same YAML syntax as in the document header, 
+but for multiline statements, remember to preface each line with the cell option comment.
+For example, to use a literal block string:
 
-`fig-width` and `fig-height` are special cases. 
+````
+```{{r}}
+#| fig-cap: |
+#|   Here's a long caption
+#|   spread over two lines
+
+plot(1:10)
+```
+````
+
+### Execution options set in the document header
+
+As reasonable working model, assume you can move an execution option from a code cell to the document header and it will apply to all code cells in the document.
+For example, you could move `echo: false` out of a code cell and into the document header:
+```{.yaml filename="document.qmd"}
+---
+title: My document
+echo: false
+---
+```
+
+You can override the document level setting by setting the option in a code cell:
+
+````
+```{{r}}
+#| echo: true
+
+```
+````
+
+When you move an option in this way it behaves just like a document option:
+
+1. To figure out if an option is supported at the document level look in the reference guide for your target formats.
+
+2. If you nest an execution option under a format, it will only apply to that format.
+
+So, while assuming you can move an execution option to the document header is a good working model, the definitive way to check is to see if it is a document option for your target formats.
+
+There are a couple of special cases it is worth pointing out.
+
+### `fig-width` and `fig-height`
+
+For the `jupyter` engine, `fig-width` and `fig-height` are document options only---you cannot set them at the cell level. 
+If you need cell level control of the size of a figure, you'll need to set it in the code that creates the figure.
+
+### Knitr specific options 
+
+There are a number of execution options that are specific to the `knitr` engine, that don't have document option equivalents.
+Some common ones include `message`, `collapse` and `prompt`.
+
+You can set these for all code cells using the `knitr: chunk_opts` option.
+For example, to suppress all messages:
+
+```{.yaml}
+---
+title: "Untitled"
+format: html
+knitr:
+  opts_chunk:
+    message: false
+---
+```
 
 ### Execution options set in `_quarto.yml`
+
+When an execution option is also a document option, 
+you can move it to `_quarto.yml` to apply to all code cells in a project.
+
+For example, to omit the code "echo" all code cells, and all formats, in a project you could set `echo` at the top-level of `_quarto.yml`:
+
+```{.yaml filename="_quarto.yml"}
+echo: false
+```
+
+You can then override this at the document or cell level as usual.
+
+
+
+
 
