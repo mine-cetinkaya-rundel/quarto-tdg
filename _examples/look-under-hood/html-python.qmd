@@ -1,0 +1,22 @@
+---
+title: My document
+format: html
+---
+
+## Some computation
+
+```{python}
+#| include: false
+import matplotlib.pyplot as plt
+```
+
+```{python}
+#| code-line-numbers: true
+
+1 + 1
+```  
+
+```{python}
+plt.plot(range(1, 11)) 
+plt.show()
+```

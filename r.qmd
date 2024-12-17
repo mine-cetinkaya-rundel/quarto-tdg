@@ -1,6 +1,4 @@
----
-title: Quarto and R
----
+# Quarto and R {#sec-r}
 
 ```{r}
 1 + 1
