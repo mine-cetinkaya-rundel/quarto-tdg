@@ -53,3 +53,7 @@ code a:any-link {
   text-decoration: underline;
   text-decoration-color: #ccc;
 }
+
+pre.sourceCode.error {
+  border: #c41919 solid 2px;
+}

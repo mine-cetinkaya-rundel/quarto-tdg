@@ -1,5 +1,7 @@
 # Setting options with YAML {#sec-yaml}
 
+## Overview 
+
 There's a lot going on when you set a Quarto option.
 You need to:
 
