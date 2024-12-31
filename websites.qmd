@@ -1,1 +1,397 @@
 # Websites {#sec-websites}
+
+## Overview
+
+Quarto websites are a special type of Quarto project for building...well, websites.
+In this chapter, you'll learn the minimal building blocks for a functional website.
+Then, you'll dive into the details of how to build out content and navigation.
+Finally, you'll cover ways to get your website out in the world for people to see.
+
+## Minimal website
+
+A website is just a collection of HTML pages, usually sharing some common elements like navigation or theming.
+In Quarto, a website project is a collection of Quarto documents targeting the HTML format, along with some website configuration in `_quarto.yml`.
+
+The simplest Quarto project that results in a website consists of a directory with two files:
+
+-   `index.qmd` (or `.md` or `.ipynb`) that renders to `index.html`—the homepage.
+    For illustration, we'll use a simple file with a `title` and some placeholder text:
+
+    ``` {.markdown filename="index.qmd" shortcodes="false"}
+    ---
+    title: Home
+    ---
+
+    {{< lipsum 1 >}}
+    ```
+
+-   A `_quarto.yml` file that contains:
+
+    ``` {.yaml filename="_quarto.yml"}
+    project:
+      type: website
+    ```
+
+The specification of `type: website` in `_quarto.yml` means when you render the project, Quarto identifies it as a website, renders all the Quarto documents in the project, inserts the relevant website scaffolding and puts the resulting files in a `_site/` directory.
+
+The resulting `_site/` directory is a completely self-contained description of the website.
+
+@fig-site-contents shows the contents of the `_site/` directory for a minimal website.
+It contains the rendered `.html` files, in this case only `index.html`, along with other required resources.
+The folders in `_site/site_libs` contain scripts and other source files for some of Quarto's website tools and can be shared by all pages in the website.
+
+::: {#fig-site-contents}
+``` default
+_site/
+├── index.html
+├── search.json
+└── site_libs
+    ├── bootstrap
+    ├── clipboard
+    ├── quarto-html
+    ├── quarto-nav
+    └── quarto-search
+```
+
+The contents of `_site/` for a minimal Quarto website
+:::
+
+To view your website you need a webserver to serve up the contents of this directory.
+This could be a local webserver like the one used for `quarto preview`, or a remote one like those provided by Quarto Pub or GitHub Pages.
+
+## Workflow
+
+Working on a Quarto website is mostly like working on an single Quarto document.
+You make edits to your Quarto document, now a "page" in your website, then preview to examine the result.
+You make more edits, then you re-run preview.
+
+There are a couple of differences to be aware of:
+
+-   Since your page may contain some elements that depend on other pages (e.g. navigation items), you may see more others pages being rendered to generate your preview.
+
+-   Some changes to `_quarto.yml` won't propagate to an already running `preview` session.
+    For instance, when you add items to navigation, you may need to stop the current preview, and restart another preview to see the changes you've made.
+
+It's also important to use `quarto preview` (either via the Render/Preview button in your IDE or on the command line) rather than opening a generated `.html` file directly in your browser.
+A file opened directly in your browser will use the `file://` protocol, rather than the `http://` protocol, and some features of Quarto websites may not work (search, for example).
+
+## Website Structure
+
+In this section, learn how your project structure translates to your website structure.
+You'll start by understanding where how the location of your files in your project translates to the location of your pages in your site.
+Then you'll learn how to link to other pages and use anchors to link to sections, figures and other elements.
+Finally, you'll see a couple of options for excluding documents from your site or to redirect to them from different URL paths.
+
+### File structure translates to URL structure
+
+The structure of your files in your project directly translates to their structure in `site/`, and consequently, to where your pages will be available on your website.
+
+Consider the website project in @fig-website-dir.
+The project root is `my-website/`, the top-level directory, defined by the presence of `_quarto.yml`.
+To the right of each file, you'll see the URL at which the file will be available.
+
+::: {#fig-website-dir}
+``` default
+my-website/  
+├── _quarto.yml
+├── index.qmd             { base }
+├── about.qmd             { base }/about.qmd           
+├── reports/                       
+|    ├── index.qmd         { base }/reports            
+|    └── last-month.qmd    { base }/reports/last-month.qmd                        
+└── data/                         
+    └── sales.csv         { base }/data/sales.csv   
+```
+
+File paths from your project root directly translate to URL paths from your base URL.
+:::
+
+For example, if the file `about.qmd` is at the top level of your website project, it will be available at `about.html` at the top level of your website.
+If you place `last-month.qmd` inside a `reports/` folder in your website project, it will available at `reports/last-month.html` on your website.
+
+We use the placeholder `{ base }` to represent the base URL of your website.
+When you are previewing locally that will be something like `http://localhost:3884`, where the number `3884` may be something else.
+When you publish your website the base URL will depend on where you host it, for GitHub pages it might look something like `https://username.github.io/repository-name`, and on Quarto Pub something like `https://username.quarto.pub/project-name/`, or you might even have a custom domain `https://yourdomain.com`.
+
+Index files are special --- the `index.qmd` in any directory becomes the landing page for that directory.
+So, for example `reports/index.qmd` defines the page seen by someone navigating to `{ base }/reports` or `{ base }/reports/`.
+
+Files don't have to be Quarto documents.
+The CSV file `data/sales.csv` will be available at `{ base }/data/sales.csv`.
+However, only rendered Quarto documents or files that Quarto deems to be necessary are copied into `_site/`.
+This means the presence of `data/sales.csv` isn't enough for it to be included in the website.
+It either needs to be referenced in a way Quarto will detect, e.g. [linked](#links) to from another page, or be included in the [site resources](#website-site-resources).
+
+Later in this section you'll learn two ways to disrupt this direct correspondence between project paths and URL paths.
+You'll see how to:
+
+-   Exclude or ignore project files, so they aren't part of the website
+
+-   Provide alias URLs, so that visitors are redirected from a URL to a document at a different path.
+
+### Links {#links}
+
+A key feature of webpages is the interlinking of pages.
+@tbl-link-syntax summarizes what you'll learn in this section---how to make in-text links.
+You'll learn how to add navigation links, another key kind of link, in [Navigation](#navigation).
+
+
+| Type | Syntax | Result |
+|:----|:----|:----|
+| Relative link to another page | `[About](about.qmd)` | A link to `about.qmd` in the same directory |
+| Absolute link to another page | `[About](/about.qmd)` | A link to `about.qmd` in the project root |
+| Link to a section on this page | `[Data](#data)` | A link to the anchor `#data` on the current page |
+| Link to a section on another page | `[Contact Me](/about.qmd#contact)` | A link to the anchor `#contact` on the `about.qmd` page in the project root |
+| External link | `[Quarto](http://quarto.org)` | A link to the website `http://quarto.org` |
+| Link with attributes | `[Quarto](http://quarto.org){.external target="_blank"}` | A link to the website `quarto.org` with the class `.external` that opens in a new window or tab. |
+| Cross-References (**only within pages**)  | `@fig-dist` | A link to the figure, along with a preview on hover. |
+
+: In-text link syntax {#tbl-link-syntax}
+
+#### Linking to pages
+
+You create a link using the usual markdown syntax, but you can refer to other Quarto documents in your website project.
+For example, from `index.qmd` you might link to the page `about.qmd`:
+
+``` {.markdown filename="index.qmd"}
+[About](about.qmd)
+```
+
+This is an example of a relative link—it uses the path relevant to the document in which it is located.
+In this case, the result is a link to `about.html` located at the same level in `_site/` as `index.html`.
+
+Notice that the link used the extension `.qmd`.
+Quarto handles the translation so that the link in the rendered `index.html` will point correctly at `about.html`.
+One advantage of using `.qmd` is that Quarto will complain if it can't find the document at the path you specified.
+
+In addition to relative links you can use absolute links.
+Absolute links start with slash (`/`) and are relative to the project root.
+It's particularly important to use absolute links in content that may be reused via an `include` shortcode at various levels in your site.
+
+#### Linking to sections or IDs
+
+You can link to a specific location within a page using the fragment identifier, a hash (`#`) followed by an identifier. 
+In Quarto, all section headers are given identifiers automatically which makes it easy to link directly to a section.
+
+As example, you could link to the "Data" section using the link `#data`:
+
+````{.markdown filename="index.qmd"}
+## Introduction
+
+See [Data](#data)
+
+## Data
+
+````
+
+Quarto will generate an identifier by converting to lower case and replacing spaces with dashes (`-`), then adding a numeral it the anchor would otherwise be non-unique.
+Rather than remember the rules, it can be easier to specify your own. 
+Place your identifier prefaced by `#` in curly braces after the section title:
+
+````{.markdown filename="index.qmd"}
+## Introduction {#intro}
+
+See [Data](#data)
+
+## Data
+
+Back in the [introduction](#intro)
+
+````
+
+You can link to identifier on other pages too, 
+just add it to the document path.
+For instance, to link to the Introduction section in `index.qmd` from `about.qmd`:
+
+````{.markdown filename="about.qmd"}
+Read more in our [Introduction](index.qmd#intro)
+````
+
+There are a lot of elements beyond sections that get identifiers automatically in Quarto. 
+You can find the identifier of an element by looking for an `id` in the element in the rendered HTML (usually, using something like your web browser development tools). 
+Or, you can provide your own.
+For example, for any element created with a fenced div, add an identifier to the curly braces:
+
+````markdown
+:::{#my-callout .callout-tip}
+
+Here's a callout I can link to with `#my-callout`.
+
+:::
+````
+
+Or for elements that are created inline add a anchor in the curly braces following the element.
+For example, to an image:
+````markdown
+![Caption](image.png){#my-figure}
+````
+
+You might recognize that this is very similar to adding a cross-reference,
+except we didn't start the identifier with one of the [recognized cross-reference prefixes](https://quarto.org/docs/authoring/cross-references.html#reserved-prefixes").
+
+#### External Links
+
+To link to websites external to yours use the full URL, including the `.html` extension and fragment if applicable:
+
+```{markdown}
+[Quarto website links](https://quarto.org/docs/websites/#linking)
+```
+
+You can add the class `.external` to give a visual indication that a link will leave your site:
+```{markdown}
+[Quarto website links](https://quarto.org/docs/websites/#linking){.external}
+```
+
+You can additionally supply other attributes to include in the link in the curly braces.
+For example you might add `target="_blank"` to open the link in a new tab or window:
+
+```{markdown}
+[Quarto website links](https://quarto.org/docs/websites/#linking){.external target="_blank"}
+```
+
+You can learn more about [external links in the Quarto documentation](https://quarto.org/docs/output-formats/html-basics.html#external-links).
+
+### Cross-references
+
+[Cross-references](authoring.qmd#cross-references) will work within pages in a Quarto website, but will not work across pages.
+That is, you cannot reference with the `@` syntax an element defined in a different document.
+
+To link to a cross-reference on another page, you could use a link:
+```{markdown}
+Recall from the [histogram of the data](explore.qmd#fig-dist)...
+```
+
+If you must have across page cross-references, consider using a `book` project instead, see @sec-books.
+
+### Aliases
+
+Aliases are alternative URLs that point to the same page.
+Typically, you use aliases when you move content so that is it still available from an old  URL.
+
+For example, if you move a page from `/blog/first-post.qmd` to `/blog/first-post/index.qmd`, you can set up an alias so visitors using the old URL are automatically redirected to the new location:
+
+```{.yaml filename="/blog/first-post/index.qmd"}
+---
+title: "My Post"
+aliases:
+  - /blog/first-post.html
+---
+```
+
+### Excluding content from your website
+
+The easiest way to exclude a file from your website is to name it with an underscore, or place it in a folder that starts with an `_`.
+For instance, if you are keeping a list of to do in `todo.md` you don't want them rendered as part of your website, you could put them in a `_notes/` folder:
+```{.default}
+my-website/  
+├── _notes
+|   └── todo.md
+└── index.qmd
+```
+
+An alternative approach is to use the project option `render` which specifies the files that should be rendered.
+The `render` option takes a sequence of files you **do** want to render:
+```{.yaml filename="_quarto.yml"}
+project:
+  type: website
+  render: 
+    - index.qmd
+```
+
+To exclude files, start by specifying everything you want to render, then ignore the ones you want to exclude using the `!`:
+
+```{.yaml filename="_quarto.yml"}
+project:
+  type: website
+  render: 
+    - "*.qmd"
+    - "!ignore-dir/"
+    - "!ignore-doc.qmd"
+```
+
+### Including content in your website {#website-site-resources}
+
+When you reference a file in your content (like including an image or linking to a document), Quarto will copy the file to `_site/`.
+
+But, if Quarto fails to detect your file, or you want to include a file you don't reference can explicitly include files using the `resources` project option.
+For example, you could include all Excel (`.xlsx`):
+```yaml
+project:
+  type: website
+  resources: 
+    - "*.xlsx"
+```
+
+## Navigation {#navigation}
+
+Global: `navbar`, `sidebar`, hybrid
+
+Navigation Items
+
+Other elements - by picture and links to documentation Maybe as a cheatsheet table?
+
+| Element  |              |  Option |
+| ---------|--------------|---------|
+| [Breadcrumbs](https://quarto.org/docs/websites/website-navigation.html#breadcrumbs) Links above page title that indicate location in sidebar hierarchy  |  ![](images/website-nav-breadcrumbs.png){fig-alt="Text above page title that indicates page in sidebar hierarchy  'Guide > Websites > Website Navigation'"}  | `breadcrumbs`  Under `website` in `_quarto.yml`, or in document header |
+
+
+::: callout-tip
+## Turn any project into a website
+
+Use automatic sidebar
+:::
+
+## Website Theming
+
+
+
+
+The appearance of your website is controlled by the `html` formats theming options. 
+
+
+### Built-in themes
+
+The HTML format `theme` option controls theming for individual pages.
+To set a theme for your website you apply the same theme to every document by specifying `theme` in `_quarto.yml`.
+
+```{.yaml filename="_quarto.yml"}
+
+```
+
+### **brand.yml**
+
+If you want a custom set of colors and fonts, the easiest approach is through **brand.yml**. 
+Add a `_brand.yml` file at the root of your website (i.e. alongside `_quarto.yml`, 
+and it will apply to all pages.
+
+Layering **brand.yml** with a built-in theme.
+If you want to apply your band file on top of a built-in theme, 
+you'll need to specify their order in `theme`:
+
+```{.yaml filename="_quarto.yml"}
+format:
+  html: 
+    theme: [brand, lux]
+```
+
+### Adding CSS or SCSS
+
+### The role of Bootstrap
+
+Use bootstrap classes on spans and divs
+
+Use bootstrap SASS/SCSS variables
+
+## About Pages
+
+## Listings
+
+## Execution
+
+## Publishing a website
+
+### `quarto publish`
+
+### 
+
+## Continuous Integration
