@@ -57,10 +57,34 @@ source env/bin/activate
 
 #### Adding python packages
 
-1. Activate the environment
-2. Install the additional packages using `pip`
-3. Update `requirements.txt`
-    ```
-    python3 -m pip freeze > requirements.txt
-    ```
-4. Commit `requirements.txt`
+1.  Activate the environment
+2.  Install the additional packages using `pip`
+3.  Update `requirements.txt` `python3 -m pip freeze > requirements.txt`
+4.  Commit `requirements.txt`
+
+## Style Notes
+
+-   Use bold text for terms, e.g. "...known as **hybrid navigation**"
+
+-   Use italics for emphasis, e.g. "...things you *do* want"
+
+-   Most other tool/language names are capitalized: Julia, Jupyter, Markdown, Pandoc, Knitr.
+    You can use lower case if talking about a particular command, e.g. running the pandoc command.
+
+-   When giving an example of YAML that would be included in a document header, include the opening and closing `---`.
+
+-   Some metadata terminology to consistently use:
+
+    -   The chunk at the top of a `.qmd` that starts and ends with `---` is called the **document header**.
+
+    -   Refer to the keys that are set in YAML as **options**, not keys.
+
+    -   In general, options that apply to a document (either set in the header, `_quarto.yml`, `_metadata.yml`, or on command line) are known as **metadata**.
+
+    -   Examples:
+
+        > You set options for the whole document using YAML in the document header.
+        >
+        > You set code cell options using YAML with hashpipe (or other language appropriate) comments at the top of a code cell.
+        >
+        > You set project level options using YAML in `_quarto.yml`.
