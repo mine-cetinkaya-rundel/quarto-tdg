@@ -9,6 +9,8 @@ Finally, you'll cover ways to get your website out in the world for people to se
 
 TODO: outline here about content vs. configuration, and where in this chapter you'll learn about each.
 
+Two special kinds of pages: About and Listings.
+
 ## Minimal website
 
 A website is just a collection of HTML pages, usually sharing some common elements like navigation or theming.
@@ -60,6 +62,17 @@ The contents of `_site/` for a minimal Quarto website
 
 To view your website, you need a webserver to serve up the contents of this directory.
 This could be a local webserver like the one used for `quarto preview`, or a remote one like those provided by Quarto Pub or GitHub Pages.
+
+## Start with a template
+
+You can turn any folder into a Quarto website by adding `_quarto.yml`, but if you are starting from scratch you can make use of the `quarto create` command.
+On the terminal, run:
+
+```{.bash}
+quarto create project website
+```
+
+Follow the prompts to create a new website project using Quarto's built-in template.
 
 ## Workflow
 
@@ -1157,7 +1170,9 @@ This renders like:
 [See Source](http://github.com){.btn .btn-primary}
 :::
 
-<a class="btn btn-primary" href="#" role="button">Link</a>
+
+
+
 
 ::: {.lead}
 This is a lead paragraph. It stands out from regular paragraphs.
@@ -1173,10 +1188,10 @@ This is a lead paragraph. It stands out from regular paragraphs.
 <p class="lead">
   This is a lead paragraph. It stands out from regular paragraphs.
 </p>
-````
+```
 
 ::: {.border .border-primary .rounded .p-2}
-Some content contained within a border using the `primary` color and rounded corners, with some padding.
+Some content contained within a border using the `primary` color, rounded corners, and some padding.
 :::
 
 
@@ -1186,43 +1201,279 @@ Some content contained within a border using the `primary` color and rounded cor
 :::
 ````
 
-
-knowing a little,  open up some other areas for customization.
-
-You can use Bootstrap classes on divs and spans to include Bootstrap components
-
-You can use Bootstrap SCSS variables to alter appearance at a more global level than by adding CSS rules.
+`table-striped` example.
 
 
+#### Bootstrap SCSS variables
 
-Use bootstrap classes on spans and divs
+Bootstrap uses SCSS variables, like Quarto does, to control aspects of the many CSS rules in a single place.
+Assuming neither Quarto, nor your theme, overrides them you can set them yourself just like Quarto SCSS variables.
 
-Use bootstrap SASS/SCSS variables
+For example, by setting `border-width` and `border-style` you can affect all borders added by the `border` class:
+
+```{.scss filename="styles.scss"}
+/*-- scss:defaults --*/
+$border-width: 2px;
+$border-style: dashed;
+```
+
+Find them at <https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/formats/html/bootstrap/dist/scss/_variables.scss>
 
 ## About Pages
 
+**About pages** \index{about page} are a special kind of page that combines your page content and document metadata into an attractive template---great for "About" pages and other landing pages.
+
+![An example of an About Page using the `trestles` template. Document metadata is used to populate the left side of the page. Document content is used to populate the right side of the page.](images/website-about.png){#fig-about-page fig-alt="Screenshot of a page using an `about` template. The page is divided vertically. On the left: an image, with the `title` Drake Lab, and `subtitle` Data Science below it, and two links to GitHub and ResearchGate below the title. On the right some placeholder content."}
+
+@fig-about-page shows an example of an about page used for a landing page. 
+The content on the left, a title, subtitle, image and links, are specified in the document metadata.
+The content on the right, comes from the content of the page source, e.g. the body of `index.qmd`.
+
+@lst-about-page shows the document meta data for the example in @fig-about-page.
+You add an `about` page template to a page by adding the `about` option and specifying a `template`, in this case `trestles`, other options include `jolla`, `solana`, `marquee`, and `broadside`.
+
+The `about` option can take `title`, `subtitle`, `image` and `image-alt` options, 
+but if they aren't specified it will use those specified at the document level.
+Additionally, `about` takes a `links` option, an array of navigation items (@sec-websites-navitems) styled using the template.
+
+::: {#lst-about-page}
+```{.yaml filename="index.qmd"}
+---
+title: Drake Lab
+subtitle: Data Science
+about: 
+  template: trestles
+  image: profile.jpg
+  image-alt: Magnified image of cells
+  image-shape: round
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com
+    - icon: file-text
+      text: ResearchGate
+      href: https://www.researchgate.net
+---
+```
+
+The document header for the about page shown in @fig-about-page.
+
+:::
+
+You can read more in the [Quarto documentation on About Pages](https://quarto.org/docs/websites/website-about.html).
+
 ## Listings
 
-## Execution
+**Listings** \index{listings} are a special kind of page that contains an automatically generated list of content.
+Listings are often used to create blogs, but can also be used more generally any time you want a list of similar pages or items, like talks, publications, projects or people.
 
-## Publishing a website
+@fig-website-listing shows three examples of listing pages: a blog, a people listing , and a list of publications.
+The appearance of the items is controlled by the `type` of listing:  `default`, `grid`, or `table`. 
+If you need more customization you can also build your own custom `template` (see [Custom Listings](https://quarto.org/docs/websites/website-listings-custom.html) in the Quarto documentation).
+
+::: {#fig-website-listing}
+
+![Blog listing using `type: default`](){#fig-website-listing-blog}
+
+![People listing using `type: grid`](){#fig-website-listing-people}
+
+![Publication listing using `type:table`](){#fig-website-listing-pubs}
+:::
+
+The items in a listing can be other Quarto documents in the project, or you can specify the items using YAML.
+For example, the blog listing in @fig-website-listing-blog is generated using other Quarto documents --- the documents that contain the blog posts themselves. 
+The listing is added to the `blog.qmd` page, by adding a `listing` option to the document header and specifying the contents as the folder `posts/`:
+
+```{.yaml filename="blog.qmd"}
+{{< include _examples/websites/listings/blog.qmd >}}
+```
+
+The listing will contain any Quarto documents found in `posts/`, or any subfolder. 
+The information to populate the listing items comes directly from the document metadata.
+
+```{.yaml filename="posts/first-post.qmd"}
+{{< include _examples/websites/listings/posts/first-post.qmd >}}
+```
+
+To use a YAML file to populate a listing, provide the path to the YAML file to `contents`:
+
+```{.yaml filename="publications.qmd"}
+{{< include _examples/websites/listings/publications.qmd >}}
+```
+
+Your YAML file should then contain an array of items:
+
+```{.yaml filename="publications.yml"}
+{{< include _examples/websites/listings/publications.yml >}}
+```
+
+## Publishing a website {#sec-website-publish}
+
+To get your website out to your audience you'll need to publish it somewhere.
+In this section, you'll first learn some website metadata you'll likely want to set before publishing that will make it easier for people to find and share your website. 
+Then, you'll learn about the most common approaches to publishing your site: the `quarto publish` command, or to host the `_site` folder.
 
 ### Website metadata
 
-Things that make it easier to find and share your website
+Before you publish your website, you'll want to make sure you've set some website metadata (@lst-website-metadata):
 
-`base-url`, `title`, `description`, `image`, social cards.
+*  `title` and `description` are generally what a search engine will display if your site is returned in a search. `title` is also added to page titles to provide the tab label in a browser.
+
+* `site-url` should be set to the address for your hosted website. A number of Quarto features rely on this being set, but most relevantly, you can't use relative links for `image` without it.
+
+* Set `open-graph` and/or `twitter-card` to `true` to have Quarto add the metadata required to provide previews when you share your URL in social apps. 
+
+* Provide `image` a path to the image you want to be used in social cards. This image will be used for any page that doesn't otherwise specify an `image`. Provide `image-alt` with alternative text for the image.
+
+
+:::{#lst-website-metadata}
+
+```{.yaml filename="_quarto.yml"}
+website:
+  title: Drake Lab
+  description: A computational biology lab at Evergreen University led by Soraya Drake
+  site-url: https://www.drakelab.org
+  open-graph: true
+  image: card.png
+  image-alt: Magnified view of a cell
+```
+
+Metadata that will make a site easier to find and share
+
+:::
+
+An example of a social card built from @lst-website-metadata is shown in @fig-social-card.
+
+![An example social card populated by website metadata: `title`, `description`, `image` and `image-alt`.](images/website-social-card.png){#fig-social-card fig-alt="A screenshot of a social card, showing a large image of a cell filling the top of the card, with the text Drake Lab, and description 'A computational biology lab at Evergreen University led by Soraya Drake' below it."}
+
+
+::: {.callout-tip}
+
+## Quarto will use the most specific metadata 
+
+You can define `title`, `description` and `image`/`image-alt` at the `website` level in `_quarto.yml`, or in document metadata.
+Quarto will prefer the document metadata, but fall back to website metadata if document values aren't set.
+
+:::
 
 ### `quarto publish`
 
+You saw how to use `quarto publish` in @sec-publishing.
+To publish a website using `quarto publish` simply run Quarto publish from the project root:
 
-### 
+```{.bash}
+quarto publish
+```
 
-## Continuous Integration
+This will prompt you to select a provider, and to authenticate.
+Then Quarto runs `quarto render` one more time (you can disable this with --no-render), pushes the `_site/` directory to the provider, then opens the site in your browser (you can disable this with `--no-browser`).
 
-## Things we haven't talked about
+After publishing, you'll find a `_publish.yml` file in your website project which records the details of where you published.
+If you publish again, you'll be asked if you want to publish an update to the destinations recorded in this file, or to a new destination.
 
-* Social Cards
+The `publish` command is primary just moving `_site/` to the right place on your provider.
+
+### Publish `_site/`
+
+Once you've rendered your website, the `_site/` folder contains everything needed for your website.
+So, if your website host isn't supported by `quarto publish`, you simply need to get the contents of `_site/` to your provider.
+It you go this route, you'll always need to manually run a full render before transferring `_site/`. 
+From the root of your website project run:
+
+```bash
+quarto render
+```
+
+As a concrete example, Netlify (although also supported by `quarto publish`) has a drag and drop UI for deploying a website called [Netlify Drop](https://app.netlify.com/drop).
+Drop in `_site/`, and Netlify will give you a URL at which your site is available.
+
+## Continuous integration {#sec-ci}
+
+The methods discussed in @sec-website-publish involve you manually invoking publishing, e.g. by running `quarto publish`. 
+**Continuous integration** \index{continuous integration} is a term for an automatic publishing process where publishing is triggered by some other event.
+That event might an action like pushing to a GitHub repository, or be based on a schedule.
+
+When you automate publishing, you'll need to consider where you want code execution and rendering to occur: both locally, local code execution with remote rendering, or remote code execution and remote rendering.
+
+
+
+
+Github Most obvious choice
+
+
+### Local code execution and render
+
+When you execute code locally and render locally, `_site/` contains all of the required website source.
+One approach to automating publishing is to check your website source into version control and let a provider handle the automation.
+From your perspective, you run `quarto render` locally, then push the changes to your repository. Your provider then updates the deployed site.
+
+Two examples of this approach are:
+
+-  Github deploy from `docs/` (as described in @sec-publishing-github)
+
+-  Netlify deploy from a Git provider (as described in @sec-publishing-netlify)
+
+Alternatively, you could set up your own automation that detects changes to `_site` (or `docs/`) and then deploys your content. 
+
+### Local code execution and remote render
+
+In this approach `quarto render` 
+
+This approach requires using `freeze` (@sec-freeze-cache) to store the results of the code execution.
+You then check `_freeze` into version control, CI agent just needs Quarto
+
+Don't need to commit `_site/`
+
+
+
+
+### Remote code execution and remote render
+
+check only source code, CI agent needs Quarto and R/Python/Julia etc.
+
+
+Connect Cloud
+
+### GitHub Actions
+
+GitHub Actions are the most common method for setting up continuous integration for publishing Quarto websites.
+GitHub Actions are defined by a workflow, a series of steps that will be run on servers (usually GitHub's), in the context of a GitHub repository.
+
+To use GitHub Actions you necessarily need to have your website in a repository on GitHub.
+
+You can then use Actions to automate publishing.
+
+GitHub Actions can be incredibly flexible. 
+
+Use other people's actions, or write custom ones.
+
+Example of action that publishes on changes to `main`. INlcudes code execution.
+Means 
+
+
+A GitHub Action which is a configurable automated process that you set up in your repository using a YAML file to define the specific events, jobs, and steps to be executed.
+
+GitHub Actions are executed on GitHub-hosted runners
+
+Get example and break down into:
+
+- When action should run
+
+- Set up Quarto
+
+- Set up requirements for code execution
+
+- Get website source
+
+- Render
+
+- Publish
+
+Variations: 
+
+## Wrapping Up
+
+Things we haven't talked about:
 
 * Drafts
 
