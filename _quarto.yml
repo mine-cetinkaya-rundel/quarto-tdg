@@ -29,6 +29,7 @@ book:
         - projects.qmd
         - publishing.qmd
         - look-under-hood.qmd
+        - yaml.qmd
 
     - part: computations.qmd
       chapters:
