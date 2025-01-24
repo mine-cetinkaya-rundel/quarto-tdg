@@ -56,7 +56,7 @@ author:
 ```
 
 It doesn't matter how many spaces you indent as long as you use spaces (as opposed to tabs), and use the same number consistently.
-A common style convention, and the one we follow in this book, is to use two spaces for each level of indentation.
+A common style convention, and the one we follow in this book and in Quarto documentation, is to use two spaces for each level of indentation.
 For example, the `name` key nested under `author` is indented two spaces, whereas the `name` key nested under `affiliation`, which itself is nested under `author`, is indented four spaces:
 
 ``` {.yaml filename="document.qmd"}
@@ -84,7 +84,7 @@ theme: [cosmo, styles.scss]
 ---
 ```
 
-The alternate syntax puts each value on their own line, and adds a dash prefix:
+The alternate syntax puts each value on its own line, and adds a dash prefix followed by a space:
 
 ``` {.yaml filename="document.qmd"}
 ---
@@ -121,7 +121,7 @@ toc-depth: 2        # A number
 ---
 ```
 
-The only values recognized as boolean are `true` and `false`, numbers can be single integers (`2`), decimal (`2.1`) or scientific (`2.1e+2`), and anything else is treated as a string.
+The only values recognized as boolean are `true` and `false`; numbers can be single integers (`2`), decimals (`2.1`), or scientific (`2.1e+2`), and anything else is treated as a string.
 
 ::: callout-tip
 ## YAML comments
@@ -141,7 +141,7 @@ subtitle: "100"
 ---
 ```
 
-In YAML double quoted strings (`"`) allow escape characters in them, whereas single quoted strings (`'`) are interpreted literally:
+In YAML, double-quoted strings (`"`) allow escape characters in them, whereas single-quoted strings (`'`) are interpreted literally:
 
 ``` {.yaml filename="document.qmd"}
 ---
@@ -205,11 +205,11 @@ format:
 ---
 ```
 
-The value `default` doesn't have a special YAML meaning--- it's something Quarto adds for certain options where the value is usually another mapping, but you just want the default values.
+The value `default` doesn't have a special YAML meaning--- it's something Quarto adds for certain options where the value is usually another mapping, but you just want the default values for all subfields.
 
 ## What happens when you get it wrong?
 
-When you render a project or document, one the first things that happens is the options are parsed and validated.
+When you render a project or document, one of the first things that happens is the options are parsed and validated.
 When you make a mistake in setting an option there are a few possible outcomes:
 
 1.  You get an error message, and the error message clearly points out your mistake.
@@ -268,7 +268,7 @@ Validation of YAML front matter failed.
 The YAML has been parsed, but with the missing space `code-fold:true` was interpreted as a string not a mapping.
 Quarto does a good job here suggesting what your mistake might have been and a solution.
 
-Generally, if you get a validation error, make a careful check of your syntax first.
+Generally, if you get a validation error, first check your syntax carefully.
 
 ### Specifying the wrong key
 
@@ -295,8 +295,7 @@ ERROR: In file long-string.qmd
 ℹ Did you mean loop?
 ```
 
-Options where Quarto only allows a certain set of property names are known as *closed schemas*.
-I.e. the `lightbox` option has a closed schema.
+Options where Quarto only allows a certain set of property names are known as *closed schemas*, e.g., the `lightbox` option has a closed schema.
 However, not all Quarto options have closed schemas.
 
 When the schema is *open*, Quarto simply accepts an unknown option name and you get no error.
@@ -312,9 +311,9 @@ format:
 ```
 
 Even though `code_fold` isn't a recognized option for `html`, you'll get no error.
-But, you also won't get any cold folding.
+But, you also won't get any code folding.
 Why does Quarto have open schemas?
-There's lots of places it makes sense to let users define their own keys, for example, when you want to use the `meta` shortcode and define some custom keys in your meta data.
+There are lots of places it makes sense to let users define their own keys, for example, when you want to use the `meta` shortcode and define some custom keys in your metadata.
 
 A similar problem occurs when you nest options incorrectly.
 For example, you might get `code-fold` right, but forget to nest `html` under `format`:
@@ -346,7 +345,7 @@ toc: yes
 ---
 ```
 
-On render Quarto returns the error:
+Upon render, Quarto returns the error:
 
 ``` default
 ERROR: Validation of YAML front matter failed.
@@ -416,7 +415,7 @@ format:
 
 ### Ways Quarto tries to help
 
-Quarto ships with YAML intelligence which encompasses two tools you can use to help you get your YAML right: YAML completion, and YAML validation.
+Quarto ships with YAML intelligence which encompasses two tools you can use to help you get your YAML right: YAML completion and YAML validation.
 
 These tools are available in RStudio, and the Quarto extension for VS Code and Positron.
 The code to implement them comes with the Quarto CLI, which means they'll always represent your current version of Quarto.
@@ -456,7 +455,7 @@ Those scopes also map to where you put the option: inside the code cell, in the 
 However, you can generally apply options to a larger scope, by placing them in the corresponding location.
 For example, `echo` is a code cell option, but you can use it in the document header to apply to formats, or you can use it in `_quarto.yml` to apply to all documents in a project.
 
-Table @tbl-options matches the sections of the Reference Guide, 
+@tbl-options matches the sections of the Reference Guide, 
 to the other names for the same options, and where the options might be found.
 In the following sections, you'll work through these scopes from largest to smallest and learn some general principles to help you put your options in the right place.
 
@@ -485,7 +484,7 @@ In the following sections, you'll work through these scopes from largest to smal
 ## Project options
 
 Project options are literally those listed under `project` in `_quarto.yml`, 
-or under a project type (e.g. `website`, `book` or `manuscript`) in `_quarto.yml`.
+or under a project type (e.g., `website`, `book`, or `manuscript`) in `_quarto.yml`.
 You cannot modify them on a document or code-cell level, 
 nor does it generally make sense to.
 For example, options under the `website` key set up global navigation, and
