@@ -9,18 +9,11 @@ You need to:
 -   figure out where to set the option, and
 -   get the YAML syntax right for setting the option to its value.
 
-In this chapter ...
+In this chapter, you'll learn more about setting options in Quarto so you can nail each of those steps.
 
-Options for Quarto projects, documents and code cells are set using a language called [YAML](https://yaml.org).
-YAML describes the syntax of setting options, but the options that are available and the values they can take are defined by Quarto.
-
-By now you've seen Quarto options set using YAML syntax in a number of places:
-
--   in the project configuration file `_quarto.yml`
--   in the document header, i.e. between the `---` at the top of a Quarto document
--   in code cells, on lines prefaced by `#|`
-
-You'll also learn about one new place you can set options, `_metadata.yml`.
+You'll start by learning more about YAML syntax.
+Then, you'll see some ways things can go wrong.
+Finally, you'll learn more about how to find out what options are available, and where to put them.
 
 ## General YAML syntax
 
@@ -155,7 +148,7 @@ YAML might be interpreting literally but Quarto/Pandoc might escape somewhere?
 
 ### Long strings
 
-For strings that are longer than you'd comfortably put on a single line, or need explicit line breaks, you can use what YAML calls block scalars.
+For strings that are longer than you'd comfortably put on a single line, or need explicit line breaks, you can use what YAML calls **block scalars** \index{block scalar}.
 
 There are two styles: literal and folded.
 
@@ -190,7 +183,7 @@ title: >
 :::
 
 Depending on where the string value is used, line breaks may or may not mean anything to Quarto.
-For instance, when interpreted as markdown, a single line break doesn't usually result in anything in the output.
+For instance, when interpreted as markdown, a single line break doesn't result in anything in the output.
 However, a double line break will be interpreted as a new paragraph.
 
 ### Using `default`
@@ -205,7 +198,7 @@ format:
 ---
 ```
 
-The value `default` doesn't have a special YAML meaning--- it's something Quarto adds for certain options where the value is usually another mapping, but you just want the default values for all subfields.
+The value `default` doesn't have a special YAML meaning--- it's something Quarto adds for certain options where the value is usually another mapping, but you just want the default values for all properties.
 
 ## What happens when you get it wrong?
 
@@ -220,7 +213,7 @@ When you make a mistake in setting an option there are a few possible outcomes:
 
 It's hard to enumerate all the ways you can make a mistake, but we'll give a couple of examples for each of these outcomes in the hope it helps you track down yours.
 
-Some examples in this chapter will result in an error from `quarto render`---we've highlighted these examples with a red border (TODO: what will we do in PDF), like this:
+Some examples in this chapter will result in an error from `quarto render`---we've highlighted these examples with a red border (TODO: add an icon for PDF version), like this:
 
 ``` {.yaml .error filename="render_error.qmd"}
 ---
@@ -228,7 +221,11 @@ title: Bad YAML : (
 ---
 ```
 
+::: callout-note 
+
 The error messages shown in the text are current as of Quarto 1.6.
+
+:::
 
 We've split the examples by the kind of mistake you make:
 
@@ -295,7 +292,7 @@ ERROR: In file long-string.qmd
 ℹ Did you mean loop?
 ```
 
-Options where Quarto only allows a certain set of property names are known as *closed schemas*, e.g., the `lightbox` option has a closed schema.
+Options where Quarto only allows a certain set of property names are known as **closed schemas**, e.g., the `lightbox` option has a closed schema.
 However, not all Quarto options have closed schemas.
 
 When the schema is *open*, Quarto simply accepts an unknown option name and you get no error.
@@ -396,7 +393,7 @@ It says it was expecting `false`, but that doesn't help us figure out how to act
 Quarto tries not to overwhelm you with output in an error message, but sometimes the process of shortening an error message leads to a message that isn't very helpful.
 
 This particular form of message that ends with `which must instead be x`, is a common culprit of being too brief to be helpful.
-Quarto will often report one value `x`, but in reality there are many values that the option could take.
+Quarto will often report one value, `x`, often the first alphabetically, but in reality there are many values that the option could take.
 :::
 
 For validation errors like this you should look for an example in the Guide section of Quarto.
