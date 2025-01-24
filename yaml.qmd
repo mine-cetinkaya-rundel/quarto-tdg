@@ -34,17 +34,14 @@ Values can be simple, like a string, boolean, or number:
 
 ``` {.yaml filename="document.qmd"}
 ---
-title: My Document  # A string
-toc: true           # A boolean, `true`/`false`
-toc-depth: 2        # A number
+title: My Document  #<1>
+toc: true           #<2> 
+toc-depth: 2        #<3>
 ---
 ```
-
-::: callout-tip
-## YAML comments
-
-The hash symbol (`#`) indicates the start of a comment, which is ended by the end of the line.
-:::
+1. A string
+2. A boolean, `true`/`false`
+3. A number
 
 Or, values can be more complicated like another mapping.
 When the value of a key is another mapping, indentation is used to keep track of scope.
@@ -125,6 +122,12 @@ toc-depth: 2        # A number
 ```
 
 The only values recognized as boolean are `true` and `false`, numbers can be single integers (`2`), decimal (`2.1`) or scientific (`2.1e+2`), and anything else is treated as a string.
+
+::: callout-tip
+## YAML comments
+
+The hash symbol (`#`) indicates the start of a comment, which is ended by the end of the line.
+:::
 
 ### Quotes
 
