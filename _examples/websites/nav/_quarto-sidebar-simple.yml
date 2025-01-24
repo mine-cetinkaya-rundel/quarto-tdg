@@ -1,0 +1,11 @@
+website:
+  title: Drake Lab
+  sidebar:  
+    logo: d-lab-dark.svg
+    contents: 
+      - blog.qmd
+      - projects.qmd
+      - people.qmd
+    tools:
+      - href: https://github.com
+        icon: github
