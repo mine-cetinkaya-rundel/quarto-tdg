@@ -137,7 +137,7 @@ You can specify the provider directly in the call to `quarto publish` (rather th
 quarto publish quarto-pub document.qmd
 ```
 
-### GitHub Pages
+### GitHub Pages {#sec-publishing-github}
 
 ``` {.bash filename="Terminal"}
 quarto publish gh-pages document.qmd
@@ -157,7 +157,7 @@ You can read more about publishing to GitHub with `quarto publish` on the [GitHu
 An alternative to using `quarto publish` is to commit your rendered document or site to your repository in a `docs/` folder and set GitHub Pages to publish from there.
 You can read more about this workflow at [Render to `docs`](https://quarto.org/docs/publishing/github-pages.html#render-to-docs) on the Quarto documentation website .
 
-### Netlify
+### Netlify {#sec-publishing-netlify}
 
 ``` {.bash filename="Terminal"}
 quarto publish netlify document.qmd
@@ -172,7 +172,7 @@ Netlify's free plans limit how many sites you can have and how much bandwidth is
 However, these limits will likely not be reached for low-traffic personal sites.
 
 Rather than using `quarto publish` you can get Netlify to deploy from Git provider.
-In this workflow, you commit your rendered document or site to your repsoitory in a folder (e.g. `docs/` or `_site`) and connect Netlify to your Git provider, setting the folder as the **Publish** directory.
+In this workflow, you commit your rendered document or site to your repository in a folder (e.g. `docs/` or `_site/`) and connect Netlify to your Git provider, setting the folder as the *Publish* directory.
 You can read more about this on the Quarto documentation website at [Publish from a Git Provider](https://quarto.org/docs/publishing/netlify.html#publish-from-git-provider).
 
 Netlify excels in continuous integration and you can set it up to preview deployments based on branches or pull requests.

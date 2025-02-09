@@ -1,0 +1,8 @@
+---
+title: Publications
+listing: 
+  contents: publications.yml
+  type: table
+  sort-ui: false
+  filter-ui: false
+---

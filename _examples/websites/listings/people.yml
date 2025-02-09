@@ -1,0 +1,27 @@
+- title: Soraya Drake
+  image: images/drake.svg
+  description: | 
+    Professor of Computational Biology who combines her background in 
+    computer science and molecular biology to develop new methods for 
+    understanding cellular behavior through large-scale genomic data analysis. 
+    Before establishing her lab in 2018, she worked at Genentech developing machine learning approaches for drug discovery and completed her postdoctoral research at Stanford University.
+  categories: [Faculty]
+- title:  Marcus Wong
+  image: images/wong.svg
+  description: | 
+    Postdoctoral researcher in the Drake lab, earned his PhD in Biostatistics 
+    from UC Berkeley and specializes in developing statistical frameworks for 
+    analyzing temporal patterns in single-cell data. He leads the lab's wound
+     healing project while mentoring two graduate students, and recently won 
+     the department's Outstanding Mentor Award.
+  categories: [Post Doc]
+- title: Sarah Chen
+  image: images/chen.svg
+  description: | 
+    PhD student, came to the Drake lab with a unique 
+    background in electrical engineering and previously worked on signal 
+    processing at Intel. Her innovative work combining deep learning 
+    architectures with single-cell analysis has already led to two 
+    first-author publications, and she's passionate about making computational 
+    tools more accessible to biologists.
+  categories: [PhD Student]

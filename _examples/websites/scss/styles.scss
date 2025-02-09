@@ -1,0 +1,17 @@
+/*-- scss:defaults --*/
+$h2-font-size: 1.5em;
+$navbar-fg: $brand-charcoal;
+$navbar-bg: $brand-mint;
+
+/*-- scss:rules --*/
+h1 {
+  color: $brand-light-purple;
+}
+
+h2 {
+  color: darken($brand-mint, 10%);
+}
+
+.navbar-title {
+  font-family: Chango;
+}

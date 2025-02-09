@@ -1,0 +1,41 @@
+color:
+  palette:
+    mint: "#E0EFDE"
+    charcoal: "#162627" 
+    light-charcoal: "#243e3f" 
+    purple: "#8A7090"
+    light-purple: "#d0a8d8"
+  foreground: mint
+  background: charcoal
+  primary: purple
+typography: 
+  fonts:
+    - family: Chango
+      source: google
+    - family: Abel
+      source: google
+    - family: JetBrains Mono
+  base: Abel
+  headings: 
+    family: Chango
+    color: mint
+  link: 
+    color: light-purple
+  monospace: JetBrains Mono
+  monospace-inline:
+    color: light-purple
+    background-color: light-charcoal
+  monospace-block:
+    background-color: light-charcoal
+defaults:
+  bootstrap:
+    defaults: 
+      navbar-bg: $brand-mint
+      navbar-fg: $brand-charcoal
+    rules: |
+      h1 {
+        color: $brand-light-purple;
+      }
+      .navbar-title {
+        font-family: Chango;
+      }
