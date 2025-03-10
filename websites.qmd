@@ -1246,57 +1246,34 @@ When rendered, you'll get a link that looks like a button:
 :::
 
 You'll need to pay attention to the kind of object Bootstrap classes apply to and match to the appropriate Quarto syntax.
-@tbl-boostrap-classes gives some examples of applying Bootstrap classes to spans, divs, images and tables.
+@tbl-bootstrap-classes gives some examples of applying Bootstrap classes to a span, div, and table.
 
++--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
+| Component                                                                            | Class                         | Element                     | Quarto Markdown                                      | Rendered                                                                   |
++======================================================================================+===============================+=============================+:=====================================================+:===========================================================================+
+| [Badge](https://getbootstrap.com/docs/5.3/components/badge/)                         | `badge`                       | `<span>`                    | `### Example heading [New]{.badge .text-bg-primary}` | ::: {.border .p-2}                                                         |
+|                                                                                      |                               |                             |                                                      | ### Example heading [New]{.badge .text-bg-primary} {.unnumbered .unlisted} |
+|                                                                                      |                               |                             |                                                      | :::                                                                        |
++--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
+| [Border Utility](https://getbootstrap.com/docs/5.3/utilities/borders/)               | `border` , `rounded` and more | `<div>`                     | ``` markdown                                         |                                                                            |
+|                                                                                      |                               |                             | ::: {.border .rounded .border-primary .p-2}          | ::: {.border .rounded .border-primary .p-2}                                |
+|                                                                                      |                               |  Also applies to  `<span>`, |                                                      |                                                                            |
+|                                                                                      |                               |  and `<img>`                | Some content                                         | Some content                                                               |
+|                                                                                      |                               |                             |                                                      |                                                                            |
+|                                                                                      |                               |                             | :::                                                  | :::                                                                        |
+|                                                                                      |                               |                             | ```                                                  |                                                                            |         
++--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
+| [Accented Tables](https://getbootstrap.com/docs/5.3/content/tables/#accented-tables) | `table-striped`               | `<table>`                   | ``` markdown                                         | |       |                                                                  |
+|                                                                                      |                               |                             | |       |                                            | |-------|                                                                  |
+|                                                                                      |                               |                             | |-------|                                            | | Row 1 |                                                                  |
+|                                                                                      |                               |                             | | Row 1 |                                            | | Row 2 |                                                                  |
+|                                                                                      |                               |                             | | Row 2 |                                            |                                                                            |
+|                                                                                      |                               |                             |                                                      | : {.table-striped}                                                         |
+|                                                                                      |                               |                             | : {.table-striped}                                   |                                                                            |
+|                                                                                      |                               |                             | ```                                                  |                                                                            |
++--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
 
-
-For instance, the [Badge component classes](https://getbootstrap.com/docs/5.3/components/badge/) can apply to a span in a header:
-
-```{.html}
-<h3>Example heading <span class="badge text-bg-secondary">New</span></h3>
-```
-
-To use this in Quarto, use the span syntax inside a markdown header:
-```{.markdown}
-### Example heading [New]{.badge .text-bg-secondary}
-```
-
-When rendered, this adds a 
-::: {.border .p-2}
-### Example heading [New]{.badge .text-bg-secondary}
-:::
-
-
-
-::: {.lead}
-This is a lead paragraph. It stands out from regular paragraphs.
-:::
-
-````markdown
-::: {.lead}
-This is a lead paragraph. It stands out from regular paragraphs.
-:::
-````
-
-```html
-<p class="lead">
-  This is a lead paragraph. It stands out from regular paragraphs.
-</p>
-```
-
-::: {.border .border-primary .rounded .p-2}
-Some content contained within a border using the `primary` color, rounded corners, and some padding.
-:::
-
-
-````markdown
-::: {.border .border-primary .rounded .p-2}
-Some content contained within a border using the `primary` color and rounded corners, with some padding.
-:::
-````
-
-`table-striped` example.
-
+: Examples of Bootstrap classes used in Quarto markdown syntax {#tbl-bootstrap-classes .column-page}
 
 #### Bootstrap SCSS variables
 
