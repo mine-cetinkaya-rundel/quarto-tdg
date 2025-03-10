@@ -970,7 +970,7 @@ However, if you aren't using **brand.yml** across projects, or formats, it may b
 
 You can read about all the options available in the [Quarto documentation Guide to using **brand.yml**](https://quarto.org/docs/authoring/brand.html). 
 
-## Combine **brand.yml** with a built-in theme
+### Combine **brand.yml** with a built-in theme
 
 If you want to borrow some features of a built-in theme but use custom colors, 
 you can layer brand with a theme. 
@@ -1233,19 +1233,38 @@ As an example, Bootstrap includes a [button component](https://getbootstrap.com/
 ```
 
 The key information is in `class`. 
-To make a link look like a button, use the usual syntax, but add the classes, not forgetting a `.`, in curly braces:
+To make a link look like a button, use the usual syntax, but add the classes prefaced by a  `.` in curly braces:
 
 ````markdown
 [See Source](http://github.com){.btn .btn-primary}
 ````
 
-This renders like:
+When rendered, you'll get a link that looks like a button:
 
 ::: {.border .p-2}
 [See Source](http://github.com){.btn .btn-primary}
 :::
 
+You'll need to pay attention to the kind of object Bootstrap classes apply to and match to the appropriate Quarto syntax.
+@tbl-boostrap-classes gives some examples of applying Bootstrap classes to spans, divs, images and tables.
 
+
+
+For instance, the [Badge component classes](https://getbootstrap.com/docs/5.3/components/badge/) can apply to a span in a header:
+
+```{.html}
+<h3>Example heading <span class="badge text-bg-secondary">New</span></h3>
+```
+
+To use this in Quarto, use the span syntax inside a markdown header:
+```{.markdown}
+### Example heading [New]{.badge .text-bg-secondary}
+```
+
+When rendered, this adds a 
+::: {.border .p-2}
+### Example heading [New]{.badge .text-bg-secondary}
+:::
 
 
 
@@ -1282,7 +1301,7 @@ Some content contained within a border using the `primary` color and rounded cor
 #### Bootstrap SCSS variables
 
 Bootstrap uses SCSS variables, like Quarto does, to control aspects of the many CSS rules in a single place.
-Assuming neither Quarto, nor your theme, overrides them you can set them yourself just like Quarto SCSS variables.
+Assuming neither Quarto, nor your theme, overrides them, you can set them yourself just like Quarto SCSS variables.
 
 For example, by setting `border-width` and `border-style` you can affect all borders added by the `border` class:
 
@@ -1292,7 +1311,7 @@ $border-width: 2px;
 $border-style: dashed;
 ```
 
-Find them at <https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/formats/html/bootstrap/dist/scss/_variables.scss>
+You can find a list of the Bootstrap SCSS variables available by examining the [`bootstrap/dist/scss/_variables.scss` file in the Quarto source code](https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/formats/html/bootstrap/dist/scss/_variables.scss). 
 
 ## About Pages
 
