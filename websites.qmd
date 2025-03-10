@@ -769,9 +769,9 @@ Users navigate to the Guide or Reference using the top navigation bar.
 ::: {#fig-hybrid-example}
 
 :::{}
-![Page in the Guide](images/website-hybrid-guide.png)
+![Page in the Guide](images/website-hybrid-guide.png){fig-alt="A screenshot of a page in the Guide. A box highlights the Guide item in the top navigation bar and the sidebar navigation that is titled Guide."}
 
-![Page in the Reference](images/website-hybrid-reference.png)
+![Page in the Reference](images/website-hybrid-reference.png){fig-alt="A screenshot of a page in the Reference. A box highlights the Reference item in the top navigation bar and the sidebar navigation that is titled Reference."}
 :::
 
 Hybrid navigation on the Quarto documentation site. Guide pages share sidebar navigation, which is different to the sidebar on Reference pages.
@@ -1345,14 +1345,15 @@ If you need more customization you can also build your own custom `template` (se
 
 ::: {#fig-website-listing}
 
-![Blog listing using `type: default`](){#fig-website-listing-blog}
+![Blog listing using `type: default`](/images/website-listing-default.png){#fig-website-listing-blog fig-alt="A blog listing page with two blog posts displayed in a vertical sequence, with images on the right."}
 
-![People listing using `type: grid`](){#fig-website-listing-people}
+![People listing using `type: grid`](/images/website-listing-grid.png){#fig-website-listing-people fig-alt="A people listing page with a grid layout. The grid contains 3 cards, each representing a person. Each card includes a profile image, name, and a short descriptive title."}
 
-![Publication listing using `type:table`](){#fig-website-listing-pubs}
+![Publication listing using `type:table`](/images/website-listing-table.png){#fig-website-listing-pubs fig-alt="A publication listing page with a table layout. The table contains columns for title, authors, date and journal. Each row represents a publication."}
+
 :::
 
-The items in a listing can be other Quarto documents in the project, or you can specify the items using YAML.
+The items in a listing can be other Quarto documents in the project, or specified using YAML.
 For example, the blog listing in @fig-website-listing-blog is generated using other Quarto documents --- the documents that contain the blog posts themselves. 
 The listing is added to the `blog.qmd` page, by adding a `listing` option to the document header and specifying the contents as the folder `posts/`:
 
