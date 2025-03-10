@@ -759,9 +759,63 @@ sidebar: teaching
 
 ### Hybrid navigation {#sec-hybrid}
 
-An example of hybrid navigation dropdown versus not.
+Hybrid navigation \index{hybrid navigation} combines a top navigation bar with multiple side navigation bars. 
+Links in the top bar, take users to a section of the website with its own side navigation.
 
-Learn how to implement [hybrid navigation in the Quarto documentation](https://quarto.org/docs/websites/website-navigation.html#hybrid-navigation).
+For example, the Quarto documentation site uses hybrid navigation to separate the documentation into, for instance, Guide and Reference (@fig-hybrid-example).
+Pages in the Guide share a sidebar, but that sidebar is different to that shared by pages in the Reference. 
+Users navigate to the Guide or Reference using the top navigation bar.
+
+::: {#fig-hybrid-example}
+
+:::{}
+![Page in the Guide](images/website-hybrid-guide.png)
+
+![Page in the Reference](images/website-hybrid-reference.png)
+:::
+
+Hybrid navigation on the Quarto documentation site. Guide pages share sidebar navigation, which is different to the sidebar on Reference pages.
+
+:::
+
+To implement hybrid navigation you combine a `navbar` with an array of `sidebar`s, linking the `text` of `navbar` items to the `title` of the `sidebar` items.
+
+For example, you might have a `navbar` that links to Teaching and Research sections:
+
+```{.yaml filename="_quarto.yml"}
+website:
+  title: Drake Lab
+  navbar:
+    left:
+      - text: "Research"            
+        href: research.qmd          
+      - text: "Teaching"
+        href: teaching.qmd
+```
+
+For each section to have its own sidebar, `sidebar` should be an array (i.e. elements prefaced with `-`), and the `title` of each item should match the `text` from an item in the `navbar`:
+
+```{.yaml filename="_quarto.yml"}
+website:
+  title: Drake Lab
+  navbar:
+    left:
+      - text: "Research"            
+        href: research.qmd          
+      - text: "Teaching"
+        href: teaching.qmd
+  sidebar:
+    - title: Research               
+      contents:
+        - research.qmd
+        - project-1.qmd
+        - project-2.qmd 
+    - title: Teaching
+      contents: 
+        - teaching.qmd
+        - course-1.qmd
+        - course-2.qmd
+ ```
 
 ### Other navigation elements
 
