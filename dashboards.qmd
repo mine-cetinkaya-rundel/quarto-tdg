@@ -17,22 +17,22 @@ Pages, tabsets, and sidebars allow for more advanced layouts.
 
 <!--# TO DO: Add an illustration with each of these components marked up. -->
 
-````{=markdown}
+````{.markdown}
 ---
 title: "My first Quarto dashboard"
 format: dashboard
 ---
 
-```{r}
+```{{r}}
 library(ggplot2)
 ```
 
-```{r}
+```{{r}}
 ggplot(mpg, aes(x = cty, y = hwy)) +
   geom_point()
 ```
 
-```{r}
+```{{r}}
 ggplot(mpg, aes(x = drv)) +
   geom_bar()
 ```
