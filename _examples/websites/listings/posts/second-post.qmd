@@ -1,0 +1,10 @@
+---
+title: CellFlowViz 1.0
+image: bioscience-image-library-by-fayette-reynolds-UddW4jFHmN4-unsplash.jpg
+image-alt: Magnified cells
+description: |
+  We've released CellFlowViz 1.0, an open-source Python package that streamlines the visualization of complex single-cell RNA sequencing trajectories through an intuitive web interface. 
+author: Soraya Drake
+date: 2025-02-14
+categories: [software, data]
+---

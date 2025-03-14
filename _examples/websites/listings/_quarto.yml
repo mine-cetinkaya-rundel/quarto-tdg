@@ -1,0 +1,19 @@
+project:
+  type: website
+
+website:
+  title: Drake Lab
+  description: A computational biology lab at Evergreen University led by Soraya Drake
+  site-url: https://charlotte.quarto.pub/drake-lab/
+  open-graph: true
+  image: card.jpg
+  image-alt: Magnified view of a cell              
+  navbar:
+    left: 
+      - blog.qmd
+    right:
+      - publications.qmd
+      - people.qmd
+    tools:
+      - href: https://github.com
+        icon: github

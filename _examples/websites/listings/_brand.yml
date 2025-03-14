@@ -1,0 +1,19 @@
+color:
+  palette:
+    mint: "#E0EFDE"
+    charcoal: "#162627" 
+    light-charcoal: "#243e3f" 
+    purple: "#8A7090"
+    light-purple: "#d0a8d8"
+  foreground: mint
+  background: charcoal
+  primary: purple
+typography: 
+  link: 
+    color: light-purple
+defaults:
+  bootstrap:
+    rules: |
+      .quarto-grid-item .listing-categories .listing-category {
+        color: $brand-mint;
+      }

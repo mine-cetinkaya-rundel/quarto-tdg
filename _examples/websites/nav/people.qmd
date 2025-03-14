@@ -1,0 +1,6 @@
+---
+title: People
+navbar: false
+---
+
+{{< lipsum >}}

@@ -1,0 +1,7 @@
+---
+title: Home
+sidebar: main
+---
+
+{{< lipsum 1 >}}
+

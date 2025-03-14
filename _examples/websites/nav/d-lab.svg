@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- White background -->
+  <!-- Base D shape -->
+  <path d="M16 8
+           h22
+           q18 0 18 24
+           v0
+           q0 24 -18 24
+           h-22
+           v-48
+           M24 16
+           v32
+           h14
+           q10 0 10 -16
+           v0
+           q0 -16 -10 -16
+           h-14z"
+        fill="white"
+        stroke="white"
+        stroke-width="2"/>
+  
+  <!-- Histogram bars inside D -->
+  <rect x="28" y="20" width="4" height="24" fill="white"/>
+  <rect x="34" y="24" width="4" height="16" fill="white"/>
+  <rect x="40" y="28" width="4" height="8" fill="white"/>
+  
+  <!-- Left side detail -->
+  <path d="M24 16
+           l-4 4
+           v24
+           l4 4"
+        fill="white"
+        stroke="white"
+        stroke-width="2"/>
+</svg>
