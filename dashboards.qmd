@@ -40,7 +40,7 @@ ggplot(mpg, aes(x = drv)) +
 
 ## Components
 
-Navigation bar and pages, sidebards, rows and columns, tabsets, and cards.
+Navigation bar and pages, sidebars, rows and columns, tabsets, and cards.
 
 <!--# TO DO: Add an illustration with each of these components marked up. -->
 
@@ -130,15 +130,17 @@ Content for Page 2.
 
 If you would like the same sidebar to appear on some pages but not others, and do so without repeating the necessary code, you can define it in a separate document and `{{ include }}` it in your dashboard pages where needed.
 
-::: {.columns}
+::: columns
 ::: {.column width="30%"}
 ``` {.yaml filename="_sidebar.qmd"}
 Content that will go on the shared sidebar.
 ```
 :::
+
 ::: {.column width="5%"}
 <!-- Spacer column -->
 :::
+
 ::: {.column width="65%"}
 ``` {.yaml filename="dashboard.qmd"}
 ---
@@ -171,7 +173,7 @@ Content for Page 2, no sidebar.
 Content for Page 3.
 ```
 :::
-:::
+::::::
 
 ### Rows and columns
 
