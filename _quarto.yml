@@ -63,7 +63,7 @@ format:
     callout-appearance: simple
     highlight-style: a11y
 
-editor: visual
+editor: source
 
 execute:
   freeze: auto
