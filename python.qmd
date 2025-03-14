@@ -1,6 +1,5 @@
 # Quarto and Python {#sec-python}
 
-
 ```{python}
 2 + 2
 ```
