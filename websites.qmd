@@ -1439,14 +1439,16 @@ quarto publish
 ```
 
 This will prompt you to select a provider, and to authenticate.
-Then Quarto runs `quarto render` one more time (you can disable this with --no-render), pushes the `_site/` directory to the provider, then opens the site in your browser (you can disable this with `--no-browser`).
+Then Quarto runs `quarto render` one more time (you can disable this with `--no-render`), pushes the `_site/` directory to the provider, then opens the site in your browser (you can disable this with `--no-browser`). 
+This process is illustrated in @fig-website-publish.
+We've separated out the "render" and "publish" step, but both steps happen when you call `quarto publish`.
 
 After publishing, you'll find a `_publish.yml` file in your website project which records the details of where you published.
 If you publish again, you'll be asked if you want to publish an update to the destinations recorded in this file, or to a new destination.
 
 The `publish` command is primary just moving `_site/` to the right place on your provider. 
 
-![TODO: Rework this for websites. The `quarto publish` process. Input files are rendered locally, then the output files and their dependencies are uploaded to the publishing provider.](images/publishing-process.jpg){#fig-pub-process fig-alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on quartopub.com."}
+![The `quarto publish` process for a website. The website project is rendered locally, then the rendered site, `site/` (or `docs/`), is uploaded to the website host.](images/website-publish.jpg){#fig-website-publish fig-alt="A diagram of the publishing process. An arrow labeled 'render' points from a folder called `website/` that contains two files (`index.qmd` and `_quarto.yml`) to a folder called `_site/` containing the file `index.html` and folder `site-libs`. Both folders are inside a box labelled 'Your computer'. An arrow labelled 'publish' points from the `_site` folder to the same folder in a box labelled 'Website host'"}
 
 ### Publish `_site/`
 
@@ -1468,46 +1470,113 @@ The methods discussed in @sec-website-publish involve you manually invoking publ
 **Continuous integration** \index{continuous integration} is a term for an automatic publishing process where publishing is triggered by some other event.
 That event might an action like pushing to a GitHub repository, or be based on a schedule.
 
-When you automate publishing, you'll need to consider where you want code execution and rendering to occur: both locally, local code execution with remote rendering, or remote code execution and remote rendering.
+When you automate publishing, you'll need to consider where you want code execution and rendering to occur, locally or on a remote server.
+Your options are:
 
+*   Local code execution and rendering: you manage your computational environment (R, Python, Julia etc), and Quarto installation locally, and manually run `quarto render`. 
+    Your CI service handles publishing to the web, usually by monitoring changes to a Git repo.
 
+*   Local code execution with remote rendering: you manage your computational environment (R, Python, Julia etc) locally, and use `_freeze/` to store the results of the computational engine. You set up your CI service to install Quarto and run `quarto render` and publish. 
 
+*   Remote code execution and remote rendering: your CI service needs to install and set up your computational environment, install Quarto, run `quarto render`, and publish.
 
-Github Most obvious choice
-
+When talking about continuous integration there could be up to three other parties involved: the host for your source code (usually in a Git repo), the provider of the continuous integration service, and the publishing venue. 
+They might all be the same, for example, you might host your source code on GitHub, implement continuous integration with GitHub Actions and publish to GitHub Pages. 
+However they don't have to be. 
+For instance, you might host your source code on GitHub, and use GitHub Actions, but publish to Netlify. 
 
 ### Local code execution and render
 
 When you execute code locally and render locally, `_site/` contains all of the required website source.
 One approach to automating publishing is to check your website source into version control and let a provider handle the automation.
-From your perspective, you run `quarto render` locally, then push the changes to your repository. Your provider then updates the deployed site.
+From your perspective, you run `quarto render` locally, then push the changes to your repository. 
+Your provider then updates the deployed site.
+
+This process is illustrated in @fig-website-publish-local. 
+We use the term "publish" for what the continuous automation does in the sense that it pushes your content to the host making it "published", not that it calls `quarto publish`.
+In this setup, the CI does not need Quarto at all.
+
+![Continuous integration with local code execution and local render ](images/website-publish-local.jpg){#fig-website-publish-local fig-alt="A diagram with four boxes labelled from left to right: Your computer, Repo, CI and Website host. In 'Your computer' the folder `website/` feeds into render and produces `_site/`. The `_site/` folder is moved to 'Repo' via `git push`, then the contents of the `_site/` folder moves from the 'Repo' through 'CI', to the 'Website host'."}
+
+This approach is the easiest to set up---you generally don't need to do anything except connect your repo to your CI service. 
+However, you can end up with commits with large diffs (the changes to the source documents, and all the changes to the rendered output in `_site/` or `docs/`). 
+These large diffs are cumbersome to review, and take longer to send to your Git remote host.
 
 Two examples of this approach are:
 
--  Github deploy from `docs/` (as described in @sec-publishing-github)
+-  Github deploy from `docs/` (as described in @sec-publishing-github). GitHub is the host for your source code, the provider of the CI and the publishing venue.
 
--  Netlify deploy from a Git provider (as described in @sec-publishing-netlify)
+-  Netlify deploy from a Git provider (as described in @sec-publishing-netlify). Any supported Git provider is the host for your source code, and Netlify is the CI provider and publishing venue.
 
-Alternatively, you could set up your own automation that detects changes to `_site` (or `docs/`) and then deploys your content. 
+Alternatively, you could set up your own automation (e.g. via [GitHub Actions](#github-actions)) that deploys your content on any push to your repo. 
 
 ### Local code execution and remote render
 
-In this approach `quarto render` 
+Local code execution, with remote rendering provides a good middle ground.
+You aren't burdened with setting up, and maintaining a remote code execution environment,
+but you also don't have to store a whole lot of rendered output in your repo.
 
 This approach requires using `freeze` (@sec-freeze-cache) to store the results of the code execution.
-You then check `_freeze` into version control, CI agent just needs Quarto
+You run `quarto render` locally, as required, to generate `_freeze/`.
+You then check `_freeze/`, but not `_site/`, into version control.
+Your CI agent then uses the Quarto CLI to render and publish your site (@fig-website-publish-ci).
 
-Don't need to commit `_site/`
+![](images/website-publish-ci-freeze.png){#fig-website-publish-ci}
+
+The most common CI service for this approach is GitHub. 
+The project source is stored in a GitHub repo, and a [GitHub Action](#github-actions) is used to setup Quarto, 
+and run the required Quarto commands.
+The Quarto command could be as simple as `quarto publish {venue}`, which allows your publishing venue to be any of those supported by `quarto publish`.
 
 
 
+```{.yaml filename=".github/workflows/publish.yml"}
+on:
+  workflow_dispatch:
+  push:
+    branches: main
+
+name: Quarto Publish
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render and Publish
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
 
 ### Remote code execution and remote render
 
-check only source code, CI agent needs Quarto and R/Python/Julia etc.
+
+Remote code execution combined with remote rendering provides the most protection for keeping your work reproducible---your CI will fail as soon as it isn't.
+However, it comes with the most setup, maintenance, and cost (time and potentially money) since all the work is happening on a remote server.
+
+You now only check your source documents (e.g. `.qmd` files) into version control. 
+Your CI service needs to install your computational environment, so you likely will also create and check-in a record of the packages required (e.g. using `renv` for R, or `requirements.txt`, `pipenv`, or `uv` for Python).  
+When your CI runs, it will install your computational environment, install Quarto, and then run a full render and publish (@fig-website-publish-ci-remote).  
+
+![](images/website-publish-ci-remote.png){#fig-website-publish-ci-remote}
+
+The two most popular choices for CI provider in this case are GitHub Actions, and Posit Connect Cloud. 
+Posit Connect Cloud has the advantage of very little setup. 
+You simply connect a GitHub repo to your Connect Cloud account, and
+Connect Cloud handles the automation, including managing your computational environment for common R and Python setups.
 
 
-Connect Cloud
+
 
 ### GitHub Actions
 
