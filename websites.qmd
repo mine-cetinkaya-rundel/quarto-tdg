@@ -3,13 +3,21 @@
 ## Overview
 
 Quarto websites are a special type of Quarto project for building...well, websites.
-In this chapter, you'll learn the minimal building blocks for a functional website.
-Then, you'll dive into the details of how to build out content and navigation.
-Finally, you'll cover ways to get your website out in the world for people to see.
+By adding a single configuration file, you can turn any collection of Quarto documents into a website.
+Quarto websites are a great way to showcase your work, build documentation, or share your learning progress.
 
-TODO: outline here about content vs. configuration, and where in this chapter you'll learn about each.
+In this chapter, you'll start with the minimal building blocks for a functional website --- it takes just two files!
 
-Two special kinds of pages: About and Listings.
+Then, you'll dive into the three big components of a website:
+
+* Content: In @sec-website-structure you'll learn how pages in a website are built from Quarto documents in a project, how to cross-link pages, and to control what does and doesn't end up on your site. Later, you'll also learn about two special kinds of pages **About pages** in @sec-websites-about-pages and **Listings** in @sec-websites-listings.
+
+* Navigation: In @sec-websites-navigation you'll learn about adding site navigation, so your viewers can easily locate content on your site. 
+
+* Appearance: In @sec-websites-theme you'll learn how to customize the appearance of your site by controlling colors, fonts and more.
+
+Finally, in @sec-website-publish you'll learn how to get your website out in the world, and in @sec-ci tools for automating the publishing process.
+
 
 ## Minimal website
 
@@ -95,7 +103,7 @@ There are a couple of differences to be aware of:
 It's also important to use `quarto preview` (either via the Render/Preview button in your IDE or on the command line) rather than opening a generated `.html` file directly in your browser.
 A file opened directly in your browser will use the `file://` protocol, rather than the `http://` protocol, and some features of Quarto websites may not work, i.e. search.
 
-## Website Structure
+## Website Structure {#sec-website-structure}
 
 In this section, learn how your project structure translates to your website structure.
 You'll start by understanding where how the location of your files in your project translates to the location of your pages in your site.
@@ -935,6 +943,8 @@ In particular, the most salient colors on a website are controlled by the `color
 {{< include _examples/websites/brand/_brand.yml >}}
 ```
 
+![Using `brand` to set `background`, `foreground` and `primary`](){#fig-brand}
+
 As you can see in @fig-brand `primary` is used in the top navigation bar and for links.
 In this example, `primary` doesn't have great contrast with the `background` for text.
 You can set explicit link text color with the `link` option to `typography`:
@@ -966,7 +976,7 @@ Here's an example setting the main font (`base`), the font used for headings of 
 Swap `source: google` for `source: bunny` if you'd prefer [Bunny Fonts](https://fonts.bunny.net)---a GDPR compliant alternative to Google Fonts.
 
 You can also specify `logo` in **brand.yml** as an alternative way to include a logo in top or side navigation. 
-However, if you aren't using **brand.yml** across projects, or formats, it may be easier to specify it directly in `_quarto.yml` as shown in @sec-sec-websites-navigation.
+However, if you aren't using **brand.yml** across projects, or formats, it may be easier to specify it directly in `_quarto.yml` as shown in @sec-websites-navigation.
 
 You can read about all the options available in the [Quarto documentation Guide to using **brand.yml**](https://quarto.org/docs/authoring/brand.html). 
 
@@ -1290,7 +1300,7 @@ $border-style: dashed;
 
 You can find a list of the Bootstrap SCSS variables available by examining the [`bootstrap/dist/scss/_variables.scss` file in the Quarto source code](https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/formats/html/bootstrap/dist/scss/_variables.scss). 
 
-## About Pages
+## About Pages {#sec-websites-about-pages}
 
 **About pages** \index{about page} are a special kind of page that combines your page content and document metadata into an attractive template---great for "About" pages and other landing pages.
 
@@ -1334,7 +1344,7 @@ The document header for the about page shown in @fig-about-page.
 
 You can read more in the [Quarto documentation on About Pages](https://quarto.org/docs/websites/website-about.html).
 
-## Listings
+## Listings {#sec-websites-listings}
 
 **Listings** \index{listings} are a special kind of page that contains an automatically generated list of content.
 Listings are often used to create blogs, but can also be used more generally any time you want a list of similar pages or items, like talks, publications, projects or people.
@@ -1571,7 +1581,7 @@ However, it comes with the most setup, maintenance, and cost (time and potential
 
 You now only check your source documents (e.g. `.qmd` files) into version control. 
 Your CI service needs to install your computational environment, so you likely will also create and check-in a record of the packages required (e.g. using `renv` for R, or `requirements.txt`, `pipenv`, or `uv` for Python).  
-When your CI runs, it will install your computational environment, install Quarto, and then run a full render and publish (@fig-website-publish-ci-remote).  
+When your CI runs, it will install your computational environment, install Quarto, and then run a full render and publish.  
 
 The two most popular choices for CI provider in this case are GitHub Actions, and Posit Connect Cloud. 
 In both cases your source code is hosted on GitHub.
@@ -1696,14 +1706,21 @@ Setup Python
 
 ## Wrapping Up
 
-Things we haven't talked about:
+In this chapter, you've learnt about the key components of a Quarto website: content, navigation and appearance. 
+You've also learnt about a few techniques for publishing your site.
 
-* Drafts
+But, there's still a lot of features we haven't talked about.
+Some notable ones include:
 
-* Comments
+* Drafts: set `draft: true` to be able to preview pages, but not have them included in a site render. <https://quarto.org/docs/websites/website-drafts.html>
 
-* Google Analytics
+* Comments: integrate third-party tools to allow on page comments. <https://quarto.org/docs/output-formats/html-basics.html#commenting> 
 
-* Cookies
+* Announcements: add a bar to the top of the site for crucial info. <https://quarto.org/docs/websites/website-tools.html#announcement-bar>
 
-* Announcements
+You can find comprehensive lists of all your options are in the Reference in the Quarto documentation:
+
+* You find website-level options in [Projects > Websites](https://quarto.org/docs/reference/projects/websites.html)
+
+* You find page-level options (that could be set site-wide in `_quarto.yml`) in [Formats > HTML](https://quarto.org/docs/reference/formats/html.html)
+
