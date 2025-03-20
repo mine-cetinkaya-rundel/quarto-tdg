@@ -53,7 +53,7 @@ It contains the rendered `.html` files, in this case only `index.html`, along wi
 The folders in `_site/site_libs` contain scripts and other source files for some of Quarto's website tools and can be shared by all pages in the website.
 
 ::: {#fig-site-contents}
-``` default
+```{.dir-str}
 _site/
 ├── index.html
 ├── search.json
@@ -119,7 +119,7 @@ The project root is `my-website/`: the top-level directory, defined by the prese
 To the right of each file, you'll see the URL at which the file will be available.
 
 ::: {#fig-website-dir}
-``` default
+```{.dir-str}
 my-website/  
 ├── _quarto.yml
 ├── index.qmd             { base }
@@ -314,7 +314,7 @@ aliases:
 The easiest way to exclude a file from your website is to name it with an underscore, or place it in a folder that starts with an `_`.
 For instance, if you are keeping a list of to do in `todo.md` you don't want them rendered as part of your website, you could put them in a `_notes/` folder:
 
-``` default
+```{.dir-str}
 my-website/  
 ├── _notes
 |   └── todo.md
@@ -462,7 +462,7 @@ website:
 The full set of navigation item properties are shown in @tbl-nav-item.
 
 | Option       | Description                                                                                                                                  |
-|--------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------|
 | `href`       | Link to file contained with the project or external URL.                                                                                     |
 | `text`       | Text to display for navigation item (defaults to the document `title` if not provided).                                                      |
 | `icon`       | Name of one of the standard [Bootstrap 5 icons](https://icons.getbootstrap.com/) (e.g., "github", "twitter", "share", etc.).                 |
@@ -649,7 +649,7 @@ For example, a website the structure shown in @fig-sidebar-project generates the
 ::: {layout-ncol="2"}
 
 ::: {#fig-sidebar-project}
-```{.default}
+```{.dir-str}
 ├── _quarto.yml
 ├── blog.qmd
 ├── index.qmd
@@ -932,6 +932,16 @@ The property you list first (`light` or `dark`) will be the default for the page
 Viewers can then switch themes via a toggle in the navigation bar.
 
 
+::: {#fig-website-theme-dark}
+
+![`lux` used as the light theme](images/website-theme-light.png){fig-alt="Screenshot of w webpage with a black navbar, white main body and dark text."}
+
+![`cyborg` used as the dark theme](images/website-theme-dark.png){fig-alt="Screenshot of website with a dark grey navbar, black body and white text."}
+
+A website with built-in themes applied to `light` and `dark`
+
+:::
+
 ### **brand.yml**
 
 If you want a custom set of colors and fonts, the easiest approach is through **brand.yml**.
@@ -943,7 +953,7 @@ In particular, the most salient colors on a website are controlled by the `color
 {{< include _examples/websites/brand/_brand.yml >}}
 ```
 
-![Using `brand` to set `background`, `foreground` and `primary`](){#fig-brand}
+![Using `brand` to set `background`, `foreground` and `primary`](images/website-theme-brand.png){#fig-brand fig-alt="Screenshot of a website with a purple navbar, dark background and light text."}
 
 As you can see in @fig-brand `primary` is used in the top navigation bar and for links.
 In this example, `primary` doesn't have great contrast with the `background` for text.
@@ -953,6 +963,10 @@ You can set explicit link text color with the `link` option to `typography`:
 {{< include _examples/websites/brand-links/_brand-link-only.yml >}}
 ```
 
+![Specifying a `link` color in addition to `background`, `foreground` and `primary`](images/website-theme-link-only.png){#fig-brand-link fig-alt="Screenshot of a website with a purple navbar, dark background, light text, and light purple links."}
+
+@fig-brand-link illustrates a much better contrast between the link and body background.
+
 As soon as you start having a few colors, you should set a color `palette` to name your colors. 
 This makes it easier to use each color in multiple places:
 
@@ -960,20 +974,24 @@ This makes it easier to use each color in multiple places:
 {{< include _examples/websites/brand-links/_brand.yml >}}
 ```
 
-If you do alter `background`, and your pages include code blocks, you'll generally also want to change the colors used for code with the `typography` settings for `monospace-inline` and `monospace-block`:
+If you do alter `background`, and your pages include code blocks, you'll generally also want to change the colors used for code with the `typography` settings for `monospace-inline` and `monospace-block` (@fig-brand-code):
 
 ```{.yaml filename="_brand.yml"}
 {{< include _examples/websites/brand-code/_brand.yml >}}
 ```
 
+![The color of inline code set to light purple, and the background inline code and code blocks set to a lighter version of the main background](images/website-brand-code.png){#fig-brand-code fig-alt="Screenshot of a website where the background of inline code and code blocks is light charcoal and color of inline code is light purple."}
+
 **brand.yml** is particularly nice for customizing fonts because all you need is the name of a Google Font.
-Here's an example setting the main font (`base`), the font used for headings of any level (`headings`), and the font used for code (`monospace`):
+Here's an example setting the main font (`base`), the font used for headings of any level (`headings`), and the font used for code (`monospace`) (@fig-brand-fonts):
 
 ```{.yaml filename="_brand.yml"}
 {{< include _examples/websites/brand-fonts/_brand.yml >}}
 ```
 
 Swap `source: google` for `source: bunny` if you'd prefer [Bunny Fonts](https://fonts.bunny.net)---a GDPR compliant alternative to Google Fonts.
+
+![Specifying Google Fonts for headings, body text and code](images/website-theme-fonts.png){#fig-brand-fonts fig-alt="Screenshot of webpage with a chunky rounded font for headings, a thin narrow font for the main text, and a rounded monospace font for code."}
 
 You can also specify `logo` in **brand.yml** as an alternative way to include a logo in top or side navigation. 
 However, if you aren't using **brand.yml** across projects, or formats, it may be easier to specify it directly in `_quarto.yml` as shown in @sec-websites-navigation.
@@ -996,14 +1014,19 @@ To apply your brand file on top of a built-in theme, you'll need to specify thei
 {{< include _examples/websites/brand-links/_brand.yml >}}
 ```
 
+![A brand applied over the `lux` built-in theme](images/website-brand-layer.png){#fig-brand-layer fig-alt="Screenshot of website with purple navbar, dark background, light text and uppercase headings. The primary heading 'Drake Lab' isn't visible."}
+
 Depending on the built-in theme, you may need to be more explicit in your brand file.
-For example, the theme `lux`, explicitly sets a color for headings which doesn't work well with a dark background. 
+For example, the theme `lux`, explicitly sets a color for headings which doesn't work well with a dark background (@fig-brand-layer). 
 This explicit value wins over the implicit inheritance from `base` in the brand file.
-You can fix it by specifying `headings` explicitly in the brand file:
+You can fix it by specifying `headings` explicitly in the brand file (@fig-brand-layer-heading):
 
 ```{.yaml filename="_brand.yml"}
 {{< include _examples/websites/brand-links/_brand-with-headings.yml >}}
 ```
+
+![Explicitly setting heading color to override `lux`](images/website-brand-layer-headings.png){#fig-brand-layer-heading fig-alt="Screenshot of webpage with purple navbar, dark background, light text and uppercase headings. The primary heading 'Drake Lab' is now visible."}
+
 
 ::: {.callout-important}
 
