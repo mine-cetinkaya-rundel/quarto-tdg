@@ -1148,13 +1148,15 @@ h1 {
 }
 ```
 
-You can layer your custom SCSS with any other elements you might already have:
+You can layer your custom SCSS with any other elements you might already have (@fig-scss-rules):
 
 ```{.yaml filename="_quarto.yml"}
 format:
   html:
     theme: [lux, brand, styles.scss]
 ```
+
+![A website the adds a rule via SCSS to set page titles to a darker mint.](images/website-scss-rules.png){#fig-scss-rules fig-alt="Screenshot of a page with a page title that appears in a slightly darker shade of mint than the body text."}
 
 ##### Defaults (`defaults`)
 
@@ -1164,7 +1166,7 @@ You can use it to define your own variables to use later, or more commonly to ov
 For example, Quarto provides SCSS variables to alter the size of the different heading levels.
 You could shrink the second level headings a little from the default with:
 
-```{.scss}
+```{.scss filename="styles.scss"}
 /*-- scss:defaults --*/
 $h2-font-size: 1.5em;
 ```
@@ -1174,18 +1176,20 @@ Many of the SCSS variables duplicate the functionality you get via **brand.yml**
 For websites, the variables that are most useful are those around navigation. 
 In particular, `navbar-bg`, `navbar-fg`, `navbar-hl`, control the color of the top navigation bar background, text (e.g. foreground), and text on hover, and `sidebar-bg`, `sidebar-fg`, and `sidebar-hl` do the same for the side navigation bar.
 
-As an example, you might want to override **brand.yml** selection of `primary` for the navigation bar:
+As an example, you might want to override **brand.yml** selection of `primary` for the navigation bar (@fig-scss-defaults):
 
-```{.scss}
+```{.scss filename="styles.scss"}
 /*-- scss:defaults --*/
 $navbar-bg: "#E0EFDE";
 $navbar-fg: "#162627";
 ```
 
+![Overriding the navigation bar color set by brand with SCSS](images/website-scss-defaults.png){#fig-scss-defaults fig-alt="Screenshot of page with light mint navigation bar with dark text."}
+
 If you want to refer to your brand colors in the `defaults` section, 
 you'll need to layer your SCSS higher in `theme` so that the brand variables are defined by the point you want to use them.
 For example, to achieve the same result as above, but without re-specifying the hex colors, you could have:
-```{.scss}
+```{.scss filename="styles.scss"}
 /*-- scss:defaults --*/
 $navbar-bg: $brand-mint;
 $navbar-fg: $brand-charcoal;
@@ -1198,14 +1202,14 @@ format:
     theme: [styles.scss, brand]
 ```
 
-::: {.callout-tip}
-
-## Control SCSS in **brand.yml**
+##### Control SCSS in **brand.yml**
 
 An alternative to a custom SCSS file, is to specify SCSS in the `defaults: bootstrap` section of `_brand.yml`.
 The names of the options to `bootstrap` correspond to the sections in Quarto SCSS files, with the additional convenience that `defaults` can take a mapping of SCSS variables to values.
 
 @fig-brand-vs-scss shows a side-by-side comparison of using **brand.yml** versus a custom SCSS file.
+
+::: {.column-page}
 
 ::: {#fig-brand-vs-scss layout-ncol="2"}
 
@@ -1242,10 +1246,9 @@ defaults:
 Equivalent SCSS supplied as a custom SCSS file, versus in `_brand.yml`.
 :::
 
+:::
 
 Specifying SCSS in `_brand.yml` means you only have one file to copy to apply the same style to another project, however, you lose the SCSS language support your IDE might provide to a `.scss` file.
-
-:::
 
 ### The role of Bootstrap
 
