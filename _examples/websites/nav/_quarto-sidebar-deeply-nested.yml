@@ -1,0 +1,17 @@
+website:
+  title: Drake Lab
+  sidebar:
+    logo: d-lab-dark.svg
+    contents: 
+      - blog.qmd
+      - section: Projects
+        contents:
+          - section: Current
+            contents:
+              - air-quality.qmd
+              - wastewater.qmd
+          - past.qmd
+      - people.qmd
+    tools:
+      - href: https://github.com
+        icon: github

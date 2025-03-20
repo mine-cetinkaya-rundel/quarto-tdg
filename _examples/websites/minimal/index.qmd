@@ -1,0 +1,6 @@
+---
+title: Home
+---
+
+{{< lipsum 1 >}}
+

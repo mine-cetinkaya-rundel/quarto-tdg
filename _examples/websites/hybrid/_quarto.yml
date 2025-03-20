@@ -1,0 +1,23 @@
+project:
+  type: website
+  
+website:
+  title: Drake Lab
+  navbar:
+    left:
+      - text: "Research"
+        href: research.qmd
+      - text: "Teaching"
+        href: teaching.qmd
+    
+  sidebar:
+    - title: Research
+      contents:
+        - research.qmd
+        - project-1.qmd
+        - project-2.qmd 
+    - title: Teaching
+      contents: 
+        - teaching.qmd
+        - course-1.qmd
+        - course-2.qmd

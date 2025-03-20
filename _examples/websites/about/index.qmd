@@ -1,0 +1,26 @@
+---
+title: Drake Lab
+subtitle: Data Science
+about: 
+  template: trestles
+  image: profile.jpg
+  image-alt: Magnified image of cells
+  image-shape: round
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com
+    - icon: file-text
+      text: ResearchGate
+      href: https://www.researchgate.net
+---
+
+At [Everpine University](#)
+
+{{< lipsum 1 >}}
+
+::: {.text-secondary}
+
+Image credit: [Bioscience Image Library by Fayette Reynolds](https://unsplash.com/@berkshirecommunitycollege) on [Unsplash](https://unsplash.com/photos/potamogeton-leaf-magnification-vuZc14lngdk)
+      
+:::

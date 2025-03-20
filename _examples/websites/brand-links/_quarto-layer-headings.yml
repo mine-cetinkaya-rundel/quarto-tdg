@@ -1,0 +1,5 @@
+format:
+  html:
+    theme: [lux, brand]
+
+brand: _brand-with-headings.yml
