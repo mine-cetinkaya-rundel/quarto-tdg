@@ -102,7 +102,7 @@ For example, the executable code cell that does some addition in @lst-code-cell-
 
 2.  A fenced div with classes `.cell-output` and `.cell-output-stdout` that contains a code cell with the result.
 
-::::: {#lst-code-cell .column-body-outset layout-ncol="2"}
+::::: {#fig-code-cell .column-body-outset layout-ncol="2"}
 ::: {#lst-code-cell-raw}
 ```` markdown
 ```{r}
