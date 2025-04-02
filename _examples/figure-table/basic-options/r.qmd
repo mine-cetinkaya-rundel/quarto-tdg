@@ -1,0 +1,46 @@
+
+---
+echo: false
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+
+
+```{r}
+#| label: tbl-species-count
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
+
+{{< include ../_code-snippets/species-count.R >}}
+```
+
+
+::: {#tbl-species-count}
+
+```{r}
+{{< include ../_code-snippets/species-count.R >}}
+```
+
+Number of penguins sampled from each species in the Palmer Archipelago
+
+:::
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "Penguin bill length versus depth by species"
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+
+::: {#fig-scatter fig-alt="ALT"}
+```{r}
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+Penguin bill length versus depth by species
+
+:::

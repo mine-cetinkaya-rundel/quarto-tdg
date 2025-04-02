@@ -1,0 +1,16 @@
+---
+title: Basic options
+---
+
+```{python}
+{{< include ../_code-snippets/setup.py >}}
+```
+
+
+
+```{python}
+#| label: tbl-species-count
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
+
+{{< include ../_code-snippets/species-count.py >}}
+```

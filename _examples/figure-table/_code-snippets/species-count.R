@@ -1,0 +1,3 @@
+penguins |>
+  count(species) |>
+  gt()
