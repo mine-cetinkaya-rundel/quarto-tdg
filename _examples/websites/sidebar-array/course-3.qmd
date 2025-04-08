@@ -1,3 +1,4 @@
 ---
 title: Course 3
+sidebar: teaching
 ---

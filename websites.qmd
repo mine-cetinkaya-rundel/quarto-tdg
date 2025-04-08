@@ -692,18 +692,10 @@ sidebar: false
 
 #### Controlling side navigation by page
 
-::: {.callout-caution}
-
-I can't tell if this is really fully supported. It certainly doesn't look like what I thought was true is. Example does not work.
-
-:::
-
 You can specify multiple side navigation bars by passing `sidebar` an array, 
 allowing you to have different side navigation on different pages.
 When `sidebar` is an array, the element that is displayed on a page
 will be (in order of precedence):
-
-**What I thought was true**:
 
 -   The sidebar `id` specified with `sidebar` in the document header:
     
@@ -715,34 +707,20 @@ will be (in order of precedence):
 
 -    The sidebar in which a link to the document is a navigation item. 
 
--    The first sidebar without a `title` or an `id`.
-
 -    No sidebar at all.
 
 
 For example, consider the following side navigation configuration:
 
 ```{.yaml filename="_quarto.yml"}
-website:
-  sidebar:
-    - contents:
-        - index.qmd
-        - about.qmd
-    - title: Research
-      contents:
-        - project-1.qmd
-        - project-2.qmd 
-    - title: Teaching
-      id: teaching
-      contents: 
-        - course-1.qmd
-        - course-2.qmd
+{{< include _examples/websites/sidebar-array/_quarto-sidebar.yml >}}
 ```
 
-The pages `project-1.qmd` and `project-2.qmd` will get the second sidebar containing links to each other.
-Similarly, `course-1.qmd` and `course-2.qmd` will get the third sidebar containing links to each other.
-The home page (`index.qmd`), about page (`about.qmd`), will get the first sidebar.
-Any other page in the site will also get the first sidebar (with link to Home and About), unless they explicitly set another in their header.
+The pages `project-1.qmd` and `project-2.qmd` will get the `research` sidebar containing links to each other.
+Similarly, `course-1.qmd` and `course-2.qmd` will get the `teaching` sidebar containing links to each other.
+The home page (`index.qmd`), about page (`about.qmd`), will get the `main`sidebar.
+
+Any other page in the site will get no sidebar, unless they explicitly set one in their header.
 For example, you might have another course page, `course-3.qmd`,  you want to also have the `teaching` sidebar:
 
 ```{.yaml filename="course-3.qmd"}
@@ -750,20 +728,6 @@ For example, you might have another course page, `course-3.qmd`,  you want to al
 sidebar: teaching
 ---
 ```
-
-**What I think is actually true**:
-
--   The sidebar `id` specified with `sidebar` in the document header:
-    
-    ```{.yaml filename="page.qmd"}
-    ---
-    sidebar: main
-    ---
-    ```
-
--   If all the sidebar elements have a `title` or `id`, the sidebar in which a link to the document is a navigation item, or no side bar at all.
-
--   If **not** all the sidebar elements have a `title` or `id`, the first sidebar without `title` or an `id`. 
 
 ### Hybrid navigation {#sec-hybrid}
 
