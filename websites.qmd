@@ -307,7 +307,7 @@ For example, if you move a page from `/blog/first-post.qmd` to `/blog/first-post
 
 ``` {.yaml filename="/blog/first-post/index.qmd"}
 ---
-title: "My Post"
+title: My Post
 aliases:
   - /blog/first-post.html
 ---
@@ -469,7 +469,7 @@ The full set of navigation item properties are shown in @tbl-nav-item.
 |:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------|
 | `href`       | Link to file contained with the project or external URL.                                                                                     |
 | `text`       | Text to display for navigation item (defaults to the document `title` if not provided).                                                      |
-| `icon`       | Name of one of the standard [Bootstrap 5 icons](https://icons.getbootstrap.com/) (e.g., "github", "twitter", "share", etc.).                 |
+| `icon`       | Name of one of the standard [Bootstrap 5 icons](https://icons.getbootstrap.com/) (e.g., `github`, `house`, `share`, etc.).                   |
 | `aria-label` | [Accessible label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) for the navigation item.           |
 | `rel`        | Value for [rel](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel) attribute. Multiple space-separated values are permitted.  |
 | `target`     | Value for [target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target) attribute. E.g., `_blank` to open in a new tab.       |
@@ -517,8 +517,8 @@ we recommend using the methods outlined in @sec-websites-theme instead.
 |:-----------------|:------------|
 | `pinned`         | Always show the navbar (true or false). Defaults to false, and uses [headroom.js](https://wicky.nillia.ms/headroom.js/) to automatically show the navbar when the user scrolls up on the page.                              |
 | `collapse`       | Collapse the navbar items into a hamburger menu when the display gets narrow (defaults to true).                                                                                                                            |
-| `collapse-below` | Responsive breakpoint at which to collapse navbar items to a hamburger menu ("sm", "md", "lg", "xl", or "xxl", defaults to "lg").                                                                                           |
-| `toggle-position`| The position of the collapsed navbar hamburger menu when in responsive mode ("left" or "right", defaults to "left").                                                                                                        |
+| `collapse-below` | Responsive breakpoint at which to collapse navbar items to a hamburger menu (`sm`, `md`, `lg`, `xl`, or `xxl`, defaults to `lg`).                                                                                           |
+| `toggle-position`| The position of the collapsed navbar hamburger menu when in responsive mode (`left` or `right`, defaults to `left`).                                                                                                        |
 | `tools-collapse` | Collapse tools into the navbar menu when the display becomes narrow.                                                                                                                                                        |
 
 : Behavior options for `navbar` {#tbl-navbar-options}
@@ -576,7 +576,7 @@ These options are described further in @tbl-sidebar-content.
 | `tools`          | An array of navigation items displayed only using their icons, positioned at the top of the sidebar after the `logo` and/or `title`. | 
 | `title`          | If `title` is unspecified under `sidebar` it will inherit from the `title` field under `website`. You can specify `title` explicitly under `sidebar` if you want different title text, or set `title: false` under `sidebar` to omit it (e.g. you might if your logo contains the same text). Omitted from the sidebar if a `logo` is specified, as it is in @lst-sidebar-simple. |
 |`logo`| An image (`.svg`, `.png`, `.jpg` etc.) to include at the top of the navigation bar. Set `logo-alt` to specify the alternative text for the logo. Set `logo-href` if you want the logo to link to somewhere other than `index.html`. |                                                                             |
-| `search`         | Include a search box (true or false). If there is already a search box on the top navigation bar it won't be displayed on the sidebar.  |
+| `search`         | Include a search box (`true` or `false`). If there is already a search box on the top navigation bar it won't be displayed on the sidebar.  |
 
 : Contents options for `sidebar` {#tbl-sidebar-content}
 
@@ -587,12 +587,12 @@ we recommend using the methods outlined in @sec-websites-theme instead.
 
 | Option | Description |
 |:-------|:------------|
-| `style`          | "floating", the default, places the sidebar close to the main body text without a distinct background. "docked" places the sidebar near the left hand side of the page and uses a distinct background color.  |
-| `type`           | "dark" or "light" (hint to make sure the text color is the inverse of the background).  |
-| `border`         | Whether to show a border on the sidebar. "true" or "false".  |
-| `alignment`      | Alignment ("left", "right", or "center").      |
-| `collapse-level` | Whether to show sidebar navigation collapsed by default. The default is 2, which shows the top and next level fully expanded (but leaves the 3rd and subsequent levels collapsed).                                                                                 |
-| `pinned`         | Always show a title bar that expands to show the sidebar at narrower screen widths (true or false). Defaults to false, and uses [headroom.js](https://wicky.nillia.ms/headroom.js/) to automatically show the navigation bar when the user scrolls up on the page. |
+| `style`          | `floating`, the default, places the sidebar close to the main body text without a distinct background. `docked` places the sidebar near the left hand side of the page and uses a distinct background color.  |
+| `type`           | `dark` or `light` (hint to make sure the text color is the inverse of the background).  |
+| `border`         | Whether to show a border on the sidebar. `true` or `false`.  |
+| `alignment`      | Alignment (`left`, `right`, or `center`).      |
+| `collapse-level` | Whether to show sidebar navigation collapsed by default. The default is `2`, which shows the top and next level fully expanded (but leaves the 3rd and subsequent levels collapsed).                                                                                 |
+| `pinned`         | Always show a title bar that expands to show the sidebar at narrower screen widths (`true` or `false`). Defaults to `false`, and uses [headroom.js](https://wicky.nillia.ms/headroom.js/) to automatically show the navigation bar when the user scrolls up on the page. |
 
 : Behavior and appearance options for `sidebar` {#tbl-sidebar-options}
 
@@ -763,9 +763,9 @@ website:
   title: Drake Lab
   navbar:
     left:
-      - text: "Research"            
+      - text: Research           
         href: research.qmd          
-      - text: "Teaching"
+      - text: Teaching
         href: teaching.qmd
 ```
 
@@ -776,9 +776,9 @@ website:
   title: Drake Lab
   navbar:
     left:
-      - text: "Research"            
+      - text: Research            
         href: research.qmd          
-      - text: "Teaching"
+      - text: Teaching
         href: teaching.qmd
   sidebar:
     - title: Research               
