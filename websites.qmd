@@ -1,3 +1,7 @@
+---
+tbl-colwidths: [20, 80]
+---
+
 # Websites {#sec-websites}
 
 ## Overview
@@ -175,7 +179,7 @@ You'll learn how to add navigation links, another key kind of link, in @sec-webs
 | Link with attributes | `[Quarto](http://quarto.org){.external target="_blank"}` | A link to the website `quarto.org` with the class `.external` that opens in a new window or tab. |
 | Cross-References (**only within pages**)  | `@fig-dist` | A link to the figure, along with a preview on hover. |
 
-: In-text link syntax {#tbl-link-syntax}
+: In-text link syntax {#tbl-link-syntax tbl-colwidths="[30, 30, 40]"}
 
 #### Linking to pages
 
@@ -471,7 +475,7 @@ The full set of navigation item properties are shown in @tbl-nav-item.
 | `target`     | Value for [target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target) attribute. E.g., `_blank` to open in a new tab.       |
 | `menu`       | List of navigation items to populate a drop-down menu.                                                                                       |
 
-: Properties of navigation items. Source: [Quarto documentation](https://quarto.org/docs/reference/projects/websites.html#nav-items) {#tbl-nav-item  tbl-colwidths="30,70"}
+: Properties of navigation items. Source: [Quarto documentation](https://quarto.org/docs/reference/projects/websites.html#nav-items) {#tbl-nav-item}
 
 ### Top Navigation {#sec-navbar}
 
@@ -525,7 +529,7 @@ we recommend using the methods outlined in @sec-websites-theme instead.
 Top navigation bars allow you to nest navigation items by using a dropdown menu.
 In @fig-navbar-nested the "People" navigation item, is now a dropdown menu that features links to Staff and Students.
 
-![Nested items in `navbar` using a dropdown menu](images/website-navbar-nested.png){#fig-navbar-nested fig-alt="Screenshot of a navigation bar with an item with the text 'People' which is expanded into a dropdown menu with the items 'Staff' and 'Students'."}
+![Nested items in `navbar` using a dropdown menu](images/website-navbar-nested.png){#fig-navbar-nested fig-alt="Screenshot of a navigation bar with an item with the text 'People' which is expanded into a dropdown menu with the items 'Staff' and 'Students'." width="30%"}
 
 To create a dropdown menu, create a navigation item that has a `menu` property.
 In the `menu` property list the dropdown options as navigation items:
@@ -861,7 +865,7 @@ We've included `sidebar` and `navbar` for completeness.
 | Links listed below table of contents in the "Code Links" or "Other Links" sections                 |                                                                                                                                                                                        |                                                                                      |
 +----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
 
-: Website navigation elements {#tbl-nav-elements}
+: Website navigation elements {#tbl-nav-elements tbl-colwidths="[30, 40, 30]"}
 
 
 ## Website theming {#sec-websites-theme}
@@ -1250,7 +1254,7 @@ You'll need to pay attention to the kind of object Bootstrap classes apply to an
 
 +--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
 | Component                                                                            | Class                         | Element                     | Quarto Markdown                                      | Rendered                                                                   |
-+======================================================================================+===============================+=============================+:=====================================================+:===========================================================================+
++:=====================================================================================+:==============================+:============================+:=====================================================+:===========================================================================+
 | [Badge](https://getbootstrap.com/docs/5.3/components/badge/)                         | `badge`                       | `<span>`                    | `### Example heading [New]{.badge .text-bg-primary}` | ::: {.border .p-2}                                                         |
 |                                                                                      |                               |                             |                                                      | ### Example heading [New]{.badge .text-bg-primary} {.unnumbered .unlisted} |
 |                                                                                      |                               |                             |                                                      | :::                                                                        |
@@ -1273,7 +1277,7 @@ You'll need to pay attention to the kind of object Bootstrap classes apply to an
 |                                                                                      |                               |                             | ```                                                  |                                                                            |
 +--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
 
-: Examples of Bootstrap classes used in Quarto markdown syntax {#tbl-bootstrap-classes .column-page}
+: Examples of Bootstrap classes used in Quarto markdown syntax {#tbl-bootstrap-classes .column-page tbl-colwidths="[10, 10, 10, 40, 30]"}
 
 #### Bootstrap SCSS variables
 
