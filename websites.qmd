@@ -890,7 +890,7 @@ To set a theme for your website, apply one of the built-in themes to every docum
 
 The built-in themes for Quarto come from [Bootswatch](https://bootswatch.com) --- which is the best place to see what they look like.
 
-You can specify the properties `light` and `dark` to `theme` to add a light/dark toggle:
+You can specify the properties `light` and `dark` to `theme` to add a light/dark toggle (Figure @fig-website-theme-dark):
 
 ``` {.yaml filename="_quarto.yml"}
 {{< include _examples/websites/theme/_quarto-dark.yml >}}
@@ -899,10 +899,20 @@ You can specify the properties `light` and `dark` to `theme` to add a light/dark
 The property you list first (`light` or `dark`) will be the default for the page. 
 Viewers can then switch themes via a toggle in the navigation bar.
 
+::: {.callout-tip}
+
+## Choose `light` and `dark` themes that are similar except for color
+
+It's a good idea to choose themes that are as similar as possible in fonts, padding and other visual elements.
+This ensures minimal visual disruption as people toggle themes. 
+Another option to maintain visual consistency, is to use a single theme, but apply a light and dark brand (see @sec-brand-theme).
+
+:::
+
 
 ::: {#fig-website-theme-dark}
 
-![`lux` used as the light theme](images/website-theme-light.png){fig-alt="Screenshot of w webpage with a black navbar, white main body and dark text."}
+![`lux` used as the light theme](images/website-theme-light.png){fig-alt="Screenshot of webpage with a black navbar, white main body and dark text."}
 
 ![`cyborg` used as the dark theme](images/website-theme-dark.png){fig-alt="Screenshot of website with a dark grey navbar, black body and white text."}
 
@@ -966,7 +976,7 @@ However, if you aren't using **brand.yml** across projects, or formats, it may b
 
 You can read about all the options available in the [Quarto documentation Guide to using **brand.yml**](https://quarto.org/docs/authoring/brand.html). 
 
-### Combine **brand.yml** with a built-in theme
+### Combine **brand.yml** with a built-in theme {#sec-brand-theme}
 
 If you want to borrow some features of a built-in theme but use custom colors, 
 you can layer brand with a theme. 
@@ -995,15 +1005,6 @@ You can fix it by specifying `headings` explicitly in the brand file (@fig-brand
 
 ![Explicitly setting heading color to override `lux`](images/website-brand-layer-headings.png){#fig-brand-layer-heading fig-alt="Screenshot of webpage with purple navbar, dark background, light text and uppercase headings. The primary heading 'Drake Lab' is now visible."}
 
-
-::: {.callout-important}
-
-## No dark support for **brand.yml**
-
-There is currently no easy way to use **brand.yml** to specify both a light and dark theme.
-If you want a light and dark theme, either use built-in themes, or specify your own SCSS files.
-
-:::
 
 
 ### Adding CSS or SCSS
