@@ -93,7 +93,7 @@ Follow the prompts to create a new website project using Quarto's built-in templ
 
 ## Workflow
 
-Working on a Quarto website is mostly like working on an single Quarto document.
+Working on a Quarto website is mostly like working on a single Quarto document.
 You make edits to your Quarto document, now a "page" in your website, then preview to examine the result.
 You make more edits, then you re-run preview.
 
@@ -109,9 +109,9 @@ A file opened directly in your browser will use the `file://` protocol, rather t
 
 ## Website Structure {#sec-website-structure}
 
-In this section, learn how your project structure translates to your website structure.
-You'll start by understanding where how the location of your files in your project translates to the location of your pages in your site.
-Then you'll learn how to link to other pages and use anchors to link to sections, figures and other elements.
+In this section, you will learn how your project structure translates to your website structure.
+You'll start by understanding how the location of your files in your project translates to the location of your pages in your site.
+Then you'll learn how to link to other pages and use anchors to link to sections, figures, and other elements.
 Finally, you'll see a couple of options for excluding documents from your site or to redirect to them from different URL paths.
 
 ### File structure translates to URL structure
@@ -140,7 +140,7 @@ File paths from your project root directly translate to URL paths from your base
 
 We use the placeholder `{ base }` to represent the base URL of your website.
 When you are previewing locally that will be something like `http://localhost:3884`, where the number `3884` may be something else.
-When you publish your website the base URL will depend on where you host it, for GitHub pages it might look something like `https://username.github.io/repository-name`, and on Quarto Pub something like `https://username.quarto.pub/project-name`, or you might even have a custom domain `https://yourdomain.com`.
+When you publish your website, the base URL will depend on where you host it. For GitHub Pages it might look something like `https://username.github.io/repository-name`, and on Quarto Pub something like `https://username.quarto.pub/project-name`, or you might even have a custom domain `https://yourdomain.com`.
 
 Consider the file `about.qmd` at the top level of your website project.
 It will be available at `about.html` at the top level of your website.
@@ -153,12 +153,12 @@ Files don't have to be Quarto documents.
 The CSV file `data/sales.csv` will be available at `{ base }/data/sales.csv`.
 However, only rendered Quarto documents or files that Quarto deems to be necessary are copied into `_site/`.
 This means the presence of `data/sales.csv` isn't enough for it to be included in the website.
-It either needs to be referenced in a way Quarto will detect, e.g. linked to from another page (see @sec-websites-links), or be included in the site resources (see @sec-websites-resources).
+It either needs to be referenced in a way Quarto will detect, e.g., linked to from another page (see @sec-websites-links), or be included in the site resources (see @sec-websites-resources).
 
 Later in this section you'll learn two ways to disrupt this direct correspondence between project paths and URL paths.
 You'll see how to:
 
--   Exclude or ignore project files, so they aren't part of the website
+-   Exclude or ignore project files, so they aren't part of the website.
 
 -   Provide alias URLs, so that visitors are redirected from a URL to a document at a different path.
 
@@ -232,8 +232,8 @@ Back in the [introduction](#intro)
 
 ````
 
-You can link to identifier on other pages too, 
-just add it to the document path.
+You can link to identifiers on other pages, too, 
+by adding them to the document path.
 For instance, to link to the Introduction section in `index.qmd` from `about.qmd`:
 
 ````{.markdown filename="about.qmd"}
@@ -241,7 +241,7 @@ Read more in our [Introduction](index.qmd#intro)
 ````
 
 There are a lot of elements beyond sections that get identifiers automatically in Quarto.
-You can find the identifier of an element by looking for an `id` in the element in the rendered HTML (usually, using something like your web browser development tools).
+You can find the identifier of an element by looking for an `id` in the element in the rendered HTML (usually using something like your web browser development tools).
 Or, you can provide your own.
 For example, for any element created with a fenced div, add an identifier to the curly braces:
 
@@ -442,7 +442,7 @@ Side navigation also has the advantage of more easily handling longer link text,
 
 More complicated sites might benefit from what is known as **hybrid navigation** (@sec-hybrid), a combination of top and sidebar navigation, where the links in the top navigation direct users to sections of the site which each have their own side navigation. 
 
-In the rest of this section, you'll start by learning how to more flexibly specify navigation items, then see some more comprehensive examples of top, and side navigation. 
+In the rest of this section, you'll learn how to specify navigation items more flexibly and then see some more comprehensive examples of top and side navigation. 
 The section ends with a quick survey of navigation elements you can add beyond primary navigation.
 
 ### Navigation items {#sec-websites-navitems}
@@ -1194,7 +1194,8 @@ $navbar-bg: $brand-mint;
 $navbar-fg: $brand-charcoal;
 ```
 
-However, you need to make sure the order in `theme` puts `styles.scss` first:
+However, you need to put `styles.scss` in `theme` first:
+
 ```{.yaml filename="_quarto.yml"}
 format:
   html:
@@ -1261,7 +1262,7 @@ but knowing a little opens up some ways to further customize your site.
 Bootstrap exposes a ton of CSS classes to style elements. 
 Because Quarto HTML documents use Bootstrap, you can use these Bootstrap classes within your own documents.
 
-As an example, Bootstrap includes a [button component](https://getbootstrap.com/docs/5.3/components/buttons/) and gives the example:
+As an example, Bootstrap includes a [button component](https://getbootstrap.com/docs/5.3/components/buttons/):
 
 ```html
 <a class="btn btn-primary" href="#" role="button">Link</a>
@@ -1418,8 +1419,8 @@ Your YAML file should then contain an array of items:
 ## Publishing a website {#sec-website-publish}
 
 To get your website out to your audience you'll need to publish it somewhere.
-In this section, you'll first learn some website metadata you'll likely want to set before publishing that will make it easier for people to find and share your website. 
-Then, you'll learn about the most common approaches to publishing your site: the `quarto publish` command, or to host the `_site` folder.
+In this section, you'll first learn about website metadata you'll likely want to set before publishing that will make it easier for people to find and share your website. 
+Then, you'll learn about the most common approaches to publishing your site: the `quarto publish` command or hosting the `_site` folder.
 
 ### Website metadata
 
@@ -1473,7 +1474,7 @@ To publish a website using `quarto publish` simply run Quarto publish from the p
 quarto publish
 ```
 
-This will prompt you to select a provider, and to authenticate.
+This will prompt you to select a provider and to authenticate.
 Then Quarto runs `quarto render` one more time (you can disable this with `--no-render`), pushes the `_site/` directory to the provider, then opens the site in your browser (you can disable this with `--no-browser`). 
 This process is illustrated in @fig-website-publish.
 We've separated out the "render" and "publish" step, but both steps happen when you call `quarto publish`.
@@ -1686,7 +1687,7 @@ A GitHub Action that publishes to GitHub Pages
 
 :::
 
-Here's three common ways you might customize this workflow:
+Three common ways you might customize this workflow are as follows:
 
 * Specify a different publishing `target`. Swap out `target: gh-pages` for one of the other supported publishing venues. You'll also need to set a different token in `env` with your credentials on the publishing venue.
 
@@ -1731,21 +1732,21 @@ Setup Python
 
 ## Wrapping Up
 
-In this chapter, you've learnt about the key components of a Quarto website: content, navigation and appearance. 
-You've also learnt about a few techniques for publishing your site.
+In this chapter, you learned about the key components of a Quarto website: content, navigation, and appearance. 
+You also learned about a few techniques for publishing your site.
 
-But, there's still a lot of features we haven't talked about.
+But, there are many other features we haven't talked about.
 Some notable ones include:
 
-* Drafts: set `draft: true` to be able to preview pages, but not have them included in a site render. <https://quarto.org/docs/websites/website-drafts.html>
+* Drafts: Set `draft: true` to be able to preview pages, but not have them included in a site render, <https://quarto.org/docs/websites/website-drafts.html>.
 
-* Comments: integrate third-party tools to allow on page comments. <https://quarto.org/docs/output-formats/html-basics.html#commenting> 
+* Comments: Integrate third-party tools to allow your readers to leave comments on your pages, <https://quarto.org/docs/output-formats/html-basics.html#commenting>.
 
-* Announcements: add a bar to the top of the site for crucial info. <https://quarto.org/docs/websites/website-tools.html#announcement-bar>
+* Announcements: Add a bar to the top of the site for crucial info, <https://quarto.org/docs/websites/website-tools.html#announcement-bar>.
 
 You can find comprehensive lists of all your options are in the Reference in the Quarto documentation:
 
-* You find website-level options in [Projects > Websites](https://quarto.org/docs/reference/projects/websites.html)
+* You find website-level options in [Projects > Websites](https://quarto.org/docs/reference/projects/websites.html).
 
-* You find page-level options (that could be set site-wide in `_quarto.yml`) in [Formats > HTML](https://quarto.org/docs/reference/formats/html.html)
+* You find page-level options (that could be set site-wide in `_quarto.yml`) in [Formats > HTML](https://quarto.org/docs/reference/formats/html.html).
 
