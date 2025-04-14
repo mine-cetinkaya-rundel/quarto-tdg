@@ -890,6 +890,8 @@ To set a theme for your website, apply one of the built-in themes to every docum
 
 The built-in themes for Quarto come from [Bootswatch](https://bootswatch.com) --- which is the best place to see what they look like.
 
+#### Dark mode
+
 You can specify the properties `light` and `dark` to `theme` to add a light/dark toggle (Figure @fig-website-theme-dark):
 
 ``` {.yaml filename="_quarto.yml"}
@@ -976,6 +978,24 @@ However, if you aren't using **brand.yml** across projects, or formats, it may b
 
 You can read about all the options available in the [Quarto documentation Guide to using **brand.yml**](https://quarto.org/docs/authoring/brand.html). 
 
+#### Dark mode
+
+To specify a light and dark theme, and add a light/dark toggle to your site, 
+you can specify two brand files in your website configuration:
+
+```{.yaml filename="_quarto.yml"}
+brand:
+  dark: _brand.yml
+  light: _brand-light.yml
+```
+
+Where `_brand.yml` might, as it does above, define a dark mode with a charcoal background and mint text, 
+and `_brand-light.yml`  defines a light mode with a mint background with charcoal text:
+
+```{.yaml filename="_brand-light.yml"}
+{{< include _examples/websites/brand-dark/_brand-light.yml >}}
+```
+
 ### Combine **brand.yml** with a built-in theme {#sec-brand-theme}
 
 If you want to borrow some features of a built-in theme but use custom colors, 
@@ -1005,7 +1025,17 @@ You can fix it by specifying `headings` explicitly in the brand file (@fig-brand
 
 ![Explicitly setting heading color to override `lux`](images/website-brand-layer-headings.png){#fig-brand-layer-heading fig-alt="Screenshot of webpage with purple navbar, dark background, light text and uppercase headings. The primary heading 'Drake Lab' is now visible."}
 
+#### Dark mode
 
+If you have a light and dark brand, you can also layer them with a built-in theme.
+In your website configuration, you'll specify your brand file under the `light` and `dark` properties for `brand`, and their layering with a built-in theme in the `light` and `dark` properties of `theme`:
+
+```{.yaml filename="_quarto.yml"}
+{{< include _examples/websites/brand-dark-theme/_quarto-layer.yml >}}
+```
+
+When you layer `light` and `dark` brands with built-in themes, you'll likely find a number of places the colors don't quite work. 
+In that case, you'll likely need to make some color tweaks with CSS/SCSS.
 
 ### Adding CSS or SCSS
 
@@ -1575,7 +1605,7 @@ Remote code execution combined with remote rendering provides the most protectio
 However, it comes with the most setup, maintenance, and cost (time and potentially money) since all the work is happening on a remote server.
 
 You now only check your source documents (e.g. `.qmd` files) into version control. 
-Your CI service needs to install your computational environment, so you likely will also create and check-in a record of the packages required (e.g. using `renv` for R, or `requirements.txt`, `pipenv`, or `uv` for Python).  
+Your CI service needs to install your computational environment, so you likely will also create and check-in a record of the packages required (e.g. using `renv` for R, or `requirements.txt`, `pipenv`, or `uv` for Python).
 When your CI runs, it will install your computational environment, install Quarto, and then run a full render and publish.  
 
 The two most popular choices for CI provider in this case are GitHub Actions, and Posit Connect Cloud. 
