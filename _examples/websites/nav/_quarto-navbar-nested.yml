@@ -1,0 +1,16 @@
+website:
+  title: Drake Lab
+  navbar:
+    logo: d-lab.svg
+    left: 
+      - blog.qmd
+    right:
+      - projects.qmd
+      - text: People
+        menu:
+          - text: Staff
+            href: faculty.qmd
+          - students.qmd
+    tools:
+      - href: https://github.com
+        icon: github

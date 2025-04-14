@@ -1,0 +1,7 @@
+---
+title: Home
+---
+
+[Project 1](project-1.qmd)
+[Course 1](course-1.qmd)
+[Course 3](course-3.qmd)

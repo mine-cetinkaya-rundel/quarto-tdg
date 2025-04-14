@@ -1,0 +1,23 @@
+---
+title: Drake Lab
+# brand: _brand-link-only.yml
+---
+
+## Location
+
+At [Everpine University](#)
+
+## Background
+
+{{< lipsum 1 >}}
+
+
+::: {.border .border-primary .rounded .p-2}
+Some content contained within a border using the `primary` color and rounded corners.
+:::
+
+::: callout-tip
+
+Callout 
+
+:::

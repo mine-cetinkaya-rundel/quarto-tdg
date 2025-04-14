@@ -1,0 +1,16 @@
+---
+title: Home
+---
+
+At [Everpine University](#)
+
+{{< lipsum 1 >}}
+
+Some inline code: `r mean(rnorm(10))`
+
+A code block:
+
+```{.yaml}
+{{< include _brand.yml >}}
+```
+
