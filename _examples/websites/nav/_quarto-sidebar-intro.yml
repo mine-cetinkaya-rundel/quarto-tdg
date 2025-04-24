@@ -1,0 +1,5 @@
+website:
+  title: My Website           
+  sidebar:
+    contents: 
+      - about.qmd

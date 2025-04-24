@@ -1,1 +1,1752 @@
+---
+tbl-colwidths: [20, 80]
+---
+
 # Websites {#sec-websites}
+
+## Overview
+
+Quarto websites are a special type of Quarto project for building...well, websites.
+By adding a single configuration file, you can turn any collection of Quarto documents into a website.
+Quarto websites are a great way to showcase your work, build documentation, or share your learning progress.
+
+In this chapter, you'll start with the minimal building blocks for a functional website --- it takes just two files!
+
+Then, you'll dive into the three big components of a website:
+
+* Content: In @sec-website-structure you'll learn how pages in a website are built from Quarto documents in a project, how to cross-link pages, and to control what does and doesn't end up on your site. Later, you'll also learn about two special kinds of pages **About pages** in @sec-websites-about-pages and **Listings** in @sec-websites-listings.
+
+* Navigation: In @sec-websites-navigation you'll learn about adding site navigation, so your viewers can easily locate content on your site. 
+
+* Appearance: In @sec-websites-theme you'll learn how to customize the appearance of your site by controlling colors, fonts and more.
+
+Finally, in @sec-website-publish you'll learn how to get your website out in the world, and in @sec-ci tools for automating the publishing process.
+
+
+## Minimal website
+
+A website is just a collection of HTML pages, usually sharing some common elements like navigation or theming.
+In Quarto, a website project is a collection of Quarto documents targeting the HTML format, along with some website configuration in `_quarto.yml`.
+
+The simplest Quarto project that results in a website consists of a directory with two files:
+
+-   `index.qmd` (or `.md` or `.ipynb`) that renders to `index.html`—the homepage.
+    For illustration, we'll use a simple file with a `title` and some placeholder text:
+
+    ``` {.markdown filename="index.qmd" shortcodes="false"}
+    ---
+    title: Home
+    ---
+
+    {{< lipsum 1 >}}
+    ```
+
+-   A `_quarto.yml` file that contains:
+
+    ``` {.yaml filename="_quarto.yml"}
+    project:
+      type: website
+    ```
+
+The specification of `type: website` in `_quarto.yml` means when you render the project, Quarto identifies it as a website, renders all the Quarto documents in the project, inserts the relevant website scaffolding and puts the resulting files in a `_site/` directory.
+
+The resulting `_site/` directory is a completely self-contained description of the website.
+
+@fig-site-contents shows the contents of the `_site/` directory for a minimal website.
+It contains the rendered `.html` files, in this case only `index.html`, along with other required resources.
+The folders in `_site/site_libs` contain scripts and other source files for some of Quarto's website tools and can be shared by all pages in the website.
+
+::: {#fig-site-contents}
+```{.dir-str}
+_site/
+├── index.html
+├── search.json
+└── site_libs
+    ├── bootstrap
+    ├── clipboard
+    ├── quarto-html
+    ├── quarto-nav
+    └── quarto-search
+```
+
+The contents of `_site/` for a minimal Quarto website
+:::
+
+To view your website, you need a webserver to serve up the contents of this directory.
+This could be a local webserver like the one used for `quarto preview`, or a remote one like those provided by Quarto Pub or GitHub Pages.
+
+
+::: callout-tip
+
+## Start with a template
+
+You can turn any folder into a Quarto website by adding `_quarto.yml`, but if you are starting from scratch you can make use of the `quarto create` command.
+On the terminal, run:
+
+```{.bash}
+quarto create project website
+```
+
+Follow the prompts to create a new website project using Quarto's built-in template.
+
+::: 
+
+## Workflow
+
+Working on a Quarto website is mostly like working on a single Quarto document.
+You make edits to your Quarto document, now a "page" in your website, then preview to examine the result.
+You make more edits, then you re-run preview.
+
+There are a couple of differences to be aware of:
+
+-   Since your page may contain some elements that depend on other pages (e.g. navigation items), you may see other pages being rendered to generate your preview.
+
+-   Some changes to `_quarto.yml` won't propagate to an already running `preview` session.
+    For instance, when you add items to navigation, you may need to stop the current preview, and restart another preview to see the changes you've made.
+
+It's also important to use `quarto preview` (either via the Render/Preview button in your IDE or on the command line) rather than opening a generated `.html` file directly in your browser.
+A file opened directly in your browser will use the `file://` protocol, rather than the `http://` protocol, and some features of Quarto websites may not work, i.e. search.
+
+## Website Structure {#sec-website-structure}
+
+In this section, you will learn how your project structure translates to your website structure.
+You'll start by understanding how the location of your files in your project translates to the location of your pages in your site.
+Then you'll learn how to link to other pages and use anchors to link to sections, figures, and other elements.
+Finally, you'll see a couple of options for excluding documents from your site or to redirect to them from different URL paths.
+
+### File structure translates to URL structure
+
+The structure of your files in your project directly translates to their structure in `site/`, and consequently, to where your pages will be available on your website.
+
+Consider the website project in @fig-website-dir.
+The project root is `my-website/`: the top-level directory, defined by the presence of `_quarto.yml`.
+To the right of each file, you'll see the URL at which the file will be available.
+
+::: {#fig-website-dir}
+```{.dir-str}
+my-website/  
+├── _quarto.yml
+├── index.qmd             { base }
+├── about.qmd             { base }/about.html         
+├── reports/                       
+|    ├── index.qmd        { base }/reports            
+|    └── last-month.qmd   { base }/reports/last-month.html                        
+└── data/                         
+    └── sales.csv         { base }/data/sales.csv   
+```
+
+File paths from your project root directly translate to URL paths from your base URL.
+:::
+
+We use the placeholder `{ base }` to represent the base URL of your website.
+When you are previewing locally that will be something like `http://localhost:3884`, where the number `3884` may be something else.
+When you publish your website, the base URL will depend on where you host it. For GitHub Pages it might look something like `https://username.github.io/repository-name`, and on Quarto Pub something like `https://username.quarto.pub/project-name`, or you might even have a custom domain `https://yourdomain.com`.
+
+Consider the file `about.qmd` at the top level of your website project.
+It will be available at `about.html` at the top level of your website.
+If you place `last-month.qmd` inside a `reports/` folder in your website project, it will available at `reports/last-month.html` on your website.
+
+Index files are special --- the `index.qmd` in any directory becomes the landing page for that directory.
+So, for example `reports/index.qmd` defines the page seen by someone navigating to `{ base }/reports` or `{ base }/reports/`.
+
+Files don't have to be Quarto documents.
+The CSV file `data/sales.csv` will be available at `{ base }/data/sales.csv`.
+However, only rendered Quarto documents or files that Quarto deems to be necessary are copied into `_site/`.
+This means the presence of `data/sales.csv` isn't enough for it to be included in the website.
+It either needs to be referenced in a way Quarto will detect, e.g., linked to from another page (see @sec-websites-links), or be included in the site resources (see @sec-websites-resources).
+
+Later in this section you'll learn two ways to disrupt this direct correspondence between project paths and URL paths.
+You'll see how to:
+
+-   Exclude or ignore project files, so they aren't part of the website.
+
+-   Provide alias URLs, so that visitors are redirected from a URL to a document at a different path.
+
+### Links {#sec-websites-links}
+
+A key feature of webpages is the interlinking of pages.
+@tbl-link-syntax summarizes what you'll learn in this section---how to make in-text links.
+You'll learn how to add navigation links, another key kind of link, in @sec-websites-navigation.
+
+
+| Type | Syntax | Result |
+|:----|:----|:----|
+| Relative link to another page | `[About](about.qmd)` | A link to `about.qmd` in the same directory |
+| Absolute link to another page | `[About](/about.qmd)` | A link to `about.qmd` in the project root |
+| Link to a section on this page | `[Data](#data)` | A link to the anchor `#data` on the current page |
+| Link to a section on another page | `[Contact Me](/about.qmd#contact)` | A link to the anchor `#contact` on the `about.qmd` page in the project root |
+| External link | `[Quarto](http://quarto.org)` | A link to the website `http://quarto.org` |
+| Link with attributes | `[Quarto](http://quarto.org){.external target="_blank"}` | A link to the website `quarto.org` with the class `.external` that opens in a new window or tab. |
+| Cross-References (**only within pages**)  | `@fig-dist` | A link to the figure, along with a preview on hover. |
+
+: In-text link syntax {#tbl-link-syntax tbl-colwidths="[30, 30, 40]"}
+
+#### Linking to pages
+
+You create a link using the usual markdown syntax, but you can refer to other Quarto documents in your website project.
+For example, from `index.qmd` you might link to the page `about.qmd`:
+
+``` {.markdown filename="index.qmd"}
+[About](about.qmd)
+```
+
+This is an example of a relative link—it uses the path relevant to the document in which it is located.
+In this case, the result is a link to `about.html` located at the same level in `_site/` as `index.html`.
+
+Notice that the link used the extension `.qmd`.
+Quarto handles the translation so that the link in the rendered `index.html` will point correctly at `about.html`.
+One advantage of using `.qmd` is that Quarto will complain if it can't find the document at the path you specified.
+
+In addition to relative links you can use absolute links.
+Absolute links start with slash (`/`) and are relative to the project root.
+It's particularly important to use absolute links in content that may be reused via an `include` shortcode at various levels in your site.
+
+#### Linking to sections or IDs
+
+You can link to a specific location within a page using the fragment identifier, a hash (`#`) followed by an identifier.
+In Quarto, all section headers are given identifiers automatically which makes it easy to link directly to a section.
+
+As example, you could link to the "Data" section using the link `#data`:
+
+````{.markdown filename="index.qmd"}
+## Introduction
+
+See [Data](#data)
+
+## Data
+
+````
+
+Quarto will generate an identifier by converting to lower case and replacing spaces with dashes (`-`), then adding a numeral it the anchor would otherwise be non-unique.
+Rather than remember the rules, it can be easier to specify your own.
+Place your identifier prefaced by `#` in curly braces after the section title:
+
+````{.markdown filename="index.qmd"}
+## Introduction {#intro}
+
+See [Data](#data)
+
+## Data
+
+Back in the [introduction](#intro)
+
+````
+
+You can link to identifiers on other pages, too, 
+by adding them to the document path.
+For instance, to link to the Introduction section in `index.qmd` from `about.qmd`:
+
+````{.markdown filename="about.qmd"}
+Read more in our [Introduction](index.qmd#intro)
+````
+
+There are a lot of elements beyond sections that get identifiers automatically in Quarto.
+You can find the identifier of an element by looking for an `id` in the element in the rendered HTML (usually using something like your web browser development tools).
+Or, you can provide your own.
+For example, for any element created with a fenced div, add an identifier to the curly braces:
+
+````markdown
+:::{#my-callout .callout-tip}
+
+Here's a callout I can link to with `#my-callout`.
+
+:::
+````
+
+Or for elements that are created inline add a anchor in the curly braces following the element.
+For example, to an image:
+````markdown
+![Caption](image.png){#my-figure}
+````
+
+You might recognize that this is very similar to adding a cross-reference,
+except we didn't start the identifier with one of the [recognized cross-reference prefixes](https://quarto.org/docs/authoring/cross-references.html#reserved-prefixes).
+
+#### External Links
+
+To link to external websites, use the full URL, including the `.html` extension and fragment if applicable:
+
+```{.markdown}
+[Quarto website links](https://quarto.org/docs/websites/#linking)
+```
+
+You can add the class `.external` to give a visual indication that a link will leave your site:
+
+```{.markdown}
+[Quarto website links](https://quarto.org/docs/websites/#linking){.external}
+```
+
+You can additionally supply other attributes to include in the link in the curly braces.
+For example you might add `target="_blank"` to open the link in a new tab or window:
+
+```{.markdown}
+[Quarto website links](https://quarto.org/docs/websites/#linking){.external target="_blank"}
+```
+
+You can learn more about [external links in the Quarto documentation](https://quarto.org/docs/output-formats/html-basics.html#external-links).
+
+### Cross-references
+
+[Cross-references](authoring.qmd#cross-references) will work within pages in a Quarto website, but will not work across pages.
+That is, you cannot reference with the `@` syntax an element defined in a different document.
+
+To link to a cross-reference on another page, you could use a link:
+
+```{.markdown}
+Recall from the [histogram of the data](explore.qmd#fig-dist)...
+```
+
+If you must have across page cross-references, consider using a `book` project instead, see @sec-books.
+
+### Aliases
+
+Aliases are alternative URLs that point to the same page.
+Typically, you use aliases when you move content so that is it still available from an old URL.
+
+For example, if you move a page from `/blog/first-post.qmd` to `/blog/first-post/index.qmd`, you can set up an alias so visitors using the old URL are automatically redirected to the new location:
+
+``` {.yaml filename="/blog/first-post/index.qmd"}
+---
+title: My Post
+aliases:
+  - /blog/first-post.html
+---
+```
+
+### Excluding content from your website
+
+The easiest way to exclude a file from your website is to name it with an underscore, or place it in a folder that starts with an `_`.
+For instance, if you are keeping a list of to do in `todo.md` you don't want them rendered as part of your website, you could put them in a `_notes/` folder:
+
+```{.dir-str}
+my-website/  
+├── _notes
+|   └── todo.md
+└── index.qmd
+```
+
+An alternative approach is to use the project option `render` which specifies the files that should be rendered.
+The `render` option takes a sequence of files you *do* want to render:
+
+``` {.yaml filename="_quarto.yml"}
+project:
+  type: website
+  render: 
+    - index.qmd
+```
+
+To exclude files, start by specifying everything you want to render, then ignore the ones you want to exclude using the `!`:
+
+``` {.yaml filename="_quarto.yml"}
+project:
+  type: website
+  render: 
+    - "*.qmd"
+    - "!ignore-dir/"
+    - "!ignore-doc.qmd"
+```
+
+### Including content in your website {#sec-websites-resources}
+
+When you reference a file in your content (like including an image or linking to a document), Quarto will copy the file to `_site/`.
+
+But, if Quarto fails to detect your file, or you want to include a file you don't reference can explicitly include files using the `resources` project option.
+For example, you could include all Excel (`.xlsx`):
+
+``` yaml
+project:
+  type: website
+  resources: 
+    - "*.xlsx"
+```
+
+## Navigation {#sec-websites-navigation}
+
+The primary navigation in a Quarto website is provided by a top or side navigation bar.
+@fig-primary-nav-render gives an example of each with a single navigation link to the page generated by the file `about.qmd`.
+Both top and side navigation include the website `title`, "My website", which links to `index.html`, 
+then a link to `about.html`, where the text for the link comes from the metadata of the `about.qmd` page.
+
+
+::: {#fig-primary-nav-render layout-ncol=2}
+
+![Top navigation](images/website-navbar.png){fig-alt="Screenshot of a webpage with a blue bar at the top of the page highlighted. The bar includes the title 'My website' and a link to 'About', in a horizontal layout."}
+
+![Side navigation](images/website-sidebar.png){fig-alt="Screenshot of a webpage with the left side bar highlighted. The bar includes the title 'My website' and a link to 'About', in a vertical layout."}
+
+Rendered navigation with a single navigation item linking to the page `about.qmd`.
+
+:::
+
+Top and side navigation bars are configured in `_quarto.yml`.
+@fig-primary-navigation gives the configuration for the two examples in @fig-primary-nav-render:
+
+- Top navigation is specified under `navbar`, with navigation items listed under `left` (or `right`).
+- Side navigation is specified under `sidebar`, with navigation items listed under `contents`. 
+
+::: {#fig-primary-navigation layout-ncol="2"}
+
+::::: {}
+```{.yaml filename="_quarto.yml"}
+website:
+  title: My website
+  navbar:
+    left:
+      - about.qmd
+```
+
+Top navigation
+
+:::::
+
+::::: {}
+```{.yaml filename="_quarto.yml"}
+website:
+  title: My website
+  sidebar:
+    contents:
+      - about.qmd
+```
+
+Side navigation
+
+:::::
+
+Configuration for navigation with a single navigation item linking to the page `about.qmd`.
+
+:::
+
+::: {.callout-tip}
+
+## Navigation collapses on small screens
+
+Both the top navigation bar and side navigation bar collapse into a dropdown menu on small screens.
+If you are previewing your website in a small window (e.g. the Viewer in RStudio or Positron), you might need to expand the window to see the navigation as displayed in @fig-primary-nav-render.
+
+:::
+
+Top and side navigation share many features, you can:
+
+* control the title displayed in the navbar with `title`,
+* include a `logo`, along with setting alternative text (`logo-alt`) and a link (`logo-href`), in the navigation,
+* include icon-only navigation items under `tools`, and
+* include a site `search` box.
+
+One of primary differences between top and side navigation is how deeply you can nest navigational items. 
+Top navigation limits you to one-level of nesting via drop down menus.
+With side navigation you can nest deeply using sections to create a hierarchy of navigation items. 
+
+Top navigation is a good choice when you have a small set of links, each with succinct link text.
+When you expect users to take a linear path through your site consider side navigation. 
+Side navigation also has the advantage of more easily handling longer link text, and a deeper hierarchy of content.
+
+More complicated sites might benefit from what is known as **hybrid navigation** (@sec-hybrid), a combination of top and sidebar navigation, where the links in the top navigation direct users to sections of the site which each have their own side navigation. 
+
+In the rest of this section, you'll learn how to specify navigation items more flexibly and then see some more comprehensive examples of top and side navigation. 
+The section ends with a quick survey of navigation elements you can add beyond primary navigation.
+
+### Navigation items {#sec-websites-navitems}
+
+Navigation items can simply be a path to another document in the website project (e.g. `about.qmd`), 
+or you can provide a navigation item object.
+
+A navigation object must at least contain the property `href`, which may be a path to a file in your website project (relative to your project root), or a URL to an external site.
+The other most common properties are `text`, the text used for the link, and `icon` the name of a [Bootstrap Icon](https://icons.getbootstrap.com) to add to the link:
+
+```{.yaml filename="_quarto.yml"}
+website:
+  title: My website
+  navbar:
+    left:
+      - href: about.qmd
+        text: About Us
+        icon: file-person
+```
+
+The full set of navigation item properties are shown in @tbl-nav-item.
+
+| Option       | Description                                                                                                                                  |
+|:-------------|:---------------------------------------------------------------------------------------------------------------------------------------------|
+| `href`       | Link to file contained with the project or external URL.                                                                                     |
+| `text`       | Text to display for navigation item (defaults to the document `title` if not provided).                                                      |
+| `icon`       | Name of one of the standard [Bootstrap 5 icons](https://icons.getbootstrap.com/) (e.g., `github`, `house`, `share`, etc.).                   |
+| `aria-label` | [Accessible label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) for the navigation item.           |
+| `rel`        | Value for [rel](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/rel) attribute. Multiple space-separated values are permitted.  |
+| `target`     | Value for [target](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#target) attribute. E.g., `_blank` to open in a new tab.       |
+| `menu`       | List of navigation items to populate a drop-down menu.                                                                                       |
+
+: Properties of navigation items. Source: [Quarto documentation](https://quarto.org/docs/reference/projects/websites.html#nav-items) {#tbl-nav-item}
+
+### Top Navigation {#sec-navbar}
+
+@fig-navbar-simple illustrates a top navigation bar that includes a logo, title, search box, and navigation links arranged on the left, right and as tools.
+
+![The components of a top navigation bar (`navbar`)](images/website-navbar-simple.png){#fig-navbar-simple fig-alt="A navigation bar with elements called out with arrows: the `logo` is on the far left followed by the `title`, 'Drake Lab', then the `left` item, 'Blog'. On the right are, the `right` links 'Projects' and 'People', followed by the `tools`, a GitHub icon, then a `search` box."}
+
+The configuration to create this navigation is shown in @lst-navbar-simple.
+
+:::{#lst-navbar-simple}
+```{.yaml filename="_quarto.yml"}
+{{< include _examples/websites/nav/_quarto-navbar-simple.yml >}}
+```
+
+The configuration for the navigation bar in @fig-navbar-simple
+:::
+
+This example demonstrates the options to `navbar` that control the *contents* of the navigation bar.
+These options are described further in @tbl-navbar-content.
+
+| Option  | Description |
+|:--------|:------------|
+|`left`/`right`| Arrays of navigation items (@sec-websites-navitems) that are arranged in the bar on the left and right respectively.  |
+|`tools`| An array of navigation items displayed only using their `icon`s, positioned to the right of the `right` links. |
+|`title`| If `title` is unspecified under `navbar`, which it is in @lst-navbar-simple, it will inherit from the `title` field under `website`. You can specify `title` explicitly under `navbar` if you want different title text, or set `title: false` under `navbar` to omit it (e.g. you might if your logo contains the same text). |
+|`logo`| An image (`.svg`, `.png`, `.jpg` etc.) to include on the left of the navigation bar. Set `logo-alt` to specify the alternative text for the logo. Set `logo-href` if you want the logo to link to somewhere other than `index.html`. |
+| `search`| By default a search box will be shown in the navigation bar. You can omit the search box by setting `search: false`. To control the search options, use the `search` option at the `website` level, see [Website Search in the Quarto Documentation](https://quarto.org/docs/websites/website-search.html) for more details. |
+
+: Content options for `navbar` {#tbl-navbar-content}
+
+There are additional options to `navbar` that control its *behavior*, the are described in  @tbl-navbar-options.
+There are also `background` and `foreground` options to control the colors in the navigation bar, 
+but unless these are the only color customizations you'll do,
+we recommend using the methods outlined in @sec-websites-theme instead.
+
+
+
+| Option           | Description |
+|:-----------------|:------------|
+| `pinned`         | Always show the navbar (true or false). Defaults to false, and uses [headroom.js](https://wicky.nillia.ms/headroom.js/) to automatically show the navbar when the user scrolls up on the page.                              |
+| `collapse`       | Collapse the navbar items into a hamburger menu when the display gets narrow (defaults to true).                                                                                                                            |
+| `collapse-below` | Responsive breakpoint at which to collapse navbar items to a hamburger menu (`sm`, `md`, `lg`, `xl`, or `xxl`, defaults to `lg`).                                                                                           |
+| `toggle-position`| The position of the collapsed navbar hamburger menu when in responsive mode (`left` or `right`, defaults to `left`).                                                                                                        |
+| `tools-collapse` | Collapse tools into the navbar menu when the display becomes narrow.                                                                                                                                                        |
+
+: Behavior options for `navbar` {#tbl-navbar-options}
+
+
+#### Nested navigation items
+
+Top navigation bars allow you to nest navigation items by using a dropdown menu.
+In @fig-navbar-nested the "People" navigation item, is now a dropdown menu that features links to Staff and Students.
+
+![Nested items in `navbar` using a dropdown menu](images/website-navbar-nested.png){#fig-navbar-nested fig-alt="Screenshot of a navigation bar with an item with the text 'People' which is expanded into a dropdown menu with the items 'Staff' and 'Students'." width="30%"}
+
+To create a dropdown menu, create a navigation item that has a `menu` property.
+In the `menu` property list the dropdown options as navigation items:
+
+```{.yaml filename="_quarto.yml"}
+{{< include _examples/websites/nav/_quarto-navbar-nested.yml >}}
+```
+
+#### Omitting navigation
+
+If you specify a top navigation bar, it will be included on all pages in your site.
+To omit the navigation bar from a specific page set `navbar: false` in the document header:
+
+```{.yaml filename="dashboard.qmd"}
+---
+title: Dashboard
+format: dashboard
+navbar: false
+---
+```
+
+### Side Navigation {#sec-sidebar}
+
+@fig-sidebar-simple illustrates a side navigation bar that includes a logo, search box, and navigation links arranged as contents and tools.
+
+![Components of a side navigation bar (`sidebar`)](images/website-sidebar-simple.png){#fig-sidebar-simple fig-alt="Screenshot of a side navigation bar with the components highlighted: a `logo` is at the top, with an empty `title` next to it, and `tools`, and GitHub icon, next to the `title`. Below this is a `search` box. Below the search box is the `contents`, three links to 'Blog', 'Projects' and 'People'." width="50%"}
+
+The configuration to create this navigation is shown in @lst-sidebar-simple.
+
+:::{#lst-sidebar-simple}
+```{.yaml filename="_quarto.yml"}
+{{< include _examples/websites/nav/_quarto-sidebar-simple.yml >}}
+```
+
+The configuration for the navigation bar in @fig-sidebar-simple
+:::
+
+This example demonstrates the options to `sidebar` that control the *contents* of the navigation bar.
+These options are described further in @tbl-sidebar-content.
+
+| Option | Description |
+|:-------|:------------|
+| `contents`       | Array of navigation items (@sec-websites-navitems). Create nested items using `section` (@sec-website-sidebar-section).  |
+| `tools`          | An array of navigation items displayed only using their icons, positioned at the top of the sidebar after the `logo` and/or `title`. | 
+| `title`          | If `title` is unspecified under `sidebar` it will inherit from the `title` field under `website`. You can specify `title` explicitly under `sidebar` if you want different title text, or set `title: false` under `sidebar` to omit it (e.g. you might if your logo contains the same text). Omitted from the sidebar if a `logo` is specified, as it is in @lst-sidebar-simple. |
+|`logo`| An image (`.svg`, `.png`, `.jpg` etc.) to include at the top of the navigation bar. Set `logo-alt` to specify the alternative text for the logo. Set `logo-href` if you want the logo to link to somewhere other than `index.html`. |                                                                             |
+| `search`         | Include a search box (`true` or `false`). If there is already a search box on the top navigation bar it won't be displayed on the sidebar.  |
+
+: Contents options for `sidebar` {#tbl-sidebar-content}
+
+There are additional options to `sidebar` that control its *behavior* and *appearance* described in  @tbl-sidebar-options.
+There are also `background` and `foreground` options to control the colors in the navigation bar, 
+but unless these are the only color customizations you'll do,
+we recommend using the methods outlined in @sec-websites-theme instead.
+
+| Option | Description |
+|:-------|:------------|
+| `style`          | `floating`, the default, places the sidebar close to the main body text without a distinct background. `docked` places the sidebar near the left hand side of the page and uses a distinct background color.  |
+| `type`           | `dark` or `light` (hint to make sure the text color is the inverse of the background).  |
+| `border`         | Whether to show a border on the sidebar. `true` or `false`.  |
+| `alignment`      | Alignment (`left`, `right`, or `center`).      |
+| `collapse-level` | Whether to show sidebar navigation collapsed by default. The default is `2`, which shows the top and next level fully expanded (but leaves the 3rd and subsequent levels collapsed).                                                                                 |
+| `pinned`         | Always show a title bar that expands to show the sidebar at narrower screen widths (`true` or `false`). Defaults to `false`, and uses [headroom.js](https://wicky.nillia.ms/headroom.js/) to automatically show the navigation bar when the user scrolls up on the page. |
+
+: Behavior and appearance options for `sidebar` {#tbl-sidebar-options}
+
+#### Nested navigation {#sec-website-sidebar-section}
+
+Side navigation bars allow you create nested navigation with expandable **sections**. 
+@fig-sidebar-nested gives an example where the "Projects" item from @fig-sidebar-simple is now a section that contains two links: "Current" and "Past".
+
+::: {layout-ncol="2"}
+
+![Nested navigation in `sidebar` using a section](images/website-sidebar-nested.png){#fig-sidebar-nested fig-alt="Screenshot of a side navigation bar with an item with the text 'Projects' which is expanded with indented items 'Current' and 'Past'."}
+
+:::::{#lst-sidebar-nested}
+```{.yaml filename="_quarto.yml"}
+{{< include _examples/websites/nav/_quarto-sidebar-nested.yml >}}
+```
+
+Configuration for a sidebar with nested navigation
+
+:::::
+:::
+
+To create a section, add an item to `contents` that has a `section` and `contents` property (@lst-sidebar-nested).
+
+The `contents` inside a `section` can contain navigation items, or more sections, allowing you to create deeply nested navigation (
+ @lst-sidebar-deeply-nested, @fig-sidebar-deeply-nested).
+
+
+::: {layout-ncol="2"}
+
+![Nested navigation in `sidebar` using a section](images/website-sidebar-deeply-nested.png){#fig-sidebar-deeply-nested fig-alt="Screenshot of a side navigation bar with items 'Air Quality' and 'Wastewater' nested under an item 'Current' which itself is nested under 'Projects'."}
+
+
+::: {#lst-sidebar-deeply-nested}
+```{.yaml filename="_quarto.yml"}
+{{< include _examples/websites/nav/_quarto-sidebar-deeply-nested.yml >}}
+```
+
+A sidebar configuration that has three levels in the navigation hierarchy.
+:::
+
+:::
+
+#### Automatic side navigation
+
+Rather than specifying navigation items, you can get Quarto to build your navigation items automatically from the content of your website project.
+To build a navigation menu based on the complete contents of your project set `contents` to `auto` at the top-level of `sidebar`:
+
+```{.yaml filename="_quarto.yml"}
+website:
+  sidebar:
+    contents: auto
+```
+
+The generated navigation will include items for all the Quarto documents in your project, and respect your project's structure by nesting your documents in sections that follow your folder's names.
+For example, a website the structure shown in @fig-sidebar-project generates the side navigation bar shown in @fig-sidebar-auto.
+
+::: {layout-ncol="2"}
+
+::: {#fig-sidebar-project}
+```{.dir-str}
+├── _quarto.yml
+├── blog.qmd
+├── index.qmd
+├── people
+│   ├── faculty.qmd
+│   └── students.qmd
+└── projects
+    ├── current
+    │   ├── air-quality.qmd
+    │   └── wastewater.qmd
+    └── past
+        └── index.qmd
+```
+
+The file and folder structure for the website that generates the automatic side navigation menu shown in @fig-sidebar-auto
+
+:::
+
+![Automatically generated side navigation bar for the project shown in @fig-sidebar-project](images/website-sidebar-auto.png){#fig-sidebar-auto fig-alt="A sidebar with links to: Blog; Faculty and Students nested under People; Past and Current nested under Projects; and Air Quality and Wastewater Monitoring nested under Current."}
+
+:::
+
+
+You can also generate *parts* of your navigation automatically, by specifying a directory name or glob pattern. 
+See the [Quarto documentation on Auto Generation](https://quarto.org/docs/websites/website-navigation.html#auto-generation) for more examples.
+
+#### Omitting navigation 
+
+If you only specify a single sidebar under `sidebar`, 
+and it has no explicit `title` or `id`, it will appear on every page.
+You can omit it from a particular page in the document header:
+
+```{.yaml filename="dashboard.qmd" }
+---
+title: Dashboard
+format: dashboard
+sidebar: false
+---
+```
+
+#### Controlling side navigation by page
+
+You can specify multiple side navigation bars by passing `sidebar` an array, 
+allowing you to have different side navigation on different pages.
+When `sidebar` is an array, the element that is displayed on a page
+will be (in order of precedence):
+
+-   The sidebar `id` specified with `sidebar` in the document header:
+    
+    ```{.yaml filename="page.qmd"}
+    ---
+    sidebar: main
+    ---
+    ```
+
+-    The sidebar in which a link to the document is a navigation item. 
+
+-    No sidebar at all.
+
+
+For example, consider the following side navigation configuration:
+
+```{.yaml filename="_quarto.yml"}
+{{< include _examples/websites/sidebar-array/_quarto-sidebar.yml >}}
+```
+
+The pages `project-1.qmd` and `project-2.qmd` will get the `research` sidebar containing links to each other.
+Similarly, `course-1.qmd` and `course-2.qmd` will get the `teaching` sidebar containing links to each other.
+The home page (`index.qmd`), about page (`about.qmd`), will get the `main`sidebar.
+
+Any other page in the site will get no sidebar, unless they explicitly set one in their header.
+For example, you might have another course page, `course-3.qmd`,  you want to also have the `teaching` sidebar:
+
+```{.yaml filename="course-3.qmd"}
+---
+sidebar: teaching
+---
+```
+
+### Hybrid navigation {#sec-hybrid}
+
+Hybrid navigation \index{hybrid navigation} combines a top navigation bar with multiple side navigation bars. 
+Links in the top bar, take users to a section of the website with its own side navigation.
+
+For example, the Quarto documentation site uses hybrid navigation to separate the documentation into, for instance, Guide and Reference (@fig-hybrid-example).
+Pages in the Guide share a sidebar, but that sidebar is different to that shared by pages in the Reference. 
+Users navigate to the Guide or Reference using the top navigation bar.
+
+::: {#fig-hybrid-example}
+
+:::{}
+![Page in the Guide](images/website-hybrid-guide.png){fig-alt="A screenshot of a page in the Guide. A box highlights the Guide item in the top navigation bar and the sidebar navigation that is titled Guide."}
+
+![Page in the Reference](images/website-hybrid-reference.png){fig-alt="A screenshot of a page in the Reference. A box highlights the Reference item in the top navigation bar and the sidebar navigation that is titled Reference."}
+:::
+
+Hybrid navigation on the Quarto documentation site. Guide pages share sidebar navigation, which is different to the sidebar on Reference pages.
+
+:::
+
+To implement hybrid navigation you combine a `navbar` with an array of `sidebar`s, linking the `text` of `navbar` items to the `title` of the `sidebar` items.
+
+For example, you might have a `navbar` that links to Teaching and Research sections:
+
+```{.yaml filename="_quarto.yml"}
+website:
+  title: Drake Lab
+  navbar:
+    left:
+      - text: Research           
+        href: research.qmd          
+      - text: Teaching
+        href: teaching.qmd
+```
+
+For each section to have its own sidebar, `sidebar` should be an array (i.e. elements prefaced with `-`), and the `title` of each item should match the `text` from an item in the `navbar`:
+
+```{.yaml filename="_quarto.yml"}
+website:
+  title: Drake Lab
+  navbar:
+    left:
+      - text: Research            
+        href: research.qmd          
+      - text: Teaching
+        href: teaching.qmd
+  sidebar:
+    - title: Research               
+      contents:
+        - research.qmd
+        - project-1.qmd
+        - project-2.qmd 
+    - title: Teaching
+      contents: 
+        - teaching.qmd
+        - course-1.qmd
+        - course-2.qmd
+ ```
+
+### Other navigation elements
+
+@tbl-nav-elements summarizes other navigation elements beyond the top bar and side bar.
+We've included `sidebar` and `navbar` for completeness.
+
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| Element                                                                                            |                                                                                                                                                                                        | Option                                                                               |
++:===================================================================================================+:=======================================================================================================================================================================================+:=====================================================================================+
+| [Top navigation](https://quarto.org/docs/websites/website-navigation.html#top-navigation)\         | ![](images/website-navbar-highlight.png){fig-alt="Screenshot of webpage with the bar along top that includes a logo, title, and navigation links is highlighted."}                     | `navbar`:                                                                            |
+| Navigation bar that appears at top of page\                                                        |                                                                                                                                                                                        |                                                                                      |
+| See @sec-navbar                                                                                    |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   disable for a page in document header                                            |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [Side navigation](https://quarto.org/docs/websites/website-navigation.html#side-navigation)\       | ![](images/website-sidebar-highlight.png){fig-alt="Screenshot of webpage with navigation bar on the right of the page highlighted."}                                                   | `sidebar`:                                                                           |
+| Navigation bar that appears on the left side of page\                                              |                                                                                                                                                                                        |                                                                                      |
+| See @sec-sidebar                                                                                   |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   disable for a page in document header                                            |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [Search](https://quarto.org/docs/websites/website-search.html)\                                    | ![](images/website-search.jpeg){fig-alt="Screenshot of webpage with search icon in top navigation bar highlighted"}                                                                    | `search`:                                                                            |
+| Search box that appears in top or side navigation                                                  |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   set options under `website` in `_quarto.yml`                                     |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   enable/disable under `navbar` or `sidebar`, nested in `website` in `_quarto.yml` |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [Breadcrumbs](https://quarto.org/docs/websites/website-navigation.html#breadcrumbs)\               | ![](images/website-breadcrumbs.jpeg){fig-alt="Screenshot of webpage with 'Guide > Websites > Website Navigation' highlighted above the page title 'Website Navigation'."}              | `breadcrumbs`:                                                                       |
+| Links above page title that indicate location in sidebar hierarchy                                 |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [Back to top](https://quarto.org/docs/websites/website-navigation.html#back-to-top)\               | ![](images/website-back-to-top.jpeg){fig-alt="Screenshot of a webpage with a button 'Back to Top' highlighted at the bottom of the page,"}                                             | `back-to-top-navigation`:                                                            |
+| Link at the bottom of page to return to the top of the page                                        |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [Page footer](https://quarto.org/docs/websites/website-navigation.html#page-footer)\               | ![](images/website-footer.jpeg){fig-alt="Screenshot of a webpage with the footer at the bottom of the page."}                                                                          | `page-footer` under `website` in `_quarto.yml`                                       |
+| Content to put in footer on all pages                                                              |                                                                                                                                                                                        |                                                                                      |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [Page navigation](https://quarto.org/docs/websites/website-navigation.html#page-navigation)\       | ![](images/website-page-navigation.jpeg){fig-alt="Screenshot of a webpage with links to the next and previous page at the bottom of the page highlighted."}                            | `page-navigation`:                                                                   |
+| Links at the bottom of page to previous and next page (as defined in sidebar)                      |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [Table of contents](https://quarto.org/docs/output-formats/html-basics.html#table-of-contents)\    | ![](images/website-toc-highlight.png){fig-alt="Screenshot of a webpage with a table of contents listing sections on the current page positioned on the right of the page highighted."} | `toc`,`toc-depth`, `toc-expand`, `toc-title`, `toc-location`:                        |
+| A table of contents to navigate sections within a page, usually shown on right                     |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   `_quarto.yml` (under `format:html` or at top-level)                              |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [GitHub links](https://quarto.org/docs/websites/website-navigation.html#github-links)\             | ![](images/website-github-links.png){fig-alt="Screenshot of a webpage with links to 'Edit this page' and 'Report an Issue' highlighted below the table of contents."}                  | `repo-url` and `repo-actions` under `website` in `_quarto.yml`                       |
+| Links to Github for the page source, to edit the page source, or open an issue.                    |                                                                                                                                                                                        |                                                                                      |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [Other formats](https://quarto.org/docs/output-formats/html-multi-format.html)\                    | ![](images/website-other-formats.jpeg){fig-alt="Screenshot of a webpage with links under an 'Other Formats' label beneath the table of contents highlighted."}                         | `format`:                                                                            |
+| Links to other formats shown below table of contents                                               |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   in `_quarto.yml`                                                                 |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | `format-links`:                                                                      |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   in `_quarto.yml`                                                                 |
+|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
+|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+| [Other links](https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links)\ | ![](images/website-other-links.jpeg){fig-alt="Screenshot of a webpage with links under an 'Other Links' and 'Code Links' label beneath the table of contents highlighted."}            | `code-links`, `other-links`, usually, in document header.                            |
+| Links listed below table of contents in the "Code Links" or "Other Links" sections                 |                                                                                                                                                                                        |                                                                                      |
++----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+
+: Website navigation elements {#tbl-nav-elements tbl-colwidths="[30, 40, 30]"}
+
+
+## Website theming {#sec-websites-theme}
+
+We use the term **theme** \index{theme!website} to describe the visual appearance of your site --- things like colors, borders and typography.
+Because a website is a collection of HTML documents, you control your website theme the same way you control the theme of HTML documents.
+Since you usually want a consistent theme across all your pages, 
+you'll specify these HTML document theme options globally in `_quarto.yml`.
+
+The easiest option is to use a built-in theme. 
+If that doesn't give you enough customization try **brand.yml**.
+And finally, if you need even more control provide your own CSS or SCSS file.
+
+### Built-in themes
+
+In the HTML format the `theme` option controls theming for individual pages.
+To set a theme for your website, apply one of the built-in themes to every document by setting `theme` in `_quarto.yml`:
+
+``` {.yaml filename="_quarto.yml"}
+{{< include _examples/websites/theme/_quarto-theme.yml >}}
+```
+
+The built-in themes for Quarto come from [Bootswatch](https://bootswatch.com) --- which is the best place to see what they look like.
+
+#### Dark mode
+
+You can specify the properties `light` and `dark` to `theme` to add a light/dark toggle (Figure @fig-website-theme-dark):
+
+``` {.yaml filename="_quarto.yml"}
+{{< include _examples/websites/theme/_quarto-dark.yml >}}
+```
+
+The property you list first (`light` or `dark`) will be the default for the page. 
+Viewers can then switch themes via a toggle in the navigation bar.
+
+::: {.callout-tip}
+
+## Choose `light` and `dark` themes that are similar except for color
+
+It's a good idea to choose themes that are as similar as possible in fonts, padding and other visual elements.
+This ensures minimal visual disruption as people toggle themes. 
+Another option to maintain visual consistency, is to use a single theme, but apply a light and dark brand (see @sec-brand-theme).
+
+:::
+
+
+::: {#fig-website-theme-dark}
+
+![`lux` used as the light theme](images/website-theme-light.png){fig-alt="Screenshot of webpage with a black navbar, white main body and dark text."}
+
+![`cyborg` used as the dark theme](images/website-theme-dark.png){fig-alt="Screenshot of website with a dark grey navbar, black body and white text."}
+
+A website with built-in themes applied to `light` and `dark`
+
+:::
+
+### **brand.yml**
+
+If you want a custom set of colors and fonts, the easiest approach is through **brand.yml**.
+Add a `_brand.yml` file at the root of your website (i.e. alongside `_quarto.yml`), and it will apply to all pages.
+
+In particular, the most salient colors on a website are controlled by the `color` variables `background`, `foreground`, and `primary`:
+
+```{.yaml filename="_brand.yml"}
+{{< include _examples/websites/brand/_brand.yml >}}
+```
+
+![Using `brand` to set `background`, `foreground` and `primary`](images/website-theme-brand.png){#fig-brand fig-alt="Screenshot of a website with a purple navbar, dark background and light text."}
+
+As you can see in @fig-brand `primary` is used in the top navigation bar and for links.
+In this example, `primary` doesn't have great contrast with the `background` for text.
+You can set explicit link text color with the `link` option to `typography`:
+
+```{.yaml filename="_brand.yml"}
+{{< include _examples/websites/brand-links/_brand-link-only.yml >}}
+```
+
+![Specifying a `link` color in addition to `background`, `foreground` and `primary`](images/website-theme-link-only.png){#fig-brand-link fig-alt="Screenshot of a website with a purple navbar, dark background, light text, and light purple links."}
+
+@fig-brand-link illustrates a much better contrast between the link and body background.
+
+As soon as you start having a few colors, you should set a color `palette` to name your colors. 
+This makes it easier to use each color in multiple places:
+
+```{.yaml filename="_brand.yml"}
+{{< include _examples/websites/brand-links/_brand.yml >}}
+```
+
+If you do alter `background`, and your pages include code blocks, you'll generally also want to change the colors used for code with the `typography` settings for `monospace-inline` and `monospace-block` (@fig-brand-code):
+
+```{.yaml filename="_brand.yml"}
+{{< include _examples/websites/brand-code/_brand.yml >}}
+```
+
+![The color of inline code set to light purple, and the background inline code and code blocks set to a lighter version of the main background](images/website-brand-code.png){#fig-brand-code fig-alt="Screenshot of a website where the background of inline code and code blocks is light charcoal and color of inline code is light purple."}
+
+**brand.yml** is particularly nice for customizing fonts because all you need is the name of a Google Font.
+Here's an example setting the main font (`base`), the font used for headings of any level (`headings`), and the font used for code (`monospace`) (@fig-brand-fonts):
+
+```{.yaml filename="_brand.yml"}
+{{< include _examples/websites/brand-fonts/_brand.yml >}}
+```
+
+Swap `source: google` for `source: bunny` if you'd prefer [Bunny Fonts](https://fonts.bunny.net)---a GDPR compliant alternative to Google Fonts.
+
+![Specifying Google Fonts for headings, body text and code](images/website-theme-fonts.png){#fig-brand-fonts fig-alt="Screenshot of webpage with a chunky rounded font for headings, a thin narrow font for the main text, and a rounded monospace font for code."}
+
+You can also specify `logo` in **brand.yml** as an alternative way to include a logo in top or side navigation. 
+However, if you aren't using **brand.yml** across projects, or formats, it may be easier to specify it directly in `_quarto.yml` as shown in @sec-websites-navigation.
+
+You can read about all the options available in the [Quarto documentation Guide to using **brand.yml**](https://quarto.org/docs/authoring/brand.html). 
+
+#### Dark mode
+
+To specify a light and dark theme, and add a light/dark toggle to your site, 
+you can specify two brand files in your website configuration:
+
+```{.yaml filename="_quarto.yml"}
+brand:
+  dark: _brand.yml
+  light: _brand-light.yml
+```
+
+Where `_brand.yml` might, as it does above, define a dark mode with a charcoal background and mint text, 
+and `_brand-light.yml`  defines a light mode with a mint background with charcoal text:
+
+```{.yaml filename="_brand-light.yml"}
+{{< include _examples/websites/brand-dark/_brand-light.yml >}}
+```
+
+### Combine **brand.yml** with a built-in theme {#sec-brand-theme}
+
+If you want to borrow some features of a built-in theme but use custom colors, 
+you can layer brand with a theme. 
+For example, you might like the upper-case headings and square corners of the `lux` theme, but you want to use your own colors.
+
+To apply your brand file on top of a built-in theme, you'll need to specify their order in `theme`:
+
+``` {.yaml filename="_quarto.yml"}
+{{< include _examples/websites/brand-links/_quarto-layer.yml >}}
+```
+
+```{.yaml filename="_brand.yml"}
+{{< include _examples/websites/brand-links/_brand.yml >}}
+```
+
+![A brand applied over the `lux` built-in theme](images/website-brand-layer.png){#fig-brand-layer fig-alt="Screenshot of website with purple navbar, dark background, light text and uppercase headings. The primary heading 'Drake Lab' isn't visible."}
+
+Depending on the built-in theme, you may need to be more explicit in your brand file.
+For example, the theme `lux`, explicitly sets a color for headings which doesn't work well with a dark background (@fig-brand-layer). 
+This explicit value wins over the implicit inheritance from `base` in the brand file.
+You can fix it by specifying `headings` explicitly in the brand file (@fig-brand-layer-heading):
+
+```{.yaml filename="_brand.yml"}
+{{< include _examples/websites/brand-links/_brand-with-headings.yml >}}
+```
+
+![Explicitly setting heading color to override `lux`](images/website-brand-layer-headings.png){#fig-brand-layer-heading fig-alt="Screenshot of webpage with purple navbar, dark background, light text and uppercase headings. The primary heading 'Drake Lab' is now visible."}
+
+#### Dark mode
+
+If you have a light and dark brand, you can also layer them with a built-in theme.
+In your website configuration, you'll specify your brand file under the `light` and `dark` properties for `brand`, and their layering with a built-in theme in the `light` and `dark` properties of `theme`:
+
+```{.yaml filename="_quarto.yml"}
+{{< include _examples/websites/brand-dark-theme/_quarto-layer.yml >}}
+```
+
+When you layer `light` and `dark` brands with built-in themes, you'll likely find a number of places the colors don't quite work. 
+In that case, you'll likely need to make some color tweaks with CSS/SCSS.
+
+### Adding CSS or SCSS
+
+CSS and SCSS are languages for specifying how HTML documents should look visually.
+CSS (Cascading Style Sheets) is the older and more verbose language.
+SCSS (a variant of SASS, Syntactically Awesome Style Sheets) is like CSS with superpowers adding things like variables, nested rules, and mixins.
+
+The options for theming you've seen so far, using built-in themes and **brand.yml**, 
+are implemented with SCSS, which is ultimately translated to CSS for a web browser to display.
+Quarto gives you two opportunities to inject your own rules in this process:
+
+1. Adding a CSS file to the rendered document using `css`. 
+
+2. Inserting a SCSS file into Quarto's SCSS layering system with `theme`.
+
+You won't learn the details of CSS or SCSS in this book, but we'll show you a couple of examples of the kinds of customization they allow beyond built-in themes and **brand.yml**.
+
+#### CSS
+
+You can use CSS to apply styling exceptions to specific elements in your HTML document.
+CSS rules consist of a selector that identifies which elements the rule applies to, and a series of declarations that describe the styling to apply to the element.
+
+As an example, this rule applies to first level headings (`h1`) and sets the font color (`color`) to purple (`#d0a8d8`):
+
+```{.css}
+h1 {
+  color: #d0a8d8;
+}
+```
+
+If you save this rule in a file called `styles.css`, you can apply it to your documents using the `css` option:
+
+```{.yaml filename="_quarto.yml"}
+format:
+  html: 
+    css: styles.css
+```
+
+In Quarto HTML documents, the `h1` tag is reserved for the page title, so this has the effect of changing the color of the title, but no other headings.
+
+As another example, a CSS selector can be based on an elements class.
+The website title in the navbar has the class `.navbar-title`, 
+so a CSS rule could change the font of this title:
+
+```{.css}
+.navbar-title {
+  font-family: Chango;
+}
+```
+
+If you've already used the same font in `_brand.yml`, this is enough.
+Otherwise, you'll also need to include CSS to import the font:
+
+```{.css}
+@import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
+
+.navbar-title {
+  font-family: Chango;
+}
+```
+
+#### SCSS
+
+To add SCSS to a Quarto document you need to provide a file split into sections using a special annotation.
+The content of these sections is then spliced into Quarto's SCSS before it gets compiled to CSS.
+Adding your own SCSS allows you to set (or change) variables that affect many parts of the final CSS.
+
+Here, we'll only touch on the two most commonly edited sections: `rules` and `defaults`.
+You can read more in the Quarto documentation on [More about Quarto Themes](https://quarto.org/docs/output-formats/html-themes-more.html).
+
+##### Rules (`rules`)
+
+The `rules` section is the last section and contains CSS rules, but with the added benefit of SCSS features. 
+For example, you could take a CSS rule from above, and instead place it in a SCSS file, 
+along with the *required* annotation `/*-- scss:rules --*/`:
+
+```{.scss filename="styles.scss"}
+/*-- scss:rules --*/
+h1 {
+  color: #d0a8d8;
+}
+```
+
+To insert this SCSS into Quarto's SCSS layering system, you provide the file to the `theme` argument:
+
+```{.yaml filename="_quarto.yml"}
+format:
+  html:
+    theme: styles.scss
+```
+
+One advantage of putting CSS rules in SCSS is you can use variables for values.
+For instance, rather than a hex code for a color, you could refer to a Quarto SCSS variable:
+
+```{.scss filename="styles.scss"}
+/*-- scss:rules --*/
+h1 {
+  color: $brand-light-purple;
+}
+```
+
+Now if you change your definition of `light-purple` in `_brand.yml` you won't need to change it in a CSS file as well. 
+Another advantage is being able to use functions from SASS like `lighten()` and `darken()`:
+
+```{.scss filename="styles.scss"}
+/*-- scss:rules --*/
+h1 {
+  color: darken($brand-mint, 10%);
+}
+```
+
+You can layer your custom SCSS with any other elements you might already have (@fig-scss-rules):
+
+```{.yaml filename="_quarto.yml"}
+format:
+  html:
+    theme: [lux, brand, styles.scss]
+```
+
+![A website the adds a rule via SCSS to set page titles to a darker mint.](images/website-scss-rules.png){#fig-scss-rules fig-alt="Screenshot of a page with a page title that appears in a slightly darker shade of mint than the body text."}
+
+##### Defaults (`defaults`)
+
+The `defaults` section comes earlier than `rules` and is used to set the values of variables.
+You can use it to define your own variables to use later, or more commonly to override Quarto's SCSS variables.
+
+For example, Quarto provides SCSS variables to alter the size of the different heading levels.
+You could shrink the second level headings a little from the default with:
+
+```{.scss filename="styles.scss"}
+/*-- scss:defaults --*/
+$h2-font-size: 1.5em;
+```
+
+All the available SCSS variables are listed in the Quarto documentation under [Sass Variables](https://quarto.org/docs/output-formats/html-themes.html#sass-variables).
+Many of the SCSS variables duplicate the functionality you get via **brand.yml**. 
+For websites, the variables that are most useful are those around navigation. 
+In particular, `navbar-bg`, `navbar-fg`, `navbar-hl`, control the color of the top navigation bar background, text (e.g. foreground), and text on hover, and `sidebar-bg`, `sidebar-fg`, and `sidebar-hl` do the same for the side navigation bar.
+
+As an example, you might want to override **brand.yml** selection of `primary` for the navigation bar (@fig-scss-defaults):
+
+```{.scss filename="styles.scss"}
+/*-- scss:defaults --*/
+$navbar-bg: "#E0EFDE";
+$navbar-fg: "#162627";
+```
+
+![Overriding the navigation bar color set by brand with SCSS](images/website-scss-defaults.png){#fig-scss-defaults fig-alt="Screenshot of page with light mint navigation bar with dark text."}
+
+If you want to refer to your brand colors in the `defaults` section, 
+you'll need to layer your SCSS higher in `theme` so that the brand variables are defined by the point you want to use them.
+For example, to achieve the same result as above, but without re-specifying the hex colors, you could have:
+```{.scss filename="styles.scss"}
+/*-- scss:defaults --*/
+$navbar-bg: $brand-mint;
+$navbar-fg: $brand-charcoal;
+```
+
+However, you need to put `styles.scss` in `theme` first:
+
+```{.yaml filename="_quarto.yml"}
+format:
+  html:
+    theme: [styles.scss, brand]
+```
+
+##### Control SCSS in **brand.yml**
+
+An alternative to a custom SCSS file, is to specify SCSS in the `defaults: bootstrap` section of `_brand.yml`.
+The names of the options to `bootstrap` correspond to the sections in Quarto SCSS files, with the additional convenience that `defaults` can take a mapping of SCSS variables to values.
+
+@fig-brand-vs-scss shows a side-by-side comparison of using **brand.yml** versus a custom SCSS file.
+
+::: {.column-page}
+
+::: {#fig-brand-vs-scss layout-ncol="2"}
+
+```{.scss filename="styles.scss"}
+/*-- scss:defaults --*/
+$navbar-fg: $brand-charcoal;
+$navbar-bg: $brand-mint;
+
+/*-- scss:rules --*/
+h1 {
+  color: $brand-light-purple;
+}
+
+.navbar-title {
+  font-family: Chango;
+}
+```
+
+```{.yaml filename="_brand.yml"}
+defaults:
+  bootstrap:
+    defaults: 
+      navbar-bg: $brand-mint
+      navbar-fg: $brand-charcoal
+    rules: |
+      h1 {
+        color: $brand-light-purple;
+      }
+      .navbar-title {
+        font-family: Chango;
+      }
+```
+
+Equivalent SCSS supplied as a custom SCSS file, versus in `_brand.yml`.
+:::
+
+:::
+
+Specifying SCSS in `_brand.yml` means you only have one file to copy to apply the same style to another project, however, you lose the SCSS language support your IDE might provide to a `.scss` file.
+
+### The role of Bootstrap
+
+[Bootstrap](https://getbootstrap.com) is a framework that helps make websites and web documents look polished and responsive without requiring extensive custom CSS. 
+Quarto uses Bootstrap to implement layout, so that pages look good on both mobile and desktop devices, and to implement elements like callouts and navigation bars.
+As a Quarto user you don't *need* to know anything about Bootstrap, 
+but knowing a little opens up some ways to further customize your site.
+
+#### Bootstrap classes
+
+Bootstrap exposes a ton of CSS classes to style elements. 
+Because Quarto HTML documents use Bootstrap, you can use these Bootstrap classes within your own documents.
+
+As an example, Bootstrap includes a [button component](https://getbootstrap.com/docs/5.3/components/buttons/):
+
+```html
+<a class="btn btn-primary" href="#" role="button">Link</a>
+```
+
+The key information is in `class`. 
+To make a link look like a button, use the usual syntax, but add the classes prefaced by a  `.` in curly braces:
+
+````markdown
+[See Source](http://github.com){.btn .btn-primary}
+````
+
+When rendered, you'll get a link that looks like a button:
+
+::: {.border .p-2}
+[See Source](http://github.com){.btn .btn-primary}
+:::
+
+You'll need to pay attention to the kind of object Bootstrap classes apply to and match to the appropriate Quarto syntax.
+@tbl-bootstrap-classes gives some examples of applying Bootstrap classes to a span, div, and table.
+
++--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
+| Component                                                                            | Class                         | Element                     | Quarto Markdown                                      | Rendered                                                                   |
++:=====================================================================================+:==============================+:============================+:=====================================================+:===========================================================================+
+| [Badge](https://getbootstrap.com/docs/5.3/components/badge/)                         | `badge`                       | `<span>`                    | `### Example heading [New]{.badge .text-bg-primary}` | ::: {.border .p-2}                                                         |
+|                                                                                      |                               |                             |                                                      | ### Example heading [New]{.badge .text-bg-primary} {.unnumbered .unlisted} |
+|                                                                                      |                               |                             |                                                      | :::                                                                        |
++--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
+| [Border Utility](https://getbootstrap.com/docs/5.3/utilities/borders/)               | `border` , `rounded` and more | `<div>`                     | ``` markdown                                         |                                                                            |
+|                                                                                      |                               |                             | ::: {.border .rounded .border-primary .p-2}          | ::: {.border .rounded .border-primary .p-2}                                |
+|                                                                                      |                               |  Also applies to  `<span>`, |                                                      |                                                                            |
+|                                                                                      |                               |  and `<img>`                | Some content                                         | Some content                                                               |
+|                                                                                      |                               |                             |                                                      |                                                                            |
+|                                                                                      |                               |                             | :::                                                  | :::                                                                        |
+|                                                                                      |                               |                             | ```                                                  |                                                                            |         
++--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
+| [Accented Tables](https://getbootstrap.com/docs/5.3/content/tables/#accented-tables) | `table-striped`               | `<table>`                   | ``` markdown                                         | |       |                                                                  |
+|                                                                                      |                               |                             | |       |                                            | |-------|                                                                  |
+|                                                                                      |                               |                             | |-------|                                            | | Row 1 |                                                                  |
+|                                                                                      |                               |                             | | Row 1 |                                            | | Row 2 |                                                                  |
+|                                                                                      |                               |                             | | Row 2 |                                            |                                                                            |
+|                                                                                      |                               |                             |                                                      | : {.table-striped}                                                         |
+|                                                                                      |                               |                             | : {.table-striped}                                   |                                                                            |
+|                                                                                      |                               |                             | ```                                                  |                                                                            |
++--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
+
+: Examples of Bootstrap classes used in Quarto markdown syntax {#tbl-bootstrap-classes .column-page tbl-colwidths="[10, 10, 10, 40, 30]"}
+
+#### Bootstrap SCSS variables
+
+Bootstrap uses SCSS variables, like Quarto does, to control aspects of the many CSS rules in a single place.
+Assuming neither Quarto, nor your theme, overrides them, you can set them yourself just like Quarto SCSS variables.
+
+For example, by setting `border-width` and `border-style` you can affect all borders added by the `border` class:
+
+```{.scss filename="styles.scss"}
+/*-- scss:defaults --*/
+$border-width: 2px;
+$border-style: dashed;
+```
+
+You can find a list of the Bootstrap SCSS variables available by examining the [`bootstrap/dist/scss/_variables.scss` file in the Quarto source code](https://github.com/quarto-dev/quarto-cli/blob/main/src/resources/formats/html/bootstrap/dist/scss/_variables.scss). 
+
+## About Pages {#sec-websites-about-pages}
+
+**About pages** \index{about page} are a special kind of page that combines your page content and document metadata into an attractive template---great for "About" pages and other landing pages.
+
+![An example of an About Page using the `trestles` template. Document metadata is used to populate the left side of the page. Document content is used to populate the right side of the page.](images/website-about.png){#fig-about-page fig-alt="Screenshot of a page using an `about` template. The page is divided vertically. On the left: an image, with the `title` Drake Lab, and `subtitle` Data Science below it, and two links to GitHub and ResearchGate below the title. On the right some placeholder content."}
+
+@fig-about-page shows an example of an about page used for a landing page. 
+The content on the left, a title, subtitle, image and links, are specified in the document metadata.
+The content on the right, comes from the content of the page source, e.g. the body of `index.qmd`.
+
+@lst-about-page shows the document meta data for the example in @fig-about-page.
+You add an `about` page template to a page by adding the `about` option and specifying a `template`.
+In this case the `trestles` template is used, other options include `jolla`, `solana`, `marquee`, and `broadside`.
+
+The `about` option can take `title`, `subtitle`, `image` and `image-alt` options, 
+but if they aren't specified it will use those specified at the document level.
+Additionally, `about` takes a `links` option, an array of navigation items (@sec-websites-navitems) styled using the template.
+
+::: {#lst-about-page}
+```{.yaml filename="index.qmd"}
+---
+title: Drake Lab
+subtitle: Data Science
+about: 
+  template: trestles
+  image: profile.jpg
+  image-alt: Magnified image of cells
+  image-shape: round
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com
+    - icon: file-text
+      text: ResearchGate
+      href: https://www.researchgate.net
+---
+```
+
+The document header for the about page shown in @fig-about-page.
+
+:::
+
+You can read more in the [Quarto documentation on About Pages](https://quarto.org/docs/websites/website-about.html).
+
+## Listings {#sec-websites-listings}
+
+**Listings** \index{listings} are a special kind of page that contains an automatically generated list of content.
+Listings are often used to create blogs, but can also be used more generally any time you want a list of similar pages or items, like talks, publications, projects or people.
+
+@fig-website-listing shows three examples of listing pages: a blog, a people listing , and a list of publications.
+The appearance of the items is controlled by the `type` of listing:  `default`, `grid`, or `table`. 
+If you need more customization you can also build your own custom `template` (see [Custom Listings](https://quarto.org/docs/websites/website-listings-custom.html) in the Quarto documentation).
+
+::: {#fig-website-listing}
+
+![Blog listing using `type: default`](/images/website-listing-default.png){#fig-website-listing-blog fig-alt="A blog listing page with two blog posts displayed in a vertical sequence, with images on the right."}
+
+![People listing using `type: grid`](/images/website-listing-grid.png){#fig-website-listing-people fig-alt="A people listing page with a grid layout. The grid contains 3 cards, each representing a person. Each card includes a profile image, name, and a short descriptive title."}
+
+![Publication listing using `type:table`](/images/website-listing-table.png){#fig-website-listing-pubs fig-alt="A publication listing page with a table layout. The table contains columns for title, authors, date and journal. Each row represents a publication."}
+
+:::
+
+The items in a listing can be other Quarto documents in the project, or specified using YAML.
+For example, the blog listing in @fig-website-listing-blog is generated using other Quarto documents --- the documents that contain the blog posts themselves. 
+The listing is added to the `blog.qmd` page, by adding a `listing` option to the document header and specifying the contents as the folder `posts/`:
+
+```{.yaml filename="blog.qmd"}
+{{< include _examples/websites/listings/blog.qmd >}}
+```
+
+The listing will contain any Quarto documents found in `posts/`, or any subfolder. 
+The information to populate the listing items comes directly from the document metadata.
+
+```{.yaml filename="posts/first-post.qmd"}
+{{< include _examples/websites/listings/posts/first-post.qmd >}}
+```
+
+To use a YAML file to populate a listing, provide the path to the YAML file to `contents`:
+
+```{.yaml filename="publications.qmd"}
+{{< include _examples/websites/listings/publications.qmd >}}
+```
+
+Your YAML file should then contain an array of items:
+
+```{.yaml filename="publications.yml"}
+{{< include _examples/websites/listings/publications.yml >}}
+```
+
+## Publishing a website {#sec-website-publish}
+
+To get your website out to your audience you'll need to publish it somewhere.
+In this section, you'll first learn about website metadata you'll likely want to set before publishing that will make it easier for people to find and share your website. 
+Then, you'll learn about the most common approaches to publishing your site: the `quarto publish` command or hosting the `_site` folder.
+
+### Website metadata
+
+Before you publish your website, you'll want to make sure you've set some website metadata (@lst-website-metadata):
+
+*  `title` and `description` are generally what a search engine will display if your site is returned in a search. `title` is also added to page titles to provide the tab label in a browser.
+
+* `site-url` should be set to the address for your hosted website. A number of Quarto features rely on this being set, but most relevantly, you can't use relative links for `image` without it.
+
+* Set `open-graph` and/or `twitter-card` to `true` to have Quarto add the metadata required to provide previews when you share your URL in social apps. 
+
+* Provide `image` a path to the image you want to be used in social cards. This image will be used for any page that doesn't otherwise specify an `image`. Provide `image-alt` with alternative text for the image.
+
+
+:::{#lst-website-metadata}
+
+```{.yaml filename="_quarto.yml"}
+website:
+  title: Drake Lab
+  description: A computational biology lab at Evergreen University led by Soraya Drake
+  site-url: https://www.drakelab.org
+  open-graph: true
+  image: card.png
+  image-alt: Magnified view of a cell
+```
+
+Metadata that will make a site easier to find and share
+
+:::
+
+An example of a social card built from @lst-website-metadata is shown in @fig-social-card.
+
+![An example social card populated by website metadata: `title`, `description`, `image` and `image-alt`.](images/website-social-card.png){#fig-social-card fig-alt="A screenshot of a social card, showing a large image of a cell filling the top of the card, with the text Drake Lab, and description 'A computational biology lab at Evergreen University led by Soraya Drake' below it."}
+
+
+::: {.callout-tip}
+
+## Quarto will use the most specific metadata 
+
+You can define `title`, `description` and `image`/`image-alt` at the `website` level in `_quarto.yml`, or in document metadata.
+Quarto will prefer the document metadata, but fall back to website metadata if document values aren't set.
+
+:::
+
+### `quarto publish`
+
+You saw how to use `quarto publish` in @sec-publishing.
+To publish a website using `quarto publish` simply run Quarto publish from the project root:
+
+```{.bash}
+quarto publish
+```
+
+This will prompt you to select a provider and to authenticate.
+Then Quarto runs `quarto render` one more time (you can disable this with `--no-render`), pushes the `_site/` directory to the provider, then opens the site in your browser (you can disable this with `--no-browser`). 
+This process is illustrated in @fig-website-publish.
+We've separated out the "render" and "publish" step, but both steps happen when you call `quarto publish`.
+
+After publishing, you'll find a `_publish.yml` file in your website project which records the details of where you published.
+If you publish again, you'll be asked if you want to publish an update to the destinations recorded in this file, or to a new destination.
+
+The `publish` command is primary just moving `_site/` to the right place on your provider. 
+
+![The `quarto publish` process for a website. The website project is rendered locally, then the rendered site, `site/` (or `docs/`), is uploaded to the website host.](images/website-publish.jpg){#fig-website-publish fig-alt="A diagram of the publishing process. An arrow labeled 'render' points from a folder called `website/` that contains two files (`index.qmd` and `_quarto.yml`) to a folder called `_site/` containing the file `index.html` and folder `site-libs`. Both folders are inside a box labelled 'Your computer'. An arrow labelled 'publish' points from the `_site` folder to the same folder in a box labelled 'Website host'"}
+
+### Publish `_site/`
+
+Once you've rendered your website, the `_site/` folder contains everything needed for your website.
+So, if your website host isn't supported by `quarto publish`, you simply need to get the contents of `_site/` to your provider.
+It you go this route, you'll always need to manually run a full render before transferring `_site/`. 
+From the root of your website project run:
+
+```bash
+quarto render
+```
+
+As a concrete example, Netlify (although also supported by `quarto publish`) has a drag and drop UI for deploying a website called [Netlify Drop](https://app.netlify.com/drop).
+Drop in `_site/`, and Netlify will give you a URL at which your site is available.
+
+## Continuous integration {#sec-ci}
+
+The methods discussed in @sec-website-publish involve you manually invoking publishing, e.g. by running `quarto publish`. 
+**Continuous integration** \index{continuous integration} is a term for an automatic publishing process where publishing is triggered by some other event.
+That event might an action like pushing to a GitHub repository, or be based on a schedule.
+
+When talking about continuous integration there could be up to three other parties involved: the host for your source code (usually in a Git repo), the provider of the continuous integration service, and the publishing venue. 
+They might all be the same.
+For example, you might host your source code on GitHub, implement continuous integration with GitHub Actions, and publish to GitHub Pages. 
+However they don't have to be. 
+For instance, you might host your source code on GitHub, and use GitHub Actions, but publish to Netlify. 
+
+When you automate publishing, you'll need to consider where you want code execution and rendering to occur, locally or on a remote server.
+
+Your options are:
+
+*   Local code execution and rendering: you manage your computational environment (R, Python, Julia etc), and Quarto installation locally, and manually run `quarto render`.
+    Your CI service handles publishing to the web, usually by monitoring changes to a Git repo.
+
+*   Local code execution with remote rendering: you manage your computational environment (R, Python, Julia etc) locally, and use `_freeze/` to store the results of the computational engine. You set up your CI service to install Quarto and run `quarto render` and publish. 
+
+*   Remote code execution and remote rendering: your CI service needs to install and set up your computational environment, install Quarto, run `quarto render`, and publish.
+
+@tbl-website-ci compares these three options for a minimal website with the file structure:
+
+```{.default .dir-str}
+├── _quarto.yml
+└── index.qmd
+```
+
+In all three cases, the final outcome is the contents of `_site/` is hosted on the publishing provider:
+```{.default}
+_site/
+├── index.html
+└── site_libs
+```
+
++---------------+--------------------+-------------------------+------------------------------+------------------------------------------+
+| Code/Render   | On your computer   | In the repo             | On CI                        | Tools required on CI                     |
++:==============+:===================+:========================+:=============================+:=========================================+
+| Local/Local   | `quarto render`    | ``` {.default .dir-str} | When triggered,\             | -   None                                 |
+|               |                    | website/                | deploys `_site`              |                                          |
+|               |                    | ├──_site/               |                              |                                          |
+|               |                    | ├──_quarto.yml          |                              |                                          |
+|               |                    | └──index.qmd            |                              |                                          |
+|               |                    | ```                     |                              |                                          |
++---------------+--------------------+-------------------------+------------------------------+------------------------------------------+
+| Local/Remote  | `quarto render`    | ``` {.default .dir-str} | When triggered,\             | -   Quarto CLI                           |
+|               |                    | website/                | renders based on `_freeze`,\ |                                          |
+|               |                    | ├──_freeze/             | and publishes.\              |                                          |
+|               |                    | ├──_quarto.yml          | E.g. `quarto publish`        |                                          |
+|               |                    | └──index.qmd            |                              |                                          |
+|               |                    | ```                     |                              |                                          |
++---------------+--------------------+-------------------------+------------------------------+------------------------------------------+
+| Remote/Remote | Nothing required.\ | ``` {.default .dir-str} | When triggered,\             | -   Quarto CLI                           |
+|               |                    | website/                | renders\                     |                                          |
+|               |                    | ├──_quarto.yml          | and publishes.\              | -   R/Python/Julia and required packages |
+|               |                    | └──index.qmd            | E.g. `quarto publish`        |                                          |
+|               |                    | ```                     |                              |                                          |
++---------------+--------------------+-------------------------+------------------------------+------------------------------------------+
+
+: Continuous integration options {#tbl-website-ci .column-page}
+
+
+### Local code execution and local render
+
+When you execute code locally and render locally, `_site/` contains all of the required website source.
+One approach to automating publishing is to check your website source into version control and let a provider handle the automation.
+From your perspective, you run `quarto render` locally, then push the changes to your repository. 
+Your provider then updates the deployed site.
+
+This approach is the easiest to set up---you generally don't need to do anything except connect your repo to your CI service. 
+However, you can end up with commits with large diffs (the changes to the source documents, and all the changes to the rendered output in `_site/` or `docs/`). 
+These large diffs are cumbersome to review, and take longer to send to your Git remote host.
+
+Two examples of this approach are:
+
+-  Github deploy from `docs/` (as described in @sec-publishing-github). GitHub is the host for your source code, the provider of the CI and the publishing venue.
+
+-  Netlify deploy from a Git provider (as described in @sec-publishing-netlify). Any supported Git provider is the host for your source code, and Netlify is the CI provider and publishing venue.
+
+Alternatively, you could set up your own automation (e.g. via [GitHub Actions](#github-actions)) that deploys your content on any push to your repo. 
+
+### Local code execution and remote render
+
+Local code execution, with remote rendering provides a good middle ground.
+You aren't burdened with setting up, and maintaining a remote code execution environment,
+but you also don't have to store a whole lot of rendered output in your repo.
+
+This approach requires using `freeze` (@sec-freeze-cache) to store the results of the code execution.
+You run `quarto render` locally, as required, to generate `_freeze/`.
+You then check `_freeze/`, but not `_site/`, into version control.
+Your CI agent then uses the Quarto CLI to render and publish your site.
+
+The most common CI service for this approach is GitHub. 
+The project source is stored in a GitHub repo, and a [GitHub Action](#github-actions) is used to setup Quarto, 
+and run the required Quarto commands.
+The Quarto command could be as simple as `quarto publish {venue}`, which allows your publishing venue to be any of those supported by `quarto publish`.
+
+
+### Remote code execution and remote render
+
+Remote code execution combined with remote rendering provides the most protection for keeping your work reproducible---your CI will fail as soon as it isn't.
+However, it comes with the most setup, maintenance, and cost (time and potentially money) since all the work is happening on a remote server.
+
+You now only check your source documents (e.g. `.qmd` files) into version control. 
+Your CI service needs to install your computational environment, so you likely will also create and check-in a record of the packages required (e.g. using `renv` for R, or `requirements.txt`, `pipenv`, or `uv` for Python).
+When your CI runs, it will install your computational environment, install Quarto, and then run a full render and publish.  
+
+The two most popular choices for CI provider in this case are GitHub Actions, and Posit Connect Cloud. 
+In both cases your source code is hosted on GitHub.
+
+Posit Connect Cloud has the advantage of very little setup. 
+You simply connect your repo to your Connect Cloud account, and
+Connect Cloud handles the automation, including managing your computational environment for common R and Python setups.
+
+You'll learn more about GitHub Actions in the next section.
+
+### GitHub Actions
+
+GitHub Actions \index{GitHub Actions} are the most common method for setting up continuous integration for publishing Quarto websites.
+GitHub Actions are defined by a workflow, a series of steps that will be run on servers (usually GitHub's), in the context of a GitHub repository.
+
+To use GitHub Actions you necessarily need to have your website in a repository on GitHub.
+You then set up a **workflow file**, a YAML file that lives in your project in the folder `.github/workflows/`.
+
+GitHub Actions can be incredibly flexible, so
+rather than outline all your possibilities we'll walk through an example and point out places you could implement more flexibility.
+
+Consider the workflow, `publish.yml`, shown in @lst-ga-publish which might be used for a project that uses [local code execution with remote rendering](#local-code-execution-and-remote-render).
+The workflow file sets up a single job `build-deploy` that consists of three steps:
+
+1. Get the project source by checking out the repository
+
+2. Install the Quarto CLI
+
+3. Run `quarto publish gh-pages`
+
+Each of these steps is implemented by using an action defined by someone else (as specified in `uses`): GitHub itself in the first case, and the Quarto development team in the second and third.
+The definitions of these actions are also found on GitHub where you can often find more details about their use. 
+For example, you can find about more the `publish` action at <https://github.com/quarto-dev/quarto-actions/tree/main/publish#readme>.
+
+
+:::{#lst-ga-publish}
+
+```{.yaml filename=".github/workflows/publish.yml"}
+on:                        #<1>
+  workflow_dispatch:       #<1>
+  push:                    #<1>
+    branches: main         #<1>
+
+name: Quarto Publish       #<2> 
+
+jobs:                      #<3>
+  build-deploy:            #<4>
+    runs-on: ubuntu-latest #<4>
+    permissions:           #<4> 
+      contents: write      #<4>
+    steps:                 #<5> 
+      - name: Check out repository  #<6>
+        uses: actions/checkout@v4   #<6>
+
+      - name: Set up Quarto #<7>
+        uses: quarto-dev/quarto-actions/setup@v2 #<7>
+
+      - name: Render and Publish #<8>
+        uses: quarto-dev/quarto-actions/publish@v2  #<8>
+        with:                                       #<8>
+          target: gh-pages                          #<8>
+        env:                                        #<8> 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} #<8>
+```
+
+1. Describes when this workflow should trigger. In this case, on any pushes to the `main` branch, or manually (`workflow_dispatch`).
+2. A name for the workflow displayed in GitHub Action's UI.
+3. A workflow can have one or more `jobs` that run in parallel. Most Quarto CI workflows have a single job.
+4. A job identifier and settings including permissions and the type of machine the job runs on. This workflow needs `write` permissions because it will write to the `gh-pages` branch to publish the site.
+5. The meat of the job is a series of steps to be run in order.
+6. Check out the project repository onto the machine.
+7. Install the Quarto CLI. Uses the latest release by default.
+8. Runs `quarto publish {target}` (by default includes a full `quarto render`). Depending on your `target` you'll need to set some environment variables with your credentials on your publishing venue.
+
+
+A GitHub Action that publishes to GitHub Pages
+
+:::
+
+Three common ways you might customize this workflow are as follows:
+
+* Specify a different publishing `target`. Swap out `target: gh-pages` for one of the other supported publishing venues. You'll also need to set a different token in `env` with your credentials on the publishing venue.
+
+* Add steps that set up a computational environment. If you also want remote code execution, you'll need to add instructions to set up your computational environment before the "Render and Publish" step. You can see two examples in @lst-language-setup-r for R combined with renv, and @lst-language-setup-python for Python combined with `pip`.
+
+* Split rendering and publishing. If you are publishing to a venue that isn't supported by `quarto publish`, you might split up the "Render and Publish" step. You could use the `quarto-dev/quarto-actions/render` action to render your site. Then add a custom step for the deployment, using actions from someone like Netlify, or your own custom commands. 
+
+:::::{.column-page layout-ncol="2"}
+
+::: {#lst-language-setup-r}
+```{.yaml filename=".github/workflows/publish.yml"}
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.3'
+
+      - name: Install R Dependencies
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 1
+```
+
+Setup R
+:::
+
+::: {#lst-language-setup-python}
+
+```{.yaml filename=".github/workflows/publish.yml"}
+      - name: Install Python and Dependencies
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - run: pip install jupyter
+      - run: pip install -r requirements.txt
+```
+Setup Python
+:::
+
+:::::
+
+## Wrapping Up
+
+In this chapter, you learned about the key components of a Quarto website: content, navigation, and appearance. 
+You also learned about a few techniques for publishing your site.
+
+But, there are many other features we haven't talked about.
+Some notable ones include:
+
+* Drafts: Set `draft: true` to be able to preview pages, but not have them included in a site render, <https://quarto.org/docs/websites/website-drafts.html>.
+
+* Comments: Integrate third-party tools to allow your readers to leave comments on your pages, <https://quarto.org/docs/output-formats/html-basics.html#commenting>.
+
+* Announcements: Add a bar to the top of the site for crucial info, <https://quarto.org/docs/websites/website-tools.html#announcement-bar>.
+
+You can find comprehensive lists of all your options are in the Reference in the Quarto documentation:
+
+* You find website-level options in [Projects > Websites](https://quarto.org/docs/reference/projects/websites.html).
+
+* You find page-level options (that could be set site-wide in `_quarto.yml`) in [Formats > HTML](https://quarto.org/docs/reference/formats/html.html).
+

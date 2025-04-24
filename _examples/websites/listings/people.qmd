@@ -1,0 +1,7 @@
+---
+title: People
+listing:
+  contents: people.yml
+  type: grid
+  image-height: 250px
+---

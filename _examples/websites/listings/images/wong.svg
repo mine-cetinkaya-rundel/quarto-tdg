@@ -1,0 +1,14 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="45" fill="#E0EFDE" />
+  <!-- Network diagram design -->
+  <line x1="30" y1="30" x2="70" y2="70" stroke="#8A7090" stroke-width="3"/>
+  <line x1="30" y1="70" x2="70" y2="30" stroke="#8A7090" stroke-width="3"/>
+  <line x1="50" y1="20" x2="50" y2="80" stroke="#8A7090" stroke-width="3"/>
+  <!-- Nodes -->
+  <circle cx="30" cy="30" r="5" fill="#8A7090" />
+  <circle cx="70" cy="70" r="5" fill="#8A7090" />
+  <circle cx="30" cy="70" r="5" fill="#8A7090" />
+  <circle cx="70" cy="30" r="5" fill="#8A7090" />
+  <circle cx="50" cy="50" r="7" fill="#8A7090" />
+</svg>

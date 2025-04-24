@@ -1,0 +1,22 @@
+- title: "Deep learning approaches for inferring cellular trajectories from single-cell RNA sequencing data"
+  authors: "Drake, S."
+  date: "2024-01-15"
+  journal: "Nature Methods"
+  path: "https://doi.org/10.1038/s41592-024-01234-5"
+
+- title: "Identification of pioneer fibroblast populations in wound healing through integrated single-cell analysis"
+  authors:
+    - "Wong, M."
+    - "Drake, S."
+  date: "2023-09-22"
+  journal: "Cell Systems"
+  path: "https://doi.org/10.1016/j.cels.2023.09.003"
+
+- title: "CellFlowViz: An interactive visualization toolkit for single-cell trajectory analysis"
+  authors:
+    - "Drake, S."
+    - "Wong, M."
+    - "Chen, S."
+  date: "2023-06-15"
+  journal: "Bioinformatics"
+  path: "https://doi.org/10.1093/bioinformatics/btad234"

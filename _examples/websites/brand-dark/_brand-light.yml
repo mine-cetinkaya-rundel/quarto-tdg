@@ -1,0 +1,20 @@
+color:
+  palette:
+    mint: "#E0EFDE"
+    light-mint: "#EFF7EE"
+    charcoal: "#162627" 
+    light-charcoal: "#243e3f" 
+    purple: "#8A7090"
+    light-purple: "#d0a8d8"
+  foreground: charcoal
+  background: mint
+  primary: purple
+typography: 
+  link: 
+    color: purple
+  monospace-inline:
+    color: purple
+    background-color: light-mint
+  monospace-block:
+    background-color: light-mint
+  

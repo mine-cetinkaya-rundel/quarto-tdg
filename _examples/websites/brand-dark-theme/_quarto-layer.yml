@@ -1,0 +1,9 @@
+brand:
+  dark: _brand.yml
+  light: _brand-light.yml
+  
+format:
+  html:
+    theme: 
+      dark: [lux, brand]
+      light: [lux, brand]
