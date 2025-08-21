@@ -1,0 +1,45 @@
+---
+fig-width: 4
+fig-height: 3
+---
+
+
+
+```{r}
+library(grid)
+
+plot_thumb <- function(label = "") {
+  grid.newpage()
+  # Create viewport that fills entire device
+  pushViewport(viewport(width = 1, height = 1))
+  # Draw rectangle that fills viewport
+  grid.rect(width = 1, height = 1, gp = gpar(fill = "white"))
+  # Add text
+  grid.text(label, gp = gpar(fontsize = 40))
+  popViewport()
+}
+```
+
+```{r}
+#| layout-ncol: 2
+plot_thumb(1)
+plot_thumb(2)
+plot_thumb(3)
+```
+
+```{r}
+#| layout-nrow: 2
+plot_thumb(1)
+plot_thumb(2)
+plot_thumb(3)
+```
+
+
+```{r}
+#| layout: [[1, 2], [1], [1]]
+plot_thumb(1)
+plot_thumb(2)
+plot_thumb(3)
+```
+
+

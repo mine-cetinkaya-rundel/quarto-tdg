@@ -1,14 +1,21 @@
 ---
-highlight-style: github # with `a11y` python imports disappear into background
+highlight-style: a11y # with `a11y` python imports disappear into background
 echo: false
 ---
 
+# Figures and tables {#sec-figures-and-tables}
+
+```{r}
+#| eval: false
+#| include: false
+
+## Occasionally run this re-generate screenshots
+source("_examples/figure-table/generate-screenshots.R")
+```
 ```{r}
 #| include: false
 {{< include _examples/figure-table/_code-snippets/setup.R >}}
 ```
-
-# Figures and tables {#sec-figures-and-tables}
 
 ## Overview
 
@@ -224,19 +231,12 @@ Basic table chunk options used for a computational table. Compare to @lst-markdo
 
 :::
 
-When rendered the result is:
+When rendered the result is shown in @fig-basic-cell-options-table.
+Notice the caption is prefaced by "Table 1:" --- this is because the label started with `tbl-` which signals to Quarto this is a cross-referenceable table. 
+You'll learn more about cross-references in @sec-figtab-crossrefs.
 
-:::{.border .p-3}
-```{r}
-#| label: tbl-species-count
-#| echo: false
-#| tbl-cap: |
-#|   Number of penguins sampled from each 
-#|   species in the Palmer Archipelago
+![Example output when @fig-tables is rendered](images/figure-table-basic-cell-options-table.png){#fig-basic-cell-options-table fig-alt=""}
 
-{{< include _examples/figure-table/_code-snippets/species-count.R >}}
-```
-:::
 
 Similarly, @lst-markdown-figure shows a non-computational figure, that could instead be produced using the code cells shown in @fig-figures.
 
@@ -283,75 +283,61 @@ Basic figure chunk options used for a computational figure. Compare to @lst-mark
 
 :::
 
-The result is:
+The result is shown in @fig-basic-cell-options-figure.
+The caption here is prefaced by "Figure 1:" because the label started with `fig-`, the signal that this is a cross-referenceable figure. 
 
-::: {.border .p-3}
-
-```{r}
-#| label: fig-scatter
-#| fig-cap: "Penguin bill length versus depth by species"
-#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
-
-{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
-```
-
-:::
-
-
-
+![Example output when @fig-figures is rendered](images/figure-table-basic-cell-options-figure.png){#fig-basic-cell-options-figure fig-alt=""}
 
 
 ### Consistent across engines/languages
 
-## Cross-References {#sec-figtab-crossrefs}
+## Cross-references {#sec-figtab-crossrefs}
 
-Start your label with `tbl-` or `fig-`. 
+To cross-reference a computational figure or table you need to:
+
+1. Label your figure or table in a way that Quarto recognizes as a cross-reference, this means using a label that starts with `fig-` or `tbl-`.
+
+2. Refer to your figure or table using the syntax `@LABEL`.
+
+The two examples in @sec-figtab-basic, @fig-tables and @fig-figures,  used the labels `tbl-species-count` and `fig-scatter`. 
+To refer to these outputs you could use, for example,:
+
+```{.markdown .code-overflow-wrap}
+Most penguins were Adelie (@tbl-species-count). @fig-scatter shows quite distinct clustering of the three species in bill length versus depth.
+```
+
+
+When rendered the cross-references are replaced with the figure or table identifier and become links. 
+
+![](images/figure-table-cross-references-link.png)
+
 See other cross-reference types in @sec-crossreferences
 
 ### Fenced div syntax
 
-Alternative to setting `label` and `fig-cap`/`tbl-cap` as code cell options
-Set identifier as ID in fenced div
-Use code cell to generate table or figure
-Caption is last line in div
+```{.markdown}
+::: {#LABEL}
 
-#### Dynamic captions
+CONTENT
 
-#### Long captions
+CAPTION
 
-
-### Multiple figures or tables
-
-Use array for `fig-subcap` / `tbl-subcap`
-Can reference with `@fig-label-1`.
-
-Use `layout` to control arrangement.
-Also see mixed examples in Layout section.
-
-
-
-
-
-
-## Using fenced div syntax instead of code cell options
-
-The above examples illustrate one approach to controlling computational figures and tables---setting code cell options.
-An alternative approach is to use the code cell purely to produce the table or figure and use Quarto's fenced div syntax to control how the table or figure is included in the document.
-
-
+:::
+```
 
 ::: {.panel-tabset group="language"}
 
 ## R
 
 ````{.markdown}
-::: {#tbl-species-count}
+::: {#fig-scatter} 
+```{{r}} 
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
 
-```{{r}}
-{{< include _examples/figure-table/_code-snippets/species-count.R >}}
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
 ```
 
-Number of penguins sampled from each species in the Palmer Archipelago
+Penguin bill length versus depth by species
 
 :::
 ````
@@ -359,70 +345,567 @@ Number of penguins sampled from each species in the Palmer Archipelago
 ## Python
 
 ````{.markdown}
-::: {#tbl-species-count}
-
+::: {#fig-scatter}
 ```{{python}}
-{{< include _examples/figure-table/_code-snippets/species-count.py >}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
 ```
 
-Number of penguins sampled from each species in the Palmer Archipelago
+Penguin bill length versus depth by species
 
 :::
 ````
 
 :::
 
+Alternative to setting `label` and `fig-cap`/`tbl-cap` as code cell options
+Set identifier as ID in fenced div
+Use code cell to generate table or figure
+Caption is last line in div
+
+#### Long captions
+
+If your caption is getting long and it is increasingly painful to track as a code cell option, consider using the div syntax instead.
+You can then split lines in a way that makes sense and not have to worry about the YAML syntax.
+
+::: {#fig-long-captions}
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+::: {#fig-scatter}
+
+```{{r}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+
+Scatter plot depicting the relationship between bill length (mm) and bill depth (mm) across different penguin species. 
+The clustering of the species reveals morphological differences in bill dimensions: 
+**Adelie** penguins have short, deep bills,
+whereas **Gentoo** penguins have long, shallow bills.
+**Chinstrap** penguins have similar depth bills to Adelie penguins but there bills are longer.
+
+:::
+````
+ 
+## Python
+ 
+````{.markdown}
+::: {#fig-scatter}
+
+```{{python}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+```
+
+Scatter plot depicting the relationship between bill length (mm) and bill depth (mm) across different penguin species. 
+The clustering of the species reveals morphological differences in bill dimensions: 
+**Adelie** penguins have short, deep bills,
+whereas **Gentoo** penguins have long, shallow bills.
+**Chinstrap** penguins have similar depth bills to Adelie penguins but there bills are longer.
+
+::: 
+````
+ 
+:::
+
+:::
+
+:::{.callout-important}
+
+## No multi-paragraph captions
+
+Quarto doesn't support captions that consist of multiple paragraphs.
+
+:::
+
+#### Dynamic captions
+
+::: {#fig-dynamic-captions}
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+::: {#fig-scatter}
+
+```{{r}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+
+Penguin bill length versus depth by species for `{{r}} nrow(penguins)` penguins.
+
+:::
+````
+ 
+## Python
+ 
+````{.markdown}
+::: {#fig-scatter}
+
+```{{python}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+```
+
+Penguin bill length versus depth by species `{{python}} penguins.height` penguins.
+
+::: 
+````
+ 
+:::
+
+:::
+
+
+
+### Multiple figures or tables
+
+Refer to other sections...
+
+Use array for `fig-subcap` / `tbl-subcap`
+Can reference with `@fig-label-1`.
+
+Use `layout` to control arrangement.
+Also see mixed examples in Layout section.
+
 ## Captions
 
-### Using fenced divs
+### Caption text
 
-### Dynamic captions
+Use code cell options or last element in fenced divs to set content of captions.
+Include dynamic content in captions by using div syntax and inline code.
 
-### LaTeX short captions
+### Sub-captions
+
+When your code chunk produces two or more figures, or two or more tables,
+using `fig-subcap` or `tbl-subcap` is a quick way to generate a multi-panel figure or table.
+
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+```{{r}}
+#| label: tbl-species-count
+#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| tbl-subcap: 
+#|   - "Breakdown by species"
+#|   - "Breakdown by species and year"
+
+{{< include _examples/figure-table/_code-snippets/species-count.R >}}
+
+{{< include _examples/figure-table/_code-snippets/species-year.R >}}
+```
+ 
+````
+ 
+## Python
+ 
+````{.markdown}
+```{{python}}
+#| label: tbl-species-count
+#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| tbl-subcap: 
+#|   - "Breakdown by species"
+#|   - "Breakdown by species and year"
+
+{{< include _examples/figure-table/_code-snippets/species-count.py >}}
+
+{{< include _examples/figure-table/_code-snippets/species-year.py >}}
+```
+ 
+````
+ 
+:::
+
+
+![](images/figure-table-captions-subcaptions.png)
+
+Must be cross-reference
+Can't mix figure and tables.
+
+Can refer to panels by adding suffix to reference.
+
+```{.markdown}
+See @tbl-species-count, @tbl-species-count-1, @tbl-species-count-2
+```
+
+![](images/figure-table-captions-subcaptions-reference.png)
+
+More flexibly, use fenced divs to create sub-captions. See ...
+
+
+### LaTeX short figure captions
+
+
+
+Example with `fig-scap` 
+
+No `tbl-scap`...
 
 ### Caption location
 
+By default, Quarto puts figure captons at the bottom of the figure, and table captions at the top of the table.
+You can control this with the `cap-location` option for both figures and tables, or separately with the `fig-cap-location` and `tbl-cap-location` options.
+Can take the values `top`, `bottom`, or `margin` (`margin` only in some formats).
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown filename="document.qmd"}
+```{{r}}
+#| label: tbl-species-count
+#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| cap-location: bottom
+
+{{< include _examples/figure-table/_code-snippets/species-count.R >}}
+``` 
+````
+ 
+## Python
+ 
+````{.markdown filename="document.qmd"}
+```{{python}}
+#| label: tbl-species-count
+#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| cap-location: bottom
+
+{{< include _examples/figure-table/_code-snippets/species-count.py >}}
+``` 
+````
+ 
+:::
+
+For example,
+
+::: {#fig-cap-location}
+
+:::{layout="[[1,1], [1]]"}
+:::{}
+![](images/figure-table-captions-location-top.png){.border}
+
+`top`
+:::
+:::{}
+![](images/figure-table-captions-location-bottom.png){.border}
+
+`bottom`
+:::
+
+:::{}
+![](images/figure-table-captions-location-margin.png){.border}
+
+`margin`
+:::
+:::
+
+Tables with the code cell option `cap-location` set to: `top`, `bottom` and `margin`.
+
+:::
+
+
+::: {#fig-cap-location-document}
+
+:::{layout-ncol="2"}
+```{.yaml filename="document.qmd"}
+---
+title: "My Document"
+cap-location: bottom
+---
+```
+
+```{.yaml filename="_quarto.yml"}
+cap-location: bottom
+```
+:::
+
+You can set the caption location for the entire document in the document header, or for all documents in a project using `_quarto.yml`.
+
+:::
+
 ### Caption titles and numbering
 
-```{.yaml}
+Document level (or project level options)!
+
+:::{#fig-cap-title}
+
+::: {layout="[2, 1]"}
+:::{}
+![](images/figure-table-caption-format.jpeg){.border width="50%"}
+
+Table Caption
+:::
+
+:::{}
+![](images/figure-table-cross-reference-form.jpeg){.border width="50%"}
+
+Inline reference
+:::
+
+:::
+:::
+
+```{.yaml filename="document.qmd"}
 ---
 title: "My Document"
 crossref:
-  fig-title: Fig     # (default is "Figure")
-  tbl-title: Tbl     # (default is "Table")
-  title-delim: "—"   # (default is ":")
+  tbl-title: Sheet
+  tbl-prefix: Sh
+  tbl-labels: roman
+  title-delim: "—"   
 ---
 ```
 
-```{.yaml}
+![](images/figure-table-caption-format-edit.png)
+
+Same for `fig`: `fig-title`, `fig-prefix`, `fig-labels`
+
+Shared: `title-delim`
+
+`labels`, `subref-labels`,`fig-labels`, `tbl-labels`:`arabic`, `alpha a`, `alpha A`, `roman i`, `roman I` 
+
+
+```{.yaml filename="document.qmd"}
 ---
 title: "My Document"
 crossref:
-  labels: alpha a        # (default is arabic)
-  subref-labels: roman i # (default is alpha a)
+  fig-title: Fig
+  fig-prefix: Fig
+  fig-labels: roman
+  title-delim: "."   
 ---
 ```
 
-### Caption Text
+## Layout
 
 
 `tbl-colwidths`
 
-### Caption relative to figure or table
-
-`cap-location`, `fig-cap-location`, `tbl-cap-location`
-
-
-
-## Layout
 
 ### Alignment 
 
-`fig-align`
+`fig-align` 
+
+```{.markdown}
+
+
+```
 
 
 
-### Multiple tables and/or figures {#sec-multiple-outputs}
+### Arranging multiple tables and/or figures {#sec-multiple-outputs}
+
+Examples of arraning multuple figures, using array for `fig-cap` `fig-alt` and various `layout` options.
+
+
+Quarto provides a set of layout code cell options and attributes that allow you to arrange multiple figures or tables in a single panel.
+As an example, `layout-ncol` specifies the number of columns in a panel layout.
+You can use it as a code cell option:
+
+````{.markdown}
+```{{LANGUAGE}}
+#| layout-ncol: 2
+
+# CODE TO GENERATE TWO FIGURES/TABLES
+```
+````
+
+Or you can use it as an attribute in a fenced div:
+
+````{.markdown}
+::: {layout-ncol="2"}
+
+```{{LANGUAGE}}
+# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+```
+
+```{{LANGUAGE}}
+# CODE TO GENERATE ANOTHER FIGURE OR TABLE
+```
+:::
+
+````
+
+Using the code cell option is the simplest approach, 
+but as soon as you want some combination of: a mix of figures and tables, 
+individual captions, to control placement on the page, or individual cross-references, we recommend using the attribute in a fenced div and nesting your code inside.
+
+
+`layout-nrow`/`layout-ncol` 
+
+
+
+
+
+`layout` 
+
+
+`layout-align`/`layout-valign` 
+
+
+
+
+````{.markdown}
+::: {layout-ncol="2"}
+
+```{{LANGUAGE}}
+#| label: fig-1
+#| fig-cap: "Figure 1 caption"
+# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+```
+
+```{{LANGUAGE}}
+#| label: fig-2
+# CODE TO GENERATE ANOTHER FIGURE OR TABLE
+```
+:::
+````
+
+````{.markdown}
+::: {#fig-plots}
+::::: {layout-ncol="2"}
+
+```{{LANGUAGE}}
+# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+```
+
+```{{LANGUAGE}}
+# CODE TO GENERATE ANOTHER FIGURE OR TABLE
+```
+:::::
+
+CAPTION
+:::
+````
+
+You might use the code cell option when your code produces:
+
+* all figures, or all tables, but not a mix of both, or
+
+* many figures or tables (i.e. in a loop) that don't need captions or individual cross-references
+
+* 
+ or in simple cases where you don't also need have 
+
+
+ is easiest when your  is the simplest approach, but it can be less flexible than using fenced divs.
+
+, or as an attribute in a fenced div.
+
+is both a code cell option, and an attribute, that specifies the number of columns in a layout.
+
+
+````{.markdown}
+````
+
+Arranging multiple figures or tables in a single panel is a common requirement.
+You can do this using the `layout` code cell options, or by using fenced divs with the `layout` classes. 
+
+It's possible to specify a layout of multiple figures or tables produced in a single code cell using the `layout` or `layout-ncol`/`layout-nrow` code cell options.
+
+
+
+````{.markdown}
+::: {layout-ncol="2"}
+
+```{{LANGUAGE}}
+# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+```
+
+```{{LANGUAGE}}
+# CODE TO GENERATE ANOTHER FIGURE OR TABLE
+```
+:::
+
+````
+
+
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+```{{r}}
+#| layout-ncol: 2
+
+{{< include _examples/figure-table/_code-snippets/species-count.R >}}
+
+{{< include _examples/figure-table/_code-snippets/species-year.R >}}
+```
+ 
+````
+ 
+## Python
+ 
+````{.markdown}
+```{{python}}
+#| layout-ncol: 2
+
+{{< include _examples/figure-table/_code-snippets/species-count.py >}}
+
+{{< include _examples/figure-table/_code-snippets/species-year.py >}}
+```
+ 
+````
+ 
+:::
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+::: {layout-ncol="2"}
+
+```{{r}}
+{{< include _examples/figure-table/_code-snippets/species-count.R >}}
+```
+
+```{{r}}
+{{< include _examples/figure-table/_code-snippets/species-year.R >}}
+```
+:::
+````
+ 
+## Python
+ 
+````{.markdown}
+::: {layout-ncol="2"}
+
+```{{python}}
+{{< include _examples/figure-table/_code-snippets/species-count.py >}}
+```
+
+```{{python}}
+{{< include _examples/figure-table/_code-snippets/species-year.py >}}
+```
+:::
+````
+
+:::
+
+
+However, we recommend using fenced divs instead, because they are more flexible and easier to read.
+
+Combing multiple layout classes in a single fenced div can be unpredictable.
+You should instead nest fenced divs to create complex layouts.
+
+
+
 
 Arrays for `fig-cap`, `fig-alt`, `label`?
 
@@ -439,9 +922,14 @@ Putting multiple figures/tables in a panel: Using chunk options: i.e. all plots,
 
 ### Relative to page
 
+
+
+
 Placing figures/tables on page: column classes `column`, `fig-column`, `tbl-column`, latex fig pos, `fig-pos`
 
-`panel`
+Available columns:
+https://quarto.org/docs/authoring/article-layout.html#available-columns
+
 
 
 ### Relative to slide
@@ -463,7 +951,13 @@ crossrefs, chunk options that are consistent across engines/languages, mention e
 
 ### Interactive Components
 
+## Treating computational tables or figures as non-computational
 
 ## Examples used in this chapter
 
 
+## Single page layouts
+
+Dashboards
+
+Panels 

@@ -14,3 +14,11 @@ title: Basic options
 
 {{< include ../_code-snippets/species-count.py >}}
 ```
+
+```{python}
+#| label: fig-scatter
+#| fig-cap: "Penguin bill length versus depth by species"
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include ../_code-snippets/bill-scatter.py >}}
+```

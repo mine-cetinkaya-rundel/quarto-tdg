@@ -1,4 +1,3 @@
-
 ---
 echo: false
 ---
@@ -7,7 +6,7 @@ echo: false
 {{< include ../_code-snippets/setup.R >}}
 ```
 
-
+:::{#basic-cell-options-table}
 
 ```{r}
 #| label: tbl-species-count
@@ -15,17 +14,9 @@ echo: false
 
 {{< include ../_code-snippets/species-count.R >}}
 ```
-
-
-::: {#tbl-species-count}
-
-```{r}
-{{< include ../_code-snippets/species-count.R >}}
-```
-
-Number of penguins sampled from each species in the Palmer Archipelago
-
 :::
+
+:::{#basic-cell-options-figure}
 
 ```{r}
 #| label: fig-scatter
@@ -34,13 +25,5 @@ Number of penguins sampled from each species in the Palmer Archipelago
 
 {{< include ../_code-snippets/bill-scatter.R >}}
 ```
-
-
-::: {#fig-scatter fig-alt="ALT"}
-```{r}
-{{< include ../_code-snippets/bill-scatter.R >}}
-```
-
-Penguin bill length versus depth by species
 
 :::

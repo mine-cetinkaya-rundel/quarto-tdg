@@ -1,0 +1,26 @@
+---
+echo: false
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+
+
+```{r}
+#| label: species-dims
+#| fig-cap:
+#|   - "Penguin species by bill depth and bill length"
+#|   - "Penguin species by body mass and flipper length"
+#| fig-alt: 
+#|   - "Scatterplot of penguin species by bill depth and bill length"
+#|   - "Scatterplot of penguin species by body mass and flipper length"
+{{< include ../_code-snippets/bill-scatter.R >}}
+{{< include ../_code-snippets/size-scatter.R >}}
+```
+
+
+```{r}
+#| fig-column: 
+```
