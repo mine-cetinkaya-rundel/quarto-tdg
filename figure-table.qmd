@@ -1,10 +1,8 @@
 ---
-highlight-style: a11y # with `a11y` python imports disappear into background
 echo: false
 ---
 
 # Figures and tables {#sec-figures-and-tables}
-
 ```{r}
 #| eval: false
 #| include: false
@@ -22,19 +20,21 @@ source("_examples/figure-table/generate-screenshots.R")
 Most common kinds of output from computational cells. 
 Also the ones you get some of the biggest gains from literate programming.
 
-Images and markdown tables discussed in ...
+Images and markdown tables discussed in @sec-authoring.
 
-Components of a figure
+Big difference, use code cell options rather than markdown syntax.
 
+First, in basic cell options learn the cell options that you'll use most often and correspond to the markdown syntax you've seen.
 
+Then dive into cross-references, captions and layout. 
 
-comparison of syntax
+We'll focus on things that are common across engines but provide some additional engine and language specific tips and troubleshooting.
 
-Does engine matter? Does language matter?
+::: {.callout-tip}
 
-Broadly speaking, do everything via chunk options, or just use code to create the image/table and do everything with divs.
+## Common questions about figures and tables
 
-I need to:
+How do I :
 
 * Cross-reference my figure/table 
 
@@ -50,6 +50,7 @@ I need to:
 
 * Troubleshoot the table or figure output from a particular package
 
+::: 
 
 ### The examples in this chapter
 
@@ -98,14 +99,6 @@ Code required before executing the examples in this chapter
 
 
 
-| Option | Description | Reference |
-|--------|-------------|-----------|
-|`label` | ID for output, also used for cross-references. | @sec-figtab-basic, start with `tbl` or `fig` to number and cross-reference, see @sec-figtab-crossrefs. |
-| `fig-cap` | Caption for figure                          | @sec-figtab-basic, can be an array if you produce multiple figures, see @sec-multiple-outputs. |
-| `tbl-cap` | Caption for table                           | @sec-figtab-basic, can be an array if you produce multiple tables, see @sec-multiple-outputs. |
-| `fig-alt` | Alternative text description of the figure  | @sec-figtab-basic, can be an array if you produce multiple figures, see @sec-multiple-outputs |
-
-: Quick Reference for code cell options for figures and tables 
 
 ## Basic cell options {#sec-figtab-basic}
 
@@ -289,7 +282,30 @@ The caption here is prefaced by "Figure 1:" because the label started with `fig-
 ![Example output when @fig-figures is rendered](images/figure-table-basic-cell-options-figure.png){#fig-basic-cell-options-figure fig-alt=""}
 
 
-### Consistent across engines/languages
+## Cell option quick reference
+
+The table below summarizes other commonly used code cell options for figures and tables and where in this chapter you can learn more about them.
+
+We only list options common to both the `knitr` and `jupyter` engines.
+Use quarto doc reference for full list of available options.
+
+
+| Option | Description | Reference |
+|--------|-------------|-----------|
+|`label` | ID for output, also used for cross-references. | @sec-figtab-basic, start with `tbl` or `fig` to number and cross-reference, see @sec-figtab-crossrefs. |
+| `fig-cap` | Caption for figure                          | @sec-figtab-basic, can be an array if you produce multiple figures, see @sec-multiple-outputs. |
+| `tbl-cap` | Caption for table                           | @sec-figtab-basic, can be an array if you produce multiple tables, see @sec-multiple-outputs. |
+| `fig-alt` | Alternative text description of the figure  | @sec-figtab-basic, can be an array if you produce multiple figures, see @sec-multiple-outputs |
+| `fig-subcap` | Sub-captions for multiple figures produced in a single code cell | |
+| `tbl-subcap` | Sub-captions for multiple tables produced in a single code cell | |
+| `cap-location` | Location of caption relative to figure or table | See @sec-caption-location. Also `fig-cap-location` and `tbl-cap-location` 
+| `layout-ncol` | Number of columns when arranging multiple figures or tables in a single panel | See @sec-multiple-outputs. Also `layout-nrow`.|
+| `layout` | Layout specification when arranging multiple figures or tables in a single panel | See @sec-multiple-outputs. |
+| `layout-align` / `layout-valign` | Alignment when arranging multiple figures or tables in a single panel | See @sec-multiple-outputs. |
+| `column` | Place figure or table in a specific column relative to page | See @sec-single-page-layouts. Also `fig-column` and `tbl-column`.|
+| `tbl-colwidths` | Column widths for markdown tables | See @sec-table-column-widths. |
+
+: Quick Reference for code cell options for figures and tables 
 
 ## Cross-references {#sec-figtab-crossrefs}
 
@@ -314,6 +330,11 @@ When rendered the cross-references are replaced with the figure or table identif
 See other cross-reference types in @sec-crossreferences
 
 ### Fenced div syntax
+
+Alternative to setting `label` and `fig-cap`/`tbl-cap` as code cell options
+Set identifier as ID in fenced div
+Use code cell to generate table or figure
+Caption is last line in div
 
 ```{.markdown}
 ::: {#LABEL}
@@ -359,10 +380,8 @@ Penguin bill length versus depth by species
 
 :::
 
-Alternative to setting `label` and `fig-cap`/`tbl-cap` as code cell options
-Set identifier as ID in fenced div
-Use code cell to generate table or figure
-Caption is last line in div
+
+When to use: long captions, dynamic captions.
 
 #### Long captions
 
@@ -467,8 +486,6 @@ Penguin bill length versus depth by species `{{python}} penguins.height` penguin
 
 :::
 
-
-
 ### Multiple figures or tables
 
 Refer to other sections...
@@ -483,8 +500,10 @@ Also see mixed examples in Layout section.
 
 ### Caption text
 
-Use code cell options or last element in fenced divs to set content of captions.
-Include dynamic content in captions by using div syntax and inline code.
+Refer to previous sections:
+
+* Use code cell options or last element in fenced divs to set content of captions.
+* Include dynamic content in captions by using div syntax and inline code.
 
 ### Sub-captions
 
@@ -546,18 +565,9 @@ See @tbl-species-count, @tbl-species-count-1, @tbl-species-count-2
 
 More flexibly, use fenced divs to create sub-captions. See ...
 
+### Caption location {#sec-caption-location}
 
-### LaTeX short figure captions
-
-
-
-Example with `fig-scap` 
-
-No `tbl-scap`...
-
-### Caption location
-
-By default, Quarto puts figure captons at the bottom of the figure, and table captions at the top of the table.
+By default, Quarto puts figure captions at the bottom of the figure, and table captions at the top of the table.
 You can control this with the `cap-location` option for both figures and tables, or separately with the `fig-cap-location` and `tbl-cap-location` options.
 Can take the values `top`, `bottom`, or `margin` (`margin` only in some formats).
 
@@ -692,19 +702,39 @@ crossref:
 ## Layout
 
 
-`tbl-colwidths`
+### Figure Alignment {#sec-fig-align}
 
+The `fig-align` code cell option controls the horizontal alignment of figures relative to surrounding content, 
+and can take values of `default` (the default for the target format), `left`, `right`, or `center`. 
 
-### Alignment 
+For example to left-align:
 
-`fig-align` 
+::: {.panel-tabset group="language"}
 
-```{.markdown}
+## R
+ 
+````{.markdown}
+```{{r}}
+#| fig-align: left
 
-
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
 ```
+````
+ 
+## Python
+ 
+````{.markdown}
+```{{r}}
+#| fig-align: left
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+```
+````
+
+:::
 
 
+![TODO: An image here with the alignment options. Make it clear this is relative to text above and below plot](){}
 
 ### Arranging multiple tables and/or figures {#sec-multiple-outputs}
 
@@ -911,7 +941,7 @@ Arrays for `fig-cap`, `fig-alt`, `label`?
 
 
 `layout-nrow` `layout-ncol` `layout`
-`layout-halign` `layout-valign`
+`layout-align` `layout-valign`
 
 
 `tbl-subcap`, `fig-subcap`, can `fig-alt` be an array?
@@ -922,42 +952,68 @@ Putting multiple figures/tables in a panel: Using chunk options: i.e. all plots,
 
 ### Relative to page
 
-
-
-
 Placing figures/tables on page: column classes `column`, `fig-column`, `tbl-column`, latex fig pos, `fig-pos`
 
 Available columns:
 https://quarto.org/docs/authoring/article-layout.html#available-columns
 
-
+Via code cell option, or fenced div attribute.
 
 ### Relative to slide
 
 `output-location`
 
+### Table column widths
+
+`tbl-colwidths` document or code cell option to set width for columns in markdown tables. 
+
+
 ## Figure Sizing
 
-crossrefs, chunk options that are consistent across engines/languages, mention embed from a notebook where you create the fig or tbl, reference that it's like include but on steroids, chunk options that turn into fenced div attributes like layout, figure sizing
+### Set default at document level
 
-### Lightbox
+Document level options to set default figure size for document/project.
 
+### Set in your code 
+
+Knitr only: cell level option
+
+## Figure formats
+
+Document level options to set default figure format for document/project.
+
+### Set default at document level
+
+Document level options to set default figure format.
+Could be format specific, e.g. `PNG` for HTML, `SVG` for PDF?
+
+### Set in your code 
+
+Knitr only: cell level option
+
+## Embedding figures and tables from other documents
+
+
+## Troubleshooting
+
+`keep-md` to check what is being generated
 
 ### Getting plots to show up in `jupyter` engine
-
-### Choosing formats of plots
 
 ### How to get tables into Quarto? HTML vs. markdown
 
 ### Interactive Components
 
-## Treating computational tables or figures as non-computational
+## Move somewhere else?
 
-## Examples used in this chapter
+### LaTeX specific things
 
+Move to Documents chapter: `fig-scap`, `fig-env`, `fig-pos`, 
 
-## Single page layouts
+### Format specific layout
 
-Dashboards
+RevealJS: `output-location`
 
-Panels 
+HTML: `panel`
+
+Dashboards: computational figures/tables becomes cards laid out in rows and columns
