@@ -1,0 +1,19 @@
+website:
+  title: Drake Lab
+  sidebar:
+    - title: Research
+      id: research
+      contents:
+        - project-1.qmd
+        - project-2.qmd
+    - title: Teaching
+      id: teaching
+      contents: 
+        - course-1.qmd
+        - course-2.qmd
+    - title: Drake Lab
+      id: main
+      contents:
+        - index.qmd
+        - about.qmd
+    

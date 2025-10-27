@@ -30,7 +30,7 @@ New file, in directory, etc.
 
 ### Rendering
 
-Use the ![](https://quarto.org/docs/get-started/hello/images/rstudio-render-button.png){width="30" height="25"} **Render** button in the RStudio IDE to render the file and preview the output with a single click or keyboard shortcut (⇧⌘K).
+Use the ![](images/rstudio-render-button.png){width="30" height="25"} **Render** button in the RStudio IDE to render the file and preview the output with a single click or keyboard shortcut (⇧⌘K).
 
 ![](images/rstudio-render.png)
 

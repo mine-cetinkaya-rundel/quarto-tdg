@@ -1,0 +1,5 @@
+website:
+  title: My Website           
+  navbar:
+    left: 
+      - about.qmd

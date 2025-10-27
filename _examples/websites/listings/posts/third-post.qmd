@@ -1,0 +1,10 @@
+---
+title: International Systems Biology Summit
+image: bioscience-image-library-by-fayette-reynolds-FovBvnvVS_k-unsplash.jpg
+image-alt: Magnified cells
+description: |
+  At the International Systems Biology Summit in Singapore, our team presented our latest findings on cellular trajectory mapping during wound healing, sparking engaging discussions with leading experts in the field.
+author: Soraya Drake
+date: 2025-03-21
+categories: [research, data]
+---
