@@ -53,6 +53,7 @@ book:
         - templates.qmd
         - extensions.qmd
         - dig-under-hood.qmd
+        - advanced-figure-table.qmd
 
 format:
   html:
@@ -71,3 +72,6 @@ execute:
 crossref:
   lst-title: Snippet
   lst-prefix: Snippet
+
+filters: 
+  - list-table

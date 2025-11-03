@@ -1,0 +1,20 @@
+---
+echo: false
+---
+
+```{r}
+#| message: false
+{{< include ../_code-snippets/setup.R >}}
+```
+
+
+
+:::{#captions-location-margin}
+```{r}
+#| label: tbl-species-count-margin
+#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| cap-location: margin
+
+{{< include ../_code-snippets/species-count.R >}}
+```
+:::
