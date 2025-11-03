@@ -12,14 +12,18 @@ image_dir <- here("images")
 # fmt: skip
 screenshots <- tribble(
   ~file,                      ~id,
+  "quick-start/r.qmd"      , "quick-start-figure",
+  "quick-start/r.qmd"      , "basic-cell-options-table",
+  "multiple/r.qmd"         ,  "multiple-figures",
+  "multiple/r.qmd"         ,  "multiple-tables",
+  "position/r.qmd"         ,  "column-screen",
+  "position/r.qmd"         ,  "column-margin",
   "basic-cell-options/r.qmd", "basic-cell-options-table",
   "basic-cell-options/r.qmd", "basic-cell-options-figure",
   "cross-references/r.qmd"  , "cross-references-link",
-  "captions/r.qmd"          , "captions-subcaptions",
-  "captions/r.qmd"          , "captions-subcaptions-reference",
-  "captions/location-bottom.qmd"          , "captions-location-bottom",
-  "captions/location-margin.qmd"          , "captions-location-margin",
-  "captions/location-top.qmd"          , "captions-location-top",
+  "fig-align/r.qmd",         "align-left",
+  "fig-align/r.qmd",         "align-center",
+  "fig-align/r.qmd",         "align-right",
 )
 
 screenshots <- screenshots |>
@@ -29,9 +33,9 @@ screenshots <- screenshots |>
     selector = paste0("#", id)
   )
 
-# Do the last ones
+# Do one
 screenshots |>
-  slice_tail(n = 3) |>
+  slice(10:12) |>
   rowwise() |>
   mutate(
     image = qmdshot(document, filename, selector)

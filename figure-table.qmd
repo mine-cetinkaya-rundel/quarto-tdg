@@ -5,34 +5,47 @@ echo: false
 # Figures and tables {#sec-figures-and-tables}
 ```{r}
 #| eval: false
+#| label: screenshots
 #| include: false
 
 ## Occasionally run this re-generate screenshots
 source("_examples/figure-table/generate-screenshots.R")
 ```
 ```{r}
+#| eval: false
+#| label: code-setup
 #| include: false
 {{< include _examples/figure-table/_code-snippets/setup.R >}}
 ```
 
 ## Overview
 
-Most common kinds of output from computational cells. 
-Also the ones you get some of the biggest gains from literate programming.
+In @sec-authoring you learned the markdown syntax to include image files and markdown tables.
 
-Images and markdown tables discussed in @sec-authoring.
+Now images and tables are produced by code cells.
 
-Big difference, use code cell options rather than markdown syntax.
+Engine is producing the image file or table syntax markdown/HTML, and the surrounding markdown to include it in your document.
 
-First, in basic cell options learn the cell options that you'll use most often and correspond to the markdown syntax you've seen.
+Big reproducibility benefits:
 
-Then dive into cross-references, captions and layout. 
+- Always up to date
+- Change labelling, colors etc. right in document source
+- File formats, paths etc. all managed for you
 
-We'll focus on things that are common across engines but provide some additional engine and language specific tips and troubleshooting.
+
+Start by seeing the equivalent code cell syntax for the markdown you learned in @sec-authoring.
+You'll then learn some things common to both figures and tables: multiple outputs in a single cell, and controlling where they appear on the page.
+
+Then you can dive into some details about figures and tables separately.
+Finally, some tips ofr troubleshooting problems with computational figures and tables.
+
+See Advanced tables and figures too.
 
 ::: {.callout-tip}
 
 ## Common questions about figures and tables
+
+TODO: revisit and link each to this chapter or advanced chapter
 
 How do I :
 
@@ -98,12 +111,53 @@ Code required before executing the examples in this chapter
 :::
 
 
+## Figure and table basics {#sec-figtab-basic}
 
+If the output of an executable code cell is a figure or a table, Quarto will automatically include it in the rendered document.
+For example, in @fig-figure-quick the code cell produces a figure.
 
-## Basic cell options {#sec-figtab-basic}
+::: {#fig-figure-quick}
 
-The chunk options you'll use most often are the analogs of those you would set with markdown when including a non-computational table or figure in a Quarto document.
-These options are:
+::: {.panel-tabset group="language"}
+
+## R
+
+````{.markdown}
+Some text before the code cell.
+
+```{{r}}
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+
+Some text after the code cell.
+````
+
+## Python
+
+````{.markdown}
+Some text before the code cell.
+
+```{{python}}
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+```
+
+Some text after the code cell.
+````
+
+:::
+
+A document with an executable code cell that produces a figure
+
+:::
+
+When the document is rendered that figure appears right where the code cell was (@fig-quick-start-figure).
+
+![A rendered document with a figure produced by a code cell](images/figure-table-quick-start-figure.png){#fig-quick-start-figure .border fig-alt="Screenshot of Quarto HTML document with a scatterplot shown below the line of text 'Some text before the code cell' and above the line of text 'Some text after the code cell'."}
+
+For non-computational figures and tables, additional context, like a caption or identifier, is added via markdown syntax.
+For computational figures and tables, additional context is added via code cell options.
+
+The most common options are:
 
 *  `label`: The ID for the resulting figure/table. You must omit the `#`. 
     If the label starts with `fig-` or `tbl-`, the figure or table will be numbered, and can be cross-referenced. 
@@ -113,134 +167,7 @@ These options are:
 
 *  `fig-alt`: Alternative text for the resulting figure. There is no `tbl` equivalent, because tables are text-based and generally accessible to screen readers.
 
-@fig-tbl-compare and @fig-fig-compare compare the syntax for non-computational and computational tables and figures using placeholders (in uppercase) for the content.
-
-::: {#fig-tbl-compare}
-
-:::{}
-```{.markdown}
-MARKDOWN TABLE
-
-: CAPTION {#LABEL}
-```
-
-Markdown table
-
-:::
-
-:::{}
-````{.markdown}
-```{{LANGUAGE}}
-#| label: LABEL
-#| tbl-cap: CAPTION
-
-# CODE
-```
-````
-
-Computational table
-:::
-
-A comparison of the syntax for a table created with markdown, and a table created in a code cell. TODO: turn this into a diagram so we can color code the same info
-
-::: 
-
-::: {#fig-fig-compare}
-
-:::{}
-```{.markdown}
-![CAPTION](PATH){#LABEL fig-alt="ALT TEXT"}
-```
-
-Markdown figure
-:::
-
-:::{}
-````{.markdown}
-```{{LANGUAGE}}
-#| label: LABEL
-#| fig-cap: CAPTION
-#| fig-alt: ALT TEXT
-
-# CODE
-```
-````
-
-Computational figure
-
-:::
-
-A comparison of the syntax for a figure created with markdown, and a figure created in a code cell.  TODO: turn this into a diagram so we can color code the same info
-
-::: 
-
-As a concrete example, consider the non-computational table in @lst-markdown-table.
-
-:::{#lst-markdown-table}
-```{.markdown .code-overflow-wrap}
-| species    | n   |
-|------------|-----|
-| Adelie     | 152 |
-| Chinstrap  | 68  |
-| Gentoo     | 124 |
-
-: Number of penguins sampled from each species in the Palmer Archipelago {#tbl-species-count}
-```
-
-Markdown to produce a captioned and numbered table
-:::
-
-This table could have instead been produced by an executable code cell, as shown in @fig-tables.
-
-::: {#fig-tables}
-
-::: {.panel-tabset group="language"}
-
-## R
-
-````{.markdown}
-```{{r}}
-#| label: tbl-species-count
-#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
-
-{{< include _examples/figure-table/_code-snippets/species-count.R >}}
-```
-````
-
-## Python
-
-````{.markdown}
-```{{python}}
-#| label: tbl-species-count
-#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
-
-{{< include _examples/figure-table/_code-snippets/species-count.py >}}
-```
-````
-
-:::
-
-Basic table chunk options used for a computational table. Compare to @lst-markdown-table
-
-:::
-
-When rendered the result is shown in @fig-basic-cell-options-table.
-Notice the caption is prefaced by "Table 1:" --- this is because the label started with `tbl-` which signals to Quarto this is a cross-referenceable table. 
-You'll learn more about cross-references in @sec-figtab-crossrefs.
-
-![Example output when @fig-tables is rendered](images/figure-table-basic-cell-options-table.png){#fig-basic-cell-options-table fig-alt=""}
-
-
-Similarly, @lst-markdown-figure shows a non-computational figure, that could instead be produced using the code cells shown in @fig-figures.
-
-::: {#lst-markdown-figure}
-
-```{.markdown .code-overflow-wrap}
-![Penguin bill length versus depth by species](images/width-vs-depth.png){#fig-scatter fig-alt="Scatter plot of bill length vs. depth showing distinct species clustering."}
-```
-
-Markdown used to include a non-computational figure.
-:::
+For example, @fig-figures uses the same code as @fig-figure-quick but adds an identifier, caption, and alternative text with code cell options.
 
 ::: {#fig-figures}
 
@@ -272,40 +199,89 @@ Markdown used to include a non-computational figure.
 
 :::
 
-Basic figure chunk options used for a computational figure. Compare to @lst-markdown-figure.
+Basic code cell options used to add an identifier (`label`), caption (`fig-cap`) and alternative text (`fig-alt`) to a computational figure.
 
 :::
 
-The result is shown in @fig-basic-cell-options-figure.
+The rendered result is shown in @fig-basic-cell-options-figure.
 The caption here is prefaced by "Figure 1:" because the label started with `fig-`, the signal that this is a cross-referenceable figure. 
 
 ![Example output when @fig-figures is rendered](images/figure-table-basic-cell-options-figure.png){#fig-basic-cell-options-figure fig-alt=""}
 
+@fig-tables demonstrates the same concept for tables.
+To caption a table use the `tbl-cap` option, 
+and start the label with `tbl-` to make it cross-referenceable.
 
-## Cell option quick reference
 
-The table below summarizes other commonly used code cell options for figures and tables and where in this chapter you can learn more about them.
+::: {#fig-tables}
+
+::: {.panel-tabset group="language"}
+
+## R
+
+````{.markdown}
+```{{r}}
+#| label: tbl-species-count
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
+
+{{< include _examples/figure-table/_code-snippets/species-count.R >}}
+```
+````
+
+## Python
+
+````{.markdown}
+```{{python}}
+#| label: tbl-species-count
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
+
+{{< include _examples/figure-table/_code-snippets/species-count.py >}}
+```
+````
+
+:::
+
+Basic code cell options used to add an identifier (`label`) and caption (`tbl-cap`) for a computational table.
+
+:::
+
+The result is shown in @fig-basic-cell-options-table.
+The table caption is prefaced by "Table 1:" because `label` started with `tbl-`, the signal that this is a cross-referenceable table.
+
+![Example output when @fig-tables is rendered](images/figure-table-basic-cell-options-table.png){#fig-basic-cell-options-table fig-alt="Rendered table with caption above it 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'."}
+
+
+## Code cell options
+
+@tbl-figtab-ref below summarizes the basic cell options covered in @sec-figtab-basic along with other commonly used code cell options for figures and tables.
+For each option, we indicate whether it is also a *document option* (☑ in the Document Option column), and where in this chapter you can learn more.
+
+Some options we delay until @fig-adv-figures-and-tables.
 
 We only list options common to both the `knitr` and `jupyter` engines.
-Use quarto doc reference for full list of available options.
+Use the [Quarto code cell reference](https://quarto.org/docs/reference/cells/) for full list of available options.
 
 
-| Option | Description | Reference |
-|--------|-------------|-----------|
-|`label` | ID for output, also used for cross-references. | @sec-figtab-basic, start with `tbl` or `fig` to number and cross-reference, see @sec-figtab-crossrefs. |
-| `fig-cap` | Caption for figure                          | @sec-figtab-basic, can be an array if you produce multiple figures, see @sec-multiple-outputs. |
-| `tbl-cap` | Caption for table                           | @sec-figtab-basic, can be an array if you produce multiple tables, see @sec-multiple-outputs. |
-| `fig-alt` | Alternative text description of the figure  | @sec-figtab-basic, can be an array if you produce multiple figures, see @sec-multiple-outputs |
-| `fig-subcap` | Sub-captions for multiple figures produced in a single code cell | |
-| `tbl-subcap` | Sub-captions for multiple tables produced in a single code cell | |
-| `cap-location` | Location of caption relative to figure or table | See @sec-caption-location. Also `fig-cap-location` and `tbl-cap-location` 
-| `layout-ncol` | Number of columns when arranging multiple figures or tables in a single panel | See @sec-multiple-outputs. Also `layout-nrow`.|
-| `layout` | Layout specification when arranging multiple figures or tables in a single panel | See @sec-multiple-outputs. |
-| `layout-align` / `layout-valign` | Alignment when arranging multiple figures or tables in a single panel | See @sec-multiple-outputs. |
-| `column` | Place figure or table in a specific column relative to page | See @sec-single-page-layouts. Also `fig-column` and `tbl-column`.|
-| `tbl-colwidths` | Column widths for markdown tables | See @sec-table-column-widths. |
+| Option | Document Option | Description | Reference |
+|--------|-----------------|-------------|-----------|
+|`label` | | ID for output, also used for cross-references. | @sec-figtab-basic, start with `tbl` or `fig` to number and cross-reference, see @sec-figtab-crossrefs. |
+| `fig-cap` | | Caption for figure                          | @sec-figtab-basic |
+| `tbl-cap` | | Caption for table                           | @sec-figtab-basic |
+| `fig-alt` | | Alternative text description of the figure  | @sec-figtab-basic |
+| `fig-subcap` | | Sub-captions for multiple figures produced in a single code cell | @sec-multiple-figures-tables |
+| `tbl-subcap` | | Sub-captions for multiple tables produced in a single code cell |@sec-multiple-figures-tables  |
+| `layout-ncol`/ `layout-nrow` | | Number of columns when arranging multiple figures or tables in a single panel | Mentioned in @sec-multiple-figures-tables. See also @sec-layout and @sec-advanced-layout. |
+| `column` | | Place figure or table in a specific column relative to page | See @sec-page-location-column. Also `fig-column` and `tbl-column`. |
+| `output-location` | | Place figure or table in a specific location relative to slide | See @sec-output-location. |
+| `fig-width` / `fig-height` **`knitr` engine only** | ☑ | Size of figure in inches | @sec-figure-size includes options for `jupyter` engine |
+| `fig-align`| ☑ | Alignment of figures in their surrounding container | @sec-fig-align |
+| `tbl-colwidths` | ☑ | Column widths for markdown tables | See @sec-tbl-colwidths. |
+| `layout` | | Layout specification when arranging multiple figures or tables in a single panel | See @sec-layout and @sec-advanced-layout.  |
+| `layout-align` / `layout-valign` | | Alignment when arranging multiple figures or tables in a single panel | @sec-advanced-layout |
+| `cap-location` / `fig-cap-location` /  `tbl-cap-location` | ☑ | Location of caption relative to figure or table | See @sec-caption-location.
 
-: Quick Reference for code cell options for figures and tables 
+: Commmon code cell options for figures and tables {#tbl-figtab-ref tbl-colwidths="[25,5,40,30]"}
+
 
 ## Cross-references {#sec-figtab-crossrefs}
 
@@ -329,23 +305,40 @@ When rendered the cross-references are replaced with the figure or table identif
 
 See other cross-reference types in @sec-crossreferences
 
-### Fenced div syntax
+## The fenced div syntax
 
-Alternative to setting `label` and `fig-cap`/`tbl-cap` as code cell options
-Set identifier as ID in fenced div
-Use code cell to generate table or figure
-Caption is last line in div
+As an alternative to setting the `label` and `fig-cap`/`tbl-cap` code cell options, you can use Quarto's fenced div syntax to organize your computational figures and tables. 
+This approach separates the content generation from the labeling and captioning.
+This can be useful in certain scenarios, two of which we'll explore in this section: long captions and dynamic captions.
 
-```{.markdown}
+The basic structure uses a fenced div with the `label` as an identifier, followed by a code cell that generates your content, and ends with the caption as the last line: 
+
+````{.markdown}
 ::: {#LABEL}
-
-CONTENT
+```{{LANGUAGE}}
+# Generate your figure or table here
+```
 
 CAPTION
 
 :::
-```
+````
 
+::: callout-note
+
+## Fenced div syntax only works with cross-referenceable figures and tables
+
+To be processed as content along with a caption, the label used in the fenced div must start with a prefix recognized by Quarto's cross-reference syntax. 
+For computational figures and tables this usually means starting with `fig-` or `tbl-`.
+
+:::
+
+@fig-fenced-div shows how the same figure from @fig-figures would look using the fenced div approach.
+The `label` code cell becomes an identifier for the fenced div (`#fig-scatter`),
+the code cell no longer has `label` or `fig-cap` options,
+and the caption is the last line before the closing of the fenced div.s
+
+::: {#fig-fenced-div}
 ::: {.panel-tabset group="language"}
 
 ## R
@@ -380,10 +373,13 @@ Penguin bill length versus depth by species
 
 :::
 
+Using the fenced div syntax to acheive the same result as @fig-figures.
 
-When to use: long captions, dynamic captions.
+:::
 
-#### Long captions
+Two examples of when this can be useful are: long captions, and dynamic captions.
+
+### Long captions
 
 If your caption is getting long and it is increasingly painful to track as a code cell option, consider using the div syntax instead.
 You can then split lines in a way that makes sense and not have to worry about the YAML syntax.
@@ -444,7 +440,12 @@ Quarto doesn't support captions that consist of multiple paragraphs.
 
 :::
 
-#### Dynamic captions
+### Dynamic captions
+
+Dynamic captions are caption which depend on some computational result.
+By using the fenced div syntax, you include computation in your caption via inline code execution.
+
+For example, @fig-dynamic-captions, uses inline code to include the number of rows in the `penguins` dataset in the caption.
 
 ::: {#fig-dynamic-captions}
 
@@ -486,48 +487,88 @@ Penguin bill length versus depth by species `{{python}} penguins.height` penguin
 
 :::
 
-### Multiple figures or tables
 
-Refer to other sections...
+## Multiple figures or tables {#sec-multiple-figures-tables}
 
-Use array for `fig-subcap` / `tbl-subcap`
-Can reference with `@fig-label-1`.
+If your code cell produces more than one figure, or more than one table,
+you can give the individual figures or tables sub-captions by providing an array to `fig-subcap`, or `tbl-subcap`, respectively.
 
-Use `layout` to control arrangement.
-Also see mixed examples in Layout section.
+For example, @fig-multiple-figures, produces two figures in a single code cell, and thus provides an array of two values to both `fig-subcap` and `fig-alt`.
 
-## Captions
+::: {#fig-multiple-figures}
 
-### Caption text
+:::{.panel-tabset group="language"}
 
-Refer to previous sections:
+## R
+ 
+````{.markdown}
+```{{r}}
+#| label: fig-scatter
+#| fig-cap: Physical dimensions of penguins
+#| fig-alt: 
+#|   - "Scatter plot of bill length vs. depth showing distinct species clustering."
+#|   - "Scatter plot of flipper length vs. body mass showing a strong positive relationship."
+#| fig-subcap: 
+#|   - "Penguin bill length versus depth by species"
+#|   - "Penguin flipper length versus body mass by species"
 
-* Use code cell options or last element in fenced divs to set content of captions.
-* Include dynamic content in captions by using div syntax and inline code.
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
 
-### Sub-captions
+{{< include _examples/figure-table/_code-snippets/size-scatter.R >}}
+````
+ 
+## Python
+ 
+````{.markdown}
+```{{python}}
+#| label: fig-scatter
+#| fig-cap: Physical dimensions of penguins
+#| fig-alt: 
+#|   - "Scatter plot of bill length vs. depth showing distinct species clustering."
+#|   - "Scatter plot of flipper length vs. body mass showing a strong positive relationship."
+#| fig-subcap: 
+#|   - "Penguin bill length versus depth by species"
+#|   - "Penguin flipper length versus body mass by species"
 
-When your code chunk produces two or more figures, or two or more tables,
-using `fig-subcap` or `tbl-subcap` is a quick way to generate a multi-panel figure or table.
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
 
+{{< include _examples/figure-table/_code-snippets/size-scatter.py >}}
+````
+ 
+:::
+
+An example of a code cell that produces two figures. Individual figure captions are provided as an array to  `fig-subcap`, and alternative text descriptions are provided as an array to `fig-alt`.
+
+:::
+
+![Result of rendering,  @fig-multiple-figures, a code cell with multiple figures.](images/figure-table-multiple-figures.png){#fig-multiple-figures-rendered fig-alt="Two scatterplots one above the other. Each plot has a caption prefaced by '(a)' and '(b)' respectively. The overall caption is 'Figure 1: Physical dimensions of penguins'."}
+
+When rendered, the figures are placed together in a single "Figure" where the overall caption is provided by `fig-cap` and prefaced by "Figure 1:".
+Each individual figure in the panel has its own sub-caption prefaced by "(a)" and "(b)".
+You can cross reference the entire panel with the `label`, e.g. `@fig-scatter`, or individual figures by appending an index, e.g.  `@fig-scatter-1` and `@fig-scatter-2`.
+
+Similarly, @fig-multiple-tables shows a code cell that produces two tables, with sub-captions provided via `tbl-subcap`.
+The rendered output is shown in @fig-multiple-tables-rendered. 
+Just like multiple figures, multiple tables get an overall caption from `tbl-cap`, and individual captions from `tbl-subcap`. 
+
+::: {#fig-multiple-tables}
 
 ::: {.panel-tabset group="language"}
 
 ## R
  
 ````{.markdown}
-```{{r}}
+```{{python}}
 #| label: tbl-species-count
-#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
 #| tbl-subcap: 
-#|   - "Breakdown by species"
-#|   - "Breakdown by species and year"
+#|   - "Total"
+#|   - "By year"
 
 {{< include _examples/figure-table/_code-snippets/species-count.R >}}
 
 {{< include _examples/figure-table/_code-snippets/species-year.R >}}
-```
- 
+``` 
 ````
  
 ## Python
@@ -535,187 +576,377 @@ using `fig-subcap` or `tbl-subcap` is a quick way to generate a multi-panel figu
 ````{.markdown}
 ```{{python}}
 #| label: tbl-species-count
-#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
 #| tbl-subcap: 
-#|   - "Breakdown by species"
-#|   - "Breakdown by species and year"
+#|   - "Total"
+#|   - "By year"
 
 {{< include _examples/figure-table/_code-snippets/species-count.py >}}
 
 {{< include _examples/figure-table/_code-snippets/species-year.py >}}
-```
- 
+``` 
 ````
  
 :::
 
+An example of a code cell that produces two tables. Individual table captions are provided as an array to  `tbl-subcap`.
 
-![](images/figure-table-captions-subcaptions.png)
+:::
 
-Must be cross-reference
-Can't mix figure and tables.
+![Result of rendering,  @fig-multiple-tables, a code cell with multiple figures.](images/figure-table-multiple-tables.png){#fig-multiple-tables-rendered fig-alt="Two tables, one above the other. Each table has a caption prefaced by '(a)' and '(b)' respectively. The overall caption is 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'."}
 
-Can refer to panels by adding suffix to reference.
+Often the use of `fig-subcap` or `tbl-subcap` is combined with layout options to arrange the multiple figures or tables in a panel in a specific way.
+For example, the `layout-ncol` code cell option will arrange the figures or tables in a specified number of columns. 
+In both examples above, adding the code cell option `layout-ncol: 2` would result in the figures or tables being laid out side-by-side rather than one above the other.
 
-```{.markdown}
-See @tbl-species-count, @tbl-species-count-1, @tbl-species-count-2
-```
+Using `fig-subcap` or `tbl-subcap` is a quick way to create multi-panel figures or tables, but as soon as you want some combination of: individual captions, a mix of figures and tables, to control placement on the page, or individual cross-references, we recommend using a single code cell for each output, and using the fenced divs syntax to label, caption and arrange them. 
+You can learn more about this approach in @sec-adv-figures-and-tables.
 
-![](images/figure-table-captions-subcaptions-reference.png)
+## Position
 
-More flexibly, use fenced divs to create sub-captions. See ...
+Figures and tables appear in your document where the code cell is located, 
+and occupy the same width as the body text.
+For some formats you can alter this with code cell options.
 
-### Caption location {#sec-caption-location}
+The most useful options are:
 
-By default, Quarto puts figure captions at the bottom of the figure, and table captions at the top of the table.
-You can control this with the `cap-location` option for both figures and tables, or separately with the `fig-cap-location` and `tbl-cap-location` options.
-Can take the values `top`, `bottom`, or `margin` (`margin` only in some formats).
+* `column`: for `html` and `pdf` formats, controls the width and horizontal position of the output in relation to the body text.
 
+* `output-location`: for `revealjs` presentations, controls whether the output appears in another column, or slide, and whether is appears only after a slide advance.
+
+### Page location: `column` {#sec-page-location-column}
+
+In `html` and `pdf` formats, a page is divided into columns, which contain the main body of the document, a margin on the right, and in `html`, a margin on the left often used for a sidebar.
+
+Special `.column-` classes allow document elements to span various combinations of these columns. 
+The `column` code cell option is a way to apply these classes to figures or tables produced by your code cells.
+
+For example, if you have a figure that would benefit from more horizontal space, you could set `column: screen` (@fig-page-columns-code), to allow the figure to span the full width available.
+Alternatively, for figures that are small and supplementary to the main text, you could set `column: margin` to place them in the margin area.
+@fig-page-columns shows the result in the resulting `html` output.
+
+::: {#fig-page-columns-code}
 ::: {.panel-tabset group="language"}
 
 ## R
- 
-````{.markdown filename="document.qmd"}
-```{{r}}
-#| label: tbl-species-count
-#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
-#| cap-location: bottom
 
-{{< include _examples/figure-table/_code-snippets/species-count.R >}}
-``` 
+````markdown
+```{{r}}
+#| column: screen
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
 ````
  
 ## Python
  
-````{.markdown filename="document.qmd"}
+```` 
 ```{{python}}
-#| label: tbl-species-count
-#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
-#| cap-location: bottom
+#| column: screen
 
-{{< include _examples/figure-table/_code-snippets/species-count.py >}}
-``` 
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
 ````
- 
-:::
-
-For example,
-
-::: {#fig-cap-location}
-
-:::{layout="[[1,1], [1]]"}
-:::{}
-![](images/figure-table-captions-location-top.png){.border}
-
-`top`
-:::
-:::{}
-![](images/figure-table-captions-location-bottom.png){.border}
-
-`bottom`
-:::
-
-:::{}
-![](images/figure-table-captions-location-margin.png){.border}
-
-`margin`
-:::
-:::
-
-Tables with the code cell option `cap-location` set to: `top`, `bottom` and `margin`.
-
-:::
-
-
-::: {#fig-cap-location-document}
-
-:::{layout-ncol="2"}
-```{.yaml filename="document.qmd"}
----
-title: "My Document"
-cap-location: bottom
----
-```
-
-```{.yaml filename="_quarto.yml"}
-cap-location: bottom
-```
-:::
-
-You can set the caption location for the entire document in the document header, or for all documents in a project using `_quarto.yml`.
-
-:::
-
-### Caption titles and numbering
-
-Document level (or project level options)!
-
-:::{#fig-cap-title}
-
-::: {layout="[2, 1]"}
-:::{}
-![](images/figure-table-caption-format.jpeg){.border width="50%"}
-
-Table Caption
-:::
-
-:::{}
-![](images/figure-table-cross-reference-form.jpeg){.border width="50%"}
-
-Inline reference
-:::
 
 :::
 :::
 
-```{.yaml filename="document.qmd"}
----
-title: "My Document"
-crossref:
-  tbl-title: Sheet
-  tbl-prefix: Sh
-  tbl-labels: roman
-  title-delim: "—"   
----
-```
-
-![](images/figure-table-caption-format-edit.png)
-
-Same for `fig`: `fig-title`, `fig-prefix`, `fig-labels`
-
-Shared: `title-delim`
-
-`labels`, `subref-labels`,`fig-labels`, `tbl-labels`:`arabic`, `alpha a`, `alpha A`, `roman i`, `roman I` 
 
 
-```{.yaml filename="document.qmd"}
----
-title: "My Document"
-crossref:
-  fig-title: Fig
-  fig-prefix: Fig
-  fig-labels: roman
-  title-delim: "."   
----
-```
+::: {#fig-page-columns layout-ncol="2"}
 
-## Layout
+![`column: screen`](images/figure-table-column-screen.png){#fig-page-columns-screen}
+
+![`column: margin`](images/figure-table-column-margin.png){#fig-page-columns-margin}
+
+Use the `column` code cell option to place a table in different parts of the page, e.g. full width of the screen, or in the margin. Applies for `html` and `pdf` formats.
+
+::: 
+
+You can find all the possible values for `column` in the Quarto documentation on [Article Layout](https://quarto.org/docs/authoring/article-layout.html#available-columns).
+
+::: {.callout-tip}
+
+## Columns are responsive in `html` output
+
+When you view the HTML output, the definition of the columns depends on your screen size.
+For example, on small screens, there is only one column, regardless of `column` all elements will span the full width of the screen.
+
+:::
 
 
-### Figure Alignment {#sec-fig-align}
+### Slide location: `output-location` {#sec-output-location}
 
-The `fig-align` code cell option controls the horizontal alignment of figures relative to surrounding content, 
-and can take values of `default` (the default for the target format), `left`, `right`, or `center`. 
+For presentations with `format: revealjs` the `output-location` code cell option controls where the figure or table appears in relation to the slide containing the code cell that created it.
 
-For example to left-align:
+For example, @fig-output-location uses `output-location: slide` to put a figure on the slide following the code cell. 
 
+::: {#fig-output-location}
 ::: {.panel-tabset group="language"}
 
 ## R
  
 ````{.markdown}
 ```{{r}}
-#| fig-align: left
+#| echo: true
+#| output-location: slide
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+``` 
+````
+ 
+## Python
+ 
+````{.markdown}
+```{{python}}
+#| echo: true
+#| output-location: slide
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+``` 
+````
+ 
+:::
+
+Use `output-location: slide` to place a figure on the slide following the code cell that created. Applies to `format: revealjs` presentations.
+:::
+
+Other values for `output-location` include: 
+
+* `fragment`: place the output on the same slide, but only show it after a slide advance.
+* `column`: place the output in a separate column on the same slide.
+* `column-fragment`: place the output in a separate column on the same slide, but only show it after a slide advance.
+
+You can read more about these options in the Quarto documentation on [RevealJS presentations](https://quarto.org/docs/presentations/revealjs/#output-location).
+
+## Figures
+
+In this section you'll learn about figure-specific options: **figure size**, **format and resolution**, and **alignment**. Some of these controls are *document options* (set in your document header and applied to all figures), some are *code cell options* (applied to individual code cells), and others need to be configured directly in your plotting code. We'll use *emphasis* to highlight when an option is a document-level setting versus a code cell option. 
+
+### Default figure size
+
+The *document options* `fig-width` and `fig-height` control the default size of figures produced by all the code cells in a document. 
+
+How these values are applied depends on the engine:
+
+* `knitr`: the values are passed along to the graphics device, and thus apply regardless of the package you use to create the plots.
+* `jupyter`: the values are used to set the default figure size for matplotlib. 
+    Many popular plotting packages, including seaborn, depend on matplotlib, and will respect these defaults.
+    Other packages may not respect matplotlib defaults, like plotnine, but have themselves implemented something to use and respect the  environment variables Quarto sets `QUARTO_FIG_WIDTH` and `QUARTO_FIG_HEIGHT`.
+
+The default values are format specific.
+For example, the default figure size for `format: html` is 7x5 inches, 
+which is different to that for `format: pdf` at 5.5x3.5 in.
+
+You can override these defaults using `fig-width` and `fig-height` *document options*.
+For example, @lst-fig-width-height shows how to set the default figure size to 4x6 in for `html` output.
+
+::: {#lst-fig-width-height}
+
+```{.yaml filename="document.qmd"}
+---
+format:
+  html:    
+    fig-width: 4
+    fig-height: 6
+---
+```
+
+Use the `fig-width` and `fig-height` document options to set the default figure size for a target output format.
+
+:::
+
+Set `fig-width` and `fig-height` at the top-level (i.e. not nested under a format) to apply to all formats.
+You could also set `fig-width` and `fig-height` in `_quarto.yml` to apply to all documents in a project.
+
+### Custom figure size {#sec-figure-size}
+
+The defaults set by the document options will apply to all code cells. 
+However, you often want to customize figure sizes, and aspect ratios, for individual plots.
+How you do this depends on the engine. 
+
+#### `knitr`
+
+In `knitr` use the *code cell options* `fig-width`, `fig-height`
+
+::: {#lst-figure-size}
+````{.markdown}
+```{{r}}
+#| fig-width: 4
+#| fig-height: 6
+
+{{< include _examples/figure-table/_code-snippets/island-bar.R >}}
+```
+````
+
+When using the `knitr` engine, use the code cell options `fig-width` and `fig-height` to customize figure size for individual plots.
+
+:::
+
+
+#### `jupyter` 
+
+There are no `fig-width` or `fig-height` code cell options for the `jupyter` engine.
+You need to set the figure size in the code itself.
+This will depend on the plotting package you are using.
+
+For plotting packages that use matplotlib and respect its defaults, you can set figure sizes using matplotlib directly.
+
+For example, @lst-seaborn-figure shows code to create a scatterplot of the `penguins` data using [seaborn](https://seaborn.pydata.org). 
+With no further adjustment the size of the figure will reflect the default `fig-height` and `fig-width` document options.
+
+::: {#lst-seaborn-figure}
+````markdown
+```{{python}}
+import seaborn as sns
+penguins = sns.load_dataset("penguins")
+sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species")
+```
+````
+
+Code to create seaborn plot of its own `penguins` data. 
+
+:::
+
+To change the size of the figure you change the matplotlib default plot size using `rcParams`. 
+This mimics the way the `jupyter` engine sets the default plot sizes and will apply to all plots created in subsequent code cells. 
+
+::: {#lst-seaborn-figure-rcparams}
+````markdown
+```{{python}}
+import matplotlib as mpl
+mpl.rcParams['figure.figsize'] = (8, 4)
+
+sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species")
+```
+````    
+
+Use matlplotlibs `rcParams` to change default figure size for all subsequent plots.
+
+:::
+
+Alternatively, to apply a new default for a single plot, use `rc_context` as shown in @lst-seaborn-figure-rccontext.
+
+::: {#lst-seaborn-figure-rccontext}
+
+````markdown
+```{{python}}
+import matplotlib as mpl
+with mpl.rc_context({'figure.figsize': (8, 4)}):
+    sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species")
+```
+````
+
+Use `rc_context` to create a plot with a temporary change to the matplotlib default figure size.
+
+:::
+
+For packages that don't use matplotlib, or don't respect its defaults, you'll need to refer to their documentation for changing plot size.
+For example, in plotnine you can resize a plot through the `theme()` function as shown in @lst-plotnine-figure-size.
+
+::: {#lst-plotnine-figure-size}
+
+````markdown
+```{{python}}
+(
+    ggplot(penguins, aes(x="bill_length_mm", y="bill_depth_mm"))
+    + geom_point(aes(color="species"))
+    + scale_color_manual(values=penguin_colors)
+    + labs(x="Bill Length (mm)", y="Bill Depth (mm)")
+    + theme(figure_size=(8, 4))
+)
+```
+````
+:::
+
+### Figure format and resolution
+
+The default image format saved by the engines differs by target format.
+For example, for `format: html`, images will be PNG (`.png`) by default, for `format: pdf`, images will be PDF (`.pdf`) by default.
+
+You can override these defaults using `fig-format` *document option*.
+For example, @lst-fig-format shows how to set the default figure format to `svg` for `html` output.
+
+::: {#lst-fig-format}
+
+````{.yaml filename="document.qmd"}
+---
+format:
+  html:
+    fig-format: svg
+---
+````
+
+Use the `fig-format` document option to set the default figure format for a target output format.
+
+:::
+
+Setting `fig-format` at the top-level will apply to all output formats.
+You can also set `fig-format`, at the top-level, or nested under a `format` in `_quarto.yml` to apply it to all documents in a project.
+
+For raster image formats like `png` and `jpg`, you can also control the resolution of the saved image using the `fig-dpi` document option.
+
+For example, @lst-fig-dpi shows how to set the default figure resolution to 300 dots-per-inch for `html` output.
+
+::: {#lst-fig-dpi}
+
+````{.yaml filename="document.qmd"}
+---
+format:
+  html:
+    fig-dpi: 300
+---
+````
+Use the `fig-dpi` document option to set the default figure resolution for a target output format.
+Like `fig-format` you can set this for all formats, or for all documents in a project via `_quarto.yml`.
+
+:::
+
+### Figure alignment: `fig-align` {#sec-fig-align}
+
+When figure is placed in your document, think about it being placed inside a container. 
+By default, the width of that container is the width of the body text, but you can alter it by placing the figure in a column (@sec-page-location-column).
+Figure alignment refers to the horizontal alignment of a figure within that container.
+
+You can alter figure alignment with `fig-align`, which is a *code cell option* and a *document option*.
+@fig-fig-align illustrates the three possible values: `default` (the default for the target format), `left`, `right`, or `center`.
+
+::: {#fig-fig-align layout-ncol="3"}
+
+![`fig-align: left`](images/figure-table-align-left.png){fig-alt="A scatterplot aligned to the left of the page."}
+
+![`fig-align: center`](images/figure-table-align-center.png){fig-alt="A scatterplot centered on the page."}
+
+![`fig-align: right`](images/figure-table-align-right.png){fig-alt="A scatterplot aligned to the right of the page."}
+
+Examples showing the effect of different `fig-align` settings: `left`, `center`, and `right`.
+
+:::
+
+You can set `fig-align` at document level to apply to all figures (computational or not) in a document as shown in @lst-fig-align-document.
+
+::: {#lst-fig-align-document}
+
+```{.yaml filename="document.qmd"}
+---
+fig-align: left
+---
+```
+
+You can specify the alignment of all figures in a document using the `fig-align` document option.
+
+:::
+
+
+You can then override the document level alignment on a code cell basis.
+For example, @fig-fig-align-code aligns a single figure to the left of its container using `fig-align: right`.
+
+::: {#fig-fig-align-code}
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+```{{r}}
+#| fig-align: right
 
 {{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
 ```
@@ -725,7 +956,7 @@ For example to left-align:
  
 ````{.markdown}
 ```{{r}}
-#| fig-align: left
+#| fig-align: right
 
 {{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
 ```
@@ -733,287 +964,300 @@ For example to left-align:
 
 :::
 
+Change the alignment of a figure in its enclosing container with `fig-align`.
 
-![TODO: An image here with the alignment options. Make it clear this is relative to text above and below plot](){}
-
-### Arranging multiple tables and/or figures {#sec-multiple-outputs}
-
-Examples of arraning multuple figures, using array for `fig-cap` `fig-alt` and various `layout` options.
-
-
-Quarto provides a set of layout code cell options and attributes that allow you to arrange multiple figures or tables in a single panel.
-As an example, `layout-ncol` specifies the number of columns in a panel layout.
-You can use it as a code cell option:
-
-````{.markdown}
-```{{LANGUAGE}}
-#| layout-ncol: 2
-
-# CODE TO GENERATE TWO FIGURES/TABLES
-```
-````
-
-Or you can use it as an attribute in a fenced div:
-
-````{.markdown}
-::: {layout-ncol="2"}
-
-```{{LANGUAGE}}
-# CODE TO GENERATE A SINGLE FIGURE OR TABLE
-```
-
-```{{LANGUAGE}}
-# CODE TO GENERATE ANOTHER FIGURE OR TABLE
-```
 :::
 
+
+## Tables
+
+In this section you'll learn about table-specific options, in particular choosing a  **table format** and controlling things like column alignment and width
+
+### Table format
+
+When you produce a computational table, the engine is writing the resulting table in some plain text format.
+The most common formats are markdown pipe tables and HTML tables.
+Both markdown pipe tables and HTML tables are supported across all of Quarto's output formats, the choice between them often comes down to how much control you want over the appearance of the table.
+
+Choose:
+
+* **Markdown**: for simple tables that don't require any row, cell or column specific formatting. 
+
+* **HTML**: for more complex tables that require row, cell or column specific styling. While HTML allows for more control over the appearance of the table, not all customization will propagate through to all target formats. The best support for HTML styling is in HTML based formats (`html`, `dashboards` and `revealjs`), and `typst`.
+
+Your package and function choices, along with your target format, determine which format is produced.
+Often the format is explicit in your code, e.g. by a call to `Markdown()` in Python.
+If it isn't, and you aren't sure which format you have produced, check the intermediate markdown that Quarto produces after executing your code cells.
+
+### Markdown 
+
+Using the markdown pipe syntax mimics how you might write a table out by hand in Quarto (@sec-markdown-tables). 
+There are many ways to produce a markdown table computationally, but we highlight the most general approach for each language here.
+
+#### R
+
+The `kable()` function from the [knitr](https://yihui.org/knitr/) package produces markdown tables by default.
+Simply pass your table object to `kable()` and it will return the markdown table:
+
+````markdown
+```{{r}}
+{{< include _examples/figure-table/_code-snippets/species-count-markdown.R >}}
+```
 ````
 
-Using the code cell option is the simplest approach, 
-but as soon as you want some combination of: a mix of figures and tables, 
-individual captions, to control placement on the page, or individual cross-references, we recommend using the attribute in a fenced div and nesting your code inside.
+The intermediate markdown produced is:
+
+````markdown
+|species   |   n|
+|:---------|---:|
+|Adelie    | 151|
+|Chinstrap |  68|
+|Gentoo    | 123|
+````
+
+Control the alignment of columns (i.e. the position of the colons, `:`) with the `align` argument to `kable()`.
 
 
-`layout-nrow`/`layout-ncol` 
+#### Python
 
+The `tabulate()` function from the [tabulate](https://github.com/astanin/python-tabulate) packages can produce markdown tables from a variety of Python data structure. 
 
+A general approach to create markdown tables is:
 
+1. Convert the table to a data type tabulate supports (e.g. a `pandas.DataFrame`)
 
+2. Pass the table to `tabulate()` with `tablefmt='pipe'`
 
-`layout` 
+3. Return the result surrounded by `Markdown()` from `IPython.display`
 
+For example, to apply this strategy to a summary table created by Polars:
 
-`layout-align`/`layout-valign` 
+````markdown
+```{{python}}
+{{< include _examples/figure-table/_code-snippets/species-count-markdown.py >}}
+```
+````
 
+When executed, this intermediate markdown is produced:
 
+````markdown
+| species   |   len |
+|:----------|------:|
+| Gentoo    |   123 |
+| Adelie    |   151 |
+| Chinstrap |    68 |
+````
 
+Control the alignment of columns (i.e. the position of the colons, `:`)  with the `colalign` argument to `tabulate()`.
 
-````{.markdown}
-::: {layout-ncol="2"}
+While `tabulate()` is useful general approach you may find simpler ways for your specific situation.
+For example, you can set the default print style for polars DataFrames to markdown pipe tables using [`polars.Config.set_tbl_formatting`](https://docs.pola.rs/api/python/stable/reference/api/polars.Config.set_tbl_formatting.html).
 
-```{{LANGUAGE}}
-#| label: fig-1
-#| fig-cap: "Figure 1 caption"
-# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+### HTML
+
+The tables in @fig-tables were produced using the GT package in R and great_tables package in Python.
+Both packages produce HTML tables by default (they can also produce LaTeX tables see @sec-tables-other-formats).
+
+For example, Figure @lst-intermediate-markdown-table shows a simplified excerpt from the intermediate markdown for the computational table produced in @fig-tables when `format: html`.
+
+:::{#lst-intermediate-markdown-table}
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown filename="document.html.md"}
+::: {.cell-output-display}
+
+```{=html}
+<div id="czabgtycdf" ...>
+<style>...</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>...</thead>
+  <tbody class="gt_table_body">...</tbody>
+</table>
+</div>
 ```
 
-```{{LANGUAGE}}
-#| label: fig-2
-# CODE TO GENERATE ANOTHER FIGURE OR TABLE
-```
+:::
 :::
 ````
-
-````{.markdown}
-::: {#fig-plots}
-::::: {layout-ncol="2"}
-
-```{{LANGUAGE}}
-# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+ 
+## Python
+ 
+````{.markdown filename="document.html.md"}
+::: {.cell-output .cell-output-display execution_count=8}
+```{=html}
+<div id="jnzyjbmsji" ...>
+<style>...</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>...</thead>
+  <tbody class="gt_table_body">...</tbody>
+</table>
+</div>
 ```
-
-```{{LANGUAGE}}
-# CODE TO GENERATE ANOTHER FIGURE OR TABLE
-```
-:::::
-
-CAPTION
-:::
+::: 
 ````
-
-You might use the code cell option when your code produces:
-
-* all figures, or all tables, but not a mix of both, or
-
-* many figures or tables (i.e. in a loop) that don't need captions or individual cross-references
-
-* 
- or in simple cases where you don't also need have 
-
-
- is easiest when your  is the simplest approach, but it can be less flexible than using fenced divs.
-
-, or as an attribute in a fenced div.
-
-is both a code cell option, and an attribute, that specifies the number of columns in a layout.
-
-
-````{.markdown}
-````
-
-Arranging multiple figures or tables in a single panel is a common requirement.
-You can do this using the `layout` code cell options, or by using fenced divs with the `layout` classes. 
-
-It's possible to specify a layout of multiple figures or tables produced in a single code cell using the `layout` or `layout-ncol`/`layout-nrow` code cell options.
-
-
-
-````{.markdown}
-::: {layout-ncol="2"}
-
-```{{LANGUAGE}}
-# CODE TO GENERATE A SINGLE FIGURE OR TABLE
-```
-
-```{{LANGUAGE}}
-# CODE TO GENERATE ANOTHER FIGURE OR TABLE
-```
+ 
 :::
 
-````
+Intermediate markdown from the code cells in @fig-tables. The `...` indicate parts omitted for brevity.
 
+:::
 
+Inside the `::: {.cell-output-display}` div, you'll notice the raw HTML block syntax `` ```{=html} ``, and the table is created with the HTML tags `<table>`, `<thead>` and `<tbody>`.
+In other words, the code cell has produced an HTML table.
 
+When producing HTML tables, you'll often find the package you are using provides its own styling (i.e. inside `<style>` tags), and ways to customize styling via their own functions.
+Read the documentation for your chosen package to see how to customize the appearance of your tables.
+
+### Other formats {#sec-tables-other-formats}
+
+The computational engine is aware of your target format.
+This means packages can produce tables in formats other than markdown or HTML when appropriate.
+For example, both the GT (R) and great_tables (Python) packages will produce tables using LaTeX syntax when the target format is `pdf`.
+Other packages may produce RTF tables when the target format is `word`.
+Refer to the documentation for your chosen package to see what formats are supported.
+
+### Column widths
+
+Usually, column widths in tables are determined automatically based on the content of each column.
+However, sometimes you may want to set specific column widths.
+
+#### Markdown tables: `tbl-colwidths` {#sec-tbl-colwidths}
+
+The option `tbl-colwidths` allows you to specify widths for columns for *markdown* tables.
+It takes an array of values, one per column, expressed as percentages.
+You can set it as a *document option* to apply to all tables in a document, or as a *code cell option* to apply to a single table.
+
+For example, @fig-tbl-colwidths-markdown shows how to set the column widths for a single markdown table using the code cell option `tbl-colwidths`.
+
+::: {#fig-tbl-colwidths-markdown}
 ::: {.panel-tabset group="language"}
 
 ## R
  
 ````{.markdown}
 ```{{r}}
-#| layout-ncol: 2
-
-{{< include _examples/figure-table/_code-snippets/species-count.R >}}
-
-{{< include _examples/figure-table/_code-snippets/species-year.R >}}
-```
- 
+#| tbl-colwidths: [25, 75]
+{{< include _examples/figure-table/_code-snippets/species-count-markdown.R >}}
+``` 
 ````
  
 ## Python
  
 ````{.markdown}
 ```{{python}}
-#| layout-ncol: 2
-
-{{< include _examples/figure-table/_code-snippets/species-count.py >}}
-
-{{< include _examples/figure-table/_code-snippets/species-year.py >}}
-```
- 
+#| tbl-colwidths: [25, 75]
+{{< include _examples/figure-table/_code-snippets/species-count-markdown.py >}}
+``` 
 ````
  
 :::
 
-::: {.panel-tabset group="language"}
+Use `tbl-colwidths` to set relative column widths for markdown tables.
+
+:::
+
+#### HTML tables
+
+Since HTML tables usually provide their styling, column width (and table width) are usually controlled via the package you are using to create the table.
+For example, @fig-tbl-colwidths-gt shows how to replicate the table and column widths above for HTML tables using the GT and great_tables packages.
+
+
+::: {#fig-tbl-colwidths-gt}
+
+:::{.panel-tabset group="language"}
 
 ## R
- 
+
 ````{.markdown}
-::: {layout-ncol="2"}
-
 ```{{r}}
-{{< include _examples/figure-table/_code-snippets/species-count.R >}}
+penguins |>
+  count(species) |>
+  gt() |> 
+  tab_options(
+    table.width = pct(100),
+  ) |> 
+  cols_width(
+    species ~ pct(25),
+    n ~ pct(75)
+  )
 ```
-
-```{{r}}
-{{< include _examples/figure-table/_code-snippets/species-year.R >}}
-```
-:::
 ````
- 
+
 ## Python
- 
+
 ````{.markdown}
-::: {layout-ncol="2"}
-
 ```{{python}}
-{{< include _examples/figure-table/_code-snippets/species-count.py >}}
+(
+  pl.DataFrame(penguins)
+  .group_by('species')
+  .len()
+  .pipe(GT) 
+  .tab_options(table_width="100%")
+  .cols_width(
+    species="25%", 
+    len="75%"
+  )
+)
 ```
-
-```{{python}}
-{{< include _examples/figure-table/_code-snippets/species-year.py >}}
-```
-:::
 ````
-
 :::
 
+GT and great_tables provide their own functions to set table (`tab_options()`) and column widths (`cols_width()`).
 
-However, we recommend using fenced divs instead, because they are more flexible and easier to read.
-
-Combing multiple layout classes in a single fenced div can be unpredictable.
-You should instead nest fenced divs to create complex layouts.
-
-
-
-
-Arrays for `fig-cap`, `fig-alt`, `label`?
-
-
-`layout-nrow` `layout-ncol` `layout`
-`layout-align` `layout-valign`
-
-
-`tbl-subcap`, `fig-subcap`, can `fig-alt` be an array?
-
-Using fenced divs instead. E.g. figure next to image. Table next to figure.
-
-Putting multiple figures/tables in a panel: Using chunk options: i.e. all plots, tables computed in single code chunk 
-
-### Relative to page
-
-Placing figures/tables on page: column classes `column`, `fig-column`, `tbl-column`, latex fig pos, `fig-pos`
-
-Available columns:
-https://quarto.org/docs/authoring/article-layout.html#available-columns
-
-Via code cell option, or fenced div attribute.
-
-### Relative to slide
-
-`output-location`
-
-### Table column widths
-
-`tbl-colwidths` document or code cell option to set width for columns in markdown tables. 
-
-
-## Figure Sizing
-
-### Set default at document level
-
-Document level options to set default figure size for document/project.
-
-### Set in your code 
-
-Knitr only: cell level option
-
-## Figure formats
-
-Document level options to set default figure format for document/project.
-
-### Set default at document level
-
-Document level options to set default figure format.
-Could be format specific, e.g. `PNG` for HTML, `SVG` for PDF?
-
-### Set in your code 
-
-Knitr only: cell level option
-
-## Embedding figures and tables from other documents
-
+:::
 
 ## Troubleshooting
 
-`keep-md` to check what is being generated
+In this section we provide some troubleshooting tips for when your figures or tables don't look right.
+Refer back to @sec-troubleshooting for general troubleshooting tips.
 
-### Getting plots to show up in `jupyter` engine
+### Examine intermediate markdown
 
-### How to get tables into Quarto? HTML vs. markdown
+Since your figures and tables are produced by the engine executing your code, a good first step is to take a look at the markdown after the engine has finished by setting `keep-md: true` in your document header:
 
-### Interactive Components
+```{.yaml filename="document.qmd"}
+---
+title: My Document
+keep-md: true
+---
+```
 
-## Move somewhere else?
+Render your document, and then open the generated markdown file, `{filename}.{format}.md` file.
 
-### LaTeX specific things
+Find where the figure or table that isn't looking right is, and examine it carefully.
+A good way to find it, is to search for its `label`.
 
-Move to Documents chapter: `fig-scap`, `fig-env`, `fig-pos`, 
+* Is the format of the figure or table what you expect? 
 
-### Format specific layout
+* Is the content of the figure or table what you expect? For figures, navigate to the path of the saved image and open it directly. For tables, you'll need to rely on examing the HTML or markdown syntax.
 
-RevealJS: `output-location`
+* Is the surrounding markdown what you expect? For example, are the attributes present on the figure or table markdown? Are the correct classes on the surrounding fenced divs?
 
-HTML: `panel`
+### Explore package options
 
-Dashboards: computational figures/tables becomes cards laid out in rows and columns
+The pacakges you use to create figures and tables often have their own options for controlling appearance.
+Check the documentation for your chosen package to see what options are available.
+
+### Separate code from markdown
+
+Some code options, like `column` and the `layout*` options, 
+don't have an impact on how your code produces your figures and tables, 
+but instead on the markdown that surrounds them in the document.
+
+If your figures and tables don't look right, and you are using these options,
+a good first step is to pull apart the layout from the code that produces the figure or table.
+
+Remove the options entirely, and check the tables and figures themselves look right.
+Then, introduce the layout back in, but use the fenced div approach, rather than the code cell options.
+
+### Reproduce in a minimal example
+
+As always, if you are having trouble, try to reproduce the issue in a minimal example, and ask for help.
+Refer back to @sec-ask-for-help tips on how to do this effectively.
+Creating a reproducable example is more complicated when execution is involved.
+To fully reproduce an issue, someone also needs to reproduce your computational environment including the version of R or Python and the versions of any packages you are using.
+To make this easier, minimize the computation and packages required to illustrate your problem.
+Attempt to reduce the problem to as little code as possible by creating a small, illustrative data set, and doing as little computation as possible to demonstrate the problem.
+

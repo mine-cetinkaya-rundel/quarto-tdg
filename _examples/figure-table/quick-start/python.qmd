@@ -1,0 +1,29 @@
+---
+title: Basic options
+echo: false
+keep-md: true
+---
+
+```{python}
+{{< include ../_code-snippets/setup.py >}}
+```
+
+```{python}
+{{< include ../_code-snippets/bill-scatter.py >}}
+```
+
+
+```{python}
+#| label: tbl-species-count
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
+
+{{< include ../_code-snippets/species-count.py >}}
+```
+
+```{python}
+#| label: fig-scatter
+#| fig-cap: "Penguin bill length versus depth by species"
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include ../_code-snippets/bill-scatter.py >}}
+```

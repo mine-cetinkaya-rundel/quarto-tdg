@@ -24,9 +24,29 @@
 {{< embed notebooks/authoring-python.qmd#plot echo=true >}}
 :::
 
-## Tables
+## Tables {#sec-markdown-tables}
 
-## Figures
+Pipe table, + example with caption and ID 
+
+List table (grid table support being phased out)
+
+HTML table?
+
+## Figures {#sec-markdown-figures}
+
+Basic markdown syntax for figure, figure with ID + caption + alt. 
+
+Attributes you might put directly in the figure syntax: `fig-align`, `width`?
+
+## Layout {#sec-layout}
+
+Using divs with classes and/or attributes to create layouts.
+
+`layout-*` attributes to arrange items 
+
+`.column` classes to use parts of the page https://quarto.org/docs/authoring/article-layout.html#available-columns
+
+## Cross-references {#sec-crossreferences}
 
 ## etc.
 

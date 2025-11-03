@@ -548,7 +548,7 @@ For example, for websites Quarto needs to run through all documents to build the
 Some projects may also involve `freeze`.
 When freezing a document it is the intermediate Markdown file that gets put in the freezer, effectively removing the computational engine step when the freezer is activated.
 
-## Troubleshooting
+## Troubleshooting {#sec-troubleshooting}
 
 In this section, you'll learn some tips for troubleshooting problems when they do occur.
 
@@ -797,7 +797,7 @@ In this case, a general troubleshooting process might look like:
 
 * Ask for help using your reproducible example.
 
-### Asking for help
+### Asking for help {#sec-ask-for-help}
 
 If you can't figure out the problem yourself, your next step is to ask someone. 
 A good question includes:
