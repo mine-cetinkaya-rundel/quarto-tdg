@@ -21,25 +21,33 @@ source("_examples/figure-table/generate-screenshots.R")
 ## Overview
 
 In @sec-authoring you learned the markdown syntax to include image files and markdown tables.
+In this chapter, images and tables are now the result of executable code cells.
 
-Now images and tables are produced by code cells.
+Figures and tables are one of the most common outputs from executable cells,  and they benefit from some of the biggest advantages to being computationally generated:
 
-Engine is producing the image file or table syntax markdown/HTML, and the surrounding markdown to include it in your document.
+- They are always up to date
+- You can change labelling, styling, colors etc. right in document source
+- File formats, and file paths are handled by Quarto, not you
 
-Big reproducibility benefits:
+In @sec-figtab-basic, you'll start by learning how to use code cell options to produce syntax like you learned in @sec-authoring, including how to add captions, labels, and alternative text.
+Followed by a quick reference of common code cell options for figures and tables in @sec-figtab-code-cell-options.
 
-- Always up to date
-- Change labelling, colors etc. right in document source
-- File formats, paths etc. all managed for you
+Then you'll cover some of the most common tasks that apply to both figures and tables, and regardless of the computational engine you are using:
 
+* Cross-references: Create numbered figures and tables that can be referenced throughout your document using Quarto's cross-reference syntax.
 
-Start by seeing the equivalent code cell syntax for the markdown you learned in @sec-authoring.
-You'll then learn some things common to both figures and tables: multiple outputs in a single cell, and controlling where they appear on the page.
+* Fenced div syntax: An alternative approach to adding captions and labels to computational figures and tables that separates content generation from labelling and captioning. 
 
-Then you can dive into some details about figures and tables separately.
-Finally, some tips ofr troubleshooting problems with computational figures and tables.
+* Multiple figures or tables: Handling code cells that produce multiple figures or tables, including sub-captions and layout control.
 
-See Advanced tables and figures too.
+* Position: Controlling where your figures and tables appear on the page or in slides.
+
+Next, in the Figures (@sec-figtab-figures) and Tables (@sec-figtab-figures) you'll learn about options specific to each type of output: 
+
+- Figure  size, format, resolution, and alignment, and where the `knitr` and `jupyter` engines differ
+- Table format and controlling column widths and alignment.
+
+Finally, in @sec-figtab-troubleshooting you'll some tips for diagnosing and fixing common issues with computational figures and tables.
 
 ::: {.callout-tip}
 
@@ -251,7 +259,7 @@ The table caption is prefaced by "Table 1:" because `label` started with `tbl-`,
 ![Example output when @fig-tables is rendered](images/figure-table-basic-cell-options-table.png){#fig-basic-cell-options-table fig-alt="Rendered table with caption above it 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'."}
 
 
-## Code cell options
+## Code cell options {#sec-figtab-code-cell-options}
 
 @tbl-figtab-ref below summarizes the basic cell options covered in @sec-figtab-basic along with other commonly used code cell options for figures and tables.
 For each option, we indicate whether it is also a *document option* (☑ in the Document Option column), and where in this chapter you can learn more.
@@ -298,14 +306,13 @@ To refer to these outputs you could use, for example,:
 Most penguins were Adelie (@tbl-species-count). @fig-scatter shows quite distinct clustering of the three species in bill length versus depth.
 ```
 
-
 When rendered the cross-references are replaced with the figure or table identifier and become links. 
 
 ![](images/figure-table-cross-references-link.png)
 
-See other cross-reference types in @sec-crossreferences
+See other cross-reference types in @sec-crossreferences.
 
-## The fenced div syntax
+## The fenced div syntax {#sec-figtab-fenced-div}
 
 As an alternative to setting the `label` and `fig-cap`/`tbl-cap` code cell options, you can use Quarto's fenced div syntax to organize your computational figures and tables. 
 This approach separates the content generation from the labeling and captioning.
@@ -599,7 +606,7 @@ Often the use of `fig-subcap` or `tbl-subcap` is combined with layout options to
 For example, the `layout-ncol` code cell option will arrange the figures or tables in a specified number of columns. 
 In both examples above, adding the code cell option `layout-ncol: 2` would result in the figures or tables being laid out side-by-side rather than one above the other.
 
-Using `fig-subcap` or `tbl-subcap` is a quick way to create multi-panel figures or tables, but as soon as you want some combination of: individual captions, a mix of figures and tables, to control placement on the page, or individual cross-references, we recommend using a single code cell for each output, and using the fenced divs syntax to label, caption and arrange them. 
+Using `fig-subcap` or `tbl-subcap` is a quick way to create multi-panel figures or tables, but as soon as you want some combination of: individual captions, a mix of figures and tables, to control placement on the page, or individual cross-references, we recommend using a single code cell for each output, and using the fenced divs syntax (@sec-figtab-fenced-div) to label, caption and arrange them. 
 You can learn more about this approach in @sec-adv-figures-and-tables.
 
 ## Position
@@ -717,7 +724,7 @@ Other values for `output-location` include:
 
 You can read more about these options in the Quarto documentation on [RevealJS presentations](https://quarto.org/docs/presentations/revealjs/#output-location).
 
-## Figures
+## Figures {#sec-figtab-figures}
 
 In this section you'll learn about figure-specific options: **figure size**, **format and resolution**, and **alignment**. Some of these controls are *document options* (set in your document header and applied to all figures), some are *code cell options* (applied to individual code cells), and others need to be configured directly in your plotting code. We'll use *emphasis* to highlight when an option is a document-level setting versus a code cell option. 
 
@@ -969,7 +976,7 @@ Change the alignment of a figure in its enclosing container with `fig-align`.
 :::
 
 
-## Tables
+## Tables  {#sec-figtab-tables}
 
 In this section you'll learn about table-specific options, in particular choosing a  **table format** and controlling things like column alignment and width
 
@@ -1208,7 +1215,7 @@ GT and great_tables provide their own functions to set table (`tab_options()`) a
 
 :::
 
-## Troubleshooting
+## Troubleshooting {#sec-figtab-troubleshooting}
 
 In this section we provide some troubleshooting tips for when your figures or tables don't look right.
 Refer back to @sec-troubleshooting for general troubleshooting tips.
