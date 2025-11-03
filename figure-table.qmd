@@ -264,7 +264,7 @@ The table caption is prefaced by "Table 1:" because `label` started with `tbl-`,
 @tbl-figtab-ref below summarizes the basic cell options covered in @sec-figtab-basic along with other commonly used code cell options for figures and tables.
 For each option, we indicate whether it is also a *document option* (☑ in the Document Option column), and where in this chapter you can learn more.
 
-Some options we delay until @fig-adv-figures-and-tables.
+Some options we delay until @sec-adv-figures-and-tables.
 
 We only list options common to both the `knitr` and `jupyter` engines.
 Use the [Quarto code cell reference](https://quarto.org/docs/reference/cells/) for full list of available options.
