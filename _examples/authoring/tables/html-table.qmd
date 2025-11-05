@@ -1,0 +1,29 @@
+```{=html}
+<table id="tbl-perf">
+  <caption>Training performance</caption>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Accuracy</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Random Forest</td>
+      <td>96.7%</td>
+      <td>0.12s</td>
+    </tr>
+    <tr>
+      <td>Logistic Regression</td>
+      <td>81.2%</td>
+      <td>0.08s</td>
+    </tr>
+    <tr>
+      <td>Linear Regression</td>
+      <td>74.8%</td>
+      <td>0.05s</td>
+    </tr>
+  </tbody>
+</table>
+```
