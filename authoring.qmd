@@ -1,6 +1,15 @@
 # Authoring {#sec-authoring}
 
-## Markdown text
+When we say "authoring" we mean the process of adding content to a Quarto document---literally, the things you write in a `.qmd` file.
+You'll start by learning about the three basic components of a Quarto document: the document header, code cells and markdown text.
+
+The rest of the chapter then focuses on the specific markdown syntax that Quarto uses to create rich documents.
+Our goal is to give you a good overview of breadth of Quarto's authoring features, while delaying many of the details to later chapters of the book.
+
+We suggest reading through the chapter in its entirety on your first reading, and then referring back to specific sections as needed when authoring your own documents.
+
+
+## Document header
 
 ## Code cells
 
@@ -23,6 +32,10 @@
 
 {{< embed notebooks/authoring-python.qmd#plot echo=true >}}
 :::
+
+## Markdown text
+
+
 
 ## Tables {#sec-markdown-tables}
 
