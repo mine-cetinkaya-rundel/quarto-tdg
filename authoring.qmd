@@ -26,11 +26,12 @@
 
 ## Tables {#sec-markdown-tables}
 
-The simplest are markdown tables, but cells in a markdown table cannot contain block content like  multiple paragraphs, code cells, or lists.
-List tables provide a markdown way to get complicated cell contents.
-Can also use HTML syntax, regardless of your target format, - not usually written by hand.
+The simplest way to add a table to a Quarto document is to create a **markdown pipe table**, however cells in a markdown pipe table cannot contain block content like multiple paragraphs, code cells, or lists.
+To have cells with complicated cell contents, you can use an alternative syntax called **list tables**.
+You can also use **HTML table syntax**, regardless of your target format, to create tables in Quarto documents.
+You won't usually write HTML syntax by hand, but it is a common output from computational packages that create tables.
 
-### Markdown tables
+### Markdown pipe tables
 
 The simplest syntax for a table in Quarto markdown is known as the **pipe table**, named because columns are separated by the pipe (`|`) character. 
 A pipe table consists of column headers, a separator row of dashes (`-`) and pipes (`|`), and data rows with pipe-separated cells.
@@ -111,11 +112,69 @@ As an example, to generate the same table as @fig-markdown-table with HTML, you 
 {{< include _examples/authoring/tables/html-table.qmd >}}
 ````
 
-## Figures {#sec-markdown-figures}
+### From a code cell
 
-Basic markdown syntax for figure, figure with ID + caption + alt. 
+When the output from an executable code cell is a markdown or HTML table, 
+it will be included in your Quarto document.
 
-Attributes you might put directly in the figure syntax: `fig-align`, `width`?
+To add an identifier and caption to the table use the code cell options `label` and `tbl-cap` respectively:
+
+````markdown
+```{{LANGUAGE}}
+#| label: tbl-example
+#| tbl-cap: "Caption"
+
+# Code that generates a markdown or HTML table
+```
+````
+
+## Images and figures {#sec-markdown-figures}
+
+Refer to @sec-figures for more details on positioning, layout, cross-references, and other advanced figure features.
+Quarto uses the term figure to refer to any image, numbered or not, included in a document.
+You may be more used to using the term figure to refer to an image with a numbered caption---Quarto calls this a cross-referenceable figure. 
+
+### From a file
+
+To include an image file in markdown you use the following syntax:
+
+```markdown
+![](path/to/image.png)
+```
+
+Where the path to the image is a path relative to the current document.
+
+::: {.callout-tip}
+
+## Project relative paths 
+
+If you preface the path with `/`, it is interpreted as a path relative to the project root. 
+You'll learn more about project structure in [Projects](#sec-projects).
+
+:::
+
+You can add a caption inside the square brackets, an identifier inside curly braces after the image path, and alternative text for accessibility in a `fig-alt` attribute:
+
+```markdown
+![Caption](path/to/image.png){#fig-quarto fig-alt="Alternative text"}
+```
+
+If your identifier starts with `fig-`, the image will be a cross-referenceable figure, numbered, and can be referenced using the `@` syntax.
+
+### From a code cell
+
+If the output from an executable code cell is an image, it will be automatically included in your document.
+To add an identifier, caption, or alternative text use the code cell options `label`, `fig-cap`, and `fig-alt` respectively:
+
+````markdown
+```{{LANGUAGE}}
+#| label: fig-quarto
+#| fig-cap: "Caption"
+#| fig-alt: "Alternative text"
+
+# Code that generates a plot
+```
+````
 
 ## Layout {#sec-layout}
 
