@@ -1,4 +1,350 @@
 # Captions {#sec-figtab-captions}
 
+## Caption text
+
+Refer to previous sections:
+
+* Use code cell options or last element in fenced divs to set content of captions.
+* Include dynamic content in captions by using div syntax and inline code.
+
+:::{.callout-tip}
+
+## Short figure captions for LaTeX
+
+`fig-scap` attribute and code cell option to provide succinct descriptions of figures for use in "Table of Figures" in `format: pdf` output.
+
+:::
+
+## The fenced div syntax {#sec-figtab-fenced-div}
+
+As an alternative to setting the `label` and `fig-cap`/`tbl-cap` code cell options, you can use Quarto's fenced div syntax to organize your computational figures and tables. 
+This approach separates the content generation from the labeling and captioning.
+This can be useful in certain scenarios, two of which we'll explore in this section: long captions and dynamic captions.
+
+The basic structure uses a fenced div with the `label` as an identifier, followed by a code cell that generates your content, and ends with the caption as the last line: 
+
+````{.markdown}
+::: {#LABEL}
+```{{LANGUAGE}}
+# Generate your figure or table here
+```
+
+CAPTION
+
+:::
+````
+
+::: callout-note
+
+## Fenced div syntax only works with cross-referenceable figures and tables
+
+To be processed as content along with a caption, the label used in the fenced div must start with a prefix recognized by Quarto's cross-reference syntax. 
+For computational figures and tables this usually means starting with `fig-` or `tbl-`.
+
+:::
+
+@fig-fenced-div shows how the same figure from @fig-figures would look using the fenced div approach.
+The `label` code cell becomes an identifier for the fenced div (`#fig-scatter`),
+the code cell no longer has `label` or `fig-cap` options,
+and the caption is the last line before the closing of the fenced div.s
+
+::: {#fig-fenced-div}
+::: {.panel-tabset group="language"}
+
+## R
+
+````{.markdown}
+::: {#fig-scatter} 
+```{{r}} 
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+
+Penguin bill length versus depth by species
+
+:::
+````
+
+## Python
+
+````{.markdown}
+::: {#fig-scatter}
+```{{python}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+```
+
+Penguin bill length versus depth by species
+
+:::
+````
+
+:::
+
+Using the fenced div syntax to acheive the same result as @fig-figures.
+
+:::
+
+Two examples of when this can be useful are: long captions, and dynamic captions.
+
+### Long captions
+
+If your caption is getting long and it is increasingly painful to track as a code cell option, consider using the div syntax instead.
+You can then split lines in a way that makes sense and not have to worry about the YAML syntax.
+
+::: {#fig-long-captions}
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+::: {#fig-scatter}
+
+```{{r}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+
+Scatter plot depicting the relationship between bill length (mm) and bill depth (mm) across different penguin species. 
+The clustering of the species reveals morphological differences in bill dimensions: 
+**Adelie** penguins have short, deep bills,
+whereas **Gentoo** penguins have long, shallow bills.
+**Chinstrap** penguins have similar depth bills to Adelie penguins but there bills are longer.
+
+:::
+````
+ 
+## Python
+ 
+````{.markdown}
+::: {#fig-scatter}
+
+```{{python}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+```
+
+Scatter plot depicting the relationship between bill length (mm) and bill depth (mm) across different penguin species. 
+The clustering of the species reveals morphological differences in bill dimensions: 
+**Adelie** penguins have short, deep bills,
+whereas **Gentoo** penguins have long, shallow bills.
+**Chinstrap** penguins have similar depth bills to Adelie penguins but there bills are longer.
+
+::: 
+````
+ 
+:::
+
+:::
+
+:::{.callout-important}
+
+## No multi-paragraph captions
+
+Quarto doesn't support captions that consist of multiple paragraphs.
+
+:::
+
+### Dynamic captions
+
+Dynamic captions are caption which depend on some computational result.
+By using the fenced div syntax, you include computation in your caption via inline code execution.
+
+For example, @fig-dynamic-captions, uses inline code to include the number of rows in the `penguins` dataset in the caption.
+
+::: {#fig-dynamic-captions}
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+::: {#fig-scatter}
+
+```{{r}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+
+Penguin bill length versus depth by species for `{{r}} nrow(penguins)` penguins.
+
+:::
+````
+ 
+## Python
+ 
+````{.markdown}
+::: {#fig-scatter}
+
+```{{python}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+```
+
+Penguin bill length versus depth by species `{{python}} penguins.height` penguins.
+
+::: 
+````
+ 
+:::
+
+:::
+
+
 ## Caption location {#sec-caption-location}
 
+By default, Quarto puts figure captions at the bottom of the figure, and table captions at the top of the table.
+You can control this with the `cap-location` option for both figures and tables, or separately with the `fig-cap-location` and `tbl-cap-location` options.
+Can take the values `top`, `bottom`, or `margin` (`margin` only in some formats).
+
+Document level to control computational and non-computational figures and tables.
+
+Code cell level for individual figures and tables.
+
+Is there an attribute equivalent for markdown figures and tables?
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown filename="document.qmd"}
+```{{r}}
+#| label: tbl-species-count
+#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| cap-location: bottom
+
+{{< include _examples/figure-table/_code-snippets/species-count.R >}}
+``` 
+````
+ 
+## Python
+ 
+````{.markdown filename="document.qmd"}
+```{{python}}
+#| label: tbl-species-count
+#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| cap-location: bottom
+
+{{< include _examples/figure-table/_code-snippets/species-count.py >}}
+``` 
+````
+ 
+:::
+
+For example,
+
+::: {#fig-cap-location}
+
+:::{layout="[[1,1], [1]]"}
+:::{}
+![](images/figure-table-captions-location-top.png){.border}
+
+`top`
+:::
+:::{}
+![](images/figure-table-captions-location-bottom.png){.border}
+
+`bottom`
+:::
+
+:::{}
+![](images/figure-table-captions-location-margin.png){.border}
+
+`margin`
+:::
+:::
+
+Tables with the code cell option `cap-location` set to: `top`, `bottom` and `margin`.
+
+:::
+
+
+::: {#fig-cap-location-document}
+
+:::{layout-ncol="2"}
+```{.yaml filename="document.qmd"}
+---
+title: "My Document"
+cap-location: bottom
+---
+```
+
+```{.yaml filename="_quarto.yml"}
+cap-location: bottom
+```
+:::
+
+You can set the caption location for the entire document in the document header, or for all documents in a project using `_quarto.yml`.
+
+:::
+
+## Caption titles and numbering
+
+Titles and numbering require a cross-reference. 
+
+Document level (or project level options)!
+
+:::{#fig-cap-title}
+
+::: {layout="[2, 1]"}
+:::{}
+![](images/figure-table-caption-format.jpeg){.border width="50%"}
+
+Table Caption
+:::
+
+:::{}
+![](images/figure-table-cross-reference-form.jpeg){.border width="50%"}
+
+Inline reference
+:::
+
+:::
+:::
+
+```{.yaml filename="document.qmd"}
+---
+title: "My Document"
+crossref:
+  tbl-title: Sheet
+  tbl-prefix: Sh
+  tbl-labels: roman
+  title-delim: "—"   
+---
+```
+
+![](images/figure-table-caption-format-edit.png)
+
+Same for `fig`: `fig-title`, `fig-prefix`, `fig-labels`
+
+Shared: `title-delim`
+
+`labels`, `subref-labels`,`fig-labels`, `tbl-labels`:`arabic`, `alpha a`, `alpha A`, `roman i`, `roman I` 
+
+
+```{.yaml filename="document.qmd"}
+---
+title: "My Document"
+crossref:
+  fig-title: Fig
+  fig-prefix: Fig
+  fig-labels: roman
+  title-delim: "."   
+---
+```
+
+
+::: {.callout-tip}
+
+## Custom cross-references
+
+If you need a custom title, prefix and numbering scheme, but also want to keep the defaults for figures or tables, define a custom cross-reference type. See ... 
+
+:::

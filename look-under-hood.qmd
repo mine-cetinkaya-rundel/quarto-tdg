@@ -1,8 +1,9 @@
 ---
-title: Looking under the hood
 engine: markdown
 code-overflow: wrap
 ---
+
+# Looking under the hood {#sec-look-under-hood}
 
 So far, we haven't talked much about what happens behind the scenes when you run `quarto render`.
 

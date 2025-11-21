@@ -1,1 +1,48 @@
 # Cross-references {#sec-figtab-crossref}
+
+To cross-reference a computational figure or table you need to:
+
+1. Label your figure or table in a way that Quarto recognizes as a cross-reference, this means using a label that starts with `fig-` or `tbl-`.
+
+2. Refer to your figure or table using the syntax `@LABEL`.
+
+## Adding a label
+
+TODO: generalize for non-computational figures and tables too.
+
+The two examples in @sec-figtab-basic, @fig-tables and @fig-figures,  used the labels `tbl-species-count` and `fig-scatter`. 
+
+### Fenced div
+
+::: {.callout-tip}
+
+## Anything can be a "Figure"
+
+Quarto doesn't care what the content of the fenced div is. Put anything, code cell, tabset, table, markdown. Label prefix determines caption title.
+
+:::
+
+## Referring to a figure or table
+
+To refer to these outputs you could use, for example,:
+
+```{.markdown .code-overflow-wrap}
+Most penguins were Adelie (@tbl-species-count). @fig-scatter shows quite distinct clustering of the three species in bill length versus depth.
+```
+
+When rendered the cross-references are replaced with the figure or table identifier and become links. 
+
+![](images/figure-table-cross-references-link.png)
+
+See other cross-reference types in @sec-crossreferences.
+
+
+
+## Nest fenced divs to get sub-references
+
+## Link instead of cross-reference
+
+
+
+
+

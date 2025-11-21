@@ -239,6 +239,49 @@ The table caption is prefaced by "Table 1:" because `label` started with `tbl-`,
 
 ![Example output when @fig-tables is rendered](images/figure-table-basic-cell-options-table.png){#fig-basic-cell-options-table fig-alt="Rendered table with caption above it 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'."}
 
+### Fenced div syntax
+
+Alternative to setting `label` and `fig-cap`/`tbl-cap` as code cell options
+Set identifier as ID in fenced div
+Use code cell to generate table or figure
+Caption is last line in div
+
+
+::: {.panel-tabset group="language"}
+
+## R
+
+````{.markdown}
+::: {#fig-scatter} 
+```{{r}} 
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+
+Penguin bill length versus depth by species
+
+:::
+````
+
+## Python
+
+````{.markdown}
+::: {#fig-scatter}
+```{{python}}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+```
+
+Penguin bill length versus depth by species
+
+:::
+````
+
+:::
+
+
 ## Figures {#sec-figtab-figures}
 
 In this section you'll learn about figure-specific options: **figure size**, **format and resolution**, and **alignment**. Some of these controls are *document options* (set in your document header and applied to all figures), some are *code cell options* (applied to individual code cells), and others need to be configured directly in your plotting code. We'll use *emphasis* to highlight when an option is a document-level setting versus a code cell option. 
@@ -814,3 +857,10 @@ For example, save your figure as an image file, and include it with standard mar
 You can use your intermediate markdown as a guide, but simplify as much as you can, while still reproducing your problem.
 You have now elimated the computational environment as a source of the problem, so it's possibly a Quarto problem.
 It's time to ask for help, see @sec-ask-for-help.
+
+
+## To be covered somewhere else
+
+* Interactive figures/tables
+
+* Embedding figures/tables from other documents
