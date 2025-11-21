@@ -1,0 +1,14 @@
+# Layout {#sec-figtab-layout}
+
+Link to: 
+
+* `pdf` figure attributes and code cell option: `fig-env`, `fig-pos`
+* `revealjs` code cell option: `output-location`
+
+## Panel layout: `layout` {#sec-panel-layout}
+
+## Position relative to the page: `column` {#sec-page-columns}
+
+## Figure alignment: `fig-align` {#sec-figure-alignment}
+
+## Table column widths: `tbl-colwidth` {#sec-table-column-widths}

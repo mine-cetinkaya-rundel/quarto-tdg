@@ -1,0 +1,175 @@
+# Figures and tables {#sec-figure-table-overview}
+
+## Overview
+
+Figures and tables are essential components of scientific and technical documents, serving as powerful tools to communicate data and results visually. 
+You often need precise control over their placement within documents, their captions, and the ability to group them into panels and cross-reference them throughout the text. 
+Given their importance, we've devoted an entire part of this book to exploring figures and tables in depth.
+
+The first several chapters in this part are written in a way that applies regardless of how your figures and tables are produced---whether you create them directly with markdown syntax or generate them computationally from code cells. 
+This approach is intentional because most aspects of working with figures and tables are independent of their source. 
+For example, document-level options that control figures and tables often apply universally, as do many layout features that involve surrounding figures or tables in additional markdown.
+There are a few exceptions where you'll need to use specific attributes for markdown-based content or code cell options for computational output, and we'll point these out clearly when they arise.
+
+Of course, there are some topics specific to computationally-generated figures and tables—--these topics are covered in @sec-computational-figures-tables.
+
+We expect you'll turn to this part of the book to solve particular tasks with your own tables and figures. 
+The next section is designed to point you quickly to the relevant chapter to solve your problem. 
+
+You should review @sec-syntax-variations which explains how to translate between markdown and computational syntax for figures and tables, as well as what we call the fenced div syntax, which will help you understand and apply the examples used throughout the rest of this part.
+
+## Common tasks
+
+TODO: revisit and link each to this chapter or advanced chapter
+
+How do I :
+
+* Cross-reference my figure/table 
+
+* Change the position of the figure/table
+
+* Arrange multiple figures and/or tables in a single panel
+
+* Change the format or location of the caption
+
+* Control the size or aspect ratio of my figure
+
+* Control the styling of my table 
+
+* Troubleshoot the table or figure output from a particular package
+
+## Syntax variations {#sec-syntax-variations}
+
+### Markdown vs computational
+
+As you read this chapter you'll see examples of figures and tables that are produced in two ways: directly with markdown and computationally.
+A reminder of the syntax is shown for figures in @fig-figure-syntax, and for tables in @fig-table-syntax. 
+
+::: {#fig-figure-syntax}
+
+::: {#fig-figure-syntax-md}
+```markdown
+![Caption](path/to/image.jpg){#fig-id fig-alt="Alternative text"}
+```
+:::
+
+
+::: {#fig-figure-syntax-comp}
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Caption"
+#| fig-alt: "Alternative text"
+
+# Code to generate a single figure
+```
+````
+:::
+
+Syntax for a figure with a numbered caption and alternative text produced via (a) markdown and by (b) an executable code cell.
+
+:::
+
+::: {#fig-table-syntax}
+
+::: {#fig-table-syntax-md}
+```markdown
+| Column 1 | Column 2 |
+|----------|----------|
+| Cell A   | Cell B   |
+
+: Caption {#tbl-id}
+```
+:::
+
+
+::: {#fig-table-syntax-comp}
+````markdown
+```{{LANGUAGE}}
+#| label: tbl-id
+#| tbl-cap: "Caption"
+
+# Code to generate a single table
+```
+````
+:::
+
+Syntax for a table with a numbered caption produced via (a) markdown and by (b) an executable code cell.
+
+:::
+
+The key difference is that for computational figures and tables you use code cell options to specify captions, identifiers, and alternative text.
+When the computational engine executes a code cell that produces a table or figure, it uses the output, along with the code cell options to construct the same markdown you would write by hand to to render a figure or table.
+This means for figure or table tweaks that involve setting document options, or surrounding the figure or table in additional markdown, you can swap a markdown example with a computational one and vice versa.
+For tweaks that involve changes to the markdown itself, like adding an attribute, you'll usually find a corresponding code cell option for a computational output.
+
+### Fenced div syntax
+
+When a figure or table is cross-referenceable (i.e. it has an identifier that starts with `fig-`, `tab-` or one of the other special prefixes) another syntax variant is useful--- the fenced div syntax.
+
+The fenced div syntax moves the caption and identifier outside of the image or table markdown.
+This provides a consistent syntax for both computational and non-computational figures and tables.
+For example, @fig-fenced-div-figure shows the fenced div syntax for figures.
+
+::: {#fig-fenced-div-figure}
+
+::: {#fig-fenced-div-figure-md}
+````markdown
+::: {#fig-id}
+![](path/to/image.jpg){fig-alt="Alternative text"}
+
+Caption
+:::
+````
+:::
+
+:::{#fig-fenced-div-figure-comp}
+````markdown
+::: {#fig-id}
+```{{LANGUAGE}}
+#| fig-alt: "Alternative text"
+
+# Code to generate a single figure
+```
+
+Caption
+:::
+````
+:::
+
+Fenced div syntax for a figure with a numbered caption and alternative text produced via (a) markdown and by (b) an executable code cell.
+
+:::
+
+The fenced div syntax abstracts away whether the figure or table is produced in markdown or computationally.
+So, in the examples later in the chapter we'll use the shorthand:
+
+````markdown
+::: {#fig-id}
+{ IMAGE }
+
+Caption
+:::
+````
+
+where `{ IMAGE }` could be a markdown image or a code cell generating a figure.
+Conveniently, even if you don't replace `{ IMAGE }`, this is valid Quarto markdown and will render like @fig-id.
+
+::: {#fig-id}
+{ IMAGE }
+
+Caption
+:::
+
+
+The same fenced div syntax applies to tables and we'll use a similar shorthand:
+
+````markdown
+::: {#tbl-id}
+{ TABLE }
+
+Caption
+:::
+````
+
+Where `{ TABLE }` could be a code cell generating a table, or a table written directly in markdown as a pipe table, list table, or HTML table in a raw HTML block.
