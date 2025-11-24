@@ -241,12 +241,14 @@ The table caption is prefaced by "Table 1:" because `label` started with `tbl-`,
 
 ### Fenced div syntax
 
-Alternative to setting `label` and `fig-cap`/`tbl-cap` as code cell options
-Set identifier as ID in fenced div
-Use code cell to generate table or figure
-Caption is last line in div
+For cross-referenceable figures and tables, fenced divs provide an alternative method for labeling and captioning. 
+Instead of using the code cell options `label` and `fig-cap`/`tbl-cap`, you set the identifier on a fenced div, and the caption as the last line inside the fenced div.
+The contents above the last line becomes the content of the figure or table, and could be a code cell.
 
+As a concrete example, @fig-fenced-div-figure gives the labelled and captioned figure as the code cell in @fig-figures.
+@fig-fenced-div-table does the same for the table in @fig-tables.
 
+::: {#fig-fenced-div-figure}
 ::: {.panel-tabset group="language"}
 
 ## R
@@ -281,6 +283,48 @@ Penguin bill length versus depth by species
 
 :::
 
+The equivalent fenced div syntax for @fig-figures.
+
+:::
+
+
+:::{#fig-fenced-div-table}
+
+::: {.panel-tabset group="language"}
+
+## R
+
+````{.markdown}
+::: {#tbl-species-count}
+
+```{{r}}
+{{< include _examples/figure-table/_code-snippets/species-count.R >}}
+```
+
+Number of penguins sampled from each species in the Palmer Archipelago
+:::
+````
+
+## Python
+
+````{.markdown}
+::: {#tbl-species-count}
+
+```{{python}}
+{{< include _examples/figure-table/_code-snippets/species-count.py >}}
+```
+
+Number of penguins sampled from each species in the Palmer Archipelago
+:::
+````
+
+:::
+
+The equivalent fenced div syntax for @fig-tables.
+
+:::
+
+The fenced div syntax is useful if you want long captions (@sec-long-captions), dynamic captions that depend on code output (@sec-dynamic-captions), or to combine multiple figures and tables into a single panel with a shared caption (@sec-panel-layout).
 
 ## Figures {#sec-figtab-figures}
 
