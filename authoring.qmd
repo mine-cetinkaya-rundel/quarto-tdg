@@ -60,18 +60,23 @@ Can be nested inside lists, callouts, fenced divs, ...
 
 ## Markdown text
 
-### Sections
+Everything that isn't the document header, or an executable code cell, is interpreted as Quarto markdown.
+Quarto markdown originally built on top of Pandoc markdown with extensions, so many Pandoc markdown work.
+Now, Quarto has its own markdown parser, so some differences.
+The rest of this chapter outlines the most important pieces of Quarto markdown syntax.
+
+## Sections
 
 Markdown syntax for headings. 
 Usually `title` takes role of level-1 heading, so sections use `##`.
 Can add attributes after in curly braces e.g. an ID, preface with `sec` to allow cross-references, or a class, like `.unlisted`. 
 
-### Paragraphs
+## Paragraphs
 
 text followed by blank lines
 Line breaks generally ignored. 
 
-### Inline text elements
+## Inline text elements
 
 Things that can be part of a paragraph, heading, etc. 
 Put the following sections in one big table, and add cross-references, footnotes, citations, and inline equations.
@@ -112,7 +117,7 @@ Explain most either "things" are block level, get there own section below.
 :::
 
 
-## Other Spans {#other-spans}
+### Other Spans {#other-spans}
 
 To create text in small caps, that is underlined, or that is highlighted, use a span with one of the 
 classes `.smallcaps`, `.underline` or `.mark` respectively.
