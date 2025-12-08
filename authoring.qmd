@@ -1,17 +1,36 @@
 # Authoring {#sec-authoring}
 
 When we say "authoring" we mean the process of adding content to a Quarto document---literally, the things you write in a `.qmd` file.
-You'll start by learning about the three basic components of a Quarto document: the document header, code cells and markdown text.
+You'll start by reviewing the three basic components of a Quarto document: the document header, code cells and markdown text.
 
 The rest of the chapter then focuses on the specific markdown syntax that Quarto uses to create rich documents.
 Our goal is to give you a good overview of breadth of Quarto's authoring features, while delaying many of the details to later chapters of the book.
+We also focus on syntax that is broadly supported across multiple output formats and cover specific format features where relevant in @sec-output-formats.
 
 We suggest reading through the chapter in its entirety on your first reading, and then referring back to specific sections as needed when authoring your own documents.
 
 
 ## Document header
 
+Top of the document inside `---`. 
+Basic: `title`, `author`, `format`.
+Sets document metadata and options.
+Refer to Projects chapter to reduce duplication, YAML chapter for more details on syntax.
+
 ## Code cells
+
+Executable code cells are blocks of code that can be run to produce output that is included in your document.
+Inside `` ```{LANGUAGE} `` and `` ``` ``.
+Often have code cell options inside. @sec-execution-options
+`echo`, `include`.
+
+If you want to include code that is highlighted, and displayed, but not executable, use a code block @sec-code-blocks.
+
+Remind of distinction between interactive execution and execution as part of rendering.
+
+Only put code, or code comments inside.
+
+Generally, only one language per document. (depending on engine, might be able to mix code cell languages, e.g. knitr, r and python vis reticulate).
 
 ::: panel-tabset
 ### R
@@ -21,9 +40,11 @@ We suggest reading through the chapter in its entirety on your first reading, an
 ### Python
 
 {{< embed notebooks/authoring-python.qmd#add echo=true >}}
+
 :::
 
 ::: panel-tabset
+
 ### R
 
 {{< embed notebooks/authoring-r.qmd#plot echo=true >}}
@@ -31,11 +52,151 @@ We suggest reading through the chapter in its entirety on your first reading, an
 ### Python
 
 {{< embed notebooks/authoring-python.qmd#plot echo=true >}}
+
 :::
+
+Can be used to generate images/figures, tables, raw markdown content.
+Can be nested inside lists, callouts, fenced divs, ...
 
 ## Markdown text
 
+### Sections
 
+Markdown syntax for headings. 
+Usually `title` takes role of level-1 heading, so sections use `##`.
+Can add attributes after in curly braces e.g. an ID, preface with `sec` to allow cross-references, or a class, like `.unlisted`. 
+
+### Paragraphs
+
+text followed by blank lines
+Line breaks generally ignored. 
+
+### Inline text elements
+
+Things that can be part of a paragraph, heading, etc. 
+Put the following sections in one big table, and add cross-references, footnotes, citations, and inline equations.
+Explain most either "things" are block level, get there own section below.
+
+### Text formatting
+
+::: {.list-table header-cols=1} 
+
+* - Markdown Syntax
+  - Output
+
+* - 
+
+    ``` markdown
+    *italics*, **bold**, ***bold italics***
+    ```
+  - *italics*, **bold**, ***bold italics***
+
+* - 
+
+    ``` markdown
+    superscript^2^ / subscript~2~
+    ```
+  - superscript^2^ / subscript~2~
+* - 
+
+    ``` markdown
+    ~~strikethrough~~
+    ```
+  - ~~strikethrough~~
+* - 
+
+    ``` markdown
+    `verbatim code`
+    ```
+  - `verbatim code`
+:::
+
+
+## Other Spans {#other-spans}
+
+To create text in small caps, that is underlined, or that is highlighted, use a span with one of the 
+classes `.smallcaps`, `.underline` or `.mark` respectively.
+
+::: {.list-table header-cols=1}
+
+- - Markdown Syntax
+  - Output
+
+- - 
+
+    ``` markdown
+    [This text is smallcaps]{.smallcaps}
+    ```
+  - [This text is smallcaps]{.smallcaps}
+
+- - 
+
+    ``` markdown
+    [This text is underlined]{.underline}
+    ```
+  - [This text is underlined]{.underline}
+
+- - 
+    
+    ``` markdown
+    [This text is highlighted]{.mark}
+    ```
+  - [This text is highlighted]{.mark}
+
+:::
+
+### Links {#links}
+
+Automatic, inline, internal
+
+::: {.list-table header-cols=1}
+- - Markdown Syntax
+  - Output
+- -
+
+    ``` markdown
+    <https://quarto.org>
+    ```
+  - <https://quarto.org>
+
+- -
+
+    ``` markdown
+    [Quarto website](https://quarto.org)
+    ```  
+  - [Quarto website](https://quarto.org)
+
+- - 
+
+    ``` markdown
+    [Links section on this page](#links)
+    ```
+  - [Links section on this page](#links)
+:::
+
+See also @sec-crossreferences 
+
+## Lists
+
+an entire blank line above the list
+
+(`*`, `+`, or  `-`) 
+compact vs loose
+
+`1.` actual numbers not important, will be renumbered
+
+Nested, careful with indentation
+
+Block content:
+
+> However, subsequent paragraphs must be preceded by a blank line and indented to line up with the first non-space content after the list marker.
+
+Task lists, definition lists.
+
+## Code blocks {#sec-code-blocks}
+
+`` ```LAUGUAGE ``, or `` ```{.LANGUAGE} `` for syntax highlighting without execution.
+In this book, we use the later, allows easy addition of attributes.
 
 ## Tables {#sec-markdown-tables}
 
@@ -68,25 +229,6 @@ Markdown syntax and rendered output for a markdown pipe table
 
 :::
 
-#### Column alignment and widths
-
-You can add colons to the separator row to align columns to the left, right, or center.
-For example, the following table aligns the first column to the left, the second column to the center, and the third column to the right:
-
-::: {}
-````markdown
-{{< include _examples/authoring/tables/markdown-table-align.md >}}
-````
-::: 
-
-To customize the column widths beyond the default, add a `tbl-colwidths` attribute with an array of column widths (as percentages) to the attributes after the caption.
-For example, you might give the first column 80% of the width and the remaining two columns each 10% of the width:
-
-::: {}
-````markdown
-{{< include _examples/authoring/tables/markdown-table-colwidths.md >}}
-````
-::: 
 
 ### List tables
 
@@ -189,6 +331,217 @@ To add an identifier, caption, or alternative text use the code cell options `la
 ```
 ````
 
+## Equations
+
+Use TeX math. Describe what inline and display mean. 
+Adding numbering and cross-reference.
+Inline: `$ ... $`
+Display: `$$ ... $$` or `\[ ... \]`
+
+Use `$` delimiters for inline math and `$$` delimiters for display math. For example:
+
++---------------------------+-------------------------+
+| Markdown Syntax           | Output                  |
++===========================+=========================+
+| ``` markdown              |                         |
+| inline math: $E = mc^{2}$ | inline math: $E=mc^{2}$ |
+| ```                       |                         |
++---------------------------+-------------------------+
+| ``` markdown              |                         |
+| display math:             | display math:           |
+|                           |                         |
+| $$E = mc^{2}$$            | $$E = mc^{2}$$          |
+| ```                       |                         |
++---------------------------+-------------------------+
+
+How are they processed. 
+LaTeX, HTML, Word
+
+## Cross-references {#sec-crossreferences}
+
+General process:
+
+1. Add label
+2. Refer using `@label`
+
+Give table of common examples: `fig`, `tbl`,  `lst`, `sec`, `eq`,, `callout`, `thm`, 
+
+Refer to Quarto docs for more details.
+
+### Reserved Prefixes 
+
+Unless you are creating a cross-reference, avoid using the reserved cross-reference prefixes for code cell labels (e.g. set using the `label` code cell option) and element IDs (set using a `#` in an attribute). 
+ 
+The reserved prefixes are: `fig`, `tbl`, `lst`, `tip`, `nte`, `wrn`, `imp`, `cau`, `thm`, `lem`, `cor`, `prp`, `cnj`, `def`, `exm`, `exr`, `sol`, `rem`, `alg`, `eq`, `sec`.
+
+Also avoid using underscores (`_`) in labels and IDs as this can cause problems when rendering to PDF with LaTeX.
+
+Include syntax variations like `[Fig @fig-elephant]`, `[-@fig-elephant]`, `[@fig-elephant; @fig-panther]`.
+
+## Citations {#sec-citations}
+
+Quarto will use Pandoc to automatically generate citations and a bibliography in a number of styles. To use this capability, you will need:
+
+-   A quarto document formatted with citations (see [Citation Markdown](#sec-citations)).
+
+-   A bibliographic data source, for example a BibLaTeX (`.bib`) or BibTeX (`.bibtex`) file.
+
+-   Optionally, a `CSL` file which specifies the formatting to use when generating the citations and bibliography (when not using `natbib` or `biblatex` to generate the bibliography).
+
+::: {.callout-note}
+
+When using `format: typst`, by default citation processing is handled by Typst, not Pandoc. See the [Typst](#typst) section below for more details.
+
+::: 
+
+Quarto supports bibliography files in a wide variety of formats including BibLaTeX and CSL. Add a bibliography to your document using the `bibliography` YAML metadata field. For example:
+
+``` yaml
+---
+title: "My Document"
+bibliography: references.bib
+---
+```
+
+:::{.list-table header-cols=1}
+
+- - Markdown Syntax
+  - Output
+
+- -
+
+    ``` markdown
+    @knuth1984 shows ...
+    ```
+  - @knuth1984 shows ...
+
+- -
+
+    ``` markdown
+    ... [@knuth1984]
+    ```
+  - ... [@knuth1984]
+
+- - 
+
+    ``` markdown
+    As Knuth [-@knuth1984] shows ...
+    ```
+  - As Knuth [-@knuth1984] shows ...
+
+- - 
+
+    ``` markdown
+    [@knuth1984; @wickham2015]
+    ```
+  - [@knuth1984; @wickham2015]
+
+:::
+
+
+The appearance of the citations both inline and in the bibliography depends on the citation style as defined in a CSL file.
+By default, Quarto use the [Chicago Manual of Style](https://chicagomanualofstyle.org/) author-date format, but you can provide a custom CSL file using the `csl` option field in your document header, for example:
+
+``` yaml
+---
+title: "My Document"
+bibliography: references.bib
+csl: nature.csl
+---
+```
+
+REad more in Quarto docs.
+
+## Footnotes {#sec-footnotes}
+
+Pandoc supports numbering and formatting footnotes using the following syntax:
+
+``` markdown
+Here is a footnote reference,[^1] and another.[^longnote]
+
+[^1]: Here is the footnote.
+
+[^longnote]: Here's one with multiple blocks.
+
+    Subsequent paragraphs are indented to show that they
+belong to the previous footnote.
+
+        { some.code }
+
+    The whole paragraph can be indented, or just the first
+    line.  In this way, multi-paragraph footnotes work like
+    multi-paragraph list items.
+
+This paragraph won't be part of the note, because it
+isn't indented.
+```
+
+The above syntax generates the following output:
+
+:::{.border .p-3}
+Here is a footnote reference,[^1] and another.[^2]
+
+This paragraph won't be part of the note, because it isn't indented.
+:::
+
+In addition, you can also write single paragraph footnotes inline using the following syntax:
+
+``` markdown
+Here is an inline note.^[Inlines notes are easier to write,
+since you don't have to pick an identifier and move down to
+type the note.]
+```
+
+This syntax generates the following output:
+
+::: {.border .p-3}
+Here is an inline note.[^3]
+:::
+
+## Fenced divs {#sec-fenced-divs}
+
+Although the term *Div* originates from the `<div>` tag in HTML, Quarto uses this term to refer to a markdown syntax for creating block-level regions of content that can have attributes like classes and identifiers.
+
+For example, callout blocks (@sec-callouts) are specified using the div syntax, as are panel layouts, and positioning (@sec-layout).
+
+A fenced div starts with at least three consecutive colons and optionally some attributes inside curly braces. 
+The div ends with another line containing a string of at least three consecutive colons. 
+The div should be separated by blank lines from preceding and following blocks. 
+
+For example, here we add the "border" class to a region of content using a div (`:::`):
+
+``` markdown
+::: {.border}
+This content can be styled with a border
+:::
+```
+
+Divs may also be nested. For example
+
+``` markdown
+::::: {#special .sidebar}
+
+::: {.warning}
+Here is a warning.
+:::
+
+More content.
+:::::
+```
+
+Fences without attributes are always closing fences.
+In practice, this means you sometimes add empty attributes.
+
+
+## Callouts
+
+``` markdown
+:::{.callout-note}
+Note that there are five types of callouts, including: 
+`note`, `tip`, `warning`, `caution`, and `important`.
+:::
+```
+
 ## Layout {#sec-layout}
 
 Using divs with classes and/or attributes to create layouts.
@@ -197,12 +550,35 @@ Using divs with classes and/or attributes to create layouts.
 
 `.column` classes to use parts of the page https://quarto.org/docs/authoring/article-layout.html#available-columns
 
-## Cross-references {#sec-crossreferences}
+## Raw blocks 
 
-Include syntax variations like `[Fig @fig-elephant]`, `[-@fig-elephant]`, `[@fig-elephant; @fig-panther]`.
+A way to include raw syntax for specific output formats.
 
-## etc.
+````markdown
+```{=html}
 
-a change
+```
+````
+
+See examples in documents chapter.
 
 ## Includes {#sec-includes}
+
+A way to split your document into multiple files, and include them.
+Reduce duplication.
+
+`{{< include path/to/file >}}`
+
+Can use inside code cells
+
+Name starting with `_` (more important in projects)
+
+Don't usually include document headers.
+
+
+
+## Other features
+
+* Diagrams
+* Other shortcodes: videos, placeholder text, `meta`, `var`
+* Keyboard shortcuts
