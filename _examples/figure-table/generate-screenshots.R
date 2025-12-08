@@ -21,6 +21,7 @@ screenshots <- tribble(
   "basic-cell-options/r.qmd", "basic-cell-options-table",
   "basic-cell-options/r.qmd", "basic-cell-options-figure",
   "cross-references/r.qmd"  , "cross-references-link",
+  "cross-references/simple.qmd", "simple",
   "fig-align/r.qmd",         "align-left",
   "fig-align/r.qmd",         "align-center",
   "fig-align/r.qmd",         "align-right",
@@ -35,7 +36,7 @@ screenshots <- screenshots |>
 
 # Do one
 screenshots |>
-  slice(10:12) |>
+  slice(10) |>
   rowwise() |>
   mutate(
     image = qmdshot(document, filename, selector)

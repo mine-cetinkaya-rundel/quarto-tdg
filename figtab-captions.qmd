@@ -89,7 +89,7 @@ Using the fenced div syntax to acheive the same result as @fig-figures.
 
 Two examples of when this can be useful are: long captions, and dynamic captions.
 
-### Long captions
+### Long captions {#sec-long-captions}
 
 If your caption is getting long and it is increasingly painful to track as a code cell option, consider using the div syntax instead.
 You can then split lines in a way that makes sense and not have to worry about the YAML syntax.
@@ -150,7 +150,7 @@ Quarto doesn't support captions that consist of multiple paragraphs.
 
 :::
 
-### Dynamic captions
+### Dynamic captions {#sec-dynamic-captions}
 
 Dynamic captions are caption which depend on some computational result.
 By using the fenced div syntax, you include computation in your caption via inline code execution.

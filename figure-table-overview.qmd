@@ -1,7 +1,5 @@
 # Figures and tables {#sec-figure-table-overview}
 
-## Overview
-
 Figures and tables are essential components of scientific and technical documents, serving as powerful tools to communicate data and results visually. 
 You often need precise control over their placement within documents, their captions, and the ability to group them into panels and cross-reference them throughout the text. 
 Given their importance, we've devoted an entire part of this book to exploring figures and tables in depth.
@@ -11,7 +9,7 @@ This approach is intentional because most aspects of working with figures and ta
 For example, document-level options that control figures and tables often apply universally, as do many layout features that involve surrounding figures or tables in additional markdown.
 There are a few exceptions where you'll need to use specific attributes for markdown-based content or code cell options for computational output, and we'll point these out clearly when they arise.
 
-Of course, there are some topics specific to computationally-generated figures and tables—--these topics are covered in @sec-computational-figures-tables.
+Of course, there are some topics specific to computationally-generated figures and tables---these topics are covered in @sec-computational-figures-tables.
 
 We expect you'll turn to this part of the book to solve particular tasks with your own tables and figures. 
 The next section is designed to point you quickly to the relevant chapter to solve your problem. 

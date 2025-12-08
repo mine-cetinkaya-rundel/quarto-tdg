@@ -199,6 +199,8 @@ Using divs with classes and/or attributes to create layouts.
 
 ## Cross-references {#sec-crossreferences}
 
+Include syntax variations like `[Fig @fig-elephant]`, `[-@fig-elephant]`, `[@fig-elephant; @fig-panther]`.
+
 ## etc.
 
 a change
