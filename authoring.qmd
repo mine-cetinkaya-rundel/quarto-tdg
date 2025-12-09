@@ -114,171 +114,153 @@ This is a second paragraph, separated by a blank line.
 
 Line breaks within a paragraph are typically ignored, which means you can wrap your text across multiple lines without affecting the final rendered output.
 
-## Inline text elements
+## Text
 
-@tbl-inline-text-elements summarizes the most common things you want to put inside a paragraph or heading: formatted text, links, cross-references, citations, footnotes and inline equations.
+Beyond plain text, @tbl-inline-text-elements summarizes the most common things you want to put inside a paragraph or heading: formatted text, links, cross-references, citations, math and footnotes.
 
-
-Most 
-
-We call the **inline text elements** because they are used *inside* block-level elements like paragraphs and headings.
-You can also use them inside many of the other block-level elements discussed in this chapter like: in list items, block quotes, table cells, callouts, .
-
-The rest of the chapter describes other block-level elements. 
-
-
-
-We use the term **inline text** to refer to elements that can be used in the content part of a paragraph, heading or other block-level content (the rest of the chapter).
-
-
-, such as bold or italic text, links, cross-references, citations, and inline equations.
-
-
-Paragraphs and headings are examples of what we call **block** elements. 
-Technically, you can use the syntax described in @tbl-inline-text-elements as the content in many block elements
-
-anywhere you can have text, such as inside lists, block quotes
-
-
-, or other block-level content.
-
-
-@tbl-inline-text-elements summarize the syntax for common inline text elements in Quarto markdown.
-
-Things that can be part of a paragraph, heading, etc. 
-Put the following sections in one big table, and add cross-references, footnotes, citations, and inline equations.
-Explain most either "things" are block level, get there own section below.
+These elements are called **inline text elements**, because they are used *inside* block-level elements like paragraphs and headings.
+You can also use them inside many of the other block-level elements discussed in this chapter like as list items, inside tables, and inside callouts.
 
 ::: {#tbl-inline-text-elements}
 
 ::: {.list-table header-rows=1 widths='1,2,1' aligns=l,l,l } 
 
+
 * - Element
-  - Markdown Syntax
   - Output
+  - Markdown Syntax
 
 * - []{rowspan=7} **Text formatting**
+  - *italics*, **bold**, ***bold italics***
   - 
 
     ``` markdown
     *italics*, **bold**, ***bold italics***
     ```
-  - *italics*, **bold**, ***bold italics***
 
-* - 
+* - superscript^2^ / subscript~2~
+  - 
 
     ``` markdown
     superscript^2^ / subscript~2~
     ```
-  - superscript^2^ / subscript~2~
-* - 
+
+* - ~~strikethrough~~
+  - 
 
     ``` markdown
     ~~strikethrough~~
     ```
-  - ~~strikethrough~~
-* - 
+
+* - `verbatim code`
+  - 
 
     ``` markdown
     `verbatim code`
     ```
-  - `verbatim code`
 
-* - 
+* - [This text is smallcaps]{.smallcaps}
+  - 
 
     ``` markdown
     [This text is smallcaps]{.smallcaps}
     ```
-  - [This text is smallcaps]{.smallcaps}
 
-* - 
+* - [This text is underlined]{.underline}
+  - 
 
     ``` markdown
     [This text is underlined]{.underline}
     ```
-  - [This text is underlined]{.underline}
 
-* - 
+* - [This text is highlighted]{.mark}
+  - 
     
     ``` markdown
     [This text is highlighted]{.mark}
     ```
-  - [This text is highlighted]{.mark}
 
 * - []{rowspan=3} **Links**
+  - <https://quarto.org>
   -
 
     ``` markdown
     <https://quarto.org>
     ```
-  - <https://quarto.org>
-* -
+
+* - [Quarto website](https://quarto.org)
+  -
 
     ``` markdown
     [Quarto website](https://quarto.org)
     ```  
-  - [Quarto website](https://quarto.org)
-* - 
+
+* - [Links section on this page](#links)
+  - 
 
     ``` markdown
     [Links section on this page](#links)
     ```
-  - [Links section on this page](#links)
+
 * - []{rowspan=2} **Cross-references** See @sec-crossreferences
+  - @fig-elephant
   -
 
     ``` markdown
     @fig-elephant
     ```
-  - @fig-elephant
-* -
+
+* - @sec-authoring
+  -
 
     ``` markdown
     @sec-authoring
     ```
-  - @sec-authoring
+
 * - []{rowspan=3} **Citations** @sec-citations
+  - @knuth1984 shows ...
   -
 
     ``` markdown
     @knuth1984 shows ...
     ```
-  - @knuth1984 shows ...
-* -
+
+* - ... [@knuth1984]
+  -
 
     ``` markdown
     ... [@knuth1984]
     ```
-  - ... [@knuth1984]
-* - 
+
+* - [@knuth1984; @wickham2023]
+  - 
 
     ``` markdown
     [@knuth1984; @wickham2023]
     ```
-  - [@knuth1984; @wickham2023]
 
 * - **Math** @sec-equations
+  - Inline math: $E = mc^{2}$
   - 
 
     ``` markdown
     Inline math: $E = mc^{2}$
     ```
-  - Inline math: $E = mc^{2}$
 
 * - **Footnotes** @sec-footnotes
+  - Here is an inline note.^[Note content]
   - 
 
     ``` markdown
     Here is an inline note.^[Note content]
     ```
-  - Here is an inline note.^[Note content]
 
 :::
+
 
 Common syntax for inline text elements in Quarto markdown. TODO: Element column entries will span rows.
 :::
 
-See also @sec-crossreferences 
 
 ## Lists
 
