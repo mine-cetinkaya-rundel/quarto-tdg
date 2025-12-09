@@ -313,17 +313,72 @@ Subsequent elements should be indented to line up with the first non-space conte
 Quarto also supports task lists and definition lists. 
 See the [Quarto documentation](https://quarto.org/docs/authoring/markdown-basics.html#lists) for details on these specialized list types.
 
+::: {.border}
+* First item with multiple paragraphs.
+
+  This is the second paragraph, indented to align with
+  the first paragraph.
+
+* An item with a sublist:
+
+  1. Subitem one
+  2. Subitem two
+
+* Third item
+
+  ```{.python}
+  # This is a code block inside a list item
+  ```
+:::
+
 ## Code blocks {#sec-code-blocks}
 
-Code blocks display code with syntax highlighting but don't execute it. 
-This is different from code cells, which run the code and include the output in your document.
+We use the term **code blocks**, as distinct from **code cells**, for code that is to be shown, but never executed.
 
-Use code blocks when you want to show example code to your readers without actually running it. 
-For instance, you might use a code block to demonstrate a function's syntax or show code from a different language than the one you're using in your document.
+There are two equivalent syntaxes for code blocks. 
+You can use triple backticks followed by the language name:
 
-To create a code block, wrap your code in triple backticks with the language name. You can specify the language in two ways: using the language name directly after the opening backticks, or by placing it inside curly braces with a period prefix. 
+````markdown
+```sql
+SELECT * FROM table;
+```
+````
 
-In this book, we use the latter syntax because it makes it easier to add attributes to the code block.
+Or use triple backticks followed by curly braces with the language name prefaced by a period:
+
+````markdown
+```{.sql}
+SELECT * FROM table;
+```
+````
+
+We prefer the second syntax, it's required when adding code block attributes like `filename` which adds a header with the filename above the code block:
+
+````markdown
+```{.sql filename="query.sql"}
+SELECT * FROM table;
+```
+````
+
+```{.sql filename="query.sql"}
+SELECT * FROM table;
+```
+
+
+:::{.callout-tip}
+
+## Supported code block languages 
+
+The language for code blocks is used only for syntax highlighting.
+You can see a list of supported languages by running the following command in your terminal:
+
+```{.bash filename="Terminal"}
+quarto pandoc --list-highlight-style 
+```
+
+Specifying a language that isn't supported will simply result in no syntax highlighting being applied.
+
+:::
 
 
 ## Tables {#sec-markdown-tables}
