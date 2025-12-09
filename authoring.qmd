@@ -264,20 +264,54 @@ Common syntax for inline text elements in Quarto markdown. TODO: Element column 
 
 ## Lists
 
-an entire blank line above the list
+You can create an unordered list by starting each line with `-` (or `*` or `+`),
+followed by a space, ensuring there is a blank line before the list:
 
-(`*`, `+`, or  `-`) 
-compact vs loose
+```markdown
+My list:
 
-`1.` actual numbers not important, will be renumbered
+- First item
+- Second item
+- Third item
+```
 
-Nested, careful with indentation
+Leaving no blank lines between items will result in a compact list, while leaving a blank line between items will create a loose list with more vertical spacing.
 
-Block content:
+Use numbers followed by a period to create an ordered list:
 
-> However, subsequent paragraphs must be preceded by a blank line and indented to line up with the first non-space content after the list marker.
+```markdown
+My numbered list:
 
-Task lists, definition lists.
+1. First item
+2. Second item
+3. Third item
+```
+
+The actual numbers you use don't matter---Quarto will renumber the list automatically. This means you can use `1.` for every item if you prefer.
+
+List items can contain other block elements like paragraphs, code blocks, or even other lists. 
+Subsequent elements should be indented to line up with the first non-space content after the list marker:
+
+````markdown
+* First item with multiple paragraphs.
+
+  This is the second paragraph, indented to align with
+  the first paragraph.
+
+* An item with a sublist:
+
+  1. Subitem one
+  2. Subitem two
+
+* Third item
+
+  ```{.python}
+  # This is a code block inside a list item
+  ```
+````
+
+Quarto also supports task lists and definition lists. 
+See the [Quarto documentation](https://quarto.org/docs/authoring/markdown-basics.html#lists) for details on these specialized list types.
 
 ## Code blocks {#sec-code-blocks}
 
