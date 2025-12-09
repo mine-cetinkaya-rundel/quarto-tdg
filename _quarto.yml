@@ -54,6 +54,9 @@ book:
         - extensions.qmd
         - dig-under-hood.qmd
 
+  appendices:
+    - jupyter.qmd
+
 format:
   html:
     theme:

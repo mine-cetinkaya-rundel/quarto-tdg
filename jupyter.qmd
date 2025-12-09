@@ -1,0 +1,11 @@
+# Jupyter {#jupyter}
+
+If you're a JupyterLab or Jupyter ecosystem user, you can use Quarto to render your .ipynb files.
+
+You'll need to execute the code cells individually or run all cells in the Jupyter interface before rendering with Quarto.
+
+There's a flag you can put on `quarto render` that will execute code cells in .ipynb files.
+
+You can convert from .ipynb to .qmd, get plain-text version of your document that is easy to version control, and convert back to .ipynb when needed with `quarto convert`.
+
+Everything else will be in markdown cells. Code in code cells, code cell options declared on top of the code cell with `#|`.
