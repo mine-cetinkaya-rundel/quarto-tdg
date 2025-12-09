@@ -31,5 +31,5 @@ jobs:
         with:
           source-dir: ./_book/
           preview-branch: main
-          umbrella-dir: docs/pr-preview
+          umbrella-dir: pr-preview
           pages-base-path: docs
