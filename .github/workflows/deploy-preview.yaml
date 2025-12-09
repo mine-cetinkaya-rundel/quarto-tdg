@@ -30,3 +30,6 @@ jobs:
         uses: rossjrw/pr-preview-action@v1.4.8
         with:
           source-dir: ./_book/
+          preview-branch: main
+          umbrella-dir: docs/pr-preview
+          pages-base-path: docs
