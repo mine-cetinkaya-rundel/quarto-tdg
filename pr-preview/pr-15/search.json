@@ -222,7 +222,7 @@
     "href": "authoring.html#sec-code-blocks",
     "title": "3  Authoring",
     "section": "3.8 Code blocks",
-    "text": "3.8 Code blocks\n```LAUGUAGE, or ```{.LANGUAGE} for syntax highlighting without execution. In this book, we use the later, allows easy addition of attributes.",
+    "text": "3.8 Code blocks\nCode blocks display code with syntax highlighting but don’t execute it. This is different from code cells, which run the code and include the output in your document.\nUse code blocks when you want to show example code to your readers without actually running it. For instance, you might use a code block to demonstrate a function’s syntax or show code from a different language than the one you’re using in your document.\nTo create a code block, wrap your code in triple backticks with the language name. You can specify the language in two ways: using the language name directly after the opening backticks, or by placing it inside curly braces with a period prefix.\nIn this book, we use the latter syntax because it makes it easier to add attributes to the code block.",
     "crumbs": [
       "Hello Quarto",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Authoring</span>"

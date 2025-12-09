@@ -727,7 +727,10 @@ Table&nbsp;3.1: Common syntax for inline text elements in Quarto markdown. TODO:
 </section>
 <section id="sec-code-blocks" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="sec-code-blocks"><span class="header-section-number">3.8</span> Code blocks</h2>
-<p><code>```LAUGUAGE</code>, or <code>```{.LANGUAGE}</code> for syntax highlighting without execution. In this book, we use the later, allows easy addition of attributes.</p>
+<p>Code blocks display code with syntax highlighting but don’t execute it. This is different from code cells, which run the code and include the output in your document.</p>
+<p>Use code blocks when you want to show example code to your readers without actually running it. For instance, you might use a code block to demonstrate a function’s syntax or show code from a different language than the one you’re using in your document.</p>
+<p>To create a code block, wrap your code in triple backticks with the language name. You can specify the language in two ways: using the language name directly after the opening backticks, or by placing it inside curly braces with a period prefix.</p>
+<p>In this book, we use the latter syntax because it makes it easier to add attributes to the code block.</p>
 </section>
 <section id="sec-markdown-tables" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="sec-markdown-tables"><span class="header-section-number">3.9</span> Tables</h2>
