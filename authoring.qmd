@@ -1,3 +1,7 @@
+---
+bibliography: example.bib
+---
+
 # Authoring {#sec-authoring}
 
 When we say "authoring" we mean the process of adding content to a Quarto document---literally, the things you write in a `.qmd` file.
@@ -147,15 +151,14 @@ Explain most either "things" are block level, get there own section below.
 
 ::: {#tbl-inline-text-elements}
 
-### Text formatting {.unnumbered style="text-align: left"}
+::: {.list-table header-rows=1 widths='1,2,1' aligns=l,l,l } 
 
-::: {.list-table header-rows=1 widths='2,1' aligns=l,l } 
-
-* - Markdown Syntax
+* - Element
+  - Markdown Syntax
   - Output
 
-* - []{colspan=2} **Text formatting**
-* - 
+* - []{rowspan=7} **Text formatting**
+  - 
 
     ``` markdown
     *italics*, **bold**, ***bold italics***
@@ -202,8 +205,8 @@ Explain most either "things" are block level, get there own section below.
     ```
   - [This text is highlighted]{.mark}
 
-* - []{colspan=2} **Links**
-* -
+* - []{rowspan=3} **Links**
+  -
 
     ``` markdown
     <https://quarto.org>
@@ -221,22 +224,58 @@ Explain most either "things" are block level, get there own section below.
     [Links section on this page](#links)
     ```
   - [Links section on this page](#links)
-* - []{colspan=2} **Cross-references**
+* - []{rowspan=2} **Cross-references** See @sec-crossreferences
+  -
 
     ``` markdown
     @fig-elephant
     ```
   - @fig-elephant
+* -
 
-* - []{colspan=2} **Citations** 
+    ``` markdown
+    @sec-authoring
+    ```
+  - @sec-authoring
+* - []{rowspan=3} **Citations** @sec-citations
+  -
 
-* - []{colspan=2} **Math**
+    ``` markdown
+    @knuth1984 shows ...
+    ```
+  - @knuth1984 shows ...
+* -
 
-* - []{colspan=2} **Footnotes**
+    ``` markdown
+    ... [@knuth1984]
+    ```
+  - ... [@knuth1984]
+* - 
+
+    ``` markdown
+    [@knuth1984; @wickham2023]
+    ```
+  - [@knuth1984; @wickham2023]
+
+* - **Math** @sec-equations
+  - 
+
+    ``` markdown
+    Inline math: $E = mc^{2}$
+    ```
+  - Inline math: $E = mc^{2}$
+
+* - **Footnotes** @sec-footnotes
+  - 
+
+    ``` markdown
+    Here is an inline note.^[Note content]
+    ```
+  - Here is an inline note.^[Note content]
 
 :::
 
-Common syntax for inline text elements in Quarto markdown
+Common syntax for inline text elements in Quarto markdown. TODO: Element column entries will span rows.
 :::
 
 See also @sec-crossreferences 
@@ -396,7 +435,7 @@ To add an identifier, caption, or alternative text use the code cell options `la
 ```
 ````
 
-## Equations
+## Equations {#sec-equations}
 
 Use TeX math. Describe what inline and display mean. 
 Adding numbering and cross-reference.
@@ -432,6 +471,8 @@ General process:
 Give table of common examples: `fig`, `tbl`,  `lst`, `sec`, `eq`,, `callout`, `thm`, 
 
 Refer to Quarto docs for more details.
+
+![](){#fig-elephant}
 
 ### Reserved Prefixes 
 
@@ -497,9 +538,9 @@ bibliography: references.bib
 - - 
 
     ``` markdown
-    [@knuth1984; @wickham2015]
+    [@knuth1984; @wickham2023]
     ```
-  - [@knuth1984; @wickham2015]
+  - [@knuth1984; @wickham2023]
 
 :::
 
@@ -514,6 +555,18 @@ bibliography: references.bib
 csl: nature.csl
 ---
 ```
+
+::: {#fig-references-section}
+
+::: {.border .p-3 style="text-align: left;"}
+## References {.unnumbered .unlisted}
+
+::: {#refs}
+:::
+::: 
+
+Automatically generated references section
+::: 
 
 REad more in Quarto docs.
 
@@ -656,3 +709,4 @@ Order matters, IDs first, then classes, then key-value pairs.
 * Diagrams
 * Other shortcodes: videos, placeholder text, `meta`, `var`
 * Keyboard shortcuts
+
