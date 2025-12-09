@@ -2,114 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://quarto-tdg.org/index.html</loc>
-    <lastmod>2025-12-09T22:13:11.180Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.081Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/overview.html</loc>
-    <lastmod>2025-12-09T22:13:11.187Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.088Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/quarto.html</loc>
-    <lastmod>2025-12-09T22:13:11.188Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.088Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/tools.html</loc>
-    <lastmod>2025-12-09T22:13:11.188Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.089Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/authoring.html</loc>
-    <lastmod>2025-12-09T22:13:11.143Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/computation.html</loc>
-    <lastmod>2025-12-09T22:13:11.143Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/projects.html</loc>
-    <lastmod>2025-12-09T22:13:11.187Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.088Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/publishing.html</loc>
-    <lastmod>2025-12-09T22:13:11.187Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.088Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/look-under-hood.html</loc>
-    <lastmod>2025-12-09T22:13:11.181Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.081Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/yaml.html</loc>
-    <lastmod>2025-12-09T22:13:11.189Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.089Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/computations.html</loc>
-    <lastmod>2025-12-09T22:13:11.143Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/r.html</loc>
-    <lastmod>2025-12-09T22:13:11.188Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.088Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/python.html</loc>
-    <lastmod>2025-12-09T22:13:11.188Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.088Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/julia.html</loc>
-    <lastmod>2025-12-09T22:13:11.180Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.081Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/figure-table.html</loc>
-    <lastmod>2025-12-09T22:13:11.144Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/freeze-cache.html</loc>
-    <lastmod>2025-12-09T22:13:11.144Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/formats.html</loc>
-    <lastmod>2025-12-09T22:13:11.144Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/documents.html</loc>
-    <lastmod>2025-12-09T22:13:11.144Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/presentations.html</loc>
-    <lastmod>2025-12-09T22:13:11.187Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.088Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/manuscripts.html</loc>
-    <lastmod>2025-12-09T22:13:11.181Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.081Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/dashboards.html</loc>
-    <lastmod>2025-12-09T22:13:11.144Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/websites.html</loc>
-    <lastmod>2025-12-09T22:13:11.188Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.089Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/books.html</loc>
-    <lastmod>2025-12-09T22:13:11.143Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/more.html</loc>
-    <lastmod>2025-12-09T22:13:11.181Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.081Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/templates.html</loc>
-    <lastmod>2025-12-09T22:13:11.188Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.089Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/extensions.html</loc>
-    <lastmod>2025-12-09T22:13:11.144Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/dig-under-hood.html</loc>
-    <lastmod>2025-12-09T22:13:11.144Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.044Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/jupyter.html</loc>
-    <lastmod>2025-12-09T22:13:11.180Z</lastmod>
+    <lastmod>2025-12-09T23:04:17.081Z</lastmod>
   </url>
 </urlset>
