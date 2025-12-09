@@ -61,34 +61,100 @@ Can be nested inside lists, callouts, fenced divs, ...
 ## Markdown text
 
 Everything that isn't the document header, or an executable code cell, is interpreted as Quarto markdown.
-Quarto markdown originally built on top of Pandoc markdown with extensions, so many Pandoc markdown work.
+Quarto markdown originally built on top of Pandoc markdown with extensions, so much of Pandoc markdown works.
 Now, Quarto has its own markdown parser, so some differences.
 The rest of this chapter outlines the most important pieces of Quarto markdown syntax.
 
 ## Sections
 
-Markdown syntax for headings. 
-Usually `title` takes role of level-1 heading, so sections use `##`.
-Can add attributes after in curly braces e.g. an ID, preface with `sec` to allow cross-references, or a class, like `.unlisted`. 
+Use markdown headings to structure your document into sections and subsections.
+Markdown headings are created by prefixing text with one or more `#` characters, 
+followed by a space, and the heading title:
+
+```markdown
+## Section
+
+### Subsection
+
+#### Subsubsection
+
+```
+
+Quarto supports six levels of headings, from level-1 (`#`) to level-6 (`######`).
+The value of `title` in the document header usually becomes the level-1 heading of the document,
+which is why sections usually start with level-2 headings.
+
+You can attach attributes to headings by adding curly braces `{}` after the heading text.
+For example, you might add an identifier to a section heading to enable cross-referencing:
+
+```markdown
+## Section Title {#sec-section-title}
+```    
+
+Or you might add a class, which are often used to control the behavior of sections, like `.unlisted` to exclude a section from the table of contents:
+
+```markdown
+## Section Title {#sec-section-title .unlisted}
+```
 
 ## Paragraphs
 
-text followed by blank lines
-Line breaks generally ignored. 
+Create paragraphs by separating text with blank lines:
+
+```markdown
+This is the first paragraph. It can span multiple lines 
+in your source document.
+
+This is a second paragraph, separated by a blank line.
+```
+
+Line breaks within a paragraph are typically ignored, which means you can wrap your text across multiple lines without affecting the final rendered output.
 
 ## Inline text elements
+
+@tbl-inline-text-elements summarizes the most common things you want to put inside a paragraph or heading: formatted text, links, cross-references, citations, footnotes and inline equations.
+
+
+Most 
+
+We call the **inline text elements** because they are used *inside* block-level elements like paragraphs and headings.
+You can also use them inside many of the other block-level elements discussed in this chapter like: in list items, block quotes, table cells, callouts, .
+
+The rest of the chapter describes other block-level elements. 
+
+
+
+We use the term **inline text** to refer to elements that can be used in the content part of a paragraph, heading or other block-level content (the rest of the chapter).
+
+
+, such as bold or italic text, links, cross-references, citations, and inline equations.
+
+
+Paragraphs and headings are examples of what we call **block** elements. 
+Technically, you can use the syntax described in @tbl-inline-text-elements as the content in many block elements
+
+anywhere you can have text, such as inside lists, block quotes
+
+
+, or other block-level content.
+
+
+@tbl-inline-text-elements summarize the syntax for common inline text elements in Quarto markdown.
 
 Things that can be part of a paragraph, heading, etc. 
 Put the following sections in one big table, and add cross-references, footnotes, citations, and inline equations.
 Explain most either "things" are block level, get there own section below.
 
-### Text formatting
+::: {#tbl-inline-text-elements}
 
-::: {.list-table header-cols=1} 
+### Text formatting {.unnumbered style="text-align: left"}
+
+::: {.list-table header-rows=1 widths='2,1' aligns=l,l } 
 
 * - Markdown Syntax
   - Output
 
+* - []{colspan=2} **Text formatting**
 * - 
 
     ``` markdown
@@ -114,69 +180,63 @@ Explain most either "things" are block level, get there own section below.
     `verbatim code`
     ```
   - `verbatim code`
-:::
 
-
-### Other Spans {#other-spans}
-
-To create text in small caps, that is underlined, or that is highlighted, use a span with one of the 
-classes `.smallcaps`, `.underline` or `.mark` respectively.
-
-::: {.list-table header-cols=1}
-
-- - Markdown Syntax
-  - Output
-
-- - 
+* - 
 
     ``` markdown
     [This text is smallcaps]{.smallcaps}
     ```
   - [This text is smallcaps]{.smallcaps}
 
-- - 
+* - 
 
     ``` markdown
     [This text is underlined]{.underline}
     ```
   - [This text is underlined]{.underline}
 
-- - 
+* - 
     
     ``` markdown
     [This text is highlighted]{.mark}
     ```
   - [This text is highlighted]{.mark}
 
-:::
-
-### Links {#links}
-
-Automatic, inline, internal
-
-::: {.list-table header-cols=1}
-- - Markdown Syntax
-  - Output
-- -
+* - []{colspan=2} **Links**
+* -
 
     ``` markdown
     <https://quarto.org>
     ```
   - <https://quarto.org>
-
-- -
+* -
 
     ``` markdown
     [Quarto website](https://quarto.org)
     ```  
   - [Quarto website](https://quarto.org)
-
-- - 
+* - 
 
     ``` markdown
     [Links section on this page](#links)
     ```
   - [Links section on this page](#links)
+* - []{colspan=2} **Cross-references**
+
+    ``` markdown
+    @fig-elephant
+    ```
+  - @fig-elephant
+
+* - []{colspan=2} **Citations** 
+
+* - []{colspan=2} **Math**
+
+* - []{colspan=2} **Footnotes**
+
+:::
+
+Common syntax for inline text elements in Quarto markdown
 :::
 
 See also @sec-crossreferences 
@@ -580,7 +640,16 @@ Name starting with `_` (more important in projects)
 
 Don't usually include document headers.
 
+## Attributes
 
+Attributes can be added to many markdown elements to control their behavior or appearance.
+Attributes are added inside curly braces `{}` after the element.
+You've seen some examples.
+
+IDs are unique and start with `#`
+Classes start with `.`
+Key-value pairs use `key='value'` syntax.
+Order matters, IDs first, then classes, then key-value pairs.
 
 ## Other features
 
