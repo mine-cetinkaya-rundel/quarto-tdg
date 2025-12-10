@@ -1,0 +1,39 @@
+---
+echo: false
+keep-md: true
+---
+
+```{python}
+{{< include ../_code-snippets/setup.py >}}
+```
+
+HTML output, column width don't apply:
+```{python}
+#| label: tbl-species-html
+#| tbl-colwidths: [25, 75]
+{{< include ../_code-snippets/species-count.py >}}
+```
+
+Markdown outputs, column widths do apply:
+```{python}
+#| label: tbl-species-count
+#| tbl-colwidths: [25, 75]
+{{< include ../_code-snippets/species-count-markdown.py >}}
+```
+
+
+```{python}
+#| label: tbl-species-count-2
+#| tbl-colwidths: [25, 75]
+(
+  pl.DataFrame(penguins)
+  .group_by('species')
+  .len()
+  .pipe(GT) 
+  .tab_options(table_width="100%")
+  .cols_width(
+    species="25%", 
+    len="75%"
+  )
+)
+```

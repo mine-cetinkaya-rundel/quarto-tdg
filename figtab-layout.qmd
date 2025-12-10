@@ -1,0 +1,370 @@
+# Layout {#sec-figtab-layout}
+
+Link to: 
+
+* `pdf` figure attributes and code cell option: `fig-env`, `fig-pos`
+* `revealjs` code cell option: `output-location`
+
+## Panel layout: `layout` {#sec-panel-layout}
+
+Use `layout` to control arrangement.
+
+Do some examples without captions, but use fenced divs e.g.
+
+````
+::: {layout-ncol="2"}
+::: {}
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Row 1    | Data A   | Value X  |
+| Row 2    | Data B   | Value Y  |
+| Row 3    | Data C   | Value Z  |
+:::
+
+::: {}
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Row 1    | Data A   | Value X  |
+| Row 2    | Data B   | Value Y  |
+| Row 3    | Data C   | Value Z  |
+:::
+:::
+````
+
+Then talk about cross-references and captions by filling in the empty `{}` divs with labels, and adding extra caption lines. 
+
+Tricky combo: caption but not cross referenceable. Ignore? Mention. What's the general translation for the examples we do do. 
+
+### Arranging multiple tables and/or figures {#sec-multiple-outputs}
+
+Quarto provides a set of layout code cell options and attributes that allow you to arrange multiple figures or tables in a single panel.
+As an example, `layout-ncol` specifies the number of columns in a panel layout.
+You can use it as a code cell option:
+
+````{.markdown}
+```{{LANGUAGE}}
+#| layout-ncol: 2
+
+# CODE TO GENERATE TWO FIGURES/TABLES
+```
+````
+
+Or you can use it as an attribute in a fenced div:
+
+````{.markdown}
+::: {layout-ncol="2"}
+
+```{{LANGUAGE}}
+# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+```
+
+```{{LANGUAGE}}
+# CODE TO GENERATE ANOTHER FIGURE OR TABLE
+```
+:::
+
+````
+
+Using the code cell option is the simplest approach, 
+but as soon as you want some combination of: a mix of figures and tables, 
+individual captions, to control placement on the page, or individual cross-references, we recommend using the attribute in a fenced div and nesting your code inside.
+
+In the following sections, learn about `layout-nrow`/`layout-ncol`, and `layout`.
+
+`layout-align`/`layout-valign` 
+
+
+````{.markdown}
+::: {layout-ncol="2"}
+
+```{{LANGUAGE}}
+#| label: fig-1
+#| fig-cap: "Figure 1 caption"
+# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+```
+
+```{{LANGUAGE}}
+#| label: fig-2
+# CODE TO GENERATE ANOTHER FIGURE OR TABLE
+```
+:::
+````
+
+````{.markdown}
+::: {#fig-plots}
+::::: {layout-ncol="2"}
+
+```{{LANGUAGE}}
+# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+```
+
+```{{LANGUAGE}}
+# CODE TO GENERATE ANOTHER FIGURE OR TABLE
+```
+:::::
+
+CAPTION
+:::
+````
+
+Arranging multiple figures or tables in a single panel is a common requirement.
+You can do this using the `layout` code cell options, or by using fenced divs with the `layout` classes. 
+
+It's possible to specify a layout of multiple figures or tables produced in a single code cell using the `layout` or `layout-ncol`/`layout-nrow` code cell options.
+
+````{.markdown}
+::: {layout-ncol="2"}
+
+```{{LANGUAGE}}
+# CODE TO GENERATE A SINGLE FIGURE OR TABLE
+```
+
+```{{LANGUAGE}}
+# CODE TO GENERATE ANOTHER FIGURE OR TABLE
+```
+:::
+
+````
+
+However, we recommend using fenced divs instead, because they are more flexible and easier to read.
+
+Combing multiple layout classes in a single fenced div can be unpredictable.
+You should instead nest fenced divs to create complex layouts.
+
+
+## Position relative to the page: `column` {#sec-page-columns}
+
+Combining column classes `column` with fenced div
+
+Available columns:
+https://quarto.org/docs/authoring/article-layout.html#available-columns
+
+Via code cell option, or fenced div attribute.
+
+### Page location: `column` {#sec-page-location-column}
+
+In `html` and `pdf` formats, a page is divided into columns, which contain the main body of the document, a margin on the right, and in `html`, a margin on the left often used for a sidebar.
+
+Special `.column-` classes allow document elements to span various combinations of these columns. 
+The `column` code cell option is a way to apply these classes to figures or tables produced by your code cells.
+
+For example, if you have a figure that would benefit from more horizontal space, you could set `column: screen` (@fig-page-columns-code), to allow the figure to span the full width available.
+Alternatively, for figures that are small and supplementary to the main text, you could set `column: margin` to place them in the margin area.
+@fig-page-columns shows the result in the resulting `html` output.
+
+::: {#fig-page-columns-code}
+::: {.panel-tabset group="language"}
+
+## R
+
+````markdown
+```{{r}}
+#| column: screen
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+````
+ 
+## Python
+ 
+```` 
+```{{python}}
+#| column: screen
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+````
+
+:::
+:::
+
+
+
+::: {#fig-page-columns layout-ncol="2"}
+
+![`column: screen`](images/figure-table-column-screen.png){#fig-page-columns-screen}
+
+![`column: margin`](images/figure-table-column-margin.png){#fig-page-columns-margin}
+
+Use the `column` code cell option to place a table in different parts of the page, e.g. full width of the screen, or in the margin. Applies for `html` and `pdf` formats.
+
+::: 
+
+You can find all the possible values for `column` in the Quarto documentation on [Article Layout](https://quarto.org/docs/authoring/article-layout.html#available-columns).
+
+::: {.callout-tip}
+
+## Columns are responsive in `html` output
+
+When you view the HTML output, the definition of the columns depends on your screen size.
+For example, on small screens, there is only one column, regardless of `column` all elements will span the full width of the screen.
+
+:::
+
+
+
+
+## Figure alignment: `fig-align` {#sec-figure-alignment}
+
+
+
+### Figure alignment: `fig-align` {#sec-fig-align}
+
+When figure is placed in your document, think about it being placed inside a container. 
+By default, the width of that container is the width of the body text, but you can alter it by placing the figure in a column (@sec-page-location-column).
+Figure alignment refers to the horizontal alignment of a figure within that container.
+
+You can alter figure alignment with `fig-align`, which is a *code cell option* and a *document option*.
+@fig-fig-align illustrates the three possible values: `default` (the default for the target format), `left`, `right`, or `center`.
+
+::: {#fig-fig-align layout-ncol="3"}
+
+![`fig-align: left`](images/figure-table-align-left.png){fig-alt="A scatterplot aligned to the left of the page."}
+
+![`fig-align: center`](images/figure-table-align-center.png){fig-alt="A scatterplot centered on the page."}
+
+![`fig-align: right`](images/figure-table-align-right.png){fig-alt="A scatterplot aligned to the right of the page."}
+
+Examples showing the effect of different `fig-align` settings: `left`, `center`, and `right`.
+
+:::
+
+You can set `fig-align` at document level to apply to all figures (computational or not) in a document as shown in @lst-fig-align-document.
+
+::: {#lst-fig-align-document}
+
+```{.yaml filename="document.qmd"}
+---
+fig-align: left
+---
+```
+
+You can specify the alignment of all figures in a document using the `fig-align` document option.
+
+:::
+
+
+You can then override the document level alignment on a code cell basis.
+For example, @fig-fig-align-code aligns a single figure to the left of its container using `fig-align: right`.
+
+::: {#fig-fig-align-code}
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+```{{r}}
+#| fig-align: right
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+```
+````
+ 
+## Python
+ 
+````{.markdown}
+```{{r}}
+#| fig-align: right
+
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+```
+````
+
+:::
+
+Change the alignment of a figure in its enclosing container with `fig-align`.
+
+:::
+
+
+## Table column widths: `tbl-colwidth` {#sec-table-column-widths}
+
+### Column widths
+
+Usually, column widths in tables are determined automatically based on the content of each column.
+However, sometimes you may want to set specific column widths.
+
+#### Markdown tables: `tbl-colwidths` {#sec-tbl-colwidths}
+
+The option `tbl-colwidths` allows you to specify widths for columns for *markdown* tables.
+It takes an array of values, one per column, expressed as percentages.
+You can set it as a *document option* to apply to all tables in a document, or as a *code cell option* to apply to a single table.
+
+For example, @fig-tbl-colwidths-markdown shows how to set the column widths for a single markdown table using the code cell option `tbl-colwidths`.
+
+::: {#fig-tbl-colwidths-markdown}
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+```{{r}}
+#| tbl-colwidths: [25, 75]
+{{< include _examples/figure-table/_code-snippets/species-count-markdown.R >}}
+``` 
+````
+ 
+## Python
+ 
+````{.markdown}
+```{{python}}
+#| tbl-colwidths: [25, 75]
+{{< include _examples/figure-table/_code-snippets/species-count-markdown.py >}}
+``` 
+````
+ 
+:::
+
+Use `tbl-colwidths` to set relative column widths for markdown tables.
+
+:::
+
+#### HTML tables
+
+Since HTML tables usually provide their styling, column width (and table width) are usually controlled via the package you are using to create the table.
+For example, @fig-tbl-colwidths-gt shows how to replicate the table and column widths above for HTML tables using the GT and great_tables packages.
+
+
+::: {#fig-tbl-colwidths-gt}
+
+:::{.panel-tabset group="language"}
+
+## R
+
+````{.markdown}
+```{{r}}
+penguins |>
+  count(species) |>
+  gt() |> 
+  tab_options(
+    table.width = pct(100),
+  ) |> 
+  cols_width(
+    species ~ pct(25),
+    n ~ pct(75)
+  )
+```
+````
+
+## Python
+
+````{.markdown}
+```{{python}}
+(
+  pl.DataFrame(penguins)
+  .group_by('species')
+  .len()
+  .pipe(GT) 
+  .tab_options(table_width="100%")
+  .cols_width(
+    species="25%", 
+    len="75%"
+  )
+)
+```
+````
+:::
+
+GT and great_tables provide their own functions to set table (`tab_options()`) and column widths (`cols_width()`).
+
+:::

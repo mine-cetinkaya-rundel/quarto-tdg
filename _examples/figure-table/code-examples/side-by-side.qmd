@@ -1,0 +1,56 @@
+---
+title: Side by side
+---
+
+::: {layout-ncol=2}
+
+{{< embed r-examples.qmd#bill-scatter >}}
+
+{{< embed python-examples.qmd#bill-scatter >}}
+
+:::
+
+
+::: {layout-ncol=2}
+
+{{< embed r-examples.qmd#size-scatter >}}
+
+{{< embed python-examples.qmd#size-scatter >}}
+
+:::
+
+::: {layout-ncol=2}
+
+{{< embed r-examples.qmd#size-dist >}}
+
+{{< embed python-examples.qmd#size-dist >}}
+
+:::
+
+
+::: {layout-ncol=2}
+
+{{< embed r-examples.qmd#island-bar >}}
+
+{{< embed python-examples.qmd#island-bar >}}
+
+:::
+
+
+
+::: {layout-ncol=2}
+
+{{< embed r-examples.qmd#species-year >}}
+
+{{< embed python-examples.qmd#species-year >}}
+
+:::
+
+
+::: {layout-ncol=2}
+
+{{< embed r-examples.qmd#big-penguins >}}
+
+{{< embed python-examples.qmd#big-penguins >}}
+
+:::

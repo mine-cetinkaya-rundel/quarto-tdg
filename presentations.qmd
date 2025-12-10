@@ -57,3 +57,47 @@ See the Pandoc documentation on [structuring the slide show](https://pandoc.org/
 :::
 
 - figure sizing / stretch
+
+
+
+### Slide location: `output-location` {#sec-output-location}
+
+For presentations with `format: revealjs` the `output-location` code cell option controls where the figure or table appears in relation to the slide containing the code cell that created it.
+
+For example, @fig-output-location uses `output-location: slide` to put a figure on the slide following the code cell. 
+
+::: {#fig-output-location}
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+```{{r}}
+#| echo: true
+#| output-location: slide
+{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+``` 
+````
+ 
+## Python
+ 
+````{.markdown}
+```{{python}}
+#| echo: true
+#| output-location: slide
+{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
+``` 
+````
+ 
+:::
+
+Use `output-location: slide` to place a figure on the slide following the code cell that created. Applies to `format: revealjs` presentations.
+:::
+
+Other values for `output-location` include: 
+
+* `fragment`: place the output on the same slide, but only show it after a slide advance.
+* `column`: place the output in a separate column on the same slide.
+* `column-fragment`: place the output in a separate column on the same slide, but only show it after a slide advance.
+
+You can read more about these options in the Quarto documentation on [RevealJS presentations](https://quarto.org/docs/presentations/revealjs/#output-location).

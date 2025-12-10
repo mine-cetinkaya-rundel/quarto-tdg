@@ -1,0 +1,14 @@
+::: {.list-table}
+* - Code
+  - Model for the mean
+* - 
+    
+    ```r
+    summary(lm(mpg ~ wt + cyl, data = mtcars))
+    ```
+
+  - 
+    $$
+    \beta_0 + \beta_1 \text{wt} + \beta_2 \text{cyl}
+    $$
+:::

@@ -1,0 +1,44 @@
+---
+title: "Untitled"
+format: html
+fig-width: 2
+fig-height: 5
+keep-md: true
+---
+
+```{python}
+{{< include ../_code-snippets/setup.py >}}
+```
+
+Use defaults
+```{python}
+import seaborn as sns
+
+penguins = sns.load_dataset("penguins")
+
+sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species")
+```
+
+```{python}
+import matplotlib as mpl
+mpl.rcParams['figure.figsize'] = (12, 3)
+
+sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species")
+```
+Reset defaults
+
+```{python}
+with mpl.rc_context({'figure.figsize': (12, 3)}):
+    sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species")
+```
+`
+```{python}
+(
+    ggplot(penguins, aes(x="island", fill="species"))
+    + geom_bar()
+    + scale_fill_manual(values=penguin_colors)
+    + labs(x="Island", y="Count")
+    + theme(figure_size=(4, 6))
+)
+```
+

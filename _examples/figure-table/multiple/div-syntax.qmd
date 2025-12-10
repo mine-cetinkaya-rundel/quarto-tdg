@@ -1,0 +1,29 @@
+
+::: {}
+::: {#fig-species-scatter-2 layout-ncol="2"}
+
+::: {#fig-species-scatter-size}
+```{r}
+#| fig-alt: Some alternative text
+
+{{< include ../_code-snippets/size-scatter.R >}}
+```
+
+Number of penguins sampled from each species in the Palmer Archipelago
+::: 
+
+::: {#fig-species-scatter-bill}
+```{r}
+#| fig-alt: Some alternative text
+
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+Number of penguins sampled from each species in the Palmer Archipelago
+
+::: 
+
+Overall caption
+
+:::
+:::

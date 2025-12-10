@@ -1,0 +1,81 @@
+---
+echo: false
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+:::{#basic-cell-options-table}
+
+```{r}
+#| label: tbl-species-count
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
+
+{{< include ../_code-snippets/species-count.R >}}
+```
+:::
+
+:::{#basic-cell-options-figure}
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "Penguin bill length versus depth by species"
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+:::
+
+
+::: {#cross-references-link}
+
+Most penguins were Adelie (@tbl-species-count). @fig-scatter shows quite distinct clustering of the three species in bill length versus depth.
+
+:::
+
+## Div Syntax
+
+::: {#fig-scatter}
+```{r}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+Penguin bill length versus depth by species
+
+:::
+
+## Dynamic Captions
+
+
+::: {#fig-scatter}
+```{r}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+Penguin bill length versus depth by species for `{r} nrow(penguins)` penguins.
+
+:::
+
+## Long Captions
+
+::: {#fig-scatter}
+
+```{r}
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+Scatter plot depicting the relationship between bill length (mm) and bill depth (mm) across different penguin species. 
+The clustering of the species reveals morphological differences in bill dimensions: 
+**Adelie** penguins have short, deep bills,
+whereas **Gentoo** penguins have long, shallow bills.
+**Chinstrap** penguins have similar depth bills to Adelie penguins but there bills are longer.
+
+:::

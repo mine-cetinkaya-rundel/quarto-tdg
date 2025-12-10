@@ -1,4 +1,0 @@
----
-title: Figures and tables
----
-
