@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Mine Çetinkaya-Rundel and Charlotte Wickham">
+
+<title>8&nbsp; Setting options with YAML – Quarto: The Practical Guide</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./computations.html" rel="next">
+<link href="./look-under-hood.html" rel="prev">
+<link href="./cover.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d640c705e8c17715bca3574aa719063f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-db99b97b51e20a8de109c28632e3f6e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./overview.html">Hello Quarto</a></li><li class="breadcrumb-item"><a href="./yaml.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Setting options with YAML</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quarto: The Practical Guide</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hello Quarto</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tools</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./authoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Authoring</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Computation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./publishing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Publishing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./look-under-hood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Looking under the hood</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./yaml.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Setting options with YAML</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./computations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quarto and R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quarto and Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./julia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto and Julia</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./figure-table.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Figures and tables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./freeze-cache.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Freezing and caching</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Output formats</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./documents.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Documents</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./presentations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Presentations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./manuscripts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manuscripts</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dashboards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./websites.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./books.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Books</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./more.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Doing more with Quarto</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./templates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Templates</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./extensions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Extensions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dig-under-hood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Digging under the hood</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./jupyter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Jupyter</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">8.1</span> Overview</a></li>
+  <li><a href="#general-yaml-syntax" id="toc-general-yaml-syntax" class="nav-link" data-scroll-target="#general-yaml-syntax"><span class="header-section-number">8.2</span> General YAML syntax</a>
+  <ul class="collapse">
+  <li><a href="#yaml-mappings" id="toc-yaml-mappings" class="nav-link" data-scroll-target="#yaml-mappings"><span class="header-section-number">8.2.1</span> YAML Mappings</a></li>
+  <li><a href="#yaml-sequences" id="toc-yaml-sequences" class="nav-link" data-scroll-target="#yaml-sequences"><span class="header-section-number">8.2.2</span> YAML Sequences</a></li>
+  <li><a href="#yaml-scalars" id="toc-yaml-scalars" class="nav-link" data-scroll-target="#yaml-scalars"><span class="header-section-number">8.2.3</span> YAML Scalars</a></li>
+  <li><a href="#quotes" id="toc-quotes" class="nav-link" data-scroll-target="#quotes"><span class="header-section-number">8.2.4</span> Quotes</a></li>
+  <li><a href="#long-strings" id="toc-long-strings" class="nav-link" data-scroll-target="#long-strings"><span class="header-section-number">8.2.5</span> Long strings</a></li>
+  <li><a href="#using-default" id="toc-using-default" class="nav-link" data-scroll-target="#using-default"><span class="header-section-number">8.2.6</span> Using <code>default</code></a></li>
+  </ul></li>
+  <li><a href="#what-happens-when-you-get-it-wrong" id="toc-what-happens-when-you-get-it-wrong" class="nav-link" data-scroll-target="#what-happens-when-you-get-it-wrong"><span class="header-section-number">8.3</span> What happens when you get it wrong?</a>
+  <ul class="collapse">
+  <li><a href="#using-the-wrong-yaml-syntax" id="toc-using-the-wrong-yaml-syntax" class="nav-link" data-scroll-target="#using-the-wrong-yaml-syntax"><span class="header-section-number">8.3.1</span> Using the wrong YAML syntax</a></li>
+  <li><a href="#specifying-the-wrong-key" id="toc-specifying-the-wrong-key" class="nav-link" data-scroll-target="#specifying-the-wrong-key"><span class="header-section-number">8.3.2</span> Specifying the wrong key</a></li>
+  <li><a href="#specifying-the-wrong-type-of-value" id="toc-specifying-the-wrong-type-of-value" class="nav-link" data-scroll-target="#specifying-the-wrong-type-of-value"><span class="header-section-number">8.3.3</span> Specifying the wrong type of value</a></li>
+  <li><a href="#ways-quarto-tries-to-help" id="toc-ways-quarto-tries-to-help" class="nav-link" data-scroll-target="#ways-quarto-tries-to-help"><span class="header-section-number">8.3.4</span> Ways Quarto tries to help</a></li>
+  </ul></li>
+  <li><a href="#what-are-the-possible-options" id="toc-what-are-the-possible-options" class="nav-link" data-scroll-target="#what-are-the-possible-options"><span class="header-section-number">8.4</span> What are the possible options?</a></li>
+  <li><a href="#project-options" id="toc-project-options" class="nav-link" data-scroll-target="#project-options"><span class="header-section-number">8.5</span> Project options</a></li>
+  <li><a href="#document-options" id="toc-document-options" class="nav-link" data-scroll-target="#document-options"><span class="header-section-number">8.6</span> Document options</a>
+  <ul class="collapse">
+  <li><a href="#everything-is-a-format-option" id="toc-everything-is-a-format-option" class="nav-link" data-scroll-target="#everything-is-a-format-option"><span class="header-section-number">8.6.1</span> Everything is a format option</a></li>
+  <li><a href="#top-level-options-are-applied-to-all-formats" id="toc-top-level-options-are-applied-to-all-formats" class="nav-link" data-scroll-target="#top-level-options-are-applied-to-all-formats"><span class="header-section-number">8.6.2</span> Top-level options are applied to all formats</a></li>
+  <li><a href="#options-in-_quarto.yml-apply-to-all-documents" id="toc-options-in-_quarto.yml-apply-to-all-documents" class="nav-link" data-scroll-target="#options-in-_quarto.yml-apply-to-all-documents"><span class="header-section-number">8.6.3</span> Options in <code>_quarto.yml</code> apply to all documents</a></li>
+  <li><a href="#metadata.yml" id="toc-metadata.yml" class="nav-link" data-scroll-target="#metadata.yml"><span class="header-section-number">8.6.4</span> <code>_metadata.yml</code></a></li>
+  <li><a href="#command-line-metadata" id="toc-command-line-metadata" class="nav-link" data-scroll-target="#command-line-metadata"><span class="header-section-number">8.6.5</span> Command line metadata</a></li>
+  </ul></li>
+  <li><a href="#execution-options" id="toc-execution-options" class="nav-link" data-scroll-target="#execution-options"><span class="header-section-number">8.7</span> Execution options</a>
+  <ul class="collapse">
+  <li><a href="#execution-options-set-in-code-cells" id="toc-execution-options-set-in-code-cells" class="nav-link" data-scroll-target="#execution-options-set-in-code-cells"><span class="header-section-number">8.7.1</span> Execution options set in code cells</a></li>
+  <li><a href="#execution-options-set-in-the-document-header" id="toc-execution-options-set-in-the-document-header" class="nav-link" data-scroll-target="#execution-options-set-in-the-document-header"><span class="header-section-number">8.7.2</span> Execution options set in the document header</a></li>
+  <li><a href="#fig-width-and-fig-height" id="toc-fig-width-and-fig-height" class="nav-link" data-scroll-target="#fig-width-and-fig-height"><span class="header-section-number">8.7.3</span> <code>fig-width</code> and <code>fig-height</code></a></li>
+  <li><a href="#knitr-specific-options" id="toc-knitr-specific-options" class="nav-link" data-scroll-target="#knitr-specific-options"><span class="header-section-number">8.7.4</span> Knitr specific options</a></li>
+  <li><a href="#execution-options-set-in-_quarto.yml" id="toc-execution-options-set-in-_quarto.yml" class="nav-link" data-scroll-target="#execution-options-set-in-_quarto.yml"><span class="header-section-number">8.7.5</span> Execution options set in <code>_quarto.yml</code></a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/yaml.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./overview.html">Hello Quarto</a></li><li class="breadcrumb-item"><a href="./yaml.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Setting options with YAML</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-yaml" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Setting options with YAML</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">8.1</span> Overview</h2>
+<p>There’s a lot going on when you set a Quarto option. You need to:</p>
+<ul>
+<li>know the name of the option and the values it can take,</li>
+<li>figure out where to set the option, and</li>
+<li>get the YAML syntax right for setting the option to its value.</li>
+</ul>
+<p>In this chapter, you’ll learn more about setting options in Quarto so you can nail each of those steps.</p>
+<p>You’ll start by learning more about YAML syntax. Then, you’ll see some ways things can go wrong. Finally, you’ll learn more about how to find out what options are available, and where to put them.</p>
+</section>
+<section id="general-yaml-syntax" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="general-yaml-syntax"><span class="header-section-number">8.2</span> General YAML syntax</h2>
+<p>In this section you’ll learn the necessary YAML fundamentals to avoid syntax errors when setting options. Although the syntax applies generally to any YAML, all the examples you’ll see are valid Quarto options and values.</p>
+<section id="yaml-mappings" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="yaml-mappings"><span class="header-section-number">8.2.1</span> YAML Mappings</h3>
+<p>A YAML mapping is the specification of a key-value pair using the syntax <code>key: value</code>. Values can be simple, like a string, boolean, or number:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="annotated-cell-1" data-filename="document.qmd"><pre class="sourceCode yaml code-annotation-code code-with-copy code-annotated"><code class="sourceCode yaml"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My Document</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-3" class="code-annotation-target"><a href="#annotated-cell-1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="1">A string</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="3" data-code-annotation="2">A boolean, <code>true</code>/<code>false</code></span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="3">A number</span>
+</dd>
+</dl>
+<p>Or, values can be more complicated like another mapping. When the value of a key is another mapping, indentation is used to keep track of scope. For example, here the value of the <code>author</code> key is another mapping, setting <code>name</code> to the value <code>Soraya Drake</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Soraya Drake</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>It doesn’t matter how many spaces you indent as long as you use spaces (as opposed to tabs), and use the same number consistently. A common style convention, and the one we follow in this book and in Quarto documentation, is to use two spaces for each level of indentation. For example, the <code>name</code> key nested under <code>author</code> is indented two spaces, whereas the <code>name</code> key nested under <code>affiliation</code>, which itself is nested under <code>author</code>, is indented four spaces:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Soraya Drake</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Everpine University    </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">url</span><span class="kw">:</span><span class="at"> http://everpine.edu</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The names you can use in Quarto, along with the types of values they take, are not specified by the YAML language, but by Quarto’s own schema.</p>
+</section>
+<section id="yaml-sequences" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="yaml-sequences"><span class="header-section-number">8.2.2</span> YAML Sequences</h3>
+<p>A YAML sequence is a way to provide a key a set of ordered values. There are two syntaxes to specify a YAML sequence. When the values in the sequence are simple, separate them with commas inside square brackets:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cosmo</span><span class="kw">,</span><span class="at"> styles.scss</span><span class="kw">]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The alternate syntax puts each value on its own line, and adds a dash prefix followed by a space:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> cosmo</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> styles.scss</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This alternate syntax can also handle situations where the values are further mappings. For example, here the value of <code>author</code> is a sequence of length two, where each element is a mapping of <code>name</code> and <code>affiliation</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Soraya Drake</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Everpine University    </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Zahir Kamarov</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> Peregrine Heights Institute</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="yaml-scalars" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="yaml-scalars"><span class="header-section-number">8.2.3</span> YAML Scalars</h3>
+<p>YAML uses the term <em>scalar</em> to talk about the simplest types of value: strings, numbers, and booleans. You saw an example of each earlier:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My Document</span><span class="co">  # A string</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">           # A boolean, `true`/`false`</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span><span class="co">        # A number</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The only values recognized as boolean are <code>true</code> and <code>false</code>; numbers can be single integers (<code>2</code>), decimals (<code>2.1</code>), or scientific (<code>2.1e+2</code>), and anything else is treated as a string.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>YAML comments
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The hash symbol (<code>#</code>) indicates the start of a comment, which is ended by the end of the line.</p>
+</div>
+</div>
+</section>
+<section id="quotes" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="quotes"><span class="header-section-number">8.2.4</span> Quotes</h3>
+<p>Strings don’t require quotes, but you may need them if your string contains characters that have special meaning in YAML (e.g.&nbsp;<code>#</code>, <code>:</code>, etc.), or is something that would otherwise be interpreted as a number or boolean:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Quotes: and things that need them"</span><span class="at">  </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"#quarto"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"100"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In YAML, double-quoted strings (<code>"</code>) allow escape characters in them, whereas single-quoted strings (<code>'</code>) are interpreted literally:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Quotes: </span><span class="sc">\U0001F4E8</span><span class="st">"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">'Quotes: \U0001F4E8'</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Q: where does the <code>\U</code> go in <code>subtitle</code> go? YAML might be interpreting literally but Quarto/Pandoc might escape somewhere?</p>
+</section>
+<section id="long-strings" class="level3" data-number="8.2.5">
+<h3 data-number="8.2.5" class="anchored" data-anchor-id="long-strings"><span class="header-section-number">8.2.5</span> Long strings</h3>
+<p>For strings that are longer than you’d comfortably put on a single line, or need explicit line breaks, you can use what YAML calls <strong>block scalars</strong> .</p>
+<p>There are two styles: literal and folded.</p>
+<p>Literal block scalars are indicated by a pipe (<code>|</code>), and line breaks are considered significant, whereas folded block scalars are indicated by a greater than symbol (<code>&gt;</code>), and line breaks are collapsed to spaces.</p>
+<p>In both cases, start your string on a new line indented under the key:</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>literal.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" data-filename="literal.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  A title</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  spanning two lines</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>folded.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" data-filename="folded.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">: </span><span class="ch">&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  A title</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  collapsed into one line</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<div id="fig-block-strings" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-block-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-block-strings" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-block-strings-literal" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A screenshot of a title that reads 'A title' then a line break followed by 'spanning two lines'.">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-block-strings-literal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/yaml-block-literal.png" class="border img-fluid figure-img" data-ref-parent="fig-block-strings" alt="A screenshot of a title that reads 'A title' then a line break followed by 'spanning two lines'.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-block-strings-literal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Rendered title using literal (<code>|</code>) block scalar
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-block-strings" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-block-strings-folded" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A screenshot of a title that reads 'A title collapsed into one line' all on a single line.">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-block-strings-folded-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/yaml-block-folded.png" class="border img-fluid figure-img" data-ref-parent="fig-block-strings" alt="A screenshot of a title that reads 'A title collapsed into one line' all on a single line.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-block-strings-folded-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Rendered title using folded (<code>&gt;</code>) block scalar
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-block-strings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1
+</figcaption>
+</figure>
+</div>
+<p>Depending on where the string value is used, line breaks may or may not mean anything to Quarto. For instance, when interpreted as markdown, a single line break doesn’t result in anything in the output. However, a double line break will be interpreted as a new paragraph.</p>
+</section>
+<section id="using-default" class="level3" data-number="8.2.6">
+<h3 data-number="8.2.6" class="anchored" data-anchor-id="using-default"><span class="header-section-number">8.2.6</span> Using <code>default</code></h3>
+<p>You’ll come across examples where the value of a Quarto option is <code>default</code>, like when you are specifying multiple formats:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The value <code>default</code> doesn’t have a special YAML meaning— it’s something Quarto adds for certain options where the value is usually another mapping, but you just want the default values for all properties.</p>
+</section>
+</section>
+<section id="what-happens-when-you-get-it-wrong" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="what-happens-when-you-get-it-wrong"><span class="header-section-number">8.3</span> What happens when you get it wrong?</h2>
+<p>When you render a project or document, one of the first things that happens is the options are parsed and validated. When you make a mistake in setting an option there are a few possible outcomes:</p>
+<ol type="1">
+<li><p>You get an error message, and the error message clearly points out your mistake.</p></li>
+<li><p>You get an error message, but it’s not clear from that message what or where your mistake is.</p></li>
+<li><p>You don’t get an error message at all.</p></li>
+</ol>
+<p>It’s hard to enumerate all the ways you can make a mistake, but we’ll give a couple of examples for each of these outcomes in the hope it helps you track down yours.</p>
+<p>Some examples in this chapter will result in an error from <code>quarto render</code>—we’ve highlighted these examples with a red border (TODO: add an icon for PDF version), like this:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>render_error.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-filename="render_error.qmd"><pre class="sourceCode yaml error code-with-copy"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Bad YAML : (</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The error messages shown in the text are current as of Quarto 1.6.</p>
+</div>
+</div>
+</div>
+<p>We’ve split the examples by the kind of mistake you make:</p>
+<ul>
+<li>Using the wrong YAML syntax</li>
+<li>Using the wrong name for an option</li>
+<li>Using the wrong type of value for an option</li>
+</ul>
+<section id="using-the-wrong-yaml-syntax" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="using-the-wrong-yaml-syntax"><span class="header-section-number">8.3.1</span> Using the wrong YAML syntax</h3>
+<p>When your YAML can’t be parsed by Quarto you’ll get a <code>YAMLException</code> error. These are actually surprisingly rare, not because everyone is great at YAML, but because most YAML syntax mistakes don’t result in invalid YAML. The YAML remains valid, it just won’t be interpreted in the way you intended.</p>
+<p>For example, if you forget the space after a colon when setting an option like <code>code-fold</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13" data-filename="document.qmd"><pre class="sourceCode yaml error code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="at">    code-fold:true</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Then you don’t get a <code>YAMLException</code> but instead a validation error:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Validation of YAML front matter failed.</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>(line 5, columns 5--18) Field "html" has value code-fold:true, which must instead be an object</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>✖ The value code-fold:true is a string.</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>ℹ The error happened in location format:html.</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ℹ In YAML, key-value pairs in objects must be separated by a space.</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>ℹ Did you mean code-fold: true instead?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The YAML has been parsed, but with the missing space <code>code-fold:true</code> was interpreted as a string not a mapping. Quarto does a good job here suggesting what your mistake might have been and a solution.</p>
+<p>Generally, if you get a validation error, first check your syntax carefully.</p>
+</section>
+<section id="specifying-the-wrong-key" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="specifying-the-wrong-key"><span class="header-section-number">8.3.2</span> Specifying the wrong key</h3>
+<p>There are some instances where when you use the wrong name for an option you’ll get an error. For example, if you pluralize the <code>lightbox</code> option <code>loop</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15" data-filename="document.qmd"><pre class="sourceCode yaml error code-with-copy"><code class="sourceCode yaml"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Presentation"</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lightbox</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">loops</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="at"> </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You’ll get a YAML validation error that catches and reports the problem:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ERROR: Validation of YAML front matter failed.</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ERROR: In file long-string.qmd</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>(line 5, columns 3--8) property name loops is invalid</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>4: lightbox: </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>5:   loops: true </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    ~~~~~~</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>ℹ The error happened in location lightbox:loops.</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>ℹ Did you mean loop?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Options where Quarto only allows a certain set of property names are known as <strong>closed schemas</strong>, e.g., the <code>lightbox</code> option has a closed schema. However, not all Quarto options have closed schemas.</p>
+<p>When the schema is <em>open</em>, Quarto simply accepts an unknown option name and you get no error. For example, you might use an underscore instead of a hyphen in <code>code-fold</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code_fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Even though <code>code_fold</code> isn’t a recognized option for <code>html</code>, you’ll get no error. But, you also won’t get any code folding. Why does Quarto have open schemas? There are lots of places it makes sense to let users define their own keys, for example, when you want to use the <code>meta</code> shortcode and define some custom keys in your metadata.</p>
+<p>A similar problem occurs when you nest options incorrectly. For example, you might get <code>code-fold</code> right, but forget to nest <code>html</code> under <code>format</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>As a top-level option <code>html</code> isn’t something Quarto knows about, but it passes validation. The result is no error, and no folded code.</p>
+<p><a href="#yaml-completion">Code completion</a> can be a useful indicator for these problems. If you aren’t getting the completion you expect, perhaps you’ve got the wrong name, or you’ve nested it under the wrong option.</p>
+</section>
+<section id="specifying-the-wrong-type-of-value" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="specifying-the-wrong-type-of-value"><span class="header-section-number">8.3.3</span> Specifying the wrong type of value</h3>
+<p>Checking the type of value you’ve passed is something Quarto is good at, assuming your syntax is correct and you’ve got the right option name.</p>
+<p>For example, consider trying to add a table of contents like this:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19" data-filename="document.qmd"><pre class="sourceCode yaml error code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Upon render, Quarto returns the error:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ERROR: Validation of YAML front matter failed.</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ERROR: (line 3, columns 6--8) Field "toc" has value yes, which must instead be `true` or `false`</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>✖ The value yes is a string.</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>ℹ The error happened in location toc.</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>ℹ Quarto uses YAML 1.2, which interprets booleans strictly.</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>ℹ Try using true instead.</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>ERROR: Render failed due to invalid YAML</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is a really useful message—it tells you the YAML front matter validation failed; it tells you where the problem is, <code>(line 3, columns 6--8) Field "toc"</code>; and it tells you what the problem was, Quarto expected a boolean, but got a string. It even suggests a solution <code>try using true instead</code>.</p>
+<p>Not all validation error messages are as illuminating. For example, consider trying to add an “Other Link” like this:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-filename="document.qmd"><pre class="sourceCode yaml error code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">other-links</span><span class="kw">:</span><span class="at"> http://quarto.org</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The validation error returned is:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ERROR: Validation of YAML front matter failed.</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ERROR: In file type-errors.qmd</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>(line 5, columns 18--34) Field "other-links" has value http://quarto.org, which must instead be 'false'</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>4:   html:</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>5:     other-links: http://quarto.org</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                   ~~~~~~~~~~~~~~~~~</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>6: ---</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It’s clear where the error is (<code>(line 5, columns 18--34) Field "other-links"</code>), and that the wrong type of value has been encountered. But it’s unclear what Quarto actually wants. It says it was expecting <code>false</code>, but that doesn’t help us figure out how to actually specify a link.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Obtuse messages
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quarto tries not to overwhelm you with output in an error message, but sometimes the process of shortening an error message leads to a message that isn’t very helpful.</p>
+<p>This particular form of message that ends with <code>which must instead be x</code>, is a common culprit of being too brief to be helpful. Quarto will often report one value, <code>x</code>, often the first alphabetically, but in reality there are many values that the option could take.</p>
+</div>
+</div>
+<p>For validation errors like this you should look for an example in the Guide section of Quarto. In the section <a href="https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links">“Code and Other Links”</a> you can see an example showing Quarto was expecting an array of objects:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">other-links</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Quarto</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">href</span><span class="kw">:</span><span class="at"> http://quarto.org</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ways-quarto-tries-to-help" class="level3" data-number="8.3.4">
+<h3 data-number="8.3.4" class="anchored" data-anchor-id="ways-quarto-tries-to-help"><span class="header-section-number">8.3.4</span> Ways Quarto tries to help</h3>
+<p>Quarto ships with YAML intelligence which encompasses two tools you can use to help you get your YAML right: YAML completion and YAML validation.</p>
+<p>These tools are available in RStudio, and the Quarto extension for VS Code and Positron. The code to implement them comes with the Quarto CLI, which means they’ll always represent your current version of Quarto.</p>
+<section id="yaml-completion" class="level4" data-number="8.3.4.1">
+<h4 data-number="8.3.4.1" class="anchored" data-anchor-id="yaml-completion"><span class="header-section-number">8.3.4.1</span> YAML completion</h4>
+<p>YAML completion suggests code completions when you are editing YAML in your Quarto documents and projects. You can hit a shortcut to see suggested completions of option names, and values.</p>
+<p>Use completion:</p>
+<ul>
+<li>At the top-level without typing anything to remind yourself of available options.</li>
+<li>When you have started typing an option name to avoid mis-spelling it. If the option doesn’t appear as a completion, check you have it nested correctly.</li>
+<li>After completing the option name to get suggested values. This is particularly useful for options that take one of a few special strings.</li>
+</ul>
+</section>
+<section id="yaml-validation" class="level4" data-number="8.3.4.2">
+<h4 data-number="8.3.4.2" class="anchored" data-anchor-id="yaml-validation"><span class="header-section-number">8.3.4.2</span> YAML validation</h4>
+<p>YAML validation performs the same validation that occurs when you render, but provides feedback and help where and when you are editing. It is activated when you save your file.</p>
+<p>It will warn you when:</p>
+<ul>
+<li>a value has the incorrect type</li>
+<li>a value isn’t one of the enumerated allowable values</li>
+<li>the name of an option isn’t valid (but only in situations where free-form options aren’t allowed)</li>
+<li>indention is inconsistent</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="what-are-the-possible-options" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="what-are-the-possible-options"><span class="header-section-number">8.4</span> What are the possible options?</h2>
+<p>The best place to find out what options are available is the <a href="http://quarto.org/docs/reference">Reference section of the Quarto documentation</a>. These pages are automatically generated from the YAML schema defined in the source code of the Quarto CLI.</p>
+<p>The options available depend on where the option will be applied. From smallest to largest scope these are: to a code cell, to a document format, or to a project.</p>
+<p>Those scopes also map to where you put the option: inside the code cell, in the document header, or in <code>_quarto.yml</code>. However, you can generally apply options to a larger scope, by placing them in the corresponding location. For example, <code>echo</code> is a code cell option, but you can use it in the document header to apply to formats, or you can use it in <code>_quarto.yml</code> to apply to all documents in a project.</p>
+<p><a href="#tbl-options" class="quarto-xref">Table&nbsp;<span>8.1</span></a> matches the sections of the Reference Guide, to the other names for the same options, and where the options might be found. In the following sections, you’ll work through these scopes from largest to smallest and learn some general principles to help you put your options in the right place.</p>
+<div id="tbl-options" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.1: The three kinds of options you can set in Quarto
+</figcaption>
+<div aria-describedby="tbl-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 25%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Reference Guide Section</th>
+<th style="text-align: left;">Other names</th>
+<th style="text-align: left;">Where they might occur</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Projects</td>
+<td style="text-align: left;"><p>Project options</p>
+<p>Project metadata</p></td>
+<td style="text-align: left;"><code>_quarto.yml</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Formats</td>
+<td style="text-align: left;"><p>Document options</p>
+<p>Document metadata</p></td>
+<td style="text-align: left;"><p>Document header</p>
+<p><code>_quarto.yml</code></p></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Code Cells</td>
+<td style="text-align: left;">Execution options</td>
+<td style="text-align: left;"><p>Code cells, i.e.&nbsp;after <code>#|</code></p>
+<p>Document header</p>
+<p><code>_quarto.yml</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="project-options" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="project-options"><span class="header-section-number">8.5</span> Project options</h2>
+<p>Project options are literally those listed under <code>project</code> in <code>_quarto.yml</code>, or under a project type (e.g., <code>website</code>, <code>book</code>, or <code>manuscript</code>) in <code>_quarto.yml</code>. You cannot modify them on a document or code-cell level, nor does it generally make sense to. For example, options under the <code>website</code> key set up global navigation, and website level metadata.</p>
+<p>Project options aren’t the only thing you might find in <code>_quarto.yml</code>. You can also set document options that should apply to all documents in <code>_quarto.yml</code>, you’ll learn more about this next.</p>
+</section>
+<section id="document-options" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="document-options"><span class="header-section-number">8.6</span> Document options</h2>
+<p>Document options can be tricky because they can appear in lots of different ways. For example, the <code>toc</code> option might appear:</p>
+<ul>
+<li><p>at the top-level of a document header:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></li>
+<li><p>nested under a format in the document header:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></li>
+<li><p>or in <code>_quarto.yml</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div></li>
+</ul>
+<p>To understand what these variations mean, and when to use them, you’ll dive into the following principles:</p>
+<ul>
+<li>Everything is a format option</li>
+<li>Top-level options are applied to all formats</li>
+<li>Options in <code>_quarto.yml</code> apply to all documents</li>
+</ul>
+<section id="everything-is-a-format-option" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="everything-is-a-format-option"><span class="header-section-number">8.6.1</span> Everything is a format option</h3>
+<p>Consider the following document header:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>From Quarto’s perspective, this is equivalent to the header:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>That is, the options <code>title</code> and <code>toc</code> are HTML format options. It’s convenient to be able to put things at the top-level, but internally, Quarto will move those options under each format. This is why Quarto’s <a href="https://quarto.org/docs/reference/">reference pages</a> are laid out by format—options are supported, or not, depending on the output format.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>OK, not quite everything…
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>engine</code> is an option that isn’t applied at a format level—you cannot specify different engines for different formats.</p>
+</div>
+</div>
+</section>
+<section id="top-level-options-are-applied-to-all-formats" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="top-level-options-are-applied-to-all-formats"><span class="header-section-number">8.6.2</span> Top-level options are applied to all formats</h3>
+<p>Quarto assumes any options you specify at the top-level should be applied to all formats. For example, if we extend our document header to add the <code>pdf</code> format:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Quarto interprets this as:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is a good example of why this behavior exists—you’ll want many options to be the same across formats, and being able to specify them at the top-level saves a lot of typing.</p>
+<p>Option values nested under a format will override any specified at the top level. For example, you might want <code>toc: true</code> for most formats, but override it for <code>revealjs</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>There are a couple of consequences of this behavior to be aware of:</p>
+<ul>
+<li><p>Options are silently ignored by formats that don’t support them. While this is true regardless of where you set the option, it can be harder to remember when you set options at the top-level. For example, you can set <code>cold-fold: true</code> at the top-level, and it will work great for <code>format: html</code>, but it isn’t supported by <code>format: pdf</code>.</p></li>
+<li><p>YAML completion will suggest options at the top-level that are supported by at least one format, but that might not be the format you targeting. For example, the completion <code>fig-pos</code> is suggested at the top-level, but it only applies to <code>format: pdf</code>.</p></li>
+</ul>
+<p>Both are reminders that understanding whether an option is supported by a format is up to you, and the best way to check is on the Quarto reference pages for the formats you are targeting.</p>
+</section>
+<section id="options-in-_quarto.yml-apply-to-all-documents" class="level3" data-number="8.6.3">
+<h3 data-number="8.6.3" class="anchored" data-anchor-id="options-in-_quarto.yml-apply-to-all-documents"><span class="header-section-number">8.6.3</span> Options in <code>_quarto.yml</code> apply to all documents</h3>
+<p>You can move any options you’ve set in the document header to <code>_quarto.yml</code> and they’ll apply to all documents in your project.</p>
+<p>For example, if you want all documents in the project to have a table of contents you could include <code>toc: true</code> in your <code>_quarto.yml</code> file:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><code>engine</code> is the exception again
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can’t set <code>engine</code> at the project level by putting it in <code>_quarto.yml</code>.</p>
+</div>
+</div>
+<p>Options specified in <code>_quarto.yml</code> follow the same principles as those in the document header. By specifying <code>toc: true</code> at the top-level it will apply to all formats. Alternatively, you could specify it for a specific format, e.g.&nbsp;<code>pdf</code>, by nesting it under the format:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>As discussed in <a href="projects.html#sec-common-metadata" class="quarto-xref"><span>Section 5.4.2</span></a> you can override any options in <code>_quarto.yml</code> at a document-level by setting them in the document header. However, if you specify any formats via <code>format</code> in a document header, only those specified will be rendered, regardless of which formats are specified in <code>_quarto.yml</code>. This gets a little tricky, so let’s look at a couple of examples. Consider <a href="#lst-project-opts" class="quarto-xref">Snippet&nbsp;<span>8.1</span></a>: a <code>_quarto.yml</code> that sets one top-level option, <code>toc</code>, for all formats, an <code>html</code> option <code>code-fold</code>, and specifies default options for the <code>pdf</code> format.</p>
+<div id="lst-project-opts" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-project-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Snippet&nbsp;8.1: An example of project level options
+</figcaption>
+<div aria-describedby="lst-project-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</figure>
+</div>
+<p>For any document in the project, that would be equivalent to setting the following in the document header:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The result of <code>quarto render</code> would be an HTML document (with a table of contents and using code fold), <strong>and</strong> a PDF document (with a table of contents).</p>
+<p>When a document sets a format via <code>format</code> either with no options (<a href="#lst-format-no-opts" class="quarto-xref">Snippet&nbsp;<span>8.2 (a)</span></a>) or as the result of setting an option nested under the format (<a href="#lst-format-opts" class="quarto-xref">Snippet&nbsp;<span>8.2 (b)</span></a>), only the options for that format are merged from <code>_quarto.yml</code> (<a href="#lst-format-result-no-opts" class="quarto-xref">Snippet&nbsp;<span>8.3 (a)</span></a> and <a href="#lst-format-result-opts" class="quarto-xref">Snippet&nbsp;<span>8.3 (b)</span></a> respectively). The result of <code>quarto render</code> on <a href="#lst-format-no-opts" class="quarto-xref">Snippet&nbsp;<span>8.2 (a)</span></a> and <a href="#lst-format-opts" class="quarto-xref">Snippet&nbsp;<span>8.2 (b)</span></a> is only an HTML document.</p>
+<div id="lst-format" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-format-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Snippet&nbsp;8.2: A document that sets a format in the document header
+</figcaption>
+<div aria-describedby="lst-format-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="lst-format-no-opts" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-subfloat-lst figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-lst" id="lst-format-no-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) <code>format: html</code> set with no other options.
+</figcaption>
+<div aria-describedby="lst-format-no-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+<div id="lst-format-opts" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-subfloat-lst figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-lst" id="lst-format-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) <code>format: html</code> set with additional options.
+</figcaption>
+<div aria-describedby="lst-format-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+</div>
+</figure>
+</div>
+<div id="lst-format-result" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-format-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Snippet&nbsp;8.3: The equivalent header for the files in <a href="#lst-format" class="quarto-xref">Snippet&nbsp;<span>8.2</span></a> when merged with the settings in <code>_quarto.yml</code>.
+</figcaption>
+<div aria-describedby="lst-format-result-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="lst-format-result-no-opts" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-subfloat-lst figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-lst" id="lst-format-result-no-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+<div aria-describedby="lst-format-result-no-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+<div id="lst-format-result-opts" class="listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-subfloat-lst figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-lst" id="lst-format-result-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+<div aria-describedby="lst-format-result-opts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+</div>
+</figure>
+</div>
+<p>If you want to specify some format specific options in a document, but maintain the full list of target formats from <code>_quarto.yml</code>, specify all formats in the document header. For example, to override some HTML options, but use the PDF options from <code>_quarto.yml</code>, add <code>pdf: default</code> to the list of formats:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> default</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="metadata.yml" class="level3" data-number="8.6.4">
+<h3 data-number="8.6.4" class="anchored" data-anchor-id="metadata.yml"><span class="header-section-number">8.6.4</span> <code>_metadata.yml</code></h3>
+<p>There is one additional place you can put document options: in a <code>_metadata.yml</code> file. Options placed in <code>_metadata.yml</code> will apply to all documents in the same directory as the <code>_metadata.yml</code>.</p>
+<p>Only for document options (and execution options if they have a document equivalent), not project options.</p>
+</section>
+<section id="command-line-metadata" class="level3" data-number="8.6.5">
+<h3 data-number="8.6.5" class="anchored" data-anchor-id="command-line-metadata"><span class="header-section-number">8.6.5</span> Command line metadata</h3>
+<p>Command line metadata overrides metadata set in files:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">-M</span> toc:false</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="execution-options" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="execution-options"><span class="header-section-number">8.7</span> Execution options</h2>
+<p>We use the term <strong>execution options</strong> to describe options you can set in code cells. The set of options available depends on your execution engine: <a href="https://quarto.org/docs/reference/cells/cells-knitr.html"><code>knitr</code></a>, <a href="https://quarto.org/docs/reference/cells/cells-jupyter.html"><code>jupyter</code></a> or <a href="https://quarto.org/docs/reference/cells/cells-ojs.html"><code>ojs</code></a>.</p>
+<p>You can generally split execution options into two types:</p>
+<ul>
+<li><p>information that is unique to a code cell like identifiers (<code>label</code>, <code>lst-label</code>), captions (<code>fig-cap</code>, <code>tbl-cap</code>, <code>lst-cap</code>, <code>fig-subcap</code>, <code>tbl-subcap</code>, <code>fig-scap</code>) or other annotation (<code>fig-alt</code>, <code>fig-link</code>).</p></li>
+<li><p>settings that could conceivably apply to many code cells that control things like: if the code is executed (<code>eval</code>), or how code and results appear in the output(<code>echo</code>, <code>output</code>, <code>warning</code>, <code>error</code>), where output appears (<code>column</code>, <code>panel</code>, <code>output-location</code>), or how code is presented (<code>code-fold</code>, <code>code-overflow</code>, <code>code-line-numbers</code>).</p></li>
+</ul>
+<p>For options in the later category, just like document options, you can increase their scope by moving them: to the document header to apply to all code cells in the document; or to <code>_quarto.yml</code> to apply to all code cells in the project.</p>
+<section id="execution-options-set-in-code-cells" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="execution-options-set-in-code-cells"><span class="header-section-number">8.7.1</span> Execution options set in code cells</h3>
+<p>Execution options are set in code cells using YAML syntax after a special comment:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Execution options need to be specified before any code, and are prefaced by the native comment character for the code cell language (<code>#</code> for <code>r</code>, <code>python</code> and <code>julia</code>), followed by a pipe (<code>|</code>), and a space.</p>
+<p>You can use the same YAML syntax as in the document header, but for multiline statements, remember to preface each line with the cell option comment. For example, to use a literal block string:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: |</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">#|   Here's a long caption</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#|   spread over two lines</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="execution-options-set-in-the-document-header" class="level3" data-number="8.7.2">
+<h3 data-number="8.7.2" class="anchored" data-anchor-id="execution-options-set-in-the-document-header"><span class="header-section-number">8.7.2</span> Execution options set in the document header</h3>
+<p>As reasonable working model, assume you can move an execution option from a code cell to the document header and it will apply to all code cells in the document. For example, you could move <code>echo: false</code> out of a code cell and into the document header:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can override the document level setting by setting the option in a code cell:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>When you move an option in this way it behaves just like a document option:</p>
+<ol type="1">
+<li><p>To figure out if an option is supported at the document level look in the reference guide for your target formats.</p></li>
+<li><p>If you nest an execution option under a format, it will only apply to that format.</p></li>
+</ol>
+<p>So, while assuming you can move an execution option to the document header is a good working model, the definitive way to check is to see if it is a document option for your target formats.</p>
+<p>There are a couple of special cases it is worth pointing out.</p>
+</section>
+<section id="fig-width-and-fig-height" class="level3" data-number="8.7.3">
+<h3 data-number="8.7.3" class="anchored" data-anchor-id="fig-width-and-fig-height"><span class="header-section-number">8.7.3</span> <code>fig-width</code> and <code>fig-height</code></h3>
+<p>For the <code>jupyter</code> engine, <code>fig-width</code> and <code>fig-height</code> are document options only—you cannot set them at the cell level. If you need cell level control of the size of a figure, you’ll need to set it in the code that creates the figure.</p>
+</section>
+<section id="knitr-specific-options" class="level3" data-number="8.7.4">
+<h3 data-number="8.7.4" class="anchored" data-anchor-id="knitr-specific-options"><span class="header-section-number">8.7.4</span> Knitr specific options</h3>
+<p>There are a number of execution options that are specific to the <code>knitr</code> engine, that don’t have document option equivalents. Some common ones include <code>message</code>, <code>collapse</code> and <code>prompt</code>.</p>
+<p>You can set these for all code cells using the <code>knitr: chunk_opts</code> option. For example, to suppress all messages:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Untitled"</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">knitr</span><span class="kw">:</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">opts_chunk</span><span class="kw">:</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">message</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="execution-options-set-in-_quarto.yml" class="level3" data-number="8.7.5">
+<h3 data-number="8.7.5" class="anchored" data-anchor-id="execution-options-set-in-_quarto.yml"><span class="header-section-number">8.7.5</span> Execution options set in <code>_quarto.yml</code></h3>
+<p>When an execution option is also a document option, you can move it to <code>_quarto.yml</code> to apply to all code cells in a project.</p>
+<p>For example, to omit the code “echo” all code cells, and all formats, in a project you could set <code>echo</code> at the top-level of <code>_quarto.yml</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_quarto.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can then override this at the document or cell level as usual.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/quarto-tdg\.org\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./look-under-hood.html" class="pagination-link" aria-label="Looking under the hood">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Looking under the hood</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./computations.html" class="pagination-link" aria-label="Computations">
+        <span class="nav-page-text">Computations</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Quarto: The Practical Guide was written by Mine Çetinkaya-Rundel and Charlotte Wickham.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/yaml.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
