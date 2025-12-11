@@ -1,3 +1,71 @@
 # Welcome {.unnumbered}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel volutpat dui. Praesent vitae urna nec lorem feugiat consequat. Nunc ex nisi, posuere a lorem a, iaculis euismod tellus. Sed laoreet justo sit amet commodo suscipit. Curabitur gravida elit fermentum leo pulvinar, ac laoreet lectus iaculis. Quisque eu fringilla tellus, sit amet sollicitudin massa. In justo lorem, imperdiet laoreet interdum non, finibus in risus. In egestas fringilla nisl eu blandit.
+Quarto is an open-source scientific and technical publishing system that allows you to weave together narrative text and code to produce elegantly formatted output as documents, web pages, presentations, books, and more. 
+This book will teach you how to use Quarto effectively, whether you're creating a single document or managing a complex multi-format publishing project. 
+
+:::{.callout-note}
+
+## Work in progress
+
+This book is a work-in-progress.
+The content is still being developed and refined. 
+If you find any mistakes or have suggestions for improvement,
+please open an issue or a pull request on the [GitHub repository](https://github.com/mine-cetinkaya-rundel/quarto-tdg/).
+
+:::
+
+## Who is this book for?
+
+We've designed this book both for those new to Quarto, and those who already have some experience.
+
+For those new to Quarto, we assume no prior knowledge of Quarto or similar tools like R Markdown. 
+We'll start from the basics and build up your understanding step by step.
+
+If you have some experience with Quarto already, this book will help you fill in gaps in your foundational knowledge and give you broader exposure to Quarto's capabilities. 
+You might have learned Quarto by solving specific problems as they arose; here we present a more systematic approach.
+
+You don't need to be an R or Python user to benefit from this book. 
+While Quarto excels at integrating code and output, it's also a powerful modern approach to typesetting that works across multiple formats. 
+If you're interested in creating professional documents, presentations, or websites without writing code, Quarto can help you separate your content from its appearance and easily generate the same material in different formats.
+
+## How is this different to quarto.org?
+
+We designed this book to complement the official Quarto documentation at [quarto.org](http://quarto.org), not replace it.
+
+It differ in several key ways:
+
+* This book presents material in a linear fashion. 
+  It reflects what we think is the right order to learn Quarto: first, nail down your workflow and tools, then learn Quarto's specific flavor of markdown, followed by integrating computation, and finally, Quarto projects. 
+
+* You can read this book away from your computer. 
+  While we encourage you to try examples as you go, we've written the book so you can learn concepts and understand how Quarto works even when you're not actively coding.
+
+* We've curated both the path through the material and the level of detail. 
+  We focus on the most important concepts and features—the ones you'll use regularly—rather than trying to cover everything Quarto can do. 
+  We've also filled in explanatory gaps that the official documentation sometimes leaves.
+
+The official Quarto website at [quarto.org](http://quarto.org) remains the definitive reference. 
+We'll point you there for specific details that aren't of general interest, or when you're ready to track down more advanced features.
+The official site also includes step-by-step tutorials that are excellent when you want a hands-on introduction to specific tasks.
+
+## How to use this book? 
+
+The book is divided into parts:
+
+We recommend everyone read the first part [Hello Quarto](overview.qmd) from start to finish. 
+This part covers foundational knowledge that applies regardless of how you plan to use Quarto.
+
+Part II focuses on [Computation](computations.qmd). 
+Most readers will be interested in at least one of chapters @sec-r, @sec-python or @sec-julia. 
+However, if you don't plan to include any computational content in your Quarto documents, you can skip this entire part. 
+If you do work with code, read the relevant language-specific chapters along with the rest of Part II.
+
+Part III covers [Output formats](formats.qmd). 
+Everyone will want to read some chapters from this part based on their needs and interests. 
+You can dip into these chapters in any order---if you need to create presentations, jump straight to that chapter. 
+Each chapter is designed to be read from start to finish, but you don't need to read every chapter in the part.
+
+Part IV, [Doing more with Quarto](more.qmd), ventures into advanced, optional territory. 
+Once you're using Quarto for the majority of your work and you bump up against limitations you'd like to overcome, return to this part. 
+It's worth reading the overview to understand what's possible and how you can extend Quarto's core functionality, even if you don't need these features immediately.
+

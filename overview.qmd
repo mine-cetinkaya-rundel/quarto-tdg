@@ -1,6 +1,4 @@
----
-title: Hello Quarto
----
+# Hello Quarto {#sec-hello}
 
 In this section we introduce you to Quarto...
 
