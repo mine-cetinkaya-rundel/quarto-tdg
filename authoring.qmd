@@ -6,62 +6,12 @@ client: "ACME Corp"
 # Authoring {#sec-authoring}
 
 When we say "authoring" we mean the process of adding content to a Quarto document---literally, the things you write in a `.qmd` file.
-You'll start by reviewing the three basic components of a Quarto document: the document header, code cells and markdown text.
+More specifically, this chapter focuses on what you put in the parts of your document that are interpreted as markdown---that is, everything that isn't the document header, or an executable code cell.
 
-The rest of the chapter then focuses on the specific markdown syntax that Quarto uses to create rich documents.
 Our goal is to give you a good overview of breadth of Quarto's authoring features, while delaying many of the details to later chapters of the book.
 We also focus on syntax that is broadly supported across multiple output formats and cover specific format features where relevant in @sec-output-formats.
 
 We suggest reading through the chapter in its entirety on your first reading, and then referring back to specific sections as needed when authoring your own documents.
-
-
-## Document header
-
-Top of the document inside `---`. 
-Basic: `title`, `author`, `format`.
-Sets document metadata and options.
-Refer to Projects chapter to reduce duplication, YAML chapter for more details on syntax.
-
-## Code cells
-
-Executable code cells are blocks of code that can be run to produce output that is included in your document.
-Inside `` ```{LANGUAGE} `` and `` ``` ``.
-Often have code cell options inside. @sec-execution-options
-`echo`, `include`.
-
-If you want to include code that is highlighted, and displayed, but not executable, use a code block @sec-code-blocks.
-
-Remind of distinction between interactive execution and execution as part of rendering.
-
-Only put code, or code comments inside.
-
-Generally, only one language per document. (depending on engine, might be able to mix code cell languages, e.g. knitr, r and python vis reticulate).
-
-::: panel-tabset
-### R
-
-{{< embed notebooks/authoring-r.qmd#add echo=true >}}
-
-### Python
-
-{{< embed notebooks/authoring-python.qmd#add echo=true >}}
-
-:::
-
-::: panel-tabset
-
-### R
-
-{{< embed notebooks/authoring-r.qmd#plot echo=true >}}
-
-### Python
-
-{{< embed notebooks/authoring-python.qmd#plot echo=true >}}
-
-:::
-
-Can be used to generate images/figures, tables, raw markdown content.
-Can be nested inside lists, callouts, fenced divs, ...
 
 ## Markdown text
 
@@ -102,13 +52,20 @@ Or you might add a class, which are often used to control the behavior of sectio
 ## Section Title {#sec-section-title .unlisted}
 ```
 
-::: {.callout-tip}
+::: {#tip-attributes .callout-tip}
 
 ## What are attributes?
 
-Attributes are a way to add metadata to markdown elements usually inside curly braces `{}` after the element.
+Attributes are a way to add metadata to markdown elements, usually inside curly braces `{}` after the element.
 Attributes are used extensively in Quarto to control the behavior or appearance of many elements.
-You'll see many examples in this chapter, and we'll talk about them in general in @sec-attributes.
+
+The types of thing you can add as attributes include:
+
+* Identifiers (IDs), should be unique and start with `#`
+* Classes start with `.`
+* Key-value pairs use `key='value'` syntax.
+
+The order of attributes matters: identifiers must come first, followed by classes, and then key-value pairs.
 
 :::
 
@@ -1078,52 +1035,33 @@ This is useful when you want to reuse content across multiple documents or break
 
 The basic syntax is:
 
-```{.markdown shortcodes="false"}
-{{{< include path/to/file >}}}
+```{.markdown}
+{{{< include _content.qmd >}}}
 ```
 
-Where `path/to/file` is the path to the file you want to include, relative to the current document.
+Where `_content.qmd` is the path to the file you want to include, 
+relative to the current document.
+Files that contain content to include should be prefixed with an underscore (`_`) to ensure they are rendered on their own.
 
+::: {.callout-tip}
 
-For example, if you have a file called `methods.qmd` that describes your research methods, you can include it in multiple documents:
+## Project relative paths
 
-```{.markdown shortcodes="false"}
-## Methods
+If you preface the path with `/`, it is interpreted as a path relative to the project root.
+You'll learn more about project structure in @sec-projects.
 
-```
-
-When you render the document, Quarto will replace the shortcode with the entire contents of `_methods.qmd`.
-
-### Using includes in code cells
-
-You can also use the `include` shortcode inside code cells to include code from external files. This helps keep your document clean while maintaining your code in separate files:
-
-````{.markdown shortcodes="false"}
-```{{python}}
-```
-````
-
-When working with included files in a project, it's common to prefix filenames with an underscore (`_`), like `_methods.qmd` or `_analysis.py`. 
-This signals that the file is meant to be included in other documents rather than rendered on its own. 
-You'll learn more about this convention in @sec-projects.
-
-## Attributes
-
-Attributes can be added to many markdown elements to control their behavior or appearance.
-Attributes are added inside curly braces `{}` after the element.
-You've seen some examples.
-
-The types of thing you can add as attributes include:
-
-* IDs are unique and start with `#`
-* Classes start with `.`
-* Key-value pairs use `key='value'` syntax.
-
-Order matters, IDs first, then classes, then key-value pairs.
+:::
 
 ## Other features
 
-* Diagrams
-* Other shortcodes: videos, placeholder text, `meta`, `var`
-* Keyboard shortcuts
+* **Diagrams**: create diagrams directly in your markdown using Mermaid or Graphviz syntax---see the [Quarto diagrams documentation](https://quarto.org/docs/authoring/diagrams.html) for details.
 
+## Wrapping up
+
+This chapter has focused on how to write a rich document using Quarto markdown.
+You've learned to use markdown headings to structure your document into sections, create paragraphs and lists, and format text with emphasis, links, and other inline elements. 
+You've covered how to add the most important components of technical and scientific writing: code, tables, images, and equations.
+
+You've also learned how to use key Quarto features like cross-references, citations, footnotes, and callouts.
+Fenced divs let you create special regions like callouts or multi-column layouts, while shortcodes and includes help you reuse content efficiently. 
+We've focused on syntax that works across multiple output formats, leaving format-specific details for later chapters—you'll likely want to return to specific sections as reference when authoring your own documents.
