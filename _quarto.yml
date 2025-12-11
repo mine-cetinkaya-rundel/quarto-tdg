@@ -3,12 +3,11 @@ project:
   output-dir: _book
 
 book:
-  title: "Quarto: The Definitive Guide"
+  title: "Quarto: The Practical Guide"
   reader-mode: true
-
   page-footer:
     left: |
-      Quarto: The Definitive Guide was written by Mine Çetinkaya-Rundel and Charlotte Wickham.
+      Quarto: The Practical Guide was written by Mine Çetinkaya-Rundel and Charlotte Wickham.
     right: |
       This book was built with <a href="https://quarto.org/">Quarto</a>.
   cover-image: cover.png
