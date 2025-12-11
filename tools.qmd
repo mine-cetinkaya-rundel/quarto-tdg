@@ -1,14 +1,128 @@
 # Tools {#sec-tools}
 
-## Whole game
+You do not need a specific tool for authoring and rendering Quarto documents.
+You can author Quarto documents in any plain text editor and render them with the `quarto render` command in your computer's terminal.
+
+However, we recommend using an integrated development environment (IDE) when working with Quarto as they can enhance your authoring experience.
+Some compelling reasons for using an IDE with Quarto include preview and live rendering features that allow you to see how your content will look as you write it, syntax highlighting, project management features, version control integration, debugging tools, and efficiency and productivity features like snippets, templates, and keyboard shortcuts.
+Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting which can help you quickly find the right syntax and catch errors.
+
+In this chapter we detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring.
+
+## Quarto CLI {#sec-quarto-cli}
+
+Before diving into specific IDEs, let's start with the fundamentals: the Quarto Command Line Interface (CLI).
+The Quarto CLI is the core tool that powers all Quarto rendering, regardless of which editor you use.
+Understanding these basic commands will help you work with Quarto in any environment.
 
 ### Rendering
 
-In the Terminal:
+The most fundamental Quarto command is `quarto render`, which converts your Quarto document into the desired output format.
+Quarto uses the term render to describe the process of taking this source document and producing a new file that combines the output from the executed code cells with the markdown.
+You can render a specific Quarto document in the Terminal with:
 
-``` bash
+```bash
+quarto render document.qmd
+```
+
+Alternatively, you can render all Quarto documents in the current directory with:
+
+```bash
 quarto render
 ```
+
+By default, Quarto will render your document to the format specified in the YAML header, defaulting to HTML if none is specified.
+You can override the output format using the `--to` option:
+
+```bash
+quarto render document.qmd --to pdf
+quarto render document.qmd --to docx
+```
+
+### Previewing
+
+While `quarto render` creates the output file and stops, `quarto preview` provides a more interactive experience.
+It renders your document, opens it in your web browser, and automatically re-renders when you save changes to the source file:
+
+```bash
+quarto preview document.qmd
+```
+
+This command is particularly useful during active authoring, as it allows you to see your changes immediately without manually re-running the render command.
+The preview server will continue running until you stop it (typically with Ctrl+C in the Terminal).
+
+### Other useful commands
+
+Beyond rendering and previewing, the Quarto CLI offers several other helpful commands.
+For example, you can check the version of Quarto and its dependencies by running the following command:
+
+```bash
+quarto check
+```
+
+To get help, you can use the following command:
+
+```bash
+quarto --help
+```
+
+or you can use `--help` with any command to see available options and usage information.
+
+```bash
+quarto render --help
+```
+
+Now that you understand the foundational CLI commands, let's explore how different IDEs integrate these capabilities into their interfaces to provide a more seamless authoring experience.
+
+## Positron {#sec-positron}
+
+Positron is a next-generation data science IDE that comes pre-configured for Quarto -- the Quarto CLI is built-in and the Quarto VS Code extension is bundled.
+Additionally, Positron offers specialized features for Quarto authoring, such as integrated render and preview for Quarto documents, completion and diagnostics for Quarto options, and full R and Python support for code that is inside code cells in a Quarto document, including interactive execution of code in the Console, code completion, help, and diagnostics. 
+
+### Core features
+
+One of the most useful features for authoring Quarto documents in Positron is side-by-side editing and preview, which allows you to view your source code and rendered output simultaneously.
+This makes it easy to see how your changes affect the final document without switching between windows or applications.
+
+Positron also supports interactive code execution, enabling you to run individual code cells directly in the Console without rendering the entire document.
+This is particularly valuable when you're developing and testing code incrementally, as it provides immediate feedback without the overhead of a full document render.
+
+Furthermore, the IDE provides code completion and diagnostics that offer intelligent suggestions and error checking for Quarto-specific syntax.
+As you type, Positron helps you find the right syntax and catches errors before you attempt to render your document.
+
+Finally, Positron offers full language support for working seamlessly with R and Python within your documents, making it an excellent choice for data science projects in either language or in projects that use both languages.
+Note that for executing code cells in Quarto documents in Positron, you'll need to install some packages depending on your language of choice.
+
+- For R, you need the **knitr** package:
+
+```r
+install.packages("knitr")
+```
+
+- For Python, you need the **jupyter** package:
+
+```bash
+pip install jupyter
+```
+
+### Basic workflow
+
+The typical workflow for authoring Quarto documents in Positron follows these steps:
+
+1. Create or open a plain text `.qmd` file in the Editor pane.
+
+2. Preview your document by executing the **Quarto: Preview** command to render and display the output.
+
+3. Iterate on your content by making edits and re-running the preview. You can optionally enable *Render on Save* to automatically update the preview whenever you save your file.
+
+4. Execute code interactively by running individual code cells using the Run Cell button, which allows you to test your code without rendering the entire document.
+
+![](images/tools-positron-hello-python.png){fig-alt="Positron with a Quarto document titled "Penguins, meet Quarto!" open on the left side and the rendered version of the document on the right side."}
+
+### Rendering process
+
+When you render a Quarto document in Positron, the system processes it through computational engines—knitr for R or Jupyter for Python—that execute your code and generate markdown output.
+Pandoc then converts this markdown to your desired final format, such as HTML, PDF, or Word documents.
 
 ## RStudio
 
