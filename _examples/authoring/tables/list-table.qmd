@@ -1,4 +1,4 @@
-::: {.list-table}
+::: {#tbl-perf .list-table}
 Training performance 
 
 * - Algorithm

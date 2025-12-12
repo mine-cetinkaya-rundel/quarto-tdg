@@ -15,17 +15,17 @@ We suggest reading through the chapter in its entirety on your first reading, an
 
 ## Markdown text
 
-Everything that isn't the document header, or an executable code cell, is interpreted as Quarto markdown.
-Quarto markdown was originally built on top of Pandoc markdown along with a selection of Pandoc extensions, so much of the Pandoc markdown syntax still works.
-However, Quarto now has its own markdown parser, which means there are some differences between the two.
+Everything that isn't the document header or an executable code cell is interpreted as Quarto markdown.
+Quarto markdown inherits much of Pandoc's markdown syntax, but uses its own parser.
+This means you can use familiar markdown syntax, though there are some differences from Pandoc.
 The rest of this chapter outlines the most useful Quarto markdown syntax.
 
-While we make the distinction between executable code cells and markdown, 
-the distinction only really exists in the source document.
-Once cells are executed, they are replaced with markdown, and treated the same way as other markdown content. 
-Because code cells produce a block of markdown content, they can only be used in places where block content is allowed.
-You can use them as list items, inside fenced divs, or inside table cells.
-You cannot use them inline with text or inside a section heading.
+While we distinguish between executable code cells and markdown in the source document, this distinction disappears after rendering.
+When cells execute, their output becomes markdown and is treated identically to other markdown content.
+Executable code cells produce block-level markdown, so you can only use them where block elements are allowed.
+For example, as list items, inside fenced divs, or inside table cells.
+You cannot use code cells inline with text or inside section headings.
+
 
 ## Sections
 
@@ -53,7 +53,7 @@ For example, you might add an identifier to a section heading to enable cross-re
 ## Section Title {#sec-section-title}
 ```    
 
-Or you might add a class, which are often used to control the behavior of sections, like `.unlisted` to exclude a section from the table of contents:
+Or you might add a class like `.unlisted` to exclude a section from the table of contents:
 
 ```markdown
 ## Section Title {#sec-section-title .unlisted}
@@ -87,7 +87,7 @@ in your source document.
 This is a second paragraph, separated by a blank line.
 ```
 
-Line breaks within a paragraph are ignored, which means you can wrap your text across multiple lines without affecting the final rendered output.
+Quarto ignores line breaks within a paragraph, which means you can wrap your text across multiple lines without affecting the final rendered output.
 
 ## Text
 
@@ -134,25 +134,25 @@ You can also use them inside many of the other block-level elements discussed in
     `verbatim code`
     ```
 
-* - [This text is smallcaps]{.smallcaps}
+* - [smallcaps]{.smallcaps}
   - 
 
     ``` markdown
-    [This text is smallcaps]{.smallcaps}
+    [smallcaps]{.smallcaps}
     ```
 
-* - [This text is underlined]{.underline}
+* - [underlined]{.underline}
   - 
 
     ``` markdown
-    [This text is underlined]{.underline}
+    [underlined]{.underline}
     ```
 
-* - [This text is highlighted]{.mark}
+* - [highlighted]{.mark}
   - 
     
     ``` markdown
-    [This text is highlighted]{.mark}
+    [highlighted]{.mark}
     ```
 
 * - []{rowspan=3} **Links**
@@ -163,18 +163,26 @@ You can also use them inside many of the other block-level elements discussed in
     <https://quarto.org>
     ```
 
-* - [Quarto website](https://quarto.org)
+* - [Quarto](https://quarto.org)
   -
 
     ``` markdown
-    [Quarto website](https://quarto.org)
+    [Quarto](https://quarto.org)
     ```  
 
-* - [Links section on this page](#links)
+* - [Links section](#links)
   - 
 
     ``` markdown
-    [Links section on this page](#links)
+    [Links section](#links)
+    ```
+
+* - **Math** @sec-equations
+  - Inline math: $E = mc^{2}$
+  - 
+
+    ``` markdown
+    Inline math: $E = mc^{2}$
     ```
 
 * - []{rowspan=2} **Cross-references** See @sec-crossreferences
@@ -214,20 +222,12 @@ You can also use them inside many of the other block-level elements discussed in
     [@knuth1984; @wickham2023]
     ```
 
-* - **Math** @sec-equations
-  - Inline math: $E = mc^{2}$
-  - 
-
-    ``` markdown
-    Inline math: $E = mc^{2}$
-    ```
-
 * - **Footnotes** @sec-footnotes
-  - Here is an inline note.^[Note content]
+  - An inline note.^[Content]
   - 
 
     ``` markdown
-    Here is an inline note.^[Note content]
+    An inline note.^[Content]
     ```
 :::
 
@@ -261,7 +261,8 @@ My numbered list:
 3. Third item
 ```
 
-The actual numbers you use don't matter---Quarto will renumber the list automatically. This means you can use `1.` for every item if you prefer.
+The actual numbers you use doesn't matter---Quarto will renumber the list automatically. 
+You could use `1.` for every item if you prefer.
 
 List items can contain other block elements like paragraphs, code blocks, or even other lists. 
 Subsequent elements should be indented to line up with the first non-space content after the list marker.
@@ -351,6 +352,9 @@ To have cells with complicated cell contents, you can use an alternative syntax 
 You can also use **HTML table syntax**, regardless of your target format, to create tables in Quarto documents.
 You won't usually write HTML syntax by hand, but it is a common output from computational packages that create tables.
 
+Tables are so important in Quarto documents that we dedicate an entire part of this book to them.
+For more details, see @sec-figtab.
+
 ### Markdown pipe tables
 
 The simplest syntax for a table in Quarto markdown is known as the **pipe table**, named because columns are separated by the pipe (`|`) character. 
@@ -378,7 +382,8 @@ Markdown syntax and rendered output for a markdown pipe table
 
 ### List tables
 
-TODO: Revisit this once the `list-tables` extension is bundled with Quarto. 
+TODO: Revisit this once the `list-tables` extension is bundled with Quarto.
+Specifically, where does the caption go.
 
 List tables use markdown list syntax to create tables where cells can contain multiple paragraphs, code cells, or lists.
 List tables need to be wrapped in a fenced div with the class `list-table`.
@@ -390,12 +395,6 @@ For example, to create the same table content as @fig-markdown-table using a lis
 {{< include _examples/authoring/tables/list-table.qmd >}}
 ````
 
-To add a caption and attributes nest it inside another fenced div with a label that starts with `tbl-` and whose final line is the caption:
-
-````markdown
-{{< include _examples/authoring/tables/list-table-caption.qmd >}}
-````
-
 To include more complicated content in cells, like code blocks or formulas, include them as you would in normal markdown, but maintain indentation for the list structure, and the required white space for the content type:
 
 ````markdown
@@ -405,7 +404,7 @@ To include more complicated content in cells, like code blocks or formulas, incl
 ### HTML tables
 
 You can also use HTML to create tables in Quarto documents, regardless of your target format.
-HTML tables aren't usually constructed by hand, but are often generated by code cells or copied from other tools.
+You typically won't write HTML tables by hand---instead, you'll generate them with code cells or import them from other tools.
 
 As an example, to generate the same table as @fig-markdown-table with HTML, you could include the following in your document:
 
@@ -431,9 +430,19 @@ To add an identifier and caption to the table use the code cell options `label` 
 
 ## Images and figures {#sec-markdown-figures}
 
-Refer to @sec-figures for more details on positioning, layout, cross-references, and other advanced figure features.
-Quarto uses the term figure to refer to any image, numbered or not, included in a document.
-You may be more used to using the term figure to refer to an image with a numbered caption---Quarto calls this a cross-referenceable figure. 
+You can include images in your document either from an image file, or from the output of an executable code cell.
+
+Figures are so important in Quarto documents that we dedicate an entire part of this book to them.
+For more details, see @sec-figtab.
+
+::: {.callout-tip}
+
+## Image or figure?
+
+We use the term **figure** to refer to any image, numbered or not, included in a document.
+You may be more used to using the term figure to refer to an image with a numbered caption---we'll call this a **cross-referenceable figure**. 
+
+:::
 
 ### From a file
 
@@ -520,14 +529,14 @@ Math syntax examples and their rendered output
 
 ## Cross-references {#sec-crossreferences}
 
-Cross-references are automatically generated links elements within your document, like figures, tables, sections, and equations. 
+Cross-references are automatically generated links to elements within your document, like figures, tables, sections, and equations. 
 When you render your document, Quarto automatically numbers these elements and creates the links.
 
 To create a cross-reference you need to do two things:
 
-1. **Add an identifier** to the element you want to reference using an identifier that starts with a specific prefix
+1. **Add an identifier** to the element you want to reference using an identifier that starts with a specific prefix.
 
-2. **Reference the element** elsewhere in your document using `@` followed by the identifier
+2. **Reference the element** elsewhere in your document using `@` followed by the identifier.
 
 @tbl-crossref-prefixes give examples of common elements, their prefixes and an example of adding the identifier as an attribute.
 For computational outputs, like figures and tables generated from code cells, you add the identifier using the `label` code cell option.
@@ -573,7 +582,9 @@ You can see an example for a table in @sec-computational-table, a figure in @sec
   - 
     
     ```` markdown
-    $$ a^2 + b^2 = c^2 $$ {#eq-py}
+    $$
+    a^2 + b^2 = c^2 
+    $$ {#eq-py}
     ````
 
 * - Code listing
@@ -648,10 +659,10 @@ Examples of cross-reference syntax and their rendered output
 
 For more details on cross-referencing specific element types, see the [Quarto documentation](https://quarto.org/docs/authoring/cross-references.html).
 
-::: {.rendered layout-ncols="2"}
-![](){#fig-elephant}
+::: {.rendered layout-ncol="2"}
+![Elephant](images/elephant.png){#fig-elephant width="25%"}
 
-![](){#fig-panther}
+![Panther](images/panther.png){#fig-panther width="25%"}
 
 Some placeholder images for cross-referencing examples
 :::
@@ -666,7 +677,7 @@ To do so you need:
 
 2.   A quarto document formatted with citations (see [Citation Markdown](#sec-citations)).
 
-Add a bibliography to your document using the `bibliography` YAML metadata field. For example:
+Add a bibliography file to your document using the `bibliography` YAML metadata field. For example:
 
 ``` yaml
 ---
@@ -675,6 +686,7 @@ bibliography: references.bib
 ---
 ```
 
+See @tip-bib for an example `references.bib` file.
 Then you can cite references from the bibliography file using their identifiers and the citation syntax described in @tbl-citation-syntax.
 
 When you render your document, Quarto will automatically generate a bibliography at the end of your document with all cited references (@fig-references-section).
@@ -731,7 +743,7 @@ Automatically generated references section
 ::: 
 
 The appearance of the citations both inline and in the bibliography depends on the citation style as defined in a CSL file.
-By default, Quarto use the [Chicago Manual of Style](https://chicagomanualofstyle.org/) author-date format, but you can provide a custom CSL file using the `csl` option field in your document header, for example:
+By default, Quarto uses the [Chicago Manual of Style](https://chicagomanualofstyle.org/) author-date format, but you can provide a custom CSL file using the `csl` option field in your document header, for example:
 
 ``` yaml
 ---
@@ -741,7 +753,7 @@ csl: nature.csl
 ---
 ```
 
-::: {.callout-tip}
+::: {#tip-bib .callout-tip}
 
 ## What's in `references.bib`?
 
@@ -792,7 +804,7 @@ Long footnote syntax and rendered output
 **Fenced divs** are a component that Quarto uses extensively to create block-level regions of content with specific behaviors or styles.
 For example:
 
-* callout blocks (@sec-callouts) are specified as a fenced divs with a special class attribute
+* callout blocks (@sec-callouts) are specified as a fenced divs with a special class attribute,
 * a two column panel layout (@sec-layout) is specified using a fenced div with a key-value attribute, and
 * you can make an element cross-referenceable with an identifier attribute that starts with a special prefix.
 
@@ -810,8 +822,8 @@ Quarto recognizes these divs, processes them, and inserts suitable markup depend
 
 :::
 
-A fenced div begins with at least three consecutive colons and some, possible empty, attributes inside curly braces. 
-The div ends with another line containing a string of at least three consecutive colons. 
+A fenced div begins with at least three consecutive colons followed by possibly empty curly braces with attributes.
+The div ends with another line of at least three consecutive colons. 
 The div should be separated by blank lines from the blocks before and after it. 
 For example, here's a fenced div with no attributes:
 
@@ -836,10 +848,10 @@ You can also nest fenced divs inside one another:
 ::::: {#id .class1 .class2 key='value'}
 
 ::: {}
-Here is a warning.
+Content inside the nested div
 :::
 
-More content.
+More content inside the top-level div
 :::::
 ```
 
@@ -860,10 +872,10 @@ Contents of the div.
 
 :::
 
-## Callouts
+## Callouts {#sec-callouts}
 
 Callouts are special fenced divs with one of the callout classes: `.callout-note`, `.callout-tip`, `.callout-warning`, `.callout-caution`, or `.callout-important`.
-Across formats they display in a way to set their contents apart from the main document text, see @fig-callout-note.
+They are typeset across formats to set their contents apart from the main document text, see @fig-callout-note.
 
 ::: {#fig-callout-note}
 ``` markdown
@@ -889,25 +901,44 @@ Syntax and rendered output for a note callout
 
 Additional key-value attributes can be added to callouts to customize their behavior:
 
-* `appearance`: `"default"`, `"simple"` or `"minimal"`
-* `collapse`: `true` or `false`
-* `icon`: `true` or `false`
+::: {.list-table header-rows=1 widths='1,3' aligns=l,l}
 
-See the [Quarto documentation](https://quarto.org/docs/authoring/callouts.html) for more details.
+* - Key
+  - Values
+
+* - `appearance` 
+  - 
+    - `"default"`: Standard callout with colored background and border
+    - `"simple"`: Lighter styling with minimal background
+    - `"minimal"`: Most subtle styling with just a left border
+
+* - `collapse` 
+  - 
+    - `true`: Callout starts collapsed and can be expanded by clicking
+    - `false`: Callout starts expanded and can be collapsed by clicking
+
+* - `icon`
+  -
+    - `true`: Shows the icon for the callout type (default)
+    - `false`: Hides the icon
+
+:::
+
+See more examples in the [Quarto documentation](https://quarto.org/docs/authoring/callouts.html).
 
 ## Layout {#sec-layout}
 
-Laying out content on the page can also be achieved using fenced divs with specific attributes.
+Fenced divs (@sec-fenced-divs) are also used to lay out content on the page.
 There are two common ways to control layout:
 
-* Panel layouts arrange content in rows and columns using `layout-*` attributes, useful when you want elements to be side by side, or arranged in a grid.
+* **Panel layouts** arrange content in rows and columns using `layout-*` attributes, useful when you want elements to be side by side, or arranged in a grid.
 
-* Column classes arrange content across different widths of the page, useful when you need to give content more horizontal space, or put elements in the margin.
+* **Column classes** arrange content across different widths of the page, useful when you need to give content more horizontal space, or put elements in the margin.
 
 ### Panel layouts
 
 Use a fenced div with the `layout-ncol` key-value attribute to arrange content in multiple columns.
-It's best to be explicit about what each item is, by nesting them each in their own fenced div. 
+It's best to be explicit about what each item is by nesting them each in their own fenced div. 
 
 For example, to place two items side by side in two columns, set `layout-ncol="2"` and nest each item in its own fenced div, as shown in @fig-two-column-layout.
 
@@ -944,8 +975,8 @@ The content inside each item can be any block content, including paragraphs, lis
 Further items will fill into new rows and Quarto will allocate vertical space as needed.
 In HTML formats, the layout is responsive so that on smaller screens the items will stack vertically.
 
-There is also `layout-nrow` attribute if you'd prefer to specify the grid by the number of rows, or for more complicated layouts a `layout` attribute. 
-You can see more example using figures and tables as content in @sec-figtab-layout.
+Use the `layout-nrow` attribute if you'd prefer to specify the grid by the number of rows, or for more complicated layouts use the `layout` attribute. 
+You can see more examples using figures and tables as content in @sec-figtab-layout.
 
 ### Column classes
 
@@ -985,8 +1016,8 @@ This content will expand into the right margin.
 Column page right syntax and rendered output
 :::
 
-Additional classes with `inset` are available to provide more horizontal whitespace, and for `format: html` columns that expand to the left, and to the full screen width.
-See the [Quarto documentation](https://quarto.org/docs/authoring/article-layout.html#available-columns) for all the classes available.
+Additional classes are available to provide more horizontal whitespace, and for `format: html` columns that expand to the left, and to the full screen width.
+See the [Quarto documentation](https://quarto.org/docs/authoring/article-layout.html#available-columns) for the full list of classes.
 
 You can also see more examples with figures and tables, including computational outputs in @sec-figtab-layout.
 
@@ -1012,7 +1043,7 @@ Shortcodes are special commands that are replaced with specific content when the
 The shortcode syntax uses double curly braces and angle brackets: `{{< shortcode-name  >}}`.
 The shortcode name can by followed by additional arguments or key-value pairs.
 
-As an example, the `meta` shortcode inserts values from your document metadata  into your document.
+As an example, the `meta` shortcode inserts values from the document metadata into your document.
 @fig-meta-shortcode illustrates how you might use it to extract text you commonly replace, into a document option you set in your header.
 
 ::: {#fig-meta-shortcode}
