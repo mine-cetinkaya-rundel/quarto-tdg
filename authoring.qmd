@@ -16,9 +16,16 @@ We suggest reading through the chapter in its entirety on your first reading, an
 ## Markdown text
 
 Everything that isn't the document header, or an executable code cell, is interpreted as Quarto markdown.
-Quarto markdown originally built on top of Pandoc markdown with extensions, so much of Pandoc markdown works.
-Now, Quarto has its own markdown parser, so some differences.
-The rest of this chapter outlines the most important pieces of Quarto markdown syntax.
+Quarto markdown was originally built on top of Pandoc markdown along with a selection of Pandoc extensions, so much of the Pandoc markdown syntax still works.
+However, Quarto now has its own markdown parser, which means there are some differences between the two.
+The rest of this chapter outlines the most useful Quarto markdown syntax.
+
+While we make the distinction between executable code cells and markdown, 
+the distinction only really exists in the source document.
+Once cells are executed, they are replaced with markdown, and treated the same way as other markdown content. 
+Because code cells produce a block of markdown content, they can only be used in places where block content is allowed.
+You can use them as list items, inside fenced divs, or inside table cells.
+You cannot use them inline with text or inside a section heading.
 
 ## Sections
 
