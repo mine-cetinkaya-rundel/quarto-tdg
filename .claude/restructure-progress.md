@@ -11,6 +11,12 @@ Tracking progress on restructuring the book to match the plan in `_reboot.md`.
 - [x] Split authoring.qmd → writing.qmd (essentials copied, original kept intact)
 - [x] Created options.qmd (new intro chapter, not a split from yaml.qmd)
 - [x] Split publishing.qmd → sharing.qmd (basics copied, original kept intact)
+- [x] Use tools.qmd as-is for Ch 2 (updated _quarto.yml)
+- [x] Distributed publishing.qmd content:
+  - Reproducible examples → sharing.qmd
+  - Publishing projects, version control, RStudio publishing → projects.qmd
+  - Providers (GitHub Pages, Netlify, etc.) → websites.qmd
+  - Self-contained HTML → html.qmd
 
 ## Source Files Overview
 
@@ -248,7 +254,7 @@ Current headings:
 
 #### Ch 12: HTML Documents
 **Target:** Basic HTML options, themes, TOC, code display (~200-250 lines)
-**Source:** NEW chapter + `websites.qmd` theming content
+**Source:** NEW chapter + `websites.qmd` theming content + `publishing.qmd` self-contained content
 
 Content from `websites.qmd` to move here:
 - `## Website theming` → generalize to HTML theming
@@ -257,6 +263,9 @@ Content from `websites.qmd` to move here:
 - `### Combine **brand.yml** with a built-in theme`
 - `### Adding CSS or SCSS`
 - `### The role of Bootstrap`
+
+Content from `publishing.qmd` (ADDED):
+- `## Self-contained HTML` (`embed-resources`, `self-contained-math`)
 
 Plus new content on HTML-specific options (TOC, code display, etc.)
 
@@ -317,7 +326,8 @@ Current headings to CUT or heavily reduce:
 - [x] Split authoring.qmd → writing.qmd (essentials) + authoring.qmd (depth)
 - [x] Create options.qmd (new intro chapter covering three option locations + YAML essentials)
 - [x] Split publishing.qmd → sharing.qmd (single document basics only, projects/providers deferred to Ch 15)
-- [ ] Migrate tools.qmd → workflow.qmd
+- [x] Use tools.qmd as-is for Ch 2 (work in progress)
+- [x] Distribute remaining publishing.qmd content to sharing.qmd, projects.qmd, websites.qmd
 - [ ] Condense look-under-hood.qmd → understanding.qmd
 - [ ] Condense websites.qmd, move theming to html.qmd
 - [ ] Write new content for code.qmd, computation-depth.qmd, html.qmd, typst.qmd
