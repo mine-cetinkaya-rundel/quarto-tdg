@@ -10,6 +10,7 @@ Tracking progress on restructuring the book to match the plan in `_reboot.md`.
 - [x] New part intro files created
 - [x] Split authoring.qmd → writing.qmd (essentials copied, original kept intact)
 - [x] Created options.qmd (new intro chapter, not a split from yaml.qmd)
+- [x] Split publishing.qmd → sharing.qmd (basics copied, original kept intact)
 
 ## Source Files Overview
 
@@ -315,7 +316,7 @@ Current headings to CUT or heavily reduce:
 
 - [x] Split authoring.qmd → writing.qmd (essentials) + authoring.qmd (depth)
 - [x] Create options.qmd (new intro chapter covering three option locations + YAML essentials)
-- [ ] Split publishing.qmd → sharing.qmd (basics)
+- [x] Split publishing.qmd → sharing.qmd (single document basics only, projects/providers deferred to Ch 15)
 - [ ] Migrate tools.qmd → workflow.qmd
 - [ ] Condense look-under-hood.qmd → understanding.qmd
 - [ ] Condense websites.qmd, move theming to html.qmd

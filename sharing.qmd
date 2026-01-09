@@ -1,2 +1,91 @@
 # Sharing Your Work {#sec-sharing}
 
+When we talk about *publishing* Quarto documents, we usually mean making the rendered documents available to others via the web.
+In this chapter, you'll learn the basics of Quarto's built-in tools for publishing your content.
+For more details on specific providers and other ways to share documents, see @sec-publishing.
+
+## Publishing to the web {#sec-publish-web}
+
+The quickest way to publish a single document is via the `quarto publish` command, providing the document filename as an argument:
+
+``` {.bash filename="Terminal"}
+quarto publish document.qmd
+```
+
+The command will prompt you to select a **Provider**:
+
+```
+? Provider:
+❯ Quarto Pub
+  GitHub Pages
+  Posit Connect
+  Netlify
+  Confluence
+  Hugging Face Spaces
+```
+
+You'll learn a bit more about the providers later in this chapter, but let's use Quarto Pub for illustration.
+
+::: callout-tip
+[Quarto Pub](https://quartopub.com) is a free service.
+To follow along, you'll need to [**Sign Up**](https://quartopub.com/sign-up) for an account first.
+:::
+
+Quarto will prompt you to authorize your account when you select a Provider for the first time.
+This looks different for each provider, but for Quarto Pub, you'll be asked to authorize your account via your default internet browser:
+
+```
+? Provider: › Quarto Pub
+? Authorize (Y/n) ›
+❯ In order to publish to Quarto Pub you need to authorize your account.
+  Please be sure you are logged into the correct Quarto Pub account in your
+  default web browser, then press Enter or 'Y' to authorize.
+```
+
+Once authorized, Quarto will ask you to confirm the document title.
+Then Quarto will render your document one more time, before sending it (and all its required resources) to the Provider.
+Once done, a browser will open to view your published content, as shown in @fig-quartopub.
+
+![Quarto will open a browser to view the published document. Share the link labeled "Published at".](images/publishing-quartopub.png){#fig-quartopub fig-alt="Screenshot of the site administration view of a published document on Quarto Pubs."}
+
+::: callout-tip
+## Your view depends on whether you are logged into Quarto Pub
+
+If you aren't logged in to Quarto Pubs your browser will open to the public URL, rather than the site administration view shown in @fig-quartopub.
+:::
+
+Pages published on Quarto Pub have public URLs of the form: `{ username }.quarto.pub/{ document_title }/`.
+You can share the URL and anyone can view your rendered content.
+
+## The publishing process {#sec-publishing-process}
+
+The `quarto publish` command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local installation of the Quarto CLI. Only the output files are then transferred to the publishing provider.
+In @fig-pub-process we illustrate this as two separate steps—render then publish— but they both occur when you run the `quarto publish` command.
+
+![The `quarto publish` process. Input files are rendered locally, then the output files and their dependencies are uploaded to the publishing provider.](images/publishing-process.jpg){#fig-pub-process fig-alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on quartopub.com."}
+
+Quarto generates a single self-contained output file for some output formats, like PDF or Word documents.
+This single output file is the only thing that needs to be transferred to the provider to share it with others.
+However, for some formats, notably HTML, Quarto generates a collection of files, which might depend on other local files like images.
+All of these files and their dependencies need to be transferred to the provider to publish the content successfully.
+The advantage of `quarto publish` is that Quarto identifies all these required files for you.
+
+## Updating published documents
+
+When you use `quarto publish` details about what and where you publish are stored in a file called `_publish.yml`:
+
+``` {.yaml filename="_publish.yml"}
+- source: hello.qmd
+  quarto-pub:
+    - id: 8f059af6-06e1-4594-b7b0-252dab8c0d9e
+      url: 'https://quartopub-test.quarto.pub/test'
+```
+
+This means when you run `quarto publish` on a document or project a second time, you'll be given the option of using the same details---in effect updating your published content.
+
+The details in `_publish.yml` aren't sensitive (there are no authentication details) so you can check it into version control.
+
+## Next steps
+
+In this chapter you've learned to publish a single document using Quarto Pub.
+When you're ready to publish projects like websites or books, or want to explore other publishing providers like GitHub Pages or Netlify, see @sec-websites.
