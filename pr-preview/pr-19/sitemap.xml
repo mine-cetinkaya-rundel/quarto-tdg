@@ -2,98 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://quarto-tdg.org/index.html</loc>
-    <lastmod>2026-01-09T23:24:42.885Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.624Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/part-getting-started.html</loc>
-    <lastmod>2026-01-09T23:24:42.892Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.631Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/quarto.html</loc>
-    <lastmod>2026-01-09T23:24:42.893Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.632Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/tools.html</loc>
-    <lastmod>2026-01-09T23:24:42.893Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.632Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/writing.html</loc>
-    <lastmod>2026-01-09T23:24:42.894Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.633Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/code.html</loc>
-    <lastmod>2026-01-09T23:24:42.847Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.585Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/options.html</loc>
-    <lastmod>2026-01-09T23:24:42.892Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.631Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/sharing.html</loc>
-    <lastmod>2026-01-09T23:24:42.893Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.632Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/computation.html</loc>
-    <lastmod>2026-01-09T23:24:42.847Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.585Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/r.html</loc>
-    <lastmod>2026-01-09T23:24:42.893Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.632Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/python.html</loc>
-    <lastmod>2026-01-09T23:24:42.892Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.631Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/freeze-cache.html</loc>
-    <lastmod>2026-01-09T23:24:42.847Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.585Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/part-going-deeper.html</loc>
-    <lastmod>2026-01-09T23:24:42.892Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.631Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/authoring.html</loc>
-    <lastmod>2026-01-09T23:24:42.847Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.585Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/projects.html</loc>
-    <lastmod>2026-01-09T23:24:42.892Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.631Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/yaml.html</loc>
-    <lastmod>2026-01-09T23:24:42.894Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.633Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/look-under-hood.html</loc>
-    <lastmod>2026-01-09T23:24:42.886Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.624Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/part-formats.html</loc>
-    <lastmod>2026-01-09T23:24:42.892Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.631Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/html.html</loc>
-    <lastmod>2026-01-09T23:24:42.847Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.585Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/typst.html</loc>
-    <lastmod>2026-01-09T23:24:42.893Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.632Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/presentations.html</loc>
-    <lastmod>2026-01-09T23:24:42.892Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.631Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/websites.html</loc>
-    <lastmod>2026-01-09T23:24:42.893Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.632Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/more.html</loc>
-    <lastmod>2026-01-09T23:24:42.886Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.625Z</lastmod>
   </url>
   <url>
     <loc>https://quarto-tdg.org/jupyter.html</loc>
-    <lastmod>2026-01-09T23:24:42.885Z</lastmod>
+    <lastmod>2026-01-09T23:44:07.624Z</lastmod>
   </url>
 </urlset>

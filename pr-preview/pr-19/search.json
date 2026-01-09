@@ -1142,31 +1142,34 @@
   {
     "objectID": "more.html",
     "href": "more.html",
-    "title": "Doing more with Quarto",
+    "title": "18  Doing more with Quarto",
     "section": "",
-    "text": "Quarto books\nWrapping Up\nNext Steps:",
+    "text": "18.1 Quarto books\nWrapping Up\nNext Steps:",
     "crumbs": [
-      "Doing more with Quarto"
+      "Next steps",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Doing more with Quarto</span>"
     ]
   },
   {
     "objectID": "more.html#quarto-dashboards",
     "href": "more.html#quarto-dashboards",
-    "title": "Doing more with Quarto",
-    "section": "Quarto dashboards",
-    "text": "Quarto dashboards\nJust like you can use Quarto to create documents, websites, books, etc., you can also use it to create dashboards. The dashboards gallery  is a great place to peruse some dashboard examples made in Quarto. As you do so, pay attention to whether they’re organized with content in columns first and then broken into rows or in rows first and then broken into columns. This thinking process will help you design your own dashboards as well.\nA Quarto dashboard is a single notebook (either .qmd or .ipynb) where format: dashboard.",
+    "title": "18  Doing more with Quarto",
+    "section": "18.2 Quarto dashboards",
+    "text": "18.2 Quarto dashboards\nJust like you can use Quarto to create documents, websites, books, etc., you can also use it to create dashboards. The dashboards gallery  is a great place to peruse some dashboard examples made in Quarto. As you do so, pay attention to whether they’re organized with content in columns first and then broken into rows or in rows first and then broken into columns. This thinking process will help you design your own dashboards as well.\nA Quarto dashboard is a single notebook (either .qmd or .ipynb) where format: dashboard.",
     "crumbs": [
-      "Doing more with Quarto"
+      "Next steps",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Doing more with Quarto</span>"
     ]
   },
   {
     "objectID": "more.html#quarto-extensions",
     "href": "more.html#quarto-extensions",
-    "title": "Doing more with Quarto",
-    "section": "Quarto extensions",
-    "text": "Quarto extensions",
+    "title": "18  Doing more with Quarto",
+    "section": "18.3 Quarto extensions",
+    "text": "18.3 Quarto extensions",
     "crumbs": [
-      "Doing more with Quarto"
+      "Next steps",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Doing more with Quarto</span>"
     ]
   },
   {
