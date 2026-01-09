@@ -19,42 +19,29 @@ book:
   chapters:
     - index.qmd
 
-    - part: overview.qmd
+    - part: part-getting-started.qmd
       chapters:
         - quarto.qmd
-        - tools.qmd
+        - workflow.qmd
+        - writing.qmd
+        - code.qmd
+        - options.qmd
+        - sharing.qmd
+
+    - part: part-going-deeper.qmd
+      chapters:
         - authoring.qmd
-        - computation.qmd
-        - projects.qmd
-        - publishing.qmd
-        - look-under-hood.qmd
+        - computation-depth.qmd
         - yaml.qmd
+        - projects.qmd
+        - understanding.qmd
 
-    - part: computations.qmd
+    - part: part-formats.qmd
       chapters:
-        - r.qmd
-        - python.qmd
-        - julia.qmd
-        - figure-table.qmd
-        - freeze-cache.qmd
-
-    - part: formats.qmd
-      chapters:
-        - documents.qmd
+        - html.qmd
+        - typst.qmd
         - presentations.qmd
-        - manuscripts.qmd
-        - dashboards.qmd
         - websites.qmd
-        - books.qmd
-
-    - part: more.qmd
-      chapters:
-        - templates.qmd
-        - extensions.qmd
-        - dig-under-hood.qmd
-
-  appendices:
-    - jupyter.qmd
 
 format:
   html:

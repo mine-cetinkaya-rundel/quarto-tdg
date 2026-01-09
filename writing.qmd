@@ -1,0 +1,340 @@
+# Writing Content {#sec-writing}
+
+This chapter covers the essentials of writing content in Quarto using markdown.
+You'll learn to structure your document with headings, create paragraphs and lists, format text, and include images.
+
+For more advanced authoring features like tables, equations, cross-references, citations, callouts, and layout, see @sec-authoring.
+
+## Markdown text
+
+Everything that isn't the document header or an executable code cell is interpreted as Quarto markdown.
+Quarto markdown inherits much of Pandoc's markdown syntax, but uses its own parser.
+This means you can use familiar markdown syntax, though there are some differences from Pandoc.
+The rest of this chapter outlines the most useful Quarto markdown syntax.
+
+While we distinguish between executable code cells and markdown in the source document, this distinction disappears after rendering.
+When cells execute, their output becomes markdown and is treated identically to other markdown content.
+Executable code cells produce block-level markdown, so you can only use them where block elements are allowed.
+For example, as list items, inside fenced divs, or inside table cells.
+You cannot use code cells inline with text or inside section headings.
+
+
+## Sections
+
+Use markdown headings to structure your document into sections and subsections.
+Markdown headings are created by prefixing text with one or more `#` characters,
+followed by a space, and the heading title:
+
+```markdown
+## Section
+
+### Subsection
+
+#### Subsubsection
+
+```
+
+Quarto supports six levels of headings, from level-1 (`#`) to level-6 (`######`).
+The value of `title` in the document header usually becomes the level-1 heading of the document,
+which is why sections usually start with level-2 headings.
+
+You can attach attributes to headings by adding curly braces `{}` after the heading text.
+For example, you might add an identifier to a section heading to enable cross-referencing:
+
+```markdown
+## Section Title {#sec-section-title}
+```
+
+Or you might add a class like `.unlisted` to exclude a section from the table of contents:
+
+```markdown
+## Section Title {#sec-section-title .unlisted}
+```
+
+::: {#tip-attributes .callout-tip}
+
+## What are attributes?
+
+Attributes are a way to add metadata to markdown elements, usually inside curly braces `{}` after the element.
+Attributes are used extensively in Quarto to control the behavior or appearance of many elements.
+
+The types of thing you can add as attributes include:
+
+* Identifiers (IDs), should be unique and start with `#`
+* Classes start with `.`
+* Key-value pairs use `key='value'` syntax.
+
+The order of attributes matters: identifiers must come first, followed by classes, and then key-value pairs.
+
+:::
+
+## Paragraphs
+
+Create paragraphs by separating text with blank lines:
+
+```markdown
+This is the first paragraph. It can span multiple lines
+in your source document.
+
+This is a second paragraph, separated by a blank line.
+```
+
+Quarto ignores line breaks within a paragraph, which means you can wrap your text across multiple lines without affecting the final rendered output.
+
+## Text
+
+Beyond plain text, @tbl-inline-text-elements summarizes the most common things you want to put inside a paragraph or heading: formatted text, links, cross-references, citations, math and footnotes.
+
+These elements are called **inline text elements**, because they are used inline with text, inside what are called **block elements** like paragraphs and headings.
+You can also use them inside many of the other block-level elements discussed in this chapter like as list items, inside tables, and inside callouts.
+
+::: {#tbl-inline-text-elements}
+
+::: {.list-table header-rows=1 widths='1,2,1' aligns=l,l,l }
+
+
+* - Element
+  - Output
+  - Markdown Syntax
+
+* - []{rowspan=7} **Text formatting**
+  - *italics*, **bold**, ***bold italics***
+  -
+
+    ``` markdown
+    *italics*, **bold**, ***bold italics***
+    ```
+
+* - superscript^2^ / subscript~2~
+  -
+
+    ``` markdown
+    superscript^2^ / subscript~2~
+    ```
+
+* - ~~strikethrough~~
+  -
+
+    ``` markdown
+    ~~strikethrough~~
+    ```
+
+* - `verbatim code`
+  -
+
+    ``` markdown
+    `verbatim code`
+    ```
+
+* - [smallcaps]{.smallcaps}
+  -
+
+    ``` markdown
+    [smallcaps]{.smallcaps}
+    ```
+
+* - [underlined]{.underline}
+  -
+
+    ``` markdown
+    [underlined]{.underline}
+    ```
+
+* - [highlighted]{.mark}
+  -
+
+    ``` markdown
+    [highlighted]{.mark}
+    ```
+
+* - []{rowspan=3} **Links**
+  - <https://quarto.org>
+  -
+
+    ``` markdown
+    <https://quarto.org>
+    ```
+
+* - [Quarto](https://quarto.org)
+  -
+
+    ``` markdown
+    [Quarto](https://quarto.org)
+    ```
+
+* - [Links section](#links)
+  -
+
+    ``` markdown
+    [Links section](#links)
+    ```
+
+* - **Math** @sec-equations
+  - Inline math: $E = mc^{2}$
+  -
+
+    ``` markdown
+    Inline math: $E = mc^{2}$
+    ```
+
+* - []{rowspan=2} **Cross-references** See @sec-crossreferences
+  - @fig-elephant
+  -
+
+    ``` markdown
+    @fig-elephant
+    ```
+
+* - @sec-authoring
+  -
+
+    ``` markdown
+    @sec-authoring
+    ```
+
+* - []{rowspan=3} **Citations** @sec-citations
+  - @knuth1984 shows ...
+  -
+
+    ``` markdown
+    @knuth1984 shows ...
+    ```
+
+* - ... [@knuth1984]
+  -
+
+    ``` markdown
+    ... [@knuth1984]
+    ```
+
+* - [@knuth1984; @wickham2023]
+  -
+
+    ``` markdown
+    [@knuth1984; @wickham2023]
+    ```
+
+* - **Footnotes** @sec-footnotes
+  - An inline note.^[Content]
+  -
+
+    ``` markdown
+    An inline note.^[Content]
+    ```
+:::
+
+
+Common syntax for inline text elements in Quarto markdown. TODO: Element column entries will span rows.
+:::
+
+
+## Lists
+
+You can create an unordered list by starting each line with `-` (or `*` or `+`) followed by a space,
+ensuring there is a blank line before the first element:
+
+```markdown
+My list:
+
+- First item
+- Second item
+- Third item
+```
+
+Leaving no blank lines between items will result in a compact list, while leaving a blank line between items will create a loose list with more vertical spacing.
+
+Use numbers followed by a period to create an ordered list:
+
+```markdown
+My numbered list:
+
+1. First item
+2. Second item
+3. Third item
+```
+
+The actual numbers you use doesn't matter---Quarto will renumber the list automatically.
+You could use `1.` for every item if you prefer.
+
+List items can contain other block elements like paragraphs, code blocks, or even other lists.
+Subsequent elements should be indented to line up with the first non-space content after the list marker.
+@fig-nested-list shows an example of a nested list, along with its rendered output.
+
+::: {#fig-nested-list}
+
+::: {}
+````markdown
+{{< include _examples/authoring/lists/nested.md >}}
+````
+:::
+
+:::{}
+::: {.rendered style="text-align: left;"}
+{{< include _examples/authoring/lists/nested.md >}}
+:::
+:::
+
+List syntax and its rendered output
+:::
+
+Quarto also supports task lists and definition lists.
+See the [Quarto documentation](https://quarto.org/docs/authoring/markdown-basics.html#lists) for details on these specialized list types.
+
+
+## Images and figures {#sec-markdown-figures}
+
+You can include images in your document either from an image file, or from the output of an executable code cell.
+
+Figures are so important in Quarto documents that we dedicate an entire part of this book to them.
+For more details, see @sec-figtab.
+
+::: {.callout-tip}
+
+## Image or figure?
+
+We use the term **figure** to refer to any image, numbered or not, included in a document.
+You may be more used to using the term figure to refer to an image with a numbered caption---we'll call this a **cross-referenceable figure**.
+
+:::
+
+### From a file
+
+To include an image file in markdown you use the following syntax:
+
+```markdown
+![](path/to/image.png)
+```
+
+Where the path to the image is a path relative to the current document.
+
+::: {.callout-tip}
+
+## Project relative paths
+
+If you preface the path with `/`, it is interpreted as a path relative to the project root.
+You'll learn more about project structure in [Projects](#sec-projects).
+
+:::
+
+You can add a caption inside the square brackets, an identifier inside curly braces after the image path, and alternative text for accessibility in a `fig-alt` attribute:
+
+```markdown
+![Caption](path/to/image.png){#fig-quarto fig-alt="Alternative text"}
+```
+
+If your identifier starts with `fig-`, the image will be a cross-referenceable figure, numbered, and can be referenced using the `@` syntax.
+
+### From a code cell {#sec-computational-figure}
+
+If the output from an executable code cell is an image, it will be automatically included in your document.
+To add an identifier, caption, or alternative text use the code cell options `label`, `fig-cap`, and `fig-alt` respectively:
+
+````markdown
+```{{LANGUAGE}}
+#| label: fig-quarto
+#| fig-cap: "Caption"
+#| fig-alt: "Alternative text"
+
+# Code that generates a plot
+```
+````
