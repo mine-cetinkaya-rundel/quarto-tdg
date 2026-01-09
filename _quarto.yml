@@ -35,8 +35,14 @@ book:
         - r.qmd
         - python.qmd
         - julia.qmd
-        - figure-table.qmd
         - freeze-cache.qmd
+
+    - part: figure-table-overview.qmd
+      chapters:
+        - figtab-crossref.qmd
+        - figtab-captions.qmd
+        - figtab-layout.qmd
+        - figtab-computational.qmd
 
     - part: formats.qmd
       chapters:
@@ -73,3 +79,6 @@ execute:
 crossref:
   lst-title: Snippet
   lst-prefix: Snippet
+
+filters: 
+  - list-table

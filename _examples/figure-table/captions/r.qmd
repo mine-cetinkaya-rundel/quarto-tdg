@@ -1,0 +1,39 @@
+---
+echo: false
+keep-md: true
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+```{r}
+#| label: tbl-species-count-nosubcap
+#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+
+{{< include ../_code-snippets/species-count.R >}}
+
+{{< include ../_code-snippets/species-year.R >}}
+```
+
+:::{#captions-subcaptions}
+```{r}
+#| label: tbl-species-count
+#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+#| tbl-subcap: 
+#|   - "Breakdown by species"
+#|   - "Breakdown by species and year"
+
+{{< include ../_code-snippets/species-count.R >}}
+
+{{< include ../_code-snippets/species-year.R >}}
+```
+
+:::
+
+:::{#captions-subcaptions-reference}
+
+See @tbl-species-count, @tbl-species-count-1, @tbl-species-count-2
+
+:::
+
