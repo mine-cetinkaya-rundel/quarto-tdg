@@ -23,53 +23,65 @@ New Quarto users who want to learn Quarto systematically. The book takes readers
 
 | Part | Chapter | Content Notes |
 |------|---------|---------------|
-| **Getting Started** | Welcome to Quarto | What is Quarto, installation, first document |
-| | Your Quarto Workflow | Tools (CLI, IDE basics), preview, render |
-| | Writing Content | Markdown essentials - headings, text, lists, links, images |
-| | Adding Code | Code cells, basic execution options (echo, eval, output) |
-| | Setting Options | YAML basics - document options, where to put them |
-| | Sharing Your Work | Publishing basics - `quarto publish`, providers overview |
-| **Going Deeper** | Authoring in Depth | Full authoring reference - tables, equations, citations, callouts, layout |
-| | Computation in Depth | Engines, execution model, all execution options |
-| | YAML in Depth | Full YAML syntax, option scopes, troubleshooting |
+| **Getting started** | Welcome | What is Quarto, installation, first document |
+| | Quarto | What is Quarto, key features |
+| | Your Quarto workflow | Tools (CLI, IDE basics), preview, render |
+| | Writing content | Markdown essentials - headings, text, lists, links, images |
+| | Adding code | Code cells, basic execution options (echo, eval, output) |
+| | Setting options | YAML basics - document options, where to put them |
+| | Sharing your work | Publishing basics - `quarto publish`, providers overview |
+| **Computation** | Quarto and R | R-specific computation with knitr |
+| | Quarto and Python | Python-specific computation with Jupyter |
+| | Freezing and caching | Managing computation for reproducibility |
+| **Mastering Quarto** | Markdown | Full authoring reference - tables, equations, citations, callouts, layout |
 | | Projects | Project structure, shared configuration |
-| | Understanding Quarto | Rendering pipeline, troubleshooting, getting help |
-| **Formats** | HTML Documents | Basic HTML options, themes, TOC, code display |
-| | Typst Documents | Why Typst, basic setup, PDF output |
+| | Options | Full YAML syntax, option scopes, troubleshooting |
+| | Troubleshooting | Rendering pipeline, troubleshooting, getting help |
+| **Formats** | HTML documents | Basic HTML options, themes, TOC, code display |
+| | Typst documents | Why Typst, basic setup, PDF output |
 | | Presentations | revealjs basics - slides, sections, speaker notes |
 | | Websites | Minimal website, pages, navigation basics, publishing |
+| **Doing more with Quarto** | | Books, dashboards, and next steps |
+| **Appendix** | Jupyter | Using Quarto with .ipynb files |
 
 ## Existing Work to Use
 
 | Content | Source | Usage |
 |---------|--------|-------|
-| authoring.qmd (1104 lines) | authoring branch | Split: essentials → Ch 3, depth → Ch 7 |
-| yaml.qmd (873 lines) | main | Split: basics → Ch 5, depth → Ch 9 |
-| look-under-hood.qmd (817 lines) | main | Condense for Ch 11 |
-| projects.qmd (521 lines) | main | Use as Ch 10 |
-| publishing.qmd (318 lines) | main | Split: basics → Ch 6, details in Ch 10/websites |
-| tools.qmd (166 lines) | tools branch | Condense for Ch 2 |
-| websites.qmd (1752 lines) | main | Heavily condense for Ch 15 (~300-400 lines) |
-| quarto.qmd (~50 lines) | main | Expand for Ch 1 |
+| authoring.qmd | authoring branch | Split: essentials → Writing content, depth → Markdown |
+| yaml.qmd | main | Split: basics → Setting options, depth → Options |
+| look-under-hood.qmd | main | Condense for Troubleshooting |
+| projects.qmd | main | Use as Projects |
+| publishing.qmd | main | Split: basics → Sharing your work, details in Websites |
+| tools.qmd | tools branch | Condense for Your Quarto workflow |
+| websites.qmd | main | Heavily condense for Websites |
+| quarto.qmd | main | Expand for Quarto chapter |
 
 ## Work to Complete
 
 | Chapter | Work Needed |
 |---------|-------------|
-| Ch 1: Welcome to Quarto | Expand intro (~100-150 lines) |
-| Ch 2: Your Quarto Workflow | Condense tools, focus on workflow (~150-200 lines new) |
-| Ch 4: Adding Code | New chapter - code cell basics (~200-250 lines) |
-| Ch 8: Computation in Depth | New chapter - engines, execution model (~300-400 lines) |
-| Ch 12: HTML Documents | New chapter - HTML basics (~200-250 lines) |
-| Ch 13: Typst Documents | New chapter - Typst intro (~150-200 lines) |
-| Ch 14: Presentations | Expand existing (~150-200 lines) |
-| Ch 15: Websites | Condense existing (editing work, minimal new writing) |
+| Welcome | Expand intro |
+| Quarto | Expand existing |
+| Your Quarto workflow | Condense tools, focus on workflow |
+| Adding code | New chapter - code cell basics |
+| Quarto and R | New chapter - R-specific computation |
+| Quarto and Python | New chapter - Python-specific computation |
+| Freezing and caching | New chapter - freeze and cache options |
+| HTML documents | New chapter - HTML basics |
+| Typst documents | New chapter - Typst intro |
+| Presentations | Expand existing |
+| Websites | Condense existing |
+| Doing more with Quarto | New chapter - books, dashboards, next steps |
 
 ## Brand New Content
 
-| Chapter | Estimated Size |
-|---------|----------------|
-| Ch 4: Adding Code | ~200-250 lines |
-| Ch 8: Computation in Depth | ~300-400 lines |
-| Ch 12: HTML Documents | ~200-250 lines |
-| Ch 13: Typst Documents | ~150-200 lines |
+| Chapter | Notes |
+|---------|-------|
+| Adding code | Code cell basics |
+| Quarto and R | R-specific computation with knitr |
+| Quarto and Python | Python-specific computation with Jupyter |
+| Freezing and caching | Managing computation |
+| HTML documents | HTML format options |
+| Typst documents | Typst intro |
+| Doing more with Quarto | Books, dashboards, next steps |
