@@ -1,4 +1,4 @@
-# Setting Options {#sec-options}
+# Setting options {#sec-options}
 
 Throughout this book, you've been setting options to control how your documents look and behave.
 You've set a document title in the header, specified an output format, and controlled whether code is displayed in your output.

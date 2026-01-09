@@ -1,9 +1,9 @@
-# Writing Content {#sec-writing}
+# Writing content {#sec-writing}
 
 This chapter covers the essentials of writing content in Quarto using markdown.
-You'll learn to structure your document with headings, create paragraphs and lists, format text, and include images.
+You'll learn to structure your document with headings, create paragraphs and lists, format text, and include images and basic tables.
 
-For more advanced authoring features like tables, equations, cross-references, citations, callouts, and layout, see @sec-authoring.
+For more advanced authoring features equations, cross-references, citations, callouts, layout, computational figures and tables see @sec-authoring.
 
 ## Markdown text
 
@@ -11,12 +11,6 @@ Everything that isn't the document header or an executable code cell is interpre
 Quarto markdown inherits much of Pandoc's markdown syntax, but uses its own parser.
 This means you can use familiar markdown syntax, though there are some differences from Pandoc.
 The rest of this chapter outlines the most useful Quarto markdown syntax.
-
-While we distinguish between executable code cells and markdown in the source document, this distinction disappears after rendering.
-When cells execute, their output becomes markdown and is treated identically to other markdown content.
-Executable code cells produce block-level markdown, so you can only use them where block elements are allowed.
-For example, as list items, inside fenced divs, or inside table cells.
-You cannot use code cells inline with text or inside section headings.
 
 
 ## Sections

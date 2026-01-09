@@ -1,2 +1,2 @@
-# Typst Documents {#sec-typst}
+# Typst documents {#sec-typst}
 

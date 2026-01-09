@@ -1,2 +1,12 @@
-# Adding Code {#sec-code}
+# Adding code {#sec-code}
+
+## Syntax
+
+## Code cell options
+
+## Most common execution options
+
+## Basics of execution
+
+Engines, code cells run top to bottom in fresh session.
 

@@ -1,4 +1,4 @@
-# HTML Documents {#sec-html}
+# HTML documents {#sec-html}
 
 ## Self-contained HTML {#sec-sharing-other-ways}
 
