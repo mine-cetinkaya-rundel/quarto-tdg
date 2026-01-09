@@ -2,7 +2,7 @@
 
 Figures and tables are essential components of scientific and technical documents, serving as powerful tools to communicate data and results visually. 
 You often need precise control over their placement within documents, their captions, and the ability to group them into panels and cross-reference them throughout the text. 
-Given their importance, we've devoted an entire part of this book to exploring figures and tables in depth.
+Given their importance, we've devoted an entire part of this book to exploring figures and tables in depth. 
 
 The first several chapters in this part are written in a way that applies regardless of how your figures and tables are produced---whether you create them directly with markdown syntax or generate them computationally from code cells. 
 This approach is intentional because most aspects of working with figures and tables are independent of their source. 
