@@ -8,6 +8,8 @@ Tracking progress on restructuring the book to match the plan in `_reboot.md`.
 - [x] `_quarto.yml` updated with new chapter structure
 - [x] New chapter stub files created
 - [x] New part intro files created
+- [x] Split authoring.qmd → writing.qmd (essentials copied, original kept intact)
+- [x] Created options.qmd (new intro chapter, not a split from yaml.qmd)
 
 ## Source Files Overview
 
@@ -108,33 +110,17 @@ Possible content from existing:
 
 #### Ch 5: Setting Options
 **Target:** YAML basics - document options, where to put them
-**Source:** `yaml.qmd` (split - basics portion)
+**Source:** NEW chapter (not a split from yaml.qmd)
 
-Sections to INCLUDE (basics):
-- `## Overview`
-- `## General YAML syntax`
-  - `### YAML Mappings`
-  - `### YAML Sequences`
-  - `### YAML Scalars`
-- `## YAML comments`
-  - `### Quotes`
-- `## Document options` (intro only)
+**Status: COMPLETE**
 
-Sections to DEFER to Ch 9 (depth):
-- `### Long strings`
-- `### Using \`default\``
-- `## What happens when you get it wrong?` (all subsections)
-- `## Obtuse messages`
-- `## What are the possible options?`
-- `## Project options`
-- Full `## Document options` details
-- `### Everything is a format option`
-- `## OK, not quite everything...`
-- `### Top-level options are applied to all formats`
-- `### Options in \`_quarto.yml\` apply to all documents`
-- `### \`_metadata.yml\``
-- `### Command line metadata`
-- `## Execution options` (detailed)
+New introductory chapter covering:
+- Three places to set options (document header, format key, code cells)
+- YAML syntax essentials (key-value, indentation, arrays, quotes)
+- IDE help (completion, validation)
+- Reference to @sec-yaml for troubleshooting
+
+All detailed YAML content remains in yaml.qmd (Ch 9).
 
 ---
 
@@ -327,8 +313,8 @@ Current headings to CUT or heavily reduce:
 
 ## Next Steps
 
-- [ ] Split authoring.qmd → writing.qmd (essentials) + authoring.qmd (depth)
-- [ ] Split yaml.qmd → options.qmd (basics) + yaml.qmd (depth)
+- [x] Split authoring.qmd → writing.qmd (essentials) + authoring.qmd (depth)
+- [x] Create options.qmd (new intro chapter covering three option locations + YAML essentials)
 - [ ] Split publishing.qmd → sharing.qmd (basics)
 - [ ] Migrate tools.qmd → workflow.qmd
 - [ ] Condense look-under-hood.qmd → understanding.qmd

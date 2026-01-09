@@ -1,2 +1,140 @@
 # Setting Options {#sec-options}
 
+Throughout this book, you've been setting options to control how your documents look and behave.
+You've set a document title in the header, specified an output format, and controlled whether code is displayed in your output.
+These options all use the same underlying syntax: YAML.
+
+This chapter makes that syntax explicit.
+You'll learn the three places where you can set options and the essential YAML syntax rules you need to write them correctly.
+For the full details of YAML syntax and troubleshooting tips, see @sec-yaml.
+
+## Three places to set options
+
+There are three places you'll commonly set options: in the document header, under a format key, and in code cells.
+
+### Document header
+
+The document header is the YAML block at the top of your `.qmd` file, enclosed by `---`.
+Options set here apply to the entire document:
+```yaml
+---
+title: My Document
+author: Jane Doe
+date: 2024-01-15
+---
+```
+
+Options like `title`, `author`, and `date` apply regardless of the output format.
+
+### Under a format key
+
+Some options are specific to a particular output format.
+To set these, nest them under the format name:
+
+```yaml
+---
+title: My Document
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+```
+
+Here, `toc` and `code-fold` are options specific to HTML output.
+The indentation shows that these options belong under `html`, which belongs under `format`.
+
+### Code cell options
+
+Code cell options control the behavior of individual code cells.
+They appear at the top of the cell, each on its own line starting with `#|`:
+
+```{{r}}
+#| echo: false
+#| warning: false
+
+# Your code here
+```
+
+These options affect only the cell they appear in.
+Common options include `echo` (whether to show the code), `eval` (whether to run the code), and `warning` (whether to display warnings).
+
+## YAML syntax essentials
+
+All three places use YAML syntax.
+Here are the essential rules you need to know.
+
+### Key-value pairs
+
+Options are written as key-value pairs separated by a colon and a space:
+
+```yaml
+title: My Document
+```
+
+The space after the colon is required---`title:My Document` won't work.
+
+### Indentation matters
+
+YAML uses indentation to show structure.
+When options are nested, indent them consistently:
+
+```yaml
+format:
+  html:
+    toc: true
+```
+
+Use spaces for indentation, not tabs.
+Two spaces per level is the convention, but the exact number doesn't matter as long as you're consistent.
+
+### Arrays
+
+Some options accept multiple values.
+There are two ways to write arrays in YAML.
+
+**Bracket syntax** puts all values on one line, separated by commas:
+
+```yaml
+theme: [cosmo, custom.scss]
+```
+
+**Dash syntax** puts each value on its own line, prefixed with a dash:
+
+```yaml
+theme:
+  - cosmo
+  - custom.scss
+```
+
+Both are equivalent---use whichever you find more readable.
+
+### When you need quotes
+
+Most values don't need quotes, but you'll need them when your value contains special characters like `:` or `#`:
+
+```yaml
+title: "My Report: 2024 Edition"
+subtitle: "#QuartoTips"
+```
+
+You'll also need quotes if your value looks like a number or boolean but should be treated as text:
+
+```yaml
+version: "2.0"
+code: "true"
+```
+
+Without quotes, `2.0` would be interpreted as a number and `true` as a boolean.
+
+## Getting help from your IDE
+
+If you're using RStudio, VS Code, or Positron with the Quarto extension, your editor can help you write YAML correctly.
+
+**Completion** suggests valid option names and values as you type.
+This helps you discover what options are available and avoid typos.
+
+**Validation** highlights errors in your YAML, such as incorrect indentation or invalid values.
+Look for squiggly underlines or error markers in the gutter.
+
+When things go wrong and you're not sure why, see @sec-yaml for troubleshooting tips and a deeper understanding of YAML syntax.
