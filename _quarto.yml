@@ -28,13 +28,18 @@ book:
         - options.qmd
         - sharing.qmd
 
+    - part: computation.qmd
+      chapters:
+         - r.qmd
+         - python.qmd
+         - freeze-cache.qmd
+
     - part: part-going-deeper.qmd
       chapters:
         - authoring.qmd
-        - computation-depth.qmd
-        - yaml.qmd
         - projects.qmd
-        - understanding.qmd
+        - yaml.qmd
+        - look-under-hood.qmd
 
     - part: part-formats.qmd
       chapters:
@@ -42,6 +47,11 @@ book:
         - typst.qmd
         - presentations.qmd
         - websites.qmd
+
+    - part: more.qmd
+
+  appendices:
+    - jupyter.qmd
 
 format:
   html:

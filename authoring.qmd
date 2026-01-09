@@ -3,7 +3,7 @@ bibliography: example.bib
 client: "ACME Corp"
 ---
 
-# Authoring {#sec-authoring}
+# Markdown {#sec-authoring}
 
 When we say "authoring" we mean the process of adding content to a Quarto document---literally, the things you write in a `.qmd` file.
 More specifically, this chapter focuses on what you put in the parts of your document that are interpreted as markdown---that is, everything that isn't the document header, or an executable code cell.
