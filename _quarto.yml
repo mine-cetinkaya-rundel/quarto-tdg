@@ -22,7 +22,7 @@ book:
     - part: part-getting-started.qmd
       chapters:
         - quarto.qmd
-        - workflow.qmd
+        - tools.qmd
         - writing.qmd
         - code.qmd
         - options.qmd
