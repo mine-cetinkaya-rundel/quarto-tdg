@@ -85,7 +85,56 @@ This means when you run `quarto publish` on a document or project a second time,
 
 The details in `_publish.yml` aren't sensitive (there are no authentication details) so you can check it into version control.
 
+## Sharing document source {#sec-repro}
+
+A huge advantage of Quarto's plain text format is that you can share snippets that others can copy and paste.
+You've seen plenty of examples in this book already, but to be concrete here's another one:
+
+````
+---
+format:
+  html:
+    toc: false
+---
+
+## Some code
+
+```{{r}}
+1 + 1
+```
+````
+
+It includes header YAML, some markdown and an executable R cell.
+You could copy and paste that example, save it as a `.qmd` and it would be ready to render.
+
+To include this kind of snippet in your own Quarto documents, use quadruple backticks to surround the snippet, and double any curly braces on executable code cells.
+As an illustration, the above example was created with:
+
+`````
+````
+---
+format:
+  html:
+    toc: false
+---
+
+## Some code
+
+```{{{r}}}
+1 + 1
+```
+
+````
+`````
+
+The same quadruple backtick approach works in many other venues that use Markdown like GitHub Issues, GitHub Discussions and the [Posit Community Forum](forum.posit.co).
+You generally don't need to double curly braces in these venues because they won't attempt to execute any code.
+
 ## Next steps
 
-In this chapter you've learned to publish a single document using Quarto Pub.
+In this chapter you've seen that sharing your rendered Quarto documents is as simple as running `quarto publish`.
+This model of publishing relies on local rendering, but more complicated models like continuous integration exist and you'll learn about them in later chapters.
+
+There's nothing special about Quarto source documents, or stand-alone outputs like PDFs, so you can share them in your usual ways.
+
 When you're ready to publish projects like websites or books, or want to explore other publishing providers like GitHub Pages or Netlify, see @sec-websites.

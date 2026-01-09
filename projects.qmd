@@ -454,9 +454,60 @@ format:
 ---
 ```
 
+## Publishing projects
+
+Rather than publishing a single document, you can also publish a Quarto project.
+From the project directory, run `quarto publish` without specifying a filename:
+
+``` {.bash filename="Terminal"}
+quarto publish
+```
+
+Only website, book, and manuscript projects can be published this way.
+
+::: callout-tip
+If you are trying to publish a project, i.e., a collection of documents, that isn't a website, book, or manuscript, consider making it a website.
+This only requires adding `type: website` to the `project` key in `_quarto.yml`:
+
+``` {.yaml filename="_quarto.yml"}
+project:
+  type: website
+```
+
+Your rendered files will then be available at corresponding URLs, e.g. a file `report.qmd` in the root of the project directory that renders to PDF will be available at `{{ provider URL }}/report.pdf`.
+Adding website navigation is optional, but will generally make things easier to find.
+You'll learn more about that in @sec-websites.
+:::
+
+## Version control
+
+Since `.qmd` files are plain text, they are ideal for storing in a version control system like Git.
+A common approach is to have a Git repository for each Quarto project, and to commit all source files (`.qmd`, `_quarto.yml`, images, etc.).
+Sharing your source then becomes as easy as hosting the repository on something like GitHub, GitLab or BitBucket.
+
+We'll point out certain files or folders you may, or may not, want to commit as we introduce them.
+However, we list a few items common to most projects in the sections below.
+
+### `.gitignore`
+
+If Quarto detects your project is under Git version control it may add items to `.gitignore` directly.
+In particular, the folder `.quarto/` will generally be added.
+This folder is used for temporary artifacts of the Quarto rendering process and never needs to be committed.
+You should generally commit any changes Quarto makes to `.gitignore`.
+
+### Output files and directories
+
+In general, you don't need to commit rendered document files or the output directory (e.g. `_site/` for websites, `_book/` for books, `_manuscript` for manuscripts, or the value of `output-dir`) because they can always be recreated by rendering them.
+However, there are some circumstances it makes sense to commit them:
+
+-   You are producing stand-alone files and the hosted repo is the venue for sharing them.
+    Including stand-alone files (e.g. PDF or Word documents) in a repo can make for a large repository, and diffs on them aren't usually very useful, but it can make sense if you need to be able to grab easily, or link to, old versions of documents.
+
+-   You are directly hosting web content from your repository, for example via the `docs/` folder on GitHub, or with Git-backed hosting from Netlify.
+
 ## Tools
 
-There are a few tool-specific shortcuts when you are working with a Quarto Project. 
+There are a few tool-specific shortcuts when you are working with a Quarto Project.
 You can read more about them for your tool in this section.
 
 ### RStudio
@@ -487,7 +538,13 @@ If you have a document in your project open in the Editor window you can use the
 quarto preview document.qmd --to default --no-watch-inputs --no-browse
 ```
 
-This is useful when you are editing the file, but it is not equivalent to rendering the project. In particular, it won't render all formats, nor render other files unless they are explicitly needed. 
+This is useful when you are editing the file, but it is not equivalent to rendering the project. In particular, it won't render all formats, nor render other files unless they are explicitly needed.
+
+#### Publishing
+
+In RStudio when you have a Quarto document or project open, you'll see a **Publish** ![](https://docs.posit.co/connect/user/images/publishIcon_2x.png){width="32" fig-alt="RStudio's Publish icon"} button in the Editor.
+This button can facilitate publishing to RPubs, Posit Connect and Posit Cloud.
+Behind the scenes, this button uses the rsconnect R package rather than `quarto publish`. If you use RStudio and are publishing to one of RPubs, Posit Connect or Posit Cloud we recommend reading the RStudio documentation on Publishing (<https://docs.posit.co/ide/user/ide/guide/publish/publishing.html>).
 
 ### VS Code w/ Quarto Extension
 
