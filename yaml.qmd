@@ -757,7 +757,7 @@ Command line metadata overrides metadata set in files:
 quarto render document.qmd -M toc:false
 ```
 
-## Execution options
+## Execution options {#sec-execution-options}
 
 We use the term **execution options** to describe options you can set in code cells. 
 The set of options available depends on your execution engine:

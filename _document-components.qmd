@@ -1,0 +1,36 @@
+---
+title: "Untitled"
+format: html
+---
+
+### Document header
+
+The document header is found at the top of the document inside triple dashes:
+
+```
+---
+---
+```
+
+`---`. 
+Basic: `title`, `author`, `format`.
+Sets document metadata and options.
+Refer to Projects chapter to reduce duplication, YAML chapter for more details on syntax.
+
+### Executable code cells
+
+Executable code cells are blocks of code that can be run to produce output that is included in your document.
+Inside `` ```{LANGUAGE} `` and `` ``` ``.
+Often have code cell options inside. @sec-execution-options
+`echo`, `include`.
+
+If you want to include code that is highlighted, and displayed, but not executable, use a code block @sec-code-blocks.
+
+Remind of distinction between interactive execution and execution as part of rendering.
+
+Only put code, or code comments inside.
+
+Generally, only one language per document. (depending on engine, might be able to mix code cell languages, e.g. knitr, r and python vis reticulate).
+
+Can be used to generate images/figures, tables, raw markdown content.
+Can be nested inside lists, callouts, fenced divs, ...
