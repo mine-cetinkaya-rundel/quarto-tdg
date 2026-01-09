@@ -48,7 +48,9 @@ book:
         - presentations.qmd
         - websites.qmd
 
-    - part: more.qmd
+    - part: Next steps
+      chapters:
+        - more.qmd
 
   appendices:
     - jupyter.qmd
