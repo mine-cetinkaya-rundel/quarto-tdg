@@ -32,7 +32,6 @@ book:
       chapters:
          - r.qmd
          - python.qmd
-         - freeze-cache.qmd
 
     - part: part-going-deeper.qmd
       chapters:
