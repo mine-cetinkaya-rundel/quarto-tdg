@@ -1,14 +1,14 @@
-# Welcome {.unnumbered}
+# Preface {.unnumbered}
 
-Quarto is an open-source scientific and technical publishing system that allows you to weave together narrative text and code to produce elegantly formatted output as documents, web pages, presentations, books, and more. 
-This book will teach you how to use Quarto effectively, whether you're creating a single document or managing a complex multi-format publishing project. 
+Quarto is an open-source scientific and technical publishing system that produces elegantly formatted output as documents, web pages, presentations, and more.
+This book will teach you how to use Quarto effectively, taking you from zero to competent with enough depth to work independently.
 
 :::{.callout-note}
 
 ## Work in progress
 
 This book is a work-in-progress.
-The content is still being developed and refined. 
+The content is still being developed and refined.
 If you find any mistakes or have suggestions for improvement,
 please open an issue or a pull request on the [GitHub repository](https://github.com/mine-cetinkaya-rundel/quarto-tdg/).
 
@@ -16,56 +16,52 @@ please open an issue or a pull request on the [GitHub repository](https://github
 
 ## Who is this book for?
 
-We've designed this book both for those new to Quarto, and those who already have some experience.
+This book serves two audiences.
 
-For those new to Quarto, we assume no prior knowledge of Quarto or similar tools like R Markdown. 
-We'll start from the basics and build up your understanding step by step.
+**If you're new to Quarto**, the first part of the book provides a linear path through all the basics.
+We assume no prior knowledge of Quarto.
+You also don't need any particular programming language experience, although if you do use R or Python, you'll learn how to incorporate them into your Quarto documents.
+You'll learn the essential components of Quarto documents—markdown, code, options, and publishing—in the order that makes sense.
+By the end of Part I, you'll be able to create and share your own Quarto documents.
 
-If you have some experience with Quarto already, this book will help you fill in gaps in your foundational knowledge and give you broader exposure to Quarto's capabilities. 
-You might have learned Quarto by solving specific problems as they arose; here we present a more systematic approach.
+**If you already use Quarto**, you may have learned by solving problems as they arose.
+This book offers something different: conceptual foundations that help you use Quarto more productively, navigate the documentation more effectively, and ask better questions when you get stuck.
+Parts II and III are designed with you in mind—they go deeper into computation and Quarto's core concepts.
 
-You don't need to be an R or Python user to benefit from this book. 
-While Quarto excels at integrating code and output, it's also a powerful modern approach to typesetting that works across multiple formats. 
-If you're interested in creating professional documents, presentations, or websites without writing code, Quarto can help you separate your content from its appearance and easily generate the same material in different formats.
+You don't need to be an R or Python user to benefit from this book.
+While Quarto excels at integrating code and output, it's also a powerful approach to creating professional documents, presentations, and websites without writing code.
 
-## How is this different to quarto.org?
+## How is this different from quarto.org?
 
-We designed this book to complement the official Quarto documentation at [quarto.org](http://quarto.org), not replace it.
+This book complements the official Quarto documentation at [quarto.org](http://quarto.org), not replace it.
 
-It differ in several key ways:
+It differs in several key ways:
 
-* This book presents material in a linear fashion. 
-  It reflects what we think is the right order to learn Quarto: first, nail down your workflow and tools, then learn Quarto's specific flavor of markdown, followed by integrating computation, and finally, Quarto projects. 
+* **A curated path.** This book presents material in a deliberate order, focusing on what we think matters most rather than covering everything Quarto can do.
 
-* You can read this book away from your computer. 
-  While we encourage you to try examples as you go, we've written the book so you can learn concepts and understand how Quarto works even when you're not actively coding.
+* **Conceptual depth.** We explain not just *how* to do things, but *why* Quarto works the way it does. Understanding these foundations helps you solve problems on your own.
 
-* We've curated both the path through the material and the level of detail. 
-  We focus on the most important concepts and features—the ones you'll use regularly—rather than trying to cover everything Quarto can do. 
-  We've also filled in explanatory gaps that the official documentation sometimes leaves.
+* **Readable away from your computer.** While we encourage you to try examples, you can learn concepts and understand how Quarto works even when you're not actively coding.
 
-The official Quarto website at [quarto.org](http://quarto.org) remains the definitive reference. 
-We'll point you there for specific details that aren't of general interest, or when you're ready to track down more advanced features.
-The official site also includes step-by-step tutorials that are excellent when you want a hands-on introduction to specific tasks.
+The official Quarto website remains the definitive reference.
+We'll point you there for specific details and advanced features.
+The official site also includes hands-on tutorials that are excellent for learning specific tasks.
 
-## How to use this book? 
+## How to read this book
 
-The book is divided into parts:
+**Part I, Getting Started**, is a linear introduction to Quarto.
+If you're new, read it from start to finish.
+You'll learn everything you need to create and share Quarto documents: writing content, adding code, setting options, and publishing.
 
-We recommend everyone read the first part [Hello Quarto](overview.qmd) from start to finish. 
-This part covers foundational knowledge that applies regardless of how you plan to use Quarto.
+**Part II, Computation**, is where Quarto's core strength shines: integrating code into documents.
+Dive into the chapter for your language of choice—R or Python—to learn how Quarto integrates with your computational workflow.
+If you don't plan to include code in your documents, you can skip this part.
 
-Part II focuses on [Computation](computations.qmd). 
-Most readers will be interested in at least one of chapters @sec-r, @sec-python or @sec-julia. 
-However, if you don't plan to include any computational content in your Quarto documents, you can skip this entire part. 
-If you do work with code, read the relevant language-specific chapters along with the rest of Part II.
+**Part III, Mastering Quarto**, builds conceptual foundations.
+Each chapter is about mastering a core aspect of Quarto: Markdown, Projects, Options, Troubleshooting.
+These chapters give you the deeper understanding that helps you use Quarto more productively, navigate the documentation, and solve problems independently.
 
-Part III covers [Output formats](formats.qmd). 
-Everyone will want to read some chapters from this part based on their needs and interests. 
-You can dip into these chapters in any order---if you need to create presentations, jump straight to that chapter. 
-Each chapter is designed to be read from start to finish, but you don't need to read every chapter in the part.
-
-Part IV, [Doing more with Quarto](more.qmd), ventures into advanced, optional territory. 
-Once you're using Quarto for the majority of your work and you bump up against limitations you'd like to overcome, return to this part. 
-It's worth reading the overview to understand what's possible and how you can extend Quarto's core functionality, even if you don't need these features immediately.
+**Part IV, Formats**, is practical and goal-oriented.
+We cover the most useful formats for getting things done: HTML documents for the web, Typst documents for print, RevealJS presentations for talks, and website projects for sharing collections of documents.
+Read the chapters relevant to your work.
 
