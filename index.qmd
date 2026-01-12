@@ -1,4 +1,4 @@
-# Preface {.unnumbered}
+# Welcome {.unnumbered}
 
 Quarto is an open-source scientific and technical publishing system that produces elegantly formatted output as documents, web pages, presentations, and more.
 This book will teach you how to use Quarto effectively, taking you from zero to competent with enough depth to work independently.
