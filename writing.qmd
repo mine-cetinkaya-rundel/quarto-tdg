@@ -1,309 +1,140 @@
 # Writing content {#sec-writing}
 
-This chapter covers the essentials of writing content in Quarto using markdown.
-You'll learn to structure your document with headings, create paragraphs and lists, format text, and include images and basic tables.
+Beyond the document header and executable code cells, the content of a Quarto document is written in markdown.
+But not just any flavor of markdown, Quarto's own flavor called **Quarto markdown**.
+In this chapter, you'll learn just enough about Quarto markdown to get you writing simple documents right away. 
+We'll tease you with some of the rich content you can create with Quarto markdown, but delay a comprehensive coverage of things like equations, cross-references, citations, callouts, figures and tables to @sec-authoring.
 
-For more advanced authoring features equations, cross-references, citations, callouts, layout, computational figures and tables see @sec-authoring.
+## Basics
 
-`.qmd` short for Quarto markdown. 
+Markdown is a plaintext syntax for describing document structure.
+Here's some example markdown in a Quarto document:
 
+```` {.markdown filename="document.qmd"}
+## My First Section
 
-@sec-authoring offers a more comphrehenvice coverage of all the types of content you can add with Quarto markdown. 
+This is the first paragraph with some **bold text** and *italic text*.
+You can also include `code` to show function names or variables.
 
-## Markdown text
-
-Everything that isn't the document header or an executable code cell is interpreted as Quarto markdown.
-Quarto markdown inherits much of Pandoc's markdown syntax, but uses its own parser.
-This means you can use familiar markdown syntax, though there are some differences from Pandoc.
-The rest of this chapter outlines the most useful Quarto markdown syntax.
-
-
-## Sections
-
-Use markdown headings to structure your document into sections and subsections.
-Markdown headings are created by prefixing text with one or more `#` characters,
-followed by a space, and the heading title:
-
-```markdown
-## Section
-
-### Subsection
-
-#### Subsubsection
-
-```
-
-Quarto supports six levels of headings, from level-1 (`#`) to level-6 (`######`).
-The value of `title` in the document header usually becomes the level-1 heading of the document,
-which is why sections usually start with level-2 headings.
-
-You can attach attributes to headings by adding curly braces `{}` after the heading text.
-For example, you might add an identifier to a section heading to enable cross-referencing:
-
-```markdown
-## Section Title {#sec-section-title}
-```
-
-Or you might add a class like `.unlisted` to exclude a section from the table of contents:
-
-```markdown
-## Section Title {#sec-section-title .unlisted}
-```
-
-::: {#tip-attributes .callout-tip}
-
-## What are attributes?
-
-Attributes are a way to add metadata to markdown elements, usually inside curly braces `{}` after the element.
-Attributes are used extensively in Quarto to control the behavior or appearance of many elements.
-
-The types of thing you can add as attributes include:
-
-* Identifiers (IDs), should be unique and start with `#`
-* Classes start with `.`
-* Key-value pairs use `key='value'` syntax.
-
-The order of attributes matters: identifiers must come first, followed by classes, and then key-value pairs.
-
-:::
-
-## Paragraphs
-
-Create paragraphs by separating text with blank lines:
-
-```markdown
-This is the first paragraph. It can span multiple lines
-in your source document.
-
-This is a second paragraph, separated by a blank line.
-```
-
-Quarto ignores line breaks within a paragraph, which means you can wrap your text across multiple lines without affecting the final rendered output.
-
-## Text
-
-Beyond plain text, @tbl-inline-text-elements summarizes the most common things you want to put inside a paragraph or heading: formatted text, links, cross-references, citations, math and footnotes.
-
-These elements are called **inline text elements**, because they are used inline with text, inside what are called **block elements** like paragraphs and headings.
-You can also use them inside many of the other block-level elements discussed in this chapter like as list items, inside tables, and inside callouts.
-
-::: {#tbl-inline-text-elements}
-
-::: {.list-table header-rows=1 widths='1,2,1' aligns=l,l,l }
-
-
-* - Element
-  - Output
-  - Markdown Syntax
-
-* - []{rowspan=7} **Text formatting**
-  - *italics*, **bold**, ***bold italics***
-  -
-
-    ``` markdown
-    *italics*, **bold**, ***bold italics***
-    ```
-
-* - superscript^2^ / subscript~2~
-  -
-
-    ``` markdown
-    superscript^2^ / subscript~2~
-    ```
-
-* - ~~strikethrough~~
-  -
-
-    ``` markdown
-    ~~strikethrough~~
-    ```
-
-* - `verbatim code`
-  -
-
-    ``` markdown
-    `verbatim code`
-    ```
-
-* - [smallcaps]{.smallcaps}
-  -
-
-    ``` markdown
-    [smallcaps]{.smallcaps}
-    ```
-
-* - [underlined]{.underline}
-  -
-
-    ``` markdown
-    [underlined]{.underline}
-    ```
-
-* - [highlighted]{.mark}
-  -
-
-    ``` markdown
-    [highlighted]{.mark}
-    ```
-
-* - []{rowspan=3} **Links**
-  - <https://quarto.org>
-  -
-
-    ``` markdown
-    <https://quarto.org>
-    ```
-
-* - [Quarto](https://quarto.org)
-  -
-
-    ``` markdown
-    [Quarto](https://quarto.org)
-    ```
-
-* - [Links section](#links)
-  -
-
-    ``` markdown
-    [Links section](#links)
-    ```
-
-* - **Math** @sec-equations
-  - Inline math: $E = mc^{2}$
-  -
-
-    ``` markdown
-    Inline math: $E = mc^{2}$
-    ```
-
-* - []{rowspan=2} **Cross-references** See @sec-crossreferences
-  - @fig-elephant
-  -
-
-    ``` markdown
-    @fig-elephant
-    ```
-
-* - @sec-authoring
-  -
-
-    ``` markdown
-    @sec-authoring
-    ```
-
-* - []{rowspan=3} **Citations** @sec-citations
-  - @knuth1984 shows ...
-  -
-
-    ``` markdown
-    @knuth1984 shows ...
-    ```
-
-* - ... [@knuth1984]
-  -
-
-    ``` markdown
-    ... [@knuth1984]
-    ```
-
-* - [@knuth1984; @wickham2023]
-  -
-
-    ``` markdown
-    [@knuth1984; @wickham2023]
-    ```
-
-* - **Footnotes** @sec-footnotes
-  - An inline note.^[Content]
-  -
-
-    ``` markdown
-    An inline note.^[Content]
-    ```
-:::
-
-
-Common syntax for inline text elements in Quarto markdown. TODO: Element column entries will span rows.
-:::
-
-
-## Lists
-
-You can create an unordered list by starting each line with `-` (or `*` or `+`) followed by a space,
-ensuring there is a blank line before the first element:
-
-```markdown
-My list:
-
-- First item
-- Second item
-- Third item
-```
-
-Leaving no blank lines between items will result in a compact list, while leaving a blank line between items will create a loose list with more vertical spacing.
-
-Use numbers followed by a period to create an ordered list:
-
-```markdown
-My numbered list:
-
-1. First item
-2. Second item
-3. Third item
-```
-
-The actual numbers you use doesn't matter---Quarto will renumber the list automatically.
-You could use `1.` for every item if you prefer.
-
-List items can contain other block elements like paragraphs, code blocks, or even other lists.
-Subsequent elements should be indented to line up with the first non-space content after the list marker.
-@fig-nested-list shows an example of a nested list, along with its rendered output.
-
-::: {#fig-nested-list}
-
-::: {}
-````markdown
-{{< include _examples/authoring/lists/nested.md >}}
+Here's a second paragraph with a [link to Quarto](https://quarto.org).
+You might also want to use *italic text* for emphasis.
 ````
-:::
 
-:::{}
-::: {.rendered style="text-align: left;"}
-{{< include _examples/authoring/lists/nested.md >}}
-:::
-:::
+Markdown is a popular format, so the syntax above may be familiar.
+You've likely used it if you've opened an issue on Github, or formatted some text in a Discord post.
+However, as markdown's popularity has grown, so has the number of variants, or flavors, of the syntax.
 
-List syntax and its rendered output
-:::
+The example above illustrates components of markdown syntax that are common across many markdown variants:
 
-Quarto also supports task lists and definition lists.
-See the [Quarto documentation](https://quarto.org/docs/authoring/markdown-basics.html#lists) for details on these specialized list types.
+* Headings: text prefaced by one or more hashes (`#`), surrounded by blank lines.
 
-## Re-write
+* Paragraphs: text separated by blank lines.
 
-Distinction between a wall of text and a rich document.
+* Bold: text surrounded by `**`
 
-Not metadata block, not executable code cell, must be markdown.
+* Italic: text surrounded by `*`
 
-Quarto uses its own markdown syntax but mostly is is directly inherited from Pandoc, which is John Gruber's markdown.
-Consequently, much of the syntax is familiar regardless of the markdown variant you've used before.
-Commonmark? GitHub?
+* Code: text surrounded by `` ` ``
 
-Never used Markdown, bare minimum for now: paragraphs, headings, text formatting.
+* Links: text inside square brackets (`[]`) followed by a URL in parentheses (`()`)
 
-## Things to keep an eye out for
+When rendered the structure described by markdown is translated to the relevant components in the target format, e.g. HTML tags for `format: html`, or Typst functions for `format: typst`.
 
-White space matters sometimes: 
+TODO: screenshots of rendered output
+
+## Features of Quarto markdown
+
+Describing basic document structure, like headings and paragraphs, and simple text formatting is enough to get started with Quarto. 
+But you may soon be looking for richer content like tables, figures, code blocks, citations, and cross-references.
+Adding these components is a matter of adding the appropriate Quarto markdown.
+As a teaser, here's an example contains a callout and a cross-reference:
+
+````{.markdown filename="document.qmd" .code-overflow-wrap}
+{{< include _examples/writing/features/document.qmd >}}
+````
+
+It is important to remember that Quarto markdown is a specific flavor of markdown---although it shares much of its syntax with other variants you shouldn't expect a component of any arbitrary markdown variant to work with Quarto.
+
+The above example illustrates two pieces of syntax you'll see often in Quarto markdown that you might not have seen in other variants:
+
+* Attributes: additional metadata for a component specified inside curly braces, e.g the `{#fig-repsonse}` on the image. You'll see lots of examples in @sec-authoring, and can specifically learn more in @tip-attributes.
+
+* Fenced divs: blocks of content inside colon delimited sections, often with attributes attached, e.g. the callout:
   
-  Indentation (lists, code blocks)
-  Blank lines before executable code cells, lists
+  ```markdown
+  ::: {.callout-caution}
+  Content
+  :::
+  ``` 
 
+  Fenced divs are used in Quarto to implement lots of different block level treatments: callouts, figure or table panels, and complex layouts.
 
-Code cells vs. code blocks. Computational cells become markdown
+@sec-authoring covers the most useful features of Quarto markdown in more detail.
 
-Fenced divs
+## Things to watch out for
 
-Attributes 
+### White space matters (sometimes)
 
+You can often ignore whitespace when you are writing Quarto markdown.
+For example, extra spaces inline with text are ignored, as are newlines within a paragraph.
+That is, the following markdown snippets are equivalent:
 
+::: {layout-ncol=2}
+
+``` {.markdown}
+A sentence  with   weird     spacing.   And    another.
+This is on a new line.
+```
+
+```{.markdown}
+A sentence with weird spacing. And another. This is on a new line.
+```
+
+:::
+
+However, there are some places white space is important:
+
+* **Blank lines**: you must have a blank line before the items in a list, and before a code block or cell. Without the blank line, Quarto won't identify the component correctly, so you'll get list items that all appear on a single line, or a code block syntax (the `` ``` ``) showing up in the rendered document.
+
+* **Indentation**: items in a list need consistent indentation. Problems with indentation most often occur when an item has multiple paragraphs, or contains something like a code block. You'll notice that your items don't seem properly aligned in the output (usually not enough indentation), or something suddenly looks like a code block (usually too much indentation).
+
+If your content isn't rendering as expected, double-check your use of whitespace.
+
+### The difference between code blocks and code cells
+
+There is a distinction between:
+
+* **Code cells**, sometimes also called **code chunks**, are code that will be executed and replaced with computational output. Code cells use the syntax:
+
+    ````markdown
+    ```{{r}}
+    # Code to be executed
+    ```
+    ````
+
+    Code cells are the subject of the next chapter, @sec-code
+
+* **Code blocks** are code that should be syntax highlighted but simply displayed, not executed. Code blocks use the syntax:
+
+    ````markdown
+    ```{.r}
+    # Code to be displayed
+    ```
+    ````
+
+    Or the syntax:
+
+    ````markdown
+    ``` r
+    # Code to be displayed
+    ```
+    ````
+
+    You'll can more about code blocks in @sec-code-blocks.
+
+The syntax difference, as little as a `.`, means it is easy to mistake one for the other in your document.
+However, the differences in behavior are huge---code cells are handled by the computational engine, code blocks are not. 
+When you are reading examples, or trouble-shooting your own documents, keep that distinction in mind and be wary of trying to apply solutions for code blocks to code cells and vice versa.
+
+## Wrap Up
 
