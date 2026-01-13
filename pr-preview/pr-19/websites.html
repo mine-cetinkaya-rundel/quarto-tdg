@@ -669,7 +669,7 @@ Table&nbsp;16.1: In-text link syntax
 <p><a href="./authoring.html#cross-references">Cross-references</a> will work within pages in a Quarto website, but will not work across pages. That is, you cannot reference with the <code>@</code> syntax an element defined in a different document.</p>
 <p>To link to a cross-reference on another page, you could use a link:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Recall from the <span class="co">[</span><span class="ot">histogram of the data</span><span class="co">](explore.qmd#fig-dist)</span>...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you must have across page cross-references, consider using a <code>book</code> project instead, see <span class="quarto-unresolved-ref">?sec-books</span>.</p>
+<p>If you must have across page cross-references, consider using a <code>book</code> project instead.</p>
 </section>
 <section id="aliases" class="level3" data-number="16.4.4">
 <h3 data-number="16.4.4" class="anchored" data-anchor-id="aliases"><span class="header-section-number">16.4.4</span> Aliases</h3>
@@ -2509,7 +2509,7 @@ Figure&nbsp;16.25: An example social card populated by website metadata: <code>t
 </section>
 <section id="quarto-publish" class="level3" data-number="16.9.2">
 <h3 data-number="16.9.2" class="anchored" data-anchor-id="quarto-publish"><span class="header-section-number">16.9.2</span> <code>quarto publish</code></h3>
-<p>You saw how to use <code>quarto publish</code> in <span class="quarto-unresolved-ref">?sec-publishing</span>. To publish a website using <code>quarto publish</code> simply run Quarto publish from the project root:</p>
+<p>You saw how to use <code>quarto publish</code> to publish a single document in <a href="sharing.html" class="quarto-xref"><span>Chapter 6</span></a>. To publish a website using <code>quarto publish</code> simply run Quarto publish from the project root:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will prompt you to select a provider and to authenticate. Then Quarto runs <code>quarto render</code> one more time (you can disable this with <code>--no-render</code>), pushes the <code>_site/</code> directory to the provider, then opens the site in your browser (you can disable this with <code>--no-browser</code>). This process is illustrated in <a href="#fig-website-publish" class="quarto-xref">Figure&nbsp;<span>16.26</span></a>. We’ve separated out the “render” and “publish” step, but both steps happen when you call <code>quarto publish</code>.</p>
 <p>After publishing, you’ll find a <code>_publish.yml</code> file in your website project which records the details of where you published. If you publish again, you’ll be asked if you want to publish an update to the destinations recorded in this file, or to a new destination.</p>
@@ -2725,7 +2725,7 @@ E.g. <code>quarto publish</code></td>
 <section id="local-code-execution-and-remote-render" class="level3" data-number="16.10.2">
 <h3 data-number="16.10.2" class="anchored" data-anchor-id="local-code-execution-and-remote-render"><span class="header-section-number">16.10.2</span> Local code execution and remote render</h3>
 <p>Local code execution, with remote rendering provides a good middle ground. You aren’t burdened with setting up, and maintaining a remote code execution environment, but you also don’t have to store a whole lot of rendered output in your repo.</p>
-<p>This approach requires using <code>freeze</code> (<span class="quarto-unresolved-ref">?sec-freeze-cache</span>) to store the results of the code execution. You run <code>quarto render</code> locally, as required, to generate <code>_freeze/</code>. You then check <code>_freeze/</code>, but not <code>_site/</code>, into version control. Your CI agent then uses the Quarto CLI to render and publish your site.</p>
+<p>This approach requires using <code>freeze</code> to store the results of the code execution. You run <code>quarto render</code> locally, as required, to generate <code>_freeze/</code>. You then check <code>_freeze/</code>, but not <code>_site/</code>, into version control. Your CI agent then uses the Quarto CLI to render and publish your site.</p>
 <p>The most common CI service for this approach is GitHub. The project source is stored in a GitHub repo, and a <a href="#github-actions">GitHub Action</a> is used to setup Quarto, and run the required Quarto commands. The Quarto command could be as simple as <code>quarto publish {venue}</code>, which allows your publishing venue to be any of those supported by <code>quarto publish</code>.</p>
 </section>
 <section id="remote-code-execution-and-remote-render" class="level3" data-number="16.10.3">

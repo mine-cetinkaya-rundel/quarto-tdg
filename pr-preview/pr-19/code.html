@@ -21,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -308,9 +343,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#syntax" id="toc-syntax" class="nav-link active" data-scroll-target="#syntax"><span class="header-section-number">4.1</span> Syntax</a></li>
-  <li><a href="#code-cell-options" id="toc-code-cell-options" class="nav-link" data-scroll-target="#code-cell-options"><span class="header-section-number">4.2</span> Code cell options</a></li>
-  <li><a href="#most-common-execution-options" id="toc-most-common-execution-options" class="nav-link" data-scroll-target="#most-common-execution-options"><span class="header-section-number">4.3</span> Most common execution options</a></li>
+  <li><a href="#requirements" id="toc-requirements" class="nav-link active" data-scroll-target="#requirements"><span class="header-section-number">4.1</span> Requirements</a></li>
+  <li><a href="#syntax" id="toc-syntax" class="nav-link" data-scroll-target="#syntax"><span class="header-section-number">4.2</span> Syntax</a></li>
+  <li><a href="#sec-code-cell-options" id="toc-sec-code-cell-options" class="nav-link" data-scroll-target="#sec-code-cell-options"><span class="header-section-number">4.3</span> Code cell options</a></li>
   <li><a href="#basics-of-execution" id="toc-basics-of-execution" class="nav-link" data-scroll-target="#basics-of-execution"><span class="header-section-number">4.4</span> Basics of execution</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -337,18 +372,111 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="syntax" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="syntax"><span class="header-section-number">4.1</span> Syntax</h2>
+<p>In <a href="writing.html" class="quarto-xref"><span>Chapter 3</span></a> you concentrated on adding content by writing markdown. In this section, you learn about adding content that is the result of executing code cells.</p>
+<p>Executable code cells are Quarto’s superpower. Rather than manually creating static images or copying values into tables, you embed code that produces these outputs directly. Whenever you render your document, your tables and figures are regenerated, ensuring they are always in sync with your latest data or analysis updates.</p>
+<p>You’ll get a high level overview in this section, with examples presented in both R and Python so you can pick whichever makes sense for your workflow. You can dive deeper into the details specific to each language in <a href="r.html" class="quarto-xref"><span>Chapter 7</span></a> and <a href="python.html" class="quarto-xref"><span>Chapter 8</span></a>. Not interested in computation? You can safely skip this chapter.</p>
+<section id="requirements" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="requirements"><span class="header-section-number">4.1</span> Requirements</h2>
+<p>Quarto requires a working computational environment to render executable code cells.</p>
+<p>To verify Quarto can find your environment, run:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You need only one of the following:</p>
+<ul>
+<li><p><strong>R</strong>: Install R and the <code>knitr</code> package. Check the <code>Checking R installation</code> section in the <code>quarto check</code> output.</p></li>
+<li><p><strong>Python</strong>: Install Python and the <code>jupyter</code> package. Check the <code>Checking Python 3 installation</code> section in the <code>quarto check</code> output.</p></li>
+</ul>
 </section>
-<section id="code-cell-options" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="code-cell-options"><span class="header-section-number">4.2</span> Code cell options</h2>
+<section id="syntax" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="syntax"><span class="header-section-number">4.2</span> Syntax</h2>
+<p>A code cell starts and ends with three backticks. The language is specified in curly braces after the opening backticks:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># R code goes here</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Python code goes here</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Inside a code cell, you can only include:</p>
+<ul>
+<li>Code in the expected language</li>
+<li>Code comments (including special comments for options, see <a href="#sec-code-cell-options" class="quarto-xref"><span>Section 4.3</span></a>)</li>
+<li>Blank lines</li>
+</ul>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Add a code cell using a shortcut
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>TODO: Link back to tools</p>
+</div>
+</div>
 </section>
-<section id="most-common-execution-options" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="most-common-execution-options"><span class="header-section-number">4.3</span> Most common execution options</h2>
+<section id="sec-code-cell-options" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="sec-code-cell-options"><span class="header-section-number">4.3</span> Code cell options</h2>
+<p>Code cell options control how a code cell is executed and how its output appears in your document. You set options using a special comment at the top of the code cell that starts with <code>#|</code>. For example, set the <code>echo</code> option to <code>false</code>:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<p>Each option should be on its own line (starting with <code>#|</code>).</p>
+<p>Some options control how your code is executed or appears in your output:</p>
+<ul>
+<li><p><code>echo</code>: Controls whether the code itself appears in the output. Set to <code>false</code> to hide the code and show only the results.</p></li>
+<li><p><code>include</code>: Controls whether both the code and its output appear in the document. Set to <code>false</code> to run the code but hide everything from the output.</p></li>
+</ul>
+<p>These options can generally be set for all code cells by moving the option to the document header:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Document"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Other options might add information specific to the code cell:</p>
+<ul>
+<li><p><code>label</code>: Assigns a identifier to the code cell, which you can use to cross-reference figures or tables produced by the cell.</p></li>
+<li><p><code>fig-cap</code>: Adds a caption to a figure produced by the code cell.</p></li>
+</ul>
+<p>You’ll learn how to know which options are available and where to put them in <a href="yaml.html#sec-execution-options" class="quarto-xref"><span>Section 11.7</span></a>.</p>
 </section>
 <section id="basics-of-execution" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="basics-of-execution"><span class="header-section-number">4.4</span> Basics of execution</h2>
-<p>Engines, code cells run top to bottom in fresh session.</p>
+<p>When you render a Quarto document containing code cells, Quarto executes the code and incorporates the results into your output.</p>
+<p>There are a few key things to know about how this process works:</p>
+<ul>
+<li><p><strong>Quarto chooses an engine</strong>: Unless you’ve specified otherwise, Quarto selects an execution engine based on the language of the code cells in your documents. Documents with R code cells use the <code>knitr</code> engine; documents with Python code cells use the <code>jupyter</code> engine.</p></li>
+<li><p><strong>The engine executes code in a clean session</strong>: Each time you render, Quarto starts a fresh R or Python session. This means your document needs to explicitly load any required packages or data.</p></li>
+<li><p><strong>Code cells are executed one at a time, top to bottom</strong>: The engine runs each code cell in order, from the first cell in your document to the last. This means a code cell can use objects created by earlier cells, but not by later ones.</p></li>
+</ul>
+<p>Learn more about this process and troubleshooting in <a href="look-under-hood.html" class="quarto-xref"><span>Chapter 12</span></a>.</p>
 
 
 </section>

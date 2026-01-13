@@ -108,35 +108,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -372,16 +343,14 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#markdown-text" id="toc-markdown-text" class="nav-link active" data-scroll-target="#markdown-text"><span class="header-section-number">3.1</span> Markdown text</a></li>
-  <li><a href="#sections" id="toc-sections" class="nav-link" data-scroll-target="#sections"><span class="header-section-number">3.2</span> Sections</a></li>
-  <li><a href="#paragraphs" id="toc-paragraphs" class="nav-link" data-scroll-target="#paragraphs"><span class="header-section-number">3.3</span> Paragraphs</a></li>
-  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><span class="header-section-number">3.4</span> Text</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">3.5</span> Lists</a></li>
-  <li><a href="#sec-markdown-figures" id="toc-sec-markdown-figures" class="nav-link" data-scroll-target="#sec-markdown-figures"><span class="header-section-number">3.6</span> Images and figures</a>
+  <li><a href="#basics" id="toc-basics" class="nav-link active" data-scroll-target="#basics"><span class="header-section-number">3.1</span> Basics</a></li>
+  <li><a href="#features-of-quarto-markdown" id="toc-features-of-quarto-markdown" class="nav-link" data-scroll-target="#features-of-quarto-markdown"><span class="header-section-number">3.2</span> Features of Quarto markdown</a></li>
+  <li><a href="#things-to-watch-out-for" id="toc-things-to-watch-out-for" class="nav-link" data-scroll-target="#things-to-watch-out-for"><span class="header-section-number">3.3</span> Things to watch out for</a>
   <ul class="collapse">
-  <li><a href="#from-a-file" id="toc-from-a-file" class="nav-link" data-scroll-target="#from-a-file"><span class="header-section-number">3.6.1</span> From a file</a></li>
-  <li><a href="#sec-computational-figure" id="toc-sec-computational-figure" class="nav-link" data-scroll-target="#sec-computational-figure"><span class="header-section-number">3.6.2</span> From a code cell</a></li>
+  <li><a href="#white-space-matters-sometimes" id="toc-white-space-matters-sometimes" class="nav-link" data-scroll-target="#white-space-matters-sometimes"><span class="header-section-number">3.3.1</span> White space matters (sometimes)</a></li>
+  <li><a href="#the-difference-between-code-blocks-and-code-cells" id="toc-the-difference-between-code-blocks-and-code-cells" class="nav-link" data-scroll-target="#the-difference-between-code-blocks-and-code-cells"><span class="header-section-number">3.3.2</span> The difference between code blocks and code cells</a></li>
   </ul></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up"><span class="header-section-number">3.4</span> Wrap Up</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/writing.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -407,283 +376,113 @@ window.Quarto = {
 </header>
 
 
-<p>This chapter covers the essentials of writing content in Quarto using markdown. You’ll learn to structure your document with headings, create paragraphs and lists, format text, and include images and basic tables.</p>
-<p>For more advanced authoring features equations, cross-references, citations, callouts, layout, computational figures and tables see <a href="authoring.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
-<section id="markdown-text" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="markdown-text"><span class="header-section-number">3.1</span> Markdown text</h2>
-<p>Everything that isn’t the document header or an executable code cell is interpreted as Quarto markdown. Quarto markdown inherits much of Pandoc’s markdown syntax, but uses its own parser. This means you can use familiar markdown syntax, though there are some differences from Pandoc. The rest of this chapter outlines the most useful Quarto markdown syntax.</p>
-</section>
-<section id="sections" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="sections"><span class="header-section-number">3.2</span> Sections</h2>
-<p>Use markdown headings to structure your document into sections and subsections. Markdown headings are created by prefixing text with one or more <code>#</code> characters, followed by a space, and the heading title:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Section</span></span>
+<p>Beyond the document header and executable code cells, the content of a Quarto document is written in markdown. But not just any flavor of markdown, Quarto’s own flavor called <strong>Quarto markdown</strong>. In this chapter, you’ll learn just enough about Quarto markdown to get you writing simple documents right away. We’ll tease you with some of the rich content you can create with Quarto markdown, but delay a comprehensive coverage of things like equations, cross-references, citations, callouts, figures and tables to <a href="authoring.html" class="quarto-xref"><span>Chapter 9</span></a>.</p>
+<section id="basics" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="basics"><span class="header-section-number">3.1</span> Basics</h2>
+<p>Markdown is a plaintext syntax for describing document structure. Here’s some example markdown in a Quarto document:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="document.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## My First Section</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Subsection</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Subsubsection</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Quarto supports six levels of headings, from level-1 (<code>#</code>) to level-6 (<code>######</code>). The value of <code>title</code> in the document header usually becomes the level-1 heading of the document, which is why sections usually start with level-2 headings.</p>
-<p>You can attach attributes to headings by adding curly braces <code>{}</code> after the heading text. For example, you might add an identifier to a section heading to enable cross-referencing:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Section Title {#sec-section-title}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Or you might add a class like <code>.unlisted</code> to exclude a section from the table of contents:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Section Title {#sec-section-title .unlisted}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tip-attributes" class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>This is the first paragraph with some **bold text** and *italic text*.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>You can also include <span class="in">`code`</span> to show function names or variables.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Here's a second paragraph with a <span class="co">[</span><span class="ot">link to Quarto</span><span class="co">](https://quarto.org)</span>.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>You might also want to use *italic text* for emphasis.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Tip&nbsp;3.1: What are attributes?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Attributes are a way to add metadata to markdown elements, usually inside curly braces <code>{}</code> after the element. Attributes are used extensively in Quarto to control the behavior or appearance of many elements.</p>
-<p>The types of thing you can add as attributes include:</p>
+<p>Markdown is a popular format, so the syntax above may be familiar. You’ve likely used it if you’ve opened an issue on Github, or formatted some text in a Discord post. However, as markdown’s popularity has grown, so has the number of variants, or flavors, of the syntax.</p>
+<p>The example above illustrates components of markdown syntax that are common across many markdown variants:</p>
 <ul>
-<li>Identifiers (IDs), should be unique and start with <code>#</code></li>
-<li>Classes start with <code>.</code></li>
-<li>Key-value pairs use <code>key='value'</code> syntax.</li>
+<li><p>Headings: text prefaced by one or more hashes (<code>#</code>), surrounded by blank lines.</p></li>
+<li><p>Paragraphs: text separated by blank lines.</p></li>
+<li><p>Bold: text surrounded by <code>**</code></p></li>
+<li><p>Italic: text surrounded by <code>*</code></p></li>
+<li><p>Code: text surrounded by <code>`</code></p></li>
+<li><p>Links: text inside square brackets (<code>[]</code>) followed by a URL in parentheses (<code>()</code>)</p></li>
 </ul>
-<p>The order of attributes matters: identifiers must come first, followed by classes, and then key-value pairs.</p>
-</div>
-</div>
+<p>When rendered the structure described by markdown is translated to the relevant components in the target format, e.g.&nbsp;HTML tags for <code>format: html</code>, or Typst functions for <code>format: typst</code>.</p>
+<p>TODO: screenshots of rendered output</p>
 </section>
-<section id="paragraphs" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="paragraphs"><span class="header-section-number">3.3</span> Paragraphs</h2>
-<p>Create paragraphs by separating text with blank lines:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>This is the first paragraph. It can span multiple lines</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>in your source document.</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>This is a second paragraph, separated by a blank line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Quarto ignores line breaks within a paragraph, which means you can wrap your text across multiple lines without affecting the final rendered output.</p>
-</section>
-<section id="text" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="text"><span class="header-section-number">3.4</span> Text</h2>
-<p>Beyond plain text, <a href="authoring.html#tbl-inline-text-elements" class="quarto-xref">Table&nbsp;<span>9.1</span></a> summarizes the most common things you want to put inside a paragraph or heading: formatted text, links, cross-references, citations, math and footnotes.</p>
-<p>These elements are called <strong>inline text elements</strong>, because they are used inline with text, inside what are called <strong>block elements</strong> like paragraphs and headings. You can also use them inside many of the other block-level elements discussed in this chapter like as list items, inside tables, and inside callouts.</p>
-<div id="tbl-inline-text-elements" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-inline-text-elements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: Common syntax for inline text elements in Quarto markdown. TODO: Element column entries will span rows.
-</figcaption>
-<div aria-describedby="tbl-inline-text-elements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Element</th>
-<th style="text-align: left;">Output</th>
-<th style="text-align: left;">Markdown Syntax</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"> <strong>Text formatting</strong></td>
-<td style="text-align: left;"><em>italics</em>, <strong>bold</strong>, <strong><em>bold italics</em></strong></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>*italics*, **bold**, ***bold italics***</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">superscript<sup>2</sup> / subscript<sub>2</sub></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>superscript^2^ / subscript~2~</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><del>strikethrough</del></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>~~strikethrough~~</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><code>verbatim code</code></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">`verbatim code`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><span class="smallcaps">smallcaps</span></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">smallcaps</span><span class="co">]</span>{.smallcaps}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><u>underlined</u></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">underlined</span><span class="co">]</span>{.underline}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><mark>highlighted</mark></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">highlighted</span><span class="co">]</span>{.mark}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"> <strong>Links</strong></td>
-<td style="text-align: left;"><a href="https://quarto.org" class="uri">https://quarto.org</a></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&lt;https://quarto.org&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><a href="https://quarto.org">Quarto</a></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><a href="#links">Links section</a></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Links section</span><span class="co">](#links)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Math</strong> <a href="authoring.html#sec-equations" class="quarto-xref"><span>Section 9.9</span></a></td>
-<td style="text-align: left;">Inline math: <span class="math inline">\(E = mc^{2}\)</span></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="an">Inline math:</span><span class="co"> $E = mc^{2}$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"> <strong>Cross-references</strong> See <a href="authoring.html#sec-crossreferences" class="quarto-xref"><span>Section 9.10</span></a></td>
-<td style="text-align: left;"><a href="authoring.html#fig-elephant" class="quarto-xref">Figure&nbsp;<span>9.4</span></a></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>@fig-elephant</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><a href="authoring.html" class="quarto-xref"><span>Chapter 9</span></a></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>@sec-authoring</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"> <strong>Citations</strong> <a href="authoring.html#sec-citations" class="quarto-xref"><span>Section 9.11</span></a></td>
-<td style="text-align: left;"><span class="citation" data-cites="knuth1984">@knuth1984</span> shows …</td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>@knuth1984 shows ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;">… <span class="citation" data-cites="knuth1984">[@knuth1984]</span></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>... <span class="co">[</span><span class="ot">@knuth1984</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><span class="citation" data-cites="knuth1984 wickham2023">[@knuth1984; @wickham2023]</span></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@knuth1984; @wickham2023</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><strong>Footnotes</strong> <a href="authoring.html#sec-footnotes" class="quarto-xref"><span>Section 9.12</span></a></td>
-<td style="text-align: left;">An inline note.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>An inline note.^<span class="co">[</span><span class="ot">Content</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-</tr>
-</tbody>
-</table>
+<section id="features-of-quarto-markdown" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="features-of-quarto-markdown"><span class="header-section-number">3.2</span> Features of Quarto markdown</h2>
+<p>Describing basic document structure, like headings and paragraphs, and simple text formatting is enough to get started with Quarto. But you may soon be looking for richer content like tables, figures, code blocks, citations, and cross-references. Adding these components is a matter of adding the appropriate Quarto markdown. As a teaser, here’s an example contains a callout and a cross-reference:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
 </div>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="document.qmd"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>::: {.callout-caution}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Preliminary Data</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>These results are preliminary and subject to change. Use caution when drawing conclusions.</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>@fig-response shows a notable decline in the survey response rate over time.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="al">![Survey response rate over time](images/response.png)</span>{#fig-response}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="lists" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="lists"><span class="header-section-number">3.5</span> Lists</h2>
-<p>You can create an unordered list by starting each line with <code>-</code> (or <code>*</code> or <code>+</code>) followed by a space, ensuring there is a blank line before the first element:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="an">My list:</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>First item</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Second item</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Third item</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Leaving no blank lines between items will result in a compact list, while leaving a blank line between items will create a loose list with more vertical spacing.</p>
-<p>Use numbers followed by a period to create an ordered list:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="an">My numbered list:</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>First item</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Second item</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Third item</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The actual numbers you use doesn’t matter—Quarto will renumber the list automatically. You could use <code>1.</code> for every item if you prefer.</p>
-<p>List items can contain other block elements like paragraphs, code blocks, or even other lists. Subsequent elements should be indented to line up with the first non-space content after the list marker. <a href="authoring.html#fig-nested-list" class="quarto-xref">Figure&nbsp;<span>9.1</span></a> shows an example of a nested list, along with its rendered output.</p>
-<div id="fig-nested-list" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-nested-list-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>First item with multiple paragraphs.</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  This is the second paragraph, </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  indented to align with the first paragraph.</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>An item with a sublist:</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  1. </span>Subitem one</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  2. </span>Subitem two</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Third item</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="in">```{.python}</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># This is a code block inside a list item</span></span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div>
-<div class="rendered" style="text-align: left;">
+<p>It is important to remember that Quarto markdown is a specific flavor of markdown—although it shares much of its syntax with other variants you shouldn’t expect a component of any arbitrary markdown variant to work with Quarto.</p>
+<p>The above example illustrates two pieces of syntax you’ll see often in Quarto markdown that you might not have seen in other variants:</p>
 <ul>
-<li><p>First item with multiple paragraphs.</p>
-<p>This is the second paragraph, indented to align with the first paragraph.</p></li>
-<li><p>An item with a sublist:</p>
-<ol type="1">
-<li>Subitem one</li>
-<li>Subitem two</li>
-</ol></li>
-<li><p>Third item</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a code block inside a list item</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Attributes: additional metadata for a component specified inside curly braces, e.g the <code>{#fig-repsonse}</code> on the image. You’ll see lots of examples in <a href="authoring.html" class="quarto-xref"><span>Chapter 9</span></a>, and can specifically learn more in <a href="authoring.html#tip-attributes" class="quarto-xref">Tip&nbsp;<span>9.1</span></a>.</p></li>
+<li><p>Fenced divs: blocks of content inside colon delimited sections, often with attributes attached, e.g.&nbsp;the callout:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>::: {.callout-caution}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Content</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Fenced divs are used in Quarto to implement lots of different block level treatments: callouts, figure or table panels, and complex layouts.</p></li>
 </ul>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nested-list-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: List syntax and its rendered output
-</figcaption>
-</figure>
-</div>
-<p>Quarto also supports task lists and definition lists. See the <a href="https://quarto.org/docs/authoring/markdown-basics.html#lists">Quarto documentation</a> for details on these specialized list types.</p>
+<p><a href="authoring.html" class="quarto-xref"><span>Chapter 9</span></a> covers the most useful features of Quarto markdown in more detail.</p>
 </section>
-<section id="sec-markdown-figures" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="sec-markdown-figures"><span class="header-section-number">3.6</span> Images and figures</h2>
-<p>You can include images in your document either from an image file, or from the output of an executable code cell.</p>
-<p>Figures are so important in Quarto documents that we dedicate an entire part of this book to them. For more details, see <span class="quarto-unresolved-ref">?sec-figtab</span>.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="things-to-watch-out-for" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="things-to-watch-out-for"><span class="header-section-number">3.3</span> Things to watch out for</h2>
+<section id="white-space-matters-sometimes" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="white-space-matters-sometimes"><span class="header-section-number">3.3.1</span> White space matters (sometimes)</h3>
+<p>You can often ignore whitespace when you are writing Quarto markdown. For example, extra spaces inline with text are ignored, as are newlines within a paragraph. That is, the following markdown snippets are equivalent:</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>A sentence  with   weird     spacing.   And    another.</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>This is on a new line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Image or figure?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We use the term <strong>figure</strong> to refer to any image, numbered or not, included in a document. You may be more used to using the term figure to refer to an image with a numbered caption—we’ll call this a <strong>cross-referenceable figure</strong>.</p>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>A sentence with weird spacing. And another. This is on a new line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<section id="from-a-file" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="from-a-file"><span class="header-section-number">3.6.1</span> From a file</h3>
-<p>To include an image file in markdown you use the following syntax:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="al">![](path/to/image.png)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Where the path to the image is a path relative to the current document.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Project relative paths
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you preface the path with <code>/</code>, it is interpreted as a path relative to the project root. You’ll learn more about project structure in <a href="projects.html">Projects</a>.</p>
-</div>
-</div>
-<p>You can add a caption inside the square brackets, an identifier inside curly braces after the image path, and alternative text for accessibility in a <code>fig-alt</code> attribute:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](path/to/image.png)</span>{#fig-quarto fig-alt="Alternative text"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If your identifier starts with <code>fig-</code>, the image will be a cross-referenceable figure, numbered, and can be referenced using the <code>@</code> syntax.</p>
+<p>However, there are some places white space is important:</p>
+<ul>
+<li><p><strong>Blank lines</strong>: you must have a blank line before the items in a list, and before a code block or cell. Without the blank line, Quarto won’t identify the component correctly, so you’ll get list items that all appear on a single line, or a code block syntax (the <code>```</code>) showing up in the rendered document.</p></li>
+<li><p><strong>Indentation</strong>: items in a list need consistent indentation. Problems with indentation most often occur when an item has multiple paragraphs, or contains something like a code block. You’ll notice that your items don’t seem properly aligned in the output (usually not enough indentation), or something suddenly looks like a code block (usually too much indentation).</p></li>
+</ul>
+<p>If your content isn’t rendering as expected, double-check your use of whitespace.</p>
 </section>
-<section id="sec-computational-figure" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="sec-computational-figure"><span class="header-section-number">3.6.2</span> From a code cell</h3>
-<p>If the output from an executable code cell is an image, it will be automatically included in your document. To add an identifier, caption, or alternative text use the code cell options <code>label</code>, <code>fig-cap</code>, and <code>fig-alt</code> respectively:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-quarto</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Caption"</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-alt: "Alternative text"</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="in"># Code that generates a plot</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="the-difference-between-code-blocks-and-code-cells" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="the-difference-between-code-blocks-and-code-cells"><span class="header-section-number">3.3.2</span> The difference between code blocks and code cells</h3>
+<p>There is a distinction between:</p>
+<ul>
+<li><p><strong>Code cells</strong>, sometimes also called <strong>code chunks</strong>, are code that will be executed and replaced with computational output. Code cells use the syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to be executed</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Code cells are the subject of the next chapter, <a href="code.html" class="quarto-xref"><span>Chapter 4</span></a></p></li>
+<li><p><strong>Code blocks</strong> are code that should be syntax highlighted but simply displayed, not executed. Code blocks use the syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{.r}</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to be displayed</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or the syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">``` r</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to be displayed</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You’ll can more about code blocks in <a href="authoring.html#sec-code-blocks" class="quarto-xref"><span>Section 9.6</span></a>.</p></li>
+</ul>
+<p>The syntax difference, as little as a <code>.</code>, means it is easy to mistake one for the other in your document. However, the differences in behavior are huge—code cells are handled by the computational engine, code blocks are not. When you are reading examples, or trouble-shooting your own documents, keep that distinction in mind and be wary of trying to apply solutions for code blocks to code cells and vice versa.</p>
+</section>
+</section>
+<section id="wrap-up" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="wrap-up"><span class="header-section-number">3.4</span> Wrap Up</h2>
 
 
-</section>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Content<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->

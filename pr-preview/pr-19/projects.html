@@ -490,7 +490,7 @@ Figure&nbsp;10.3: The contents of <code>ds-project/</code> after <code>quarto re
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> default</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Other project types include <code>manuscript</code>, <code>website</code>, and <code>book</code>, which you’ll learn more about in <span class="quarto-unresolved-ref">?sec-manuscripts</span>, <a href="websites.html" class="quarto-xref"><span>Chapter 16</span></a> and <span class="quarto-unresolved-ref">?sec-books</span>.</p>
+<p>Other project types include <code>manuscript</code>, <code>website</code>, and <code>book</code>. You’ll learn more about the <code>website</code> type in <a href="websites.html" class="quarto-xref"><span>Chapter 16</span></a>.</p>
 <p>You’ll learn about a few more project-level options in <a href="#sec-project-options" class="quarto-xref"><span>Section 10.4.1</span></a> and about setting common document options in <a href="#sec-common-metadata" class="quarto-xref"><span>Section 10.4.2</span></a>.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -988,6 +988,10 @@ Figure&nbsp;10.4: The contents of <code>ds-project/</code> after rendering when 
 </div>
 <p>This is useful when you are editing the file, but it is not equivalent to rendering the project. In particular, it won’t render all formats, nor render other files unless they are explicitly needed.</p>
 </section>
+<section id="publishing" class="level4" data-number="10.7.1.4">
+<h4 data-number="10.7.1.4" class="anchored" data-anchor-id="publishing"><span class="header-section-number">10.7.1.4</span> Publishing</h4>
+<p>In RStudio when you have a Quarto document or project open, you’ll see a <strong>Publish</strong> <img src="https://docs.posit.co/connect/user/images/publishIcon_2x.png" class="img-fluid" alt="RStudio's Publish icon" width="32"> button in the Editor. This button can facilitate publishing to RPubs, Posit Connect and Posit Cloud. Behind the scenes, this button uses the rsconnect R package rather than <code>quarto publish</code>. If you use RStudio and are publishing to one of RPubs, Posit Connect or Posit Cloud we recommend reading the RStudio documentation on Publishing (<a href="https://docs.posit.co/ide/user/ide/guide/publish/publishing.html" class="uri">https://docs.posit.co/ide/user/ide/guide/publish/publishing.html</a>).</p>
+</section>
 </section>
 <section id="vs-code-w-quarto-extension" class="level3" data-number="10.7.2">
 <h3 data-number="10.7.2" class="anchored" data-anchor-id="vs-code-w-quarto-extension"><span class="header-section-number">10.7.2</span> VS Code w/ Quarto Extension</h3>
@@ -1010,8 +1014,8 @@ Figure&nbsp;10.4: The contents of <code>ds-project/</code> after rendering when 
 <p>You’ve seen how a Quarto project allows you to organize, configure and render a folder of documents. Project are particularly useful when you have a set of documents that share some metadata. But, even without shared metadata, the ability to easily render a directory of documents is a good reason to use a project. And as you’ll see later websites, books and manuscripts are special types of projects.</p>
 <p>As you start using projects you might find these other sections of the book useful:</p>
 <ul>
-<li><p>To control computational dependencies for a project it is common to set up a computational environment. You can learn more in <span class="quarto-unresolved-ref">?sec-computations</span>.</p></li>
-<li><p>If you find yourself creating many project with the same structure or settings you might want to define a custom project type. You can read more in <span class="quarto-unresolved-ref">?sec-extensions</span>.</p></li>
+<li><p>To control computational dependencies for a project it is common to set up a computational environment. You can learn more in <a href="r.html" class="quarto-xref"><span>Chapter 7</span></a> and <a href="python.html" class="quarto-xref"><span>Chapter 8</span></a>.</p></li>
+<li><p>If you find yourself creating many project with the same structure or settings you might want to define a custom project type. You can read more in <a href="more.html#sec-extensions" class="quarto-xref"><span>Section 17.3</span></a>.</p></li>
 </ul>
 
 
