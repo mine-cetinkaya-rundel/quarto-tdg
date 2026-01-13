@@ -2,7 +2,7 @@
 
 When we talk about *publishing* Quarto documents, we usually mean making the rendered documents available to others via the web.
 In this chapter, you'll learn the basics of Quarto's built-in tools for publishing your content.
-For more details on specific providers and other ways to share documents, see @sec-publishing.
+For more details on specific providers and other ways to share documents, see @sec-website-publish.
 
 ## Publishing to the web {#sec-publish-web}
 

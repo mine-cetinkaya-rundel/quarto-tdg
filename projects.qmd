@@ -97,7 +97,8 @@ project:
   type: default
 ```
 
-Other project types include `manuscript`, `website`, and `book`, which you'll learn more about in @sec-manuscripts, @sec-websites and @sec-books.
+Other project types include `manuscript`, `website`, and `book`. 
+You'll learn more about the `website` type in @sec-websites.
 
 You'll learn about a few more project-level options in @sec-project-options and about setting common document options in @sec-common-metadata.
 
@@ -569,7 +570,7 @@ And as you'll see later websites, books and manuscripts are special types of pro
 
 As you start using projects you might find these other sections of the book useful: 
 
-* To control computational dependencies for a project it is common to set up a computational environment. You can learn more in @sec-computations.
+* To control computational dependencies for a project it is common to set up a computational environment. You can learn more in @sec-r and @sec-python.
 
 * If you find yourself creating many project with the same structure or settings you might want to define a custom project type. You can read more in @sec-extensions.
 

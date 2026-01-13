@@ -5,6 +5,11 @@ You'll learn to structure your document with headings, create paragraphs and lis
 
 For more advanced authoring features equations, cross-references, citations, callouts, layout, computational figures and tables see @sec-authoring.
 
+`.qmd` short for Quarto markdown. 
+
+
+@sec-authoring offers a more comphrehenvice coverage of all the types of content you can add with Quarto markdown. 
+
 ## Markdown text
 
 Everything that isn't the document header or an executable code cell is interpreted as Quarto markdown.
@@ -274,61 +279,31 @@ List syntax and its rendered output
 Quarto also supports task lists and definition lists.
 See the [Quarto documentation](https://quarto.org/docs/authoring/markdown-basics.html#lists) for details on these specialized list types.
 
+## Re-write
 
-## Images and figures {#sec-markdown-figures}
+Distinction between a wall of text and a rich document.
 
-You can include images in your document either from an image file, or from the output of an executable code cell.
+Not metadata block, not executable code cell, must be markdown.
 
-Figures are so important in Quarto documents that we dedicate an entire part of this book to them.
-For more details, see @sec-figtab.
+Quarto uses its own markdown syntax but mostly is is directly inherited from Pandoc, which is John Gruber's markdown.
+Consequently, much of the syntax is familiar regardless of the markdown variant you've used before.
+Commonmark? GitHub?
 
-::: {.callout-tip}
+Never used Markdown, bare minimum for now: paragraphs, headings, text formatting.
 
-## Image or figure?
+## Things to keep an eye out for
 
-We use the term **figure** to refer to any image, numbered or not, included in a document.
-You may be more used to using the term figure to refer to an image with a numbered caption---we'll call this a **cross-referenceable figure**.
+White space matters sometimes: 
+  
+  Indentation (lists, code blocks)
+  Blank lines before executable code cells, lists
 
-:::
 
-### From a file
+Code cells vs. code blocks. Computational cells become markdown
 
-To include an image file in markdown you use the following syntax:
+Fenced divs
 
-```markdown
-![](path/to/image.png)
-```
+Attributes 
 
-Where the path to the image is a path relative to the current document.
 
-::: {.callout-tip}
 
-## Project relative paths
-
-If you preface the path with `/`, it is interpreted as a path relative to the project root.
-You'll learn more about project structure in [Projects](#sec-projects).
-
-:::
-
-You can add a caption inside the square brackets, an identifier inside curly braces after the image path, and alternative text for accessibility in a `fig-alt` attribute:
-
-```markdown
-![Caption](path/to/image.png){#fig-quarto fig-alt="Alternative text"}
-```
-
-If your identifier starts with `fig-`, the image will be a cross-referenceable figure, numbered, and can be referenced using the `@` syntax.
-
-### From a code cell {#sec-computational-figure}
-
-If the output from an executable code cell is an image, it will be automatically included in your document.
-To add an identifier, caption, or alternative text use the code cell options `label`, `fig-cap`, and `fig-alt` respectively:
-
-````markdown
-```{{LANGUAGE}}
-#| label: fig-quarto
-#| fig-cap: "Caption"
-#| fig-alt: "Alternative text"
-
-# Code that generates a plot
-```
-````

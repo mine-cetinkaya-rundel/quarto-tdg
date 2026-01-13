@@ -686,7 +686,7 @@ engine: markdown
 #### Wrong Environment
 
 The usual symptom of Quarto not using the right environment is the failure to load packages you are sure you installed.
-Troubleshooting your environment is language-specific, and you should refer back to the relevant sections of @sec-r, @sec-python, and @sec-julia.
+Troubleshooting your environment is language-specific, and you should refer back to the relevant sections of @sec-r and @sec-python.
 
 #### Code Errors
 

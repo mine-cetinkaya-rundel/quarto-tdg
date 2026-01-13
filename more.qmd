@@ -18,4 +18,6 @@ This thinking process will help you design your own dashboards as well.
 A Quarto dashboard is a single notebook (either `.qmd` or `.ipynb`) where `format: dashboard`.
 
 
-## Quarto extensions
+## Quarto extensions {#sec-extensions}
+
+## Templates and partials {#sec-templates}

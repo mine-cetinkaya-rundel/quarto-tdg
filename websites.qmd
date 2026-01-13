@@ -296,7 +296,7 @@ To link to a cross-reference on another page, you could use a link:
 Recall from the [histogram of the data](explore.qmd#fig-dist)...
 ```
 
-If you must have across page cross-references, consider using a `book` project instead, see @sec-books.
+If you must have across page cross-references, consider using a `book` project instead.
 
 ### Aliases
 
@@ -1467,7 +1467,7 @@ Quarto will prefer the document metadata, but fall back to website metadata if d
 
 ### `quarto publish`
 
-You saw how to use `quarto publish` in @sec-publishing.
+You saw how to use `quarto publish` to publish a single document in @sec-sharing.
 To publish a website using `quarto publish` simply run Quarto publish from the project root:
 
 ```{.bash}
@@ -1657,7 +1657,7 @@ Local code execution, with remote rendering provides a good middle ground.
 You aren't burdened with setting up, and maintaining a remote code execution environment,
 but you also don't have to store a whole lot of rendered output in your repo.
 
-This approach requires using `freeze` (@sec-freeze-cache) to store the results of the code execution.
+This approach requires using `freeze` to store the results of the code execution.
 You run `quarto render` locally, as required, to generate `_freeze/`.
 You then check `_freeze/`, but not `_site/`, into version control.
 Your CI agent then uses the Quarto CLI to render and publish your site.
