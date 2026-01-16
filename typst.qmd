@@ -1,2 +1,2 @@
-# Typst documents {#sec-typst}
+# PDF {#sec-typst}
 

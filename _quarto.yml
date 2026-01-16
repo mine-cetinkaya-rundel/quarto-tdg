@@ -33,22 +33,19 @@ book:
          - r.qmd
          - python.qmd
 
-    - part: part-going-deeper.qmd
-      chapters:
-        - authoring.qmd
-        - projects.qmd
-        - yaml.qmd
-        - look-under-hood.qmd
-
     - part: part-formats.qmd
       chapters:
         - html.qmd
         - typst.qmd
         - presentations.qmd
-        - websites.qmd
 
-    - part: Next steps
+    - part: part-going-deeper.qmd
       chapters:
+        - authoring.qmd
+        - projects.qmd
+        - websites.qmd
+        - yaml.qmd
+        - look-under-hood.qmd
         - more.qmd
 
   appendices:
