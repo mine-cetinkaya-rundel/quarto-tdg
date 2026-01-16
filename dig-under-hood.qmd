@@ -1,3 +1,0 @@
----
-title: Digging under the hood
----

@@ -1,4 +1,4 @@
-# Tools {#sec-tools}
+# Your Quarto workflow {#sec-tools}
 
 ## Whole game
 

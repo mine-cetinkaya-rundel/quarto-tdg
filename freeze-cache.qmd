@@ -1,2 +1,0 @@
-# Freezing and caching {#sec-freeze-cache}
-

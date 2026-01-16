@@ -3,13 +3,13 @@ bibliography: example.bib
 client: "ACME Corp"
 ---
 
-# Authoring {#sec-authoring}
+# Markdown {#sec-authoring}
 
 When we say "authoring" we mean the process of adding content to a Quarto document---literally, the things you write in a `.qmd` file.
 More specifically, this chapter focuses on what you put in the parts of your document that are interpreted as markdown---that is, everything that isn't the document header, or an executable code cell.
 
 Our goal is to give you a good overview of breadth of Quarto's authoring features, while delaying many of the details to later chapters of the book.
-We also focus on syntax that is broadly supported across multiple output formats and cover specific format features where relevant in @sec-output-formats.
+We also focus on syntax that is broadly supported across multiple output formats and cover specific format features where relevant in @sec-html, @sec-typst and @sec-presentations.
 
 We suggest reading through the chapter in its entirety on your first reading, and then referring back to specific sections as needed when authoring your own documents.
 
@@ -1035,7 +1035,7 @@ For example, you might use a raw block to add an iframe to an HTML document:
 ```
 ````
 
-You'll see more examples of raw blocks in @sec-output-formats.
+You'll see more examples of raw blocks in @sec-html and @sec-typst.
 
 ## Shortcodes {#sec-shortcodes}
 
