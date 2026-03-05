@@ -116,7 +116,7 @@ The source mode displays raw markdown and code, giving you complete control over
 [MCR] Decide on whether/how to include visual editor.
 :::
 
-**Polyglot language support:** Positron provides first-class support support for working seamlessly with R and Python within your documents, making it an excellent choice for data science projects in either language or in projects that use both languages.
+**Polyglot language support:** Positron provides first-class support for working seamlessly with R and Python within your documents, making it an excellent choice for data science projects in either language or in projects that use both languages.
 
 **Interactive code execution:** Positron also supports interactive code execution, enabling you to run individual code cells directly in the Console without rendering the entire document.
 This is particularly valuable when you're developing and testing code incrementally, as it provides immediate feedback without the overhead of a full document render.
@@ -135,10 +135,10 @@ install.packages("knitr")
 pip install jupyter
 ```
 
-**Side-by-side preview:**One of the most useful features for authoring Quarto documents in Positron is side-by-side editing and preview, which allows you to view your source code and rendered output simultaneously.
+**Side-by-side preview:** One of the most useful features for authoring Quarto documents in Positron is side-by-side editing and preview, which allows you to view your source code and rendered output simultaneously.
 This works for HTML and PDF outputs and it makes it easy to see how your changes affect the final document without switching between windows or applications.
 
-**Code completion and diagnostics:** Positron provides provides code completion and diagnostics that offer intelligent suggestions and error checking for Quarto-specific syntax.
+**Code completion and diagnostics:** Positron provides code completion and diagnostics that offer intelligent suggestions and error checking for Quarto-specific syntax.
 As you type, Positron helps you find the right syntax and catches errors before you attempt to render your document.
 
 ::: todo
@@ -195,18 +195,18 @@ RStudio comes with Quarto pre-installed and offers a rich set of features that m
 
 ### Installation
 
-To get started with Quarto in RStudio download and install the latest version of RStudio from [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/).
+To get started with Quarto in RStudio, download and install the latest version of RStudio from [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/).
 Also make sure that you have R installed on your system, which you can get from [cran.r-project.org](https://cran.r-project.org).
 
 ### Core features
 
-Like Positron,RStudio provides several features that make Quarto authoring efficient and productive.
+Like Positron, RStudio provides several features that make Quarto authoring efficient and productive.
 
 For example, you can use the **Render** button or keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux) to render `.qmd` files to HTML, PDF, Word, or other formats.
 The "Render on Save" option enables automatic updates during editing, so your preview refreshes every time you save your document.
 
 Features like dual editor mode, interactive code execution, and side-by-side preview are also available in RStudio, providing a seamless authoring experience just like in Positron.
-However some of these features can be accessed in different ways in RStudio:
+However, some of these features can be accessed in different ways in RStudio:
 
 - **Dual editor modes:** Switch between source and visual editing modes using the buttons in the toolbar or the keyboard shortcut (⌘⇧M on macOS, Ctrl+Shift+M on Windows/Linux).
 
@@ -229,16 +229,16 @@ This two-step approach enables seamless integration of executable code with form
 
 ### Additional RStudio features
 
-Like Positron, RStudio also offers an in integrated terminal and Git integration.
+Like Positron, RStudio also offers an integrated terminal and Git integration.
 
-The document outlinelooks a bit different in RStudio, located in the editor pane.
+The document outline looks a bit different in RStudio, located in the editor pane.
 
 ::: todo
 [MCR] Screenshot of outline panel in RStudio?
 :::
 
 ::: todo
-[MCR] Anything about code snipets in RStudio? I don't use them so I'm not sure.
+[MCR] Anything about code snippets in RStudio? I don't use them so I'm not sure.
 :::
 
 ## Other tools {#sec-other-tools}
