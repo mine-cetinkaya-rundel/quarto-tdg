@@ -232,6 +232,8 @@ The best tool for Quarto authoring depends on your specific needs and existing w
 
 Throughout this book, we'll call out features specific to the visual editor available in RStudio and Positron when relevant, as this mode provides a different authoring experience compared to working directly with markdown source.
 
-**TO DO: Decide on whether/how to include visual editor broadly in the book.**
+::: todo
+[MCR] Decide on whether/how to include visual editor.
+:::
 
 However, all the concepts and techniques we cover are applicable regardless of which tool you choose.
