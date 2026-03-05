@@ -105,7 +105,7 @@ Depending on your language of choice, you'll also need to have R or Python insta
 
 Positron provides several features that make Quarto authoring efficient and productive:
 
-**Rendering:** Use the **Quarto: Preview** command or the **Preview** button in the toolbar to render `.qmd` files to HTML, PDF, Word, or other formats.
+**Rendering:** Use the **Quarto: Preview** command, keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux), or the **Preview** button in the toolbar to render `.qmd` files to HTML, PDF, Word, or other formats.
 The "Render on Save" option enables automatic updates during editing, so your preview refreshes every time you save your document.
 
 **Dual editor modes:** Positron offers both visual and source editing modes.
@@ -208,7 +208,7 @@ The "Render on Save" option enables automatic updates during editing, so your pr
 Features like dual editor mode, interactive code execution, and side-by-side preview are also available in RStudio, providing a seamless authoring experience just like in Positron.
 However, some of these features can be accessed in different ways in RStudio:
 
-- **Dual editor modes:** Switch between source and visual editing modes using the buttons in the toolbar or the keyboard shortcut (⌘⇧M on macOS, Ctrl+Shift+M on Windows/Linux).
+- **Dual editor modes:** Switch between source and visual editing modes using the buttons in the toolbar or the keyboard shortcut (⌘⇧F4 on macOS, Ctrl+Shift+F4 on Windows/Linux).
 
 ::: todo
 [MCR] Screenshot?
@@ -253,6 +253,8 @@ VS Code is particularly popular among Python developers and those who work acros
 
 To get started with VS Code, first install VS Code from [code.visualstudio.com](https://code.visualstudio.com). Then install the Quarto CLI from [quarto.org](https://quarto.org/docs/get-started/) and the Quarto extension from the VS Code marketplace.
 
+Similar to Positron and RStudio, you can preview documents with the keyboard shortcut ⇧⌘K (Ctrl+Shift+K on Windows/Linux) and run individual code cells with ⇧⌘⏎ (Ctrl+Shift+Enter on Windows/Linux).
+
 ### JupyterLab
 
 If you're already working with Jupyter notebooks (`.ipynb` files), you can use Quarto to render them to various output formats.
@@ -291,3 +293,7 @@ The best tool for Quarto authoring depends on your specific needs and existing w
 Throughout this book, we'll call out features specific to the visual editor available in RStudio and Positron when relevant, as this mode provides a different authoring experience compared to working directly with markdown source.
 
 However, all the concepts and techniques we cover are applicable regardless of which tool you choose.
+
+::: todo
+[MCR] Try all shortcuts with default settings before finalizing.
+:::
