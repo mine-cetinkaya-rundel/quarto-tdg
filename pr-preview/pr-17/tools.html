@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Mine Çetinkaya-Rundel and Charlotte Wickham">
 
-<title>2&nbsp; Tools – Quarto: The Definitive Guide</title>
+<title>2&nbsp; Your Quarto workflow – Quarto: The Practical Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./authoring.html" rel="next">
+<link href="./writing.html" rel="next">
 <link href="./quarto.html" rel="prev">
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -76,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-d640c705e8c17715bca3574aa719063f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-b754b9fd3853d7e56faef54c29c5d52b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-db99b97b51e20a8de109c28632e3f6e3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-21edf6563d962eee859dd5a69e1b6add.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,6 +107,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>
+div.callout-todo.callout {
+  border-left-color: #bf6bc9;
+}
+div.callout-todo.callout-style-default > .callout-header {
+  background-color: rgba(191, 107, 201, 0.13);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+</style>
 
 
 </head>
@@ -120,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./overview.html">Hello Quarto</a></li><li class="breadcrumb-item"><a href="./tools.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tools</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-getting-started.html">Getting started</a></li><li class="breadcrumb-item"><a href="./tools.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your Quarto workflow</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -135,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Quarto: The Definitive Guide</a> 
+      <a href="./">Quarto: The Practical Guide</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
@@ -161,8 +174,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Hello Quarto</span></a>
+            <a href="./part-getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting started</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -177,51 +190,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tools.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tools</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your Quarto workflow</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Authoring</span></span></a>
+  <a href="./writing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Writing content</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Computation</span></span></a>
+  <a href="./code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Adding code</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Projects</span></span></a>
+  <a href="./options.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Setting options</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./publishing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Publishing</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./look-under-hood.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Looking under the hood</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./yaml.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Setting options with YAML</span></span></a>
+  <a href="./sharing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sharing your work</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./computations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Computations</span></a>
+            <a href="./computation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Computation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -230,39 +231,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Quarto and R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Quarto and R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Quarto and Python</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./julia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto and Julia</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./figure-table.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Figures and tables</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./freeze-cache.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Freezing and caching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quarto and Python</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Output formats</span></a>
+            <a href="./part-formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Documents</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -270,46 +253,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./documents.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Documents</span></span></a>
+  <a href="./html.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">HTML</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./typst.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">PDF</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./presentations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Presentations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./manuscripts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manuscripts</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./dashboards.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./websites.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Websites</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./books.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Books</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Presentations</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./more.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Doing more with Quarto</span></a>
+            <a href="./part-going-deeper.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mastering Quarto</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -317,20 +282,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./templates.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Templates</span></span></a>
+  <a href="./authoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Markdown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./extensions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Extensions</span></span></a>
+  <a href="./projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dig-under-hood.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Digging under the hood</span></span></a>
+  <a href="./websites.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Websites</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./yaml.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Options</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./look-under-hood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Troubleshooting</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./more.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Doing more with Quarto</span></span></a>
   </div>
 </li>
       </ul>
@@ -362,37 +345,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-quarto-cli" id="toc-sec-quarto-cli" class="nav-link active" data-scroll-target="#sec-quarto-cli"><span class="header-section-number">2.1</span> Quarto CLI</a>
+  <li><a href="#document-structure" id="toc-document-structure" class="nav-link active" data-scroll-target="#document-structure"><span class="header-section-number">2.1</span> Document structure</a></li>
+  <li><a href="#sec-quarto-cli" id="toc-sec-quarto-cli" class="nav-link" data-scroll-target="#sec-quarto-cli"><span class="header-section-number">2.2</span> Quarto CLI</a>
   <ul class="collapse">
-  <li><a href="#rendering" id="toc-rendering" class="nav-link" data-scroll-target="#rendering"><span class="header-section-number">2.1.1</span> Rendering</a></li>
-  <li><a href="#previewing" id="toc-previewing" class="nav-link" data-scroll-target="#previewing"><span class="header-section-number">2.1.2</span> Previewing</a></li>
-  <li><a href="#other-useful-commands" id="toc-other-useful-commands" class="nav-link" data-scroll-target="#other-useful-commands"><span class="header-section-number">2.1.3</span> Other useful commands</a></li>
+  <li><a href="#rendering" id="toc-rendering" class="nav-link" data-scroll-target="#rendering"><span class="header-section-number">2.2.1</span> Rendering</a></li>
+  <li><a href="#previewing" id="toc-previewing" class="nav-link" data-scroll-target="#previewing"><span class="header-section-number">2.2.2</span> Previewing</a></li>
+  <li><a href="#other-useful-commands" id="toc-other-useful-commands" class="nav-link" data-scroll-target="#other-useful-commands"><span class="header-section-number">2.2.3</span> Other useful commands</a></li>
   </ul></li>
-  <li><a href="#sec-positron" id="toc-sec-positron" class="nav-link" data-scroll-target="#sec-positron"><span class="header-section-number">2.2</span> Positron</a>
+  <li><a href="#sec-positron" id="toc-sec-positron" class="nav-link" data-scroll-target="#sec-positron"><span class="header-section-number">2.3</span> Positron</a>
   <ul class="collapse">
-  <li><a href="#core-features" id="toc-core-features" class="nav-link" data-scroll-target="#core-features"><span class="header-section-number">2.2.1</span> Core features</a></li>
-  <li><a href="#basic-workflow" id="toc-basic-workflow" class="nav-link" data-scroll-target="#basic-workflow"><span class="header-section-number">2.2.2</span> Basic workflow</a></li>
-  <li><a href="#rendering-process" id="toc-rendering-process" class="nav-link" data-scroll-target="#rendering-process"><span class="header-section-number">2.2.3</span> Rendering process</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">2.3.1</span> Installation</a></li>
+  <li><a href="#core-features" id="toc-core-features" class="nav-link" data-scroll-target="#core-features"><span class="header-section-number">2.3.2</span> Core features</a></li>
+  <li><a href="#basic-workflow" id="toc-basic-workflow" class="nav-link" data-scroll-target="#basic-workflow"><span class="header-section-number">2.3.3</span> Basic workflow</a></li>
+  <li><a href="#rendering-process" id="toc-rendering-process" class="nav-link" data-scroll-target="#rendering-process"><span class="header-section-number">2.3.4</span> Rendering process</a></li>
+  <li><a href="#additional-positron-features" id="toc-additional-positron-features" class="nav-link" data-scroll-target="#additional-positron-features"><span class="header-section-number">2.3.5</span> Additional Positron features</a></li>
   </ul></li>
-  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio"><span class="header-section-number">2.3</span> RStudio</a>
+  <li><a href="#sec-rstudio" id="toc-sec-rstudio" class="nav-link" data-scroll-target="#sec-rstudio"><span class="header-section-number">2.4</span> RStudio</a>
   <ul class="collapse">
-  <li><a href="#new-file" id="toc-new-file" class="nav-link" data-scroll-target="#new-file"><span class="header-section-number">2.3.1</span> New file…</a></li>
-  <li><a href="#editors" id="toc-editors" class="nav-link" data-scroll-target="#editors"><span class="header-section-number">2.3.2</span> Editors</a></li>
-  <li><a href="#running-code" id="toc-running-code" class="nav-link" data-scroll-target="#running-code"><span class="header-section-number">2.3.3</span> Running code</a></li>
-  <li><a href="#rendering-1" id="toc-rendering-1" class="nav-link" data-scroll-target="#rendering-1"><span class="header-section-number">2.3.4</span> Rendering</a></li>
+  <li><a href="#installation-1" id="toc-installation-1" class="nav-link" data-scroll-target="#installation-1"><span class="header-section-number">2.4.1</span> Installation</a></li>
+  <li><a href="#core-features-1" id="toc-core-features-1" class="nav-link" data-scroll-target="#core-features-1"><span class="header-section-number">2.4.2</span> Core features</a></li>
+  <li><a href="#rendering-process-1" id="toc-rendering-process-1" class="nav-link" data-scroll-target="#rendering-process-1"><span class="header-section-number">2.4.3</span> Rendering process</a></li>
+  <li><a href="#additional-rstudio-features" id="toc-additional-rstudio-features" class="nav-link" data-scroll-target="#additional-rstudio-features"><span class="header-section-number">2.4.4</span> Additional RStudio features</a></li>
   </ul></li>
-  <li><a href="#jupyterlab" id="toc-jupyterlab" class="nav-link" data-scroll-target="#jupyterlab"><span class="header-section-number">2.4</span> JupyterLab</a></li>
-  <li><a href="#vscode" id="toc-vscode" class="nav-link" data-scroll-target="#vscode"><span class="header-section-number">2.5</span> VSCode</a></li>
-  <li><a href="#choosing-a-tool" id="toc-choosing-a-tool" class="nav-link" data-scroll-target="#choosing-a-tool"><span class="header-section-number">2.6</span> Choosing a tool</a></li>
+  <li><a href="#sec-other-tools" id="toc-sec-other-tools" class="nav-link" data-scroll-target="#sec-other-tools"><span class="header-section-number">2.5</span> Other tools</a>
+  <ul class="collapse">
+  <li><a href="#vs-code" id="toc-vs-code" class="nav-link" data-scroll-target="#vs-code"><span class="header-section-number">2.5.1</span> VS Code</a></li>
+  <li><a href="#jupyterlab" id="toc-jupyterlab" class="nav-link" data-scroll-target="#jupyterlab"><span class="header-section-number">2.5.2</span> JupyterLab</a></li>
+  <li><a href="#neovim-and-vim" id="toc-neovim-and-vim" class="nav-link" data-scroll-target="#neovim-and-vim"><span class="header-section-number">2.5.3</span> Neovim and Vim</a></li>
+  <li><a href="#other-editors" id="toc-other-editors" class="nav-link" data-scroll-target="#other-editors"><span class="header-section-number">2.5.4</span> Other editors</a></li>
+  </ul></li>
+  <li><a href="#sec-choosing-tool" id="toc-sec-choosing-tool" class="nav-link" data-scroll-target="#sec-choosing-tool"><span class="header-section-number">2.6</span> Choosing a tool</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/tools.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./overview.html">Hello Quarto</a></li><li class="breadcrumb-item"><a href="./tools.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tools</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./part-getting-started.html">Getting started</a></li><li class="breadcrumb-item"><a href="./tools.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your Quarto workflow</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-tools" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tools</span></span></h1>
+<h1 class="title"><span id="sec-tools" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Your Quarto workflow</span></span></h1>
 </div>
 
 
@@ -412,11 +403,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You do not need a specific tool for authoring and rendering Quarto documents. You can author Quarto documents in any plain text editor and render them with the <code>quarto render</code> command in your computer’s terminal.</p>
 <p>However, we recommend using an integrated development environment (IDE) when working with Quarto as they can enhance your authoring experience. Some compelling reasons for using an IDE with Quarto include preview and live rendering features that allow you to see how your content will look as you write it, syntax highlighting, project management features, version control integration, debugging tools, and efficiency and productivity features like snippets, templates, and keyboard shortcuts. Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting which can help you quickly find the right syntax and catch errors.</p>
 <p>In this chapter we detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring.</p>
-<section id="sec-quarto-cli" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="sec-quarto-cli"><span class="header-section-number">2.1</span> Quarto CLI</h2>
+<section id="document-structure" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="document-structure"><span class="header-section-number">2.1</span> Document structure</h2>
+<p>Quarto documents are plain text files that use markdown syntax for formatting and can include executable code chunks. They have the file extension <code>.qmd</code> and can be rendered to various output formats such as HTML, PDF, Word documents, and more. They are comprised of three main components: a YAML header for metadata, markdown text for content, and code chunks for executable code.</p>
+<ol type="1">
+<li><p><strong>YAML header:</strong> Metadata enclosed by <code>---</code> markers, including the title, format, theme, and other document options.</p></li>
+<li><p><strong>Code chunks:</strong> Executable code cells marked with <code>```{r}</code> or <code>```{python}</code> that can include optional chunk options to control execution and output.</p></li>
+<li><p><strong>Markdown text:</strong> Formatted text using standard markdown syntax for headings, lists, links, emphasis, and more.</p></li>
+</ol>
+</section>
+<section id="sec-quarto-cli" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-quarto-cli"><span class="header-section-number">2.2</span> Quarto CLI</h2>
 <p>Before diving into specific IDEs, let’s start with the fundamentals: the Quarto Command Line Interface (CLI). The Quarto CLI is the core tool that powers all Quarto rendering, regardless of which editor you use. Understanding these basic commands will help you work with Quarto in any environment.</p>
-<section id="rendering" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="rendering"><span class="header-section-number">2.1.1</span> Rendering</h3>
+<section id="rendering" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="rendering"><span class="header-section-number">2.2.1</span> Rendering</h3>
 <p>The most fundamental Quarto command is <code>quarto render</code>, which converts your Quarto document into the desired output format. Quarto uses the term render to describe the process of taking this source document and producing a new file that combines the output from the executed code cells with the markdown. You can render a specific Quarto document in the Terminal with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Alternatively, you can render all Quarto documents in the current directory with:</p>
@@ -425,32 +425,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> pdf</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> docx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="previewing" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="previewing"><span class="header-section-number">2.1.2</span> Previewing</h3>
+<section id="previewing" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="previewing"><span class="header-section-number">2.2.2</span> Previewing</h3>
 <p>While <code>quarto render</code> creates the output file and stops, <code>quarto preview</code> provides a more interactive experience. It renders your document, opens it in your web browser, and automatically re-renders when you save changes to the source file:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview document.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This command is particularly useful during active authoring, as it allows you to see your changes immediately without manually re-running the render command. The preview server will continue running until you stop it (typically with Ctrl+C in the Terminal).</p>
 </section>
-<section id="other-useful-commands" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="other-useful-commands"><span class="header-section-number">2.1.3</span> Other useful commands</h3>
+<section id="other-useful-commands" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="other-useful-commands"><span class="header-section-number">2.2.3</span> Other useful commands</h3>
 <p>Beyond rendering and previewing, the Quarto CLI offers several other helpful commands. For example, you can check the version of Quarto and its dependencies by running the following command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To get help, you can use the following command:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or you can use <code>--help</code> with any command to see available options and usage information.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Now that you understand the foundational CLI commands, let’s explore how different IDEs integrate these capabilities into their interfaces to provide a more seamless authoring experience.</p>
+<p>Now that you understand the structure of Quarto documents and foundational CLI commands, let’s explore how different IDEs integrate these capabilities into their interfaces to provide a more seamless authoring experience.</p>
 </section>
 </section>
-<section id="sec-positron" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-positron"><span class="header-section-number">2.2</span> Positron</h2>
+<section id="sec-positron" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-positron"><span class="header-section-number">2.3</span> Positron</h2>
 <p>Positron is a next-generation data science IDE that comes pre-configured for Quarto – the Quarto CLI is built-in and the Quarto VS Code extension is bundled. Additionally, Positron offers specialized features for Quarto authoring, such as integrated render and preview for Quarto documents, completion and diagnostics for Quarto options, and full R and Python support for code that is inside code cells in a Quarto document, including interactive execution of code in the Console, code completion, help, and diagnostics.</p>
-<section id="core-features" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="core-features"><span class="header-section-number">2.2.1</span> Core features</h3>
-<p>One of the most useful features for authoring Quarto documents in Positron is side-by-side editing and preview, which allows you to view your source code and rendered output simultaneously. This makes it easy to see how your changes affect the final document without switching between windows or applications.</p>
-<p>Positron also supports interactive code execution, enabling you to run individual code cells directly in the Console without rendering the entire document. This is particularly valuable when you’re developing and testing code incrementally, as it provides immediate feedback without the overhead of a full document render.</p>
-<p>Furthermore, the IDE provides code completion and diagnostics that offer intelligent suggestions and error checking for Quarto-specific syntax. As you type, Positron helps you find the right syntax and catches errors before you attempt to render your document.</p>
-<p>Finally, Positron offers full language support for working seamlessly with R and Python within your documents, making it an excellent choice for data science projects in either language or in projects that use both languages. Note that for executing code cells in Quarto documents in Positron, you’ll need to install some packages depending on your language of choice.</p>
+<section id="installation" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">2.3.1</span> Installation</h3>
+<p>To get started with Quarto in Positron, download and install Positron from <a href="https://positron.posit.co">positron.posit.co</a>. Since Quarto is built into Positron, no additional installation is required for Quarto itself. Depending on your language of choice, you’ll also need to have R or Python installed on your system—R from <a href="https://cran.r-project.org">cran.r-project.org</a> or Python from <a href="https://www.python.org">python.org</a>.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] One thing missing right now is calling out bundled Quarto extension, need to say something about that.</p>
+</div>
+</div>
+</section>
+<section id="core-features" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="core-features"><span class="header-section-number">2.3.2</span> Core features</h3>
+<p>Positron provides several features that make Quarto authoring efficient and productive:</p>
+<p><strong>Rendering:</strong> Use the <strong>Quarto: Preview</strong> command, keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux), or the <strong>Preview</strong> button in the toolbar to render <code>.qmd</code> files to HTML, PDF, Word, or other formats. The “Render on Save” option enables automatic updates during editing, so your preview refreshes every time you save your document.</p>
+<p><strong>Dual editor modes:</strong> Positron offers both visual and source editing modes. The visual editor provides a WYSIWYM (What You See Is What You Mean) experience with formatting toolbars that make it easy to add formatted text, tables, images, and citations without memorizing markdown syntax. The source mode displays raw markdown and code, giving you complete control over the document structure.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Decide on whether/how to include visual editor.</p>
+</div>
+</div>
+<p><strong>Polyglot language support:</strong> Positron provides first-class support for working seamlessly with R and Python within your documents, making it an excellent choice for data science projects in either language or in projects that use both languages.</p>
+<p><strong>Interactive code execution:</strong> Positron also supports interactive code execution, enabling you to run individual code cells directly in the Console without rendering the entire document. This is particularly valuable when you’re developing and testing code incrementally, as it provides immediate feedback without the overhead of a full document render.</p>
+<p>Note that for executing code cells in Quarto documents in Positron, you’ll need to install some packages depending on your language of choice.</p>
 <ul>
 <li>For R, you need the <strong>knitr</strong> package:</li>
 </ul>
@@ -459,9 +491,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For Python, you need the <strong>jupyter</strong> package:</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Side-by-side preview:</strong> One of the most useful features for authoring Quarto documents in Positron is side-by-side editing and preview, which allows you to view your source code and rendered output simultaneously. This works for HTML and PDF outputs and it makes it easy to see how your changes affect the final document without switching between windows or applications.</p>
+<p><strong>Code completion and diagnostics:</strong> Positron provides code completion and diagnostics that offer intelligent suggestions and error checking for Quarto-specific syntax. As you type, Positron helps you find the right syntax and catches errors before you attempt to render your document.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] A screenshot of Quarto help that appears as you type?</p>
+</div>
+</div>
 </section>
-<section id="basic-workflow" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="basic-workflow"><span class="header-section-number">2.2.2</span> Basic workflow</h3>
+<section id="basic-workflow" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="basic-workflow"><span class="header-section-number">2.3.3</span> Basic workflow</h3>
 <p>The typical workflow for authoring Quarto documents in Positron follows these steps:</p>
 <ol type="1">
 <li><p>Create or open a plain text <code>.qmd</code> file in the Editor pane.</p></li>
@@ -471,52 +518,202 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p><img src="images/tools-positron-hello-python.png" class="img-fluid">{fig-alt=“Positron with a Quarto document titled”Penguins, meet Quarto!” open on the left side and the rendered version of the document on the right side.”}</p>
 </section>
-<section id="rendering-process" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="rendering-process"><span class="header-section-number">2.2.3</span> Rendering process</h3>
+<section id="rendering-process" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="rendering-process"><span class="header-section-number">2.3.4</span> Rendering process</h3>
 <p>When you render a Quarto document in Positron, the system processes it through computational engines—knitr for R or Jupyter for Python—that execute your code and generate markdown output. Pandoc then converts this markdown to your desired final format, such as HTML, PDF, or Word documents.</p>
 </section>
-</section>
-<section id="rstudio" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">2.3</span> RStudio</h2>
-<section id="new-file" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="new-file"><span class="header-section-number">2.3.1</span> New file…</h3>
-<p>New file, in directory, etc.</p>
-</section>
-<section id="editors" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="editors"><span class="header-section-number">2.3.2</span> Editors</h3>
-<p>…</p>
+<section id="additional-positron-features" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="additional-positron-features"><span class="header-section-number">2.3.5</span> Additional Positron features</h3>
+<p>Beyond the core authoring features, Positron provides several additional tools that enhance your Quarto workflow:</p>
 <ul>
-<li><p>outline</p></li>
-<li><p>dropdown</p></li>
+<li>Navigate long documents easily using the document <strong>outline</strong> panel in the primary sidebar.</li>
+</ul>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Screenshot of outline panel? Also, is it called panel?</p>
+</div>
+</div>
+<ul>
+<li>Insert common code patterns quickly with built-in <strong>code snippets</strong></li>
+</ul>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Screenshot of adding columns to slides maybe?</p>
+</div>
+</div>
+<ul>
+<li>Version control your Quarto documents directly from the IDE and benefit from the IDE with <strong>Git integration</strong> that intelligently adds certain files to gitignore when you create a new Quarto project.</li>
+</ul>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Screenshot of .quarto in .gitignore?</p>
+</div>
+</div>
+<ul>
+<li>Access the command line directly and in the correct working directory within the IDE’s <strong>integrated terminal</strong> for running Quarto CLI commands.</li>
 </ul>
 </section>
-<section id="running-code" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="running-code"><span class="header-section-number">2.3.3</span> Running code</h3>
-<p>…</p>
 </section>
-<section id="rendering-1" class="level3" data-number="2.3.4">
-<h3 data-number="2.3.4" class="anchored" data-anchor-id="rendering-1"><span class="header-section-number">2.3.4</span> Rendering</h3>
-<p>Use the <img src="images/rstudio-render-button.png" width="30" height="25"> <strong>Render</strong> button in the RStudio IDE to render the file and preview the output with a single click or keyboard shortcut (⇧⌘K).</p>
-<p><img src="images/rstudio-render.png" class="img-fluid"></p>
-<p>If you prefer to automatically render whenever you save, you can check the Render on Save option on the editor toolbar. The preview will update whenever you re-render the document. Side-by-side preview works for both HTML and PDF outputs.</p>
-<p><img src="images/clipboard-2945463692.png" class="img-fluid"></p>
+<section id="sec-rstudio" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-rstudio"><span class="header-section-number">2.4</span> RStudio</h2>
+<p>RStudio is an IDE specifically designed for R, and it provides excellent support for Quarto authoring. RStudio comes with Quarto pre-installed and offers a rich set of features that make it easy to create, edit, and render Quarto documents such as syntax highlighting, code completion, integrated rendering and preview, and support for both visual and source editing modes.</p>
+<section id="installation-1" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="installation-1"><span class="header-section-number">2.4.1</span> Installation</h3>
+<p>To get started with Quarto in RStudio, download and install the latest version of RStudio from <a href="https://posit.co/download/rstudio-desktop/">posit.co/download/rstudio-desktop</a>. Also make sure that you have R installed on your system, which you can get from <a href="https://cran.r-project.org">cran.r-project.org</a>.</p>
 </section>
-</section>
-<section id="jupyterlab" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="jupyterlab"><span class="header-section-number">2.4</span> JupyterLab</h2>
+<section id="core-features-1" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="core-features-1"><span class="header-section-number">2.4.2</span> Core features</h3>
+<p>Like Positron, RStudio provides several features that make Quarto authoring efficient and productive.</p>
+<p>For example, you can use the <strong>Render</strong> button or keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux) to render <code>.qmd</code> files to HTML, PDF, Word, or other formats. The “Render on Save” option enables automatic updates during editing, so your preview refreshes every time you save your document.</p>
+<p>Features like dual editor mode, interactive code execution, and side-by-side preview are also available in RStudio, providing a seamless authoring experience just like in Positron. However, some of these features can be accessed in different ways in RStudio:</p>
 <ul>
-<li>ipynb vs.&nbsp;qmd: from now on Quarto document usually means qmd but things translate to ipynb – orient for qmd-specific language throughout book and how that translates to ipynb * and maybe another chapter somewhere specifically about this if this gets too long</li>
+<li><strong>Dual editor modes:</strong> Switch between source and visual editing modes using the buttons in the toolbar or the keyboard shortcut (⌘⇧F4 on macOS, Ctrl+Shift+F4 on Windows/Linux).</li>
+</ul>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Screenshot?</p>
+</div>
+</div>
+<ul>
+<li><strong>Interactive code execution:</strong> Run individual code chunks within the editor using the run button or ⇧⌘⏎ (Ctrl+Shift+Enter on Windows/Linux) shortcut without rendering the entire document.</li>
+</ul>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Screenshot?</p>
+</div>
+</div>
+</section>
+<section id="rendering-process-1" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="rendering-process-1"><span class="header-section-number">2.4.3</span> Rendering process</h3>
+<p>The rendering workflow in RStudio follows this sequence: first, knitr executes all of the code chunks and creates a new markdown (<code>.md</code>) document that includes both your original markdown content and the output from your code chunks. The markdown file generated is then processed by Pandoc, which creates the finished format.</p>
+<p>This two-step approach enables seamless integration of executable code with formatted output, making Quarto ideal for reproducible research and technical documentation.</p>
+</section>
+<section id="additional-rstudio-features" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="additional-rstudio-features"><span class="header-section-number">2.4.4</span> Additional RStudio features</h3>
+<p>Like Positron, RStudio also offers an integrated terminal and Git integration.</p>
+<p>The document outline looks a bit different in RStudio, located in the editor pane.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Screenshot of outline panel in RStudio?</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Anything about code snippets in RStudio? I don’t use them so I’m not sure.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-other-tools" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sec-other-tools"><span class="header-section-number">2.5</span> Other tools</h2>
+<p>While Positron and RStudio offer rich, integrated experiences for Quarto authoring, you can use Quarto with many other tools depending on your preferences and workflow.</p>
+<section id="vs-code" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="vs-code"><span class="header-section-number">2.5.1</span> VS Code</h3>
+<p>Visual Studio Code with the Quarto extension provides excellent support for authoring Quarto documents. The extension offers preview, syntax highlighting, code completion, and integrated terminal access. VS Code is particularly popular among Python developers and those who work across multiple programming languages.</p>
+<p>To get started with VS Code, first install VS Code from <a href="https://code.visualstudio.com">code.visualstudio.com</a>. Then install the Quarto CLI from <a href="https://quarto.org/docs/get-started/">quarto.org</a> and the Quarto extension from the VS Code marketplace.</p>
+<p>Similar to Positron and RStudio, you can preview documents with the keyboard shortcut ⇧⌘K (Ctrl+Shift+K on Windows/Linux) and run individual code cells with ⇧⌘⏎ (Ctrl+Shift+Enter on Windows/Linux).</p>
+</section>
+<section id="jupyterlab" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="jupyterlab"><span class="header-section-number">2.5.2</span> JupyterLab</h3>
+<p>If you’re already working with Jupyter notebooks (<code>.ipynb</code> files), you can use Quarto to render them to various output formats. JupyterLab provides an interactive environment for working with notebooks, and the Quarto CLI can render these notebooks just as it renders <code>.qmd</code> files.</p>
+<p>You can also work with <code>.qmd</code> files directly in JupyterLab by installing the Quarto extension, which enables preview and rendering capabilities within the JupyterLab interface.</p>
+</section>
+<section id="neovim-and-vim" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="neovim-and-vim"><span class="header-section-number">2.5.3</span> Neovim and Vim</h3>
+<p>For developers who prefer terminal-based editors, both Neovim and Vim can be configured to work with Quarto documents. Community-developed plugins provide features like syntax highlighting, code execution, and preview integration.</p>
+</section>
+<section id="other-editors" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="other-editors"><span class="header-section-number">2.5.4</span> Other editors</h3>
+<p>Since Quarto documents are plain text files, you can author them in virtually any text editor:</p>
+<ul>
+<li><strong>Emacs:</strong> With Markdown mode and language-specific modes (ESS for R, python-mode, etc.)</li>
+<li><strong>Sublime Text:</strong> Using markdown packages and build systems</li>
+<li><strong>Zed:</strong> With markdown support and terminal integration</li>
+<li><strong>Any plain text editor:</strong> You can always author in your favorite editor and use <code>quarto render</code> from the command line</li>
 </ul>
 </section>
-<section id="vscode" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="vscode"><span class="header-section-number">2.5</span> VSCode</h2>
 </section>
-<section id="choosing-a-tool" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="choosing-a-tool"><span class="header-section-number">2.6</span> Choosing a tool</h2>
+<section id="sec-choosing-tool" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="sec-choosing-tool"><span class="header-section-number">2.6</span> Choosing a tool</h2>
+<p>The best tool for Quarto authoring depends on your specific needs and existing workflow:</p>
 <ul>
-<li>whatever you already use</li>
-<li>one possible criterion: visual editor with various tools and mention how it will be called out</li>
+<li><p>If you primarily work with R, RStudio provides the most integrated experience with excellent support for R-specific features</p></li>
+<li><p>If you’re working with multiple languages or prefer a modern IDE, Positron offers a comprehensive environment with strong support for both R and Python</p></li>
+<li><p>If you already use VS Code for development, adding the Quarto extension gives you powerful Quarto capabilities in your familiar environment.</p></li>
+<li><p>If you work extensively with Jupyter notebooks, continuing to use JupyterLab while leveraging Quarto for rendering may be the most natural fit.</p></li>
+<li><p>If you prefer keyboard-driven, terminal-based workflows, editors like Neovim or Vim can be configured to work effectively with Quarto.</p></li>
 </ul>
+<p>Throughout this book, we’ll call out features specific to the visual editor available in RStudio and Positron when relevant, as this mode provides a different authoring experience compared to working directly with markdown source.</p>
+<p>However, all the concepts and techniques we cover are applicable regardless of which tool you choose.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Try all shortcuts with default settings before finalizing.</p>
+</div>
+</div>
 
 
 </section>
@@ -929,8 +1126,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./authoring.html" class="pagination-link" aria-label="Authoring">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Authoring</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./writing.html" class="pagination-link" aria-label="Writing content">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Writing content</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -938,7 +1135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Quarto: The Definitive Guide was written by Mine Çetinkaya-Rundel and Charlotte Wickham.</p>
+<p>Quarto: The Practical Guide was written by Mine Çetinkaya-Rundel and Charlotte Wickham.</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
