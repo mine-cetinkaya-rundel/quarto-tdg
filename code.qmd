@@ -1,0 +1,134 @@
+# Adding code {#sec-code}
+
+In @sec-writing you concentrated on adding content by writing markdown.
+In this section, you learn about adding content that is the result of executing code cells.
+
+Executable code cells are Quarto's superpower. 
+Rather than manually creating static images or copying values into tables, you embed code that produces these outputs directly.
+Whenever you render your document, your tables and figures are regenerated, ensuring they are always in sync with your latest data or analysis updates. 
+
+You'll get a high level overview in this section, with examples presented in both R and Python so you can pick whichever makes sense for your workflow. 
+You can dive deeper into the details specific to each language in @sec-r and @sec-python.
+Not interested in computation? You can safely skip this chapter.
+
+## Requirements
+
+Quarto requires a working computational environment to render executable code cells.
+
+To verify Quarto can find your environment, run:
+
+```{.bash filename="Terminal"}
+quarto check
+```
+
+You need only one of the following:
+
+- **R**: Install R and the `knitr` package. Check the `Checking R installation` section in the `quarto check` output.
+
+- **Python**: Install Python and the `jupyter` package. Check the `Checking Python 3 installation` section in the `quarto check`  output.
+
+## Syntax
+
+A code cell starts and ends with three backticks. 
+The language is specified in curly braces after the opening backticks:
+
+::: {.panel-tabset group="language"}
+
+## R
+
+````markdown
+```{{r}}
+# R code goes here
+```
+````
+
+## Python
+
+````markdown
+```{{python}}
+# Python code goes here
+```
+````
+
+:::
+
+
+Inside a code cell, you can only include:
+
+- Code in the expected language
+- Code comments (including special comments for options, see @sec-code-cell-options)
+- Blank lines
+
+::: {.callout-tip}
+## Add a code cell using a shortcut
+
+TODO: Link back to tools
+:::
+
+## Code cell options {#sec-code-cell-options}
+
+Code cell options control how a code cell is executed and how its output appears in your document. 
+You set options using a special comment at the top of the code cell that starts with `#|`.
+For example, set the `echo` option to `false`:
+
+::: {.panel-tabset group="language"}
+
+## R
+ 
+````{.markdown}
+```{{r}}
+#| echo: false
+1 + 1
+```
+````
+ 
+## Python
+ 
+````{.markdown}
+```{{python}}
+#| echo: false
+1 + 1
+```
+````
+ 
+:::
+
+Each option should be on its own line (starting with `#|`). 
+
+Some options control how your code is executed or appears in your output:
+
+- `echo`: Controls whether the code itself appears in the output. Set to `false` to hide the code and show only the results.
+
+- `include`: Controls whether both the code and its output appear in the document. Set to `false` to run the code but hide everything from the output.
+
+These options can generally be set for all code cells by moving the option to the document header:
+
+```yaml
+---
+title: "My Document"
+echo: false
+---
+```
+
+Other options might add information specific to the code cell:
+
+- `label`: Assigns a identifier to the code cell, which you can use to cross-reference figures or tables produced by the cell.
+
+- `fig-cap`: Adds a caption to a figure produced by the code cell.
+
+You'll learn how to know which options are available and where to put them in  @sec-execution-options.
+
+## Basics of execution
+
+When you render a Quarto document containing code cells, Quarto executes the code and incorporates the results into your output.
+
+There are a few key things to know about how this process works:
+
+- **Quarto chooses an engine**: Unless you've specified otherwise, Quarto selects an execution engine based on the language of the code cells in your documents. Documents with R code cells use the `knitr` engine; documents with Python code cells use the `jupyter` engine.
+
+- **The engine executes code in a clean session**: Each time you render, Quarto starts a fresh R or Python session. This means your document needs to explicitly load any required packages or data.
+
+- **Code cells are executed one at a time, top to bottom**: The engine runs each code cell in order, from the first cell in your document to the last. This means a code cell can use objects created by earlier cells, but not by later ones.
+
+Learn more about this process and troubleshooting in @sec-troubleshooting.
+

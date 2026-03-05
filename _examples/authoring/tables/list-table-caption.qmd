@@ -1,0 +1,4 @@
+::: {#tbl-perf}
+{{< include _examples/authoring/tables/list-table.qmd >}}
+Training performance
+:::

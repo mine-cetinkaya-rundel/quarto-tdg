@@ -1,6 +1,4 @@
----
-title: Presentations
----
+# Presentations {#sec-presentations}
 
 Quarto supports a variety of formats for creating presentations, including:
 

@@ -296,7 +296,7 @@ To link to a cross-reference on another page, you could use a link:
 Recall from the [histogram of the data](explore.qmd#fig-dist)...
 ```
 
-If you must have across page cross-references, consider using a `book` project instead, see @sec-books.
+If you must have across page cross-references, consider using a `book` project instead.
 
 ### Aliases
 
@@ -1467,7 +1467,7 @@ Quarto will prefer the document metadata, but fall back to website metadata if d
 
 ### `quarto publish`
 
-You saw how to use `quarto publish` in @sec-publishing.
+You saw how to use `quarto publish` to publish a single document in @sec-sharing.
 To publish a website using `quarto publish` simply run Quarto publish from the project root:
 
 ```{.bash}
@@ -1499,6 +1499,74 @@ quarto render
 
 As a concrete example, Netlify (although also supported by `quarto publish`) has a drag and drop UI for deploying a website called [Netlify Drop](https://app.netlify.com/drop).
 Drop in `_site/`, and Netlify will give you a URL at which your site is available.
+
+### Providers
+
+The `quarto publish` command supports several publishing providers.
+The three we think are most useful if you are choosing for yourself are Quarto Pub, GitHub Pages, and Netlify.
+A brief summary comparing their features is shown in @tbl-providers.
+
+| Provider   | Private Source | Private Site                 | Custom Domain |
+|------------|----------------|------------------------------|---------------|
+| Quarto Pub | ✔️             | ✖️                           | ✖️            |
+| GitHub     | Paid plans     | GitHub Enterprise Cloud only | ✔️            |
+| Netlify    | ✔️             | Paid plans                   | ✔️            |
+
+: A comparison of three popular publishing providers {#tbl-providers}
+
+You can specify the provider directly in the call to `quarto publish`:
+
+``` {.bash filename="Terminal"}
+quarto publish quarto-pub
+```
+
+#### GitHub Pages {#sec-publishing-github}
+
+``` {.bash filename="Terminal"}
+quarto publish gh-pages
+```
+
+[GitHub Pages](https://pages.github.com) is a hosting service provided by GitHub at the repository level.
+If you are storing your source on GitHub anyway, it makes sense to also publish via GitHub Pages.
+
+When you publish, Quarto creates a special `gh-pages` branch, renders your document or project to this branch, and pushes this branch to GitHub.
+This branch is then processed on GitHub's side, making it available at a URL of the form `{ user }.github.io/repo-name`.
+
+If you use GitHub through one of its "Free" plans you can only use GitHub Pages on public repositories.
+If you'd prefer your source documents weren't available publicly you'll either need to upgrade your GitHub plan, or use something like Netlify or Quarto Pub instead.
+
+You can read more about publishing to GitHub with `quarto publish` on the [GitHub Pages page](https://quarto.org/docs/publishing/github-pages.html#publish-command) in the Quarto documentation.
+
+An alternative to using `quarto publish` is to commit your rendered document or site to your repository in a `docs/` folder and set GitHub Pages to publish from there.
+You can read more about this workflow at [Render to `docs`](https://quarto.org/docs/publishing/github-pages.html#render-to-docs) on the Quarto documentation website.
+
+#### Netlify {#sec-publishing-netlify}
+
+``` {.bash filename="Terminal"}
+quarto publish netlify
+```
+
+[Netlify](https://www.netlify.com) provides services for building, deploying, and managing websites.
+When you publish to Netlify using `quarto publish`, your document or site will be set up as what Netlify calls a [manual deploy](https://docs.netlify.com/cli/get-started/#manual-deploys) — you deploy by *manually* running `quarto publish`.
+Your output files are sent to Netlify and Netlify serves them at a URL of the form `{ random identifier }.netlify.app`.
+
+You can manage your deployed site via Netlify's website, and Netlify includes some neat features like one-click rollbacks to a previously deployed site, and the ability to use a custom domain.
+Netlify's free plans limit how many sites you can have and how much bandwidth is used to serve them.
+However, these limits will likely not be reached for low-traffic personal sites.
+
+Rather than using `quarto publish` you can get Netlify to deploy from Git provider.
+In this workflow, you commit your rendered document or site to your repository in a folder (e.g. `docs/` or `_site/`) and connect Netlify to your Git provider, setting the folder as the *Publish* directory.
+You can read more about this on the Quarto documentation website at [Publish from a Git Provider](https://quarto.org/docs/publishing/netlify.html#publish-from-git-provider).
+
+Netlify excels in continuous integration and you can set it up to preview deployments based on branches or pull requests.
+These features require a more complicated publishing setup you'll learn about in @sec-ci.
+
+#### Other providers
+
+You are most likely to use [Posit Connect](https://posit.co/products/enterprise/connect/) or [Confluence](https://www.atlassian.com/software/confluence) in organizational settings where your IT department will manage them.
+[Hugging Face](https://huggingface.co) has a more complicated setup and probably only makes sense if you are using Hugging Face beyond Quarto already.
+
+You can read more about the details of publishing in the [Publishing Guide](https://quarto.org/docs/publishing/) on the Quarto documentation website.
 
 ## Continuous integration {#sec-ci}
 
@@ -1589,7 +1657,7 @@ Local code execution, with remote rendering provides a good middle ground.
 You aren't burdened with setting up, and maintaining a remote code execution environment,
 but you also don't have to store a whole lot of rendered output in your repo.
 
-This approach requires using `freeze` (@sec-freeze-cache) to store the results of the code execution.
+This approach requires using `freeze` to store the results of the code execution.
 You run `quarto render` locally, as required, to generate `_freeze/`.
 You then check `_freeze/`, but not `_site/`, into version control.
 Your CI agent then uses the Quarto CLI to render and publish your site.

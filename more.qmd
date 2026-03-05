@@ -2,4 +2,22 @@
 title: Doing more with Quarto
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel volutpat dui. Praesent vitae urna nec lorem feugiat consequat. Nunc ex nisi, posuere a lorem a, iaculis euismod tellus. Sed laoreet justo sit amet commodo suscipit. Curabitur gravida elit fermentum leo pulvinar, ac laoreet lectus iaculis. Quisque eu fringilla tellus, sit amet sollicitudin massa. In justo lorem, imperdiet laoreet interdum non, finibus in risus. In egestas fringilla nisl eu blandit.
+Wrapping Up
+
+Next Steps:
+
+## Quarto books
+
+## Quarto dashboards
+
+Just like you can use Quarto to create documents, websites, books, etc., you can also use it to create dashboards.
+The dashboards gallery <!--# TO DO: Add link --> is a great place to peruse some dashboard examples made in Quarto.
+As you do so, pay attention to whether they're organized with content in columns first and then broken into rows or in rows first and then broken into columns.
+This thinking process will help you design your own dashboards as well.
+
+A Quarto dashboard is a single notebook (either `.qmd` or `.ipynb`) where `format: dashboard`.
+
+
+## Quarto extensions {#sec-extensions}
+
+## Templates and partials {#sec-templates}

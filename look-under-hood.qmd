@@ -1,8 +1,9 @@
 ---
-title: Looking under the hood
 engine: markdown
 code-overflow: wrap
 ---
+
+# Troubleshooting {#sec-troubleshooting}
 
 So far, we haven't talked much about what happens behind the scenes when you run `quarto render`.
 
@@ -686,7 +687,7 @@ engine: markdown
 #### Wrong Environment
 
 The usual symptom of Quarto not using the right environment is the failure to load packages you are sure you installed.
-Troubleshooting your environment is language-specific, and you should refer back to the relevant sections of @sec-r, @sec-python, and @sec-julia.
+Troubleshooting your environment is language-specific, and you should refer back to the relevant sections of @sec-r and @sec-python.
 
 #### Code Errors
 

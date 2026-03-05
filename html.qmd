@@ -1,0 +1,36 @@
+# HTML {#sec-html}
+
+## Self-contained HTML {#sec-sharing-other-ways}
+
+You can share self-contained output files like PDFs or MS Word documents in any usual way: by email, placing on a shared drive, or using cloud storage.
+You can do the same with other output files but you need to be careful to also share any dependencies of those files.
+
+For HTML output one option is to set the `embed-resources` option to `true`:
+
+``` {.yaml filename="document.qmd"}
+---
+title: Self Contained HTML
+format:
+  html:
+    embed-resources: true
+---
+```
+
+When rendered this ensures all required dependencies are embedded directly in output `.html` file.
+You can then send, or otherwise share this one file (e.g. `document.html`) and it will appear the same to your viewers as it does to you.
+
+If your document contains math, and you might view it offline, add `self-contained-math: true` to ensure the math libraries are also embedded (by default they aren't because they are quite large):
+
+``` {.yaml filename="document.qmd"}
+---
+title: Self Contained HTML
+format:
+  html:
+    embed-resources: true
+    self-contained-math: true
+---
+```
+
+## Share a directory
+
+Another option for HTML output is to use a project, set an output directory (`output-dir`), render and share the entire directory.

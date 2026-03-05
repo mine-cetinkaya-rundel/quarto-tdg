@@ -1,0 +1,9 @@
+::: {.callout-caution}
+## Preliminary Data
+
+These results are preliminary and subject to change. Use caution when drawing conclusions.
+:::
+
+@fig-response shows a notable decline in the survey response rate over time.
+
+![Survey response rate over time](images/response.png){#fig-response}

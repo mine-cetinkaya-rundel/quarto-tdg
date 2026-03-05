@@ -1,4 +1,4 @@
-# Tools {#sec-tools}
+# Your Quarto workflow {#sec-tools}
 
 You do not need a specific tool for authoring and rendering Quarto documents.
 You can author Quarto documents in any plain text editor and render them with the `quarto render` command in your computer's terminal.

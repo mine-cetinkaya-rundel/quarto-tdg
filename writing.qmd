@@ -1,0 +1,140 @@
+# Writing content {#sec-writing}
+
+Beyond the document header and executable code cells, the content of a Quarto document is written in markdown.
+But not just any flavor of markdown, Quarto's own flavor called **Quarto markdown**.
+In this chapter, you'll learn just enough about Quarto markdown to get you writing simple documents right away. 
+We'll tease you with some of the rich content you can create with Quarto markdown, but delay a comprehensive coverage of things like equations, cross-references, citations, callouts, figures and tables to @sec-authoring.
+
+## Basics
+
+Markdown is a plaintext syntax for describing document structure.
+Here's some example markdown in a Quarto document:
+
+```` {.markdown filename="document.qmd"}
+## My First Section
+
+This is the first paragraph with some **bold text** and *italic text*.
+You can also include `code` to show function names or variables.
+
+Here's a second paragraph with a [link to Quarto](https://quarto.org).
+You might also want to use *italic text* for emphasis.
+````
+
+Markdown is a popular format, so the syntax above may be familiar.
+You've likely used it if you've opened an issue on Github, or formatted some text in a Discord post.
+However, as markdown's popularity has grown, so has the number of variants, or flavors, of the syntax.
+
+The example above illustrates components of markdown syntax that are common across many markdown variants:
+
+* Headings: text prefaced by one or more hashes (`#`), surrounded by blank lines.
+
+* Paragraphs: text separated by blank lines.
+
+* Bold: text surrounded by `**`
+
+* Italic: text surrounded by `*`
+
+* Code: text surrounded by `` ` ``
+
+* Links: text inside square brackets (`[]`) followed by a URL in parentheses (`()`)
+
+When rendered the structure described by markdown is translated to the relevant components in the target format, e.g. HTML tags for `format: html`, or Typst functions for `format: typst`.
+
+TODO: screenshots of rendered output
+
+## Features of Quarto markdown
+
+Describing basic document structure, like headings and paragraphs, and simple text formatting is enough to get started with Quarto. 
+But you may soon be looking for richer content like tables, figures, code blocks, citations, and cross-references.
+Adding these components is a matter of adding the appropriate Quarto markdown.
+As a teaser, here's an example contains a callout and a cross-reference:
+
+````{.markdown filename="document.qmd" .code-overflow-wrap}
+{{< include _examples/writing/features/document.qmd >}}
+````
+
+It is important to remember that Quarto markdown is a specific flavor of markdown---although it shares much of its syntax with other variants you shouldn't expect a component of any arbitrary markdown variant to work with Quarto.
+
+The above example illustrates two pieces of syntax you'll see often in Quarto markdown that you might not have seen in other variants:
+
+* Attributes: additional metadata for a component specified inside curly braces, e.g the `{#fig-repsonse}` on the image. You'll see lots of examples in @sec-authoring, and can specifically learn more in @tip-attributes.
+
+* Fenced divs: blocks of content inside colon delimited sections, often with attributes attached, e.g. the callout:
+  
+  ```markdown
+  ::: {.callout-caution}
+  Content
+  :::
+  ``` 
+
+  Fenced divs are used in Quarto to implement lots of different block level treatments: callouts, figure or table panels, and complex layouts.
+
+@sec-authoring covers the most useful features of Quarto markdown in more detail.
+
+## Things to watch out for
+
+### White space matters (sometimes)
+
+You can often ignore whitespace when you are writing Quarto markdown.
+For example, extra spaces inline with text are ignored, as are newlines within a paragraph.
+That is, the following markdown snippets are equivalent:
+
+::: {layout-ncol=2}
+
+``` {.markdown}
+A sentence  with   weird     spacing.   And    another.
+This is on a new line.
+```
+
+```{.markdown}
+A sentence with weird spacing. And another. This is on a new line.
+```
+
+:::
+
+However, there are some places white space is important:
+
+* **Blank lines**: you must have a blank line before the items in a list, and before a code block or cell. Without the blank line, Quarto won't identify the component correctly, so you'll get list items that all appear on a single line, or a code block syntax (the `` ``` ``) showing up in the rendered document.
+
+* **Indentation**: items in a list need consistent indentation. Problems with indentation most often occur when an item has multiple paragraphs, or contains something like a code block. You'll notice that your items don't seem properly aligned in the output (usually not enough indentation), or something suddenly looks like a code block (usually too much indentation).
+
+If your content isn't rendering as expected, double-check your use of whitespace.
+
+### The difference between code blocks and code cells
+
+There is a distinction between:
+
+* **Code cells**, sometimes also called **code chunks**, are code that will be executed and replaced with computational output. Code cells use the syntax:
+
+    ````markdown
+    ```{{r}}
+    # Code to be executed
+    ```
+    ````
+
+    Code cells are the subject of the next chapter, @sec-code
+
+* **Code blocks** are code that should be syntax highlighted but simply displayed, not executed. Code blocks use the syntax:
+
+    ````markdown
+    ```{.r}
+    # Code to be displayed
+    ```
+    ````
+
+    Or the syntax:
+
+    ````markdown
+    ``` r
+    # Code to be displayed
+    ```
+    ````
+
+    You'll can more about code blocks in @sec-code-blocks.
+
+The syntax difference, as little as a `.`, means it is easy to mistake one for the other in your document.
+However, the differences in behavior are huge---code cells are handled by the computational engine, code blocks are not. 
+When you are reading examples, or trouble-shooting your own documents, keep that distinction in mind and be wary of trying to apply solutions for code blocks to code cells and vice versa.
+
+## Wrap Up
+
