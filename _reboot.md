@@ -11,7 +11,7 @@ A restructured book with progressive depth, plus basic format coverage.
 
 * Mid-Jan: Existing content restructured
 * Late-Jan: Tools chapter merged in
-* Feb: Opt-in to new quarto markdown syntax
+* Feb: Opt-in to new quarto markdown syntax (not relevant anymore, 1.9 isn't using it)
 * Late-March/early-April: First draft complete
 * Summer: reviews, revisions, final production
 
@@ -19,69 +19,39 @@ A restructured book with progressive depth, plus basic format coverage.
 
 New Quarto users who want to learn Quarto systematically. The book takes readers from zero to competent, with enough depth to work independently. Not a quick-start guide, but not an exhaustive reference either.
 
-## Chapter Listing
+## Chapter Status
 
-| Part | Chapter | Content Notes |
-|------|---------|---------------|
-| **Getting started** | Welcome | What is Quarto, installation, first document |
-| | Quarto | What is Quarto, key features |
-| | Your Quarto workflow | Tools (CLI, IDE basics), preview, render |
-| | Writing content | Markdown essentials - headings, text, lists, links, images |
-| | Adding code | Code cells, basic execution options (echo, eval, output) |
-| | Setting options | YAML basics - document options, where to put them |
-| | Sharing your work | Publishing basics - `quarto publish`, providers overview |
-| **Computation** | Quarto and R | R-specific computation with knitr |
-| | Quarto and Python | Python-specific computation with Jupyter |
-| | Freezing and caching | Managing computation for reproducibility |
-| **Mastering Quarto** | Markdown | Full authoring reference - tables, equations, citations, callouts, layout |
-| | Projects | Project structure, shared configuration |
-| | Options | Full YAML syntax, option scopes, troubleshooting |
-| | Troubleshooting | Rendering pipeline, troubleshooting, getting help |
-| **Formats** | HTML documents | Basic HTML options, themes, TOC, code display |
-| | Typst documents | Why Typst, basic setup, PDF output |
-| | Presentations | revealjs basics - slides, sections, speaker notes |
-| | Websites | Minimal website, pages, navigation basics, publishing |
-| **Doing more with Quarto** | | Books, dashboards, and next steps |
-| **Appendix** | Jupyter | Using Quarto with .ipynb files |
+| Chapter | Link | Lines | Status |
+|---------|------|------:|--------|
+| Welcome | [index.qmd](https://quarto-tdg.org/) | 67 | ✅ Complete |
+| **Part: Getting started** | [part-getting-started.qmd](https://quarto-tdg.org/part-getting-started.html) | 2 | Part intro |
+| Quarto | [quarto.qmd](https://quarto-tdg.org/quarto.html) | 49 | ✅ Complete |
+| Tools | [tools.qmd](https://quarto-tdg.org/tools.html) | 52 | 🔶 In-progress |
+| Writing content | [writing.qmd](https://quarto-tdg.org/writing.html) | 140 | ✅ Just needs "Wrap up" |
+| Adding code | [code.qmd](https://quarto-tdg.org/code.html) | 134 |  ✅ Complete |
+| Setting options | [options.qmd](https://quarto-tdg.org/options.html) | 140 |  ✅ Complete |
+| Sharing your work | [sharing.qmd](https://quarto-tdg.org/sharing.html) | 140 | 🔶 Needs updating to use Connect Cloud |
+| **Part: Computation** | [computation.qmd](https://quarto-tdg.org/computation.html) | 2 | Part intro |
+| Quarto and R | [r.qmd](https://quarto-tdg.org/r.html) | 17 | 🔴 Notes only |
+| Quarto and Python | [python.qmd](https://quarto-tdg.org/python.html) | 14 | 🔴 Notes only |
+| **Part: Documents** | [part-formats.qmd](https://quarto-tdg.org/part-formats.html) | 2 | Part intro |
+| HTML | [html.qmd](https://quarto-tdg.org/html.html) | 36 | 🔴 Some notes |
+| PDF | [typst.qmd](https://quarto-tdg.org/typst.html) | 2 | 🔴 Placeholder |
+| Presentations | [presentations.qmd](https://quarto-tdg.org/presentations.html) | 56 | 🔶 Started |
+| **Part: Mastering Quarto** | [part-going-deeper.qmd](https://quarto-tdg.org/part-going-deeper.html) | 2 | Part intro |
+| Authoring | [authoring.qmd](https://quarto-tdg.org/authoring.html) | 1104 | ✅ Substantial |
+| Projects | [projects.qmd](https://quarto-tdg.org/projects.html) | 579 | ✅ Complete |
+| Websites | [websites.qmd](https://quarto-tdg.org/websites.html) | 1820 | ✅ Substantial |
+| Setting options with YAML | [yaml.qmd](https://quarto-tdg.org/yaml.html) | 873 | ✅ Substantial |
+| Looking under the hood | [look-under-hood.qmd](https://quarto-tdg.org/look-under-hood.html) | 818 | ✅ Substantial |
+| Doing more with Quarto | [more.qmd](https://quarto-tdg.org/more.html) | 23 | 🔴 Outline only |
+| **Appendix** ||||
+| Jupyter | [jupyter.qmd](https://quarto-tdg.org/jupyter.html) | 11 | 🔴 Notes only |
 
-## Existing Work to Use
+### Summary
 
-| Content | Source | Usage |
-|---------|--------|-------|
-| authoring.qmd | authoring branch | Split: essentials → Writing content, depth → Markdown |
-| yaml.qmd | main | Split: basics → Setting options, depth → Options |
-| look-under-hood.qmd | main | Condense for Troubleshooting |
-| projects.qmd | main | Use as Projects |
-| publishing.qmd | main | Split: basics → Sharing your work, details in Websites |
-| tools.qmd | tools branch | Condense for Your Quarto workflow |
-| websites.qmd | main | Heavily condense for Websites |
-| quarto.qmd | main | Expand for Quarto chapter |
-
-## Work to Complete
-
-| Chapter | Work Needed |
-|---------|-------------|
-| Welcome | Expand intro |
-| Quarto | Expand existing |
-| Your Quarto workflow | Condense tools, focus on workflow |
-| Adding code | New chapter - code cell basics |
-| Quarto and R | New chapter - R-specific computation |
-| Quarto and Python | New chapter - Python-specific computation |
-| Freezing and caching | New chapter - freeze and cache options |
-| HTML documents | New chapter - HTML basics |
-| Typst documents | New chapter - Typst intro |
-| Presentations | Expand existing |
-| Websites | Condense existing |
-| Doing more with Quarto | New chapter - books, dashboards, next steps |
-
-## Brand New Content
-
-| Chapter | Notes |
-|---------|-------|
-| Adding code | Code cell basics |
-| Quarto and R | R-specific computation with knitr |
-| Quarto and Python | Python-specific computation with Jupyter |
-| Freezing and caching | Managing computation |
-| HTML documents | HTML format options |
-| Typst documents | Typst intro |
-| Doing more with Quarto | Books, dashboards, next steps |
+| Status | Count |
+|--------|------:|
+| ✅ Substantial/Complete | 10 |
+| 🔶 In progress | 3 |
+| 🔴 Placeholder/Notes | 6 |
