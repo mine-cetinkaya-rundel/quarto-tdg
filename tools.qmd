@@ -9,6 +9,18 @@ Additionally, most modern IDEs offer intelligent code assistance, auto-completio
 
 In this chapter we detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring.
 
+## Document structure
+
+Quarto documents are plain text files that use markdown syntax for formatting and can include executable code chunks.
+They have the file extension `.qmd` and can be rendered to various output formats such as HTML, PDF, Word documents, and more.
+They are comprised of three main components: a YAML header for metadata, markdown text for content, and code chunks for executable code.
+
+1. **YAML header**: Metadata enclosed by `---` markers, including the title, format, theme, and other document options.
+
+2. **Code chunks**: Executable code cells marked with ` ```{r} ` or ` ```{python} ` that can include optional chunk options to control execution and output.
+
+3. **Markdown text**: Formatted text using standard markdown syntax for headings, lists, links, emphasis, and more.
+
 ## Quarto CLI {#sec-quarto-cli}
 
 Before diving into specific IDEs, let's start with the fundamentals: the Quarto Command Line Interface (CLI).
@@ -72,7 +84,7 @@ or you can use `--help` with any command to see available options and usage info
 quarto render --help
 ```
 
-Now that you understand the foundational CLI commands, let's explore how different IDEs integrate these capabilities into their interfaces to provide a more seamless authoring experience.
+Now that you understand the structure of Quarto documents and foundational CLI commands, let's explore how different IDEs integrate these capabilities into their interfaces to provide a more seamless authoring experience.
 
 ## Positron {#sec-positron}
 
@@ -124,43 +136,102 @@ The typical workflow for authoring Quarto documents in Positron follows these st
 When you render a Quarto document in Positron, the system processes it through computational engines—knitr for R or Jupyter for Python—that execute your code and generate markdown output.
 Pandoc then converts this markdown to your desired final format, such as HTML, PDF, or Word documents.
 
-## RStudio
 
-### New file...
+## RStudio {#sec-rstudio}
 
-New file, in directory, etc.
+RStudio is an IDE specifically designed for R, and it provides excellent support for Quarto authoring.
+RStudio comes with Quarto pre-installed and offers a rich set of features that make it easy to create, edit, and render Quarto documents such as syntax highlighting, code completion, integrated rendering and preview, and support for both visual and source editing modes.
 
-### Editors
+### Installation
 
-...
+To get started with Quarto in RStudio download and install the latest version of RStudio from [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/).
+Also make sure that you have R installed on your system, which you can get from [cran.r-project.org](https://cran.r-project.org).
 
--   outline
+### Core features
 
--   dropdown
+RStudio provides several features that make Quarto authoring efficient and productive:
 
-### Running code
+**Rendering**: Use the **Render** button or keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux) to render `.qmd` files to HTML, PDF, Word, or other formats.
+The "Render on Save" option enables automatic updates during editing, so your preview refreshes every time you save your document.
 
-...
+**Dual editor modes**: RStudio offers both visual and source editing modes. The visual editor provides a WYSIWYM (What You See Is What You Mean) experience with formatting toolbars that make it easy to add formatted text, tables, images, and citations without memorizing markdown syntax.
+The source mode displays raw markdown and code, giving you complete control over the document structure.
 
-### Rendering
+**Interactive code execution**: Run individual code chunks within the editor using the run button or ⇧⌘⏎ (Ctrl+Shift+Enter on Windows/Linux) shortcut without rendering the entire document.
+This allows you to test and debug your code incrementally.
 
-Use the ![](images/rstudio-render-button.png){width="30" height="25"} **Render** button in the RStudio IDE to render the file and preview the output with a single click or keyboard shortcut (⇧⌘K).
+**Side-by-side preview**: View your source code and rendered output simultaneously, which works for both HTML and PDF outputs.
 
-![](images/rstudio-render.png)
+### Rendering process
 
-If you prefer to automatically render whenever you save, you can check the Render on Save option on the editor toolbar.
-The preview will update whenever you re-render the document.
-Side-by-side preview works for both HTML and PDF outputs.
+The rendering workflow in RStudio follows this sequence: first, knitr executes all of the code chunks and creates a new markdown (`.md`) document that includes both your original markdown content and the output from your code chunks.
+The markdown file generated is then processed by Pandoc, which creates the finished format.
 
-![](images/clipboard-2945463692.png)
+This two-step approach enables seamless integration of executable code with formatted output, making Quarto ideal for reproducible research and technical documentation.
 
-## JupyterLab
+### Additional RStudio features
 
--   ipynb vs. qmd: from now on Quarto document usually means qmd but things translate to ipynb -- orient for qmd-specific language throughout book and how that translates to ipynb \* and maybe another chapter somewhere specifically about this if this gets too long
+Beyond the core authoring features, RStudio provides several additional tools that enhance your Quarto workflow:
 
-## VSCode
+- **Document outline**: Navigate long documents easily using the outline panel
+- **Code snippets**: Insert common code patterns quickly with built-in snippets
+- **Project integration**: Manage Quarto projects with multiple files and shared configurations
+- **Git integration**: Version control your Quarto documents directly from the IDE
+- **Spell checking**: Catch spelling errors in your markdown text
 
-## Choosing a tool
+## Other tools {#sec-other-tools}
 
--   whatever you already use
--   one possible criterion: visual editor with various tools and mention how it will be called out
+While Positron and RStudio offer rich, integrated experiences for Quarto authoring, you can use Quarto with many other tools depending on your preferences and workflow.
+
+### VS Code
+
+Visual Studio Code with the Quarto extension provides excellent support for authoring Quarto documents.
+The extension offers preview, syntax highlighting, code completion, and integrated terminal access.
+VS Code is particularly popular among Python developers and those who work across multiple programming languages.
+
+To get started with VS Code:
+
+1. Install VS Code from [code.visualstudio.com](https://code.visualstudio.com)
+2. Install the Quarto extension from the VS Code marketplace
+3. Install the Quarto CLI from [quarto.org](https://quarto.org)
+
+### JupyterLab
+
+If you're already working with Jupyter notebooks (`.ipynb` files), you can use Quarto to render them to various output formats.
+JupyterLab provides an interactive environment for working with notebooks, and the Quarto CLI can render these notebooks just as it renders `.qmd` files.
+
+You can also work with `.qmd` files directly in JupyterLab by installing the Quarto extension, which enables preview and rendering capabilities within the JupyterLab interface.
+
+### Neovim and Vim
+
+For developers who prefer terminal-based editors, both Neovim and Vim can be configured to work with Quarto documents.
+Community-developed plugins provide features like syntax highlighting, code execution, and preview integration.
+
+### Other editors
+
+Since Quarto documents are plain text files, you can author them in virtually any text editor:
+
+- **Emacs**: With Markdown mode and language-specific modes (ESS for R, python-mode, etc.)
+- **Sublime Text**: Using markdown packages and build systems
+- **Zed**: With markdown support and terminal integration
+- **Any plain text editor**: You can always author in your favorite editor and use `quarto render` from the command line
+
+## Choosing a tool {#sec-choosing-tool}
+
+The best tool for Quarto authoring depends on your specific needs and existing workflow:
+
+- If you primarily work with R, RStudio provides the most integrated experience with excellent support for R-specific features
+
+- If you're working with multiple languages or prefer a modern IDE, Positron offers a comprehensive environment with strong support for both R and Python
+
+- If you already use VS Code for development, adding the Quarto extension gives you powerful Quarto capabilities in your familiar environment.
+
+- If you work extensively with Jupyter notebooks, continuing to use JupyterLab while leveraging Quarto for rendering may be the most natural fit.
+
+- If you prefer keyboard-driven, terminal-based workflows, editors like Neovim or Vim can be configured to work effectively with Quarto.
+
+Throughout this book, we'll call out features specific to the visual editor available in RStudio and Positron when relevant, as this mode provides a different authoring experience compared to working directly with markdown source.
+
+**TO DO: Decide on whether/how to include visual editor broadly in the book.**
+
+However, all the concepts and techniques we cover are applicable regardless of which tool you choose.
