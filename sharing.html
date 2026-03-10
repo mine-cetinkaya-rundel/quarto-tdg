@@ -374,65 +374,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The command will prompt you to select a <strong>Provider</strong>:</p>
 <pre><code>? Provider:
-❯ Quarto Pub
+❯ Posit Connect Cloud
   GitHub Pages
   Posit Connect
   Netlify
   Confluence
   Hugging Face Spaces</code></pre>
-<p>You’ll learn a bit more about the providers later in this chapter, but let’s use Quarto Pub for illustration.</p>
+<p>You’ll learn a bit more about the providers later in this chapter, but let’s use Posit Connect Cloud for illustration.</p>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><a href="https://quartopub.com">Quarto Pub</a> is a free service. To follow along, you’ll need to <a href="https://quartopub.com/sign-up"><strong>Sign Up</strong></a> for an account first.</p>
+<p><a href="https://connect.posit.cloud">Posit Connect Cloud</a> has a free tier with unlimited static documents. To follow along, you’ll need to <a href="https://connect.posit.cloud"><strong>Sign Up</strong></a> for an account first.</p>
 </div>
 </div>
 </div>
-<p>Quarto will prompt you to authorize your account when you select a Provider for the first time. This looks different for each provider, but for Quarto Pub, you’ll be asked to authorize your account via your default internet browser:</p>
-<pre><code>? Provider: › Quarto Pub
+<p>Quarto will prompt you to authorize your account when you select a Provider for the first time. This looks different for each provider, but for Posit Connect Cloud, you’ll be asked to authorize your account via your default internet browser:</p>
+<pre><code>? Provider: › Posit Connect Cloud
 ? Authorize (Y/n) ›
-❯ In order to publish to Quarto Pub you need to authorize your account.
-  Please be sure you are logged into the correct Quarto Pub account in your
+❯ In order to publish to Posit Connect Cloud you need to authorize your account.
+  Please be sure you are logged into the correct Posit Connect Cloud account in your
   default web browser, then press Enter or 'Y' to authorize.</code></pre>
-<p>Once authorized, Quarto will ask you to confirm the document title. Then Quarto will render your document one more time, before sending it (and all its required resources) to the Provider. Once done, a browser will open to view your published content, as shown in <a href="#fig-quartopub" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>.</p>
-<div id="fig-quartopub" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Screenshot of the site administration view of a published document on Quarto Pubs.">
+<p>Once authorized, Quarto will render your document one more time, before sending it (and all its required resources) to the Provider. Once done, Quarto will give you a URL to view your published content, as shown in <a href="#fig-posit-connect-cloud" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>.</p>
+<div id="fig-posit-connect-cloud" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Screenshot of the admin view of a published document on Posit Connect Cloud.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-quartopub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/publishing-quartopub.png" class="img-fluid figure-img" alt="Screenshot of the site administration view of a published document on Quarto Pubs.">
+<div aria-describedby="fig-posit-connect-cloud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/publishing-posit-connect-cloud.png" class="img-fluid figure-img" alt="Screenshot of the admin view of a published document on Posit Connect Cloud.">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-quartopub-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.1: Quarto will open a browser to view the published document. Share the link labeled “Published at”.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posit-connect-cloud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.1: After publishing, Quarto opens a browser to the content view on Posit Connect Cloud.
 </figcaption>
 </figure>
 </div>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>The URL Quarto returns is for managing your content, not for sharing. To find your shareable URL, navigate to <strong>Settings</strong> &gt; <strong>URL</strong>, as shown in <a href="#fig-posit-connect-cloud-settings" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>.</p>
+<div id="fig-posit-connect-cloud-settings" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Screenshot of the Settings URL page on Posit Connect Cloud showing the Default URL.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-posit-connect-cloud-settings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/publishing-posit-connect-cloud-settings.png" class="img-fluid figure-img" alt="Screenshot of the Settings URL page on Posit Connect Cloud showing the Default URL.">
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Your view depends on whether you are logged into Quarto Pub
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-posit-connect-cloud-settings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6.2: The Settings &gt; URL page shows the Default URL for sharing your content.
+</figcaption>
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you aren’t logged in to Quarto Pubs your browser will open to the public URL, rather than the site administration view shown in <a href="#fig-quartopub" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>.</p>
-</div>
-</div>
-<p>Pages published on Quarto Pub have public URLs of the form: <code>{ username }.quarto.pub/{ document_title }/</code>. You can share the URL and anyone can view your rendered content.</p>
+<p>Shareable URLs end in <code>.share.connect.posit.cloud</code>. By default, URLs use an auto-generated identifier, but you can customize them to something memorable like <code>cwickham-document.share.connect.posit.cloud</code>. Share the URL and anyone can view your rendered content.</p>
 </section>
 <section id="sec-publishing-process" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="sec-publishing-process"><span class="header-section-number">6.2</span> The publishing process</h2>
-<p>The <code>quarto publish</code> command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local installation of the Quarto CLI. Only the output files are then transferred to the publishing provider. In <a href="#fig-pub-process" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> we illustrate this as two separate steps—render then publish— but they both occur when you run the <code>quarto publish</code> command.</p>
-<div id="fig-pub-process" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on quartopub.com.">
+<p>The <code>quarto publish</code> command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local installation of the Quarto CLI. Only the output files are then transferred to the publishing provider. In <a href="#fig-pub-process" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> we illustrate this as two separate steps—render then publish— but they both occur when you run the <code>quarto publish</code> command.</p>
+<div id="fig-pub-process" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on connect.posit.cloud.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pub-process-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/publishing-process.jpg" class="img-fluid figure-img" alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on quartopub.com.">
+<img src="images/publishing-process.jpg" class="img-fluid figure-img" alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on connect.posit.cloud.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pub-process-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6.2: The <code>quarto publish</code> process. Input files are rendered locally, then the output files and their dependencies are uploaded to the publishing provider.
+Figure&nbsp;6.3: The <code>quarto publish</code> process. Input files are rendered locally, then the output files and their dependencies are uploaded to the publishing provider.
 </figcaption>
 </figure>
 </div>
@@ -445,10 +443,10 @@ Figure&nbsp;6.2: The <code>quarto publish</code> process. Input files are render
 <div class="code-with-filename-file">
 <pre><strong>_publish.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="_publish.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">source</span><span class="kw">:</span><span class="at"> hello.qmd</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">quarto-pub</span><span class="kw">:</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> 8f059af6-06e1-4594-b7b0-252dab8c0d9e</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">url</span><span class="kw">:</span><span class="at"> </span><span class="st">'https://quartopub-test.quarto.pub/test'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="_publish.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">source</span><span class="kw">:</span><span class="at"> document.qmd</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">posit-connect-cloud</span><span class="kw">:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> 019cd4a5-d2da-c2cf-f7f9-dc78e0748f72</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">url</span><span class="kw">:</span><span class="at"> </span><span class="st">'https://connect.posit.cloud/cwickham/content/019cd4a5-d2da-c2cf-f7f9-dc78e0748f72'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>This means when you run <code>quarto publish</code> on a document or project a second time, you’ll be given the option of using the same details—in effect updating your published content.</p>
 <p>The details in <code>_publish.yml</code> aren’t sensitive (there are no authentication details) so you can check it into version control.</p>

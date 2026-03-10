@@ -460,7 +460,7 @@ Figure&nbsp;14.1: The contents of <code>_site/</code> for a minimal Quarto websi
 </figcaption>
 </figure>
 </div>
-<p>To view your website, you need a webserver to serve up the contents of this directory. This could be a local webserver like the one used for <code>quarto preview</code>, or a remote one like those provided by Quarto Pub or GitHub Pages.</p>
+<p>To view your website, you need a webserver to serve up the contents of this directory. This could be a local webserver like the one used for <code>quarto preview</code>, or a remote one like those provided by Posit Connect Cloud or GitHub Pages.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -512,7 +512,7 @@ Figure&nbsp;14.2: File paths from your project root directly translate to URL pa
 </figcaption>
 </figure>
 </div>
-<p>We use the placeholder <code>{ base }</code> to represent the base URL of your website. When you are previewing locally that will be something like <code>http://localhost:3884</code>, where the number <code>3884</code> may be something else. When you publish your website, the base URL will depend on where you host it. For GitHub Pages it might look something like <code>https://username.github.io/repository-name</code>, and on Quarto Pub something like <code>https://username.quarto.pub/project-name</code>, or you might even have a custom domain <code>https://yourdomain.com</code>.</p>
+<p>We use the placeholder <code>{ base }</code> to represent the base URL of your website. When you are previewing locally that will be something like <code>http://localhost:3884</code>, where the number <code>3884</code> may be something else. When you publish your website, the base URL will depend on where you host it. For GitHub Pages it might look something like <code>https://username.github.io/repository-name</code>, and on Posit Connect Cloud something like <code>https://username-project.share.connect.posit.cloud</code>, or you might even have a custom domain <code>https://yourdomain.com</code>.</p>
 <p>Consider the file <code>about.qmd</code> at the top level of your website project. It will be available at <code>about.html</code> at the top level of your website. If you place <code>last-month.qmd</code> inside a <code>reports/</code> folder in your website project, it will available at <code>reports/last-month.html</code> on your website.</p>
 <p>Index files are special — the <code>index.qmd</code> in any directory becomes the landing page for that directory. So, for example <code>reports/index.qmd</code> defines the page seen by someone navigating to <code>{ base }/reports</code> or <code>{ base }/reports/</code>.</p>
 <p>Files don’t have to be Quarto documents. The CSV file <code>data/sales.csv</code> will be available at <code>{ base }/data/sales.csv</code>. However, only rendered Quarto documents or files that Quarto deems to be necessary are copied into <code>_site/</code>. This means the presence of <code>data/sales.csv</code> isn’t enough for it to be included in the website. It either needs to be referenced in a way Quarto will detect, e.g., linked to from another page (see <a href="#sec-websites-links" class="quarto-xref"><span>Section 14.4.2</span></a>), or be included in the site resources (see <a href="#sec-websites-resources" class="quarto-xref"><span>Section 14.4.6</span></a>).</p>
@@ -2522,7 +2522,7 @@ Figure&nbsp;14.26: The <code>quarto publish</code> process for a website. The we
 </section>
 <section id="providers" class="level3" data-number="14.9.4">
 <h3 data-number="14.9.4" class="anchored" data-anchor-id="providers"><span class="header-section-number">14.9.4</span> Providers</h3>
-<p>The <code>quarto publish</code> command supports several publishing providers. The three we think are most useful if you are choosing for yourself are Quarto Pub, GitHub Pages, and Netlify. A brief summary comparing their features is shown in <a href="#tbl-providers" class="quarto-xref">Table&nbsp;<span>14.9</span></a>.</p>
+<p>The <code>quarto publish</code> command supports several publishing providers. The three we think are most useful if you are choosing for yourself are Posit Connect Cloud, GitHub Pages, and Netlify. A brief summary comparing their features is shown in <a href="#tbl-providers" class="quarto-xref">Table&nbsp;<span>14.9</span></a>.</p>
 <div id="tbl-providers" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-providers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2546,10 +2546,10 @@ Table&nbsp;14.9: A comparison of three popular publishing providers
 </thead>
 <tbody>
 <tr class="odd">
-<td>Quarto Pub</td>
+<td>Posit Connect Cloud</td>
 <td>✔️</td>
-<td>✖️</td>
-<td>✖️</td>
+<td>Paid plans</td>
+<td>Paid plans</td>
 </tr>
 <tr class="even">
 <td>GitHub</td>
@@ -2573,7 +2573,7 @@ Table&nbsp;14.9: A comparison of three popular publishing providers
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish quarto-pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish posit-connect-cloud</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="sec-publishing-github" class="level4" data-number="14.9.4.1">
 <h4 data-number="14.9.4.1" class="anchored" data-anchor-id="sec-publishing-github"><span class="header-section-number">14.9.4.1</span> GitHub Pages</h4>
@@ -2585,7 +2585,7 @@ Table&nbsp;14.9: A comparison of three popular publishing providers
 </div>
 <p><a href="https://pages.github.com">GitHub Pages</a> is a hosting service provided by GitHub at the repository level. If you are storing your source on GitHub anyway, it makes sense to also publish via GitHub Pages.</p>
 <p>When you publish, Quarto creates a special <code>gh-pages</code> branch, renders your document or project to this branch, and pushes this branch to GitHub. This branch is then processed on GitHub’s side, making it available at a URL of the form <code>{ user }.github.io/repo-name</code>.</p>
-<p>If you use GitHub through one of its “Free” plans you can only use GitHub Pages on public repositories. If you’d prefer your source documents weren’t available publicly you’ll either need to upgrade your GitHub plan, or use something like Netlify or Quarto Pub instead.</p>
+<p>If you use GitHub through one of its “Free” plans you can only use GitHub Pages on public repositories. If you’d prefer your source documents weren’t available publicly you’ll either need to upgrade your GitHub plan, or use something like Netlify or Posit Connect Cloud instead.</p>
 <p>You can read more about publishing to GitHub with <code>quarto publish</code> on the <a href="https://quarto.org/docs/publishing/github-pages.html#publish-command">GitHub Pages page</a> in the Quarto documentation.</p>
 <p>An alternative to using <code>quarto publish</code> is to commit your rendered document or site to your repository in a <code>docs/</code> folder and set GitHub Pages to publish from there. You can read more about this workflow at <a href="https://quarto.org/docs/publishing/github-pages.html#render-to-docs">Render to <code>docs</code></a> on the Quarto documentation website.</p>
 </section>
