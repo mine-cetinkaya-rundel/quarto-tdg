@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>12&nbsp; Markdown – Quarto: The Practical Guide</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -60,7 +63,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -91,15 +93,14 @@ div.csl-indent {
 <link href="./cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-b754b9fd3853d7e56faef54c29c5d52b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-975e726794ce811e14261b5ab5acfd7c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-21edf6563d962eee859dd5a69e1b6add.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8787be635ca7021aeec425c5e6059ac7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -129,7 +130,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -502,6 +503,11 @@ Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown. TODO
 </figcaption>
 <div aria-describedby="tbl-inline-text-elements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 50%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Element</th>
@@ -511,52 +517,44 @@ Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown. TODO
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"> <strong>Text formatting</strong></td>
+<td rowspan="7" style="text-align: left;"> <strong>Text formatting</strong></td>
 <td style="text-align: left;"><em>italics</em>, <strong>bold</strong>, <strong><em>bold italics</em></strong></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>*italics*, **bold**, ***bold italics***</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
 <td style="text-align: left;">superscript<sup>2</sup> / subscript<sub>2</sub></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>superscript^2^ / subscript~2~</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"><del>strikethrough</del></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>~~strikethrough~~</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"><code>verbatim code</code></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">`verbatim code`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"><span class="smallcaps">smallcaps</span></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">smallcaps</span><span class="co">]</span>{.smallcaps}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"><u>underlined</u></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">underlined</span><span class="co">]</span>{.underline}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"><mark>highlighted</mark></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">highlighted</span><span class="co">]</span>{.mark}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"> <strong>Links</strong></td>
+<td rowspan="3" style="text-align: left;"> <strong>Links</strong></td>
 <td style="text-align: left;"><a href="https://quarto.org" class="uri">https://quarto.org</a></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ot">&lt;https://quarto.org&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"><a href="https://quarto.org">Quarto</a></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"><a href="#links">Links section</a></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Links section</span><span class="co">](#links)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
@@ -566,28 +564,25 @@ Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown. TODO
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="an">Inline math:</span><span class="co"> $E = mc^{2}$</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"> <strong>Cross-references</strong> See <a href="#sec-crossreferences" class="quarto-xref"><span>Section 12.10</span></a></td>
+<td rowspan="2" style="text-align: left;"> <strong>Cross-references</strong> See <a href="#sec-crossreferences" class="quarto-xref"><span>Section 12.10</span></a></td>
 <td style="text-align: left;"><a href="#fig-elephant" class="quarto-xref">Figure&nbsp;<span>12.4</span></a></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>@fig-elephant</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
 <td style="text-align: left;"><a href="#sec-authoring" class="quarto-xref"><span>Chapter 12</span></a></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>@sec-authoring</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"> <strong>Citations</strong> <a href="#sec-citations" class="quarto-xref"><span>Section 12.11</span></a></td>
+<td rowspan="3" style="text-align: left;"> <strong>Citations</strong> <a href="#sec-citations" class="quarto-xref"><span>Section 12.11</span></a></td>
 <td style="text-align: left;"><span class="citation" data-cites="knuth1984">Knuth (<a href="authoring.html#ref-knuth1984" role="doc-biblioref">1984</a>)</span> shows …</td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>@knuth1984 shows ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
 <td style="text-align: left;">… <span class="citation" data-cites="knuth1984">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>)</span></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>... <span class="co">[</span><span class="ot">@knuth1984</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"><span class="citation" data-cites="knuth1984 wickham2023">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>; <a href="authoring.html#ref-wickham2023" role="doc-biblioref">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="knuth1984 wickham2023">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>; <a href="authoring.html#ref-wickham2023" role="doc-biblioref">Wickham et al. 2023</a>)</span></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@knuth1984; @wickham2023</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="odd">
@@ -1118,7 +1113,7 @@ Table&nbsp;12.5: Common citation syntax
 </tr>
 <tr class="even">
 <th><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@knuth1984; @wickham2023</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></th>
-<td><span class="citation" data-cites="knuth1984 wickham2023">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>; <a href="authoring.html#ref-wickham2023" role="doc-biblioref">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span></td>
+<td><span class="citation" data-cites="knuth1984 wickham2023">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>; <a href="authoring.html#ref-wickham2023" role="doc-biblioref">Wickham et al. 2023</a>)</span></td>
 </tr>
 </tbody>
 </table>
