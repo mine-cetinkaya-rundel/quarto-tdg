@@ -1,0 +1,16 @@
+- image: typst-first-document-train-punctuality.png
+  source: _examples/typst/first-document/train-punctuality.qmd
+  density: 200
+  generated: 2026-03-31T18:58:50Z
+- image: typst-navigation-train-punctuality.png
+  source: _examples/typst/navigation/train-punctuality.qmd
+  density: 200
+  generated: 2026-03-31T18:58:51Z
+- image: typst-citations-train-punctuality.png
+  source: _examples/typst/citations/train-punctuality.qmd
+  density: 200
+  generated: 2026-03-31T19:12:54Z
+- image: typst-citations-chicago-train-punctuality.png
+  source: _examples/typst/citations-chicago/train-punctuality.qmd
+  density: 200
+  generated: 2026-03-31T19:24:24Z
