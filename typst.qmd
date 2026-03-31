@@ -78,17 +78,57 @@ csl: chicago-author-date
 
 ![Chicago author-date citation style, the default for HTML formats](images/typst-citations-chicago-train-punctuality.png){#fig-typst-citations-chicago .border fig-alt="A short PDF document showing a Chicago author-date in-text citation and a bibliography entry."}
 
-Read more in @sec-citations.
+Read more in @sec-citations, including various syntax variations.
 
 ## Math
 
-Use TeX math. Pandoc will convert to typst math. 
+### Typst math
 
-Could use raw typst block for typst math.
+Use TeX math. Pandoc will convert to typst math.
 
-Add alt text.
+````{.markdown filename="equations.qmd" .code-overflow-wrap}
+{{< include _examples/typst/math/equations.qmd >}}
+````
 
-Theorems and proofs using `thm` `proof`. Control appearance with `theorem-appearance: fancy`
+![Inline and display math rendered in Typst](images/typst-math-equations.png){#fig-typst-math-equations .border fig-alt="A PDF showing an inline mean symbol in a sentence and a numbered display equation for the sample mean."}
+
+### Alt text
+
+````{.markdown filename="equations.qmd" .code-overflow-wrap}
+{{< include _examples/typst/math/equations-alt.qmd >}}
+````
+
+![Display equation with alt text](images/typst-math-equations-alt.png){#fig-typst-math-equations-alt .border fig-alt="A PDF showing a numbered display equation for the sample mean."}
+
+### Theorems
+
+````{.markdown filename="theorem.qmd" .code-overflow-wrap}
+{{< include _examples/typst/math/theorem.qmd >}}
+````
+
+Control the appearance with `theorem-appearance`:
+
+```{.yaml filename="_quarto-fancy.yml"}
+format:
+  typst:
+    theorem-appearance: fancy
+```
+
+The default is `simple`
+
+::: {#fig-typst-math-theorem}
+::: {layout-ncol=2}
+![`simple`](images/typst-math-theorem.png){#fig-typst-math-theorem-simple .border fig-alt="A theorem in simple LaTeX style with bold title and italic body text."}
+
+![`fancy`](images/typst-math-theorem-fancy.png){#fig-typst-math-theorem-fancy .border fig-alt="A theorem in a rounded box with an orange header."}
+
+![`clouds`](images/typst-math-theorem-clouds.png){#fig-typst-math-theorem-clouds .border fig-alt="A theorem with a soft pink background and rounded corners."}
+
+![`rainbow`](images/typst-math-theorem-rainbow.png){#fig-typst-math-theorem-rainbow .border fig-alt="A theorem with a red left border and red title."}
+:::
+
+The available options for `theorem-appearance` are `simple`, `fancy`, `clouds`, and `rainbow`. 
+:::
 
 ## Code blocks
 

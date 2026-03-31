@@ -1,0 +1,5 @@
+The mean on-time rate, $\bar{x}$, summarises performance across all routes.
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
+$$ {#eq-mean}

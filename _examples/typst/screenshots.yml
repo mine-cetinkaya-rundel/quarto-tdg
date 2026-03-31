@@ -14,3 +14,30 @@
   source: _examples/typst/citations-chicago/train-punctuality.qmd
   density: 200
   generated: 2026-03-31T19:24:24Z
+- image: typst-math-equations.png
+  source: _examples/typst/math/equations.qmd
+  density: 200
+  generated: 2026-03-31T19:43:20Z
+- image: typst-math-equations-alt.png
+  source: _examples/typst/math/equations-alt.qmd
+  density: 200
+  generated: 2026-03-31T19:43:22Z
+- image: typst-math-theorem.png
+  source: _examples/typst/math/theorem.qmd
+  density: 200
+  generated: 2026-03-31T19:43:22Z
+- image: typst-math-theorem-fancy.png
+  source: _examples/typst/math/theorem.qmd
+  profile: fancy
+  density: 200
+  generated: 2026-03-31T19:43:23Z
+- image: typst-math-theorem-clouds.png
+  source: _examples/typst/math/theorem.qmd
+  profile: clouds
+  density: 200
+  generated: 2026-03-31T19:43:24Z
+- image: typst-math-theorem-rainbow.png
+  source: _examples/typst/math/theorem.qmd
+  profile: rainbow
+  density: 200
+  generated: 2026-03-31T19:43:25Z
