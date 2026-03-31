@@ -21,46 +21,31 @@ The R environment is managed with [renv](https://rstudio.github.io/renv/articles
 
 If your contribution adds a dependency on an R package, make sure you run `renv::snapshot()`, and commit changes to `renv.lock`.
 
-### Reproducing the python environment locally
+### Reproducing the Python environment locally
 
-#### Creating or recreating the environment
-
-Use Python 3.12.
-
-Create a virtual environment in the `env/` folder, in Terminal:
-
-```{.bash}
-python3 -m venv env
-```
-
-Activate the environment:
+The Python environment is managed with [uv](https://docs.astral.sh/uv/). To create or recreate the environment:
 
 ```bash
-source env/bin/activate
+uv sync
 ```
 
-Install packages from `requirements.txt`:
-
-```bash
-python3 -m pip install -r requirements.txt
-```
+This creates a `.venv/` and installs all dependencies from `uv.lock`.
 
 #### Using the environment
 
-VS Code + Python extension should pick up this environment automatically. 
-
-Or on Terminal, activate the environment:
+Quarto will use the `.venv/` automatically. To activate it in the terminal:
 
 ```bash
-source env/bin/activate
+source .venv/bin/activate
 ```
 
-#### Adding python packages
+#### Adding Python packages
 
-1.  Activate the environment
-2.  Install the additional packages using `pip`
-3.  Update `requirements.txt` `python3 -m pip freeze > requirements.txt`
-4.  Commit `requirements.txt`
+```bash
+uv add <package>
+```
+
+Then commit the updated `pyproject.toml` and `uv.lock`.
 
 ## Style Guide
 
