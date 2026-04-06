@@ -12,7 +12,7 @@ A restructured book with progressive depth, plus basic format coverage.
 * Mid-Jan: Existing content restructured
 * Late-Jan: Tools chapter merged in
 * Feb: Opt-in to new quarto markdown syntax (not relevant anymore, 1.9 isn't using it)
-* Late-March/early-April: First draft complete
+* Late-April/early-May: First draft complete
 * Summer: reviews, revisions, final production
 
 ## Target Audience
