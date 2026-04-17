@@ -168,6 +168,10 @@ Pandoc then converts this markdown to your desired final format, such as HTML, P
 
 Beyond the core authoring features, Positron provides several additional tools that enhance your Quarto workflow:
 
+::: todo
+[MCR] Add AI features.
+:::
+
 - Navigate long documents easily using the document **outline** panel in the primary sidebar.
 
 ::: todo
