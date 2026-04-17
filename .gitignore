@@ -4,3 +4,5 @@ _book/
 /env/
 
 **/*.quarto_ipynb
+
+/.luarc.json
