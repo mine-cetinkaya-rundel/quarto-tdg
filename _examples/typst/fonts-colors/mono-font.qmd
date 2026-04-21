@@ -1,0 +1,18 @@
+---
+brand:
+  typography:
+    fonts:
+      - family: JetBrains Mono
+        source: google
+    monospace:
+      family: JetBrains Mono
+---
+
+Summarise a numeric vector in R:
+
+```r
+punctuality <- c(0.82, 0.78, 0.71, 0.88, 0.65, 0.90)
+mean(punctuality)
+```
+
+You can also use `mean()` inline like this: `mean(punctuality)`.

@@ -21,70 +21,32 @@ The R environment is managed with [renv](https://rstudio.github.io/renv/articles
 
 If your contribution adds a dependency on an R package, make sure you run `renv::snapshot()`, and commit changes to `renv.lock`.
 
-### Reproducing the python environment locally
+### Reproducing the Python environment locally
 
-#### Creating or recreating the environment
-
-Use Python 3.12.
-
-Create a virtual environment in the `env/` folder, in Terminal:
-
-```{.bash}
-python3 -m venv env
-```
-
-Activate the environment:
+The Python environment is managed with [uv](https://docs.astral.sh/uv/). To create or recreate the environment:
 
 ```bash
-source env/bin/activate
+uv sync
 ```
 
-Install packages from `requirements.txt`:
-
-```bash
-python3 -m pip install -r requirements.txt
-```
+This creates a `.venv/` and installs all dependencies from `uv.lock`.
 
 #### Using the environment
 
-VS Code + Python extension should pick up this environment automatically. 
-
-Or on Terminal, activate the environment:
+Quarto will use the `.venv/` automatically. To activate it in the terminal:
 
 ```bash
-source env/bin/activate
+source .venv/bin/activate
 ```
 
-#### Adding python packages
+#### Adding Python packages
 
-1.  Activate the environment
-2.  Install the additional packages using `pip`
-3.  Update `requirements.txt` `python3 -m pip freeze > requirements.txt`
-4.  Commit `requirements.txt`
+```bash
+uv add <package>
+```
 
-## Style Notes
+Then commit the updated `pyproject.toml` and `uv.lock`.
 
--   Use bold text for terms, e.g. "...known as **hybrid navigation**"
+## Style Guide
 
--   Use italics for emphasis, e.g. "...things you *do* want"
-
--   Most other tool/language names are capitalized: Julia, Jupyter, Markdown, Pandoc, Knitr.
-    You can use lower case if talking about a particular command, e.g. running the pandoc command.
-
--   When giving an example of YAML that would be included in a document header, include the opening and closing `---`.
-
--   Some metadata terminology to consistently use:
-
-    -   The chunk at the top of a `.qmd` that starts and ends with `---` is called the **document header**.
-
-    -   Refer to the keys that are set in YAML as **options**, not keys.
-
-    -   In general, options that apply to a document (either set in the header, `_quarto.yml`, `_metadata.yml`, or on command line) are known as **metadata**.
-
-    -   Examples:
-
-        > You set options for the whole document using YAML in the document header.
-        >
-        > You set code cell options using YAML with hashpipe (or other language appropriate) comments at the top of a code cell.
-        >
-        > You set project level options using YAML in `_quarto.yml`.
+See `_style-guide.md` for details on writing and formatting style for the book.

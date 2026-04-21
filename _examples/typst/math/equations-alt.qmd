@@ -1,0 +1,3 @@
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
+$$ {#eq-mean alt="Sample mean: sum of all values divided by the number of observations"}

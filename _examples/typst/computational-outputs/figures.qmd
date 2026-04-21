@@ -1,0 +1,11 @@
+```{r}
+#| echo: false
+{{< include data.R >}}
+```
+
+```{r}
+#| label: fig-punctuality
+#| fig-cap: On-time rate by route
+#| echo: false
+{{< include figures.R >}}
+```

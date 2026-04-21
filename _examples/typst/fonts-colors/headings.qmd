@@ -1,0 +1,16 @@
+---
+brand:
+  typography:
+    headings:
+      family: Helvetica
+      color: "#b58900"
+      weight: bold
+---
+
+## On-time performance
+
+Quarterly on-time rates held above 80% across the network.
+
+### Peak-hour services
+
+Peak-hour services on long-distance routes remained the primary concern.

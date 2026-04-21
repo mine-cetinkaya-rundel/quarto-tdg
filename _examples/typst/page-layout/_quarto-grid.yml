@@ -1,0 +1,6 @@
+format:
+  typst:
+    grid:
+      body-width: 4in
+      margin-width: 2in
+      gutter-width: 0.25in
