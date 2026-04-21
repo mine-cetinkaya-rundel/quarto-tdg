@@ -1,0 +1,16 @@
+---
+brand:
+  typography:
+    monospace-block:
+      background-color: "#1e1e2e"
+---
+
+Summarise a numeric vector in R:
+
+```r
+library(dplyr)
+
+punctuality <- c(0.82, 0.78, 0.71, 0.88, 0.65, 0.90)
+mean(punctuality)
+summary(punctuality)
+```
