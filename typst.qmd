@@ -132,15 +132,102 @@ The available options for `theorem-appearance` are `simple`, `fancy`, `clouds`, 
 
 ## Code blocks
 
-Set language for syntax highlighting, control theme with `syntax-highlighting: github`.  Or `syntax-highlighting: idiomatic` to get default typst syntax highlighting.
+Set the language on a fenced code block for syntax highlighting:
 
-Set `filename`. Check what this looks like.
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/typst/code-blocks/highlight.qmd >}}
+````
+
+![Syntax highlighting in a Typst document](images/typst-code-blocks-highlight.png){#fig-typst-code-blocks-highlight .border fig-alt="A short PDF showing a sentence followed by an R code block with colored syntax highlighting on a light blue-gray background."}
+
+Control the theme with `syntax-highlighting`:
+
+```{.yaml filename="_quarto.yml"}
+format:
+  typst:
+    syntax-highlighting: github
+```
+
+::: {#fig-typst-code-blocks-themes}
+::: {layout-ncol=2}
+![`github`](images/typst-code-blocks-highlight-github.png){#fig-typst-code-blocks-github .border fig-alt="An R code block with GitHub-style syntax highlighting on a white background."}
+
+![`idiomatic`](images/typst-code-blocks-highlight-idiomatic.png){#fig-typst-code-blocks-idiomatic .border fig-alt="An R code block with Typst's native syntax highlighting on a gray background."}
+:::
+
+`github` uses Quarto's GitHub theme; `idiomatic` uses Typst's own native highlighting.
+:::
+
+### Filename
+
+::: todo
+[CVW] Regenerate screenshot and remove this once quarto-dev/quarto-cli#14170 is merged.
+:::
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/typst/code-blocks/filename.qmd >}}
+````
 
 ## Computational outputs
 
+::: {.panel-tabset}
+## R
+
+````{.r filename="report.qmd" .code-overflow-wrap}
+```{{r}}
+{{< include _examples/typst/computational-outputs/data.R >}}
+```
+````
+
+## Python
+
+````{.python filename="report.qmd" .code-overflow-wrap}
+```{{python}}
+{{< include _examples/typst/computational-outputs/data.py >}}
+```
+````
+:::
+
 ### Figure format
 
+Quarto defaults to SVG for computational figures in Typst. Use `fig-format: png` to switch to PNG:
+
+```{.yaml filename="_quarto.yml"}
+format:
+  typst:
+    fig-format: png
+```
+
 ### Tables
+
+::: {.panel-tabset}
+## R
+
+````{.r filename="report.qmd" .code-overflow-wrap}
+```{{r}}
+{{< include _examples/typst/computational-outputs/tables.R >}}
+```
+````
+
+## Python
+
+````{.python filename="report.qmd" .code-overflow-wrap}
+```{{python}}
+{{< include _examples/typst/computational-outputs/tables.py >}}
+```
+````
+:::
+
+::: {.panel-tabset}
+## R
+
+![A `gt` table rendered in Typst](images/typst-computational-outputs-tables.png){#fig-typst-computational-outputs-tables .border fig-alt="A table of on-time rates by route with four columns: Route, On time, Total, and On-time rate (%)."}
+
+## Python
+
+![A `great_tables` table rendered in Typst](images/typst-computational-outputs-tables-py.png){#fig-typst-computational-outputs-tables-py .border fig-alt="A table of on-time rates by route with four columns: Route, On time, Total, and On-time rate (%)."}
+:::
+
 
 ## Full-width or margin content
 

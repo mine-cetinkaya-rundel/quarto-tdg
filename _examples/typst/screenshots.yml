@@ -41,3 +41,34 @@
   profile: rainbow
   density: 200
   generated: 2026-03-31T19:43:25Z
+- image: typst-code-blocks-highlight.png
+  source: _examples/typst/code-blocks/highlight.qmd
+  density: 200
+  generated: 2026-03-31T20:11:05Z
+- image: typst-code-blocks-highlight-github.png
+  source: _examples/typst/code-blocks/highlight.qmd
+  profile: github
+  density: 200
+  generated: 2026-03-31T20:11:07Z
+- image: typst-code-blocks-highlight-idiomatic.png
+  source: _examples/typst/code-blocks/highlight.qmd
+  profile: idiomatic
+  density: 200
+  generated: 2026-03-31T20:11:08Z
+- image: typst-computational-outputs-figures.png
+  source: _examples/typst/computational-outputs/figures.qmd
+  density: 200
+  generated: 2026-03-31T20:38:21Z
+- image: typst-computational-outputs-figures-png.png
+  source: _examples/typst/computational-outputs/figures.qmd
+  profile: png
+  density: 200
+  generated: 2026-03-31T20:38:24Z
+- image: typst-computational-outputs-tables.png
+  source: _examples/typst/computational-outputs/tables.qmd
+  density: 200
+  generated: 2026-03-31T20:55:46Z
+- image: typst-computational-outputs-tables-py.png
+  source: _examples/typst/computational-outputs/tables-py.qmd
+  density: 200
+  generated: 2026-03-31T20:55:48Z

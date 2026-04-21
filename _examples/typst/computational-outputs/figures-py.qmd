@@ -1,0 +1,11 @@
+```{python}
+#| echo: false
+{{< include data.py >}}
+```
+
+```{python}
+#| label: fig-punctuality
+#| fig-cap: On-time rate by route
+#| echo: false
+{{< include figures.py >}}
+```
