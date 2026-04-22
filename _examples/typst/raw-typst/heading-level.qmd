@@ -1,0 +1,15 @@
+```{=typst}
+#show heading.where(level: 2): set text(style: "italic")
+```
+
+## Summary
+
+Quarterly on-time performance held above 80% across the network.
+
+### Observations
+
+Off-peak services consistently outperformed peak services across all routes.
+
+## Recommendations
+
+Investigate delays on the Coastal Express.

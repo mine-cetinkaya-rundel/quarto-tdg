@@ -3,6 +3,9 @@ brand:
   typography:
     monospace-block:
       background-color: "#1e1e2e"
+format:
+  typst:
+    syntax-highlighting: a11y-dark
 ---
 
 Summarise a numeric vector in R:

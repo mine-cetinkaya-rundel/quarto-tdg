@@ -1,0 +1,17 @@
+---
+brand:
+  color:
+    primary: "#2e5090"
+---
+
+```{=typst}
+#show heading: set text(fill: brand-color.primary)
+```
+
+## Summary
+
+Quarterly on-time performance held above 80% across the network.
+
+## Recommendations
+
+Investigate delays on the Coastal Express and Harbour–Airport routes.

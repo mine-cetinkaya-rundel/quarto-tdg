@@ -1,0 +1,9 @@
+```{=typst}
+#set par(leading: 1em)
+```
+
+## Summary
+
+Quarterly on-time performance held above 80% across the network, though peak-hour services on long-distance routes remained a concern.
+
+Off-peak services consistently outperformed peak services across all routes, with the Coastal Express showing the largest gap.

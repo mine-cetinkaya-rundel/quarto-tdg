@@ -52,8 +52,13 @@ for entry in "${files[@]}"; do
   (cd "$dir" && quarto render "$(basename "$qmd")" $render_args)
 
   echo "Screenshotting $out_pdf..."
+  # Render + trim, then sample top-right pixel so the border matches the
+  # document's edge color (colored body bgs fake their own padding; white-bg
+  # docs still get a white border).
   magick -density "$DENSITY" "$out_pdf"[0] -background white -flatten \
-    -trim +repage -bordercolor white -border 40 "$out"
+    -trim +repage "$out"
+  pad_color=$(magick "$out" -format "%[pixel:p{%[fx:w-1],0}]" info:)
+  magick "$out" -bordercolor "$pad_color" -border 40 "$out"
 
   echo "Saved $out"
 

@@ -256,6 +256,24 @@ Add a raw Typst block to make figures breakable:
 The long table broken cleanly across two pages.
 :::
 
+## Raw Typst blocks
+
+Markdown doesn't reach every corner of Typst. For a shape, a decorative element, or any Typst function call, drop into a `{=typst}` fenced block — its contents pass straight through to Typst:
+
+````{.markdown filename="report.qmd"}
+Service status:
+
+```{{=typst}}
+#rect(width: 4cm, height: 1cm, fill: rgb("#2e5090"), radius: 4pt)
+```
+
+Deployed to production 2026-04-22.
+````
+
+![A rounded blue rectangle rendered inline between two lines of prose](images/typst-raw-typst-shape.png){#fig-typst-raw-typst-shape .border fig-alt="A short paragraph reading Service status followed by a rounded blue rectangle, followed by a line reading Deployed to production 2026-04-22."}
+
+Typst's full function catalogue — shapes, icons (`#emoji.rocket`), dates, layout primitives — is fair game. You'll see raw blocks again when we [customise appearance with set and show rules](#use-raw-typst).
+
 ## Full-width or margin content
 
 Fenced divs let you lift figures, tables, or text out of the body column. `.column-margin` pushes content into the margin as an aside:
@@ -379,72 +397,170 @@ Quarto doesn't expose YAML options for page headers or running titles in Typst o
 
 #### Use brand
 
-Use `brand` YAML to set fonts and colors. Brand keys flow into Typst's document template automatically — no raw Typst required for the common cases.
+Add Typst fonts and colors to your project's `_brand.yml` — Quarto picks it up automatically and flows the keys into Typst's document template. No raw Typst required for the common cases.
 
 Set the body font, page background, and foreground (body text color) under `typography.base` and `color`:
 
-```{.yaml filename="_quarto.yml"}
-brand:
-  typography:
-    base: Helvetica
-  color:
-    background: "#fdf6e3"
-    foreground: "#073642"
+```{.yaml filename="_brand.yml"}
+typography:
+  base: Helvetica
+color:
+  background: "#fdf6e3"
+  foreground: "#073642"
 ```
 
 ![Solarized-light body text in Helvetica](images/typst-fonts-colors-base.png){#fig-typst-fonts-colors-base .border fig-alt="A short document with a solarized-light cream background, dark-teal text, and a Helvetica sans-serif face."}
 
 Customise headings independently with `typography.headings`. Family, color, and weight can all be set:
 
-```{.yaml filename="_quarto.yml"}
-brand:
-  typography:
-    headings:
-      family: Helvetica
-      color: "#b58900"
-      weight: bold
+```{.yaml filename="_brand.yml"}
+typography:
+  headings:
+    family: Helvetica
+    color: "#b58900"
+    weight: bold
 ```
 
 ![Headings in bold amber Helvetica](images/typst-fonts-colors-headings.png){#fig-typst-fonts-colors-headings .border fig-alt="Two headings rendered in bold amber Helvetica above serif body paragraphs."}
 
 Set the code font with `typography.monospace.family`. Declare the font under `typography.fonts` and pick a `source` — `system` for an already-installed font, or `google` to have Quarto fetch it at render time:
 
-```{.yaml filename="_quarto.yml"}
-brand:
-  typography:
-    fonts:
-      - family: JetBrains Mono
-        source: google
-    monospace:
-      family: JetBrains Mono
+```{.yaml filename="_brand.yml"}
+typography:
+  fonts:
+    - family: JetBrains Mono
+      source: google
+  monospace:
+    family: JetBrains Mono
 ```
 
 ![A code block rendered in JetBrains Mono, with `<-` shown as the `←` ligature](images/typst-fonts-colors-mono-font.png){#fig-typst-fonts-colors-mono-font .border fig-alt="An R code block rendered in JetBrains Mono, with a left-arrow ligature replacing the two-character <- assignment operator."}
 
 `monospace` covers both inline and block code. To target them separately, use `monospace-inline` and `monospace-block`.
 
-Colour the code-block background with `typography.monospace-block.background-color`:
+Colour the code-block background with `typography.monospace-block.background-color`. Pair it with a `syntax-highlighting` theme whose token colors contrast against the background you picked — e.g. `a11y-dark` for a dark bg:
 
-```{.yaml filename="_quarto.yml"}
-brand:
-  typography:
-    monospace-block:
-      background-color: "#1e1e2e"
+```{.yaml filename="_brand.yml"}
+typography:
+  monospace-block:
+    background-color: "#1e1e2e"
 ```
 
-![A dark-backgrounded code block with default syntax highlighting](images/typst-fonts-colors-code-bg.png){#fig-typst-fonts-colors-code-bg .border fig-alt="An R code block on a dark bluish-purple background, with default syntax-highlighting token colors."}
+```{.yaml filename="_quarto.yml"}
+format:
+  typst:
+    syntax-highlighting: a11y-dark
+```
+
+![A dark code block with `a11y-dark` syntax highlighting](images/typst-fonts-colors-code-bg.png){#fig-typst-fonts-colors-code-bg .border fig-alt="An R code block on a dark bluish-purple background with bright yellow function names, white variables, and orange numeric literals."}
 
 ::: {.callout-warning}
 ## Coordinate code backgrounds with syntax highlighting
 
-Code-block background and `syntax-highlighting` aren't independent knobs. The default highlighting theme is tuned for a light code bg, so on a dark background its argument-gray tokens fade into the page. Pair a dark `background-color` with `syntax-highlighting: idiomatic` (Typst's own dark-appropriate palette), or keep the background light.
+Code-block background and `syntax-highlighting` aren't independent knobs. The default highlighting theme is tuned for a light code bg; on a dark background its argument-gray tokens fade into the page. Pick a theme whose token palette matches your chosen background.
 
-`syntax-highlighting: github` currently ignores `monospace-block.background-color` entirely — it emits its own code-block fill that the brand override doesn't reach.
+`syntax-highlighting: github` is a second gotcha — it currently ignores `monospace-block.background-color` entirely, emitting its own code-block fill that the brand override doesn't reach.
 :::
 
 #### Use raw typst
 
-Briefly cover set and show rules and how to use them in a raw typst block.
+When YAML and brand keys don't reach what you want, drop into a raw Typst block. Two rule flavours cover most cases:
+
+- **Set rules** — `#set X(...)` — change default parameters for element `X`.
+- **Show rules** — `#show X: ...` — transform how element `X` renders, often by setting parameters on a *different* element.
+
+Both take effect from the point they appear onwards. Put them near the top of your document to apply globally.
+
+##### Set rules
+
+Add a running header to every page with `#set page(...)`:
+
+````{.markdown filename="report.qmd"}
+```{{=typst}}
+#set page(header: align(right, text(fill: gray, [Route Punctuality Report])))
+```
+````
+
+![A right-aligned gray running header at the top of the page](images/typst-raw-typst-page-header.png){#fig-typst-raw-typst-page-header .border fig-alt="A PDF page with a gray Route Punctuality Report header at top right, followed by Summary and Recommendations sections."}
+
+::: {.callout-note}
+## `#set page()` starts a new page
+
+Typst treats `#set page()` as a page break — the current page finishes, the new settings take effect on the one that follows. A raw block at the top of the body therefore only applies from page 2 onwards. To reach page 1, override the `page.typ` partial instead (see [Custom templates](#custom-templates)).
+:::
+
+Widen paragraph line spacing with `#set par(...)`:
+
+````{.markdown filename="report.qmd"}
+```{{=typst}}
+#set par(leading: 1em)
+```
+````
+
+![Paragraphs with wider line spacing](images/typst-raw-typst-par-leading.png){#fig-typst-raw-typst-par-leading .border fig-alt="Two short paragraphs with extra vertical space between every line."}
+
+Tint body text with `#set text(...)`. Because set rules apply forward from where they appear, you can open a scope, drop a paragraph in, then revert:
+
+````{.markdown filename="report.qmd"}
+```{{=typst}}
+#set text(fill: rgb("#4a4a4a"))
+```
+
+Quarterly on-time performance held above 80% across the network...
+
+```{{=typst}}
+#set text(fill: black)
+```
+
+Off-peak services consistently outperformed peak services...
+````
+
+![The first paragraph in gray, the second in default black](images/typst-raw-typst-text-fill.png){#fig-typst-raw-typst-text-fill .border fig-alt="Two paragraphs of body text: the first rendered in medium gray, the second in black."}
+
+##### Show rules
+
+Reach for a show rule when the parameter you want lives on a *different* element. Heading spacing, for example, is a `block` parameter, not a `heading` one — `#show heading: set block(...)` bridges the two:
+
+````{.markdown filename="report.qmd"}
+```{{=typst}}
+#show heading: set block(above: 2em, below: 0.5em)
+```
+````
+
+![Headings with extra vertical breathing room](images/typst-raw-typst-heading-spacing.png){#fig-typst-raw-typst-heading-spacing .border fig-alt="Summary and Recommendations headings with wide vertical space above each."}
+
+Narrow the target with `.where()`. Here level-2 headings go italic; level-1 stays upright:
+
+````{.markdown filename="report.qmd"}
+```{{=typst}}
+#show heading.where(level: 2): set text(style: "italic")
+```
+````
+
+![A level-2 Observations heading in italic, between upright level-1 headings](images/typst-raw-typst-heading-level.png){#fig-typst-raw-typst-heading-level .border fig-alt="Three headings: Summary and Recommendations in upright bold, with Observations rendered in italic bold between them."}
+
+::: {.callout-note}
+## Heading levels are shifted by one
+
+Quarto's Typst format defaults to `shift-heading-level-by: -1`, so markdown `##` renders as Typst level 1 and `###` as level 2. That's why the rule above targets `level: 2` to match a `###` heading in the source. Override with `shift-heading-level-by: 0` in your YAML if you'd rather the numbers line up.
+:::
+
+Quarto exposes `_brand.yml` colors to raw Typst via the `brand-color` dictionary. With
+
+```{.yaml filename="_brand.yml"}
+color:
+  primary: "#2e5090"
+```
+
+every heading can be painted in the brand primary:
+
+````{.markdown filename="report.qmd"}
+```{{=typst}}
+#show heading: set text(fill: brand-color.primary)
+```
+````
+
+![Headings rendered in the brand primary color](images/typst-raw-typst-heading-color.png){#fig-typst-raw-typst-heading-color .border fig-alt="Summary and Recommendations headings rendered in a dark blue brand color on white."}
 
 ## Custom templates
 

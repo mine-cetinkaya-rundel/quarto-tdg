@@ -1,0 +1,11 @@
+```{=typst}
+#show heading: set block(above: 2em, below: 0.5em)
+```
+
+## Summary
+
+Quarterly on-time performance held above 80% across the network.
+
+## Recommendations
+
+Investigate delays on the Coastal Express and Harbour–Airport routes.
