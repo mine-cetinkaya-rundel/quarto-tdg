@@ -647,10 +647,14 @@ Press `E` to toggle out of print mode when done.
 
 ### Publishing
 
-Use `quarto publish` to deploy your presentation to hosting services including GitHub Pages, Netlify, and Posit Connect:
+Use `quarto publish` to deploy your presentation to hosting services including GitHub Pages, Netlify, Posit Connect, Posit Connect, and Posit Connect Cloud:
 
 ``` {.bash filename="Terminal"}
 quarto publish gh-pages presentation.qmd
 ```
 
 See the [Publishing HTML documentation](https://quarto.org/docs/output-formats/html-publishing.html) for full details on available targets and configuration.
+
+::: callout-tip
+In Positron, you can also use the Posit Publisher extension to publish directly from Positron. See the [Posit Publisher documentation](https://docs.posit.co/connect/user/publishing-positron-vscode/) for details.
+:::
