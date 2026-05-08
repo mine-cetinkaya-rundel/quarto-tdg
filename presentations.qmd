@@ -86,6 +86,30 @@ Or disable incremental for specific lists when globally enabled:
 :::
 ```
 
+## Fragments
+
+Fragments provide more granular control over incremental animation than pauses or incremental lists. Any element with the class `fragment` will be stepped through before moving on to the next slide, and you can apply a variety of animation effects:
+
+``` markdown
+::: {.fragment .fade-in}
+Fade in
+:::
+
+::: {.fragment .fade-up}
+Slide up while fading in
+:::
+
+::: {.fragment .fade-left}
+Slide left while fading in
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+Fade in then semi out
+:::
+```
+
+Other available fragment classes include `.fade-out`, `.fade-right`, `.fade-down`, `.highlight-red`, `.highlight-blue`, `.strike`, and `.grow`.
+
 ## Multiple Columns
 
 Create side-by-side content using column divs:
@@ -128,25 +152,7 @@ Narrower right column content goes here.
 :::
 ```
 
-Same syntax can be used to create more than two columns, e.g., three columns with `width="33%"` each, or a mix of fixed and flexible widths, e.g., `width="200px"` for a fixed width column and `width="auto"` for a flexible column that fills remaining space.
-
-``` markdown
-::: {.columns}
-
-::: {.column width="70%"}
-
-Wider left column content goes here.
-
-:::
-
-::: {.column width="30%"}
-
-Narrower right column content goes here.
-
-:::
-
-:::
-```
+The same syntax can be used to create more than two columns, e.g., three columns with `width="33%"` each, or a mix of fixed and flexible widths, e.g., `width="200px"` for a fixed width column and `width="auto"` for a flexible column that fills remaining space.
 
 ## Content overflow
 
@@ -177,7 +183,19 @@ format:
 ---
 ```
 
+## Image sizing
 
+Quarto automatically sets figure sizes for Python (Matplotlib, Plotly Express) and R (knitr) to fill the slide area below the title. For finer control, use `.r-stretch` on an image to make it automatically fill the remaining vertical space on a slide:
+
+``` markdown
+## Slide Title
+
+Some introductory text.
+
+![](my-image.png){.r-stretch}
+```
+
+Note that `.r-stretch` only applies to non-nested images. Images inside columns, fragments, or other custom divs are ignored unless you add `.r-stretch` to the outer div explicitly.
 
 ## Slide Backgrounds
 
@@ -221,6 +239,35 @@ title-slide-attributes:
 ---
 ```
 
+## Auto-Animate
+
+Quarto can automatically animate elements across adjacent slides. Add the `auto-animate` attribute to two consecutive slides and Reveal will animate all matching elements between them:
+
+``` markdown
+## Slide 1 {auto-animate=true}
+
+- Item one
+- Item two
+
+## Slide 2 {auto-animate=true}
+
+- Item one
+- Item two
+- Item three
+```
+
+You can fine-tune animation behavior globally or per-slide:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    auto-animate-easing: ease-in-out
+    auto-animate-unmatched: false
+    auto-animate-duration: 0.8
+---
+```
+
 ## Tabsets
 
 Create tabbed content panels:
@@ -261,6 +308,7 @@ Press 'S' to open speaker view.
 ```
 
 Speaker view displays:
+
 - Current slide
 - Upcoming slide
 - Elapsed time
@@ -319,6 +367,16 @@ This is a statement[^1].
 [^1]: This is the footnote text.
 ```
 
+By default footnotes appear on the slide where they are defined. To instead collect all footnotes at the end of the presentation, use:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    reference-location: document
+---
+```
+
 ## Title Slide
 
 The title slide is auto-generated from YAML metadata:
@@ -334,6 +392,18 @@ format: revealjs
 ```
 
 Omit `title` and `author` fields to skip automatic title slide generation.
+
+By default the title slide is centered while all other slides are top-aligned. To disable centering on the title slide, set `center-title-slide: false`. For full control, you can replace the title slide entirely by supplying a custom `title-slide.html` template partial:
+
+``` {.yaml filename="presentation.qmd"}
+---
+title: "My Presentation"
+format:
+  revealjs:
+    template-partials:
+      - title-slide.html
+---
+```
 
 ## Executable Code
 
@@ -358,8 +428,6 @@ plt.plot([1, 2, 3])
 plt.show()
 ```
 ````
-
-- figure sizing / stretch
 
 ### Code highlighting
 
@@ -394,24 +462,15 @@ format:
 ---
 ```
 
+### Interactive documents
+
+Presentations can incorporate interactive content using Observable JS or Shiny. This allows you to embed reactive inputs and outputs directly in slides, turning a presentation into a live application. See the [Observable](https://quarto.org/docs/interactive/ojs/) and [Shiny](https://quarto.org/docs/interactive/shiny/) documentation for details.
+
 ## Customizing appearance
 
 ### Themes
 
-RevealJS includes eleven built-in themes:
-
-- `default`
-- `beige`
-- `blood`
-- `dark`
-- `dracula`
-- `league`
-- `moon`
-- `night`
-- `serif`
-- `simple`
-- `sky`
-- `solarized`
+RevealJS includes eleven built-in themes: `default`, `beige`, `blood`, `dark`, `dracula`, `league`, `moon`, `night`, `serif`, `simple`, `sky`, and `solarized`.
 
 Set a theme in YAML:
 
@@ -423,10 +482,34 @@ format:
 ---
 ```
 
+Beyond the built-in themes, you can customize any theme using SCSS variables or create entirely new themes. See the [Reveal Themes documentation](https://quarto.org/docs/presentations/revealjs/themes.html) for details.
+
+### Slide numbers
+
+Enable slide numbers with `slide-number`. Rather than just `true`, you can also specify a format string:
+
+| Value | Display |
+|-------|---------|
+| `true` | Slide number only |
+| `c/t` | Current slide / total slides |
+| `c` | Current slide only |
+| `h/v` | Horizontal / vertical slide number |
+| `h.v` | Horizontal . vertical slide number |
+
+Control when slide numbers are visible using `show-slide-number`:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    slide-number: c/t
+    show-slide-number: speaker   # all | print | speaker
+---
+```
 
 ## Complete Example
 
-``` {.yaml filename="presentation.qmd"}
+```` {.yaml filename="presentation.qmd"}
 ---
 title: "Complete RevealJS Example"
 author: "Author Name"
@@ -438,7 +521,7 @@ format:
     footer: "My Organization"
     logo: logo.png
     code-block-height: 500px
-    slide-number: true
+    slide-number: c/t
     preview-links: auto
 title-slide-attributes:
   data-background-color: "#1a1a2e"
@@ -461,20 +544,113 @@ print("Hello, RevealJS!")
 ::: {.notes}
 Remember to explain the code output.
 :::
-
-::: callout-note
-We will use level 1 headings for section brakes and level 2 headings for slide breaks.
-However it's possible to customize this using the `slide-level` option, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
-See the Pandoc documentation on [structuring the slide show](https://pandoc.org/MANUAL.html#structuring-the-slide-show) (<https://pandoc.org/MANUAL.html#structuring-the-slide-show>) for additional details.
-:::
-
 ````
 
-## Sharing
+::: callout-note
+We will use level 1 headings for section breaks and level 2 headings for slide breaks.
+However it's possible to customize this using the `slide-level` option, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
+See the Pandoc documentation on [structuring the slide show](https://pandoc.org/MANUAL.html#structuring-the-slide-show) for additional details.
+:::
 
-- publishing
-- print to pdf
+## Presenting and Sharing
 
-Note: Maybe a presenting section.
+### Navigation
 
-- hidden slides
+When presenting, Reveal provides several navigation tools:
+
+- The **slide menu** (bottom-left button, or press `M`) lets you jump to any slide and access presentation tools.
+- **Jump to Slide** (press `G`) opens a modal where you can navigate directly to a slide by number or ID.
+- **Overview mode** (press `O`) shows a bird's-eye view of all slides.
+- **Scroll View** is an alternative view that presents slides as a vertically scrolled page rather than a click-through deck. Toggle it by appending `?view=scroll` to the presentation URL, or set it as the default with `scroll-view: true` in YAML. It activates automatically on small screens such as mobile devices.
+
+Enable browser history and disable the progress bar:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    progress: false
+    history: true
+---
+```
+
+### Preview links
+
+The `preview-links` option opens hyperlinks in an iframe overlaid on the current slide, so you can navigate to a website without leaving the presentation:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    preview-links: auto
+---
+```
+
+### Chalkboard
+
+The built-in Chalkboard plugin lets you draw on slides during a presentation. Enable it in YAML:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    chalkboard: true
+---
+```
+
+You can customize its appearance and behavior:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    chalkboard:
+      theme: whiteboard
+      boardmarker-width: 5
+      buttons: false
+---
+```
+
+::: callout-note
+The Chalkboard plugin is not compatible with `embed-resources: true`. Using both will result in an error.
+:::
+
+### Multiplex
+
+The Multiplex plugin allows your audience to follow along on their own devices as you advance through slides. See the [Presenting Slides documentation](https://quarto.org/docs/presentations/revealjs/presenting.html) for setup instructions.
+
+### Self-contained files
+
+By default, a Reveal presentation references external CSS and JavaScript assets. To produce a single portable HTML file, use `embed-resources`:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    embed-resources: true
+---
+```
+
+Note that this can slow rendering, so it's best to enable it only when you're ready to distribute.
+
+### Print to PDF
+
+Reveal presentations can be exported to PDF directly from the browser:
+
+1. Open the presentation in Chrome, Chromium, or Firefox.
+2. Append `?print-pdf` to the URL to enter print mode.
+3. Open the browser print dialog (`Ctrl+P` / `Cmd+P`).
+4. Set Destination to **Save as PDF**, Layout to **Landscape**, Margins to **None**, and enable **Background graphics**.
+5. Save.
+
+Press `E` to toggle out of print mode when done.
+
+### Publishing
+
+Use `quarto publish` to deploy your presentation to hosting services including GitHub Pages, Netlify, and Posit Connect:
+
+``` {.bash filename="Terminal"}
+quarto publish gh-pages presentation.qmd
+```
+
+See the [Publishing HTML documentation](https://quarto.org/docs/output-formats/html-publishing.html) for full details on available targets and configuration.
