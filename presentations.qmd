@@ -69,7 +69,7 @@ You can customize this behavior using the `slide-level` option in YAML, e.g., `s
 
 ### Multiple columns
 
-Create side-by-side content using column divs:
+You can create side-by-side content using column divs:
 
 ``` markdown
 ::: {.columns}
@@ -113,7 +113,7 @@ The same syntax can be used to create more than two columns, e.g., three columns
 
 ### Tabsets
 
-Create tabbed content panels:
+You can create tabbed content panels:
 
 ``` markdown
 ## Tabbed Content
@@ -145,7 +145,7 @@ For slides with dense content, use the `.smaller` class to reduce font size:
 Lots of content here...
 ```
 
-Enable scrolling for slides that exceed the viewport:
+You can enable scrolling for slides that exceed the viewport:
 
 ``` markdown
 ## Scrollable Slide {.scrollable}
@@ -180,7 +180,7 @@ Note that `.r-stretch` only applies to non-nested images. Images inside columns,
 
 ### Slide backgrounds
 
-Customize individual slide backgrounds using heading attributes.
+You can customize individual slide backgrounds using heading attributes.
 
 **Color backgrounds:**
 
@@ -222,7 +222,7 @@ title-slide-attributes:
 
 ### Footer and logo
 
-Add consistent branding across slides:
+You can add consistent branding across slides:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
@@ -253,7 +253,7 @@ Custom footer for this slide only.
 
 ### Asides and footnotes
 
-Add peripheral commentary with asides:
+You can add peripheral commentary with asides:
 
 ``` markdown
 ## Slide Title
@@ -287,7 +287,7 @@ format:
 
 ### Output location
 
-Control where code output appears using `output-location`:
+You can control where code output appears using `output-location`:
 
 | Value | Behavior |
 |-------|----------|
@@ -309,7 +309,7 @@ plt.show()
 
 ### Code highlighting
 
-Highlight specific lines in code blocks:
+You can highlight specific lines in code blocks:
 
 ```` markdown
 ```{.python code-line-numbers="2,4"}
@@ -419,10 +419,6 @@ Fade in then semi out
 
 Other available fragment classes include `.fade-out`, `.fade-right`, `.fade-down`, `.highlight-red`, `.highlight-blue`, `.strike`, and `.grow`.
 
-
-
-
-
 ### Auto-animate
 
 Quarto can automatically animate elements across adjacent slides. Add the `auto-animate` attribute to two consecutive slides and Reveal will animate all matching elements between them:
@@ -482,7 +478,7 @@ Enable slide numbers with `slide-number`. Rather than just `true`, you can also 
 | `h/v` | Horizontal / vertical slide number |
 | `h.v` | Horizontal . vertical slide number |
 
-Control when slide numbers are visible using `show-slide-number`:
+You can control when slide numbers are visible using `show-slide-number`:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
@@ -657,7 +653,7 @@ Press `E` to toggle out of print mode when done.
 
 ### Publishing
 
-Use `quarto publish` to deploy your presentation to hosting services including GitHub Pages, Netlify, Posit Connect, Posit Connect, and Posit Connect Cloud:
+Use `quarto publish` to deploy your presentation to hosting services including GitHub Pages, Netlify, Posit Connect, and Posit Connect Cloud:
 
 ``` {.bash filename="Terminal"}
 quarto publish gh-pages presentation.qmd
