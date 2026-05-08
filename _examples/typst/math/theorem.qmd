@@ -5,7 +5,3 @@ For a random variable $X$ with mean $\mu$ and variance $\sigma^2$, for any $k > 
 
 $$P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}$$
 :::
-
-::: proof
-Apply Markov's inequality to the non-negative random variable $(X - \mu)^2$.
-:::

@@ -1,7 +1,7 @@
 Service status:
 
 ```{=typst}
-#rect(width: 4cm, height: 1cm, fill: rgb("#2e5090"), radius: 4pt)
+#rect(width: 4cm, height: 1cm, fill: rgb("#2e5090"), radius: 4pt)[
+  #align(center + horizon, text(white)[Normal])
+]
 ```
-
-Deployed to production 2026-04-22.

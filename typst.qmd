@@ -2,11 +2,39 @@
 
 ## Overview
 
-Why Typst for PDF?
+In this chapter, you'll learn how to create PDF documents with Quarto.
+PDF is the right target when you plan to print, need a single self-contained file to share, or care about precise layout of content on "pages". 
 
-What are the alternatives? LaTeX via `format: pdf`, print to PDF from other formats (`html`, `docx`). 
+We'll focus exclusively on creating PDFs via Typst, i.e. `format: typst`.
+Typst is a modern typesetting system that comes bundled with Quarto.
+There are alternatives in Quarto. 
+Most notably, `format: pdf` which creates a PDF via LaTeX. 
+We think for new authors, its both easier to get started, and easier to advance with Typst:
 
-When to use PDF? Targeting print, easily share a single file. Consider accessibility: HTML has longer history and often better. PDF improving, check accessibility section.
+* Typst comes bundled with Quarto, so getting to your first PDF document requires nothing more than adding `format: typst`.
+
+* Typst compiles very quickly, reducing the time it takes to preview your changes.
+
+* Typst's scripting language is similar to other languages you may already know (like R and Python) which makes it easier to understand existing templates, and customize your documents.
+
+There are situations where LaTeX may be a better fit:
+
+* You need to work with existing LaTeX templates, like a journal article template.
+
+* You already rely on LaTeX packages for advanced typesetting of math or equations.
+
+If you are in these situations, you may find the [PDF Basics guide](https://quarto.org/docs/output-formats/pdf-basics.htmlv) in the Quarto documentation a better place to start. 
+
+Readers who use screen readers and other assistive technologies generally have a smoother experience with HTML (@sec-html) than with PDF. 
+If that describes part of your audience — or if accessibility is a primary concern — HTML is often the better target. 
+Accessible PDFs are possible (we'll cover that in @sec-pdf-accessibility), but the tooling ecosystem is younger.
+
+In the next section, you'll create your first PDF document with `format: typst`.
+Then, you'll cover the types of content you'll most likely need in your first few documents: navigation, citations, math, code blocks, and computational outputs.
+
+In @sec-pdf-accessibility you'll learn the keys to creating accessible PDFs, and in @sec-customizing-appearance how to customize the page layout, fonts, and colors of your document.
+
+Finally, you'll learn where to head next if you need to go beyond Quarto's default Typst options.
 
 ## Your first PDF document
 
@@ -16,27 +44,42 @@ format: typst
 ---
 ```
 
+Here's a short, but complete example, with some common content types — headings, 
+a table, and cross-references:
+
 ````{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
 {{< include _examples/typst/first-document/train-punctuality.qmd >}}
 ````
 
+To create the PDF, render, either by Previewing in your IDE, or in the terminal:
+
+```{.bash filename="Terminal"}
+quarto render train-punctuality.qmd
+```
+
+Behind the scenes, Quarto converts your markdown source into Typst's own markup language (`.typ`), then uses the bundled Typst to compile the `.typ` to PDF.
+The result is `train-punctuality.pdf`, the rendered PDF, shown in @fig-typst-train-punctuality. 
+
 ![The rendered output of `train-punctuality.qmd`](images/typst-first-document-train-punctuality.png){#fig-typst-train-punctuality .border fig-alt="A rendered PDF showing a Route Punctuality Report with a table of on-time rates by route and a recommendations section."}
+
+You can see the headings, table and cross-references all "just work".
+In the following sections, we'll cover other common content types you commonly need in your first few documents. 
+You can also check out @sec-authoring for a more comprehensive set of features available across formats, including `format: typst`.
 
 ::: {.callout-note}
 
 ## PDFs are static documents
 
-Everything we talk about in @sec-authoring works in `format: typst`.
-Beware of features that introduce interactivity, like code folding, hover effects, these won't be supported in PDF
+You can try swapping to `format: typst` in any existing Quarto document.
+Most markdown features will carry over, but beware of features that introduce interactivity, like code folding, or hover effects, these won't be supported in PDF because PDF is a static format.
 
 :::
 
 
 ## Navigation
 
-`toc`, `number-sections`
-
-Relative links work.
+PDF documents support links, allowing your readers to quickly navigate your document.
+To make navigation easier for readers, you can add a table of contents (`toc`), and section numbers (`number-sections`) in your document header:
 
 ```{.yaml filename="train-punctuality.qmd"}
 ---
@@ -49,9 +92,29 @@ format:
 
 ![`train-punctuality.qmd` rendered with `toc: true` and `number-sections: true`](images/typst-navigation-train-punctuality.png){#fig-typst-navigation .border fig-alt="A rendered PDF of the Route Punctuality Report showing a table of contents and numbered section headings."}
 
+Items in the table of contents and cross-references are automatically clickable links that take readers to the relevant item.
+
+## Links
+
+You can also use markdown link syntax to add links directly to other sections in your document, or to external resources:
+
+```{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
+{{< include _examples/typst/links/_recommendations.qmd >}}
+```
+
+Both render as plain text in the default template — they're clickable in a PDF viewer, but visually indistinguishable from the surrounding prose.
+You'll learn how to style them in @sec-customizing-appearance.
+
 ## Citations
 
-`bibliography`, setting `csl` style. Using `@` syntax
+Citations require a bibliography file holding reference metadata. 
+A common format for this is BibTeX (`.bib`):
+
+```{.bibtex filename="references.bib"}
+{{< include _examples/typst/citations/references.bib >}}
+```
+
+To cite an item in the bibliography, specify the file in `bibliography` and use the `@` syntax in your text:
 
 ````{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
 {{< include _examples/typst/citations/train-punctuality.qmd >}}
@@ -68,6 +131,10 @@ format:
 
 ![Default citation style](images/typst-citations-train-punctuality.png){#fig-typst-citations .border fig-alt="A short PDF document showing a numbered in-text citation and a bibliography entry."}
 
+Citations in `format: typst` use Typst's native processing, and consequently, a different default citation style to other Quarto formats.
+You can specify the citation style with the `csl` option.
+Set `csl: chicago-author-date` to get the same Chicago author-date style as HTML output:
+
 ````{.yaml filename="train-punctuality.qmd"}
 ---
 format: typst
@@ -78,13 +145,12 @@ csl: chicago-author-date
 
 ![Chicago author-date citation style, the default for HTML formats](images/typst-citations-chicago-train-punctuality.png){#fig-typst-citations-chicago .border fig-alt="A short PDF document showing a Chicago author-date in-text citation and a bibliography entry."}
 
-Read more in @sec-citations, including various syntax variations.
+You can read more about citations in @sec-citations, including about various `@` syntax variations.
 
 ## Math
 
-### Typst math
-
-Use TeX math. Pandoc will convert to typst math.
+When you author to Typst from Quarto, use TeX math syntax to write your equations.
+Use single dollar signs (`$...$`) for inline math, and double dollar signs (`$$...$$`) for display equations:
 
 ````{.markdown filename="equations.qmd" .code-overflow-wrap}
 {{< include _examples/typst/math/equations.qmd >}}
@@ -92,7 +158,19 @@ Use TeX math. Pandoc will convert to typst math.
 
 ![Inline and display math rendered in Typst](images/typst-math-equations.png){#fig-typst-math-equations .border fig-alt="A PDF showing an inline mean symbol in a sentence and a numbered display equation for the sample mean."}
 
+::: {.callout-note}
+## Typst has its own math syntax
+
+Typst's has it's own (non-TeX) math notation, but you won't need to learn it, because Quarto converts TeX math to Typst math for you.
+This keeps math portable — the same TeX syntax renders across HTML, Typst and other formats without edits.
+:::
+
+You can read more about writing equations, including cross-referencing, in @sec-equations.
+
 ### Alt text
+
+Alt text makes an equation accessible to screen readers, and is required to meet the PDF/UA-1 standard.
+You can add alternative text to cross-referenced display equations with an `alt=` attribute:
 
 ````{.markdown filename="equations.qmd" .code-overflow-wrap}
 {{< include _examples/typst/math/equations-alt.qmd >}}
@@ -100,13 +178,26 @@ Use TeX math. Pandoc will convert to typst math.
 
 ![Display equation with alt text](images/typst-math-equations-alt.png){#fig-typst-math-equations-alt .border fig-alt="A PDF showing a numbered display equation for the sample mean."}
 
+::: {.callout-caution}
+
+## No alt text for inline math
+
+There is currently no way to add alt text to inline math in `format: typst`.
+Inline math without alt text will fail PDF/UA-1 validation.
+
+:::
+
 ### Theorems
+
+When you use one Quarto's theorem environments you'll get special styling in Typst.
+For example, to declare a theorem, you wrap it in a fenced div with an identifier that starts with `#thm-`:
 
 ````{.markdown filename="theorem.qmd" .code-overflow-wrap}
 {{< include _examples/typst/math/theorem.qmd >}}
 ````
 
-Control the appearance with `theorem-appearance`:
+The default theorem appearance is `simple`: a bold title followed by italic body text.
+Switch to a different flavor with `theorem-appearance`:
 
 ```{.yaml filename="_quarto-fancy.yml"}
 format:
@@ -114,7 +205,7 @@ format:
     theorem-appearance: fancy
 ```
 
-The default is `simple`
+The available options are `simple`, `fancy`, `clouds`, and `rainbow`:
 
 ::: {#fig-typst-math-theorem}
 ::: {layout-ncol=2}
@@ -127,26 +218,40 @@ The default is `simple`
 ![`rainbow`](images/typst-math-theorem-rainbow.png){#fig-typst-math-theorem-rainbow .border fig-alt="A theorem with a red left border and red title."}
 :::
 
-The available options for `theorem-appearance` are `simple`, `fancy`, `clouds`, and `rainbow`. 
+Available values for `theorem-appearance` to style theorems.
 :::
+
+`theorem-appearance` applies to every theorem-like element Quarto recognizes, not just `thm-`.
+You can find all the available types in @sec-theorems-proofs.
+Under `fancy`, `clouds` and `rainbow`, different types get different accent colours so you can tell a definition from a theorem at a glance.
 
 ## Code blocks
 
-Set the language on a fenced code block for syntax highlighting:
+When you include a code block it will get automatic syntax highlighting based
+on the language you specify.
+For example, you can set `r` on a code block:
 
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
 {{< include _examples/typst/code-blocks/highlight.qmd >}}
 ````
 
-![Syntax highlighting in a Typst document](images/typst-code-blocks-highlight.png){#fig-typst-code-blocks-highlight .border fig-alt="A short PDF showing a sentence followed by an R code block with colored syntax highlighting on a light blue-gray background."}
+Then in your PDF, the block gets R syntax highlighting as shown in @fig-typst-code-blocks-highlight.
+Executable code cells that are echoed in your document get the same treatment, so your code and its output are styled consistently.
 
-Control the theme with `syntax-highlighting`:
+![Default `arrow` syntax highlighting of an R code block in a Typst document](images/typst-code-blocks-highlight.png){#fig-typst-code-blocks-highlight .border fig-alt="A short PDF showing a sentence followed by an R code block with colored syntax highlighting on a light blue-gray background."}
+
+The default highlighting theme is `arrow`.
+Pick a different one with `syntax-highlighting`:
 
 ```{.yaml filename="_quarto.yml"}
 format:
   typst:
     syntax-highlighting: github
 ```
+
+Supported themes include: `a11y`, `arrow`, `pygments`, `tango`, `espresso`, `zenburn`, `kate`, `monochrome`, `breezedark`, `haddock`, `atom-one`, `ayu`, `breeze`, `dracula`, `github`, `gruvbox`, `monokai`, `nord`, `oblivion`, `printing`, `radical`, `solarized`, and `vim`.
+
+Typst also has a native highlighter, if you'd prefer to use it, you can set `syntax-highlighting` to `idiomatic`:
 
 ::: {#fig-typst-code-blocks-themes}
 ::: {layout-ncol=2}
@@ -155,7 +260,7 @@ format:
 ![`idiomatic`](images/typst-code-blocks-highlight-idiomatic.png){#fig-typst-code-blocks-idiomatic .border fig-alt="An R code block with Typst's native syntax highlighting on a gray background."}
 :::
 
-`github` uses Quarto's GitHub theme; `idiomatic` uses Typst's own native highlighting.
+A comparison of the `github` theme for syntax highlighting and Typst's native `idiomatic` theme.
 :::
 
 ### Filename
@@ -164,46 +269,83 @@ format:
 [CVW] Regenerate screenshot and remove this once quarto-dev/quarto-cli#14170 is merged.
 :::
 
+You can add a `filename` attribute to label the code block:
+
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
 {{< include _examples/typst/code-blocks/filename.qmd >}}
 ````
 
 ## Computational outputs
 
+Computational code cells work in `format: typst` just as they do in other formats.
+Outputs like figures, tables, and inline values are inserted into the PDF at the point of the cell.
+
+For example, here's a cell that produces a figure:
+
 ::: {.panel-tabset}
 ## R
 
-````{.r filename="report.qmd" .code-overflow-wrap}
+````{.markdown filename="report.qmd" .code-overflow-wrap}
 ```{{r}}
-{{< include _examples/typst/computational-outputs/data.R >}}
+{{< include _examples/typst/computational-outputs/figure-cell.R >}}
 ```
 ````
 
 ## Python
 
-````{.python filename="report.qmd" .code-overflow-wrap}
+````{.markdown filename="report.qmd" .code-overflow-wrap}
 ```{{python}}
-{{< include _examples/typst/computational-outputs/data.py >}}
+{{< include _examples/typst/computational-outputs/figure-cell.py >}}
 ```
 ````
 :::
 
+The cell uses `echo: false`, so the code itself is hidden in the rendered output; the figure appears directly below the surrounding prose with a numbered caption, as shown in @fig-typst-computational-outputs-figures.
+
+![Rendered output of the figure cell, with the figure inserted directly below the introductory sentence](images/typst-computational-outputs-figures.png){#fig-typst-computational-outputs-figures .border fig-alt="A page showing the sentence 'Figure 1 shows on-time rates across the network's routes' followed by a bar chart of on-time rate by route, captioned Figure 1: On-time rate by route."}
+
+While most computational outputs render as expected, there a few quirks to be aware of, which we'll cover the sections below: figure format, table formats and long tables.
+
+
 ### Figure format
 
-Quarto defaults to SVG for computational figures in Typst. Use `fig-format: png` to switch to PNG:
+Quarto defaults to SVG for computational figures in Typst.
+SVG is a vector format, so it scales well and looks crisp at any size.
+However, it can be slow to render when a figure contains many elements, like a busy scatterplot with thousands of points.
+Set `fig-format` in the document header to switch default format, e.g. to `png` for raster output:
 
-```{.yaml filename="_quarto.yml"}
+```{.yaml filename="report.qmd"}
+---
 format:
   typst:
     fig-format: png
+---
 ```
 
-### Tables
+### Table formats
+
+Any code that produces a markdown, HTML, or raw Typst table will render to a table in your PDF.
+Often it's not easy to tell which format you've ended up with. 
+The easiest way to check is to add `keep-md` to your header and examine the resulting `.md` file:
+
+````{.yaml filename="report.qmd"}
+---
+format:
+  typst:
+    keep-md: true
+---
+````
+
+For simple tables, code that outputs a markdown table, will often be the best choice.
+Markdown tables are converted to native Typst tables by Quarto, and it will inherit your documents styling, like fonts and colors, so the table will blend with the rest of your document. 
+
+The advantage of HTML tables, is that cell-level formatting, like coloring that depends on the data, will be preserved. 
+For example, these code blocks use the `gt` package in R and `great_tables` in Python to produce tables with colored cells:
 
 ::: {.panel-tabset}
 ## R
 
-````{.r filename="report.qmd" .code-overflow-wrap}
+````{.markdown filename="report.qmd" .code-overflow-wrap}
 ```{{r}}
 {{< include _examples/typst/computational-outputs/tables.R >}}
 ```
@@ -211,72 +353,82 @@ format:
 
 ## Python
 
-````{.python filename="report.qmd" .code-overflow-wrap}
+````{.markdown filename="report.qmd" .code-overflow-wrap}
 ```{{python}}
 {{< include _examples/typst/computational-outputs/tables.py >}}
 ```
 ````
 :::
 
-::: {.panel-tabset}
-## R
+When rendered to Typst the cell level coloring survives, as shown in @fig-typst-computational-outputs-tables.
+However, notice the font is now the `gt`/`great_tables` default san-serif font.
 
 ![A `gt` table rendered in Typst](images/typst-computational-outputs-tables.png){#fig-typst-computational-outputs-tables .border fig-alt="A table of on-time rates by route with four columns: Route, On time, Total, and On-time rate (%)."}
 
-## Python
+Most packages that produce HTML tables will have a way to customize the styles in the tables they produce. 
+You'll need to look into the package documentation to find out how.
 
-![A `great_tables` table rendered in Typst](images/typst-computational-outputs-tables-py.png){#fig-typst-computational-outputs-tables-py .border fig-alt="A table of on-time rates by route with four columns: Route, On time, Total, and On-time rate (%)."}
-:::
+
+Packages that produce raw Typst tables, may get the best of both worlds, inheriting the document's fonts and styling, while allowing for cell-level formatting. 
+However, there are currently very few packages that produce raw Typst tables.
 
 ### Long tables
 
-::: todo
-[CVW] Also cover the non-figure case: without `label:`/`tbl-cap:` the table isn't wrapped in a `#figure()` and breaks across pages fine by default.
-:::
+When your code creates a very long table, you'll want it to break across pages, rather than being cut off at the bottom of the page.
+If you haven't set `label:` and `tbl-cap:`, i.e. it isn't cross-referenceable, the table will break across pages by default.
 
-A cross-referenceable table (one with `label:` and `tbl-cap:`) is wrapped in a Typst `#figure()` block, which isn't breakable by default. A long table will overflow a single page:
+If you have set `label:` and `tbl-cap:`, the table won't be breakable by default, and will overflow the page instead of breaking across it, as shown in @fig-typst-computational-outputs-long-table-broken.
 
-![A long cross-referenceable table overflowing a single page](images/typst-computational-outputs-long-table-broken.png){#fig-typst-computational-outputs-long-table-broken .border fig-alt="A long gt table whose last two rows are cut off at the bottom of the page."}
+![A long cross-referenceable table overflowing a single page](images/typst-computational-outputs-long-table-broken.png){#fig-typst-computational-outputs-long-table-broken .border width="40%" fig-alt="A long gt table whose last two rows are cut off at the bottom of the page."}
 
-Add a raw Typst block to make figures breakable:
+To let cross-referenceable tables break across pages, add a raw Typst block after your document header:
 
 ````{.markdown filename="report.qmd"}
+---
+title: "Route Punctuality Report"
+---
+
 ```{{=typst}}
 #show figure: set block(breakable: true)
 ```
 ````
 
-::: {#fig-typst-computational-outputs-long-table-fix}
-::: {layout-ncol=2}
-![Page 1](images/typst-computational-outputs-long-table-fix-p1.png){#fig-typst-computational-outputs-long-table-fix-p1 .border fig-alt="Page 1 of a long gt table, with the first 27 rows visible."}
+Now the long table flows cleanly across pages, with the table header repeated on each:
 
-![Page 2](images/typst-computational-outputs-long-table-fix-p2.png){#fig-typst-computational-outputs-long-table-fix-p2 .border fig-alt="Page 2 of the long gt table, with the final 3 rows visible and the header repeated."}
+::: {#fig-typst-computational-outputs-long-table-fix}
+::: {layout-ncol=2 layout-valign="top"}
+![Page 1](images/typst-computational-outputs-long-table-fix-p1.png){#fig-typst-computational-outputs-long-table-fix-p1 .border width="80%" fig-alt="Page 1 of a long gt table, with the first 27 rows visible."}
+
+![Page 2](images/typst-computational-outputs-long-table-fix-p2.png){#fig-typst-computational-outputs-long-table-fix-p2 .border width="80%" fig-alt="Page 2 of the long gt table, with the final 3 rows visible and the header repeated."}
 :::
 
 The long table broken cleanly across two pages.
 :::
 
+You'll learn more about raw Typst blocks in the next section.
+
 ## Raw Typst blocks
 
-Markdown doesn't reach every corner of Typst. For a shape, a decorative element, or any Typst function call, drop into a `{=typst}` fenced block — its contents pass straight through to Typst:
+If you explore the [Typst documentation](https://typst.app/docs/reference/), you'll find a rich syntax that can go beyond what Quarto markdown supports.
+For anything, that Quarto doesn't support you can use Typst syntax directly inside a raw block (@sec-raw-blocks).
 
-````{.markdown filename="report.qmd"}
-Service status:
+The contents of a raw block pass through to Typst without being processed by Quarto, and are ignored in any other format.
+For example, you can use a raw Typst block to add status badge that uses the [`rect`](https://typst.app/docs/reference/visualize/rect/), [`align`](https://typst.app/docs/reference/layout/align/), and [`text`](https://typst.app/docs/reference/text/text/) Typst functions:
 
-```{{=typst}}
-#rect(width: 4cm, height: 1cm, fill: rgb("#2e5090"), radius: 4pt)
-```
-
-Deployed to production 2026-04-22.
+````{.markdown .code-overflow-wrap filename="report.qmd"}
+{{< include _examples/typst/raw-typst/shape.qmd >}}
 ````
 
-![A rounded blue rectangle rendered inline between two lines of prose](images/typst-raw-typst-shape.png){#fig-typst-raw-typst-shape .border fig-alt="A short paragraph reading Service status followed by a rounded blue rectangle, followed by a line reading Deployed to production 2026-04-22."}
+![A blue status badge labelled "Normal" rendered below the prose](images/typst-raw-typst-shape.png){#fig-typst-raw-typst-shape .border fig-alt="A line reading Service status, followed by a rounded blue rectangle with the word Normal centered in white."}
 
-Typst's full function catalogue — shapes, icons (`#emoji.rocket`), dates, layout primitives — is fair game. You'll see raw blocks again when we [customise appearance with set and show rules](#use-raw-typst).
+Another good usecase for raw blocks is to customize appearance with set and show rules as you'll see in @sec-use-show-rules.
 
 ## Full-width or margin content
 
-Fenced divs let you lift figures, tables, or text out of the body column. `.column-margin` pushes content into the margin as an aside:
+By default, your document content will sit in the body column of your PDF document.
+Sometime, you may want to break out of that column, and use the full page width, or put content into the right margin.
+
+Add the `.column-margin` class to a fenced div to push content into the margin as an aside:
 
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
 {{< include _examples/typst/column-layout/margin.qmd >}}
@@ -284,7 +436,7 @@ Fenced divs let you lift figures, tables, or text out of the body column. `.colu
 
 ![Body paragraphs with a short note pushed into the right margin](images/typst-column-layout-margin.png){#fig-typst-column-layout-margin .border fig-alt="A PDF showing two body paragraphs with a short note in the right margin."}
 
-`.column-page` widens content across the page, extending beyond the body text:
+Use the `.column-page` class to widen content across the page, extending beyond the body text:
 
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
 {{< include _examples/typst/column-layout/page.qmd >}}
@@ -292,13 +444,34 @@ Fenced divs let you lift figures, tables, or text out of the body column. `.colu
 
 ![A narrow intro line followed by a table that spans the full page width](images/typst-column-layout-page.png){#fig-typst-column-layout-page .border fig-alt="A PDF showing a narrow introductory line and a wide six-column table extending beyond the body width."}
 
-The full set of column classes — `.column-body-outset`, `.column-page-inset`, `.column-screen`, left/right variants, and more — works in Typst via the Marginalia package, just as it does for HTML output.
+In Typst, the column classes give you four distinct widths beyond the default body:
 
-::: todo
-[CVW] Show the code-cell equivalents (`column: page`, `fig-column: margin`, `tbl-column: ...`) for computational outputs, and the document-level defaults in the YAML header that apply the same column choice to every chunk.
-:::
+- `.column-margin` — content sits in the margin column
+- `.column-body-outset` — slightly wider than the body, extending into the margins
+- `.column-page-inset` — almost the full page width
+- `.column-page` — extends to the page margins
 
-## Making accessible PDFs
+Each of the wider three has `-left` and `-right` variants for one-sided expansion.
+@fig-typst-column-layout-extents shows the extent of each.
+
+![Extent column classes on a single page](images/typst-column-layout-extents.png){#fig-typst-column-layout-extents .border fig-alt="A page laid out with one rectangle per column class, sized to its width: a small body rectangle at top, a margin rectangle in the right margin, three body-outset rectangles slightly wider than the body, three page-inset rectangles wider still, and three page rectangles extending to the page margins."}
+
+For document-wide defaults, set `tbl-column` and `fig-column` in the document header.
+Both apply to every cross-referenceable table or figure in the document — markdown pipe tables, list tables, and computational outputs alike.
+Tables and figures without an identifier are unaffected, as are non-cross-referenceable images and tables.
+
+```{.yaml filename="report.qmd"}
+---
+format: typst
+fig-column: page
+tbl-column: page
+---
+```
+
+## Making accessible PDFs {#sec-pdf-accessibility}
+
+An accessible PDF is one that assistive technologies, like screen readers, can navigate and announce correctly.
+The PDF/UA-1 standard defines what a tagged, accessible PDF looks like — document structure, language metadata, alt text on every image and equation.
 
 Set `pdf-standard: ua-1` to produce a tagged PDF suitable for screen readers. Quarto validates the output against PDF/UA-1 at render time; a document that fails validation won't be produced.
 

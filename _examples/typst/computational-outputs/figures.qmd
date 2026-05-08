@@ -3,9 +3,8 @@
 {{< include data.R >}}
 ```
 
+@fig-punctuality shows on-time rates across the network's routes.
+
 ```{r}
-#| label: fig-punctuality
-#| fig-cap: On-time rate by route
-#| echo: false
-{{< include figures.R >}}
+{{< include figure-cell.R >}}
 ```

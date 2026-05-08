@@ -1,0 +1,20 @@
+::: {#thm-chebyshev}
+## Chebyshev's Inequality
+
+For a random variable $X$ with mean $\mu$ and variance $\sigma^2$, for any $k > 0$:
+$$P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}$$
+:::
+
+::: {#proof}
+Apply Markov's inequality to the non-negative random variable $(X - \mu)^2$.
+:::
+
+::: {#rem-chebyshev}
+The bound is loose for small $k$; it becomes meaningful only once $k > 1$.
+:::
+
+::: {#sol-chebyshev}
+Use $k = 2$ to conclude at least 75% of the mass lies within two standard deviations of the mean.
+:::
+<!-- Will work once https://github.com/quarto-dev/quarto-cli/pull/14312 is merged -->
+<!-- The full argument appears in @sol-chebyshev, @rem-chebyshev.  -->

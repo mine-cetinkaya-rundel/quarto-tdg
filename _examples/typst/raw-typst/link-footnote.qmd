@@ -1,0 +1,15 @@
+```{=typst}
+#show link: it => if type(it.dest) == str {
+  [#it.body#footnote([#raw(it.dest)])]
+} else {
+  it
+}
+```
+
+## Summary
+
+Quarterly on-time performance held above 80% across the network.
+
+## Recommendations
+
+Revisit the [Summary](#summary) for context, and see the [Q1 on-time dashboard](https://transit.example.com/ontime/2026-q1) for the full breakdown by route.

@@ -1,7 +1,4 @@
 ---
-format:
-  typst:
-    page-numbering: ""
 bibliography: references.bib
 ---
 

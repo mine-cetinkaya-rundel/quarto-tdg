@@ -1,0 +1,11 @@
+---
+brand:
+  typography:
+    link:
+      decoration: underline
+      color: "#2e5090"
+---
+
+## Recommendations
+
+See the [Q1 on-time dashboard](https://transit.example.com/ontime/2026-q1) for the full breakdown by route.

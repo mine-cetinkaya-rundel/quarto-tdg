@@ -3,9 +3,8 @@
 {{< include data.py >}}
 ```
 
+@fig-punctuality shows on-time rates across the network's routes.
+
 ```{python}
-#| label: fig-punctuality
-#| fig-cap: On-time rate by route
-#| echo: false
-{{< include figures.py >}}
+{{< include figure-cell.py >}}
 ```

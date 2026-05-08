@@ -9,150 +9,56 @@
 - image: typst-citations-train-punctuality.png
   source: _examples/typst/citations/train-punctuality.qmd
   density: 200
-  generated: 2026-03-31T19:12:54Z
-- image: typst-citations-chicago-train-punctuality.png
-  source: _examples/typst/citations-chicago/train-punctuality.qmd
-  density: 200
-  generated: 2026-03-31T19:24:24Z
-- image: typst-math-equations.png
-  source: _examples/typst/math/equations.qmd
-  density: 200
-  generated: 2026-03-31T19:43:20Z
-- image: typst-math-equations-alt.png
-  source: _examples/typst/math/equations-alt.qmd
-  density: 200
-  generated: 2026-03-31T19:43:22Z
+  generated: 2026-04-22T19:14:38Z
 - image: typst-math-theorem.png
   source: _examples/typst/math/theorem.qmd
   density: 200
-  generated: 2026-03-31T19:43:22Z
+  generated: 2026-04-22T21:39:21Z
 - image: typst-math-theorem-fancy.png
   source: _examples/typst/math/theorem.qmd
   profile: fancy
   density: 200
-  generated: 2026-03-31T19:43:23Z
+  generated: 2026-04-22T21:39:23Z
 - image: typst-math-theorem-clouds.png
   source: _examples/typst/math/theorem.qmd
   profile: clouds
   density: 200
-  generated: 2026-03-31T19:43:24Z
+  generated: 2026-04-22T21:39:24Z
 - image: typst-math-theorem-rainbow.png
   source: _examples/typst/math/theorem.qmd
   profile: rainbow
   density: 200
-  generated: 2026-03-31T19:43:25Z
-- image: typst-code-blocks-highlight.png
-  source: _examples/typst/code-blocks/highlight.qmd
+  generated: 2026-04-22T21:39:26Z
+- image: typst-math-proof.png
+  source: _examples/typst/math/proof.qmd
   density: 200
-  generated: 2026-03-31T20:11:05Z
+  generated: 2026-04-22T21:42:19Z
 - image: typst-code-blocks-highlight-github.png
   source: _examples/typst/code-blocks/highlight.qmd
   profile: github
   density: 200
-  generated: 2026-03-31T20:11:07Z
-- image: typst-code-blocks-highlight-idiomatic.png
-  source: _examples/typst/code-blocks/highlight.qmd
-  profile: idiomatic
-  density: 200
-  generated: 2026-03-31T20:11:08Z
+  generated: 2026-05-08T15:29:33Z
 - image: typst-computational-outputs-figures.png
   source: _examples/typst/computational-outputs/figures.qmd
   density: 200
-  generated: 2026-03-31T20:38:21Z
-- image: typst-computational-outputs-figures-png.png
-  source: _examples/typst/computational-outputs/figures.qmd
-  profile: png
+  generated: 2026-05-08T15:50:03Z
+- image: typst-computational-outputs-figures-py.png
+  source: _examples/typst/computational-outputs/figures-py.qmd
   density: 200
-  generated: 2026-03-31T20:38:24Z
-- image: typst-computational-outputs-tables.png
-  source: _examples/typst/computational-outputs/tables.qmd
+  generated: 2026-05-08T15:50:07Z
+- image: typst-computational-outputs-tables-libertinus.png
+  source: _examples/typst/computational-outputs/tables-libertinus.qmd
   density: 200
-  generated: 2026-03-31T20:55:46Z
-- image: typst-computational-outputs-tables-py.png
-  source: _examples/typst/computational-outputs/tables-py.qmd
+  generated: 2026-05-08T16:11:24Z
+- image: typst-computational-outputs-tables-libertinus-py.png
+  source: _examples/typst/computational-outputs/tables-libertinus-py.qmd
   density: 200
-  generated: 2026-03-31T20:55:48Z
-- image: typst-computational-outputs-long-table-broken.png
-  source: _examples/typst/computational-outputs/long-table.qmd
-  page: 2
-  density: 150
-  generated: 2026-04-21T00:00:00Z
-- image: typst-computational-outputs-long-table-fix-p1.png
-  source: _examples/typst/computational-outputs/long-table-fix.qmd
-  page: 1
-  density: 150
-  generated: 2026-04-21T00:00:00Z
-- image: typst-computational-outputs-long-table-fix-p2.png
-  source: _examples/typst/computational-outputs/long-table-fix.qmd
-  page: 2
-  density: 150
-  generated: 2026-04-21T00:00:00Z
-- image: typst-column-layout-margin.png
-  source: _examples/typst/column-layout/margin.qmd
-  density: 200
-  generated: 2026-04-21T18:36:54Z
-- image: typst-column-layout-page.png
-  source: _examples/typst/column-layout/page.qmd
-  density: 200
-  generated: 2026-04-21T18:36:55Z
-- image: typst-page-layout-report.png
-  source: _examples/typst/page-layout/report.qmd
-  density: 200
-  generated: 2026-04-21T18:48:09Z
-- image: typst-page-layout-report-a5.png
-  source: _examples/typst/page-layout/report.qmd
-  profile: a5
-  density: 200
-  generated: 2026-04-21T18:48:12Z
-- image: typst-page-layout-report-margin.png
-  source: _examples/typst/page-layout/report.qmd
-  profile: margin
-  density: 200
-  generated: 2026-04-21T18:48:13Z
-- image: typst-page-layout-report-grid.png
-  source: _examples/typst/page-layout/report.qmd
-  profile: grid
-  density: 200
-  generated: 2026-04-21T18:48:14Z
-- image: typst-page-layout-report-columns.png
-  source: _examples/typst/page-layout/report.qmd
-  profile: columns
-  density: 200
-  generated: 2026-04-21T18:48:15Z
-- image: typst-page-layout-report-numbering.png
-  source: _examples/typst/page-layout/report.qmd
-  profile: numbering
-  density: 200
-  generated: 2026-04-21T18:48:16Z
-- image: typst-fonts-colors-code-bg.png
-  source: _examples/typst/fonts-colors/code-bg.qmd
-  density: 200
-  generated: 2026-04-21T21:54:37Z
-- image: typst-raw-typst-page-header.png
-  source: _examples/typst/raw-typst/page-header.qmd
-  density: 200
-  generated: 2026-04-22T16:35:53Z
-- image: typst-raw-typst-par-leading.png
-  source: _examples/typst/raw-typst/par-leading.qmd
-  density: 200
-  generated: 2026-04-22T16:51:41Z
-- image: typst-raw-typst-heading-level.png
-  source: _examples/typst/raw-typst/heading-level.qmd
-  density: 200
-  generated: 2026-04-22T16:54:18Z
-- image: typst-raw-typst-text-fill.png
-  source: _examples/typst/raw-typst/text-fill.qmd
-  density: 200
-  generated: 2026-04-22T17:08:46Z
-- image: typst-raw-typst-heading-spacing.png
-  source: _examples/typst/raw-typst/heading-spacing.qmd
-  density: 200
-  generated: 2026-04-22T16:35:58Z
-- image: typst-raw-typst-heading-color.png
-  source: _examples/typst/raw-typst/heading-color.qmd
-  density: 200
-  generated: 2026-04-22T16:36:00Z
+  generated: 2026-05-08T16:13:16Z
 - image: typst-raw-typst-shape.png
   source: _examples/typst/raw-typst/shape.qmd
   density: 200
-  generated: 2026-04-22T17:16:34Z
+  generated: 2026-05-08T16:32:00Z
+- image: typst-column-layout-extents.png
+  source: _examples/typst/column-layout/extents.qmd
+  density: 200
+  generated: 2026-05-08T16:50:31Z
