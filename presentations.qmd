@@ -17,7 +17,37 @@ HTML slides created with `revealjs` can also be printed to PDF for easier distri
 This chapter focuses on `revealjs` format, though the basic syntax we describe applies to all formats.
 We will close the chapter with a complete example of a `revealjs` presentation and some tips for sharing your presentation with others as well as callouts for commonly used format-specific features in `pptx` and `beamer`.
 
-## Section and slide breaks
+## Authoring
+
+### Title slide
+
+The title slide is auto-generated from YAML metadata:
+
+``` {.yaml filename="presentation.qmd"}
+---
+title: "Presentation Title"
+subtitle: "A Subtitle"
+author: "Author Name"
+date: "2024-01-15"
+format: revealjs
+---
+```
+
+Omit `title` and `author` fields to skip automatic title slide generation.
+
+By default the title slide is centered while all other slides are top-aligned. To disable centering on the title slide, set `center-title-slide: false`. For full control, you can replace the title slide entirely by supplying a custom `title-slide.html` template partial:
+
+``` {.yaml filename="presentation.qmd"}
+---
+title: "My Presentation"
+format:
+  revealjs:
+    template-partials:
+      - title-slide.html
+---
+```
+
+### Section and slide breaks
 
 By default, level 1 headings (`#`) create section breaks and level 2 headings (`##`) create slide breaks.
 
@@ -37,80 +67,7 @@ By default, level 1 headings (`#`) create section breaks and level 2 headings (`
 
 You can customize this behavior using the `slide-level` option in YAML, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
 
-## Pauses
-
-You can use three dots to create pauses within slides:
-
-``` markdown
-## Slide Title
-
-Content before pause.
-
-. . .
-
-Content after pause.
-```
-
-These pauses work with all content types, including text, images, and code blocks.
-They can also be used to break up revealing bullet points, though we recommend using incremental lists for that purpose instead.
-
-## Incremental lists
-
-By default, list items appear all at once. Enable incremental display globally:
-
-``` {.yaml filename="presentation.qmd"}
----
-title: "My Presentation"
-format:
-  revealjs:
-    incremental: true
----
-```
-
-For per-list control, use div classes:
-
-``` markdown
-::: {.incremental}
-- First item appears
-- Second item appears
-- Third item appears
-:::
-```
-
-Or disable incremental for specific lists when globally enabled:
-
-``` markdown
-::: {.nonincremental}
-- All items
-- Appear at once
-:::
-```
-
-## Fragments
-
-Fragments provide more granular control over incremental animation than pauses or incremental lists. Any element with the class `fragment` will be stepped through before moving on to the next slide, and you can apply a variety of animation effects:
-
-``` markdown
-::: {.fragment .fade-in}
-Fade in
-:::
-
-::: {.fragment .fade-up}
-Slide up while fading in
-:::
-
-::: {.fragment .fade-left}
-Slide left while fading in
-:::
-
-::: {.fragment .fade-in-then-semi-out}
-Fade in then semi out
-:::
-```
-
-Other available fragment classes include `.fade-out`, `.fade-right`, `.fade-down`, `.highlight-red`, `.highlight-blue`, `.strike`, and `.grow`.
-
-## Multiple Columns
+### Multiple columns
 
 Create side-by-side content using column divs:
 
@@ -154,7 +111,31 @@ Narrower right column content goes here.
 
 The same syntax can be used to create more than two columns, e.g., three columns with `width="33%"` each, or a mix of fixed and flexible widths, e.g., `width="200px"` for a fixed width column and `width="auto"` for a flexible column that fills remaining space.
 
-## Content overflow
+### Tabsets
+
+Create tabbed content panels:
+
+``` markdown
+## Tabbed Content
+
+::: {.panel-tabset}
+
+### Tab 1
+
+Content for first tab.
+
+### Tab 2
+
+Content for second tab.
+
+:::
+```
+
+::: callout-note
+When printing to PDF, only the first tab will be visible.
+:::
+
+### Content overflow
 
 For slides with dense content, use the `.smaller` class to reduce font size:
 
@@ -183,7 +164,7 @@ format:
 ---
 ```
 
-## Image sizing
+### Image sizing
 
 Quarto automatically sets figure sizes for Python (Matplotlib, Plotly Express) and R (knitr) to fill the slide area below the title. For finer control, use `.r-stretch` on an image to make it automatically fill the remaining vertical space on a slide:
 
@@ -197,7 +178,7 @@ Some introductory text.
 
 Note that `.r-stretch` only applies to non-nested images. Images inside columns, fragments, or other custom divs are ignored unless you add `.r-stretch` to the outer div explicitly.
 
-## Slide Backgrounds
+### Slide backgrounds
 
 Customize individual slide backgrounds using heading attributes.
 
@@ -239,82 +220,7 @@ title-slide-attributes:
 ---
 ```
 
-## Auto-Animate
-
-Quarto can automatically animate elements across adjacent slides. Add the `auto-animate` attribute to two consecutive slides and Reveal will animate all matching elements between them:
-
-``` markdown
-## Slide 1 {auto-animate=true}
-
-- Item one
-- Item two
-
-## Slide 2 {auto-animate=true}
-
-- Item one
-- Item two
-- Item three
-```
-
-You can fine-tune animation behavior globally or per-slide:
-
-``` {.yaml filename="presentation.qmd"}
----
-format:
-  revealjs:
-    auto-animate-easing: ease-in-out
-    auto-animate-unmatched: false
-    auto-animate-duration: 0.8
----
-```
-
-## Tabsets
-
-Create tabbed content panels:
-
-``` markdown
-## Tabbed Content
-
-::: {.panel-tabset}
-
-### Tab 1
-
-Content for first tab.
-
-### Tab 2
-
-Content for second tab.
-
-:::
-```
-
-::: callout-note
-When printing to PDF, only the first tab will be visible.
-:::
-
-## Speaker Notes
-
-Add presenter notes visible only in speaker view:
-
-``` markdown
-## Slide Title
-
-Slide content visible to audience.
-
-::: {.notes}
-Speaker notes only visible to presenter.
-Press 'S' to open speaker view.
-:::
-```
-
-Speaker view displays:
-
-- Current slide
-- Upcoming slide
-- Elapsed time
-- Speaker notes
-
-## Footer and Logo
+### Footer and logo
 
 Add consistent branding across slides:
 
@@ -345,7 +251,7 @@ Custom footer for this slide only.
 :::
 ```
 
-## Asides and Footnotes
+### Asides and footnotes
 
 Add peripheral commentary with asides:
 
@@ -377,37 +283,9 @@ format:
 ---
 ```
 
-## Title Slide
+## Executable code
 
-The title slide is auto-generated from YAML metadata:
-
-``` {.yaml filename="presentation.qmd"}
----
-title: "Presentation Title"
-subtitle: "A Subtitle"
-author: "Author Name"
-date: "2024-01-15"
-format: revealjs
----
-```
-
-Omit `title` and `author` fields to skip automatic title slide generation.
-
-By default the title slide is centered while all other slides are top-aligned. To disable centering on the title slide, set `center-title-slide: false`. For full control, you can replace the title slide entirely by supplying a custom `title-slide.html` template partial:
-
-``` {.yaml filename="presentation.qmd"}
----
-title: "My Presentation"
-format:
-  revealjs:
-    template-partials:
-      - title-slide.html
----
-```
-
-## Executable Code
-
-### Output Location
+### Output location
 
 Control where code output appears using `output-location`:
 
@@ -466,6 +344,114 @@ format:
 
 Presentations can incorporate interactive content using Observable JS or Shiny. This allows you to embed reactive inputs and outputs directly in slides, turning a presentation into a live application. See the [Observable](https://quarto.org/docs/interactive/ojs/) and [Shiny](https://quarto.org/docs/interactive/shiny/) documentation for details.
 
+## Animation
+
+### Pauses
+
+You can use three dots to create pauses within slides:
+
+``` markdown
+## Slide Title
+
+Content before pause.
+
+. . .
+
+Content after pause.
+```
+
+These pauses work with all content types, including text, images, and code blocks.
+They can also be used to break up revealing bullet points, though we recommend using incremental lists for that purpose instead.
+
+### Incremental lists
+
+By default, list items appear all at once. Enable incremental display globally:
+
+``` {.yaml filename="presentation.qmd"}
+---
+title: "My Presentation"
+format:
+  revealjs:
+    incremental: true
+---
+```
+
+For per-list control, use div classes:
+
+``` markdown
+::: {.incremental}
+- First item appears
+- Second item appears
+- Third item appears
+:::
+```
+
+Or disable incremental for specific lists when globally enabled:
+
+``` markdown
+::: {.nonincremental}
+- All items
+- Appear at once
+:::
+```
+
+### Fragments
+
+Fragments provide more granular control over incremental animation than pauses or incremental lists. Any element with the class `fragment` will be stepped through before moving on to the next slide, and you can apply a variety of animation effects:
+
+``` markdown
+::: {.fragment .fade-in}
+Fade in
+:::
+
+::: {.fragment .fade-up}
+Slide up while fading in
+:::
+
+::: {.fragment .fade-left}
+Slide left while fading in
+:::
+
+::: {.fragment .fade-in-then-semi-out}
+Fade in then semi out
+:::
+```
+
+Other available fragment classes include `.fade-out`, `.fade-right`, `.fade-down`, `.highlight-red`, `.highlight-blue`, `.strike`, and `.grow`.
+
+
+
+
+
+### Auto-animate
+
+Quarto can automatically animate elements across adjacent slides. Add the `auto-animate` attribute to two consecutive slides and Reveal will animate all matching elements between them:
+
+``` markdown
+## Slide 1 {auto-animate=true}
+
+- Item one
+- Item two
+
+## Slide 2 {auto-animate=true}
+
+- Item one
+- Item two
+- Item three
+```
+
+You can fine-tune animation behavior globally or per-slide:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    auto-animate-easing: ease-in-out
+    auto-animate-unmatched: false
+    auto-animate-duration: 0.8
+---
+```
+
 ## Customizing appearance
 
 ### Themes
@@ -507,7 +493,7 @@ format:
 ---
 ```
 
-## Complete Example
+## Complete example
 
 ```` {.yaml filename="presentation.qmd"}
 ---
@@ -552,7 +538,29 @@ However it's possible to customize this using the `slide-level` option, e.g., `s
 See the Pandoc documentation on [structuring the slide show](https://pandoc.org/MANUAL.html#structuring-the-slide-show) for additional details.
 :::
 
-## Presenting and Sharing
+## Presenting
+
+### Speaker notes
+
+Add presenter notes visible only in speaker view:
+
+``` markdown
+## Slide Title
+
+Slide content visible to audience.
+
+::: {.notes}
+Speaker notes only visible to presenter.
+Press 'S' to open speaker view.
+:::
+```
+
+Speaker view displays:
+
+- Current slide
+- Upcoming slide
+- Elapsed time
+- Speaker notes
 
 ### Navigation
 
@@ -618,6 +626,8 @@ The Chalkboard plugin is not compatible with `embed-resources: true`. Using both
 ### Multiplex
 
 The Multiplex plugin allows your audience to follow along on their own devices as you advance through slides. See the [Presenting Slides documentation](https://quarto.org/docs/presentations/revealjs/presenting.html) for setup instructions.
+
+## Sharing
 
 ### Self-contained files
 
