@@ -1,57 +1,480 @@
 # Presentations {#sec-presentations}
 
-Quarto supports a variety of formats for creating presentations, including:
+In addition to long-form documents, you can also use Quarto to create presentations.
 
--   `revealjs` (HTML)
+Quarto supports three main presentation formats:
 
--   `pptx` (MS Office)
+| Format | Output | Use Case |
+|--------|--------|----------|
+| `revealjs` | HTML | Most capable, recommended default |
+| `pptx` | PowerPoint | Office environments |
+| `beamer` | PDF | LaTeX workflows |
 
--   `beamer` (LaTeX/PDF)
+Regardless of format type, you can use the same markdown syntax to create your presentation content.
+The most flexible and feature-rich of these formats is `revealjs` which supports a wide range of features and customizations.
+HTML slides created with `revealjs` can also be printed to PDF for easier distribution, though if you have interactive features in your presentation, they will be lost in the PDF version.
 
-There are pros and cons to each of these formats.
-The most capable format by far is `revealjs` so is highly recommended unless you have specific requirements for Office or LaTeX output.
-Note that `revealjs` presentations can be presented as HTML slides or can be printed to PDF for easier distribution.
+This chapter focuses on `revealjs` format, though the basic syntax we describe applies to all formats.
+We will close the chapter with a complete example of a `revealjs` presentation and some tips for sharing your presentation with others as well as callouts for commonly used format-specific features in `pptx` and `beamer`.
 
-We start this chapter by describing the basic syntax for presentations that applies to all formats.
-In later sections we will also touch on format-specific features.
+## Section and slide breaks
 
-## Sections and slides
+By default, level 1 headings (`#`) create section breaks and level 2 headings (`##`) create slide breaks.
 
-Level 1 headings identify sections and Level 2 headings identify slides.
-These headings also create breaks between slides.
-For breaks between slides without titles, use dashes `---`.
+``` {.markdown filename="presentation.qmd"}
+# Section 1
+
+## Section 1, Slide 1
+
+## Section 1, Slide 2
+
+# Section 2
+
+## Section 2, Slide 1
+
+## Section 2, Slide 2
+```
+
+You can customize this behavior using the `slide-level` option in YAML, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
+
+## Pauses
+
+You can use three dots to create pauses within slides:
 
 ``` markdown
+## Slide Title
+
+Content before pause.
+
+. . .
+
+Content after pause.
+```
+
+These pauses work with all content types, including text, images, and code blocks.
+They can also be used to break up revealing bullet points, though we recommend using incremental lists for that purpose instead.
+
+## Incremental lists
+
+By default, list items appear all at once. Enable incremental display globally:
+
+``` {.yaml filename="presentation.qmd"}
 ---
-title: "Slide deck"
-author: "John Doe"
+title: "My Presentation"
+format:
+  revealjs:
+    incremental: true
+---
+```
+
+For per-list control, use div classes:
+
+``` markdown
+::: {.incremental}
+- First item appears
+- Second item appears
+- Third item appears
+:::
+```
+
+Or disable incremental for specific lists when globally enabled:
+
+``` markdown
+::: {.nonincremental}
+- All items
+- Appear at once
+:::
+```
+
+## Multiple Columns
+
+Create side-by-side content using column divs:
+
+``` markdown
+::: {.columns}
+
+::: {.column}
+
+Left column content goes here.
+
+:::
+
+::: {.column}
+
+Right column content goes here.
+
+:::
+
+:::
+```
+
+By default this will give you two columns with equal width, but you can customize column widths using the `width` attribute:
+
+``` markdown
+::: {.columns}
+
+::: {.column width="70%"}
+
+Wider left column content goes here.
+
+:::
+
+::: {.column width="30%"}
+
+Narrower right column content goes here.
+
+:::
+
+:::
+```
+
+Same syntax can be used to create more than two columns, e.g., three columns with `width="33%"` each, or a mix of fixed and flexible widths, e.g., `width="200px"` for a fixed width column and `width="auto"` for a flexible column that fills remaining space.
+
+``` markdown
+::: {.columns}
+
+::: {.column width="70%"}
+
+Wider left column content goes here.
+
+:::
+
+::: {.column width="30%"}
+
+Narrower right column content goes here.
+
+:::
+
+:::
+```
+
+## Content overflow
+
+For slides with dense content, use the `.smaller` class to reduce font size:
+
+``` markdown
+## Dense Slide {.smaller}
+
+Lots of content here...
+```
+
+Enable scrolling for slides that exceed the viewport:
+
+``` markdown
+## Scrollable Slide {.scrollable}
+
+Very long content...
+```
+
+Apply globally in YAML:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    smaller: true
+    scrollable: true
+---
+```
+
+
+
+## Slide Backgrounds
+
+Customize individual slide backgrounds using heading attributes.
+
+**Color backgrounds:**
+
+``` markdown
+## Slide Title {background-color="aquamarine"}
+
+Content on colored background.
+```
+
+**Gradient backgrounds:**
+
+``` markdown
+## Gradient Slide {background-gradient="linear-gradient(to right, red, blue)"}
+```
+
+**Image backgrounds:**
+
+``` markdown
+## Image Background {background-image="image.jpg" background-size="cover" background-opacity="0.5"}
+```
+
+**Video backgrounds:**
+
+``` markdown
+## Video Background {background-video="video.mp4" background-video-loop="true" background-video-muted="true"}
+```
+
+**Title slide background:**
+
+``` {.yaml filename="presentation.qmd"}
+---
+title: "My Presentation"
 format: revealjs
+title-slide-attributes:
+  data-background-image: "background.jpg"
+  data-background-size: cover
 ---
+```
 
-# Section 1 title
+## Tabsets
 
-## Slide 1 title
+Create tabbed content panels:
 
-- Bullet point 1
-- Bullet point 2
+``` markdown
+## Tabbed Content
 
-## Slide 2 title
+::: {.panel-tabset}
 
-- Bullet point 1
-- Bullet point 2
+### Tab 1
 
----
+Content for first tab.
 
-Slide without title:
+### Tab 2
 
-- Bullet point 1
-- Bullet point 2
+Content for second tab.
+
+:::
 ```
 
 ::: callout-note
-We will continue to use level 1 headings for section brakes and level 2 headings for slide breaks.
+When printing to PDF, only the first tab will be visible.
+:::
+
+## Speaker Notes
+
+Add presenter notes visible only in speaker view:
+
+``` markdown
+## Slide Title
+
+Slide content visible to audience.
+
+::: {.notes}
+Speaker notes only visible to presenter.
+Press 'S' to open speaker view.
+:::
+```
+
+Speaker view displays:
+- Current slide
+- Upcoming slide
+- Elapsed time
+- Speaker notes
+
+## Footer and Logo
+
+Add consistent branding across slides:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    footer: "Company Name - Conference 2024"
+    logo: images/logo.png
+---
+```
+
+Remove footer from specific slides:
+
+``` markdown
+## Full Screen Slide {footer="false"}
+```
+
+Or use a custom footer on individual slides:
+
+``` markdown
+## Custom Footer Slide
+
+Content here.
+
+::: footer
+Custom footer for this slide only.
+:::
+```
+
+## Asides and Footnotes
+
+Add peripheral commentary with asides:
+
+``` markdown
+## Slide Title
+
+Main content here.
+
+::: {.aside}
+Additional context displayed at bottom.
+:::
+```
+
+For footnotes, use standard markdown syntax:
+
+``` markdown
+This is a statement[^1].
+
+[^1]: This is the footnote text.
+```
+
+## Title Slide
+
+The title slide is auto-generated from YAML metadata:
+
+``` {.yaml filename="presentation.qmd"}
+---
+title: "Presentation Title"
+subtitle: "A Subtitle"
+author: "Author Name"
+date: "2024-01-15"
+format: revealjs
+---
+```
+
+Omit `title` and `author` fields to skip automatic title slide generation.
+
+## Executable Code
+
+### Output Location
+
+Control where code output appears using `output-location`:
+
+| Value | Behavior |
+|-------|----------|
+| `fragment` | Output appears incrementally |
+| `slide` | Output on next slide |
+| `column` | Output in adjacent column |
+| `column-fragment` | Adjacent column, incremental |
+
+Example:
+
+```` markdown
+```{python}
+#| output-location: column
+import matplotlib.pyplot as plt
+plt.plot([1, 2, 3])
+plt.show()
+```
+````
+
+- figure sizing / stretch
+
+### Code highlighting
+
+Highlight specific lines in code blocks:
+
+```` markdown
+```{.python code-line-numbers="2,4"}
+def example():
+    highlighted = True  # Line 2
+    not_highlighted = False
+    also_highlighted = True  # Line 4
+```
+````
+
+For progressive highlighting through slide steps, use the pipe separator:
+
+```` markdown
+```{.python code-line-numbers="1|2|3"}
+first_step = 1
+second_step = 2
+third_step = 3
+```
+````
+
+Set maximum code block height to prevent scrollbars:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    code-block-height: 650px
+---
+```
+
+## Customizing appearance
+
+### Themes
+
+RevealJS includes eleven built-in themes:
+
+- `default`
+- `beige`
+- `blood`
+- `dark`
+- `dracula`
+- `league`
+- `moon`
+- `night`
+- `serif`
+- `simple`
+- `sky`
+- `solarized`
+
+Set a theme in YAML:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    theme: dark
+---
+```
+
+
+## Complete Example
+
+``` {.yaml filename="presentation.qmd"}
+---
+title: "Complete RevealJS Example"
+author: "Author Name"
+date: last-modified
+format:
+  revealjs:
+    theme: moon
+    incremental: true
+    footer: "My Organization"
+    logo: logo.png
+    code-block-height: 500px
+    slide-number: true
+    preview-links: auto
+title-slide-attributes:
+  data-background-color: "#1a1a2e"
+---
+
+## First Slide
+
+- Point one
+- Point two
+- Point three
+
+## Code Example {.smaller}
+
+```{python}
+#| echo: true
+#| output-location: column
+print("Hello, RevealJS!")
+```
+
+::: {.notes}
+Remember to explain the code output.
+:::
+
+::: callout-note
+We will use level 1 headings for section brakes and level 2 headings for slide breaks.
 However it's possible to customize this using the `slide-level` option, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
 See the Pandoc documentation on [structuring the slide show](https://pandoc.org/MANUAL.html#structuring-the-slide-show) (<https://pandoc.org/MANUAL.html#structuring-the-slide-show>) for additional details.
 :::
 
-- figure sizing / stretch
+````
+
+## Sharing
+
+- publishing
+- print to pdf
+
+Note: Maybe a presenting section.
+
+- hidden slides
