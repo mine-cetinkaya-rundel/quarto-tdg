@@ -38,6 +38,8 @@ Finally, you'll learn where to head next if you need to go beyond Quarto's defau
 
 ## Your first PDF document
 
+Creating a PDF is as simple as adding `format: typst` to your YAML header:
+
 ```{.markdown}
 ---
 format: typst
@@ -74,7 +76,6 @@ You can try swapping to `format: typst` in any existing Quarto document.
 Most markdown features will carry over, but beware of features that introduce interactivity, like code folding, or hover effects, these won't be supported in PDF because PDF is a static format.
 
 :::
-
 
 ## Navigation
 
@@ -120,15 +121,6 @@ To cite an item in the bibliography, specify the file in `bibliography` and use 
 {{< include _examples/typst/citations/train-punctuality.qmd >}}
 ````
 
-::: {.callout-note collapse="true"}
-## `references.bib`
-
-```{.bibtex}
-{{< include _examples/typst/citations/references.bib >}}
-```
-
-:::
-
 ![Default citation style](images/typst-citations-train-punctuality.png){#fig-typst-citations .border fig-alt="A short PDF document showing a numbered in-text citation and a bibliography entry."}
 
 Citations in `format: typst` use Typst's native processing, and consequently, a different default citation style to other Quarto formats.
@@ -147,7 +139,7 @@ csl: chicago-author-date
 
 You can read more about citations in @sec-citations, including about various `@` syntax variations.
 
-## Math
+## Mathematical equations
 
 When you author to Typst from Quarto, use TeX math syntax to write your equations.
 Use single dollar signs (`$...$`) for inline math, and double dollar signs (`$$...$$`) for display equations:
