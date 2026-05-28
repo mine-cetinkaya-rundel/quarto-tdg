@@ -159,7 +159,7 @@ This keeps math portable — the same TeX syntax renders across HTML, Typst and 
 
 You can read more about writing equations, including cross-referencing, in @sec-equations.
 
-### Alt text
+### Alt text {#sec-typst-math-alt}
 
 Alt text makes an equation accessible to screen readers, and is required to meet the PDF/UA-1 standard.
 You can add alternative text to cross-referenced display equations with an `alt=` attribute:
@@ -175,7 +175,6 @@ You can add alternative text to cross-referenced display equations with an `alt=
 ## No alt text for inline math
 
 There is currently no way to add alt text to inline math in `format: typst`.
-Inline math without alt text will fail PDF/UA-1 validation.
 
 :::
 
@@ -462,18 +461,21 @@ tbl-column: page
 
 ## Making accessible PDFs {#sec-pdf-accessibility}
 
-An accessible PDF is one that assistive technologies, like screen readers, can navigate and announce correctly.
-The PDF/UA-1 standard defines what a tagged, accessible PDF looks like — document structure, language metadata, alt text on every image and equation.
+Accessibility is about increasing the reach of your documents. 
+A PDF that's well-structured can be used by more people -- like readers who navigate with a screen reader, who zoom to 400%, who can't tell red from green, or who depend on assistive technology to work through a long document.
 
-Set `pdf-standard: ua-1` to produce a tagged PDF suitable for screen readers. Quarto validates the output against PDF/UA-1 at render time; a document that fails validation won't be produced.
+The Web Content Accessibility Guidelines (WCAG) are the most widely accepted standard for what counts as "accessible".
+When a regulation says your document must be accessible, it almost always points to these guidelines.
+However, since the WCAG was written for the web, and is deliberately technology-agnostic, it doesn't directly map to requirements for PDFs.
 
-Add PDF metadata — `title`, `author`, `date`, `lang` — so assistive tools can identify the document and announce it in the right language:
+For PDF documents, you'll more likely be working with a PDF standard. 
+PDF/UA-1 is one such standard, supported by Typst, that translates WCAG into testable rules for PDFs.
+You can target this standard by setting `pdf-standard: ua-1` in your document header:
 
 ```{.yaml filename="report.qmd"}
 ---
 title: "Route Punctuality Report"
 author: "Dr. Sarah Okonkwo"
-date: 2026-04-15
 lang: en
 format:
   typst:
@@ -481,15 +483,112 @@ format:
 ---
 ```
 
-::: {.callout-tip}
-## PDF/UA-1 is strict about alt text
+When you do so, your document is marked as targeting this standard, and is checked twice during the rendering process:
 
-Every image *and* every equation — display **and inline** — must carry alt text. Display equations take `alt=` in their attribute block (`$$ ... $$ {#eq-mean alt="..."}`); inline math currently doesn't. Avoid inline math under `ua-1`, or switch to a looser standard.
+1. By Typst itself, when it compiles the `.typ` to `.pdf`. 
+
+2. By Quarto, which uses veraPDF to validate the resulting `.pdf` against the PDF/UA-1 standard. 
+
+::: {.callout-important}
+
+## veraPDF is a separate install
+
+You'll need to install veraPDF to get the second check:
+
+```{.bash filename="Terminal"}
+quarto install verapdf
+```
+
 :::
 
-See the Quarto accessibility guide for alt text syntax on images and equations. Other conformance standards are supported — archival PDF/A variants (`a-1b`, `a-2b`, ...) and explicit PDF versions; see the Typst format reference for the full list.
+For a document that passes validation, you'll see `[typst]` compile step completeing with `DONE`, and a `PASSED` message from `veraPDF`:
 
-Don't skip heading levels: screen readers build the document outline from `##` → `###` in order. And some things no tool can check — color contrast, readability for color-deficient readers, and whether the reading order in the PDF matches your intent. Review those manually.
+```{.default filename="Terminal"}
+[typst]: Compiling train-punctuality.typ to train-punctuality.pdf...DONE
+
+[verapdf]: Validating train-punctuality.pdf against PDF/UA1...PASSED
+```
+
+For a document that fails validation, you'll see an error from the `[typst]` compile step along with an error from Typst that describes the failure:
+
+```{.default filename="Terminal"}
+[typst]: Compiling train-punctuality-not.typ to train-punctuality-not.pdf...error: PDF/UA-1 error: missing alt text
+
+...
+
+ERROR: Typst compilation failed
+```
+
+Because the Typst compilation fails, you won't get the `.pdf` output. 
+
+### What does it mean to pass PDF/UA-1 validation?
+
+Passing PDF/UA-1 validation is a useful first step to ensuring an accessible document, but it doesn't mean your document is accessible.
+There are two big caveats to be aware of:
+
+#### Passing PDF/UA-1 validation does not mean your document meets PDF/UA-1 {.unnumbered}
+
+There are rules in PDF/UA-1 that cannot be checked automatically.
+For example, consider the rule:
+
+> PDF/UA-1: 7.1-8: `dc:title` clearly identifies the document. 
+
+The `dc:title` element is set by `title` in your document header. 
+Validation can check `dc:title` is set, but it can't check it "clearly identifies the document".
+As the human, meeting rules that require human judgement is your responsibility.
+
+#### Meeting PDF/UA-1 does not mean your document meets WCAG {.unnumbered}
+
+The rules in PDF/UA-1 cover structural requirements that are necessary for accessibility, but they don't cover all the content-level requirements in WCAG. 
+For example, consider the rule:
+
+> WCAG 2.1: 1.4.3 Contrast (Minimum): The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for the following: ...
+
+This rule has no PDF/UA-1 equivalent, so you can fully meet all machine and human checkable PDF/UA-1 requirements without meeting WCAG.
+Some tools can check additional WCAG rules but these are beyond the automated checks you'll get from Quarto.
+
+### Accessibility best practices
+
+#### Use semantic structure
+
+Your resulting PDF needs to tag content based on what it is, not how it looks: a section heading needs to be tagged as a heading not just be big and bold.
+Quarto's markdown encourages this naturally — when you write `## Recommendations`, Quarto knows this is a second-level heading, and it gets tagged as such in the PDF.
+Be careful not to skip heading levels, e.g. jumping from `##` to `####` without an intervening `###`. Skipping levels can make navigation difficult for screen readers.
+
+#### Communicate a logical reading order
+
+Quarto encourages this naturally too: the implied reading order is the same as the top-to-bottom order of elements in your `.qmd`.
+For example, a figure is "read" based on its location in your `.qmd`, not where it ends up in the `.pdf`. As long as you write your `.qmd` to read from top-to-bottom, you'll meet this requirement.
+
+#### Set required metadata
+
+PDF/UA-1 validation will flag missing required metadata.
+For example, you must set `title` in your document header to pass validation.
+
+Some metadata is filled with default values so you'll pass validation without setting them.
+One example is `lang`, the document language, which is set to `en-US` by default. 
+If your document is written in a language other than English, set `lang` appropriately. 
+
+#### Provide alternative text for all images and equations
+
+Validation will flag missing alt text — but you still need to write meaningful descriptions yourself.
+Every image and every equation must have alt text.
+For images, add alt text with the `fig-alt` attribute or code cell option (see @sec-markdown-figures).
+For display equations, add alt text with the `alt` attribute in the equation's attribute block (see @sec-typst-math-alt).
+There is currently no way to add alt text to inline math in `format: typst`, so avoid inline math, or use raw Typst for inline math, if you need to meet PDF/UA-1.
+
+#### Use informative titles, headings, and alternative text
+
+No automated check can tell whether a field's content is meaningful — only that the field is set.
+"My document", "Section 4", or "chart" pass every automated check and leave your reader with nothing to navigate by.
+It's your responsibility to ensure these accurately describe their content.
+
+#### Use color choices that are readable
+
+No automated check covers color or contrast — these are your responsibility.
+Foreground and background must have sufficient contrast, both in textual elements (body text, headings, code blocks, syntax highlighting) and in any parts of a figure important for understanding it (points, bars, lines, key icons etc.).
+Meaning shouldn't depend on color alone — supplement with labels, patterns, or shape.
+    
 
 ## Customizing appearance
 
