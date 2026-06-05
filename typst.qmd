@@ -680,6 +680,35 @@ format:
 Quarto doesn't expose document options for page headers or running titles in Typst output.
 For those, use a raw Typst block with a set rule (@sec-use-show-rules).
 
+#### `margin-geometry`
+
+When you place content outside the body column, e.g. in the margin or across the full page-width, as desribed in @sec-full-width-margin, the layout switches to use the Typst [marginalia package](https://typst.app/universe/package/marginalia/).
+
+In this layout, the left and right side of the pages are split into several regions as illustrated in @fig-typst-margin-geometry.
+The `margin-geometry` option is used to control the widths of each region.
+You can specify widths for `far`, `width` and `separation` under `inner` and `outer` corresponding to the left and right side of the page respectively.
+
+![The regions `margin-geometry` controls on each side: `far`, `width`, and `separation`.](images/typst-page-layout-marginalia.svg){#fig-typst-margin-geometry .border fig-alt="A page diagram. Labelled brackets across the top mark the inner and outer geometry on each side: far, width, and separation. The page below shows a full-width .column-page block, a .column-body text block, and a narrower .column-margin block in the right margin; the page continues past the bottom edge of the figure."}
+
+For example, to remove the inner margin column and use a symmetric one-inch `far` margin on both sides:
+
+```{.yaml filename="report.qmd"}
+---
+{{< include _examples/typst/page-layout/_margin-geometry.yml >}}
+---
+```
+
+![The example rendered: `.column-body` text is inset with no inner margin column, the `.column-margin` note sits in the 1.5-inch outer column, and the `.column-page` block reaches the 1-inch `far` margin on each side.](images/typst-page-layout-margin-geometry.png){#fig-typst-margin-geometry-example .border fig-alt="A rendered page. Body paragraphs are inset from the left edge; one paragraph spans nearly the full page width to a one-inch margin on each side; a short note sits in the right margin." width="50%"}
+
+The width of the region correspinding to `.column-body` is whatever remains of the page wdith as specified by `papersize`.
+So, in this example, using the default `papersize` of `us-letter`, the body area is:
+
+$$
+\underset{\text{page width}}{8.5^"} - \left(\underset{\texttt{far}}{2(1^")} + \underset{\texttt{separation}}{2(0.25^")} + \underset{\texttt{outer.width}}{1.5^"}\right) =  4.5^"
+$$
+
+Top and bottom margins are controlled with the `margin` option as shown in @sec-typst-layout-margin.
+
 ### Fonts and colors with brand {#sec-typst-fonts-colors}
 
 The easiest way to customize fonts and colors is to use **brand.yml**.

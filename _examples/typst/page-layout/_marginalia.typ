@@ -454,15 +454,15 @@
 ]
 
 
+#note(alignment: "baseline", dy: 0pt, shift: auto, counter: none)[
+#block(fill: rgb("#cfcfcf"), width: 100%, height: 3.6cm, radius: 1pt)
+]
 #let para(h) = {
   block(fill: rgb("#d6d6d6"), width: 100%, height: h, radius: 1pt, breakable: true)
   v(0.5em)
 }
 #para(3.0cm)
 #para(2.6cm)
-#note(alignment: "baseline", dy: 0pt, shift: auto, counter: none)[
-#block(fill: rgb("#cfcfcf"), width: 100%, height: 3.6cm, radius: 1pt)
-]
 #para(3.2cm)
 #para(2.4cm)
 #para(2.8cm)

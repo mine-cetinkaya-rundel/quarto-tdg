@@ -163,7 +163,11 @@
   density: 200
   generated: 2026-06-04T19:50:00Z
 - image: typst-page-layout-marginalia.svg
-  source: _examples/typst/page-layout/_anatomy.qmd
+  source: _examples/typst/page-layout/_marginalia.qmd
   builder: _examples/typst/page-layout/build-marginalia.sh
   density: 200
   generated: 2026-06-04T22:00:00Z
+- image: typst-page-layout-margin-geometry.png
+  source: _examples/typst/page-layout/margin-geometry.qmd
+  density: 200
+  generated: 2026-06-05T16:38:46Z

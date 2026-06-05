@@ -1,0 +1,11 @@
+format:
+  typst:
+    margin-geometry:
+      inner:
+        far: 1in
+        width: 0in
+        separation: 0.25in
+      outer:
+        far: 1in
+        width: 1.5in
+        separation: 0.25in

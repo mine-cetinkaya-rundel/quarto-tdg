@@ -63,14 +63,22 @@ cat > "$OUT" <<SVG
     <path d="M 300,330 L 300,300 L 642,300 L 642,330 M 420,330 L 420,300 M 582,330 L 582,300 M 1520,330 L 1520,300 L 2000,300 L 2000,330 M 1580,330 L 1580,300 M 1880,330 L 1880,300"
           fill="none" stroke="#444" stroke-width="4"/>
 
-    <text x="360"  y="280" text-anchor="middle">inner.far</text>
-    <text x="1940" y="280" text-anchor="middle">outer.far</text>
+    <text x="300"  y="160" text-anchor="start" font-weight="bold">inner:</text>
+    <text x="1520" y="160" text-anchor="start" font-weight="bold">outer:</text>
 
-    <text x="501"  y="205" text-anchor="middle">inner.width</text>
-    <text x="1730" y="205" text-anchor="middle">outer.width</text>
+    <g font-size="36">
+      <text x="360"  y="265" text-anchor="middle">far</text>
+      <text x="501"  y="265" text-anchor="middle">width</text>
+      <text x="582"  y="265" text-anchor="start">separation</text>
 
-    <text x="612"  y="130" text-anchor="middle">inner.separation</text>
-    <text x="1550" y="130" text-anchor="middle">outer.separation</text>
+      <text x="1940" y="265" text-anchor="middle">far</text>
+      <text x="1730" y="265" text-anchor="middle">width</text>
+      <text x="1580" y="265" text-anchor="end">separation</text>
+    </g>
+
+    <text x="1150" y="565"  text-anchor="middle" fill="#234">.column-page</text>
+    <text x="1081" y="825"  text-anchor="middle" fill="#234">.column-body</text>
+    <text x="1730" y="800"  text-anchor="middle" font-size="32" fill="#234">.column-margin</text>
 
   </g>
 </svg>
