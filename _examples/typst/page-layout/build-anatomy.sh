@@ -3,8 +3,9 @@
 #
 # Renders _anatomy.qmd to a PDF, rasterises page 1 to PNG at 200 dpi, then
 # composes an SVG that embeds the PNG as a base64 data URI and overlays
-# vector annotations labelling papersize, margin, body-width, columns,
-# gutter-width, margin-width, and page-numbering.
+# vector annotations for papersize, margin (top/bottom/left/right), and
+# page-numbering. Body content is a single grey block filling the content
+# area.
 #
 # Run from any directory:
 #   ./_examples/typst/page-layout/build-anatomy.sh
@@ -24,11 +25,11 @@ B64=$(base64 -i _anatomy.png)
 cat > "$OUT" <<SVG
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="-50 0 2450 2550"
+     viewBox="-50 0 2450 2400"
      role="img"
      aria-labelledby="svg-title svg-desc">
   <title id="svg-title">Anatomy of a Typst page in Quarto</title>
-  <desc id="svg-desc">A schematic of a Typst page rendered through Quarto. The outer rectangle is the page itself, labelled papersize. The whitespace around the body content is the page margin, with separate labels for the top, bottom, left, and right margins. The wider grey area at left containing two columns of stacked grey blocks is the body, labelled body-width, with the gap between its two columns marked columns: 2. A narrow gutter-width gap separates the body from a margin column on the right, labelled margin-width. A page number at the bottom of the page is labelled page-numbering.</desc>
+  <desc id="svg-desc">A schematic of a Typst page rendered through Quarto. The outer rectangle is the page itself, labelled papersize. A single grey block represents the body content area. Around it, four measuring lines mark the page margins, labelled margin: top, margin: bottom, margin: left, and margin: right. A page number at the bottom of the page is labelled page-numbering.</desc>
 
   <defs>
     <marker id="arrow" viewBox="0 0 20 20" refX="18" refY="10"
@@ -37,7 +38,7 @@ cat > "$OUT" <<SVG
     </marker>
   </defs>
 
-  <rect x="-50" y="0" width="2450" height="2550" fill="#ececec"/>
+  <rect x="-50" y="0" width="2450" height="2400" fill="#ececec"/>
 
   <image x="300" y="100" width="1700" height="2200" href="data:image/png;base64,$B64"/>
 
@@ -58,7 +59,7 @@ cat > "$OUT" <<SVG
           fill="none" stroke="#444" stroke-width="4"/>
     <text x="445" y="2235">margin: bottom</text>
 
-    <path d="M 300,1500 L 430,1500 M 300,1485 L 300,1515 M 430,1485 L 430,1515"
+    <path d="M 300,1500 L 420,1500 M 300,1485 L 300,1515 M 420,1485 L 420,1515"
           fill="none" stroke="#444" stroke-width="4"/>
     <text x="285" y="1565" text-anchor="end">margin: left</text>
 
@@ -66,21 +67,9 @@ cat > "$OUT" <<SVG
           fill="none" stroke="#444" stroke-width="4"/>
     <text x="2040" y="1565">margin: right</text>
 
-    <text x="1155" y="325" text-anchor="middle" fill="#234">.column-page</text>
-
     <text x="2030" y="2210">page-numbering</text>
-    <line x1="2020" y1="2195" x2="1145" y2="2195"
+    <line x1="2020" y1="2195" x2="1180" y2="2195"
           stroke="#444" stroke-width="4" marker-end="url(#arrow)"/>
-
-    <path d="M 712,2340 L 712,2370 L 1880,2370 L 1880,2340 M 1520,2340 L 1520,2370 M 1580,2340 L 1580,2370"
-          fill="none" stroke="#444" stroke-width="4"/>
-    <text x="1116" y="2435" text-anchor="middle"
-          font-family="ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif">Body width*</text>
-    <text x="1730" y="2435" text-anchor="middle">grid: margin-width</text>
-
-    <line x1="1550" y1="2380" x2="1550" y2="2460"
-          stroke="#444" stroke-width="4"/>
-    <text x="1550" y="2510" text-anchor="middle">grid: gutter-width</text>
 
   </g>
 </svg>

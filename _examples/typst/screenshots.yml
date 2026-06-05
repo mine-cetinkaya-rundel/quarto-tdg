@@ -171,3 +171,15 @@
   source: _examples/typst/page-layout/margin-geometry.qmd
   density: 200
   generated: 2026-06-05T16:38:46Z
+- image: typst-page-layout-column-gutter.png
+  source: _examples/typst/page-layout/column-gutter.qmd
+  density: 200
+  generated: 2026-06-05T17:44:36Z
+- image: typst-page-layout-columns.png
+  source: _examples/typst/page-layout/columns.qmd
+  density: 200
+  generated: 2026-06-05T17:57:22Z
+- image: typst-page-layout-column-classes.png
+  source: _examples/typst/page-layout/column-classes.qmd
+  density: 200
+  generated: 2026-06-05T18:00:05Z

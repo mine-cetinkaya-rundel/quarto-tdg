@@ -1,4 +1,5 @@
 ---
+# screenshot: framed
 format:
   typst:
     papersize: us-letter
@@ -7,10 +8,12 @@ format:
       bottom: 0.75in
       left: 0.6in
       right: 0.6in
-    page-numbering: "1"
-    keep-typ: true
+    columns: 2
+    page-numbering: ""
 ---
 
 ```{=typst}
 #block(fill: rgb("#d6d6d6"), width: 100%, height: 9.5in, radius: 1pt)
+#colbreak()
+#block(fill: rgb("#d6d6d6"), width: 100%, height: 6in, radius: 1pt)
 ```

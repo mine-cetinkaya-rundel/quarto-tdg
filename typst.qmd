@@ -234,10 +234,12 @@ Executable code cells that are echoed in your document get the same treatment, s
 The default highlighting theme is `arrow`.
 Pick a different one with `syntax-highlighting`:
 
-```{.yaml filename="_quarto.yml"}
+```{.yaml filename="report.qmd"}
+---
 format:
   typst:
     syntax-highlighting: github
+---
 ```
 
 Supported themes include: `a11y`, `arrow`, `pygments`, `tango`, `espresso`, `zenburn`, `kate`, `monochrome`, `breezedark`, `haddock`, `atom-one`, `ayu`, `breeze`, `dracula`, `github`, `gruvbox`, `monokai`, `nord`, `oblivion`, `printing`, `radical`, `solarized`, and `vim`.
@@ -414,7 +416,7 @@ For example, you can use a raw Typst block to add status badge that uses the [`r
 
 Another good usecase for raw blocks is to customize appearance with set and show rules as you'll see in @sec-use-show-rules.
 
-## Full-width or margin content
+## Full-width or margin content {#sec-typst-full-width-margin}
 
 By default, your document content will sit in the body column of your PDF document.
 Sometimes you may want to break out of that column, and use the full page width, or put content into the right margin.
@@ -605,28 +607,52 @@ While the details of this are beyond this book, we give some guidelines on when 
 
 ### Page layout {#sec-typst-page-layout}
 
-You can control some aspects of your page layout by specifying options in your document header. @fig-typst-page-layout illustrates them at a glance, and the following sections go into more detail.
+You can control some aspects of your page layout by specifying options in your document header. 
+@fig-typst-page-layout illustrates those that apply regardless of how you lay out your body content: `papersize`, `margin`, and `page-numbering`.
 
 ![Document options that control the layout of your page.](images/typst-page-layout-anatomy.svg){#fig-typst-page-layout .border fig-alt="A page with a blue body column, a pink margin column, and a gray gutter between them."}
+
+Two other options control how body content is arranged as illustrated in @fig-typst-layout-columns.
+These options don't work well together so you should pick *one* approach:
+
+* Arrange body content automatically into multiple columns with `columns`
+
+* Explicitly arrange content into columns with the `.column-*` classes (@sec-typst-full-width-margin) and control their layout with `margin-geometry`.
+
+::: {#fig-typst-layout-columns }
+::: {layout-ncol=2}
+![`columns`](images/typst-page-layout-columns.png){.border fig-alt="A page with two grey body columns; the second column is shorter than the first."}
+
+![`margin-geometry`](images/typst-page-layout-column-classes.png){.border fig-alt="A page with a wide blue block at the top spanning the full content area, a narrower grey body block beneath, and a small grey block in the right margin."}
+:::
+
+Two options for controlling the layout of body content: automatically into columns with `columns`, and using the `.column-*` classes with `margin-geometry`.
+
+:::
+
+The following sections go into the details of each option.
 
 #### `papersize`
 
 Set paper size with `papersize`:
 
-```{.yaml filename="_quarto.yml"}
+```{.yaml filename="report.qmd"}
+---
 format:
   typst:
     papersize: a4
+---
 ```
 
 Use any of Typst's [supported paper sizes](https://typst.app/docs/reference/layout/page/#parameters-paper) like `a4`, `a5`, `us-legal`, `jis-b5` etc. The default is `us-letter`.
 
-#### `margin`
+#### `margin` {#fig-typst-layout-columns}
 
 Set page margins with `margin`.
 You can specify any combination of `top`, `bottom`, `left`, `right`, or the shortcuts `x` (for `left` and `right`) and `y` (for `top` and `bottom`):
 
-```{.yaml filename="_quarto.yml"}
+```{.yaml filename="report.qmd"}
+---
 format:
   typst:
     margin:
@@ -634,55 +660,49 @@ format:
       bottom: 2cm
       left: 3cm
       right: 3cm
+---
 ```
 
-#### `grid`
-
-For finer control over how the body and margin columns split the page, use `grid`:
-
-```{.yaml filename="_quarto.yml"}
-format:
-  typst:
-    grid:
-      body-width: 4in
-      margin-width: 2in
-      gutter-width: 0.25in
-```
-
-Where: 
-
-* `body-width` is the text column.
-* `margin-width` is the column reserved for `.column-margin` content.
-* `gutter-width` is the gap between them.
-
-#### `columns`
-
-Set the number of columns the body text is arranged in with `columns`:
-
-```{.yaml filename="_quarto.yml"}
-format:
-  typst:
-    columns: 2
-```
+You can use anything Typst will recognize as a [relative length](https://typst.app/docs/reference/layout/relative/) and includes simple lengths with units like `2cm`, `1in`, `254mm`, ratios like `10%`, and combinations like `25% + 1cm`.
 
 #### `page-numbering`
 
 Use `page-numbering` to set the page number format (or `false` to suppress page numbers):
 
-```{.yaml filename="_quarto.yml"}
+```{.yaml filename="report.qmd"}
+---
 format:
   typst:
     page-numbering: "1 / 1"
+---
 ```
 
 `page-numbering` follows [Typst's numbering-pattern syntax](https://typst.app/docs/reference/model/numbering/) — `1` for the current page, a second `1` for the total.
 
+The footer region, where page numbers appear, is inside the bottom margin. 
+If your margins need to be completely free of content, consider increasing the bottom margin to account for the room the page number needs.
+
 Quarto doesn't expose document options for page headers or running titles in Typst output.
 For those, use a raw Typst block with a set rule (@sec-use-show-rules).
 
+#### `columns`
+
+Set the number of columns the body text is arranged in with `columns`:
+
+```{.yaml filename="report.qmd"}
+---
+format:
+  typst:
+    columns: 2
+---
+```
+
+Content will flow automatically into two columns. 
+These columns don't combine well with full width or margin content, so avoid using `.column-*` classes.
+
 #### `margin-geometry`
 
-When you place content outside the body column, e.g. in the margin or across the full page-width, as desribed in @sec-full-width-margin, the layout switches to use the Typst [marginalia package](https://typst.app/universe/package/marginalia/).
+When you place content outside the body column, e.g. in the margin or across the full page-width, as desribed in @sec-typst-full-width-margin, the layout switches to use the Typst [marginalia package](https://typst.app/universe/package/marginalia/).
 
 In this layout, the left and right side of the pages are split into several regions as illustrated in @fig-typst-margin-geometry.
 The `margin-geometry` option is used to control the widths of each region.
@@ -748,10 +768,12 @@ Pair it with a `syntax-highlighting` theme whose token colors contrast against t
 {{< include _examples/typst/fonts-colors/_brand-code-bg.yml >}}
 ```
 
-```{.yaml filename="_quarto.yml"}
+```{.yaml filename="report.qmd"}
+---
 format:
   typst:
     syntax-highlighting: a11y-dark
+---
 ```
 
 ![A dark code block with `a11y-dark` syntax highlighting](images/typst-fonts-colors-code-bg.png){#fig-typst-fonts-colors-code-bg .border fig-alt="An R code block on a dark bluish-purple background with bright yellow function names, white variables, and orange numeric literals."}

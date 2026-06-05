@@ -54,15 +54,30 @@ for entry in "${files[@]}"; do
   echo "Screenshotting $out_pdf..."
   # Trim to content by default. Examples that need the page margins visible
   # (e.g. page-geometry demos) opt out with a "screenshot: full-page" marker
-  # in the .qmd, which keeps the whole page.
+  # in the .qmd, which keeps the whole page. "screenshot: framed" goes further:
+  # keeps the whole page AND adds a solid page outline + pale grey outer
+  # padding to match the anatomy-diagram treatment.
   trim="-trim +repage"
-  grep -q "screenshot: full-page" "$qmd" && trim=""
-  # Sample top-right pixel so the border matches the document's edge color
-  # (colored body bgs fake their own padding; white-bg docs still get a white border).
+  framed=0
+  if grep -q "screenshot: framed" "$qmd"; then
+    trim=""
+    framed=1
+  elif grep -q "screenshot: full-page" "$qmd"; then
+    trim=""
+  fi
   magick -density "$DENSITY" "$out_pdf"[0] -background white -flatten \
     $trim "$out"
-  pad_color=$(magick "$out" -format "%[pixel:p{%[fx:w-1],0}]" info:)
-  magick "$out" -bordercolor "$pad_color" -border 40 "$out"
+  if [ "$framed" -eq 1 ]; then
+    # Side padding is wider than top/bottom to match the anatomy diagram's
+    # canvas proportions (viewBox shape).
+    magick "$out" -bordercolor "#444" -border 6 \
+      -bordercolor "#ececec" -border 350x100 "$out"
+  else
+    # Sample top-right pixel so the border matches the document's edge color
+    # (colored body bgs fake their own padding; white-bg docs still get a white border).
+    pad_color=$(magick "$out" -format "%[pixel:p{%[fx:w-1],0}]" info:)
+    magick "$out" -bordercolor "$pad_color" -border 40 "$out"
+  fi
 
   echo "Saved $out"
 

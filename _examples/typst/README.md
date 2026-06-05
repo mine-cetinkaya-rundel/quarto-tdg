@@ -22,6 +22,35 @@ bash _examples/typst/screenshot-examples.sh _examples/typst/navigation/train-pun
 
 Screenshots are named `typst-{section}-{example}.png` (e.g., `typst-navigation-train-punctuality.png`).
 
+### Full-page screenshots
+
+By default the screenshot is trimmed to the content. To keep the whole page — e.g. to show page margins or geometry — add a marker comment to the example's frontmatter:
+
+```yaml
+---
+# screenshot: full-page
+format:
+  typst: ...
+---
+```
+
+`screenshot-examples.sh` greps for `screenshot: full-page` and skips the trim for that example (see `page-layout/margin-geometry.qmd`).
+
+## Diagrams (`build-*.sh`)
+
+A few `images/` entries are annotated SVG diagrams rather than plain screenshots: they render an example to a page, rasterise it, then overlay vector labels. These are built by dedicated scripts, not the screenshot sweep:
+
+- `page-layout/build-anatomy.sh` → `typst-page-layout-anatomy.svg` — the `margin`/`grid` page anatomy.
+- `page-layout/build-marginalia.sh` → `typst-page-layout-marginalia.svg` — the marginalia `inner`/`outer` `far`/`width`/`separation` geometry.
+
+Run the script to regenerate, e.g.:
+
+```bash
+bash _examples/typst/page-layout/build-marginalia.sh
+```
+
+Their `screenshots.yml` entries carry a `builder:` field naming the script.
+
 ## screenshots.yml
 
 `screenshots.yml` records how each image in `images/` was generated:

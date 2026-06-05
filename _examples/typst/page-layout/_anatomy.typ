@@ -206,69 +206,6 @@
     )
 }
 
-// Margin layout support using marginalia package
-#import "@preview/marginalia:0.3.1" as marginalia: note, notefigure, wideblock
-
-// Render footnote as margin note using standard footnote counter
-// Used via show rule: #show footnote: it => column-sidenote(it.body)
-// The footnote element already steps the counter, so we just display it
-#let column-sidenote(body) = {
-  context {
-    let num = counter(footnote).display("1")
-    // Superscript mark in text
-    super(num)
-    // Content in margin with matching number
-    note(
-      alignment: "baseline",
-      shift: auto,
-      counter: none,  // We display our own number from footnote counter
-    )[
-      #super(num) #body
-    ]
-  }
-}
-
-// Note: Margin citations are now emitted directly from Lua as #note() calls
-// with #cite(form: "full") + locator text, preserving citation locators.
-
-// Utility: compute padding for each side based on side parameter
-#let side-pad(side, left-amount, right-amount) = {
-  let l = if side == "both" or side == "left" or side == "inner" { left-amount } else { 0pt }
-  let r = if side == "both" or side == "right" or side == "outer" { right-amount } else { 0pt }
-  (left: l, right: r)
-}
-
-// body-outset: extends ~15% into margin area
-#let column-body-outset(side: "both", body) = context {
-  let r = marginalia.get-right()
-  let out = 0.15 * (r.sep + r.width)
-  pad(..side-pad(side, -out, -out), body)
-}
-
-// page-inset: wideblock minus small inset from page boundary
-#let column-page-inset(side: "both", body) = context {
-  let l = marginalia.get-left()
-  let r = marginalia.get-right()
-  // Inset is a small fraction of the extension area (wideblock stops at far)
-  let left-inset = 0.15 * l.sep
-  let right-inset = 0.15 * (r.sep + r.width)
-  wideblock(side: side)[#pad(..side-pad(side, left-inset, right-inset), body)]
-}
-
-// screen-inset: full width minus `far` distance from edges
-#let column-screen-inset(side: "both", body) = context {
-  let l = marginalia.get-left()
-  let r = marginalia.get-right()
-  wideblock(side: side)[#pad(..side-pad(side, l.far, r.far), body)]
-}
-
-// screen-inset-shaded: screen-inset with gray background
-#let column-screen-inset-shaded(body) = context {
-  let l = marginalia.get-left()
-  wideblock(side: "both")[
-    #block(fill: luma(245), width: 100%, inset: (x: l.far, y: 1em), body)
-  ]
-}
 
 
 
@@ -421,26 +358,9 @@
 
 #set page(
   paper: "us-letter",
-  // Margins handled by marginalia.setup below
+  margin: (bottom: 0.75in,left: 0.6in,right: 0.6in,top: 0.75in,),
   numbering: "1",
   columns: 1,
-)
-// Configure marginalia page geometry (functions defined in definitions.typ)
-#show: marginalia.setup.with(
-  inner: (
-    far: 0.649in,
-    width: 0.811in,
-    sep: 0.600in,
-  ),
-  outer: (
-    far: 0.600in,
-    width: 1.500in,
-    sep: 0.300in,
-  ),
-  top: 0.75in,
-  bottom: 0.75in,
-  book: false,
-  clearance: 12pt,
 )
 
 #show: doc => article(
@@ -449,25 +369,7 @@
   doc,
 )
 
-#wideblock(side: "both")[
-#block(fill: rgb("#b9cfe2"), width: 100%, height: 1.5cm, radius: 1pt)
-]
-
-
-#let para(h) = {
-  block(fill: rgb("#d6d6d6"), width: 100%, height: h, radius: 1pt, breakable: true)
-  v(0.5em)
-}
-#para(3.0cm)
-#para(2.6cm)
-#note(alignment: "baseline", dy: 0pt, shift: auto, counter: none)[
-#block(fill: rgb("#cfcfcf"), width: 100%, height: 3.6cm, radius: 1pt)
-]
-#para(3.2cm)
-#para(2.4cm)
-#para(2.8cm)
-#para(2.6cm)
-#para(8.0cm)
+#block(fill: rgb("#d6d6d6"), width: 100%, height: 9.5in, radius: 1pt)
 
 
 
