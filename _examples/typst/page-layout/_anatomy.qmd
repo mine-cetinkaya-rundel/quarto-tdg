@@ -1,0 +1,41 @@
+---
+format:
+  typst:
+    papersize: us-letter
+    margin:
+      top: 0.75in
+      bottom: 0.75in
+      left: 0.6in
+      right: 0.6in
+    grid:
+      body-width: 5.5in
+      margin-width: 1.5in
+      gutter-width: 0.3in
+    columns: 2
+    page-numbering: "1"
+    keep-typ: true
+---
+
+```{=typst}
+#let para(h) = {
+  block(fill: rgb("#d6d6d6"), width: 100%, height: h, radius: 1pt, breakable: true)
+  v(0.5em)
+}
+#para(3.6cm)
+#para(2.6cm)
+#para(3.0cm)
+#para(2.2cm)
+#para(2.8cm)
+#para(2.4cm)
+#para(5.0cm)
+#para(2.0cm)
+#para(2.7cm)
+#para(2.3cm)
+#para(2.9cm)
+```
+
+::: {.column-margin}
+```{=typst}
+#block(fill: rgb("#cfcfcf"), width: 100%, height: 3.6cm, radius: 1pt)
+```
+:::

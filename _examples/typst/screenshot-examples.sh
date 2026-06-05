@@ -64,9 +64,12 @@ for entry in "${files[@]}"; do
 
   rel_source="${qmd#$ROOT_DIR/}"
 
-  # Remove existing entry for this image from manifest, then append updated one
+  # Remove existing entry for this image from manifest, then append updated one.
+  # Skip the matching `- image:` line plus its indented fields until the next
+  # `- image:` line (which is kept). Manifest entries are contiguous (no blank
+  # separators), so terminating on the next entry is the only safe boundary.
   if [ -f "$MANIFEST" ]; then
-    awk "/^- image: ${image//./\\.}$/{found=1} found && /^$/{found=0; next} !found" \
+    awk "/^- image: ${image//./\\.}$/{found=1; next} found && /^- image:/{found=0} !found" \
       "$MANIFEST" > "$MANIFEST.tmp" && mv "$MANIFEST.tmp" "$MANIFEST"
   fi
 

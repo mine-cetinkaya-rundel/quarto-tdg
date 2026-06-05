@@ -1,9 +1,5 @@
 ---
-brand:
-  typography:
-    link:
-      decoration: underline
-      color: "#2e5090"
+brand: _brand-links.yml
 ---
 
 ## Recommendations

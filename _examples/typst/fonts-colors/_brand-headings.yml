@@ -1,0 +1,5 @@
+typography:
+  headings:
+    family: Helvetica
+    color: "#b58900"
+    weight: bold

@@ -1,10 +1,5 @@
 ---
-brand:
-  typography:
-    headings:
-      family: Helvetica
-      color: "#b58900"
-      weight: bold
+brand: _brand-headings.yml
 ---
 
 ## On-time performance

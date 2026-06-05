@@ -1,11 +1,5 @@
 ---
-brand:
-  typography:
-    fonts:
-      - family: JetBrains Mono
-        source: google
-    monospace:
-      family: JetBrains Mono
+brand: _brand-mono-font.yml
 ---
 
 Summarise a numeric vector in R:

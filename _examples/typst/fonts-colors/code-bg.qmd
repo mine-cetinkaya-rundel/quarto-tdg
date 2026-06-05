@@ -1,8 +1,5 @@
 ---
-brand:
-  typography:
-    monospace-block:
-      background-color: "#1e1e2e"
+brand: _brand-code-bg.yml
 format:
   typst:
     syntax-highlighting: a11y-dark

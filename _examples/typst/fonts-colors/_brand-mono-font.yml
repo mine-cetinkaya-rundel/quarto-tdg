@@ -1,0 +1,6 @@
+typography:
+  fonts:
+    - family: JetBrains Mono
+      source: google
+  monospace:
+    family: JetBrains Mono
