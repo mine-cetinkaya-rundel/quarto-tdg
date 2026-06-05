@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -78,10 +78,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-091d42037063b5677bbb1fcfff953c4a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-2a2c4f555f7517040550d9404c5748cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,6 +110,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -341,7 +370,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations"><span class="header-section-number">10.5</span> Citations</a></li>
   <li><a href="#mathematical-equations" id="toc-mathematical-equations" class="nav-link" data-scroll-target="#mathematical-equations"><span class="header-section-number">10.6</span> Mathematical equations</a>
   <ul class="collapse">
-  <li><a href="#alt-text" id="toc-alt-text" class="nav-link" data-scroll-target="#alt-text"><span class="header-section-number">10.6.1</span> Alt text</a></li>
+  <li><a href="#sec-typst-math-alt" id="toc-sec-typst-math-alt" class="nav-link" data-scroll-target="#sec-typst-math-alt"><span class="header-section-number">10.6.1</span> Alt text</a></li>
   <li><a href="#theorems" id="toc-theorems" class="nav-link" data-scroll-target="#theorems"><span class="header-section-number">10.6.2</span> Theorems</a></li>
   </ul></li>
   <li><a href="#code-blocks" id="toc-code-blocks" class="nav-link" data-scroll-target="#code-blocks"><span class="header-section-number">10.7</span> Code blocks</a>
@@ -355,14 +384,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#long-tables" id="toc-long-tables" class="nav-link" data-scroll-target="#long-tables"><span class="header-section-number">10.8.3</span> Long tables</a></li>
   </ul></li>
   <li><a href="#raw-typst-blocks" id="toc-raw-typst-blocks" class="nav-link" data-scroll-target="#raw-typst-blocks"><span class="header-section-number">10.9</span> Raw Typst blocks</a></li>
-  <li><a href="#full-width-or-margin-content" id="toc-full-width-or-margin-content" class="nav-link" data-scroll-target="#full-width-or-margin-content"><span class="header-section-number">10.10</span> Full-width or margin content</a></li>
-  <li><a href="#sec-pdf-accessibility" id="toc-sec-pdf-accessibility" class="nav-link" data-scroll-target="#sec-pdf-accessibility"><span class="header-section-number">10.11</span> Making accessible PDFs</a></li>
-  <li><a href="#customizing-appearance" id="toc-customizing-appearance" class="nav-link" data-scroll-target="#customizing-appearance"><span class="header-section-number">10.12</span> Customizing appearance</a>
+  <li><a href="#sec-typst-full-width-margin" id="toc-sec-typst-full-width-margin" class="nav-link" data-scroll-target="#sec-typst-full-width-margin"><span class="header-section-number">10.10</span> Full-width or margin content</a></li>
+  <li><a href="#sec-pdf-accessibility" id="toc-sec-pdf-accessibility" class="nav-link" data-scroll-target="#sec-pdf-accessibility"><span class="header-section-number">10.11</span> Making accessible PDFs</a>
   <ul class="collapse">
-  <li><a href="#page-layout" id="toc-page-layout" class="nav-link" data-scroll-target="#page-layout"><span class="header-section-number">10.12.1</span> Page layout</a></li>
-  <li><a href="#fonts-and-colors" id="toc-fonts-and-colors" class="nav-link" data-scroll-target="#fonts-and-colors"><span class="header-section-number">10.12.2</span> Fonts and colors</a></li>
+  <li><a href="#what-does-it-mean-to-pass-pdfua-1-validation" id="toc-what-does-it-mean-to-pass-pdfua-1-validation" class="nav-link" data-scroll-target="#what-does-it-mean-to-pass-pdfua-1-validation"><span class="header-section-number">10.11.1</span> What does it mean to pass PDF/UA-1 validation?</a></li>
+  <li><a href="#accessibility-best-practices" id="toc-accessibility-best-practices" class="nav-link" data-scroll-target="#accessibility-best-practices"><span class="header-section-number">10.11.2</span> Accessibility best practices</a></li>
   </ul></li>
-  <li><a href="#custom-templates" id="toc-custom-templates" class="nav-link" data-scroll-target="#custom-templates"><span class="header-section-number">10.13</span> Custom templates</a></li>
+  <li><a href="#sec-customizing-appearance" id="toc-sec-customizing-appearance" class="nav-link" data-scroll-target="#sec-customizing-appearance"><span class="header-section-number">10.12</span> Customizing appearance</a>
+  <ul class="collapse">
+  <li><a href="#sec-typst-page-layout" id="toc-sec-typst-page-layout" class="nav-link" data-scroll-target="#sec-typst-page-layout"><span class="header-section-number">10.12.1</span> Page layout</a></li>
+  <li><a href="#sec-typst-fonts-colors" id="toc-sec-typst-fonts-colors" class="nav-link" data-scroll-target="#sec-typst-fonts-colors"><span class="header-section-number">10.12.2</span> Fonts and colors with brand</a></li>
+  <li><a href="#sec-use-show-rules" id="toc-sec-use-show-rules" class="nav-link" data-scroll-target="#sec-use-show-rules"><span class="header-section-number">10.12.3</span> Use raw typst</a></li>
+  <li><a href="#sec-typst-templates" id="toc-sec-typst-templates" class="nav-link" data-scroll-target="#sec-typst-templates"><span class="header-section-number">10.12.4</span> Custom templates</a></li>
+  </ul></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up"><span class="header-section-number">10.13</span> Wrapping Up</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/typst.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -405,7 +440,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If you are in these situations, you may find the <a href="https://quarto.org/docs/output-formats/pdf-basics.htmlv">PDF Basics guide</a> in the Quarto documentation a better place to start.</p>
 <p>Readers who use screen readers and other assistive technologies generally have a smoother experience with HTML (<a href="html.html" class="quarto-xref"><span>Chapter 9</span></a>) than with PDF. If that describes part of your audience — or if accessibility is a primary concern — HTML is often the better target. Accessible PDFs are possible (we’ll cover that in <a href="#sec-pdf-accessibility" class="quarto-xref"><span>Section 10.11</span></a>), but the tooling ecosystem is younger.</p>
 <p>In the next section, you’ll create your first PDF document with <code>format: typst</code>. Then, you’ll cover the types of content you’ll most likely need in your first few documents: navigation, citations, math, code blocks, and computational outputs.</p>
-<p>In <a href="#sec-pdf-accessibility" class="quarto-xref"><span>Section 10.11</span></a> you’ll learn the keys to creating accessible PDFs, and in <span class="quarto-unresolved-ref">?sec-customizing-appearance</span> how to customize the page layout, fonts, and colors of your document.</p>
+<p>In <a href="#sec-pdf-accessibility" class="quarto-xref"><span>Section 10.11</span></a> you’ll learn the keys to creating accessible PDFs, and in <a href="#sec-customizing-appearance" class="quarto-xref"><span>Section 10.12</span></a> how to customize the page layout, fonts, and colors of your document.</p>
 <p>Finally, you’ll learn where to head next if you need to go beyond Quarto’s default Typst options.</p>
 </section>
 <section id="your-first-pdf-document" class="level2" data-number="10.2">
@@ -518,7 +553,7 @@ Figure&nbsp;10.2: <code>train-punctuality.qmd</code> rendered with <code>toc: tr
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="train-punctuality.qmd"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Revisit the <span class="co">[</span><span class="ot">Summary</span><span class="co">](#summary)</span> for context, and see the <span class="co">[</span><span class="ot">Q1 on-time dashboard</span><span class="co">](https://transit.example.com/ontime/2026-q1)</span> for the full breakdown by route.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Both render as plain text in the default template — they’re clickable in a PDF viewer, but visually indistinguishable from the surrounding prose. You’ll learn how to style them in <span class="quarto-unresolved-ref">?sec-customizing-appearance</span>.</p>
+<p>Both render as plain text in the default template — they’re clickable in a PDF viewer, but visually indistinguishable from the surrounding prose. You’ll learn how to style them in <a href="#sec-customizing-appearance" class="quarto-xref"><span>Section 10.12</span></a>.</p>
 </section>
 <section id="citations" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="citations"><span class="header-section-number">10.5</span> Citations</h2>
@@ -615,8 +650,8 @@ Figure&nbsp;10.5: Inline and display math rendered in Typst
 </div>
 </div>
 <p>You can read more about writing equations, including cross-referencing, in <a href="authoring.html#sec-equations" class="quarto-xref"><span>Section 12.9</span></a>.</p>
-<section id="alt-text" class="level3" data-number="10.6.1">
-<h3 data-number="10.6.1" class="anchored" data-anchor-id="alt-text"><span class="header-section-number">10.6.1</span> Alt text</h3>
+<section id="sec-typst-math-alt" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="sec-typst-math-alt"><span class="header-section-number">10.6.1</span> Alt text</h3>
 <p>Alt text makes an equation accessible to screen readers, and is required to meet the PDF/UA-1 standard. You can add alternative text to cross-referenced display equations with an <code>alt=</code> attribute:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -646,7 +681,7 @@ Figure&nbsp;10.6: Display equation with alt text
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There is currently no way to add alt text to inline math in <code>format: typst</code>. Inline math without alt text will fail PDF/UA-1 validation.</p>
+<p>There is currently no way to add alt text to inline math in <code>format: typst</code>.</p>
 </div>
 </div>
 </section>
@@ -771,11 +806,13 @@ Figure&nbsp;10.8: Default <code>arrow</code> syntax highlighting of an R code bl
 <p>The default highlighting theme is <code>arrow</code>. Pick a different one with <code>syntax-highlighting</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>_quarto.yml</strong></pre>
+<pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">syntax-highlighting</span><span class="kw">:</span><span class="at"> github</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">syntax-highlighting</span><span class="kw">:</span><span class="at"> github</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Supported themes include: <code>a11y</code>, <code>arrow</code>, <code>pygments</code>, <code>tango</code>, <code>espresso</code>, <code>zenburn</code>, <code>kate</code>, <code>monochrome</code>, <code>breezedark</code>, <code>haddock</code>, <code>atom-one</code>, <code>ayu</code>, <code>breeze</code>, <code>dracula</code>, <code>github</code>, <code>gruvbox</code>, <code>monokai</code>, <code>nord</code>, <code>oblivion</code>, <code>printing</code>, <code>radical</code>, <code>solarized</code>, and <code>vim</code>.</p>
 <p>Typst also has a native highlighter, if you’d prefer to use it, you can set <code>syntax-highlighting</code> to <code>idiomatic</code>:</p>
@@ -1079,11 +1116,11 @@ Figure&nbsp;10.14: A blue status badge labelled “Normal” rendered below the 
 </figcaption>
 </figure>
 </div>
-<p>Another good usecase for raw blocks is to customize appearance with set and show rules as you’ll see in <span class="quarto-unresolved-ref">?sec-use-show-rules</span>.</p>
+<p>Another good usecase for raw blocks is to customize appearance with set and show rules as you’ll see in <a href="#sec-use-show-rules" class="quarto-xref"><span>Section 10.12.3</span></a>.</p>
 </section>
-<section id="full-width-or-margin-content" class="level2" data-number="10.10">
-<h2 data-number="10.10" class="anchored" data-anchor-id="full-width-or-margin-content"><span class="header-section-number">10.10</span> Full-width or margin content</h2>
-<p>By default, your document content will sit in the body column of your PDF document. Sometime, you may want to break out of that column, and use the full page width, or put content into the right margin.</p>
+<section id="sec-typst-full-width-margin" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="sec-typst-full-width-margin"><span class="header-section-number">10.10</span> Full-width or margin content</h2>
+<p>By default, your document content will sit in the body column of your PDF document. Sometimes you may want to break out of that column, and use the full page width, or put content into the right margin.</p>
 <p>Add the <code>.column-margin</code> class to a fenced div to push content into the margin as an aside:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -1163,12 +1200,13 @@ Figure&nbsp;10.17: Extent column classes on a single page
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl-column</span><span class="kw">:</span><span class="at"> page</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>When place content outside the default body column, the layout mechanism of your document changes from a simple single body area, to a layout using the Typst <a href="https://typst.app/universe/package/marginalia/">marginalia package</a> to manage the margin allocation. You’ll learn more about managing this layout in <span class="quarto-unresolved-ref">?sec-layout-marginalia</span>.</p>
 </section>
 <section id="sec-pdf-accessibility" class="level2" data-number="10.11">
 <h2 data-number="10.11" class="anchored" data-anchor-id="sec-pdf-accessibility"><span class="header-section-number">10.11</span> Making accessible PDFs</h2>
-<p>An accessible PDF is one that assistive technologies, like screen readers, can navigate and announce correctly. The PDF/UA-1 standard defines what a tagged, accessible PDF looks like — document structure, language metadata, alt text on every image and equation.</p>
-<p>Set <code>pdf-standard: ua-1</code> to produce a tagged PDF suitable for screen readers. Quarto validates the output against PDF/UA-1 at render time; a document that fails validation won’t be produced.</p>
-<p>Add PDF metadata — <code>title</code>, <code>author</code>, <code>date</code>, <code>lang</code> — so assistive tools can identify the document and announce it in the right language:</p>
+<p>Accessibility is about increasing the reach of your documents. A PDF that’s well-structured can be used by more people – like readers who navigate with a screen reader, who zoom to 400%, who can’t tell red from green, or who depend on assistive technology to work through a long document.</p>
+<p>The Web Content Accessibility Guidelines (WCAG) are the most widely accepted standard for what counts as “accessible”. When a regulation says your document must be accessible, it almost always points to these guidelines. However, since the WCAG was written for the web, and is deliberately technology-agnostic, it doesn’t directly map to requirements for PDFs.</p>
+<p>For PDF documents, you’ll more likely be working with a PDF standard. PDF/UA-1 is one such standard, supported by Typst, that translates WCAG into testable rules for PDFs. You can target this standard by setting <code>pdf-standard: ua-1</code> in your document header:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
@@ -1176,114 +1214,288 @@ Figure&nbsp;10.17: Extent column classes on a single page
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Route Punctuality Report"</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Dr. Sarah Okonkwo"</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> 2026-04-15</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> en</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf-standard</span><span class="kw">:</span><span class="at"> ua-1</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> en</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf-standard</span><span class="kw">:</span><span class="at"> ua-1</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<p>When you do so, your document is marked as targeting this standard, and is checked twice during the rendering process:</p>
+<ol type="1">
+<li><p>By Typst itself, when it compiles the <code>.typ</code> to <code>.pdf</code>.</p></li>
+<li><p>By Quarto, which uses veraPDF to validate the resulting <code>.pdf</code> against the PDF/UA-1 standard.</p></li>
+</ol>
+<div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>PDF/UA-1 is strict about alt text
+<span class="screen-reader-only">Important</span>veraPDF is a separate install
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Every image <em>and</em> every equation — display <strong>and inline</strong> — must carry alt text. Display equations take <code>alt=</code> in their attribute block (<code>$$ ... $$ {#eq-mean alt="..."}</code>); inline math currently doesn’t. Avoid inline math under <code>ua-1</code>, or switch to a looser standard.</p>
+<p>You’ll need to install veraPDF to get the second check:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> install verapdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<p>See the Quarto accessibility guide for alt text syntax on images and equations. Other conformance standards are supported — archival PDF/A variants (<code>a-1b</code>, <code>a-2b</code>, …) and explicit PDF versions; see the Typst format reference for the full list.</p>
-<p>Don’t skip heading levels: screen readers build the document outline from <code>##</code> → <code>###</code> in order. And some things no tool can check — color contrast, readability for color-deficient readers, and whether the reading order in the PDF matches your intent. Review those manually.</p>
+</div>
+<p>For a document that passes validation, you’ll see <code>[typst]</code> compile step completeing with <code>DONE</code>, and a <code>PASSED</code> message from <code>veraPDF</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-filename="Terminal"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>[typst]: Compiling train-punctuality.typ to train-punctuality.pdf...DONE</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>[verapdf]: Validating train-punctuality.pdf against PDF/UA1...PASSED</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For a document that fails validation, you’ll see an error from the <code>[typst]</code> compile step along with an error from Typst that describes the failure:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Terminal</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-filename="Terminal"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>[typst]: Compiling train-punctuality-not.typ to train-punctuality-not.pdf...error: PDF/UA-1 error: missing alt text</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>ERROR: Typst compilation failed</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Because the Typst compilation fails, you won’t get the <code>.pdf</code> output.</p>
+<section id="what-does-it-mean-to-pass-pdfua-1-validation" class="level3" data-number="10.11.1">
+<h3 data-number="10.11.1" class="anchored" data-anchor-id="what-does-it-mean-to-pass-pdfua-1-validation"><span class="header-section-number">10.11.1</span> What does it mean to pass PDF/UA-1 validation?</h3>
+<p>Passing PDF/UA-1 validation is a useful first step to ensuring an accessible document, but it doesn’t mean your document is accessible. There are two big caveats to be aware of:</p>
+<section id="passing-pdfua-1-validation-does-not-mean-your-document-meets-pdfua-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="passing-pdfua-1-validation-does-not-mean-your-document-meets-pdfua-1">Passing PDF/UA-1 validation does not mean your document meets PDF/UA-1</h4>
+<p>There are rules in PDF/UA-1 that cannot be checked automatically. For example, consider the rule:</p>
+<blockquote class="blockquote">
+<p>PDF/UA-1: 7.1-8: <code>dc:title</code> clearly identifies the document.</p>
+</blockquote>
+<p>The <code>dc:title</code> element is set by <code>title</code> in your document header. Validation can check <code>dc:title</code> is set, but it can’t check it “clearly identifies the document”. As the human, meeting rules that require human judgement is your responsibility.</p>
 </section>
-<section id="customizing-appearance" class="level2" data-number="10.12">
-<h2 data-number="10.12" class="anchored" data-anchor-id="customizing-appearance"><span class="header-section-number">10.12</span> Customizing appearance</h2>
-<section id="page-layout" class="level3" data-number="10.12.1">
-<h3 data-number="10.12.1" class="anchored" data-anchor-id="page-layout"><span class="header-section-number">10.12.1</span> Page layout</h3>
-<section id="geometry" class="level4" data-number="10.12.1.1">
-<h4 data-number="10.12.1.1" class="anchored" data-anchor-id="geometry"><span class="header-section-number">10.12.1.1</span> Geometry</h4>
+<section id="meeting-pdfua-1-does-not-mean-your-document-meets-wcag" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="meeting-pdfua-1-does-not-mean-your-document-meets-wcag">Meeting PDF/UA-1 does not mean your document meets WCAG</h4>
+<p>The rules in PDF/UA-1 cover structural requirements that are necessary for accessibility, but they don’t cover all the content-level requirements in WCAG. For example, consider the rule:</p>
+<blockquote class="blockquote">
+<p>WCAG 2.1: 1.4.3 Contrast (Minimum): The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for the following: …</p>
+</blockquote>
+<p>This rule has no PDF/UA-1 equivalent, so you can fully meet all machine and human checkable PDF/UA-1 requirements without meeting WCAG. Some tools can check additional WCAG rules but these are beyond the automated checks you’ll get from Quarto.</p>
+</section>
+</section>
+<section id="accessibility-best-practices" class="level3" data-number="10.11.2">
+<h3 data-number="10.11.2" class="anchored" data-anchor-id="accessibility-best-practices"><span class="header-section-number">10.11.2</span> Accessibility best practices</h3>
+<section id="use-semantic-structure" class="level4" data-number="10.11.2.1">
+<h4 data-number="10.11.2.1" class="anchored" data-anchor-id="use-semantic-structure"><span class="header-section-number">10.11.2.1</span> Use semantic structure</h4>
+<p>Your resulting PDF needs to tag content based on what it is, not how it looks: a section heading needs to be tagged as a heading not just be big and bold. Quarto’s markdown encourages this naturally — when you write <code>## Recommendations</code>, Quarto knows this is a second-level heading, and it gets tagged as such in the PDF. Be careful not to skip heading levels, e.g.&nbsp;jumping from <code>##</code> to <code>####</code> without an intervening <code>###</code>. Skipping levels can make navigation difficult for screen readers.</p>
+</section>
+<section id="communicate-a-logical-reading-order" class="level4" data-number="10.11.2.2">
+<h4 data-number="10.11.2.2" class="anchored" data-anchor-id="communicate-a-logical-reading-order"><span class="header-section-number">10.11.2.2</span> Communicate a logical reading order</h4>
+<p>Quarto encourages this naturally too: the implied reading order is the same as the top-to-bottom order of elements in your <code>.qmd</code>. For example, a figure is “read” based on its location in your <code>.qmd</code>, not where it ends up in the <code>.pdf</code>. As long as you write your <code>.qmd</code> to read from top-to-bottom, you’ll meet this requirement.</p>
+</section>
+<section id="set-required-metadata" class="level4" data-number="10.11.2.3">
+<h4 data-number="10.11.2.3" class="anchored" data-anchor-id="set-required-metadata"><span class="header-section-number">10.11.2.3</span> Set required metadata</h4>
+<p>PDF/UA-1 validation will flag missing required metadata. For example, you must set <code>title</code> in your document header to pass validation.</p>
+<p>Some metadata is filled with default values so you’ll pass validation without setting them. One example is <code>lang</code>, the document language, which is set to <code>en-US</code> by default. If your document is written in a language other than English, set <code>lang</code> appropriately.</p>
+</section>
+<section id="provide-alternative-text-for-all-images-and-equations" class="level4" data-number="10.11.2.4">
+<h4 data-number="10.11.2.4" class="anchored" data-anchor-id="provide-alternative-text-for-all-images-and-equations"><span class="header-section-number">10.11.2.4</span> Provide alternative text for all images and equations</h4>
+<p>Validation will flag missing alt text — but you still need to write meaningful descriptions yourself. Every image and every equation must have alt text. For images, add alt text with the <code>fig-alt</code> attribute or code cell option (see <a href="authoring.html#sec-markdown-figures" class="quarto-xref"><span>Section 12.8</span></a>). For display equations, add alt text with the <code>alt</code> attribute in the equation’s attribute block (see <a href="#sec-typst-math-alt" class="quarto-xref"><span>Section 10.6.1</span></a>). There is currently no way to add alt text to inline math in <code>format: typst</code>, so avoid inline math, or use raw Typst for inline math, if you need to meet PDF/UA-1.</p>
+</section>
+<section id="use-informative-titles-headings-and-alternative-text" class="level4" data-number="10.11.2.5">
+<h4 data-number="10.11.2.5" class="anchored" data-anchor-id="use-informative-titles-headings-and-alternative-text"><span class="header-section-number">10.11.2.5</span> Use informative titles, headings, and alternative text</h4>
+<p>No automated check can tell whether a field’s content is meaningful — only that the field is set. “My document”, “Section 4”, or “chart” pass every automated check and leave your reader with nothing to navigate by. It’s your responsibility to ensure these accurately describe their content.</p>
+</section>
+<section id="use-color-choices-that-are-readable" class="level4" data-number="10.11.2.6">
+<h4 data-number="10.11.2.6" class="anchored" data-anchor-id="use-color-choices-that-are-readable"><span class="header-section-number">10.11.2.6</span> Use color choices that are readable</h4>
+<p>No automated check covers color or contrast — these are your responsibility. Foreground and background must have sufficient contrast, both in textual elements (body text, headings, code blocks, syntax highlighting) and in any parts of a figure important for understanding it (points, bars, lines, key icons etc.). Meaning shouldn’t depend on color alone — supplement with labels, patterns, or shape.</p>
+</section>
+</section>
+</section>
+<section id="sec-customizing-appearance" class="level2" data-number="10.12">
+<h2 data-number="10.12" class="anchored" data-anchor-id="sec-customizing-appearance"><span class="header-section-number">10.12</span> Customizing appearance</h2>
+<p>While the default appearance of <code>format: typst</code> is great for many “working” documents, you’ll likely need to customize the appearance for published documents.</p>
+<p>In this section, you’ll learn how to customize the page layout (<a href="#sec-typst-page-layout" class="quarto-xref"><span>Section 10.12.1</span></a>) with document options, and fonts and colors with brand.yml (<a href="#sec-typst-fonts-colors" class="quarto-xref"><span>Section 10.12.2</span></a>). For customization beyond document options and brand, you may need to use Typst’s native <code>set</code> and <code>show</code> rules in a raw block (<a href="#sec-use-show-rules" class="quarto-xref"><span>Section 10.12.3</span></a>).</p>
+<p>Finally, if none of the above techniques reach your needs, you’ll need to add your own template partials or a completely new template. While the details of this are beyond this book, we give some guidelines on when you might to reach for this, and how to get started in <a href="#sec-typst-templates" class="quarto-xref"><span>Section 10.12.4</span></a>.</p>
+<section id="sec-typst-page-layout" class="level3" data-number="10.12.1">
+<h3 data-number="10.12.1" class="anchored" data-anchor-id="sec-typst-page-layout"><span class="header-section-number">10.12.1</span> Page layout</h3>
+<p>You can control some aspects of your page layout by specifying options in your document header. <a href="#fig-typst-page-layout" class="quarto-xref">Figure&nbsp;<span>10.18</span></a> illustrates those that apply regardless of how you lay out your body content: <code>papersize</code>, <code>margin</code>, and <code>page-numbering</code>.</p>
+<div id="fig-typst-page-layout" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A page with a blue body column, a pink margin column, and a gray gutter between them.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-typst-page-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/typst-page-layout-anatomy.svg" class="border img-fluid figure-img" alt="A page with a blue body column, a pink margin column, and a gray gutter between them.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-page-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.18: Document options that control the layout of your page.
+</figcaption>
+</figure>
+</div>
+<p>Two other options control how body content is arranged as illustrated in <a href="#fig-typst-layout-columns" class="quarto-xref">Figure&nbsp;<span>10.19</span></a>. These options don’t work well together so you should pick <em>one</em> approach:</p>
+<ul>
+<li><p>Arrange body content automatically into multiple columns with <code>columns</code></p></li>
+<li><p>Explicitly arrange content into columns with the <code>.column-*</code> classes (<a href="#sec-typst-full-width-margin" class="quarto-xref"><span>Section 10.10</span></a>) and control their layout with <code>margin-geometry</code>.</p></li>
+</ul>
+<div id="fig-typst-layout-columns" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-typst-layout-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/typst-page-layout-columns.png" class="border img-fluid figure-img" alt="A page with two grey body columns; the second column is shorter than the first."></p>
+<figcaption><code>columns</code></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/typst-page-layout-column-classes.png" class="border img-fluid figure-img" alt="A page with a wide blue block at the top spanning the full content area, a narrower grey body block beneath, and a small grey block in the right margin."></p>
+<figcaption><code>margin-geometry</code></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-layout-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.19: Two options for controlling the layout of body content: automatically into columns with <code>columns</code>, and using the <code>.column-*</code> classes with <code>margin-geometry</code>.
+</figcaption>
+</figure>
+</div>
+<p>The following sections go into the details of each option.</p>
+<section id="papersize" class="level4" data-number="10.12.1.1">
+<h4 data-number="10.12.1.1" class="anchored" data-anchor-id="papersize"><span class="header-section-number">10.12.1.1</span> <code>papersize</code></h4>
 <p>Set paper size with <code>papersize</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>_quarto.yml</strong></pre>
+<pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">papersize</span><span class="kw">:</span><span class="at"> a5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">papersize</span><span class="kw">:</span><span class="at"> a4</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Typst accepts any of its supported paper sizes (<code>a4</code>, <code>a5</code>, <code>us-legal</code>, <code>jis-b5</code>, …); the default is <code>us-letter</code>.</p>
-<p>Use <code>margin</code> for page margins. Provide any combination of <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code> — or the shortcuts <code>x</code> and <code>y</code>:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>_quarto.yml</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin</span><span class="kw">:</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">top</span><span class="kw">:</span><span class="at"> 2cm</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">bottom</span><span class="kw">:</span><span class="at"> 2cm</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">left</span><span class="kw">:</span><span class="at"> 3cm</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">right</span><span class="kw">:</span><span class="at"> 3cm</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>For finer control over how the body and margin columns split the page, use <code>grid</code>:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>_quarto.yml</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">grid</span><span class="kw">:</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body-width</span><span class="kw">:</span><span class="at"> 4in</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">margin-width</span><span class="kw">:</span><span class="at"> 2in</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">gutter-width</span><span class="kw">:</span><span class="at"> 0.25in</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><code>body-width</code> is the text column; <code>margin-width</code> is the column reserved for <code>.column-margin</code> content; <code>gutter-width</code> is the gap between them.</p>
+<p>Use any of Typst’s <a href="https://typst.app/docs/reference/layout/page/#parameters-paper">supported paper sizes</a> like <code>a4</code>, <code>a5</code>, <code>us-legal</code>, <code>jis-b5</code> etc. The default is <code>us-letter</code>.</p>
 </section>
-<section id="structure" class="level4" data-number="10.12.1.2">
-<h4 data-number="10.12.1.2" class="anchored" data-anchor-id="structure"><span class="header-section-number">10.12.1.2</span> Structure</h4>
-<p>Set the number of body-text columns with <code>columns</code>:</p>
+<section id="fig-typst-layout-columns" class="level4" data-number="10.12.1.2">
+<h4 data-number="10.12.1.2" class="anchored" data-anchor-id="fig-typst-layout-columns"><span class="header-section-number">10.12.1.2</span> <code>margin</code></h4>
+<p>Set page margins with <code>margin</code>. You can specify any combination of <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>, or the shortcuts <code>x</code> (for <code>left</code> and <code>right</code>) and <code>y</code> (for <code>top</code> and <code>bottom</code>):</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>_quarto.yml</strong></pre>
+<pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">columns</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin</span><span class="kw">:</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">top</span><span class="kw">:</span><span class="at"> 2cm</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">bottom</span><span class="kw">:</span><span class="at"> 2cm</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">left</span><span class="kw">:</span><span class="at"> 3cm</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">right</span><span class="kw">:</span><span class="at"> 3cm</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Margin content stays in the margin column and doesn’t flow between body columns.</p>
-<p>Use <code>page-numbering</code> to set the footer format (or <code>""</code> to suppress it), and <code>section-numbering</code> with <code>number-sections: true</code> to number headings:</p>
+<p>You can use anything Typst will recognize as a <a href="https://typst.app/docs/reference/layout/relative/">relative length</a> and includes simple lengths with units like <code>2cm</code>, <code>1in</code>, <code>254mm</code>, ratios like <code>10%</code>, and combinations like <code>25% + 1cm</code>.</p>
+</section>
+<section id="page-numbering" class="level4" data-number="10.12.1.3">
+<h4 data-number="10.12.1.3" class="anchored" data-anchor-id="page-numbering"><span class="header-section-number">10.12.1.3</span> <code>page-numbering</code></h4>
+<p>Use <code>page-numbering</code> to set the page number format (or <code>false</code> to suppress page numbers):</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>_quarto.yml</strong></pre>
+<pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">page-numbering</span><span class="kw">:</span><span class="at"> </span><span class="st">"1 / 1"</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">section-numbering</span><span class="kw">:</span><span class="at"> </span><span class="st">"1.A"</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">page-numbering</span><span class="kw">:</span><span class="at"> </span><span class="st">"1 / 1"</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>page-numbering</code> follows Typst’s numbering-pattern syntax — <code>1</code> for the current page, a second <code>1</code> for the total. <code>section-numbering</code> uses a similar scheme, one placeholder per heading level (<code>1.A</code> gives numeric first-level headings and alphabetic second-level).</p>
-<p>Quarto doesn’t expose YAML options for page headers or running titles in Typst output. For those, drop into a raw Typst block (covered below in <a href="#use-raw-typst">Use raw typst</a>).</p>
+<p><code>page-numbering</code> follows <a href="https://typst.app/docs/reference/model/numbering/">Typst’s numbering-pattern syntax</a> — <code>1</code> for the current page, a second <code>1</code> for the total.</p>
+<p>The footer region, where page numbers appear, is inside the bottom margin. If your margins need to be completely free of content, consider increasing the bottom margin to account for the room the page number needs.</p>
+<p>Quarto doesn’t expose document options for page headers or running titles in Typst output. For those, use a raw Typst block with a set rule (<a href="#sec-use-show-rules" class="quarto-xref"><span>Section 10.12.3</span></a>).</p>
+</section>
+<section id="columns" class="level4" data-number="10.12.1.4">
+<h4 data-number="10.12.1.4" class="anchored" data-anchor-id="columns"><span class="header-section-number">10.12.1.4</span> <code>columns</code></h4>
+<p>Set the number of columns the body text is arranged in with <code>columns</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>report.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">columns</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Content will flow automatically into two columns. These columns don’t combine well with full width or margin content, so avoid using <code>.column-*</code> classes.</p>
+</section>
+<section id="margin-geometry" class="level4" data-number="10.12.1.5">
+<h4 data-number="10.12.1.5" class="anchored" data-anchor-id="margin-geometry"><span class="header-section-number">10.12.1.5</span> <code>margin-geometry</code></h4>
+<p>When you place content outside the body column, e.g.&nbsp;in the margin or across the full page-width, as desribed in <a href="#sec-typst-full-width-margin" class="quarto-xref"><span>Section 10.10</span></a>, the layout switches to use the Typst <a href="https://typst.app/universe/package/marginalia/">marginalia package</a>.</p>
+<p>In this layout, the left and right side of the pages are split into several regions as illustrated in <a href="#fig-typst-margin-geometry" class="quarto-xref">Figure&nbsp;<span>10.20</span></a>. The <code>margin-geometry</code> option is used to control the widths of each region. You can specify widths for <code>far</code>, <code>width</code> and <code>separation</code> under <code>inner</code> and <code>outer</code> corresponding to the left and right side of the page respectively.</p>
+<div id="fig-typst-margin-geometry" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A page diagram. Labelled brackets across the top mark the inner and outer geometry on each side: far, width, and separation. The page below shows a full-width .column-page block, a .column-body text block, and a narrower .column-margin block in the right margin; the page continues past the bottom edge of the figure.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-typst-margin-geometry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/typst-page-layout-marginalia.svg" class="border img-fluid figure-img" alt="A page diagram. Labelled brackets across the top mark the inner and outer geometry on each side: far, width, and separation. The page below shows a full-width .column-page block, a .column-body text block, and a narrower .column-margin block in the right margin; the page continues past the bottom edge of the figure.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-margin-geometry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.20: The regions <code>margin-geometry</code> controls on each side: <code>far</code>, <code>width</code>, and <code>separation</code>.
+</figcaption>
+</figure>
+</div>
+<p>For example, to remove the inner margin column and use a symmetric one-inch <code>far</code> margin on both sides:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>report.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin-geometry</span><span class="kw">:</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">inner</span><span class="kw">:</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">far</span><span class="kw">:</span><span class="at"> 1in</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">width</span><span class="kw">:</span><span class="at"> 0in</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">separation</span><span class="kw">:</span><span class="at"> 0.25in</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">outer</span><span class="kw">:</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">far</span><span class="kw">:</span><span class="at"> 1in</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">width</span><span class="kw">:</span><span class="at"> 1.5in</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">separation</span><span class="kw">:</span><span class="at"> 0.25in</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="fig-typst-margin-geometry-example" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A rendered page. Body paragraphs are inset from the left edge; one paragraph spans nearly the full page width to a one-inch margin on each side; a short note sits in the right margin.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-typst-margin-geometry-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/typst-page-layout-margin-geometry.png" class="border img-fluid figure-img" style="width:50.0%" alt="A rendered page. Body paragraphs are inset from the left edge; one paragraph spans nearly the full page width to a one-inch margin on each side; a short note sits in the right margin.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-margin-geometry-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.21: The example rendered: <code>.column-body</code> text is inset with no inner margin column, the <code>.column-margin</code> note sits in the 1.5-inch outer column, and the <code>.column-page</code> block reaches the 1-inch <code>far</code> margin on each side.
+</figcaption>
+</figure>
+</div>
+<p>The width of the region correspinding to <code>.column-body</code> is whatever remains of the page wdith as specified by <code>papersize</code>. So, in this example, using the default <code>papersize</code> of <code>us-letter</code>, the body area is:</p>
+<p><span class="math display">\[
+\underset{\text{page width}}{8.5^"} - \left(\underset{\texttt{far}}{2(1^")} + \underset{\texttt{separation}}{2(0.25^")} + \underset{\texttt{outer.width}}{1.5^"}\right) =  4.5^"
+\]</span></p>
+<p>Top and bottom margins are controlled with the <code>margin</code> option as shown in <span class="quarto-unresolved-ref">?sec-typst-layout-margin</span>.</p>
 </section>
 </section>
-<section id="fonts-and-colors" class="level3" data-number="10.12.2">
-<h3 data-number="10.12.2" class="anchored" data-anchor-id="fonts-and-colors"><span class="header-section-number">10.12.2</span> Fonts and colors</h3>
-<section id="use-brand" class="level4" data-number="10.12.2.1">
-<h4 data-number="10.12.2.1" class="anchored" data-anchor-id="use-brand"><span class="header-section-number">10.12.2.1</span> Use brand</h4>
-<p>Add Typst fonts and colors to your project’s <code>_brand.yml</code> — Quarto picks it up automatically and flows the keys into Typst’s document template. No raw Typst required for the common cases.</p>
-<p>Set the body font, page background, and foreground (body text color) under <code>typography.base</code> and <code>color</code>:</p>
+<section id="sec-typst-fonts-colors" class="level3" data-number="10.12.2">
+<h3 data-number="10.12.2" class="anchored" data-anchor-id="sec-typst-fonts-colors"><span class="header-section-number">10.12.2</span> Fonts and colors with brand</h3>
+<p>The easiest way to customize fonts and colors is to use <strong>brand.yml</strong>. Add a <code>_brand.yml</code> file next to your document and set the body font under <code>typography.base</code>, and the page background and body text color under <code>color</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_brand.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">base</span><span class="kw">:</span><span class="at"> Helvetica</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">background</span><span class="kw">:</span><span class="at"> </span><span class="st">"#fdf6e3"</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">foreground</span><span class="kw">:</span><span class="at"> </span><span class="st">"#073642"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">base</span><span class="kw">:</span><span class="at"> Helvetica</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">background</span><span class="kw">:</span><span class="at"> </span><span class="st">"#fdf6e3"</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">foreground</span><span class="kw">:</span><span class="at"> </span><span class="st">"#073642"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-fonts-colors-base" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A short document with a solarized-light cream background, dark-teal text, and a Helvetica sans-serif face.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1291,20 +1503,20 @@ Figure&nbsp;10.17: Extent column classes on a single page
 <img src="images/typst-fonts-colors-base.png" class="border img-fluid figure-img" alt="A short document with a solarized-light cream background, dark-teal text, and a Helvetica sans-serif face.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-fonts-colors-base-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.18: Solarized-light body text in Helvetica
+Figure&nbsp;10.22: Solarized-light body text in Helvetica
 </figcaption>
 </figure>
 </div>
-<p>Customise headings independently with <code>typography.headings</code>. Family, color, and weight can all be set:</p>
+<p>Customize headings independently with <code>typography.headings</code>. You can set family, color, and weight:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_brand.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">headings</span><span class="kw">:</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Helvetica</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">color</span><span class="kw">:</span><span class="at"> </span><span class="st">"#b58900"</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> bold</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">headings</span><span class="kw">:</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Helvetica</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">color</span><span class="kw">:</span><span class="at"> </span><span class="st">"#b58900"</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> bold</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-fonts-colors-headings" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two headings rendered in bold amber Helvetica above serif body paragraphs.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1312,7 +1524,7 @@ Figure&nbsp;10.18: Solarized-light body text in Helvetica
 <img src="images/typst-fonts-colors-headings.png" class="border img-fluid figure-img" alt="Two headings rendered in bold amber Helvetica above serif body paragraphs.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-fonts-colors-headings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.19: Headings in bold amber Helvetica
+Figure&nbsp;10.23: Headings in bold amber Helvetica
 </figcaption>
 </figure>
 </div>
@@ -1321,12 +1533,12 @@ Figure&nbsp;10.19: Headings in bold amber Helvetica
 <div class="code-with-filename-file">
 <pre><strong>_brand.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fonts</span><span class="kw">:</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> JetBrains Mono</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">monospace</span><span class="kw">:</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">family</span><span class="kw">:</span><span class="at"> JetBrains Mono</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fonts</span><span class="kw">:</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> JetBrains Mono</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">monospace</span><span class="kw">:</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">family</span><span class="kw">:</span><span class="at"> JetBrains Mono</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-fonts-colors-mono-font" class="quarto-float quarto-figure quarto-figure-center anchored" alt="An R code block rendered in JetBrains Mono, with a left-arrow ligature replacing the two-character <- assignment operator.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1334,27 +1546,29 @@ Figure&nbsp;10.19: Headings in bold amber Helvetica
 <img src="images/typst-fonts-colors-mono-font.png" class="border img-fluid figure-img" alt="An R code block rendered in JetBrains Mono, with a left-arrow ligature replacing the two-character <- assignment operator.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-fonts-colors-mono-font-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.20: A code block rendered in JetBrains Mono, with <code>&lt;-</code> shown as the <code>←</code> ligature
+Figure&nbsp;10.24: A code block rendered in JetBrains Mono, with <code>&lt;-</code> shown as the <code>←</code> ligature
 </figcaption>
 </figure>
 </div>
 <p><code>monospace</code> covers both inline and block code. To target them separately, use <code>monospace-inline</code> and <code>monospace-block</code>.</p>
-<p>Colour the code-block background with <code>typography.monospace-block.background-color</code>. Pair it with a <code>syntax-highlighting</code> theme whose token colors contrast against the background you picked — e.g.&nbsp;<code>a11y-dark</code> for a dark bg:</p>
+<p>Color the code-block background with <code>typography.monospace-block.background-color</code>. Pair it with a <code>syntax-highlighting</code> theme whose token colors contrast against the background you picked — for example, <code>a11y-dark</code> for a dark background:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_brand.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">monospace-block</span><span class="kw">:</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">background-color</span><span class="kw">:</span><span class="at"> </span><span class="st">"#1e1e2e"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">monospace-block</span><span class="kw">:</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">background-color</span><span class="kw">:</span><span class="at"> </span><span class="st">"#1e1e2e"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>_quarto.yml</strong></pre>
+<pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-filename="_quarto.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">syntax-highlighting</span><span class="kw">:</span><span class="at"> a11y-dark</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typst</span><span class="kw">:</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">syntax-highlighting</span><span class="kw">:</span><span class="at"> a11y-dark</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-fonts-colors-code-bg" class="quarto-float quarto-figure quarto-figure-center anchored" alt="An R code block on a dark bluish-purple background with bright yellow function names, white variables, and orange numeric literals.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1362,7 +1576,7 @@ Figure&nbsp;10.20: A code block rendered in JetBrains Mono, with <code>&lt;-</co
 <img src="images/typst-fonts-colors-code-bg.png" class="border img-fluid figure-img" alt="An R code block on a dark bluish-purple background with bright yellow function names, white variables, and orange numeric literals.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-fonts-colors-code-bg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.21: A dark code block with <code>a11y-dark</code> syntax highlighting
+Figure&nbsp;10.25: A dark code block with <code>a11y-dark</code> syntax highlighting
 </figcaption>
 </figure>
 </div>
@@ -1376,29 +1590,49 @@ Figure&nbsp;10.21: A dark code block with <code>a11y-dark</code> syntax highligh
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Code-block background and <code>syntax-highlighting</code> aren’t independent knobs. The default highlighting theme is tuned for a light code bg; on a dark background its argument-gray tokens fade into the page. Pick a theme whose token palette matches your chosen background.</p>
+<p>Code-block background and <code>syntax-highlighting</code> aren’t independent knobs. The default highlighting theme is tuned for a light code background; on a dark background its argument-gray tokens fade into the page. Pick a theme whose token palette matches your chosen background.</p>
 <p><code>syntax-highlighting: github</code> is a second gotcha — it currently ignores <code>monospace-block.background-color</code> entirely, emitting its own code-block fill that the brand override doesn’t reach.</p>
 </div>
 </div>
+<p>Style links with <code>typography.link</code>. <code>decoration</code> accepts Typst’s line-stroke keywords (<code>underline</code>, <code>overline</code>, <code>strike</code>), and <code>color</code> sets the fill:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>_brand.yml</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">link</span><span class="kw">:</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">decoration</span><span class="kw">:</span><span class="at"> underline</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">color</span><span class="kw">:</span><span class="at"> </span><span class="st">"#2e5090"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="fig-typst-fonts-colors-links" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A Recommendations heading above a short sentence; the phrase Q1 on-time dashboard is underlined and rendered in a dark blue brand color.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-typst-fonts-colors-links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/typst-fonts-colors-links.png" class="border img-fluid figure-img" alt="A Recommendations heading above a short sentence; the phrase Q1 on-time dashboard is underlined and rendered in a dark blue brand color.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-fonts-colors-links-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.26: An underlined link in the brand primary color, inside a short paragraph
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="use-raw-typst" class="level4" data-number="10.12.2.2">
-<h4 data-number="10.12.2.2" class="anchored" data-anchor-id="use-raw-typst"><span class="header-section-number">10.12.2.2</span> Use raw typst</h4>
-<p>When YAML and brand keys don’t reach what you want, drop into a raw Typst block. Two rule flavours cover most cases:</p>
+<section id="sec-use-show-rules" class="level3" data-number="10.12.3">
+<h3 data-number="10.12.3" class="anchored" data-anchor-id="sec-use-show-rules"><span class="header-section-number">10.12.3</span> Use raw typst</h3>
+<p>When YAML and brand keys don’t reach what you want, drop into a raw Typst block. Two kinds of rule cover most cases:</p>
 <ul>
-<li><strong>Set rules</strong> — <code>#set X(...)</code> — change default parameters for element <code>X</code>.</li>
+<li><strong>Set rules</strong> — <code>#set X(...)</code> — change the default parameters for element <code>X</code>.</li>
 <li><strong>Show rules</strong> — <code>#show X: ...</code> — transform how element <code>X</code> renders, often by setting parameters on a <em>different</em> element.</li>
 </ul>
-<p>Both take effect from the point they appear onwards. Put them near the top of your document to apply globally.</p>
-<section id="set-rules" class="level5" data-number="10.12.2.2.1">
-<h5 data-number="10.12.2.2.1" class="anchored" data-anchor-id="set-rules"><span class="header-section-number">10.12.2.2.1</span> Set rules</h5>
+<p>Both take effect from the point they appear onwards. Put them after your document header to apply most widely.</p>
+<section id="set-rules" class="level5" data-number="10.12.3.0.1">
+<h5 data-number="10.12.3.0.1" class="anchored" data-anchor-id="set-rules"><span class="header-section-number">10.12.3.0.1</span> Set rules</h5>
 <p>Add a running header to every page with <code>#set page(...)</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="in">#set page(header: align(right, text(fill: gray, [Route Punctuality Report])))</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="in">#set page(header: align(right, text(fill: gray, [Route Punctuality Report])))</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-raw-typst-page-header" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A PDF page with a gray Route Punctuality Report header at top right, followed by Summary and Recommendations sections.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1406,7 +1640,7 @@ Figure&nbsp;10.21: A dark code block with <code>a11y-dark</code> syntax highligh
 <img src="images/typst-raw-typst-page-header.png" class="border img-fluid figure-img" alt="A PDF page with a gray Route Punctuality Report header at top right, followed by Summary and Recommendations sections.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-raw-typst-page-header-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.22: A right-aligned gray running header at the top of the page
+Figure&nbsp;10.27: A right-aligned gray running header at the top of the page
 </figcaption>
 </figure>
 </div>
@@ -1420,7 +1654,7 @@ Figure&nbsp;10.22: A right-aligned gray running header at the top of the page
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Typst treats <code>#set page()</code> as a page break — the current page finishes, the new settings take effect on the one that follows. A raw block at the top of the body therefore only applies from page 2 onwards. To reach page 1, override the <code>page.typ</code> partial instead (see <a href="#custom-templates">Custom templates</a>).</p>
+<p>Typst treats <code>#set page()</code> as a page break — the current page finishes, and the new settings take effect on the page that follows. A raw block at the top of the body therefore only applies from page 2 onwards. To reach page 1, override the <code>page.typ</code> partial instead (see <a href="#custom-templates">Custom templates</a>).</p>
 </div>
 </div>
 <p>Widen paragraph line spacing with <code>#set par(...)</code>:</p>
@@ -1428,9 +1662,9 @@ Figure&nbsp;10.22: A right-aligned gray running header at the top of the page
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="in">#set par(leading: 1em)</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="in">#set par(leading: 1em)</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-raw-typst-par-leading" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two short paragraphs with extra vertical space between every line.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1438,26 +1672,26 @@ Figure&nbsp;10.22: A right-aligned gray running header at the top of the page
 <img src="images/typst-raw-typst-par-leading.png" class="border img-fluid figure-img" alt="Two short paragraphs with extra vertical space between every line.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-raw-typst-par-leading-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.23: Paragraphs with wider line spacing
+Figure&nbsp;10.28: Paragraphs with wider line spacing
 </figcaption>
 </figure>
 </div>
-<p>Tint body text with <code>#set text(...)</code>. Because set rules apply forward from where they appear, you can open a scope, drop a paragraph in, then revert:</p>
+<p>Tint body text with <code>#set text(...)</code>. Because set rules apply forward from the point they appear, you can open a scope, drop a paragraph in, then revert with a second set rule:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="in">#set text(fill: rgb("#4a4a4a"))</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>Quarterly on-time performance held above 80% across the network...</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="in">#set text(fill: black)</span></span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>Off-peak services consistently outperformed peak services...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="in">#set text(fill: rgb("#4a4a4a"))</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>Quarterly on-time performance held above 80% across the network...</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="in">#set text(fill: black)</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>Off-peak services consistently outperformed peak services...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-raw-typst-text-fill" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two paragraphs of body text: the first rendered in medium gray, the second in black.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1465,21 +1699,21 @@ Figure&nbsp;10.23: Paragraphs with wider line spacing
 <img src="images/typst-raw-typst-text-fill.png" class="border img-fluid figure-img" alt="Two paragraphs of body text: the first rendered in medium gray, the second in black.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-raw-typst-text-fill-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.24: The first paragraph in gray, the second in default black
+Figure&nbsp;10.29: The first paragraph in gray, the second in default black
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="show-rules" class="level5" data-number="10.12.2.2.2">
-<h5 data-number="10.12.2.2.2" class="anchored" data-anchor-id="show-rules"><span class="header-section-number">10.12.2.2.2</span> Show rules</h5>
+<section id="show-rules" class="level5" data-number="10.12.3.0.2">
+<h5 data-number="10.12.3.0.2" class="anchored" data-anchor-id="show-rules"><span class="header-section-number">10.12.3.0.2</span> Show rules</h5>
 <p>Reach for a show rule when the parameter you want lives on a <em>different</em> element. Heading spacing, for example, is a <code>block</code> parameter, not a <code>heading</code> one — <code>#show heading: set block(...)</code> bridges the two:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="in">#show heading: set block(above: 2em, below: 0.5em)</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="in">#show heading: set block(above: 2em, below: 0.5em)</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-raw-typst-heading-spacing" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Summary and Recommendations headings with wide vertical space above each.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1487,18 +1721,18 @@ Figure&nbsp;10.24: The first paragraph in gray, the second in default black
 <img src="images/typst-raw-typst-heading-spacing.png" class="border img-fluid figure-img" alt="Summary and Recommendations headings with wide vertical space above each.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-raw-typst-heading-spacing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.25: Headings with extra vertical breathing room
+Figure&nbsp;10.30: Headings with extra vertical breathing room
 </figcaption>
 </figure>
 </div>
-<p>Narrow the target with <code>.where()</code>. Here level-2 headings go italic; level-1 stays upright:</p>
+<p>Narrow the target with <code>.where()</code>. Here level-2 headings go italic, while level-1 stays upright:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="in">#show heading.where(level: 2): set text(style: "italic")</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="in">#show heading.where(level: 2): set text(style: "italic")</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-raw-typst-heading-level" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three headings: Summary and Recommendations in upright bold, with Observations rendered in italic bold between them.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1506,7 +1740,7 @@ Figure&nbsp;10.25: Headings with extra vertical breathing room
 <img src="images/typst-raw-typst-heading-level.png" class="border img-fluid figure-img" alt="Three headings: Summary and Recommendations in upright bold, with Observations rendered in italic bold between them.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-raw-typst-heading-level-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.26: A level-2 Observations heading in italic, between upright level-1 headings
+Figure&nbsp;10.31: A level-2 Observations heading in italic, between upright level-1 headings
 </figcaption>
 </figure>
 </div>
@@ -1528,17 +1762,17 @@ Figure&nbsp;10.26: A level-2 Observations heading in italic, between upright lev
 <div class="code-with-filename-file">
 <pre><strong>_brand.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#2e5090"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#2e5090"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>every heading can be painted in the brand primary:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="in">#show heading: set text(fill: brand-color.primary)</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="in">#show heading: set text(fill: brand-color.primary)</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="fig-typst-raw-typst-heading-color" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Summary and Recommendations headings rendered in a dark blue brand color on white.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1546,21 +1780,47 @@ Figure&nbsp;10.26: A level-2 Observations heading in italic, between upright lev
 <img src="images/typst-raw-typst-heading-color.png" class="border img-fluid figure-img" alt="Summary and Recommendations headings rendered in a dark blue brand color on white.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-raw-typst-heading-color-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.27: Headings rendered in the brand primary color
+Figure&nbsp;10.32: Headings rendered in the brand primary color
 </figcaption>
 </figure>
 </div>
+<p>Show rules can also reshape an element by returning new content. To footnote every external link with its URL — the effect Pandoc’s <code>links-as-notes</code> gives for LaTeX — rewrite each link to its body followed by a footnote. Gate on the destination type so internal section links stay untouched:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>report.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=typst}</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="in">#show link: it =&gt; if type(it.dest) == str {</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="in">  [#it.body#footnote([#raw(it.dest)])]</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="in">} else {</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="in">  it</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="in">}</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="fig-typst-raw-typst-link-footnote" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A Recommendations section whose external link has a superscript numeral; the URL is printed in monospace at the foot of the page.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-typst-raw-typst-link-footnote-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/typst-raw-typst-link-footnote.png" class="border img-fluid figure-img" alt="A Recommendations section whose external link has a superscript numeral; the URL is printed in monospace at the foot of the page.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-typst-raw-typst-link-footnote-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.33: An external link with a superscript footnote marker, and its URL printed at the bottom of the page
+</figcaption>
+</figure>
+</div>
+<p>Internal links have a <code>label</code> destination rather than a string, so the <code>type(it.dest) == str</code> check skips them. Using <code>it.body</code> instead of <code>it</code> avoids recursing into the show rule.</p>
 </section>
 </section>
-</section>
-</section>
-<section id="custom-templates" class="level2" data-number="10.13">
-<h2 data-number="10.13" class="anchored" data-anchor-id="custom-templates"><span class="header-section-number">10.13</span> Custom templates</h2>
-<p>When set and show rules aren’t enough. Or you want a reusable template.</p>
-<p>Focus on the why you would build this, not how. Point to docs for how.</p>
+<section id="sec-typst-templates" class="level3" data-number="10.12.4">
+<h3 data-number="10.12.4" class="anchored" data-anchor-id="sec-typst-templates"><span class="header-section-number">10.12.4</span> Custom templates</h3>
+<p>When set and show rules aren’t enough — or when you want to reuse the same customizations across many documents — reach for a custom template. A template bundles document-wide styling into a reusable extension your project can depend on.</p>
 <div class="todo">
 <p>[CVW] Cover the <code>page.typ</code> partial. It’s the file that turns YAML like <code>papersize</code>, <code>margin</code>, <code>page-numbering</code>, and <code>columns</code> into a <code>#set page()</code> call; overriding it is the supported way to reach the Typst page parameters Quarto doesn’t expose — running headers and footers are the motivating example.</p>
 </div>
+<p>You can read more about building custom Typst templates in the <a href="https://quarto.org/docs/output-formats/typst-custom-formats.html">Quarto Typst customization guide</a>.</p>
+</section>
+</section>
+<section id="wrapping-up" class="level2" data-number="10.13">
+<h2 data-number="10.13" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">10.13</span> Wrapping Up</h2>
 
 
 </section>
