@@ -417,7 +417,7 @@ Another good usecase for raw blocks is to customize appearance with set and show
 ## Full-width or margin content
 
 By default, your document content will sit in the body column of your PDF document.
-Sometime, you may want to break out of that column, and use the full page width, or put content into the right margin.
+Sometimes you may want to break out of that column, and use the full page width, or put content into the right margin.
 
 Add the `.column-margin` class to a fenced div to push content into the margin as an aside:
 
@@ -458,6 +458,9 @@ fig-column: page
 tbl-column: page
 ---
 ```
+
+When place content outside the default body column, the layout mechanism of your document changes from a simple single body area, to a layout using the Typst [marginalia package](https://typst.app/universe/package/marginalia/) to manage the margin allocation.
+You'll learn more about managing this layout in @sec-layout-marginalia.
 
 ## Making accessible PDFs {#sec-pdf-accessibility}
 

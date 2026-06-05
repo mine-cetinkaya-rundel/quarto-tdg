@@ -58,17 +58,15 @@ cat > "$OUT" <<SVG
           fill="none" stroke="#444" stroke-width="4"/>
     <text x="445" y="2235">margin: bottom</text>
 
-    <path d="M 300,1500 L 420,1500 M 300,1485 L 300,1515 M 420,1485 L 420,1515"
+    <path d="M 300,1500 L 430,1500 M 300,1485 L 300,1515 M 430,1485 L 430,1515"
           fill="none" stroke="#444" stroke-width="4"/>
     <text x="285" y="1565" text-anchor="end">margin: left</text>
 
-    <path d="M 1880,1200 L 2000,1200 M 1880,1185 L 1880,1215 M 2000,1185 L 2000,1215"
+    <path d="M 1880,1500 L 2000,1500 M 1880,1485 L 1880,1515 M 2000,1485 L 2000,1515"
           fill="none" stroke="#444" stroke-width="4"/>
-    <text x="2040" y="1265">margin: right</text>
+    <text x="2040" y="1565">margin: right</text>
 
-    <path d="M 712,240 L 712,220 L 1100,220 L 1100,240 M 1132,240 L 1132,220 L 1520,220 L 1520,240"
-          fill="none" stroke="#444" stroke-width="4"/>
-    <text x="1116" y="180" text-anchor="middle">columns: 2</text>
+    <text x="1155" y="325" text-anchor="middle" fill="#234">.column-page</text>
 
     <text x="2030" y="2210">page-numbering</text>
     <line x1="2020" y1="2195" x2="1145" y2="2195"
@@ -76,12 +74,13 @@ cat > "$OUT" <<SVG
 
     <path d="M 712,2340 L 712,2370 L 1880,2370 L 1880,2340 M 1520,2340 L 1520,2370 M 1580,2340 L 1580,2370"
           fill="none" stroke="#444" stroke-width="4"/>
-    <text x="1116" y="2435" text-anchor="middle">body-width</text>
-    <text x="1730" y="2435" text-anchor="middle">margin-width</text>
+    <text x="1116" y="2435" text-anchor="middle"
+          font-family="ui-sans-serif, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif">Body width*</text>
+    <text x="1730" y="2435" text-anchor="middle">grid: margin-width</text>
 
     <line x1="1550" y1="2380" x2="1550" y2="2460"
           stroke="#444" stroke-width="4"/>
-    <text x="1550" y="2510" text-anchor="middle">gutter-width</text>
+    <text x="1550" y="2510" text-anchor="middle">grid: gutter-width</text>
 
   </g>
 </svg>

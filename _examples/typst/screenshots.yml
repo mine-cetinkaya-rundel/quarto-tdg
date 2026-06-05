@@ -162,3 +162,8 @@
   builder: _examples/typst/page-layout/build-anatomy.sh
   density: 200
   generated: 2026-06-04T19:50:00Z
+- image: typst-page-layout-marginalia.svg
+  source: _examples/typst/page-layout/_anatomy.qmd
+  builder: _examples/typst/page-layout/build-marginalia.sh
+  density: 200
+  generated: 2026-06-04T22:00:00Z

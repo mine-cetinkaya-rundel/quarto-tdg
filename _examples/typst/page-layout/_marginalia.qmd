@@ -1,16 +1,23 @@
 ---
+# Source for the marginalia-geometry diagram (build-marginalia.sh).
+# Uses margin-geometry directly so inner/outer far + separation are symmetric
+# (inner.sep == outer.sep == 0.3in), unlike _anatomy.qmd which drives geometry
+# through margin/grid. Body blocks are identical to _anatomy.qmd.
 format:
   typst:
     papersize: us-letter
     margin:
       top: 0.75in
       bottom: 0.75in
-      left: 0.6in
-      right: 0.6in
-    grid:
-      body-width: 5.5in
-      margin-width: 1.5in
-      gutter-width: 0.3in
+    margin-geometry:
+      inner:
+        far: 0.6in
+        width: 0.811in
+        separation: 0.3in
+      outer:
+        far: 0.6in
+        width: 1.5in
+        separation: 0.3in
     page-numbering: "1"
     keep-typ: true
 ---

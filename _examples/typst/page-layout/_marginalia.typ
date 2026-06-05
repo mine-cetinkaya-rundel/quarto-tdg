@@ -428,14 +428,14 @@
 // Configure marginalia page geometry (functions defined in definitions.typ)
 #show: marginalia.setup.with(
   inner: (
-    far: 0.649in,
+    far: 0.6in,
     width: 0.811in,
-    sep: 0.600in,
+    sep: 0.3in,
   ),
   outer: (
-    far: 0.600in,
-    width: 1.500in,
-    sep: 0.300in,
+    far: 0.6in,
+    width: 1.5in,
+    sep: 0.3in,
   ),
   top: 0.75in,
   bottom: 0.75in,
