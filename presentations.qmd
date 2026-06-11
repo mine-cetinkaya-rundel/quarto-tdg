@@ -19,7 +19,7 @@ We will close the chapter with a complete example of a `revealjs` presentation a
 
 ## Your first presentation
 
-```` {.markdown filename="presentation.qmd"}
+````` {.markdown filename="presentation.qmd"}
 
 ---
 title: Complete presentation
@@ -45,7 +45,7 @@ title-slide-attributes:
 
 ## Code Example {.smaller}
 
-````{python}
+````{{python}}
 #| echo: true
 #| output-location: column
 print("Hello, RevealJS!")
@@ -57,7 +57,7 @@ Remember to explain the code output.
 
 :::
 
-````
+`````
 
 ::: callout-note
 Throughout this chapter, we use level 1 headings for section breaks and level 2 headings for slide breaks.
@@ -103,13 +103,21 @@ By default, level 1 headings (`#`) create section breaks and level 2 headings (`
 
 ## Section 1, Slide 1
 
+Content for first slide in Section 1.
+
 ## Section 1, Slide 2
+
+Content for second slide in Section 1.
 
 # Section 2
 
 ## Section 2, Slide 1
 
+Content for first slide in Section 2.
+
 ## Section 2, Slide 2
+
+Content for second slide in Section 2.
 ```
 
 You can customize this behavior using the `slide-level` option in YAML, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
@@ -280,8 +288,9 @@ This is separate from `center: true` in YAML, which centers *all* slides, and `c
 ### Slide backgrounds
 
 You can customize individual slide backgrounds using heading attributes.
+Some options include:
 
-**Color backgrounds:**
+- Color backgrounds:
 
 ``` markdown
 ## Slide Title {background-color="aquamarine"}
@@ -289,25 +298,25 @@ You can customize individual slide backgrounds using heading attributes.
 Content on colored background.
 ```
 
-**Gradient backgrounds:**
+- Gradient backgrounds:
 
 ``` markdown
 ## Gradient Slide {background-gradient="linear-gradient(to right, red, blue)"}
 ```
 
-**Image backgrounds:**
+- Image backgrounds:
 
 ``` markdown
 ## Image Background {background-image="image.jpg" background-size="cover" background-opacity="0.5"}
 ```
 
-**Video backgrounds:**
+- Video backgrounds:
 
 ``` markdown
 ## Video Background {background-video="video.mp4" background-video-loop="true" background-video-muted="true"}
 ```
 
-**Title slide background:**
+For title slides, use `title-slide-attributes` in YAML to set background options:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
@@ -392,24 +401,26 @@ In presentation formats (`revealjs`, `beamer`, `pptx`), Quarto defaults to `echo
 
 You can highlight specific lines in code blocks:
 
-```` markdown
-```{.python code-line-numbers="2,4"}
+````` markdown
+````{{python}}
+#| code-line-numbers="2,4"
 def example():
     highlighted = True  # Line 2
     not_highlighted = False
     also_highlighted = True  # Line 4
 ```
-````
+`````
 
 For progressive highlighting through slide steps, use the pipe separator:
 
-```` markdown
-```{.python code-line-numbers="1|2|3"}
+````` markdown
+````{{python}}
+#| code-line-numbers="|1|2|3"
 first_step = 1
 second_step = 2
 third_step = 3
 ```
-````
+`````
 
 #### Height
 
@@ -466,7 +477,7 @@ With the `jupyter` engine, `fig-width` and `fig-height` have no effect at the ce
 For cell-level control with Matplotlib, set the figure size directly in Python:
 
 ```` markdown
-```{python}
+```{{python}}
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots(figsize=(6, 4))
@@ -477,7 +488,7 @@ ax.plot([1, 2, 3])
 To control the *displayed* size of the output image independently of its generated dimensions, use `out-width` and `out-height`, which accept CSS values and work at the cell level with both engines:
 
 ```` markdown
-```{r}
+```{{r}}
 #| out-width: "70%"
 plot(cars)
 ```
@@ -512,19 +523,19 @@ You can control where code output appears using `output-location`:
 Example:
 
 ```` markdown
-```{python}
+````{{python}}
 #| output-location: column
 import matplotlib.pyplot as plt
 plt.plot([1, 2, 3])
 plt.show()
-```
+````
 ````
 
 ### Interactive documents
 
-TO DO: Add iframes
-
 Presentations can incorporate interactive content using Observable JS or Shiny. This allows you to embed reactive inputs and outputs directly in slides, turning a presentation into a live application. See the [Observable](https://quarto.org/docs/interactive/ojs/) and [Shiny](https://quarto.org/docs/interactive/shiny/) documentation for details.
+
+An alternative approach is to add an interactive document hosted on Posit Connect or another platform as an iframe.
 
 ## Animation
 
@@ -730,11 +741,43 @@ Beyond the built-in themes, you can customize any theme using SCSS variables or 
 
 ### Brand
 
-TO DO: Write
+If you want custom colors and fonts for your presentation, the easiest approach is through **brand.yml**.
+Add a `_brand.yml` file alongside your presentation `.qmd` file, and Quarto will automatically apply it.
 
-- Primary and bar
-- Fonts
+The most noticeable effect of `color` settings in a presentation is on the slide background and text.
+`primary` is used for links and the presentation's navigation controls:
 
+```{.yaml filename="_brand.yml"}
+color:
+  foreground: "#E0EFDE"
+  background: "#162627"
+  primary: "#8A7090"
+```
+
+brand.yml is also a convenient way to set fonts for your presentation using Google Fonts.
+You can set the main font (`base`), the font used for headings (`headings`), and the font used for code (`monospace`):
+
+```{.yaml filename="_brand.yml"}
+color:
+  foreground: "#E0EFDE"
+  background: "#162627"
+  primary: "#8A7090"
+typography:
+  fonts:
+    - family: Chango
+      source: google
+    - family: Abel
+      source: google
+    - family: JetBrains Mono
+  base: Abel
+  headings: Chango
+  monospace: JetBrains Mono
+```
+
+Swap `source: google` for `source: bunny` if you'd prefer [Bunny Fonts](https://fonts.bunny.net)---a GDPR compliant alternative to Google Fonts.
+
+If you are using brand.yml across your organization's projects (e.g. for both a website and presentations), you can place `_brand.yml` in a parent directory and it will be found automatically.
+You can read about all the options available in the [Quarto documentation Guide to using brand.yml](https://quarto.org/docs/authoring/brand.html).
 
 ## Presenting
 
@@ -821,20 +864,19 @@ format:
 The Chalkboard plugin is not compatible with `embed-resources: true`. Using both will result in an error.
 :::
 
-### Other things...
+### Other presenting features
 
-TO DO: add some more so multi isn't the only one
+- **Slide tone** plays a subtle sound when you change slides---a helpful auditory cue, particularly for presenters who are blind or low-vision. Enable it with `slide-tone: true`.
 
-- The Multiplex plugin allows your audience to follow along on their own devices as you advance through slides. See the [Presenting Slides documentation](https://quarto.org/docs/presentations/revealjs/presenting.html) for setup instructions.
+- **Auto-slide** advances slides on a timer without any user input. Set `auto-slide` to a value in milliseconds (e.g. `auto-slide: 5000` for 5 seconds). Add `loop: true` to repeat the presentation continuously. A play/pause control appears automatically; press `A` to toggle it.
+
+- **Slide zoom** lets you zoom into any element on a slide by holding `Alt` (or `Ctrl`) and clicking on it. Click again to zoom back out.
+
+- The **Multiplex** plugin allows your audience to follow along on their own devices as you advance through slides. See the [Presenting Slides documentation](https://quarto.org/docs/presentations/revealjs/presenting.html) for setup instructions.
 
 ## Sharing
 
-TO DO: Add overview --
-
-- give people the html
-- give people the pdf
-- give people the 
-
+Once your presentation is ready, you can share it as a self-contained HTML file, export it to PDF, or publish it online and share the link to the published presentation.
 
 ### Self-contained files
 
@@ -850,7 +892,7 @@ format:
 
 Note that this can slow rendering, so it's best to enable it only when you're ready to distribute.
 
-### Print to PDF
+### Export to PDF
 
 Reveal presentations can be exported to PDF directly from the browser:
 
