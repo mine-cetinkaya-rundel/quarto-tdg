@@ -471,6 +471,44 @@ Presentations can incorporate interactive content using Observable JS or Shiny. 
 
 ## Animation
 
+### Slide transitions
+
+Reveal can animate the change between slides. Set a global transition style in YAML:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    transition: slide
+    transition-speed: fast
+---
+```
+
+The available transition types are:
+
+| Type | Effect |
+|------|--------|
+| `none` | Switch instantly |
+| `fade` | Cross fade |
+| `slide` | Slide horizontally |
+| `convex` | Slide at a convex angle |
+| `concave` | Slide at a concave angle |
+| `zoom` | Scale in from the center of the screen |
+
+Override the transition on individual slides using heading attributes:
+
+``` markdown
+## Slide Title {transition="fade" transition-speed="slow"}
+```
+
+You can also specify separate in and out transitions:
+
+``` markdown
+## Slide Title {transition="fade-in slide-out"}
+```
+
+Use `background-transition` to control the transition for slide backgrounds independently of content.
+
 ### Pauses
 
 You can use three dots to create pauses within slides:
