@@ -329,6 +329,8 @@ format:
 
 ## Code
 
+In presentation formats (`revealjs`, `beamer`, `pptx`), Quarto defaults to `echo: false`, so code cells produce output without showing their source. To display the code, set `echo: true` globally in YAML or per cell with `#| echo: true`.
+
 ### Code blocks
 
 #### Code highlighting
