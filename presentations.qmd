@@ -19,7 +19,8 @@ We will close the chapter with a complete example of a `revealjs` presentation a
 
 ## Your first presentation
 
-```` {.yaml filename="presentation.qmd"}
+```` {.markdown filename="presentation.qmd"}
+
 ---
 title: Complete presentation
 author: Author Name
@@ -44,15 +45,18 @@ title-slide-attributes:
 
 ## Code Example {.smaller}
 
-```{python}
+````{python}
 #| echo: true
 #| output-location: column
 print("Hello, RevealJS!")
-```
+````
 
 ::: {.notes}
+
 Remember to explain the code output.
+
 :::
+
 ````
 
 ::: callout-note
@@ -441,7 +445,7 @@ format:
 With the `knitr` engine, you can also override these per cell:
 
 ```` markdown
-```{r}
+```{{r}}
 #| fig-width: 6
 #| fig-height: 4
 plot(cars)
@@ -451,7 +455,7 @@ plot(cars)
 The `fig-asp` option (`knitr` only) sets the height-to-width aspect ratio and overrides `fig-height` when both are specified:
 
 ```` markdown
-```{r}
+```{{r}}
 #| fig-width: 6
 #| fig-asp: 0.618
 plot(cars)
@@ -517,6 +521,8 @@ plt.show()
 ````
 
 ### Interactive documents
+
+TO DO: Add iframes
 
 Presentations can incorporate interactive content using Observable JS or Shiny. This allows you to embed reactive inputs and outputs directly in slides, turning a presentation into a live application. See the [Observable](https://quarto.org/docs/interactive/ojs/) and [Shiny](https://quarto.org/docs/interactive/shiny/) documentation for details.
 
@@ -664,21 +670,23 @@ format:
 
 ## Customizing appearance
 
-### Themes
+### Presentation size
 
-Reveal includes eleven built-in themes: `default`, `beige`, `blood`, `dark`, `dracula`, `league`, `moon`, `night`, `serif`, `simple`, `sky`, and `solarized`.
-
-Set a theme in YAML:
+Reveal slides default to 1050 × 700 pixels, an aspect ratio close to most laptop screens. Reveal scales content automatically to fit the viewer's display without changing the layout, but you can adjust the base dimensions, the margin around content, and the scaling limits:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
 format:
   revealjs:
-    theme: dark
+    width: 1050
+    height: 700
+    margin: 0.1
+    min-scale: 0.2
+    max-scale: 2.0
 ---
 ```
 
-Beyond the built-in themes, you can customize any theme using SCSS variables or create entirely new themes. See the [Reveal Themes documentation](https://quarto.org/docs/presentations/revealjs/themes.html) for details.
+Changing `width` and `height` affects the coordinate space for all absolute positioning and layout calculations, so pick values early and design your slides around them.
 
 ### Slide numbers
 
@@ -703,23 +711,30 @@ format:
 ---
 ```
 
-### Presentation size
 
-Reveal slides default to 1050 × 700 pixels, an aspect ratio close to most laptop screens. Reveal scales content automatically to fit the viewer's display without changing the layout, but you can adjust the base dimensions, the margin around content, and the scaling limits:
+### Themes
+
+Reveal includes eleven built-in themes: `default`, `beige`, `blood`, `dark`, `dracula`, `league`, `moon`, `night`, `serif`, `simple`, `sky`, and `solarized`.
+
+Set a theme in YAML:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
 format:
   revealjs:
-    width: 1050
-    height: 700
-    margin: 0.1
-    min-scale: 0.2
-    max-scale: 2.0
+    theme: dark
 ---
 ```
 
-Changing `width` and `height` affects the coordinate space for all absolute positioning and layout calculations, so pick values early and design your slides around them.
+Beyond the built-in themes, you can customize any theme using SCSS variables or create entirely new themes. See the [Reveal Themes documentation](https://quarto.org/docs/presentations/revealjs/themes.html) for details.
+
+### Brand
+
+TO DO: Write
+
+- Primary and bar
+- Fonts
+
 
 ## Presenting
 
@@ -806,11 +821,20 @@ format:
 The Chalkboard plugin is not compatible with `embed-resources: true`. Using both will result in an error.
 :::
 
-### Multiplex
+### Other things...
 
-The Multiplex plugin allows your audience to follow along on their own devices as you advance through slides. See the [Presenting Slides documentation](https://quarto.org/docs/presentations/revealjs/presenting.html) for setup instructions.
+TO DO: add some more so multi isn't the only one
+
+- The Multiplex plugin allows your audience to follow along on their own devices as you advance through slides. See the [Presenting Slides documentation](https://quarto.org/docs/presentations/revealjs/presenting.html) for setup instructions.
 
 ## Sharing
+
+TO DO: Add overview --
+
+- give people the html
+- give people the pdf
+- give people the 
+
 
 ### Self-contained files
 
