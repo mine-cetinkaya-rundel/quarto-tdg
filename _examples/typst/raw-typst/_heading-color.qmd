@@ -1,0 +1,3 @@
+```{=typst}
+#show heading.where(level: 1): set text(fill: brand-color.primary)
+```

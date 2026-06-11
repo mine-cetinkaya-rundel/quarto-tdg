@@ -101,26 +101,6 @@
   source: _examples/typst/computational-outputs/tables.qmd
   density: 200
   generated: 2026-06-04T19:47:52Z
-- image: typst-fonts-colors-base.png
-  source: _examples/typst/fonts-colors/base.qmd
-  density: 200
-  generated: 2026-06-04T20:37:07Z
-- image: typst-fonts-colors-headings.png
-  source: _examples/typst/fonts-colors/headings.qmd
-  density: 200
-  generated: 2026-06-04T20:38:11Z
-- image: typst-fonts-colors-mono-font.png
-  source: _examples/typst/fonts-colors/mono-font.qmd
-  density: 200
-  generated: 2026-06-04T20:38:12Z
-- image: typst-fonts-colors-code-bg.png
-  source: _examples/typst/fonts-colors/code-bg.qmd
-  density: 200
-  generated: 2026-06-04T20:38:14Z
-- image: typst-fonts-colors-links.png
-  source: _examples/typst/fonts-colors/links.qmd
-  density: 200
-  generated: 2026-06-04T20:38:15Z
 - image: typst-math-equations.png
   source: _examples/typst/math/equations.qmd
   density: 200
@@ -129,30 +109,10 @@
   source: _examples/typst/math/equations-alt.qmd
   density: 200
   generated: 2026-06-04T19:48:01Z
-- image: typst-raw-typst-heading-color.png
-  source: _examples/typst/raw-typst/heading-color.qmd
-  density: 200
-  generated: 2026-06-04T19:48:02Z
 - image: typst-raw-typst-heading-level.png
   source: _examples/typst/raw-typst/heading-level.qmd
   density: 200
   generated: 2026-06-04T19:48:03Z
-- image: typst-raw-typst-heading-spacing.png
-  source: _examples/typst/raw-typst/heading-spacing.qmd
-  density: 200
-  generated: 2026-06-04T19:48:04Z
-- image: typst-raw-typst-link-footnote.png
-  source: _examples/typst/raw-typst/link-footnote.qmd
-  density: 200
-  generated: 2026-06-04T19:48:05Z
-- image: typst-raw-typst-page-header.png
-  source: _examples/typst/raw-typst/page-header.qmd
-  density: 200
-  generated: 2026-06-04T19:48:07Z
-- image: typst-raw-typst-par-leading.png
-  source: _examples/typst/raw-typst/par-leading.qmd
-  density: 200
-  generated: 2026-06-04T19:48:08Z
 - image: typst-raw-typst-text-fill.png
   source: _examples/typst/raw-typst/text-fill.qmd
   density: 200
@@ -183,3 +143,48 @@
   source: _examples/typst/page-layout/column-classes.qmd
   density: 200
   generated: 2026-06-05T18:00:05Z
+- image: typst-fonts-colors-brand-colors.png
+  source: _examples/typst/fonts-colors/brand-colors.qmd
+  density: 300
+  generated: 2026-06-05T20:21:29Z
+- image: typst-fonts-colors-brand-link.png
+  source: _examples/typst/fonts-colors/brand-link.qmd
+  density: 300
+  generated: 2026-06-05T20:21:32Z
+- image: typst-fonts-colors-brand-code.png
+  source: _examples/typst/fonts-colors/brand-code.qmd
+  density: 300
+  generated: 2026-06-05T20:21:34Z
+- image: typst-fonts-colors-brand-fonts.png
+  source: _examples/typst/fonts-colors/brand-fonts.qmd
+  density: 300
+  generated: 2026-06-08T15:58:47Z
+- image: typst-fonts-colors-brand-all.png
+  source: _examples/typst/fonts-colors/brand-all.qmd
+  density: 300
+  generated: 2026-06-08T15:58:51Z
+- image: typst-raw-typst-page-header.png
+  source: _examples/typst/raw-typst/page-header.qmd
+  density: 200
+  generated: 2026-06-08T17:26:33Z
+- image: typst-raw-typst-par-leading.png
+  source: _examples/typst/raw-typst/par-leading.qmd
+  density: 200
+  generated: 2026-06-08T17:34:52Z
+- image: typst-raw-typst-heading-spacing.png
+  source: _examples/typst/raw-typst/heading-spacing.qmd
+  density: 200
+  generated: 2026-06-08T18:47:57Z
+- image: typst-raw-typst-heading-color.png
+  source: _examples/typst/raw-typst/heading-color.qmd
+  density: 200
+  generated: 2026-06-08T18:58:24Z
+- image: typst-raw-typst-heading-rule.png
+  source: _examples/typst/raw-typst/heading-rule.qmd
+  density: 200
+  generated: 2026-06-08T20:01:11Z
+- image: typst-custom-template-report-template.png
+  source: _examples/typst/custom-template/report.qmd
+  profile: template
+  density: 200
+  generated: 2026-06-08T20:54:00Z

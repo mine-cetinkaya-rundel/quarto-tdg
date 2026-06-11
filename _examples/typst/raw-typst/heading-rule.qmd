@@ -1,4 +1,4 @@
-{{< include _heading-spacing.qmd >}}
+{{< include _heading-rule.qmd >}}
 
 ## Summary
 

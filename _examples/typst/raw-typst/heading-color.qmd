@@ -4,13 +4,15 @@ brand:
     primary: "#2e5090"
 ---
 
-```{=typst}
-#show heading: set text(fill: brand-color.primary)
-```
+{{< include _heading-color.qmd >}}
 
 ## Summary
 
 Quarterly on-time performance held above 80% across the network.
+
+### Observations
+
+Off-peak services consistently outperformed peak services across all routes.
 
 ## Recommendations
 

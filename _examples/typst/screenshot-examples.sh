@@ -10,7 +10,7 @@ set -e
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 ROOT_DIR=$(cd "$SCRIPT_DIR/../.." && pwd)
 CHAPTER=$(basename "$SCRIPT_DIR")
-DENSITY=200
+DENSITY=${DENSITY:-200}
 OUT_DIR="$ROOT_DIR/images"
 mkdir -p "$OUT_DIR"
 

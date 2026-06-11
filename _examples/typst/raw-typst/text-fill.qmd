@@ -1,11 +1,1 @@
-```{=typst}
-#set text(fill: rgb("#4a4a4a"))
-```
-
-Quarterly on-time performance held above 80% across the network, though peak-hour services on long-distance routes remained a concern.
-
-```{=typst}
-#set text(fill: black)
-```
-
-Off-peak services consistently outperformed peak services across all routes, with the Coastal Express showing the largest gap between peak and off-peak.
+{{< include _text-fill.qmd >}}

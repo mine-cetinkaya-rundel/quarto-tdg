@@ -1,6 +1,4 @@
-```{=typst}
-#show heading.where(level: 2): set text(style: "italic")
-```
+{{< include _heading-level.qmd >}}
 
 ## Summary
 

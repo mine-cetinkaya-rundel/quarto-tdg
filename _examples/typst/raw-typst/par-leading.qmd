@@ -1,6 +1,4 @@
-```{=typst}
-#set par(leading: 1em)
-```
+{{< include _par-leading.qmd >}}
 
 ## Summary
 

@@ -1,4 +1,8 @@
 /.quarto/
 _book/
 .Rproj.user
-/env/
+/.venv/
+
+**/*.quarto_ipynb
+
+/.luarc.json

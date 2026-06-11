@@ -1,7 +1,0 @@
----
-brand: _brand-links.yml
----
-
-## Recommendations
-
-See the [Q1 on-time dashboard](https://transit.example.com/ontime/2026-q1) for the full breakdown by route.
