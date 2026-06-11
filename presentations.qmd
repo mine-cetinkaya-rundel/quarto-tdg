@@ -331,8 +331,6 @@ format:
 
 ### Code blocks
 
-- Add figure sizing
-
 #### Code highlighting
 
 You can highlight specific lines in code blocks:
@@ -438,8 +436,10 @@ format:
 ---
 ```
 
-Like `fig-width` and `fig-height`, `fig-dpi` has no effect at the cell level with the Jupyter engine and must be set at the document or project level.
-For knitr, it can be set per cell as `#| fig-dpi: 192`.
+Alternatively, set `fig-format: retina` to render at 2x resolution without choosing a specific DPI value.
+
+Like `fig-width` and `fig-height`, both `fig-dpi` and `fig-format` have no effect at the cell level with the Jupyter engine and must be set at the document or project level.
+For knitr, they can be set per cell, e.g., `#| fig-dpi: 192` or `#| fig-format: retina`.
 
 #### Output location
 
