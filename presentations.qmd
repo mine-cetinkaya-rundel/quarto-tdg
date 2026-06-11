@@ -56,9 +56,8 @@ Remember to explain the code output.
 ````
 
 ::: callout-note
-We will use level 1 headings for section breaks and level 2 headings for slide breaks.
-However, it's possible to customize this using the `slide-level` option, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
-See the Pandoc documentation on [structuring the slide show](https://pandoc.org/MANUAL.html#structuring-the-slide-show) for additional details.
+Throughout this chapter, we use level 1 headings for section breaks and level 2 headings for slide breaks.
+See the Pandoc documentation on [structuring the slide show](https://pandoc.org/MANUAL.html#structuring-the-slide-show) for additional details on how headings map to slides.
 :::
 
 ## Authoring
@@ -210,7 +209,7 @@ format:
 
 ### Image sizing
 
-Quarto automatically sets figure sizes for Python (Matplotlib, Plotly Express) and R (knitr) to fill the slide area below the title. For finer control, use `.r-stretch` on an image to make it automatically fill the remaining vertical space on a slide:
+When a slide contains a single top-level image, Quarto's `auto-stretch` feature automatically expands it to fill the remaining vertical space (see [Image size] for details on how this applies to computational figures). For manual control, use `.r-stretch` on an image to opt in to the same behavior:
 
 ``` markdown
 ## Slide Title
@@ -424,8 +423,8 @@ format:
 
 #### Image size
 
-By default, Quarto's `auto-stretch` feature automatically expands a single top-level figure — including one produced by a code cell — to fill the remaining vertical space on a slide.
-You can disable this globally by setting `auto-stretch: false` in YAML, or per-slide by adding the class `.nostretch` to the slide heading.
+As described in [Image sizing], Quarto's `auto-stretch` feature expands a single top-level figure to fill the remaining vertical space on a slide. This applies to computational output as well.
+Disable it globally with `auto-stretch: false` in YAML, or per-slide by adding `.nostretch` to the slide heading.
 
 For explicit control, use `fig-width` and `fig-height` (in inches) to set the physical dimensions of generated figures.
 At the document level, these apply to both engines:
