@@ -614,6 +614,24 @@ format:
 ---
 ```
 
+### Presentation size
+
+Reveal slides default to 1050 × 700 pixels, an aspect ratio close to most laptop screens. Reveal scales content automatically to fit the viewer's display without changing the layout, but you can adjust the base dimensions, the margin around content, and the scaling limits:
+
+``` {.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    width: 1050
+    height: 700
+    margin: 0.1
+    min-scale: 0.2
+    max-scale: 2.0
+---
+```
+
+Changing `width` and `height` affects the coordinate space for all absolute positioning and layout calculations, so pick values early and design your slides around them.
+
 ## Presenting
 
 ### Speaker notes
