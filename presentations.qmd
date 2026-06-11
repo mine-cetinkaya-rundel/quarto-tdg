@@ -222,6 +222,58 @@ Some introductory text.
 
 Note that `.r-stretch` only applies to non-nested images. Images inside columns, fragments, or other custom divs are ignored unless you add `.r-stretch` to the outer div explicitly.
 
+### Layout helpers
+
+Reveal provides several utility classes for positioning and sizing content on slides.
+
+#### Absolute positioning
+
+The `.absolute` class places elements at exact positions on a slide. Specify `top`, `left`, `bottom`, and/or `right` along with optional `width` and `height` (values without units are treated as pixels):
+
+``` markdown
+![](image1.png){.absolute top=200 left=0 width="350" height="300"}
+
+![](image2.png){.absolute top=50 right=50 width="450" height="250"}
+```
+
+Positions are relative to the slide's coordinate space (1050 × 700 by default; see [Presentation size]).
+
+#### Stacking
+
+The `.r-stack` class centers multiple elements on top of each other. Combine it with fragments to incrementally reveal layered content:
+
+``` markdown
+::: {.r-stack}
+![](image1.png){.fragment width="450"}
+
+![](image2.png){.fragment width="300"}
+
+![](image3.png){.fragment width="400"}
+:::
+```
+
+#### Fit text
+
+The `.r-fit-text` class scales text to be as large as possible without overflowing the slide:
+
+``` markdown
+::: {.r-fit-text}
+Big Text
+:::
+```
+
+#### Centering
+
+Add the `.center` class to a slide heading to vertically center its content:
+
+``` markdown
+## Centered Slide {.center}
+
+This content will be vertically centered.
+```
+
+This is separate from `center: true` in YAML, which centers *all* slides, and `center-title-slide`, which controls only the title slide.
+
 ### Slide backgrounds
 
 You can customize individual slide backgrounds using heading attributes.
