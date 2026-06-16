@@ -390,9 +390,9 @@ window.Quarto = {
   <li><a href="#sec-code-blocks" id="toc-sec-code-blocks" class="nav-link" data-scroll-target="#sec-code-blocks"><span class="header-section-number">12.6</span> Code blocks</a></li>
   <li><a href="#sec-markdown-tables" id="toc-sec-markdown-tables" class="nav-link" data-scroll-target="#sec-markdown-tables"><span class="header-section-number">12.7</span> Tables</a>
   <ul class="collapse">
-  <li><a href="#markdown-pipe-tables" id="toc-markdown-pipe-tables" class="nav-link" data-scroll-target="#markdown-pipe-tables"><span class="header-section-number">12.7.1</span> Markdown pipe tables</a></li>
+  <li><a href="#sec-markdown-pipe-tables" id="toc-sec-markdown-pipe-tables" class="nav-link" data-scroll-target="#sec-markdown-pipe-tables"><span class="header-section-number">12.7.1</span> Markdown pipe tables</a></li>
   <li><a href="#list-tables" id="toc-list-tables" class="nav-link" data-scroll-target="#list-tables"><span class="header-section-number">12.7.2</span> List tables</a></li>
-  <li><a href="#html-tables" id="toc-html-tables" class="nav-link" data-scroll-target="#html-tables"><span class="header-section-number">12.7.3</span> HTML tables</a></li>
+  <li><a href="#sec-html-tables" id="toc-sec-html-tables" class="nav-link" data-scroll-target="#sec-html-tables"><span class="header-section-number">12.7.3</span> HTML tables</a></li>
   <li><a href="#sec-computational-table" id="toc-sec-computational-table" class="nav-link" data-scroll-target="#sec-computational-table"><span class="header-section-number">12.7.4</span> From a code cell</a></li>
   </ul></li>
   <li><a href="#sec-markdown-figures" id="toc-sec-markdown-figures" class="nav-link" data-scroll-target="#sec-markdown-figures"><span class="header-section-number">12.8</span> Images and figures</a>
@@ -714,8 +714,8 @@ Figure&nbsp;12.2: Code block syntax and its rendered output
 <h2 data-number="12.7" class="anchored" data-anchor-id="sec-markdown-tables"><span class="header-section-number">12.7</span> Tables</h2>
 <p>The simplest way to add a table to a Quarto document is to create a <strong>markdown pipe table</strong>, however cells in a markdown pipe table cannot contain block content like multiple paragraphs, code cells, or lists. To have cells with complicated cell contents, you can use an alternative syntax called <strong>list tables</strong>. You can also use <strong>HTML table syntax</strong>, regardless of your target format, to create tables in Quarto documents. You won’t usually write HTML syntax by hand, but it is a common output from computational packages that create tables.</p>
 <p>Tables are so important in Quarto documents that we dedicate an entire part of this book to them. For more details, see <span class="quarto-unresolved-ref">?sec-figtab</span>.</p>
-<section id="markdown-pipe-tables" class="level3" data-number="12.7.1">
-<h3 data-number="12.7.1" class="anchored" data-anchor-id="markdown-pipe-tables"><span class="header-section-number">12.7.1</span> Markdown pipe tables</h3>
+<section id="sec-markdown-pipe-tables" class="level3" data-number="12.7.1">
+<h3 data-number="12.7.1" class="anchored" data-anchor-id="sec-markdown-pipe-tables"><span class="header-section-number">12.7.1</span> Markdown pipe tables</h3>
 <p>The simplest syntax for a table in Quarto markdown is known as the <strong>pipe table</strong>, named because columns are separated by the pipe (<code>|</code>) character. A pipe table consists of column headers, a separator row of dashes (<code>-</code>) and pipes (<code>|</code>), and data rows with pipe-separated cells.</p>
 <p><a href="#fig-markdown-table" class="quarto-xref">Figure&nbsp;<span>12.3</span></a> gives an example of a pipe table, along with its rendered output. The line after the table, starting with <code>:</code>, is optional, and specifies the caption and any attributes for the table (inside curly braces <code>{}</code>). For example, the table is given the ID <code>#tbl-perf</code> so it is numbered and can be cross-referenced.</p>
 <div id="fig-markdown-table" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -777,8 +777,8 @@ Figure&nbsp;12.3: Markdown syntax and rendered output for a markdown pipe table
 <span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    $$</span>
 <span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="html-tables" class="level3" data-number="12.7.3">
-<h3 data-number="12.7.3" class="anchored" data-anchor-id="html-tables"><span class="header-section-number">12.7.3</span> HTML tables</h3>
+<section id="sec-html-tables" class="level3" data-number="12.7.3">
+<h3 data-number="12.7.3" class="anchored" data-anchor-id="sec-html-tables"><span class="header-section-number">12.7.3</span> HTML tables</h3>
 <p>You can also use HTML to create tables in Quarto documents, regardless of your target format. You typically won’t write HTML tables by hand—instead, you’ll generate them with code cells or import them from other tools.</p>
 <p>As an example, to generate the same table as <a href="#fig-markdown-table" class="quarto-xref">Figure&nbsp;<span>12.3</span></a> with HTML, you could include the following in your document:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
@@ -1005,7 +1005,7 @@ Table&nbsp;12.3: Identifier prefixes for theorem-like and proof-like blocks.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>::: {.proof}</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>Apply Markov's inequality to $(X - \mu)^2$.</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The result is an unnumbered, non-cross-referenceable proof block. The same <code>.remark</code> and <code>.solution</code> classes are available for the corresponding unnumbered forms.</p>
+<p>The result is an unnumbered, non-cross-referenceable proof block. Similarly, <code>.remark</code> and <code>.solution</code> classes are available for unnumbered forms of <code>#rem</code> and <code>#sol</code>.</p>
 </section>
 </section>
 <section id="sec-crossreferences" class="level2" data-number="12.10">
