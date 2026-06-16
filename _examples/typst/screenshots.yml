@@ -112,10 +112,6 @@
   source: _examples/typst/math/equations-alt.qmd
   density: 200
   generated: 2026-06-04T19:48:01Z
-- image: typst-raw-typst-heading-level.png
-  source: _examples/typst/raw-typst/heading-level.qmd
-  density: 200
-  generated: 2026-06-04T19:48:03Z
 - image: typst-raw-typst-text-fill.png
   source: _examples/typst/raw-typst/text-fill.qmd
   density: 200
@@ -166,26 +162,6 @@
   source: _examples/typst/fonts-colors/brand-all.qmd
   density: 300
   generated: 2026-06-08T15:58:51Z
-- image: typst-raw-typst-page-header.png
-  source: _examples/typst/raw-typst/page-header.qmd
-  density: 200
-  generated: 2026-06-08T17:26:33Z
-- image: typst-raw-typst-par-leading.png
-  source: _examples/typst/raw-typst/par-leading.qmd
-  density: 200
-  generated: 2026-06-08T17:34:52Z
-- image: typst-raw-typst-heading-spacing.png
-  source: _examples/typst/raw-typst/heading-spacing.qmd
-  density: 200
-  generated: 2026-06-08T18:47:57Z
-- image: typst-raw-typst-heading-color.png
-  source: _examples/typst/raw-typst/heading-color.qmd
-  density: 200
-  generated: 2026-06-08T18:58:24Z
-- image: typst-raw-typst-heading-rule.png
-  source: _examples/typst/raw-typst/heading-rule.qmd
-  density: 200
-  generated: 2026-06-08T20:01:11Z
 - image: typst-custom-template-report-template.png
   source: _examples/typst/custom-template/report.qmd
   profile: template
@@ -200,3 +176,27 @@
   source: _examples/typst/code-blocks/filename.qmd
   density: 200
   generated: 2026-06-16T15:52:53Z
+- image: typst-raw-typst-page-header.png
+  source: _examples/typst/raw-typst/page-header.qmd
+  density: 200
+  generated: 2026-06-16T20:59:40Z
+- image: typst-raw-typst-par-leading.png
+  source: _examples/typst/raw-typst/par-leading.qmd
+  density: 200
+  generated: 2026-06-16T20:59:41Z
+- image: typst-raw-typst-heading-spacing.png
+  source: _examples/typst/raw-typst/heading-spacing.qmd
+  density: 200
+  generated: 2026-06-16T20:59:42Z
+- image: typst-raw-typst-heading-level.png
+  source: _examples/typst/raw-typst/heading-level.qmd
+  density: 200
+  generated: 2026-06-16T20:59:43Z
+- image: typst-raw-typst-heading-color.png
+  source: _examples/typst/raw-typst/heading-color.qmd
+  density: 200
+  generated: 2026-06-16T20:59:44Z
+- image: typst-raw-typst-heading-rule.png
+  source: _examples/typst/raw-typst/heading-rule.qmd
+  density: 200
+  generated: 2026-06-16T20:59:45Z

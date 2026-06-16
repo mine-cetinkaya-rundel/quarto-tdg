@@ -7,8 +7,8 @@ PDF is the right target when you plan to print, need a single self-contained fil
 
 We'll focus exclusively on creating PDFs via Typst, i.e. `format: typst`.
 Typst is a modern typesetting system that comes bundled with Quarto.
-There are alternatives in Quarto. 
-Most notably, `format: pdf` which creates a PDF via LaTeX. 
+There are alternatives in Quarto,
+most notably, `format: pdf` which creates a PDF via LaTeX. 
 We think for new authors, its both easier to get started, and easier to advance with Typst:
 
 * Typst comes bundled with Quarto, so getting to your first PDF document requires nothing more than adding `format: typst`.
@@ -104,7 +104,7 @@ You can also use markdown link syntax to add links directly to other sections in
 ```
 
 Both render as plain text in the default template — they're clickable in a PDF viewer, but visually indistinguishable from the surrounding prose.
-You'll learn how to style them in @sec-customizing-appearance.
+You'll learn how to style them in @sec-typst-fonts-colors.
 
 ## Citations
 
@@ -115,7 +115,7 @@ A common format for this is BibTeX (`.bib`):
 {{< include _examples/typst/citations/references.bib >}}
 ```
 
-To cite an item in the bibliography, specify the file in `bibliography` and use the `@` syntax in your text:
+To cite an item in the bibliography, specify the bibliography file in `bibliography` and use the `@` syntax in your text:
 
 ````{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
 {{< include _examples/typst/citations/train-punctuality.qmd >}}
@@ -181,7 +181,7 @@ There is currently no way to add alt text to inline math in `format: typst`.
 ### Theorems
 
 When you use one Quarto's theorem environments you'll get special styling in Typst.
-For example, to declare a theorem, you wrap it in a fenced div with an identifier that starts with `#thm-`:
+To declare a theorem, you wrap it in a fenced div with an identifier that starts with `#thm-`:
 
 ````{.markdown filename="theorem.qmd" .code-overflow-wrap}
 {{< include _examples/typst/math/theorem.qmd >}}
@@ -212,22 +212,22 @@ The available options are `simple`, `fancy`, `clouds`, and `rainbow`:
 Available values for `theorem-appearance` to style theorems.
 :::
 
-`theorem-appearance` applies to every theorem-like element Quarto recognizes, not just `thm-`.
+`theorem-appearance` applies to every type of theorem-like element Quarto recognizes, not just `thm-`.
+When you use `fancy`, `clouds` or `rainbow`, different types get different accent colors so you can tell a definition from a theorem at a glance.
 You can find all the available types in @sec-theorems-proofs.
-Under `fancy`, `clouds` and `rainbow`, different types get different accent colors so you can tell a definition from a theorem at a glance.
 
 ## Code blocks
 
 When you include a code block it will get automatic syntax highlighting based
 on the language you specify.
-For example, you can set `r` on a code block:
+For example, here's a code block specified as `r`:
 
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
 {{< include _examples/typst/code-blocks/highlight.qmd >}}
 ````
 
-Then in your PDF, the block gets R syntax highlighting as shown in @fig-typst-code-blocks-highlight.
-Executable code cells that are echoed in your document get the same treatment, so your code and its output are styled consistently.
+In the PDF, the block gets R syntax highlighting as shown in @fig-typst-code-blocks-highlight.
+Executable code cells that are echoed in your document get the same treatment, so your code is styled consistently.
 
 ![Default `arrow` syntax highlighting of an R code block in a Typst document](images/typst-code-blocks-highlight.png){#fig-typst-code-blocks-highlight .border fig-alt="A short PDF showing a sentence followed by an R code block with colored syntax highlighting on a light blue-gray background."}
 
@@ -258,15 +258,19 @@ A comparison of the `github` theme for syntax highlighting and Typst's native `i
 
 ### Filename
 
-::: todo
-[CVW] Regenerate screenshot and remove this once quarto-dev/quarto-cli#14170 is merged.
-:::
-
 You can add a `filename` attribute to label the code block:
 
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
 {{< include _examples/typst/code-blocks/filename.qmd >}}
 ````
+
+The filename renders as a label on the code block, as shown in @fig-typst-code-blocks-filename.
+
+![A code block labelled with its filename, `analysis.R`](images/typst-code-blocks-filename.png){#fig-typst-code-blocks-filename .border fig-alt="A sentence followed by a syntax-highlighted R code block on a light grey background, labelled with the filename analysis.R."}
+
+::: todo
+[CVW] @fig-typst-code-blocks-filename currently shows the pre-fix behaviour: the filename label isn't rendered. Regenerate the screenshot and remove this note once <https://github.com/quarto-dev/quarto-cli/pull/14170> is merged.
+:::
 
 ## Computational outputs
 
@@ -319,7 +323,7 @@ format:
 
 Any code that produces a markdown, HTML, or raw Typst table will render to a table in your PDF.
 Often it's not easy to tell which format you've ended up with. 
-The easiest way to check is to add `keep-md` to your header and examine the resulting `.md` file:
+The easiest way to check is to add `keep-md` to your header:
 
 ````{.yaml filename="report.qmd"}
 ---
@@ -329,10 +333,12 @@ format:
 ---
 ````
 
-For simple tables, code that outputs a markdown table, will often be the best choice.
+Then examine the table output in the resulting `.md` file, e.g. `report.typst.md`.
+
+For simple tables, code that outputs a markdown table (@sec-markdown-pipe-tables), will often be the best choice.
 Markdown tables are converted to native Typst tables by Quarto, and it will inherit your documents styling, like fonts and colors, so the table will blend with the rest of your document. 
 
-The advantage of HTML tables, is that cell-level formatting, like coloring that depends on the data, will be preserved. 
+The advantage of HTML tables (@sec-html-tables), is that cell-level formatting, like coloring that depends on the data, will be preserved. 
 For example, these code blocks use the `gt` package in R and `great_tables` in Python to produce tables with colored cells:
 
 ::: {.panel-tabset}
@@ -403,7 +409,7 @@ You'll learn more about raw Typst blocks in the next section.
 ## Raw Typst blocks
 
 If you explore the [Typst documentation](https://typst.app/docs/reference/), you'll find a rich syntax that can go beyond what Quarto markdown supports.
-For anything, that Quarto doesn't support you can use Typst syntax directly inside a raw block (@sec-raw-blocks).
+For anything that Quarto doesn't support you can use Typst syntax directly inside a raw block (@sec-raw-blocks).
 
 The contents of a raw block pass through to Typst without being processed by Quarto, and are ignored in any other format.
 For example, you can use a raw Typst block to add status badge that uses the [`rect`](https://typst.app/docs/reference/visualize/rect/), [`align`](https://typst.app/docs/reference/layout/align/), and [`text`](https://typst.app/docs/reference/text/text/) Typst functions:
@@ -449,9 +455,7 @@ Each of the wider three has `-left` and `-right` variants for one-sided expansio
 
 ![Extent column classes on a single page](images/typst-column-layout-extents.png){#fig-typst-column-layout-extents .border fig-alt="A page laid out with one rectangle per column class, sized to its width: a small body rectangle at top, a margin rectangle in the right margin, three body-outset rectangles slightly wider than the body, three page-inset rectangles wider still, and three page rectangles extending to the page margins."}
 
-For document-wide defaults, set `tbl-column` and `fig-column` in the document header.
-Both apply to every cross-referenceable table or figure in the document — markdown pipe tables, list tables, and computational outputs alike.
-Tables and figures without an identifier are unaffected, as are non-cross-referenceable images and tables.
+For document-wide defaults, set `tbl-column` and `fig-column` in the document header:
 
 ```{.yaml filename="report.qmd"}
 ---
@@ -461,8 +465,12 @@ tbl-column: page
 ---
 ```
 
-When place content outside the default body column, the layout mechanism of your document changes from a simple single body area, to a layout using the Typst [marginalia package](https://typst.app/universe/package/marginalia/) to manage the margin allocation.
-You'll learn more about managing this layout in @sec-layout-marginalia.
+Both apply to every cross-referenceable table or figure in the document — markdown pipe tables, list tables, and computational outputs alike.
+Tables and figures without an identifier are unaffected, as are non-cross-referenceable images and tables.
+
+
+When you place content outside the default body column, the layout mechanism of your document changes from a simple single body area, to a layout using the Typst [marginalia package](https://typst.app/universe/package/marginalia/) to manage the margin allocation.
+You'll learn more about managing this layout in @sec-margin-geometry.
 
 ## Making accessible PDFs {#sec-pdf-accessibility}
 
@@ -506,7 +514,7 @@ quarto install verapdf
 
 :::
 
-For a document that passes validation, you'll see `[typst]` compile step completing with `DONE`, and a `PASSED` message from `veraPDF`:
+For a document that passes validation, you'll see the `[typst]` compile step completing with `DONE`, and a `PASSED` message from `veraPDF`:
 
 ```{.default filename="Terminal"}
 [typst]: Compiling train-punctuality.typ to train-punctuality.pdf...DONE
@@ -554,6 +562,8 @@ Some tools can check additional WCAG rules but these are beyond the automated ch
 
 ### Accessibility best practices
 
+The following best practices will help you meet most PDF/UA-1 and WCAG AA requirements.
+
 #### Use semantic structure
 
 Your resulting PDF needs to tag content based on what it is, not how it looks: a section heading needs to be tagged as a heading not just be big and bold.
@@ -600,10 +610,8 @@ Meaning shouldn't depend on color alone — supplement with labels, patterns, or
 While the default appearance of `format: typst` is great for many "working" documents, you'll likely need to customize the appearance for published documents.
 
 In this section, you'll learn how to customize the page layout (@sec-typst-page-layout) with document options, and fonts and colors with brand.yml (@sec-typst-fonts-colors).
-For customization beyond document options and brand, you may need to use Typst's native `set` and `show` rules in a raw block (@sec-use-show-rules).
 
-Finally, if none of the above techniques reach your needs, you'll need to add your own template partials or a completely new template. 
-While the details of this are beyond this book, we give some guidelines on when you might to reach for this, and how to get started in @sec-typst-templates.
+If none of the techniques in this section reach your needs, you'll might need the techniques in @sec-advanced-customization.
 
 ### Page layout {#sec-typst-page-layout}
 
@@ -663,7 +671,7 @@ format:
 ---
 ```
 
-You can use anything Typst will recognize as a [relative length](https://typst.app/docs/reference/layout/relative/) and includes simple lengths with units like `2cm`, `1in`, `254mm`, ratios like `10%`, and combinations like `25% + 1cm`.
+You can use anything Typst will recognize as a [relative length](https://typst.app/docs/reference/layout/relative/) and includes simple lengths with units like `2cm`, `1in`, or `254mm`, ratios like `10%`, and combinations like `25% + 1cm`.
 
 #### `page-numbering`
 
@@ -700,7 +708,7 @@ format:
 Content will flow automatically into two columns. 
 These columns don't combine well with full width or margin content, so avoid using `.column-*` classes.
 
-#### `margin-geometry`
+#### `margin-geometry` {#sec-margin-geometry}
 
 When you place content outside the body column, e.g. in the margin or across the full page-width, as described in @sec-typst-full-width-margin, the layout switches to use the Typst [marginalia package](https://typst.app/universe/package/marginalia/).
 
@@ -766,12 +774,6 @@ quarto use brand org/repo
 ```
 
 Check out the [Quarto documentation on `use brand`](https://quarto.org/docs/authoring/brand.html#quarto-use-brand) for getting brand from other locations.
-
-
-```{.yaml filename="report.qmd"}
-```{.bash filename="Terminal"}
-quarto use brand <org>/<repo>
-```
 
 If your external brand defines a light and dark brand, your PDF document will use the `light` one by default. 
 You can select the `dark` one with `brand-mode`:
@@ -843,7 +845,8 @@ Also be aware, some syntax highlighting themes explicitly set a background color
 
 #### Fonts
 
-To specify fonts, use `fonts` under `typography` to describe the `family` and `source`: `google`/`bunny` to fetch it at render time, or `system` for a font that's already installed.
+To specify fonts, use `fonts` under `typography` to describe the `family` and `source`.
+Set `source` to be `google` or `bunny` to fetch fonts from online font repositories, or `system` for a font that's already installed.
 
 You can then provide `family` to other typography keys to assign the font to the corresponding elements.
 For example, you could use a different font for `base`, `headings` and `monospace`:
@@ -854,23 +857,34 @@ For example, you could use a different font for `base`, `headings` and `monospac
 
 ![EB Garamond, Barlow, and JetBrains Mono applied to body text, headings, and code](images/typst-fonts-colors-brand-fonts.png){#fig-typst-brand-fonts .border fig-alt="A white document with body text in EB Garamond, headings in the Barlow sans-serif, and code in JetBrains Mono showing a left-arrow ligature."}
 
-`monospace` covers both inline and block code.
+The `monospace` option covers both inline and block code.
 To target them separately, use `monospace-inline` and `monospace-block`.
 
-`color` and `typography` are independent, so you can set both in one `_brand.yml` to style colors and fonts together, as in @fig-typst-brand-all.
+We've illustrated `color` and `typography` independently, but you can set both in one `_brand.yml` to style colors and fonts together, as in @fig-typst-brand-all.
 
 ![The color and font settings combined in a single `_brand.yml`](images/typst-fonts-colors-brand-all.png){#fig-typst-brand-all .border fig-alt="The document with a cream background, teal headings, a navy underlined link, and a dark code block, now also rendered in EB Garamond, Barlow, and JetBrains Mono."}
 
-### Use raw typst {#sec-use-show-rules}
+## Advanced customization {#sec-advanced-customization}
 
-You've seen Quarto provides you ways to customize appearance using document options, and via brand, but these touch a limited subset of what you can control.
+Most of the time the strategies in @sec-customizing-appearance will be enough to get a document that meets your needs, but there are limitations to those strategies.
+When you need to customize something beyond what document options and brand can do, you'll need to use Typst syntax to achieve your goals.
+
+You'll learn about two approaches in this section:
+
+* Using raw Typst blocks in the body of your document to write set and show rules (@sec-use-show-rules)
+
+* Editing the template partials to customize the Typst that surrounds your document body (@sec-typst-templates).
+
+We consider both advanced techniques, and you can safely skip this section if you are happy with the way your document looks.
+
+### Use raw Typst {#sec-use-show-rules}
 
 Typst provides its own [styling mechanism](https://typst.app/docs/reference/styling/) through what are known as **set** and **show** rules.
-You can use this mechanism directly in your document by defining these rules in a raw typst block.
+You can use this mechanism directly in your document by defining these rules in a raw Typst block.
 
 In the following sections, we'll give you a feel for the kind of styling adjustments you can make with set and show rules.
 To achieve specific adjustments, you'll need to learn some Typst syntax basics.
-A good place to start is the Typst tutorial followed by reading the [Syntax](https://typst.app/docs/reference/syntax/), [Styling](https://typst.app/docs/reference/styling/) and [Scripting](https://typst.app/docs/reference/scripting/) sections in the Typst Reference.
+A good place to start is the [Typst tutorial](https://typst.app/docs/tutorial/) followed by reading the [Syntax](https://typst.app/docs/reference/syntax/), [Styling](https://typst.app/docs/reference/styling/) and [Scripting](https://typst.app/docs/reference/scripting/) sections in the Typst Reference.
 
 
 #### Set rules
@@ -886,7 +900,7 @@ If you wanted a header on your pages, you could use a set rule on `page` to set 
 {{< include _examples/typst/raw-typst/_page-header.qmd >}}
 ````
 
-![A running header at the top of the page](images/typst-raw-typst-page-header.png){#fig-typst-raw-typst-page-header .border fig-alt="A PDF page with a Route Punctuality Report header at top, followed by Summary and Recommendations sections."}
+![A running header at the top of the page](images/typst-raw-typst-page-header.png){#fig-typst-raw-typst-page-header .border fig-alt="A PDF page with a Route Punctuality Report header at top, followed by Summary, Observations, and Recommendations sections."}
 
 ::: {.callout-note}
 ## `#set page()` starts a new page
@@ -904,10 +918,10 @@ You could double the line spacing from the default of `0.65em` with a set rule o
 {{< include _examples/typst/raw-typst/_par-leading.qmd >}}
 ````
 
-![Paragraphs with wider line spacing](images/typst-raw-typst-par-leading.png){#fig-typst-raw-typst-par-leading .border fig-alt="Two short paragraphs with extra vertical space between every line."}
+![Paragraphs with wider line spacing](images/typst-raw-typst-par-leading.png){#fig-typst-raw-typst-par-leading .border fig-alt="Summary, Observations, and Recommendations sections, each paragraph with extra vertical space between its lines."}
 
-At the finest level, any text, regardless of where it appears flow through the [`text()` function](https://typst.app/docs/reference/text/text/). 
-The `text()` function has many arguments controlling the appearance of text like color (`stroke` and `fill`), font properties (`font`, `weight`, `style`, `size` and `stretch`) and many more.
+At the finest level, any text, regardless of where it appears, flows through the [`text()` function](https://typst.app/docs/reference/text/text/). 
+The `text()` function has arguments controlling the appearance of text like color (`stroke` and `fill`), font properties (`font`, `weight`, `style`, `size` and `stretch`) and many more.
 
 #### Show rules
 
@@ -915,6 +929,7 @@ Show rules allow you to set the defaults for a function within the scope of anot
 For example, the headings in your document are created with the [`heading()` function](https://typst.app/docs/reference/model/heading/).
 The `heading()` function takes arguments for things like the level of the heading, how it should be numbered etc, but not how it appears.
 To control the appearance of a heading you use set rules for the appropriate elements inside a show rule on `heading()`.
+
 For example, the space above and below a heading is controlled by the `above` and `below` parameters of the [`block()` function](https://typst.app/docs/reference/layout/block/).
 To increase the space above a heading you use a show rule on `heading()` combined with a set rule on `block` which sets the `above` argument:
 
@@ -922,7 +937,7 @@ To increase the space above a heading you use a show rule on `heading()` combine
 {{< include _examples/typst/raw-typst/_heading-spacing.qmd >}}
 ````
 
-![Headings with extra vertical breathing room](images/typst-raw-typst-heading-spacing.png){#fig-typst-raw-typst-heading-spacing .border fig-alt="Summary and Recommendations headings with wide vertical space above each."}
+![Headings with extra vertical breathing room](images/typst-raw-typst-heading-spacing.png){#fig-typst-raw-typst-heading-spacing .border fig-alt="Summary, Observations, and Recommendations headings with wide vertical space above each."}
 
 You can narrow the target of a show rule by appending `.where()` with a condition for the element. 
 For example, `heading()` has a `level` argument. 
@@ -960,14 +975,14 @@ For example, you could have only first level headings appear using your primary 
 ![Level 1 headings rendered in the brand primary color, with a level 2 heading left in default black](images/typst-raw-typst-heading-color.png){#fig-typst-raw-typst-heading-color .border fig-alt="Summary and Recommendations headings in a dark blue brand color, with an Observations subheading between them in default black."}
 
 You can also provide custom functions as show rules.
-These functions take the existing element as input and can return anything, but usually a transformed version of the input.
+These functions take the existing element as input and can return anything, but usually you'll return a transformed version of the input.
 As an example, you could place a horizontal rule beneath every heading by returning the original heading followed by a [`line()`](https://typst.app/docs/reference/visualize/line/):
 
 ````{.markdown filename="report.qmd"}
 {{< include _examples/typst/raw-typst/_heading-rule.qmd >}}
 ````
 
-![Each heading followed by a thin gray horizontal rule](images/typst-raw-typst-heading-rule.png){#fig-typst-raw-typst-heading-rule .border fig-alt="Summary and Recommendations headings, each followed by a thin gray horizontal rule spanning the page width."}
+![Each heading followed by a thin gray horizontal rule](images/typst-raw-typst-heading-rule.png){#fig-typst-raw-typst-heading-rule .border fig-alt="Summary, Observations, and Recommendations headings, each followed by a thin gray horizontal rule spanning the page width."}
 
 :::{.callout-tip}
 
@@ -1024,7 +1039,7 @@ If you want to view the exact state of the template and partials, you can look a
 
 :::
 
-As general best practice start by editing partials, and only if you can't get what you need override the complete template.
+It's best practice to start by editing partials, and only if you can't get what you need override the complete template.
 A complete discussion of editing partials and templates is beyond the scope of this book, but to give you a feel for how this kind of customization works, we'll walk through a small example of adding a running header to every page of a document.
 
 In Typst a page header is a parameter of the `page()` function. 
@@ -1032,7 +1047,9 @@ In @sec-use-show-rules you saw that you can use a set rule inside a raw block to
 The first page of your document is governed by `#set page()` called earlier in the intermediate `.typ` file:
 
 ```{.typst filename="report.typ"}
-...
+// Code from the template and partials 
+// that come before the `page.typ` partial
+// ... 
 #set page(
   paper: "us-letter",
   margin: (x: 1.25in, y: 1.25in),
@@ -1071,6 +1088,8 @@ It makes sense to do this in `page.typ`, since page setup is nominally its job, 
 To do so, you can copy the default `page.typ` into your project, then append this additional `#set page()` call to the bottom of the file:
 
 ```{.typst filename="page.typ"}
+// the default page.typ content
+// ...
 {{< include _examples/typst/custom-template/_page-additions.typ >}}
 ```
 
@@ -1081,6 +1100,7 @@ To have Quarto use this custom partial, set the `template-partials` document opt
 
 ```{.yaml filename="report.qmd"}
 ---
+title: Route Punctuality Report
 {{< include _examples/typst/custom-template/_quarto-template.yml >}}
 ---
 ```
@@ -1095,7 +1115,8 @@ You can read more about building Typst format extensions in the [Quarto document
 ## Wrapping Up
 
 In this chapter, you created your first PDF with `format: typst`, then worked through the types of content you'll most often use: navigation, links, citations, math, code blocks, and computational outputs.
-You saw how to make a PDF accessible by targeting the PDF/UA-1 standard, and how to customize its appearance through document options, brand, raw `set` and `show` rules, and, when those aren't enough, your own template partials.
+You saw how to make a PDF accessible by targeting the PDF/UA-1 standard, and how to customize its appearance through document options, and brand.
+When you need further customization, you can use `set` and `show` rules in raw Typst blocks, and template partials.
 
 There's plenty more you can do with `format: typst` that we didn't cover. Two more worth knowing about:
 

@@ -355,7 +355,7 @@ You won't usually write HTML syntax by hand, but it is a common output from comp
 Tables are so important in Quarto documents that we dedicate an entire part of this book to them.
 For more details, see @sec-figtab.
 
-### Markdown pipe tables
+### Markdown pipe tables {#sec-markdown-pipe-tables}
 
 The simplest syntax for a table in Quarto markdown is known as the **pipe table**, named because columns are separated by the pipe (`|`) character. 
 A pipe table consists of column headers, a separator row of dashes (`-`) and pipes (`|`), and data rows with pipe-separated cells.
@@ -401,7 +401,7 @@ To include more complicated content in cells, like code blocks or formulas, incl
 {{< include _examples/authoring/tables/list-table-complicated.qmd >}}
 ````
 
-### HTML tables
+### HTML tables {#sec-html-tables}
 
 You can also use HTML to create tables in Quarto documents, regardless of your target format.
 You typically won't write HTML tables by hand---instead, you'll generate them with code cells or import them from other tools.
@@ -595,7 +595,7 @@ Apply Markov's inequality to $(X - \mu)^2$.
 ````
 
 The result is an unnumbered, non-cross-referenceable proof block.
-The same `.remark` and `.solution` classes are available for the corresponding unnumbered forms.
+Similarly, `.remark` and `.solution` classes are available for unnumbered forms of `#rem` and `#sol`.
 
 ## Cross-references {#sec-crossreferences}
 

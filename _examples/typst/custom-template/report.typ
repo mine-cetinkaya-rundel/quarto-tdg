@@ -363,6 +363,12 @@
   columns: 1,
 )
 
+#set page(
+  header: [
+    #align(right, text(size: 0.8em, [Route Punctuality Report]))
+    #block(above: 0.2em, line(length: 100%, stroke: 0.5pt))
+  ],
+)
 #show: doc => article(
   title: [Route Punctuality Report],
   authors: (
