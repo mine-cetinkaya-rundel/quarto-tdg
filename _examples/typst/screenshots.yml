@@ -1,9 +1,11 @@
 - image: typst-first-document-train-punctuality.png
   source: _examples/typst/first-document/train-punctuality.qmd
+  screenshot: full-page
   density: 200
   generated: 2026-03-31T18:58:50Z
 - image: typst-navigation-train-punctuality.png
   source: _examples/typst/navigation/train-punctuality.qmd
+  screenshot: full-page
   density: 200
   generated: 2026-03-31T18:58:51Z
 - image: typst-citations-train-punctuality.png
@@ -36,6 +38,7 @@
 - image: typst-code-blocks-highlight-github.png
   source: _examples/typst/code-blocks/highlight.qmd
   profile: github
+  screenshot: full-width
   density: 200
   generated: 2026-05-08T15:29:33Z
 - image: typst-computational-outputs-figures.png
@@ -188,3 +191,12 @@
   profile: template
   density: 200
   generated: 2026-06-08T20:54:00Z
+- image: typst-template-partials.svg
+  source: images/typst-template-partials.svg
+  source-asset: true
+  note: Hand-authored SVG diagram, not generated. Edit the SVG directly.
+  generated: 2026-06-10T00:00:00Z
+- image: typst-code-blocks-filename.png
+  source: _examples/typst/code-blocks/filename.qmd
+  density: 200
+  generated: 2026-06-16T15:52:53Z
