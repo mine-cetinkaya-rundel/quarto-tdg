@@ -82,6 +82,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-3cc411cc7de4e6fcd8f1d819c78e5b30.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -343,16 +345,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#tabsets" id="toc-tabsets" class="nav-link" data-scroll-target="#tabsets"><span class="header-section-number">11.2.4</span> Tabsets</a></li>
   <li><a href="#content-overflow" id="toc-content-overflow" class="nav-link" data-scroll-target="#content-overflow"><span class="header-section-number">11.2.5</span> Content overflow</a></li>
   <li><a href="#image-sizing" id="toc-image-sizing" class="nav-link" data-scroll-target="#image-sizing"><span class="header-section-number">11.2.6</span> Image sizing</a></li>
-  <li><a href="#layout-helpers" id="toc-layout-helpers" class="nav-link" data-scroll-target="#layout-helpers"><span class="header-section-number">11.2.7</span> Layout helpers</a></li>
-  <li><a href="#slide-backgrounds" id="toc-slide-backgrounds" class="nav-link" data-scroll-target="#slide-backgrounds"><span class="header-section-number">11.2.8</span> Slide backgrounds</a></li>
-  <li><a href="#footer-and-logo" id="toc-footer-and-logo" class="nav-link" data-scroll-target="#footer-and-logo"><span class="header-section-number">11.2.9</span> Footer and logo</a></li>
-  <li><a href="#asides-and-footnotes" id="toc-asides-and-footnotes" class="nav-link" data-scroll-target="#asides-and-footnotes"><span class="header-section-number">11.2.10</span> Asides and footnotes</a></li>
+  <li><a href="#embedding-media" id="toc-embedding-media" class="nav-link" data-scroll-target="#embedding-media"><span class="header-section-number">11.2.7</span> Embedding media</a></li>
+  <li><a href="#layout-helpers" id="toc-layout-helpers" class="nav-link" data-scroll-target="#layout-helpers"><span class="header-section-number">11.2.8</span> Layout helpers</a></li>
+  <li><a href="#slide-backgrounds" id="toc-slide-backgrounds" class="nav-link" data-scroll-target="#slide-backgrounds"><span class="header-section-number">11.2.9</span> Slide backgrounds</a></li>
+  <li><a href="#footer-and-logo" id="toc-footer-and-logo" class="nav-link" data-scroll-target="#footer-and-logo"><span class="header-section-number">11.2.10</span> Footer and logo</a></li>
+  <li><a href="#asides-and-footnotes" id="toc-asides-and-footnotes" class="nav-link" data-scroll-target="#asides-and-footnotes"><span class="header-section-number">11.2.11</span> Asides and footnotes</a></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><span class="header-section-number">11.3</span> Code</a>
   <ul class="collapse">
   <li><a href="#code-blocks" id="toc-code-blocks" class="nav-link" data-scroll-target="#code-blocks"><span class="header-section-number">11.3.1</span> Code blocks</a></li>
-  <li><a href="#controlling-output" id="toc-controlling-output" class="nav-link" data-scroll-target="#controlling-output"><span class="header-section-number">11.3.2</span> Controlling output</a></li>
-  <li><a href="#interactive-documents" id="toc-interactive-documents" class="nav-link" data-scroll-target="#interactive-documents"><span class="header-section-number">11.3.3</span> Interactive documents</a></li>
+  <li><a href="#code-annotation" id="toc-code-annotation" class="nav-link" data-scroll-target="#code-annotation"><span class="header-section-number">11.3.2</span> Code annotation</a></li>
+  <li><a href="#controlling-output" id="toc-controlling-output" class="nav-link" data-scroll-target="#controlling-output"><span class="header-section-number">11.3.3</span> Controlling output</a></li>
+  <li><a href="#interactive-documents" id="toc-interactive-documents" class="nav-link" data-scroll-target="#interactive-documents"><span class="header-section-number">11.3.4</span> Interactive documents</a></li>
   </ul></li>
   <li><a href="#animation" id="toc-animation" class="nav-link" data-scroll-target="#animation"><span class="header-section-number">11.4</span> Animation</a>
   <ul class="collapse">
@@ -368,6 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#slide-numbers" id="toc-slide-numbers" class="nav-link" data-scroll-target="#slide-numbers"><span class="header-section-number">11.5.2</span> Slide numbers</a></li>
   <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes"><span class="header-section-number">11.5.3</span> Themes</a></li>
   <li><a href="#brand" id="toc-brand" class="nav-link" data-scroll-target="#brand"><span class="header-section-number">11.5.4</span> Brand</a></li>
+  <li><a href="#custom-css" id="toc-custom-css" class="nav-link" data-scroll-target="#custom-css"><span class="header-section-number">11.5.5</span> Custom CSS</a></li>
   </ul></li>
   <li><a href="#presenting" id="toc-presenting" class="nav-link" data-scroll-target="#presenting"><span class="header-section-number">11.6</span> Presenting</a>
   <ul class="collapse">
@@ -382,6 +387,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#self-contained-files" id="toc-self-contained-files" class="nav-link" data-scroll-target="#self-contained-files"><span class="header-section-number">11.7.1</span> Self-contained files</a></li>
   <li><a href="#export-to-pdf" id="toc-export-to-pdf" class="nav-link" data-scroll-target="#export-to-pdf"><span class="header-section-number">11.7.2</span> Export to PDF</a></li>
   <li><a href="#publishing" id="toc-publishing" class="nav-link" data-scroll-target="#publishing"><span class="header-section-number">11.7.3</span> Publishing</a></li>
+  </ul></li>
+  <li><a href="#accessibility" id="toc-accessibility" class="nav-link" data-scroll-target="#accessibility"><span class="header-section-number">11.8</span> Accessibility</a>
+  <ul class="collapse">
+  <li><a href="#structure-and-semantics" id="toc-structure-and-semantics" class="nav-link" data-scroll-target="#structure-and-semantics"><span class="header-section-number">11.8.1</span> Structure and semantics</a></li>
+  <li><a href="#images-and-media" id="toc-images-and-media" class="nav-link" data-scroll-target="#images-and-media"><span class="header-section-number">11.8.2</span> Images and media</a></li>
+  <li><a href="#color-and-contrast" id="toc-color-and-contrast" class="nav-link" data-scroll-target="#color-and-contrast"><span class="header-section-number">11.8.3</span> Color and contrast</a></li>
+  <li><a href="#navigation-aids" id="toc-navigation-aids" class="nav-link" data-scroll-target="#navigation-aids"><span class="header-section-number">11.8.4</span> Navigation aids</a></li>
+  <li><a href="#slide-tone" id="toc-slide-tone" class="nav-link" data-scroll-target="#slide-tone"><span class="header-section-number">11.8.5</span> Slide tone</a></li>
+  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="header-section-number">11.8.6</span> Testing</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/presentations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -649,119 +663,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="al">![](my-image.png)</span>{.r-stretch}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note that <code>.r-stretch</code> only applies to non-nested images. Images inside columns, fragments, or other custom divs are ignored unless you add <code>.r-stretch</code> to the outer div explicitly.</p>
 </section>
-<section id="layout-helpers" class="level3" data-number="11.2.7">
-<h3 data-number="11.2.7" class="anchored" data-anchor-id="layout-helpers"><span class="header-section-number">11.2.7</span> Layout helpers</h3>
-<p>Reveal provides several utility classes for positioning and sizing content on slides.</p>
-<section id="absolute-positioning" class="level4" data-number="11.2.7.1">
-<h4 data-number="11.2.7.1" class="anchored" data-anchor-id="absolute-positioning"><span class="header-section-number">11.2.7.1</span> Absolute positioning</h4>
-<p>The <code>.absolute</code> class places elements at exact positions on a slide. Specify <code>top</code>, <code>left</code>, <code>bottom</code>, and/or <code>right</code> along with optional <code>width</code> and <code>height</code> (values without units are treated as pixels):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="al">![](image1.png)</span>{.absolute top=200 left=0 width="350" height="300"}</span>
+<section id="embedding-media" class="level3" data-number="11.2.7">
+<h3 data-number="11.2.7" class="anchored" data-anchor-id="embedding-media"><span class="header-section-number">11.2.7</span> Embedding media</h3>
+<p>Beyond background videos (see <a href="#slide-backgrounds">Slide backgrounds</a>), you can embed media directly in slide content.</p>
+<section id="videos" class="level4" data-number="11.2.7.1">
+<h4 data-number="11.2.7.1" class="anchored" data-anchor-id="videos"><span class="header-section-number">11.2.7.1</span> Videos</h4>
+<p>Use standard markdown image syntax with a video file:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Video Demo</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="al">![](image2.png)</span>{.absolute top=50 right=50 width="450" height="250"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="al">![](demo.mp4)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For more control, use HTML5 video attributes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Video Demo</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">video</span><span class="ot"> src</span><span class="op">=</span><span class="st">"demo.mp4"</span><span class="ot"> controls width</span><span class="op">=</span><span class="st">"600"</span><span class="dt">&gt;&lt;/</span><span class="kw">video</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or use a fenced div with Quarto’s video shortcode:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Video Demo</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The video shortcode also supports YouTube, Vimeo, and other hosted videos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="iframes" class="level4" data-number="11.2.7.2">
+<h4 data-number="11.2.7.2" class="anchored" data-anchor-id="iframes"><span class="header-section-number">11.2.7.2</span> iframes</h4>
+<p>Embed external web content using HTML iframes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Live Demo</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://example.com/app"</span><span class="ot"> width</span><span class="op">=</span><span class="st">"900"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"500"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For interactive applications that need to respond to user input during a presentation, set <code>sandbox="allow-scripts allow-same-origin"</code> if the iframe content requires JavaScript.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Consider using <code>preview-links: auto</code> (see <a href="#preview-links">Preview links</a>) for simpler cases where you just want to show a linked webpage without leaving the presentation.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="layout-helpers" class="level3" data-number="11.2.8">
+<h3 data-number="11.2.8" class="anchored" data-anchor-id="layout-helpers"><span class="header-section-number">11.2.8</span> Layout helpers</h3>
+<p>Reveal provides several utility classes for positioning and sizing content on slides.</p>
+<section id="absolute-positioning" class="level4" data-number="11.2.8.1">
+<h4 data-number="11.2.8.1" class="anchored" data-anchor-id="absolute-positioning"><span class="header-section-number">11.2.8.1</span> Absolute positioning</h4>
+<p>The <code>.absolute</code> class places elements at exact positions on a slide. Specify <code>top</code>, <code>left</code>, <code>bottom</code>, and/or <code>right</code> along with optional <code>width</code> and <code>height</code> (values without units are treated as pixels):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="al">![](image1.png)</span>{.absolute top=200 left=0 width="350" height="300"}</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="al">![](image2.png)</span>{.absolute top=50 right=50 width="450" height="250"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Positions are relative to the slide’s coordinate space (1050 × 700 by default; see <a href="#presentation-size">Presentation size</a>).</p>
 </section>
-<section id="stacking" class="level4" data-number="11.2.7.2">
-<h4 data-number="11.2.7.2" class="anchored" data-anchor-id="stacking"><span class="header-section-number">11.2.7.2</span> Stacking</h4>
+<section id="stacking" class="level4" data-number="11.2.8.2">
+<h4 data-number="11.2.8.2" class="anchored" data-anchor-id="stacking"><span class="header-section-number">11.2.8.2</span> Stacking</h4>
 <p>The <code>.r-stack</code> class centers multiple elements on top of each other. Combine it with fragments to incrementally reveal layered content:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>::: {.r-stack}</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="al">![](image1.png)</span>{.fragment width="450"}</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="al">![](image2.png)</span>{.fragment width="300"}</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="al">![](image3.png)</span>{.fragment width="400"}</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>::: {.r-stack}</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="al">![](image1.png)</span>{.fragment width="450"}</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="al">![](image2.png)</span>{.fragment width="300"}</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="al">![](image3.png)</span>{.fragment width="400"}</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="fit-text" class="level4" data-number="11.2.7.3">
-<h4 data-number="11.2.7.3" class="anchored" data-anchor-id="fit-text"><span class="header-section-number">11.2.7.3</span> Fit text</h4>
+<section id="fit-text" class="level4" data-number="11.2.8.3">
+<h4 data-number="11.2.8.3" class="anchored" data-anchor-id="fit-text"><span class="header-section-number">11.2.8.3</span> Fit text</h4>
 <p>The <code>.r-fit-text</code> class scales text to be as large as possible without overflowing the slide:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>::: {.r-fit-text}</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Big Text</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>::: {.r-fit-text}</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Big Text</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="centering" class="level4" data-number="11.2.7.4">
-<h4 data-number="11.2.7.4" class="anchored" data-anchor-id="centering"><span class="header-section-number">11.2.7.4</span> Centering</h4>
+<section id="centering" class="level4" data-number="11.2.8.4">
+<h4 data-number="11.2.8.4" class="anchored" data-anchor-id="centering"><span class="header-section-number">11.2.8.4</span> Centering</h4>
 <p>Add the <code>.center</code> class to a slide heading to vertically center its content:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Centered Slide {.center}</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>This content will be vertically centered.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Centered Slide {.center}</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>This content will be vertically centered.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is separate from <code>center: true</code> in YAML, which centers <em>all</em> slides, and <code>center-title-slide</code>, which controls only the title slide.</p>
 </section>
 </section>
-<section id="slide-backgrounds" class="level3" data-number="11.2.8">
-<h3 data-number="11.2.8" class="anchored" data-anchor-id="slide-backgrounds"><span class="header-section-number">11.2.8</span> Slide backgrounds</h3>
+<section id="slide-backgrounds" class="level3" data-number="11.2.9">
+<h3 data-number="11.2.9" class="anchored" data-anchor-id="slide-backgrounds"><span class="header-section-number">11.2.9</span> Slide backgrounds</h3>
 <p>You can customize individual slide backgrounds using heading attributes. Some options include:</p>
 <ul>
 <li>Color backgrounds:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title {background-color="aquamarine"}</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Content on colored background.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title {background-color="aquamarine"}</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>Content on colored background.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Gradient backgrounds:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gradient Slide {background-gradient="linear-gradient(to right, red, blue)"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gradient Slide {background-gradient="linear-gradient(to right, red, blue)"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Image backgrounds:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Image Background {background-image="image.jpg" background-size="cover" background-opacity="0.5"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Image Background {background-image="image.jpg" background-size="cover" background-opacity="0.5"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Video backgrounds:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Video Background {background-video="video.mp4" background-video-loop="true" background-video-muted="true"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Video Background {background-video="video.mp4" background-video-loop="true" background-video-muted="true"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For title slides, use <code>title-slide-attributes</code> in YAML to set background options:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Presentation"</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">title-slide-attributes</span><span class="kw">:</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">data-background-image</span><span class="kw">:</span><span class="at"> </span><span class="st">"background.jpg"</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">data-background-size</span><span class="kw">:</span><span class="at"> cover</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Presentation"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">title-slide-attributes</span><span class="kw">:</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">data-background-image</span><span class="kw">:</span><span class="at"> </span><span class="st">"background.jpg"</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">data-background-size</span><span class="kw">:</span><span class="at"> cover</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="footer-and-logo" class="level3" data-number="11.2.9">
-<h3 data-number="11.2.9" class="anchored" data-anchor-id="footer-and-logo"><span class="header-section-number">11.2.9</span> Footer and logo</h3>
+<section id="footer-and-logo" class="level3" data-number="11.2.10">
+<h3 data-number="11.2.10" class="anchored" data-anchor-id="footer-and-logo"><span class="header-section-number">11.2.10</span> Footer and logo</h3>
 <p>You can add consistent branding across slides:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>presentation.qmd</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">footer</span><span class="kw">:</span><span class="at"> </span><span class="st">"Company Name - Conference 2024"</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logo</span><span class="kw">:</span><span class="at"> images/logo.png</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Remove footer from specific slides:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Full Screen Slide {footer="false"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Or use a custom footer on individual slides:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Custom Footer Slide</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>Content here.</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>::: footer</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>Custom footer for this slide only.</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="asides-and-footnotes" class="level3" data-number="11.2.10">
-<h3 data-number="11.2.10" class="anchored" data-anchor-id="asides-and-footnotes"><span class="header-section-number">11.2.10</span> Asides and footnotes</h3>
-<p>You can add peripheral commentary with asides:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>Main content here.</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>::: {.aside}</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>Additional context displayed at bottom.</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For footnotes, use standard markdown syntax:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>This is a statement<span class="ot">[^1]</span>.</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>This is the footnote text.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>By default, footnotes appear on the slide where they are defined. To instead collect all footnotes at the end of the presentation, use:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
@@ -769,8 +784,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reference-location</span><span class="kw">:</span><span class="at"> document</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">footer</span><span class="kw">:</span><span class="at"> </span><span class="st">"Company Name - Conference 2024"</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logo</span><span class="kw">:</span><span class="at"> images/logo.png</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Remove footer from specific slides:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Full Screen Slide {footer="false"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Or use a custom footer on individual slides:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Custom Footer Slide</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>Content here.</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>::: footer</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>Custom footer for this slide only.</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="asides-and-footnotes" class="level3" data-number="11.2.11">
+<h3 data-number="11.2.11" class="anchored" data-anchor-id="asides-and-footnotes"><span class="header-section-number">11.2.11</span> Asides and footnotes</h3>
+<p>You can add peripheral commentary with asides:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>Main content here.</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>::: {.aside}</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>Additional context displayed at bottom.</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For footnotes, use standard markdown syntax:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>This is a statement<span class="ot">[^1]</span>.</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>This is the footnote text.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>By default, footnotes appear on the slide where they are defined. To instead collect all footnotes at the end of the presentation, use:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>presentation.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reference-location</span><span class="kw">:</span><span class="at"> document</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -782,20 +834,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="code-highlighting" class="level4" data-number="11.3.1.1">
 <h4 data-number="11.3.1.1" class="anchored" data-anchor-id="code-highlighting"><span class="header-section-number">11.3.1.1</span> Code highlighting</h4>
 <p>You can highlight specific lines in code blocks:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="in">````{python}</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-line-numbers="2,4"</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> example():</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    highlighted <span class="op">=</span> <span class="va">True</span>  <span class="co"># Line 2</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    not_highlighted <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    also_highlighted <span class="op">=</span> <span class="va">True</span>  <span class="co"># Line 4</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="in">````{python}</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-line-numbers="2,4"</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> example():</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    highlighted <span class="op">=</span> <span class="va">True</span>  <span class="co"># Line 2</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    not_highlighted <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    also_highlighted <span class="op">=</span> <span class="va">True</span>  <span class="co"># Line 4</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For progressive highlighting through slide steps, use the pipe separator:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="in">````{python}</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-line-numbers="|1|2|3"</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>first_step <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>second_step <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>third_step <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">````{python}</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-line-numbers="|1|2|3"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>first_step <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>second_step <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>third_step <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="height" class="level4" data-number="11.3.1.2">
 <h4 data-number="11.3.1.2" class="anchored" data-anchor-id="height"><span class="header-section-number">11.3.1.2</span> Height</h4>
@@ -804,71 +856,126 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-block-height</span><span class="kw">:</span><span class="at"> 650px</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-block-height</span><span class="kw">:</span><span class="at"> 650px</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
-<section id="controlling-output" class="level3" data-number="11.3.2">
-<h3 data-number="11.3.2" class="anchored" data-anchor-id="controlling-output"><span class="header-section-number">11.3.2</span> Controlling output</h3>
-<section id="image-size" class="level4" data-number="11.3.2.1">
-<h4 data-number="11.3.2.1" class="anchored" data-anchor-id="image-size"><span class="header-section-number">11.3.2.1</span> Image size</h4>
+<section id="code-annotation" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="code-annotation"><span class="header-section-number">11.3.2</span> Code annotation</h3>
+<p>Quarto’s code annotation feature helps you explain code step-by-step. Add numbered markers in code comments, then provide explanations in a list below:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{.python code-line-numbers="true"}</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># &lt;1&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data.csv"</span>)  <span class="co"># &lt;2&gt;</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna()  <span class="co"># &lt;3&gt;</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Import the pandas library</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Load data from a CSV file</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Remove rows with missing values</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>By default, annotations appear as numbered markers that reveal explanations on hover or click. Use <code>code-annotations</code> to change this behavior:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>presentation.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">code-annotations</span><span class="kw">:</span><span class="at"> below</span><span class="co">  # hover | select | below</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Value</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hover</code></td>
+<td>Show annotation on hover (default)</td>
+</tr>
+<tr class="even">
+<td><code>select</code></td>
+<td>Show annotation on click</td>
+</tr>
+<tr class="odd">
+<td><code>below</code></td>
+<td>Display all annotations below the code block</td>
+</tr>
+</tbody>
+</table>
+<p>For executable code cells, place annotations in the source code rather than using cell options:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># &lt;1&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data.csv"</span>)  <span class="co"># &lt;2&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Import pandas</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Load the data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="controlling-output" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="controlling-output"><span class="header-section-number">11.3.3</span> Controlling output</h3>
+<section id="image-size" class="level4" data-number="11.3.3.1">
+<h4 data-number="11.3.3.1" class="anchored" data-anchor-id="image-size"><span class="header-section-number">11.3.3.1</span> Image size</h4>
 <p>As described in <a href="#image-sizing">Image sizing</a>, Quarto’s <code>auto-stretch</code> feature expands a single top-level figure to fill the remaining vertical space on a slide. This applies to computational output as well. Disable it globally with <code>auto-stretch: false</code> in YAML, or per-slide by adding <code>.nostretch</code> to the slide heading.</p>
 <p>For explicit control, use <code>fig-width</code> and <code>fig-height</code> (in inches) to set the physical dimensions of generated figures. At the document level, these apply to both engines:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-width</span><span class="kw">:</span><span class="at"> </span><span class="dv">8</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-height</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-width</span><span class="kw">:</span><span class="at"> </span><span class="dv">8</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-height</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>With the <code>knitr</code> engine, you can also override these per cell:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>fig-asp</code> option (<code>knitr</code> only) sets the height-to-width aspect ratio and overrides <code>fig-height</code> when both are specified:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.618</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-asp: 0.618</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With the <code>jupyter</code> engine, <code>fig-width</code> and <code>fig-height</code> have no effect at the cell level — they must be set at the document or project level. For cell-level control with Matplotlib, set the figure size directly in Python:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>ax.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To control the <em>displayed</em> size of the output image independently of its generated dimensions, use <code>out-width</code> and <code>out-height</code>, which accept CSS values and work at the cell level with both engines:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "70%"</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: "70%"</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For sharper figures on high-density (retina) displays, increase <code>fig-dpi</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-dpi</span><span class="kw">:</span><span class="at"> </span><span class="dv">192</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-dpi</span><span class="kw">:</span><span class="at"> </span><span class="dv">192</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Alternatively, set <code>fig-format: retina</code> to render at 2x resolution without choosing a specific DPI value.</p>
 <p>Like <code>fig-width</code> and <code>fig-height</code>, both <code>fig-dpi</code> and <code>fig-format</code> have no effect at the cell level with the Jupyter engine and must be set at the document or project level. For knitr, they can be set per cell, e.g., <code>#| fig-dpi: 192</code> or <code>#| fig-format: retina</code>.</p>
 </section>
-<section id="output-location" class="level4" data-number="11.3.2.2">
-<h4 data-number="11.3.2.2" class="anchored" data-anchor-id="output-location"><span class="header-section-number">11.3.2.2</span> Output location</h4>
+<section id="output-location" class="level4" data-number="11.3.3.2">
+<h4 data-number="11.3.3.2" class="anchored" data-anchor-id="output-location"><span class="header-section-number">11.3.3.2</span> Output location</h4>
 <p>You can control where code output appears using <code>output-location</code>:</p>
 <table class="caption-top table">
 <thead>
@@ -897,16 +1004,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="in">````{python}</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| output-location: column</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="in">````{python}</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| output-location: column</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>````</p>
 </section>
 </section>
-<section id="interactive-documents" class="level3" data-number="11.3.3">
-<h3 data-number="11.3.3" class="anchored" data-anchor-id="interactive-documents"><span class="header-section-number">11.3.3</span> Interactive documents</h3>
+<section id="interactive-documents" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="interactive-documents"><span class="header-section-number">11.3.4</span> Interactive documents</h3>
 <p>Presentations can incorporate interactive content using Observable JS or Shiny. This allows you to embed reactive inputs and outputs directly in slides, turning a presentation into a live application. See the <a href="https://quarto.org/docs/interactive/ojs/">Observable</a> and <a href="https://quarto.org/docs/interactive/shiny/">Shiny</a> documentation for details.</p>
 <p>An alternative approach is to add an interactive document hosted on Posit Connect or another platform as an iframe.</p>
 </section>
@@ -920,12 +1027,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">transition</span><span class="kw">:</span><span class="at"> slide</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">transition-speed</span><span class="kw">:</span><span class="at"> fast</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">transition</span><span class="kw">:</span><span class="at"> slide</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">transition-speed</span><span class="kw">:</span><span class="at"> fast</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The available transition types are:</p>
 <table class="caption-top table">
@@ -963,21 +1070,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Override the transition on individual slides using heading attributes:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title {transition="fade" transition-speed="slow"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title {transition="fade" transition-speed="slow"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can also specify separate in and out transitions:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title {transition="fade-in slide-out"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title {transition="fade-in slide-out"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use <code>background-transition</code> to control the transition for slide backgrounds independently of content.</p>
 </section>
 <section id="pauses" class="level3" data-number="11.4.2">
 <h3 data-number="11.4.2" class="anchored" data-anchor-id="pauses"><span class="header-section-number">11.4.2</span> Pauses</h3>
 <p>You can use three dots to create pauses within slides:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>Content before pause.</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>. . .</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>Content after pause.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>Content before pause.</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>. . .</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>Content after pause.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These pauses work with all content types, including text, images, and code blocks. They can also be used to break up revealing bullet points, though we recommend using incremental lists for that purpose instead.</p>
 </section>
 <section id="incremental-lists" class="level3" data-number="11.4.3">
@@ -987,70 +1094,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Presentation"</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">incremental</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Presentation"</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">incremental</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>For per-list control, use div classes:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>::: {.incremental}</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>First item appears</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Second item appears</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Third item appears</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>::: {.incremental}</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>First item appears</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Second item appears</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Third item appears</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or disable incremental for specific lists when globally enabled:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>::: {.nonincremental}</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All items</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Appear at once</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>::: {.nonincremental}</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>All items</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Appear at once</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="fragments" class="level3" data-number="11.4.4">
 <h3 data-number="11.4.4" class="anchored" data-anchor-id="fragments"><span class="header-section-number">11.4.4</span> Fragments</h3>
 <p>Fragments provide more granular control over incremental animation than pauses or incremental lists. Any element with the class <code>fragment</code> will be stepped through before moving on to the next slide, and you can apply a variety of animation effects:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>::: {.fragment .fade-in}</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>Fade in</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>::: {.fragment .fade-up}</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>Slide up while fading in</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>::: {.fragment .fade-left}</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>Slide left while fading in</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>::: {.fragment .fade-in-then-semi-out}</span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>Fade in then semi out</span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>::: {.fragment .fade-in}</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>Fade in</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>::: {.fragment .fade-up}</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>Slide up while fading in</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>::: {.fragment .fade-left}</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>Slide left while fading in</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>::: {.fragment .fade-in-then-semi-out}</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>Fade in then semi out</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Other available fragment classes include <code>.fade-out</code>, <code>.fade-right</code>, <code>.fade-down</code>, <code>.highlight-red</code>, <code>.highlight-blue</code>, <code>.strike</code>, and <code>.grow</code>.</p>
 </section>
 <section id="auto-animate" class="level3" data-number="11.4.5">
 <h3 data-number="11.4.5" class="anchored" data-anchor-id="auto-animate"><span class="header-section-number">11.4.5</span> Auto-animate</h3>
 <p>Quarto can automatically animate elements across adjacent slides. Add the <code>auto-animate</code> attribute to two consecutive slides, and Reveal will animate all matching elements between them:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide 1 {auto-animate=true}</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item one</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item two</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide 2 {auto-animate=true}</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item one</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item two</span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item three</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide 1 {auto-animate=true}</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item one</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item two</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide 2 {auto-animate=true}</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item one</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item two</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Item three</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can fine-tune animation behavior globally or per-slide:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">auto-animate-easing</span><span class="kw">:</span><span class="at"> ease-in-out</span></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">auto-animate-unmatched</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">auto-animate-duration</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.8</span></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">auto-animate-easing</span><span class="kw">:</span><span class="at"> ease-in-out</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">auto-animate-unmatched</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">auto-animate-duration</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.8</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -1063,15 +1170,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">width</span><span class="kw">:</span><span class="at"> </span><span class="dv">1050</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">height</span><span class="kw">:</span><span class="at"> </span><span class="dv">700</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.1</span></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">min-scale</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.2</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">max-scale</span><span class="kw">:</span><span class="at"> </span><span class="fl">2.0</span></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">width</span><span class="kw">:</span><span class="at"> </span><span class="dv">1050</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">height</span><span class="kw">:</span><span class="at"> </span><span class="dv">700</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.1</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">min-scale</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.2</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">max-scale</span><span class="kw">:</span><span class="at"> </span><span class="fl">2.0</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Changing <code>width</code> and <code>height</code> affects the coordinate space for all absolute positioning and layout calculations, so pick values early and design your slides around them.</p>
 </section>
@@ -1113,12 +1220,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">slide-number</span><span class="kw">:</span><span class="at"> c/t</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">show-slide-number</span><span class="kw">:</span><span class="at"> speaker</span><span class="co">   # all | print | speaker</span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">slide-number</span><span class="kw">:</span><span class="at"> c/t</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">show-slide-number</span><span class="kw">:</span><span class="at"> speaker</span><span class="co">   # all | print | speaker</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="themes" class="level3" data-number="11.5.3">
@@ -1129,11 +1236,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> dark</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> dark</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Beyond the built-in themes, you can customize any theme using SCSS variables or create entirely new themes. See the <a href="https://quarto.org/docs/presentations/revealjs/themes.html">Reveal Themes documentation</a> for details.</p>
 </section>
@@ -1145,33 +1252,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>_brand.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">foreground</span><span class="kw">:</span><span class="at"> </span><span class="st">"#E0EFDE"</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">background</span><span class="kw">:</span><span class="at"> </span><span class="st">"#162627"</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#8A7090"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">foreground</span><span class="kw">:</span><span class="at"> </span><span class="st">"#E0EFDE"</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">background</span><span class="kw">:</span><span class="at"> </span><span class="st">"#162627"</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#8A7090"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>brand.yml is also a convenient way to set fonts for your presentation using Google Fonts. You can set the main font (<code>base</code>), the font used for headings (<code>headings</code>), and the font used for code (<code>monospace</code>):</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_brand.yml</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">foreground</span><span class="kw">:</span><span class="at"> </span><span class="st">"#E0EFDE"</span></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">background</span><span class="kw">:</span><span class="at"> </span><span class="st">"#162627"</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#8A7090"</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fonts</span><span class="kw">:</span></span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Chango</span></span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Abel</span></span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> JetBrains Mono</span></span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">base</span><span class="kw">:</span><span class="at"> Abel</span></span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">headings</span><span class="kw">:</span><span class="at"> Chango</span></span>
-<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">monospace</span><span class="kw">:</span><span class="at"> JetBrains Mono</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">foreground</span><span class="kw">:</span><span class="at"> </span><span class="st">"#E0EFDE"</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">background</span><span class="kw">:</span><span class="at"> </span><span class="st">"#162627"</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#8A7090"</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typography</span><span class="kw">:</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fonts</span><span class="kw">:</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Chango</span></span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Abel</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> JetBrains Mono</span></span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">base</span><span class="kw">:</span><span class="at"> Abel</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">headings</span><span class="kw">:</span><span class="at"> Chango</span></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">monospace</span><span class="kw">:</span><span class="at"> JetBrains Mono</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Swap <code>source: google</code> for <code>source: bunny</code> if you’d prefer <a href="https://fonts.bunny.net">Bunny Fonts</a>—a GDPR compliant alternative to Google Fonts.</p>
 <p>If you are using brand.yml across your organization’s projects (e.g.&nbsp;for both a website and presentations), you can place <code>_brand.yml</code> in a parent directory and it will be found automatically. You can read about all the options available in the <a href="https://quarto.org/docs/authoring/brand.html">Quarto documentation Guide to using brand.yml</a>.</p>
+</section>
+<section id="custom-css" class="level3" data-number="11.5.5">
+<h3 data-number="11.5.5" class="anchored" data-anchor-id="custom-css"><span class="header-section-number">11.5.5</span> Custom CSS</h3>
+<p>Beyond brand.yml and built-in themes, you can add custom styles using CSS or SCSS files.</p>
+<section id="adding-a-stylesheet" class="level4" data-number="11.5.5.1">
+<h4 data-number="11.5.5.1" class="anchored" data-anchor-id="adding-a-stylesheet"><span class="header-section-number">11.5.5.1</span> Adding a stylesheet</h4>
+<p>Reference a CSS file in YAML:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>presentation.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">default</span><span class="kw">,</span><span class="at"> custom.css</span><span class="kw">]</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The <code>theme</code> option accepts a list, applying styles in order. Place your custom file after the base theme to override its defaults.</p>
+</section>
+<section id="scss-variables" class="level4" data-number="11.5.5.2">
+<h4 data-number="11.5.5.2" class="anchored" data-anchor-id="scss-variables"><span class="header-section-number">11.5.5.2</span> SCSS variables</h4>
+<p>RevealJS themes use SCSS variables for key design tokens. Create a <code>.scss</code> file to override them:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>custom.scss</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61" data-filename="custom.scss"><pre class="sourceCode scss code-with-copy"><code class="sourceCode scss"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:defaults --*/</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="va">$presentation-heading-color</span>: <span class="cn">#2a9d8f</span><span class="op">;</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="va">$body-bg</span>: <span class="cn">#264653</span><span class="op">;</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="va">$body-color</span>: <span class="cn">#e9c46a</span><span class="op">;</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="va">$link-color</span>: <span class="cn">#e76f51</span><span class="op">;</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="va">$code-block-bg</span>: <span class="cn">#1a1a2e</span><span class="op">;</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:rules --*/</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="fu">.reveal</span> <span class="fu">.slide-number</span> {</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-size</span>: <span class="dv">0.6</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The <code>scss:defaults</code> section sets variables before the theme compiles; <code>scss:rules</code> adds custom CSS rules after.</p>
+<p>Reference it in your YAML:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>presentation.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">default</span><span class="kw">,</span><span class="at"> custom.scss</span><span class="kw">]</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Common SCSS variables include:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>$body-bg</code></td>
+<td>Slide background color</td>
+</tr>
+<tr class="even">
+<td><code>$body-color</code></td>
+<td>Default text color</td>
+</tr>
+<tr class="odd">
+<td><code>$link-color</code></td>
+<td>Hyperlink color</td>
+</tr>
+<tr class="even">
+<td><code>$presentation-heading-color</code></td>
+<td>Heading color</td>
+</tr>
+<tr class="odd">
+<td><code>$presentation-heading-font</code></td>
+<td>Heading font family</td>
+</tr>
+<tr class="even">
+<td><code>$code-block-bg</code></td>
+<td>Code block background</td>
+</tr>
+<tr class="odd">
+<td><code>$code-color</code></td>
+<td>Inline code color</td>
+</tr>
+</tbody>
+</table>
+<p>See the <a href="https://quarto.org/docs/presentations/revealjs/themes.html">Reveal Themes documentation</a> for the full list of available variables.</p>
+</section>
 </section>
 </section>
 <section id="presenting" class="level2" data-number="11.6">
@@ -1179,14 +1377,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="speaker-notes" class="level3" data-number="11.6.1">
 <h3 data-number="11.6.1" class="anchored" data-anchor-id="speaker-notes"><span class="header-section-number">11.6.1</span> Speaker notes</h3>
 <p>Add presenter notes visible only in speaker view:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>Slide content visible to audience.</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>::: {.notes}</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>Speaker notes only visible to presenter.</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>Press 'S' to open speaker view.</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>Slide content visible to audience.</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>::: {.notes}</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>Speaker notes only visible to presenter.</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>Press 'S' to open speaker view.</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Speaker view displays:</p>
 <ul>
 <li>Current slide</li>
@@ -1209,12 +1407,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">progress</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">history</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">progress</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">history</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="preview-links" class="level3" data-number="11.6.3">
@@ -1224,11 +1422,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">preview-links</span><span class="kw">:</span><span class="at"> auto</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">preview-links</span><span class="kw">:</span><span class="at"> auto</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="chalkboard" class="level3" data-number="11.6.4">
@@ -1238,25 +1436,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">chalkboard</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">chalkboard</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can customize its appearance and behavior:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">chalkboard</span><span class="kw">:</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> whiteboard</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">boardmarker-width</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">buttons</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">chalkboard</span><span class="kw">:</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> whiteboard</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">boardmarker-width</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">buttons</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
@@ -1289,11 +1487,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>presentation.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Note that this can slow rendering, so it’s best to enable it only when you’re ready to distribute.</p>
 </section>
@@ -1308,6 +1506,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Save.</li>
 </ol>
 <p>Press <code>E</code> to toggle out of print mode when done.</p>
+<p>You can customize PDF export behavior with these YAML options:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>presentation.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf-separate-fragments</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf-max-pages-per-slide</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 30%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pdf-separate-fragments</code></td>
+<td><code>true</code></td>
+<td>Each fragment step becomes a separate PDF page</td>
+</tr>
+<tr class="even">
+<td><code>pdf-max-pages-per-slide</code></td>
+<td><code>20</code></td>
+<td>Maximum pages generated per slide (limits runaway fragment expansion)</td>
+</tr>
+</tbody>
+</table>
+<p>To include speaker notes in the PDF, append <code>?print-pdf&amp;showNotes=true</code> to the URL before printing. Alternatively, use <code>?print-pdf&amp;showNotes=separate-page</code> to place notes on their own pages after each slide.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The <code>?print-pdf</code> view uses a different stylesheet optimized for print. Some visual effects like transitions and animations won’t appear in the PDF.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="publishing" class="level3" data-number="11.7.3">
 <h3 data-number="11.7.3" class="anchored" data-anchor-id="publishing"><span class="header-section-number">11.7.3</span> Publishing</h3>
@@ -1316,7 +1563,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish gh-pages presentation.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish gh-pages presentation.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>See the <a href="https://quarto.org/docs/output-formats/html-publishing.html">Publishing HTML documentation</a> for full details on available targets and configuration.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
@@ -1332,6 +1579,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In Positron, you can also use the Posit Publisher extension to publish directly from Positron. See the <a href="https://docs.posit.co/connect/user/publishing-positron-vscode/">Posit Publisher documentation</a> for details.</p>
 </div>
 </div>
+</section>
+</section>
+<section id="accessibility" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="accessibility"><span class="header-section-number">11.8</span> Accessibility</h2>
+<p>Accessible presentations ensure all audience members can engage with your content, regardless of how they consume it.</p>
+<section id="structure-and-semantics" class="level3" data-number="11.8.1">
+<h3 data-number="11.8.1" class="anchored" data-anchor-id="structure-and-semantics"><span class="header-section-number">11.8.1</span> Structure and semantics</h3>
+<p>Consider using heading levels consistently throughout your presentation, as they define the slide structure for screen readers and other assistive technologies. Keeping slide content concise helps everyone follow along—not just those using assistive technology. You can also improve accessibility by placing content in the order it should be read, ensuring a logical reading order for those who navigate sequentially.</p>
+</section>
+<section id="images-and-media" class="level3" data-number="11.8.2">
+<h3 data-number="11.8.2" class="anchored" data-anchor-id="images-and-media"><span class="header-section-number">11.8.2</span> Images and media</h3>
+<p>You should provide alt text for all images that convey information:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="al">![A bar chart showing sales growth from 2020 to 2024](chart.png)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For decorative images that don’t convey information, you can use empty alt text to indicate they should be skipped:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="al">![](decorative-border.png)</span>{fig-alt=""}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If your presentation includes video or audio content, consider adding captions or transcripts so that all audience members can access the information.</p>
+</section>
+<section id="color-and-contrast" class="level3" data-number="11.8.3">
+<h3 data-number="11.8.3" class="anchored" data-anchor-id="color-and-contrast"><span class="header-section-number">11.8.3</span> Color and contrast</h3>
+<p>You should maintain sufficient contrast between text and background—WCAG recommends a minimum ratio of 4.5:1 for normal text. Rather than relying on color alone to convey meaning, you can pair color with text labels, patterns, or icons so that color-blind users can distinguish elements. Testing your theme with a contrast checker before presenting helps catch issues early.</p>
+</section>
+<section id="navigation-aids" class="level3" data-number="11.8.4">
+<h3 data-number="11.8.4" class="anchored" data-anchor-id="navigation-aids"><span class="header-section-number">11.8.4</span> Navigation aids</h3>
+<p>You can enable features that help audiences follow along:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>presentation.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">slide-number</span><span class="kw">:</span><span class="at"> c/t</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">hash-type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">history</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Setting <code>hash-type: number</code> creates predictable URLs (<code>#/3</code> for slide 3), making it easier for attendees to share or return to specific slides.</p>
+</section>
+<section id="slide-tone" class="level3" data-number="11.8.5">
+<h3 data-number="11.8.5" class="anchored" data-anchor-id="slide-tone"><span class="header-section-number">11.8.5</span> Slide tone</h3>
+<p>Presenters who are blind or low-vision may find it helpful to enable auditory feedback when slides change:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>presentation.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74" data-filename="presentation.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">slide-tone</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="testing" class="level3" data-number="11.8.6">
+<h3 data-number="11.8.6" class="anchored" data-anchor-id="testing"><span class="header-section-number">11.8.6</span> Testing</h3>
+<p>Before presenting, consider navigating your presentation using only the keyboard (arrow keys, Tab, Enter) to verify that all content is reachable. If possible, you can use a screen reader to confirm that slide content is announced correctly and in a logical order. You’ll also want to check that all interactive elements—links, tabs, and buttons—are focusable and have appropriate labels.</p>
 
 
 </section>
@@ -1764,6 +2066,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
   </div>
 </footer>
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 
