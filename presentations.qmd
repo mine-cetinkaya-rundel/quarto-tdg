@@ -1103,39 +1103,35 @@ In Positron, you can also use the Posit Publisher extension to publish directly 
 
 ## Accessibility
 
-Accessible presentations ensure all audience members can engage with your content.
+Accessible presentations ensure all audience members can engage with your content, regardless of how they consume it.
 
 ### Structure and semantics
 
-- Use heading levels consistently—they define the slide structure for screen readers
-- Keep slide content concise; dense slides are harder to follow for everyone
-- Ensure a logical reading order by placing content in the order it should be read
+Consider using heading levels consistently throughout your presentation, as they define the slide structure for screen readers and other assistive technologies. Keeping slide content concise helps everyone follow along—not just those using assistive technology. You can also improve accessibility by placing content in the order it should be read, ensuring a logical reading order for those who navigate sequentially.
 
 ### Images and media
 
-Provide alt text for all images:
+You should provide alt text for all images that convey information:
 
 ```markdown
 ![A bar chart showing sales growth from 2020 to 2024](chart.png)
 ```
 
-For decorative images that don't convey information, use empty alt text:
+For decorative images that don't convey information, you can use empty alt text to indicate they should be skipped:
 
 ```markdown
 ![](decorative-border.png){fig-alt=""}
 ```
 
-Add captions or transcripts for video and audio content.
+If your presentation includes video or audio content, consider adding captions or transcripts so that all audience members can access the information.
 
 ### Color and contrast
 
-- Maintain sufficient contrast between text and background (WCAG recommends a minimum ratio of 4.5:1 for normal text)
-- Don't rely on color alone to convey meaning—pair color with text labels, patterns, or icons
-- Test your theme with a contrast checker before presenting
+You should maintain sufficient contrast between text and background—WCAG recommends a minimum ratio of 4.5:1 for normal text. Rather than relying on color alone to convey meaning, you can pair color with text labels, patterns, or icons so that color-blind users can distinguish elements. Testing your theme with a contrast checker before presenting helps catch issues early.
 
 ### Navigation aids
 
-Enable features that help audiences follow along:
+You can enable features that help audiences follow along:
 
 ```{.yaml filename="presentation.qmd"}
 ---
@@ -1151,7 +1147,7 @@ Setting `hash-type: number` creates predictable URLs (`#/3` for slide 3), making
 
 ### Slide tone
 
-For presenters who are blind or low-vision, enable auditory feedback when slides change:
+Presenters who are blind or low-vision may find it helpful to enable auditory feedback when slides change:
 
 ```{.yaml filename="presentation.qmd"}
 ---
@@ -1163,6 +1159,4 @@ format:
 
 ### Testing
 
-- Navigate your presentation using only the keyboard (arrow keys, Tab, Enter)
-- Use a screen reader to verify slide content is announced correctly
-- Check that all interactive elements (links, tabs, buttons) are focusable and labeled
+Before presenting, consider navigating your presentation using only the keyboard (arrow keys, Tab, Enter) to verify that all content is reachable. If possible, you can use a screen reader to confirm that slide content is announced correctly and in a logical order. You'll also want to check that all interactive elements—links, tabs, and buttons—are focusable and have appropriate labels.
