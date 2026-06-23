@@ -2,13 +2,15 @@
 
 In addition to long-form documents, you can also use Quarto to create presentations.
 
-Quarto supports three main presentation formats:
+Quarto supports three main presentation formats. @tbl-pres-formats summarizes these formats and their use cases.
 
 | Format | Output | Use Case |
 |--------|--------|----------|
 | `revealjs` | HTML | Most capable, recommended default |
 | `pptx` | PowerPoint | Office environments |
 | `beamer` | PDF | LaTeX workflows |
+
+: Quarto presentation formats {#tbl-pres-formats}
 
 Regardless of format type, you can use the same markdown syntax to create your presentation content.
 The most flexible and feature-rich of these formats is `revealjs`, which supports a wide range of features and customizations.
@@ -18,6 +20,10 @@ This chapter focuses on the `revealjs` format, though the basic syntax we descri
 We will close the chapter with a complete example of a `revealjs` presentation and some tips for sharing your presentation with others as well as callouts for commonly used format-specific features in `pptx` and `beamer`.
 
 ## Your first presentation
+
+The best way to learn Quarto presentations is to start with a working example. 
+The following presentation demonstrates many of the features you'll use most often: a custom theme, incremental bullet points, code with side-by-side output, and speaker notes. 
+You can copy this into a new `.qmd` file and render it to see the result immediately, then modify it to explore how each option works. 
 
 ````` {.markdown filename="presentation.qmd"}
 
