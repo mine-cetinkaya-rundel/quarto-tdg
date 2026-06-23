@@ -233,6 +233,58 @@ Some introductory text.
 
 Note that `.r-stretch` only applies to non-nested images. Images inside columns, fragments, or other custom divs are ignored unless you add `.r-stretch` to the outer div explicitly.
 
+### Embedding media
+
+Beyond background videos (see [Slide backgrounds]), you can embed media directly in slide content.
+
+#### Videos
+
+Use standard markdown image syntax with a video file:
+
+```markdown
+## Video Demo
+
+![](demo.mp4)
+```
+
+For more control, use HTML5 video attributes:
+
+```markdown
+## Video Demo
+
+<video src="demo.mp4" controls width="600"></video>
+```
+
+Or use a fenced div with Quarto's video shortcode:
+
+```markdown
+## Video Demo
+
+{{< video demo.mp4 width="600" >}}
+```
+
+The video shortcode also supports YouTube, Vimeo, and other hosted videos:
+
+```markdown
+{{< video https://www.youtube.com/embed/VIDEO_ID >}}
+```
+
+#### iframes
+
+Embed external web content using HTML iframes:
+
+```markdown
+## Live Demo
+
+<iframe src="https://example.com/app" width="900" height="500" frameborder="0"></iframe>
+```
+
+For interactive applications that need to respond to user input during a presentation, set `sandbox="allow-scripts allow-same-origin"` if the iframe content requires JavaScript.
+
+::: callout-tip
+Consider using `preview-links: auto` (see [Preview links]) for simpler cases where you just want to show a linked webpage without leaving the presentation.
+:::
+
 ### Layout helpers
 
 Reveal provides several utility classes for positioning and sizing content on slides.
@@ -433,6 +485,51 @@ format:
     code-block-height: 650px
 ---
 ```
+
+### Code annotation
+
+Quarto's code annotation feature helps you explain code step-by-step. Add numbered markers in code comments, then provide explanations in a list below:
+
+````markdown
+```{.python code-line-numbers="true"}
+import pandas as pd  # <1>
+
+df = pd.read_csv("data.csv")  # <2>
+df = df.dropna()  # <3>
+```
+
+1. Import the pandas library
+2. Load data from a CSV file
+3. Remove rows with missing values
+````
+
+By default, annotations appear as numbered markers that reveal explanations on hover or click. Use `code-annotations` to change this behavior:
+
+```{.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    code-annotations: below  # hover | select | below
+---
+```
+
+| Value | Behavior |
+|-------|----------|
+| `hover` | Show annotation on hover (default) |
+| `select` | Show annotation on click |
+| `below` | Display all annotations below the code block |
+
+For executable code cells, place annotations in the source code rather than using cell options:
+
+````markdown
+```{{python}}
+import pandas as pd  # <1>
+df = pd.read_csv("data.csv")  # <2>
+```
+
+1. Import pandas
+2. Load the data
+````
 
 ### Controlling output
 
@@ -779,6 +876,68 @@ Swap `source: google` for `source: bunny` if you'd prefer [Bunny Fonts](https://
 If you are using brand.yml across your organization's projects (e.g. for both a website and presentations), you can place `_brand.yml` in a parent directory and it will be found automatically.
 You can read about all the options available in the [Quarto documentation Guide to using brand.yml](https://quarto.org/docs/authoring/brand.html).
 
+### Custom CSS
+
+Beyond brand.yml and built-in themes, you can add custom styles using CSS or SCSS files.
+
+#### Adding a stylesheet
+
+Reference a CSS file in YAML:
+
+```{.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    theme: [default, custom.css]
+---
+```
+
+The `theme` option accepts a list, applying styles in order. Place your custom file after the base theme to override its defaults.
+
+#### SCSS variables
+
+RevealJS themes use SCSS variables for key design tokens. Create a `.scss` file to override them:
+
+```{.scss filename="custom.scss"}
+/*-- scss:defaults --*/
+$presentation-heading-color: #2a9d8f;
+$body-bg: #264653;
+$body-color: #e9c46a;
+$link-color: #e76f51;
+$code-block-bg: #1a1a2e;
+
+/*-- scss:rules --*/
+.reveal .slide-number {
+  font-size: 0.6em;
+}
+```
+
+The `scss:defaults` section sets variables before the theme compiles; `scss:rules` adds custom CSS rules after.
+
+Reference it in your YAML:
+
+```{.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    theme: [default, custom.scss]
+---
+```
+
+Common SCSS variables include:
+
+| Variable | Purpose |
+|----------|---------|
+| `$body-bg` | Slide background color |
+| `$body-color` | Default text color |
+| `$link-color` | Hyperlink color |
+| `$presentation-heading-color` | Heading color |
+| `$presentation-heading-font` | Heading font family |
+| `$code-block-bg` | Code block background |
+| `$code-color` | Inline code color |
+
+See the [Reveal Themes documentation](https://quarto.org/docs/presentations/revealjs/themes.html) for the full list of available variables.
+
 ## Presenting
 
 ### Speaker notes
@@ -904,6 +1063,28 @@ Reveal presentations can be exported to PDF directly from the browser:
 
 Press `E` to toggle out of print mode when done.
 
+You can customize PDF export behavior with these YAML options:
+
+```{.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    pdf-separate-fragments: true
+    pdf-max-pages-per-slide: 1
+---
+```
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `pdf-separate-fragments` | `true` | Each fragment step becomes a separate PDF page |
+| `pdf-max-pages-per-slide` | `20` | Maximum pages generated per slide (limits runaway fragment expansion) |
+
+To include speaker notes in the PDF, append `?print-pdf&showNotes=true` to the URL before printing. Alternatively, use `?print-pdf&showNotes=separate-page` to place notes on their own pages after each slide.
+
+::: callout-note
+The `?print-pdf` view uses a different stylesheet optimized for print. Some visual effects like transitions and animations won't appear in the PDF.
+:::
+
 ### Publishing
 
 Use `quarto publish` to deploy your presentation to hosting services including GitHub Pages, Netlify, Posit Connect, and Posit Connect Cloud:
@@ -919,3 +1100,69 @@ See the [Publishing HTML documentation](https://quarto.org/docs/output-formats/h
 
 In Positron, you can also use the Posit Publisher extension to publish directly from Positron. See the [Posit Publisher documentation](https://docs.posit.co/connect/user/publishing-positron-vscode/) for details.
 :::
+
+## Accessibility
+
+Accessible presentations ensure all audience members can engage with your content.
+
+### Structure and semantics
+
+- Use heading levels consistently—they define the slide structure for screen readers
+- Keep slide content concise; dense slides are harder to follow for everyone
+- Ensure a logical reading order by placing content in the order it should be read
+
+### Images and media
+
+Provide alt text for all images:
+
+```markdown
+![A bar chart showing sales growth from 2020 to 2024](chart.png)
+```
+
+For decorative images that don't convey information, use empty alt text:
+
+```markdown
+![](decorative-border.png){fig-alt=""}
+```
+
+Add captions or transcripts for video and audio content.
+
+### Color and contrast
+
+- Maintain sufficient contrast between text and background (WCAG recommends a minimum ratio of 4.5:1 for normal text)
+- Don't rely on color alone to convey meaning—pair color with text labels, patterns, or icons
+- Test your theme with a contrast checker before presenting
+
+### Navigation aids
+
+Enable features that help audiences follow along:
+
+```{.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    slide-number: c/t
+    hash-type: number
+    history: true
+---
+```
+
+Setting `hash-type: number` creates predictable URLs (`#/3` for slide 3), making it easier for attendees to share or return to specific slides.
+
+### Slide tone
+
+For presenters who are blind or low-vision, enable auditory feedback when slides change:
+
+```{.yaml filename="presentation.qmd"}
+---
+format:
+  revealjs:
+    slide-tone: true
+---
+```
+
+### Testing
+
+- Navigate your presentation using only the keyboard (arrow keys, Tab, Enter)
+- Use a screen reader to verify slide content is announced correctly
+- Check that all interactive elements (links, tabs, buttons) are focusable and labeled
