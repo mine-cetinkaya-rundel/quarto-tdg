@@ -25,45 +25,19 @@ The best way to learn Quarto presentations is to start with a working example.
 The following presentation demonstrates many of the features you'll use most often: a custom theme, incremental bullet points, code with side-by-side output, and speaker notes. 
 You can copy this into a new `.qmd` file and render it to see the result immediately, then modify it to explore how each option works. 
 
-````` {.markdown filename="presentation.qmd"}
-
----
-title: Complete presentation
-author: Author Name
-date: last-modified
-format:
-  revealjs:
-    theme: moon
-    incremental: true
-    footer: My Organization
-    code-block-height: 500px
-    slide-number: c/t
-    preview-links: auto
-title-slide-attributes:
-  data-background-color: "#1a1a2e"
----
-
-## First Slide
-
-- Point one
-- Point two
-- Point three
-
-## Code Example {.smaller}
-
-````{{python}}
-#| echo: true
-#| output-location: column
-print("Hello, RevealJS!")
+````{.markdown filename="punctuality.qmd" .code-overflow-wrap}
+{{< include _examples/presentations/first-presentation/punctuality.qmd >}}
 ````
 
-::: {.notes}
+::: {#fig-presentation-first-presentation-punctuality .border fig-alt="The rendered output showing four slides. The first slide is a title slide with the presentation title, author, and date. The second slide shows a section title. The third slide has a cross-referenced table and some text. The fourth slide has bullet points. The speaker notes are not visible in the rendered output."}
 
-Remember to explain the code output.
+![](images/presentations-first-presentation-punctuality-slide-1.png){width=40%} ![](images/presentations-first-presentation-punctuality-slide-2.png){width=40%} 
+
+![](images/presentations-first-presentation-punctuality-slide-3.png){width=40%} ![](images/presentations-first-presentation-punctuality-slide-4.png){width=40%}
+
+The rendered output of `punctuality.qmd`
 
 :::
-
-`````
 
 ::: callout-note
 Throughout this chapter, we use level 1 headings for section breaks and level 2 headings for slide breaks.
@@ -76,29 +50,26 @@ See the Pandoc documentation on [structuring the slide show](https://pandoc.org/
 
 The title slide is auto-generated from YAML metadata:
 
-``` {.yaml filename="presentation.qmd"}
----
-title: "Presentation Title"
-subtitle: "A Subtitle"
-author: "Author Name"
-date: "2024-01-15"
-format: revealjs
----
-```
+````{.yaml filename="title-slide.qmd" .code-overflow-wrap}
+{{< include _examples/presentations/authoring/title-slide.qmd >}}
+````
 
-Omit `title` and `author` fields to skip automatic title slide generation.
+![Title slide for a presentation](images/presentations-authoring-title-slide-slide-1.png){#fig-title-slide .border fig-alt="A title slide with a title, subtitle, author name, and date formatted as MMMM DD, YYYY."}
+
+If you prefer to skip automatic title slide generation, you can omit `title` and `author` fields.
 
 By default, the title slide is centered while all other slides are top-aligned. To disable centering on the title slide, set `center-title-slide: false`. For full control, you can replace the title slide entirely by supplying a custom `title-slide.html` template partial:
 
-``` {.yaml filename="presentation.qmd"}
+````{.yaml filename="title-slide.qmd" .code-overflow-wrap}
 ---
-title: "My Presentation"
+title: Route Punctuality
+author: Dr. Sarah Okonkwo
 format:
   revealjs:
     template-partials:
       - title-slide.html
 ---
-```
+````
 
 ### Section and slide breaks
 
@@ -126,7 +97,7 @@ Content for first slide in Section 2.
 Content for second slide in Section 2.
 ```
 
-You can customize this behavior using the `slide-level` option in YAML, e.g., `slide-level: 1` to use level 1 headings for slide breaks.
+You can customize this behavior using the `slide-level` option in YAML, e.g., `slide-level: 1` to use level 1 headings for slide breaks. 
 
 ### Multiple columns
 
@@ -177,20 +148,10 @@ The same syntax can be used to create more than two columns, e.g., three columns
 You can create tabbed content panels:
 
 ``` markdown
-## Tabbed Content
-
-::: {.panel-tabset}
-
-### Tab 1
-
-Content for first tab.
-
-### Tab 2
-
-Content for second tab.
-
-:::
+{{< include _examples/presentations/authoring/tabbed-content.qmd >}}
 ```
+
+![Slide with tabbed content](images/presentations-authoring-tabbed-content-slide-1.png){#fig-tabbed-content .border fig-alt="A slide with tabbed content panels, where only the first tab is visible."}
 
 ::: callout-note
 When printing to PDF, only the first tab will be visible.
@@ -201,7 +162,7 @@ When printing to PDF, only the first tab will be visible.
 For slides with dense content, use the `.smaller` class to reduce font size:
 
 ``` markdown
-## Dense Slide {.smaller}
+## Dense slide {.smaller}
 
 Lots of content here...
 ```
@@ -209,7 +170,7 @@ Lots of content here...
 You can enable scrolling for slides that exceed the viewport:
 
 ``` markdown
-## Scrollable Slide {.scrollable}
+## Scrollable slide {.scrollable}
 
 Very long content...
 ```
@@ -230,7 +191,7 @@ format:
 When a slide contains a single top-level image, Quarto's `auto-stretch` feature automatically expands it to fill the remaining vertical space (see [Image size] for details on how this applies to computational figures). For manual control, use `.r-stretch` on an image to opt in to the same behavior:
 
 ``` markdown
-## Slide Title
+## Slide title
 
 Some introductory text.
 
@@ -248,7 +209,7 @@ Beyond background videos (see [Slide backgrounds]), you can embed media directly
 Use standard markdown image syntax with a video file:
 
 ```markdown
-## Video Demo
+## Video demo
 
 ![](demo.mp4)
 ```
@@ -256,7 +217,7 @@ Use standard markdown image syntax with a video file:
 For more control, use HTML5 video attributes:
 
 ```markdown
-## Video Demo
+## Video demo
 
 <video src="demo.mp4" controls width="600"></video>
 ```
@@ -264,7 +225,7 @@ For more control, use HTML5 video attributes:
 Or use a fenced div with Quarto's video shortcode:
 
 ```markdown
-## Video Demo
+## Video demo
 
 {{< video demo.mp4 width="600" >}}
 ```
@@ -280,7 +241,7 @@ The video shortcode also supports YouTube, Vimeo, and other hosted videos:
 Embed external web content using HTML iframes:
 
 ```markdown
-## Live Demo
+## Live demo
 
 <iframe src="https://example.com/app" width="900" height="500" frameborder="0"></iframe>
 ```
@@ -336,7 +297,7 @@ Big Text
 Add the `.center` class to a slide heading to vertically center its content:
 
 ``` markdown
-## Centered Slide {.center}
+## Centered slide {.center}
 
 This content will be vertically centered.
 ```
@@ -351,7 +312,7 @@ Some options include:
 - Color backgrounds:
 
 ``` markdown
-## Slide Title {background-color="aquamarine"}
+## Slide title {background-color="aquamarine"}
 
 Content on colored background.
 ```
@@ -359,29 +320,29 @@ Content on colored background.
 - Gradient backgrounds:
 
 ``` markdown
-## Gradient Slide {background-gradient="linear-gradient(to right, red, blue)"}
+## Gradient slide {background-gradient="linear-gradient(to right, red, blue)"}
 ```
 
 - Image backgrounds:
 
 ``` markdown
-## Image Background {background-image="image.jpg" background-size="cover" background-opacity="0.5"}
+## Image background {background-image="image.jpg" background-size="cover" background-opacity="0.5"}
 ```
 
 - Video backgrounds:
 
 ``` markdown
-## Video Background {background-video="video.mp4" background-video-loop="true" background-video-muted="true"}
+## Video background {background-video="video.mp4" background-video-loop="true" background-video-muted="true"}
 ```
 
 For title slides, use `title-slide-attributes` in YAML to set background options:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
-title: "My Presentation"
+title: My Presentation
 format: revealjs
 title-slide-attributes:
-  data-background-image: "background.jpg"
+  data-background-image: images/background.jpg
   data-background-size: cover
 ---
 ```
@@ -394,7 +355,7 @@ You can add consistent branding across slides:
 ---
 format:
   revealjs:
-    footer: "Company Name - Conference 2024"
+    footer: Company Name - Conference 2024
     logo: images/logo.png
 ---
 ```
@@ -402,13 +363,13 @@ format:
 Remove footer from specific slides:
 
 ``` markdown
-## Full Screen Slide {footer="false"}
+## Full screen slide {footer="false"}
 ```
 
 Or use a custom footer on individual slides:
 
 ``` markdown
-## Custom Footer Slide
+## Custom footer slide
 
 Content here.
 
@@ -422,21 +383,25 @@ Custom footer for this slide only.
 You can add peripheral commentary with asides:
 
 ``` markdown
-## Slide Title
+
+## Slide title
 
 Main content here.
 
 ::: {.aside}
 Additional context displayed at bottom.
 :::
+
 ```
 
 For footnotes, use standard markdown syntax:
 
 ``` markdown
+
 This is a statement[^1].
 
 [^1]: This is the footnote text.
+
 ```
 
 By default, footnotes appear on the slide where they are defined. To instead collect all footnotes at the end of the presentation, use:
@@ -625,14 +590,14 @@ You can control where code output appears using `output-location`:
 
 Example:
 
-```` markdown
+````` markdown
 ````{{python}}
 #| output-location: column
 import matplotlib.pyplot as plt
 plt.plot([1, 2, 3])
 plt.show()
 ````
-````
+`````
 
 ### Interactive documents
 
@@ -669,13 +634,13 @@ The available transition types are:
 Override the transition on individual slides using heading attributes:
 
 ``` markdown
-## Slide Title {transition="fade" transition-speed="slow"}
+## Slide title {transition="fade" transition-speed="slow"}
 ```
 
 You can also specify separate in and out transitions:
 
 ``` markdown
-## Slide Title {transition="fade-in slide-out"}
+## Slide title {transition="fade-in slide-out"}
 ```
 
 Use `background-transition` to control the transition for slide backgrounds independently of content.
@@ -685,7 +650,7 @@ Use `background-transition` to control the transition for slide backgrounds inde
 You can use three dots to create pauses within slides:
 
 ``` markdown
-## Slide Title
+## Slide title
 
 Content before pause.
 
@@ -703,7 +668,7 @@ By default, list items appear all at once. Enable incremental display globally:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
-title: "My Presentation"
+title: My Presentation
 format:
   revealjs:
     incremental: true
@@ -951,7 +916,7 @@ See the [Reveal Themes documentation](https://quarto.org/docs/presentations/reve
 Add presenter notes visible only in speaker view:
 
 ``` markdown
-## Slide Title
+## Slide title
 
 Slide content visible to audience.
 
@@ -972,10 +937,10 @@ Speaker view displays:
 
 When presenting, Reveal provides several navigation tools:
 
-- The **slide menu** (bottom-left button, or press `M`) lets you jump to any slide and access presentation tools.
-- **Jump to Slide** (press `G`) opens a modal where you can navigate directly to a slide by number or ID.
-- **Overview mode** (press `O`) shows a bird's-eye view of all slides.
-- **Scroll View** is an alternative view that presents slides as a vertically scrolled page rather than a click-through deck. Toggle it by appending `?view=scroll` to the presentation URL, or set it as the default with `scroll-view: true` in YAML. It activates automatically on small screens such as mobile devices.
+- The slide menu (bottom-left button, or press `M`) lets you jump to any slide and access presentation tools.
+- Jump to Slide (press `G`) opens a modal where you can navigate directly to a slide by number or ID.
+- Overview mode (press `O`) shows a bird's-eye view of all slides.
+- Scroll View is an alternative view that presents slides as a vertically scrolled page rather than a click-through deck. Toggle it by appending `?view=scroll` to the presentation URL, or set it as the default with `scroll-view: true` in YAML. It activates automatically on small screens such as mobile devices.
 
 Enable browser history and disable the progress bar:
 
