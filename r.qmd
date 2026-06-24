@@ -7,8 +7,6 @@ Here you'll learn about features specific to R and the knitr engine.
 
 ## Output {#sec-r-output}
 
-This section covers the various ways R code produces output in Quarto documents---from inline values and data frames to figures and interactive widgets.
-
 ### Inline code {#sec-inline-code}
 
 In addition to code cells, you can embed R code directly within your markdown text using inline code.
@@ -30,7 +28,7 @@ avg_temp <- mean(airquality$Temp)
 The mean temperature was `{{r}} avg_temp` degrees.
 ```
 
-Which renders as: The mean temperature was `r avg_temp` degrees.
+This renders as: The mean temperature was `r avg_temp` degrees.
 
 ::: callout-warning
 ## Keep inline code simple
@@ -82,13 +80,11 @@ The `paged` option is especially useful for exploring data interactively, as it 
 
 ### Graphics devices {#sec-graphics-devices}
 
-When R generates a plot, knitr uses a *graphics device* to save it to a file, which is then included in the output.
+When R generates a plot, knitr uses a *graphics device* to save the plot to a file, which is then included in the output.
 The default device is `png`, which works well in most situations.
 However, you may want to change it for better text rendering, scalable output, or PDF compatibility.
 
-#### Choosing a device
-
-Set the graphics device with the `dev` option, either at the document level or for individual cells:
+You can set the graphics device with the `dev` option, either at the document level or for individual cells:
 
 ```yaml
 ---
@@ -102,8 +98,6 @@ Or for a single cell:
 
 ```{{r}}
 #| dev: svglite
-library(ggplot2)
-
 ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point()
 ```
@@ -113,8 +107,8 @@ Common choices include:
 | Device | Best for | Notes |
 |--------|----------|-------|
 | `png` | General use (default) | Raster; fast and widely supported |
-| `ragg_png` | Higher-quality PNG | Better text rendering and anti-aliasing; requires the **ragg** package |
-| `svglite` | Scalable HTML output | Vector format; sharp at any zoom level; requires the **svglite** package |
+| `ragg_png` | Higher-quality PNG | Better text rendering and anti-aliasing; requires the [**ragg**](https://ragg.r-lib.org/) package |
+| `svglite` | Scalable HTML output | Vector format; sharp at any zoom level; requires the [**svglite**](https://svglite.r-lib.org/) package |
 | `cairo_pdf` | PDF with Unicode text | Handles non-Latin characters and special symbols |
 | `pdf` | Standard PDF figures | Default vector device for LaTeX/PDF output |
 
@@ -125,9 +119,8 @@ The R option `knitr.graphics.auto_pdf` (shown in @sec-execution-options-r) tells
 This saves you from having to set `dev` differently for each format.
 :::
 
-#### The `fig-format` option
-
-Quarto also provides a `fig-format` option that works across engines (not just knitr):
+Additionally, while not knitr-specific, the `fig-format` option is worth knowing about alongside `dev`.
+It works across all Quarto engines:
 
 ```yaml
 ---
@@ -146,9 +139,7 @@ A single R code cell can produce multiple plots.
 By default, each plot appears as a separate figure in the output.
 You can arrange them as labeled subfigures using `fig-cap` and `fig-subcap`.
 
-#### Subfigure captions
-
-Provide `fig-cap` as the overall caption and `fig-subcap` as a list of individual subcaptions:
+You can provide `fig-cap` as the overall caption and `fig-subcap` as a list of individual subcaptions:
 
 ```{{r}}
 #| label: fig-mtcars-panels
@@ -169,9 +160,7 @@ ggplot(mtcars, aes(x = disp, y = mpg)) +
 This produces two side-by-side subfigures, each with its own caption, under a shared parent caption.
 The individual panels are cross-referenceable as `@fig-mtcars-panels-1` and `@fig-mtcars-panels-2`, while `@fig-mtcars-panels` refers to the group.
 
-#### Layout options
-
-The `layout-ncol` option controls how many columns the subfigures occupy.
+Additionally, the `layout-ncol` option controls how many columns the subfigures occupy.
 For more complex arrangements, use the `layout` option to specify custom grids:
 
 ```{{r}}
@@ -182,7 +171,6 @@ For more complex arrangements, use the `layout` option to specify custom grids:
 #|   - "Plot B"
 #|   - "Plot C"
 #| layout: [[1,1], [1]]
-
 plot(1:10)
 plot(10:1)
 plot(1:20)
@@ -196,49 +184,35 @@ For a full explanation of the layout syntax, see @sec-layout.
 R has a rich ecosystem of packages that produce interactive HTML output.
 These packages---collectively known as [htmlwidgets](https://www.htmlwidgets.org/)---work in Quarto documents without any special configuration.
 Just load the package and call the function as you would in an interactive R session.
-
-#### Common htmlwidgets packages
-
-**Interactive plots with plotly:**
+For example, you can have code cells that produce interactive plots with [plotly](https://plotly.com/r/):
 
 ```{{r}}
 #| eval: false
-library(plotly)
-library(ggplot2)
-
 p <- ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
   geom_point()
 
 ggplotly(p)
 ```
 
-**Interactive tables with DT:**
+Or interactive tables with [DT](https://rstudio.github.io/DT/):
 
 ```{{r}}
 #| eval: false
 DT::datatable(mtcars, options = list(pageLength = 5))
 ```
 
-**Interactive maps with leaflet:**
+Or interactive maps with [leaflet](https://rstudio.github.io/leaflet/):
 
 ```{{r}}
 #| eval: false
-library(leaflet)
-
 leaflet() |>
   addTiles() |>
   addMarkers(lng = -73.99, lat = 40.73, popup = "New York City")
 ```
 
-Other popular htmlwidgets packages include **dygraphs** for time series, **visNetwork** for network graphs, and **reactable** for feature-rich tables.
-
-::: callout-warning
-## HTML-only
-
-Interactive widgets only work in HTML output formats.
+It is important to note that interactive widgets only work in HTML output formats.
 When rendering to PDF or Word, widgets will either produce a static fallback image or an error, depending on the package.
-Use `knitr::is_html_output()` (see @sec-conditional-execution) to conditionally include widgets only in HTML output.
-:::
+You can use `knitr::is_html_output()` (see @sec-conditional-execution) to conditionally include widgets only in HTML output.
 
 ::: callout-note
 ## Widget dependencies and self-contained documents
@@ -249,8 +223,6 @@ If your document uses many different widget packages, consider using the default
 :::
 
 ## Configuration {#sec-r-configuration}
-
-This section covers options that control how R code cells are executed and how their behavior can vary across documents and output formats.
 
 ### Execution options {#sec-execution-options-r}
 
@@ -297,7 +269,8 @@ knitr:
 ---
 ```
 
-The `R.options` setting is particularly useful---it temporarily sets R options via `options()` before each code cell executes, then restores the original values afterward.
+The `R.options` setting is particularly useful---it temporarily sets R options via `options()` before each code cell executes.
+The original values are restored afterward.
 
 #### Cell-level options
 
@@ -350,9 +323,7 @@ This is useful for programmatically generating document structure, such as creat
 Parameters let you create variations of a document without editing the source.
 This is useful for generating reports for different regions, time periods, or scenarios.
 
-#### Defining parameters
-
-Define parameters in your YAML header using the `params` key:
+You can define parameters in your YAML header using the `params` key:
 
 ```yaml
 ---
@@ -364,9 +335,7 @@ params:
 ---
 ```
 
-#### Using parameters in code
-
-Access parameters through the `params` list:
+Parameters can be accessed in code through the `params` list:
 
 ```{{r}}
 #| echo: false
@@ -380,9 +349,7 @@ sales_data |>
 This report covers the `{{r}} params$region` region for `{{r}} params$year`.
 ```
 
-#### Rendering with different parameter values
-
-Override parameters from the command line using the `-P` flag:
+It is also possible to override parameters from the command line using the `-P` flag:
 
 ```bash
 quarto render report.qmd -P region:South -P year:2025
@@ -407,13 +374,11 @@ quarto render report.qmd --execute-params params-south.yml
 Sometimes you need code to behave differently depending on the output format.
 Quarto provides several ways to access format information from your R code.
 
-#### Using knitr functions
-
 The knitr package provides functions to check the output format:
 
 ```{{r}}
 if (knitr::is_html_output()) {
- # Code for HTML output only
+  # Code for HTML output only
 }
 
 if (knitr::is_latex_output()) {
@@ -428,8 +393,7 @@ knitr::pandoc_to()
 # Returns e.g., "html", "latex", "docx"
 ```
 
-#### Using Quarto environment variables
-
+You can also use Quarto environment variables for conditional execution.
 For more detailed format information, Quarto sets the `QUARTO_EXECUTE_INFO` environment variable during rendering:
 
 ```{{r}}
@@ -445,24 +409,13 @@ This approach gives you access to additional metadata about the rendering contex
 
 ## Rendering {#sec-r-rendering}
 
-This section covers ways to invoke Quarto rendering from within R and how to render R scripts directly.
-
 ### Rendering from R {#sec-render-from-r}
 
-The **quarto** R package provides functions to render documents directly from R, without using the terminal.
-
-#### Installation
-
-```r
-install.packages("quarto")
-```
-
-Note that this package is optional---you don't need it to use Quarto with R.
+The [**quarto**](https://quarto-dev.github.io/quarto-r/) R package provides functions to render documents directly from R, without using the terminal.
+This package is optional---you don't need it to use Quarto with R.
 It's a convenience for those who prefer working entirely within the R console.
 
-#### Basic rendering
-
-Use `quarto_render()` to render a document:
+You can use `quarto_render()` to render a document:
 
 ```r
 library(quarto)
@@ -470,8 +423,6 @@ library(quarto)
 quarto_render("report.qmd")
 quarto_render("report.qmd", output_format = "pdf")
 ```
-
-#### Preview
 
 For iterative work, `quarto_preview()` starts a live preview that updates as you save changes:
 
@@ -482,9 +433,7 @@ quarto_preview("report.qmd")
 quarto_preview_stop()
 ```
 
-#### Rendering with parameters
-
-Pass parameters using the `execute_params` argument:
+You can also pass parameters directly when rendering with `quarto_render()` using the `execute_params` argument:
 
 ```r
 quarto_render(
@@ -498,13 +447,11 @@ quarto_render(
 You can render R scripts (`.R` files) directly with Quarto, without converting them to `.qmd` files first.
 This uses syntax based on `knitr::spin()`.
 
-#### Script syntax
-
 - Lines starting with `#'` are treated as markdown
 - Lines starting with `#|` are code cell options
 - All other lines are R code
 
-Here's an example script:
+Here's an example script that includes both markdown and code cells:
 
 ```{.r filename="analysis.R"}
 #' ---
@@ -532,9 +479,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   theme_minimal()
 ```
 
-#### Rendering scripts
-
-Render the script just like a `.qmd` file:
+You can render the script just like a `.qmd` file:
 
 ```bash
 quarto render analysis.R
@@ -544,8 +489,6 @@ quarto preview analysis.R
 This approach is useful when you want to keep your analysis as a plain R script that can also be sourced or run interactively.
 
 ## Environment {#sec-r-environment}
-
-This section covers how Quarto interacts with your R installation and how to troubleshoot issues that arise from environment differences.
 
 ### How Quarto finds R {#sec-quarto-finds-r}
 
@@ -577,30 +520,28 @@ If the R path shown doesn't match what you expect, that's likely the source of a
 
 When Quarto renders a document, it starts a fresh R session.
 This session might use a different R installation or library paths than what you use interactively.
+In particular, packages you've installed in your interactive session may not be available if the rendering session uses different library paths, and environment variables like `PATH` may also differ.
 
-Create a code cell that outputs your session information:
+Add a code cell to your document that outputs your session information:
 
 ```{{r}}
+#| eval: false
 sessionInfo()
 .libPaths()
 ```
 
-For more detailed diagnostics, use the **sessioninfo** package:
+This will show the R version and the library paths used during rendering.
+For more detailed diagnostics, use the [**sessioninfo**](https://sessioninfo.r-lib.org/) package:
 
 ```{{r}}
 #| eval: false
 sessioninfo::session_info(to_file = "quarto-session-info.txt")
 ```
 
-Then compare this output with your interactive R session to identify discrepancies.
+Compare either output with your interactive R session to identify discrepancies.
+If library paths differ, that explains missing packages; if the R version differs, see @sec-quarto-finds-r for how to control which R installation Quarto uses.
 
-### Common issues {#sec-common-issues-r}
-
-- **Different R version**: Quarto may find a different R installation than expected
-- **Missing packages**: The library paths Quarto uses may not include packages you've installed
-- **PATH issues**: Environment variables may differ between your shell and Quarto's execution environment
-
-### Using multiple languages {#sec-multiple-languages}
+## Multiple languages {#sec-multiple-languages}
 
 While this chapter focuses on R, Quarto documents can include code cells from multiple languages.
 Each language runs in its own separate session---objects created in R are not directly accessible from Python, and vice versa.
@@ -621,7 +562,7 @@ For example, you might use R for statistical modeling and Python for certain vis
 ## Sharing data between languages
 
 To share data between R and Python cells, save intermediate results to files (e.g., CSV, Parquet) and read them in the other language.
-For tighter integration, consider the **reticulate** package, which allows R and Python to share objects directly.
+For tighter integration, consider the [**reticulate**](https://rstudio.github.io/reticulate/) package, which allows R and Python to share objects directly.
 :::
 
 If your document contains only R code cells, Quarto uses the knitr engine.
