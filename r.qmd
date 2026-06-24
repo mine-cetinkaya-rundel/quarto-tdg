@@ -16,7 +16,7 @@ The syntax uses single backticks with `{r}` immediately after the opening backti
 The mean temperature was `{{r}} mean(airquality$Temp)` degrees.
 ```
 
-Typically, you'll compute values in a code cell and then reference them inline:
+We recommend that you avoid complex function calls or operations that do significant work in inline code and instead compute values in a code cell and then reference them inline:
 
 ```{r}
 avg_temp <- mean(airquality$Temp)
@@ -27,13 +27,6 @@ The mean temperature was `{{r}} avg_temp` degrees.
 ```
 
 This renders as: The mean temperature was `r avg_temp` degrees.
-
-::: callout-warning
-## Keep inline code simple
-
-Keep inline expressions limited to simple values pre-computed in code cells.
-Avoid complex function calls or operations that do significant work.
-:::
 
 By default, inline code produces plain text.
 To generate markdown-formatted output, wrap the result in `I()`:
@@ -277,11 +270,12 @@ The knitr engine supports a large set of cell-level options.
   - `comment`: Prefix for output lines (default `"##"`)
 
 - Some are specific to code cells that generate figures:
-  - `fig-cap`: Figure caption
-  - `fig-alt`: Alternative text for accessibility
-  - `fig-align`: Figure alignment: `left`, `center`, or `right`
-  - `fig-dpi`: Figure resolution in dots per inch
-  - `out-width`, `out-height`: Output dimensions
+  - `fig-cap`: Caption
+  - `fig-alt`: Alternative text
+  - `fig-align`: Alignment: `left`, `center`, or `right`
+  - `fig-dpi`: Resolution in dots per inch
+  - `fig-width` and `fig-height`: Figure dimensions in inches
+  - `out-width` and `out-height`: Output dimensions as percentage (80%), pixels (400px), or page metrics (0.5\linewidth)
 
 - Finally, some relate to caching:
   - `cache`: Enable caching for the cell
@@ -313,7 +307,7 @@ You can define parameters in your YAML header using the `params` key:
 title: "Regional Sales Report"
 params:
   region: "North"
-  year: 2024
+  year: 2026
   show_details: true
 ---
 ```
@@ -322,8 +316,6 @@ Parameters can be accessed in code through the `params` list:
 
 ```{{r}}
 #| echo: false
-library(dplyr)
-
 sales_data |>
   filter(region == params$region, year == params$year)
 ```
@@ -479,7 +471,7 @@ Quarto looks for an R installation in the following order:
 
 1. The `QUARTO_R` environment variable, if set
 2. The R executable found on your system `PATH`
-3. Platform-specific default locations (e.g., `/usr/local/bin/R` on macOS, the Windows registry)
+3. Platform-specific default locations (e.g., `/usr/local/bin/R` on macOS)
 
 If Quarto is using a different R than you expect, you can override the lookup by setting `QUARTO_R` to the path of your preferred R binary.
 One way to do this is in a `.env` file in your project directory:
