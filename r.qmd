@@ -10,7 +10,7 @@ Here you'll learn about features specific to R and the knitr engine.
 ### Inline code {#sec-inline-code}
 
 In addition to code cells, you can embed R code directly within your markdown text using inline code.
-Use this to insert computed values into your narrative without manually copying them.
+This allows you to insert computed values into your narrative without manually copying them, which improves the reproducibility of your document.
 
 The syntax uses single backticks with `{r}` immediately after the opening backtick:
 
@@ -55,17 +55,7 @@ For dynamic captions, use the cross-reference div syntax instead (see @sec-cross
 
 ### Data frame printing {#sec-df-print}
 
-Quarto provides the `df-print` option to control how data frames appear in your output.
-In HTML documents, this is particularly useful for enabling interactive tables.
-
-| Option | Description |
-|--------|-------------|
-| `default` | Use the standard S3 print method |
-| `kable` | Render as a markdown table using `knitr::kable()` |
-| `tibble` | Print as plain text tibble |
-| `paged` | Create an interactive HTML table with pagination |
-
-Set this option in your document's YAML header:
+Quarto provides the `df-print` option to control how data frames appear in your output, and it can be set at the document-level in the YAML header:
 
 ```yaml
 ---
@@ -76,7 +66,10 @@ format:
 ---
 ```
 
-The `paged` option is especially useful for exploring data interactively, as it allows readers to page through rows and search within the table.
+The `default` option uses the standard S3 print method, i.e., tables appear as they would in the R console.
+The `tibble` option prints the table as plain text tibble, which is equivalent to wrapping the resulting table with `tibble::tibble()`.
+The `kable` option applies `knitr::kable()` and supports various output formats, including HTML, PDF, and Word.
+In HTML documents, the `paged` option is particularly useful for enabling interactive tables with pagination, allowing interactive perusing of the data.
 
 ### Graphics devices {#sec-graphics-devices}
 
@@ -102,15 +95,13 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point()
 ```
 
-Common choices include:
+Common choices include the following:
 
-| Device | Best for | Notes |
-|--------|----------|-------|
-| `png` | General use (default) | Raster; fast and widely supported |
-| `ragg_png` | Higher-quality PNG | Better text rendering and anti-aliasing; requires the [**ragg**](https://ragg.r-lib.org/) package |
-| `svglite` | Scalable HTML output | Vector format; sharp at any zoom level; requires the [**svglite**](https://svglite.r-lib.org/) package |
-| `cairo_pdf` | PDF with Unicode text | Handles non-Latin characters and special symbols |
-| `pdf` | Standard PDF figures | Default vector device for LaTeX/PDF output |
+- The `png` device is the default. It creates raster images that are fast to generate.
+- The `ragg_png` device creates higher-quality PNG images for better text rendering and anti-aliasing. Generating images figures with this device requires the [**ragg**](https://ragg.r-lib.org/) package.
+- The `svglite` device creates scalable HTML output in vector format. Figures created with this device are sharp at any zoom level and they require the [**svglite**](https://svglite.r-lib.org/) package.
+- The `pdf` device generates figures in standard PDF format. It is the default vector device for LaTeX/PDF output.
+- The `cairo_pdf` device generates figures in PDF format with Unicode text. It is especially useful for handling non-Latin characters and special symbols.
 
 ::: callout-tip
 ## Automatic device selection for PDF
@@ -161,15 +152,15 @@ This produces two side-by-side subfigures, each with its own caption, under a sh
 The individual panels are cross-referenceable as `@fig-mtcars-panels-1` and `@fig-mtcars-panels-2`, while `@fig-mtcars-panels` refers to the group.
 
 Additionally, the `layout-ncol` option controls how many columns the subfigures occupy.
-For more complex arrangements, use the `layout` option to specify custom grids:
+For more complex arrangements, you can use the `layout` option to specify custom grids:
 
 ```{{r}}
 #| label: fig-custom-layout
-#| fig-cap: "Custom layout"
+#| fig-cap: A figure with custom layout
 #| fig-subcap:
-#|   - "Plot A"
-#|   - "Plot B"
-#|   - "Plot C"
+#|   - Plot A
+#|   - Plot B
+#|   - Plot C
 #| layout: [[1,1], [1]]
 plot(1:10)
 plot(10:1)
@@ -242,15 +233,16 @@ execute:
 ---
 ```
 
-Common document-level execution options include:
+Common document-level execution options include the following and take on values `true` or `false`, unless specified otherwise:
 
 - `eval`: Whether to execute code cells
 - `echo`: Whether to display source code
-- `output`: Whether to include results (`true`, `false`, or `asis`)
+- `output`: Whether to include results (can also be set to `asis`)
 - `warning`: Whether to include warnings
 - `error`: Whether to include errors (without halting)
 - `include`: Whether to include any output at all
-- `fig-width` and `fig-height`: Default figure dimensions in inches
+
+Additionally, `fig-width` and `fig-height` can be set at the document level to define default figure dimensions in inches.
 
 #### Knitr-specific options
 
@@ -276,32 +268,27 @@ The original values are restored afterward.
 
 Individual code cells can override document-level settings.
 The knitr engine supports a large set of cell-level options.
-Some commonly used ones include:
 
-**Code appearance:**
+- Some options control code appearance:
+  - `code-fold`: Collapse code into an expandable section
+  - `code-summary`: Text shown for collapsed code (e.g., "Show code")
+  - `code-line-numbers`: Add line numbers to code
 
-- `code-fold`: Collapse code into an expandable section
-- `code-summary`: Text shown for collapsed code (e.g., "Show code")
-- `code-line-numbers`: Add line numbers to code
+- Some control the output:
+  - `results`: How to display text results (`markup`, `asis`, `hold`, `hide`)
+  - `collapse`: Merge code and output into a single block
+  - `comment`: Prefix for output lines (default `"##"`)
 
-**Output control:**
+- Some are specific to code cells that generate figures:
+  - `fig-cap`: Figure caption
+  - `fig-alt`: Alternative text for accessibility
+  - `fig-align`: Figure alignment: `left`, `center`, or `right`
+  - `fig-dpi`: Figure resolution in dots per inch
+  - `out-width`, `out-height`: Output dimensions
 
-- `results`: How to display text results (`markup`, `asis`, `hold`, `hide`)
-- `collapse`: Merge code and output into a single block
-- `comment`: Prefix for output lines (default `"##"`)
-
-**Figures:**
-
-- `fig-cap`: Figure caption
-- `fig-alt`: Alternative text for accessibility
-- `fig-align`: Alignment (`left`, `center`, `right`)
-- `fig-dpi`: Resolution in dots per inch
-- `out-width`, `out-height`: Output dimensions
-
-**Caching:**
-
-- `cache`: Enable caching for the cell
-- `dependson`: Specify cells this one depends on
+- Finally, some relate to caching:
+  - `cache`: Enable caching for the cell
+  - `dependson`: Specify cells this one depends on
 
 For a complete list of knitr cell options, see the [Quarto reference](https://quarto.org/docs/reference/cells/cells-knitr.html).
 
@@ -355,7 +342,7 @@ It is also possible to override parameters from the command line using the `-P` 
 quarto render report.qmd -P region:South -P year:2025
 ```
 
-For multiple parameter sets, create a YAML file with the values:
+For multiple parameter sets, you can create a YAML file with the values:
 
 ```{.yaml filename="params-south.yml"}
 region: "South"
@@ -424,7 +411,7 @@ quarto_render("report.qmd")
 quarto_render("report.qmd", output_format = "pdf")
 ```
 
-For iterative work, `quarto_preview()` starts a live preview that updates as you save changes:
+Alternatively, you can use `quarto_preview()` to start a live preview that updates as you save changes, which is useful for iterative work:
 
 ```r
 quarto_preview("report.qmd")
@@ -513,7 +500,22 @@ To see which R installation Quarto is currently using, run `quarto check` from t
 quarto check knitr
 ```
 
-The output includes the detected R version and path, along with the knitr and rmarkdown package versions.
+The output will include the detected R version and path, along with the knitr and rmarkdown package versions, e.g.:
+
+```bash
+Quarto 1.10.3
+[✓] Checking R installation...........OK
+      Version: 4.6.0
+      Path: /Library/Frameworks/R.framework/Resources
+      LibPaths:
+        - /Users/mine/Library/R/arm64/4.6/library
+        - /Library/Frameworks/R.framework/Versions/4.6/Resources/library
+      knitr: 1.51
+      rmarkdown: 2.31
+
+[✓] Checking Knitr engine render......OK
+```
+
 If the R path shown doesn't match what you expect, that's likely the source of any "package not found" or version mismatch issues.
 
 ### Diagnosing environment issues {#sec-diagnosing-env}
