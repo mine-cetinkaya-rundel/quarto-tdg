@@ -3,4 +3,4 @@ _book/
 .Rproj.user
 /env/
 
-**/*.quarto_ipynb
+**/*.quarto_ipynb*
