@@ -2,7 +2,8 @@
 
 In addition to long-form documents, you can also use Quarto to create presentations.
 
-Quarto supports three main presentation formats. @tbl-pres-formats summarizes these formats and their use cases.
+Quarto supports three main presentation formats
+@tbl-pres-formats summarizes these formats and their use cases.
 
 | Format | Output | Use Case |
 |--------|--------|----------|
@@ -58,7 +59,9 @@ The title slide is auto-generated from YAML metadata:
 
 If you prefer to skip automatic title slide generation, you can omit `title` and `author` fields.
 
-By default, the title slide is centered while all other slides are top-aligned. To disable centering on the title slide, set `center-title-slide: false`. For full control, you can replace the title slide entirely by supplying a custom `title-slide.html` template partial:
+By default, the title slide is centered while all other slides are top-aligned. 
+To disable centering on the title slide, set `center-title-slide: false`. 
+For full control, you can replace the title slide entirely by supplying a custom `title-slide.html` template partial:
 
 ````{.yaml filename="title-slide.qmd" .code-overflow-wrap}
 ---
@@ -188,7 +191,8 @@ format:
 
 ### Image sizing
 
-When a slide contains a single top-level image, Quarto's `auto-stretch` feature automatically expands it to fill the remaining vertical space (see [Image size] for details on how this applies to computational figures). For manual control, use `.r-stretch` on an image to opt in to the same behavior:
+When a slide contains a single top-level image, Quarto's `auto-stretch` feature automatically expands it to fill the remaining vertical space (see [Image size] for details on how this applies to computational figures). 
+For manual control, use `.r-stretch` on an image to opt in to the same behavior:
 
 ``` markdown
 ## Slide title
@@ -198,7 +202,8 @@ Some introductory text.
 ![](my-image.png){.r-stretch}
 ```
 
-Note that `.r-stretch` only applies to non-nested images. Images inside columns, fragments, or other custom divs are ignored unless you add `.r-stretch` to the outer div explicitly.
+Note that `.r-stretch` only applies to non-nested images. 
+Images inside columns, fragments, or other custom divs are ignored unless you add `.r-stretch` to the outer div explicitly.
 
 ### Embedding media
 
@@ -258,7 +263,8 @@ Reveal provides several utility classes for positioning and sizing content on sl
 
 #### Absolute positioning
 
-The `.absolute` class places elements at exact positions on a slide. Specify `top`, `left`, `bottom`, and/or `right` along with optional `width` and `height` (values without units are treated as pixels):
+The `.absolute` class places elements at exact positions on a slide. 
+Specify `top`, `left`, `bottom`, and/or `right` along with optional `width` and `height` (values without units are treated as pixels):
 
 ``` markdown
 ![](image1.png){.absolute top=200 left=0 width="350" height="300"}
@@ -270,7 +276,8 @@ Positions are relative to the slide's coordinate space (1050 × 700 by default; 
 
 #### Stacking
 
-The `.r-stack` class centers multiple elements on top of each other. Combine it with fragments to incrementally reveal layered content:
+The `.r-stack` class centers multiple elements on top of each other. 
+Combine it with fragments to incrementally reveal layered content:
 
 ``` markdown
 ::: {.r-stack}
@@ -404,7 +411,8 @@ This is a statement[^1].
 
 ```
 
-By default, footnotes appear on the slide where they are defined. To instead collect all footnotes at the end of the presentation, use:
+By default, footnotes appear on the slide where they are defined. 
+To instead collect all footnotes at the end of the presentation, use:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
@@ -416,7 +424,8 @@ format:
 
 ## Code
 
-In presentation formats (`revealjs`, `beamer`, `pptx`), Quarto defaults to `echo: false`, so code cells produce output without showing their source. To display the code, set `echo: true` globally in YAML or per cell with `#| echo: true`.
+In presentation formats (`revealjs`, `beamer`, `pptx`), Quarto defaults to `echo: false`, so code cells produce output without showing their source. 
+To display the code, set `echo: true` globally in YAML or per cell with `#| echo: true`.
 
 ### Code blocks
 
@@ -459,7 +468,8 @@ format:
 
 ### Code annotation
 
-Quarto's code annotation feature helps you explain code step-by-step. Add numbered markers in code comments, then provide explanations in a list below:
+Quarto's code annotation feature helps you explain code step-by-step. 
+Add numbered markers in code comments, then provide explanations in a list below:
 
 ````markdown
 ```{.python code-line-numbers="true"}
@@ -474,7 +484,8 @@ df = df.dropna()  # <3>
 3. Remove rows with missing values
 ````
 
-By default, annotations appear as numbered markers that reveal explanations on hover or click. Use `code-annotations` to change this behavior:
+By default, annotations appear as numbered markers that reveal explanations on hover or click. 
+Use `code-annotations` to change this behavior:
 
 ```{.yaml filename="presentation.qmd"}
 ---
@@ -506,7 +517,8 @@ df = pd.read_csv("data.csv")  # <2>
 
 #### Image size
 
-As described in [Image sizing], Quarto's `auto-stretch` feature expands a single top-level figure to fill the remaining vertical space on a slide. This applies to computational output as well.
+As described in [Image sizing], Quarto's `auto-stretch` feature expands a single top-level figure to fill the remaining vertical space on a slide. 
+This applies to computational output as well.
 Disable it globally with `auto-stretch: false` in YAML, or per-slide by adding `.nostretch` to the slide heading.
 
 For explicit control, use `fig-width` and `fig-height` (in inches) to set the physical dimensions of generated figures.
@@ -601,7 +613,9 @@ plt.show()
 
 ### Interactive documents
 
-Presentations can incorporate interactive content using Observable JS or Shiny. This allows you to embed reactive inputs and outputs directly in slides, turning a presentation into a live application. See the [Observable](https://quarto.org/docs/interactive/ojs/) and [Shiny](https://quarto.org/docs/interactive/shiny/) documentation for details.
+Presentations can incorporate interactive content using Observable JS or Shiny. 
+This allows you to embed reactive inputs and outputs directly in slides, turning a presentation into a live application. 
+See the [Observable](https://quarto.org/docs/interactive/ojs/) and [Shiny](https://quarto.org/docs/interactive/shiny/) documentation for details.
 
 An alternative approach is to add an interactive document hosted on Posit Connect or another platform as an iframe.
 
@@ -609,7 +623,8 @@ An alternative approach is to add an interactive document hosted on Posit Connec
 
 ### Slide transitions
 
-Reveal can animate the change between slides. Set a global transition style in YAML:
+Reveal can animate the change between slides. 
+Set a global transition style in YAML:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
@@ -664,7 +679,8 @@ They can also be used to break up revealing bullet points, though we recommend u
 
 ### Incremental lists
 
-By default, list items appear all at once. Enable incremental display globally:
+By default, list items appear all at once. 
+Enable incremental display globally:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
@@ -696,7 +712,8 @@ Or disable incremental for specific lists when globally enabled:
 
 ### Fragments
 
-Fragments provide more granular control over incremental animation than pauses or incremental lists. Any element with the class `fragment` will be stepped through before moving on to the next slide, and you can apply a variety of animation effects:
+Fragments provide more granular control over incremental animation than pauses or incremental lists. 
+Any element with the class `fragment` will be stepped through before moving on to the next slide, and you can apply a variety of animation effects:
 
 ``` markdown
 ::: {.fragment .fade-in}
@@ -720,7 +737,8 @@ Other available fragment classes include `.fade-out`, `.fade-right`, `.fade-down
 
 ### Auto-animate
 
-Quarto can automatically animate elements across adjacent slides. Add the `auto-animate` attribute to two consecutive slides, and Reveal will animate all matching elements between them:
+Quarto can automatically animate elements across adjacent slides. 
+Add the `auto-animate` attribute to two consecutive slides, and Reveal will animate all matching elements between them:
 
 ``` markdown
 ## Slide 1 {auto-animate=true}
@@ -751,7 +769,8 @@ format:
 
 ### Presentation size
 
-Reveal slides default to 1050 × 700 pixels, an aspect ratio close to most laptop screens. Reveal scales content automatically to fit the viewer's display without changing the layout, but you can adjust the base dimensions, the margin around content, and the scaling limits:
+Reveal slides default to 1050 × 700 pixels, an aspect ratio close to most laptop screens. 
+Reveal scales content automatically to fit the viewer's display without changing the layout, but you can adjust the base dimensions, the margin around content, and the scaling limits:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
@@ -769,7 +788,8 @@ Changing `width` and `height` affects the coordinate space for all absolute posi
 
 ### Slide numbers
 
-Enable slide numbers with `slide-number`. Rather than just `true`, you can also specify a format string:
+Enable slide numbers with `slide-number`. 
+Rather than just `true`, you can also specify a format string:
 
 | Value | Display |
 |-------|---------|
@@ -805,7 +825,8 @@ format:
 ---
 ```
 
-Beyond the built-in themes, you can customize any theme using SCSS variables or create entirely new themes. See the [Reveal Themes documentation](https://quarto.org/docs/presentations/revealjs/themes.html) for details.
+Beyond the built-in themes, you can customize any theme using SCSS variables or create entirely new themes. 
+See the [Reveal Themes documentation](https://quarto.org/docs/presentations/revealjs/themes.html) for details.
 
 ### Brand
 
@@ -844,7 +865,7 @@ typography:
 
 Swap `source: google` for `source: bunny` if you'd prefer [Bunny Fonts](https://fonts.bunny.net)---a GDPR compliant alternative to Google Fonts.
 
-If you are using brand.yml across your organization's projects (e.g. for both a website and presentations), you can place `_brand.yml` in a parent directory and it will be found automatically.
+If you are using brand.yml across your organization's projects (e.g., for both a website and presentations), you can place `_brand.yml` in a parent directory and it will be found automatically.
 You can read about all the options available in the [Quarto documentation Guide to using brand.yml](https://quarto.org/docs/authoring/brand.html).
 
 ### Custom CSS
@@ -863,11 +884,13 @@ format:
 ---
 ```
 
-The `theme` option accepts a list, applying styles in order. Place your custom file after the base theme to override its defaults.
+The `theme` option accepts a list, applying styles in order. 
+Place your custom file after the base theme to override its defaults.
 
 #### SCSS variables
 
-RevealJS themes use SCSS variables for key design tokens. Create a `.scss` file to override them:
+RevealJS themes use SCSS variables for key design tokens. 
+Create a `.scss` file to override them:
 
 ```{.scss filename="custom.scss"}
 /*-- scss:defaults --*/
@@ -940,7 +963,9 @@ When presenting, Reveal provides several navigation tools:
 - The slide menu (bottom-left button, or press `M`) lets you jump to any slide and access presentation tools.
 - Jump to Slide (press `G`) opens a modal where you can navigate directly to a slide by number or ID.
 - Overview mode (press `O`) shows a bird's-eye view of all slides.
-- Scroll View is an alternative view that presents slides as a vertically scrolled page rather than a click-through deck. Toggle it by appending `?view=scroll` to the presentation URL, or set it as the default with `scroll-view: true` in YAML. It activates automatically on small screens such as mobile devices.
+- Scroll View is an alternative view that presents slides as a vertically scrolled page rather than a click-through deck. 
+Toggle it by appending `?view=scroll` to the presentation URL, or set it as the default with `scroll-view: true` in YAML. 
+It activates automatically on small screens such as mobile devices.
 
 Enable browser history and disable the progress bar:
 
@@ -967,7 +992,8 @@ format:
 
 ### Chalkboard
 
-The built-in Chalkboard plugin lets you draw on slides during a presentation. Enable it in YAML:
+The built-in Chalkboard plugin lets you draw on slides during a presentation. 
+Enable it in YAML:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
@@ -991,18 +1017,25 @@ format:
 ```
 
 ::: callout-note
-The Chalkboard plugin is not compatible with `embed-resources: true`. Using both will result in an error.
+The Chalkboard plugin is not compatible with `embed-resources: true`. 
+Using both will result in an error.
 :::
 
 ### Other presenting features
 
-- **Slide tone** plays a subtle sound when you change slides---a helpful auditory cue, particularly for presenters who are blind or low-vision. Enable it with `slide-tone: true`.
+- **Slide tone** plays a subtle sound when you change slides---a helpful auditory cue, particularly for presenters who are blind or low-vision. 
+Enable it with `slide-tone: true`.
 
-- **Auto-slide** advances slides on a timer without any user input. Set `auto-slide` to a value in milliseconds (e.g. `auto-slide: 5000` for 5 seconds). Add `loop: true` to repeat the presentation continuously. A play/pause control appears automatically; press `A` to toggle it.
+- **Auto-slide** advances slides on a timer without any user input. 
+Set `auto-slide` to a value in milliseconds (e.g. `auto-slide: 5000` for 5 seconds). 
+Add `loop: true` to repeat the presentation continuously. 
+A play/pause control appears automatically; press `A` to toggle it.
 
-- **Slide zoom** lets you zoom into any element on a slide by holding `Alt` (or `Ctrl`) and clicking on it. Click again to zoom back out.
+- **Slide zoom** lets you zoom into any element on a slide by holding `Alt` (or `Ctrl`) and clicking on it. 
+Click again to zoom back out.
 
-- The **Multiplex** plugin allows your audience to follow along on their own devices as you advance through slides. See the [Presenting Slides documentation](https://quarto.org/docs/presentations/revealjs/presenting.html) for setup instructions.
+- The **Multiplex** plugin allows your audience to follow along on their own devices as you advance through slides. 
+See the [Presenting Slides documentation](https://quarto.org/docs/presentations/revealjs/presenting.html) for setup instructions.
 
 ## Sharing
 
@@ -1010,7 +1043,8 @@ Once your presentation is ready, you can share it as a self-contained HTML file,
 
 ### Self-contained files
 
-By default, a Reveal presentation references external CSS and JavaScript assets. To produce a single portable HTML file, use `embed-resources`:
+By default, a Reveal presentation references external CSS and JavaScript assets. 
+To produce a single portable HTML file, use `embed-resources`:
 
 ``` {.yaml filename="presentation.qmd"}
 ---
@@ -1050,10 +1084,12 @@ format:
 | `pdf-separate-fragments` | `true` | Each fragment step becomes a separate PDF page |
 | `pdf-max-pages-per-slide` | `20` | Maximum pages generated per slide (limits runaway fragment expansion) |
 
-To include speaker notes in the PDF, append `?print-pdf&showNotes=true` to the URL before printing. Alternatively, use `?print-pdf&showNotes=separate-page` to place notes on their own pages after each slide.
+To include speaker notes in the PDF, append `?print-pdf&showNotes=true` to the URL before printing. 
+Alternatively, use `?print-pdf&showNotes=separate-page` to place notes on their own pages after each slide.
 
 ::: callout-note
-The `?print-pdf` view uses a different stylesheet optimized for print. Some visual effects like transitions and animations won't appear in the PDF.
+The `?print-pdf` view uses a different stylesheet optimized for print. 
+Some visual effects like transitions and animations won't appear in the PDF.
 :::
 
 ### Publishing
@@ -1069,7 +1105,8 @@ See the [Publishing HTML documentation](https://quarto.org/docs/output-formats/h
 ::: callout-tip
 ## Positron tip
 
-In Positron, you can also use the Posit Publisher extension to publish directly from Positron. See the [Posit Publisher documentation](https://docs.posit.co/connect/user/publishing-positron-vscode/) for details.
+In Positron, you can also use the Posit Publisher extension to publish directly from Positron. 
+See the [Posit Publisher documentation](https://docs.posit.co/connect/user/publishing-positron-vscode/) for details.
 :::
 
 ## Accessibility
@@ -1078,14 +1115,15 @@ Accessible presentations ensure all audience members can engage with your conten
 
 ### Structure and semantics
 
-Consider using heading levels consistently throughout your presentation, as they define the slide structure for screen readers and other assistive technologies. Keeping slide content concise helps everyone follow along—not just those using assistive technology. You can also improve accessibility by placing content in the order it should be read, ensuring a logical reading order for those who navigate sequentially.
+Consider using heading levels consistently throughout your presentation, as they define the slide structure for screen readers and other assistive technologies. 
+Keeping slide content concise helps everyone follow along—not just those using assistive technologies. 
 
 ### Images and media
 
 You should provide alt text for all images that convey information:
 
 ```markdown
-![A bar chart showing sales growth from 2020 to 2024](chart.png)
+![](chart.png){fig-alt="A bar chart showing sales growth from 2020 to 2024."}
 ```
 
 For decorative images that don't convey information, you can use empty alt text to indicate they should be skipped:
@@ -1098,7 +1136,9 @@ If your presentation includes video or audio content, consider adding captions o
 
 ### Color and contrast
 
-You should maintain sufficient contrast between text and background—WCAG recommends a minimum ratio of 4.5:1 for normal text. Rather than relying on color alone to convey meaning, you can pair color with text labels, patterns, or icons so that color-blind users can distinguish elements. Testing your theme with a contrast checker before presenting helps catch issues early.
+You should maintain sufficient contrast between text and background—WCAG recommends a minimum ratio of 4.5:1 for normal text. 
+Rather than relying on color alone to convey meaning, you can pair color with text labels, patterns, or icons so that color-blind users can distinguish elements. 
+Testing your theme with a contrast checker before presenting can help catch issues early.
 
 ### Navigation aids
 
@@ -1114,7 +1154,8 @@ format:
 ---
 ```
 
-Setting `hash-type: number` creates predictable URLs (`#/3` for slide 3), making it easier for attendees to share or return to specific slides.
+Setting `hash-type: number` creates predictable URLs (`#/3` for slide 3 or `#/2/1` for section 2, slide 1), making it easier for attendees to share or return to specific slides.
+`history: true` pushes each slide change to the browser history, allowing users to navigate back and forth with the browser's back and forward buttons.
 
 ### Slide tone
 
@@ -1130,4 +1171,6 @@ format:
 
 ### Testing
 
-Before presenting, consider navigating your presentation using only the keyboard (arrow keys, Tab, Enter) to verify that all content is reachable. If possible, you can use a screen reader to confirm that slide content is announced correctly and in a logical order. You'll also want to check that all interactive elements—links, tabs, and buttons—are focusable and have appropriate labels.
+Before presenting, consider navigating your presentation using only the keyboard (arrow keys, Tab, Enter) to verify that all content is reachable. 
+If possible, you can use a screen reader to confirm that slide content is announced correctly and in a logical order. 
+You'll also want to check that all interactive elements—links, tabs, and buttons—are focusable and have appropriate labels.
