@@ -10,9 +10,9 @@ Here you'll learn about features specific to R and the knitr engine.
 ### Inline code {#sec-inline-code}
 
 In addition to code cells, you can embed R code directly within your markdown text using inline code.
-This is useful for inserting computed values into your narrative without manually copying them.
+Use this to insert computed values into your narrative without manually copying them.
 
-The syntax uses single backticks with `r` after the opening backtick:
+The syntax uses single backticks with `{r}` immediately after the opening backtick:
 
 ```markdown
 The mean temperature was `{{r}} mean(airquality$Temp)` degrees.
@@ -33,7 +33,7 @@ This renders as: The mean temperature was `r avg_temp` degrees.
 ::: callout-warning
 ## Keep inline code simple
 
-Inline expressions should be confined to simple values that you have pre-computed in code cells.
+Keep inline expressions limited to simple values pre-computed in code cells.
 Avoid complex function calls or operations that do significant work.
 :::
 
@@ -49,14 +49,14 @@ This produces bold text in the rendered output.
 ::: callout-note
 ## Inline code in YAML
 
-Inline code cannot be used directly in YAML strings like titles or figure captions.
+Inline code cannot be used directly in YAML strings, such as titles or figure captions.
 For dynamic captions, use the cross-reference div syntax instead (see @sec-crossreferences).
 :::
 
 ### Data frame printing {#sec-df-print}
 
-Quarto provides the `df-print` option to control how data frames are displayed in your output.
-This is particularly useful in HTML documents where you can enable interactive tables.
+Quarto provides the `df-print` option to control how data frames appear in your output.
+In HTML documents, this is particularly useful for enabling interactive tables.
 
 | Option | Description |
 |--------|-------------|
@@ -80,9 +80,9 @@ The `paged` option is especially useful for exploring data interactively, as it 
 
 ### Graphics devices {#sec-graphics-devices}
 
-When R generates a plot, knitr uses a *graphics device* to save the plot to a file, which is then included in the output.
-The default device is `png`, which works well in most situations.
-However, you may want to change it for better text rendering, scalable output, or PDF compatibility.
+When R generates a plot, knitr uses a *graphics device* to save it to a file, which is then included in the output.
+The default device is `png`, and it works well in most situations.
+You may want to change it to improve text rendering, achieve scalable output, or ensure PDF compatibility.
 
 You can set the graphics device with the `dev` option, either at the document level or for individual cells:
 
@@ -119,7 +119,7 @@ The R option `knitr.graphics.auto_pdf` (shown in @sec-execution-options-r) tells
 This saves you from having to set `dev` differently for each format.
 :::
 
-Additionally, while not knitr-specific, the `fig-format` option is worth knowing about alongside `dev`.
+While not knitr-specific, the `fig-format` option is also worth knowing about alongside `dev`.
 It works across all Quarto engines:
 
 ```yaml
@@ -130,14 +130,14 @@ format:
 ---
 ```
 
-This is a simpler alternative when you just need to change the output file format without customizing the specific graphics device.
-When both `dev` and `fig-format` are set, the `dev` option takes precedence.
+Use this when you only need to change the output file format without customizing the specific graphics device.
+When both `dev` and `fig-format` are set, `dev` takes precedence.
 
 ### Multiple figures from a code cell {#sec-multiple-figures}
 
 A single R code cell can produce multiple plots.
 By default, each plot appears as a separate figure in the output.
-You can arrange them as labeled subfigures using `fig-cap` and `fig-subcap`.
+Use `fig-cap` and `fig-subcap` to arrange them as labeled subfigures.
 
 You can provide `fig-cap` as the overall caption and `fig-subcap` as a list of individual subcaptions:
 
@@ -182,9 +182,9 @@ For a full explanation of the layout syntax, see @sec-layout.
 ### Interactive output {#sec-interactive-output-r}
 
 R has a rich ecosystem of packages that produce interactive HTML output.
-These packages---collectively known as [htmlwidgets](https://www.htmlwidgets.org/)---work in Quarto documents without any special configuration.
-Just load the package and call the function as you would in an interactive R session.
-For example, you can have code cells that produce interactive plots with [plotly](https://plotly.com/r/):
+These packages—collectively known as [htmlwidgets](https://www.htmlwidgets.org/)—work in Quarto documents without any special configuration.
+Load the package and call the function as you would in an interactive R session.
+For example, you can use code cells that produce interactive plots with [plotly](https://plotly.com/r/):
 
 ```{{r}}
 #| eval: false
@@ -217,7 +217,7 @@ You can use `knitr::is_html_output()` (see @sec-conditional-execution) to condit
 ::: callout-note
 ## Widget dependencies and self-contained documents
 
-Each htmlwidget brings its own JavaScript and CSS dependencies.
+Each HTML widget brings its own JavaScript and CSS dependencies.
 In self-contained HTML documents (`embed-resources: true`), these dependencies are bundled into the file, which can increase its size.
 If your document uses many different widget packages, consider using the default non-self-contained output and hosting the result as a directory.
 :::
@@ -412,7 +412,7 @@ This approach gives you access to additional metadata about the rendering contex
 ### Rendering from R {#sec-render-from-r}
 
 The [**quarto**](https://quarto-dev.github.io/quarto-r/) R package provides functions to render documents directly from R, without using the terminal.
-This package is optional---you don't need it to use Quarto with R.
+This package is optional — you don't need it to use Quarto with R.
 It's a convenience for those who prefer working entirely within the R console.
 
 You can use `quarto_render()` to render a document:
