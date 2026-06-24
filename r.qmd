@@ -1,30 +1,423 @@
 # Quarto and R {#sec-r}
 
-```{r}
-1 + 1
+This chapter covers R-specific features when working with Quarto.
+When you include R code cells in your document, Quarto automatically uses the knitr engine to execute them.
+The basics of code cells, including syntax and common options like `echo` and `include`, are covered in @sec-code.
+Here you'll learn about features specific to R and the knitr engine.
+
+## Inline code {#sec-inline-code}
+
+In addition to code cells, you can embed R code directly within your markdown text using inline code.
+This is useful for inserting computed values into your narrative without manually copying them.
+
+The syntax uses single backticks with `r` after the opening backtick:
+
+```markdown
+The mean temperature was `{{r}} mean(airquality$Temp)` degrees.
 ```
 
-assume knitr
+Typically, you'll compute values in a code cell and then reference them inline:
 
-- https://quarto.org/docs/computations/r.html#data-frames -- Is this relevant to other languages or R specific at all? 
+```{r}
+avg_temp <- mean(airquality$Temp)
+```
 
-- figuring out R installation Quarto is seeing: https://quarto.org/docs/troubleshooting/#knitr
+```markdown
+The mean temperature was `{{r}} avg_temp` degrees.
+```
 
-- https://quarto.org/docs/computations/inline-code.html - use in other chapters too, and https://quarto.org/docs/computations/render-scripts.html
+Which renders as: The mean temperature was `r avg_temp` degrees.
 
-- apply at document level: https://quarto.org/docs/computations/execution-options.html
-    - apply at cell level https://quarto.org/docs/reference/cells/cells-knitr.html, and only some of them work at document level (and not all of these work for other engines)
+::: callout-warning
+## Keep inline code simple
 
-end with other combinations of engines and why you might use them -- 2 languages in the same document without embedding and passing objects between languages
+Inline expressions should be confined to simple values that you have pre-computed in code cells.
+Avoid complex function calls or operations that do significant work.
+:::
 
-- Accessing info about your document from your R session: Conditional Execution
+By default, inline code produces plain text.
+To generate markdown-formatted output, wrap the result in `I()`:
 
-- Knitr and R options
+```markdown
+The result is `{{r}} I("**significant**")`.
+```
 
-- Quarto R package -- rendering from code
+This produces bold text in the rendered output.
 
-- https://quarto.org/docs/computations/render-scripts.html#knitr
+::: callout-note
+## Inline code in YAML
 
-- https://quarto.org/docs/computations/execution-options.html#raw-output -- do for python too
+Inline code cannot be used directly in YAML strings like titles or figure captions.
+For dynamic captions, use the cross-reference div syntax instead (see @sec-cross-references).
+:::
 
-- https://quarto.org/docs/computations/parameters.html
+## Data frame printing {#sec-df-print}
+
+Quarto provides the `df-print` option to control how data frames are displayed in your output.
+This is particularly useful in HTML documents where you can enable interactive tables.
+
+| Option | Description |
+|--------|-------------|
+| `default` | Use the standard S3 print method |
+| `kable` | Render as a markdown table using `knitr::kable()` |
+| `tibble` | Print as plain text tibble |
+| `paged` | Create an interactive HTML table with pagination |
+
+Set this option in your document's YAML header:
+
+```yaml
+---
+title: "My Analysis"
+format:
+  html:
+    df-print: paged
+---
+```
+
+The `paged` option is especially useful for exploring data interactively, as it allows readers to page through rows and search within the table.
+
+## Execution options {#sec-execution-options-r}
+
+@sec-code introduced cell-level options like `echo` and `include`.
+Many of these options can also be set at the document level to apply to all code cells.
+
+### Document-level options
+
+Set execution options for the entire document using the `execute` key in your YAML header:
+
+```yaml
+---
+title: "My Report"
+execute:
+  echo: false
+  warning: false
+---
+```
+
+Common document-level execution options include:
+
+- `eval`: Whether to execute code cells
+- `echo`: Whether to display source code
+- `output`: Whether to include results (`true`, `false`, or `asis`)
+- `warning`: Whether to include warnings
+- `error`: Whether to include errors (without halting)
+- `include`: Whether to include any output at all
+- `fig-width` and `fig-height`: Default figure dimensions in inches
+
+### Knitr-specific options
+
+The knitr engine has additional options that you can set using the `knitr` key.
+These map directly to knitr's chunk options:
+
+```yaml
+---
+title: "My Document"
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    R.options:
+      knitr.graphics.auto_pdf: true
+---
+```
+
+The `R.options` setting is particularly useful---it temporarily sets R options via `options()` before each code cell executes, then restores the original values afterward.
+
+### Cell-level options
+
+Individual code cells can override document-level settings.
+The knitr engine supports a large set of cell-level options.
+Some commonly used ones include:
+
+**Code appearance:**
+
+- `code-fold`: Collapse code into an expandable section
+- `code-summary`: Text shown for collapsed code (e.g., "Show code")
+- `code-line-numbers`: Add line numbers to code
+
+**Output control:**
+
+- `results`: How to display text results (`markup`, `asis`, `hold`, `hide`)
+- `collapse`: Merge code and output into a single block
+- `comment`: Prefix for output lines (default `"##"`)
+
+**Figures:**
+
+- `fig-cap`: Figure caption
+- `fig-alt`: Alternative text for accessibility
+- `fig-align`: Alignment (`left`, `center`, `right`)
+- `fig-dpi`: Resolution in dots per inch
+- `out-width`, `out-height`: Output dimensions
+
+**Caching:**
+
+- `cache`: Enable caching for the cell
+- `dependson`: Specify cells this one depends on
+
+For a complete list of knitr cell options, see the [Quarto reference](https://quarto.org/docs/reference/cells/cells-knitr.html).
+
+### Raw markdown output
+
+Sometimes you want your R code to produce raw markdown that Quarto processes directly, rather than being wrapped in output containers.
+Use `output: asis` for this:
+
+```{{r}}
+#| output: asis
+cat("## A Dynamic Heading\n\n")
+cat("This paragraph was generated by R.\n")
+```
+
+This is useful for programmatically generating document structure, such as creating sections in a loop.
+
+## Parameters {#sec-parameters}
+
+Parameters let you create variations of a document without editing the source.
+This is useful for generating reports for different regions, time periods, or scenarios.
+
+### Defining parameters
+
+Define parameters in your YAML header using the `params` key:
+
+```yaml
+---
+title: "Regional Sales Report"
+params:
+  region: "North"
+  year: 2024
+  show_details: true
+---
+```
+
+### Using parameters in code
+
+Access parameters through the `params` list:
+
+```{{r}}
+#| echo: false
+library(dplyr)
+
+sales_data |>
+  filter(region == params$region, year == params$year)
+```
+
+```markdown
+This report covers the `{{r}} params$region` region for `{{r}} params$year`.
+```
+
+### Rendering with different parameter values
+
+Override parameters from the command line using the `-P` flag:
+
+```bash
+quarto render report.qmd -P region:South -P year:2025
+```
+
+For multiple parameter sets, create a YAML file with the values:
+
+```{.yaml filename="params-south.yml"}
+region: "South"
+year: 2025
+show_details: false
+```
+
+Then reference it when rendering:
+
+```bash
+quarto render report.qmd --execute-params params-south.yml
+```
+
+## Conditional execution {#sec-conditional-execution}
+
+Sometimes you need code to behave differently depending on the output format.
+Quarto provides several ways to access format information from your R code.
+
+### Using knitr functions
+
+The knitr package provides functions to check the output format:
+
+```{{r}}
+if (knitr::is_html_output()) {
+ # Code for HTML output only
+}
+
+if (knitr::is_latex_output()) {
+  # Code for PDF output only
+}
+```
+
+You can also check the specific Pandoc output format:
+
+```{{r}}
+knitr::pandoc_to()
+# Returns e.g., "html", "latex", "docx"
+```
+
+### Using Quarto environment variables
+
+For more detailed format information, Quarto sets the `QUARTO_EXECUTE_INFO` environment variable during rendering:
+
+```{{r}}
+info <- jsonlite::fromJSON(Sys.getenv("QUARTO_EXECUTE_INFO"))
+format_name <- info$format$identifier$`base-format`
+
+if (format_name == "html") {
+  # HTML-specific code
+}
+```
+
+This approach gives you access to additional metadata about the rendering context.
+
+## Rendering from R {#sec-render-from-r}
+
+The **quarto** R package provides functions to render documents directly from R, without using the terminal.
+
+### Installation
+
+```r
+install.packages("quarto")
+```
+
+Note that this package is optional---you don't need it to use Quarto with R.
+It's a convenience for those who prefer working entirely within the R console.
+
+### Basic rendering
+
+Use `quarto_render()` to render a document:
+
+```r
+library(quarto)
+
+quarto_render("report.qmd")
+quarto_render("report.qmd", output_format = "pdf")
+```
+
+### Preview
+
+For iterative work, `quarto_preview()` starts a live preview that updates as you save changes:
+
+```r
+quarto_preview("report.qmd")
+
+# When done:
+quarto_preview_stop()
+```
+
+### Rendering with parameters
+
+Pass parameters using the `execute_params` argument:
+
+```r
+quarto_render(
+  "report.qmd",
+  execute_params = list(region = "South", year = 2025)
+)
+```
+
+## Rendering R scripts {#sec-render-scripts}
+
+You can render R scripts (`.R` files) directly with Quarto, without converting them to `.qmd` files first.
+This uses syntax based on `knitr::spin()`.
+
+### Script syntax
+
+- Lines starting with `#'` are treated as markdown
+- Lines starting with `#|` are code cell options
+- All other lines are R code
+
+Here's an example script:
+
+```{.r filename="analysis.R"}
+#' ---
+#' title: "Penguin Analysis"
+#' author: "Your Name"
+#' format: html
+#' ---
+
+#' ## Setup
+
+library(palmerpenguins)
+library(ggplot2)
+
+#' ## Bill Size Analysis
+#'
+#' @fig-bill-sizes shows the relationship between
+#' bill length and depth.
+
+#| label: fig-bill-sizes
+#| fig-cap: "Bill dimensions by species"
+#| warning: false
+
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point() +
+  theme_minimal()
+```
+
+### Rendering scripts
+
+Render the script just like a `.qmd` file:
+
+```bash
+quarto render analysis.R
+quarto preview analysis.R
+```
+
+This approach is useful when you want to keep your analysis as a plain R script that can also be sourced or run interactively.
+
+## Troubleshooting your R environment {#sec-troubleshooting-r}
+
+When Quarto renders a document, it starts a fresh R session.
+This session might use a different R installation or library paths than what you use interactively.
+
+### Diagnosing environment issues
+
+Create a code cell that outputs your session information:
+
+```{{r}}
+sessionInfo()
+.libPaths()
+```
+
+For more detailed diagnostics, use the **sessioninfo** package:
+
+```{{r}}
+#| eval: false
+sessioninfo::session_info(to_file = "quarto-session-info.txt")
+```
+
+Then compare this output with your interactive R session to identify discrepancies.
+
+### Common issues
+
+- **Different R version**: Quarto may find a different R installation than expected
+- **Missing packages**: The library paths Quarto uses may not include packages you've installed
+- **PATH issues**: Environment variables may differ between your shell and Quarto's execution environment
+
+Use `quarto check` from the terminal to see which R installation Quarto detects.
+
+## Using multiple languages {#sec-multiple-languages}
+
+While this chapter focuses on R, Quarto documents can include code cells from multiple languages.
+Each language runs in its own separate session---objects created in R are not directly accessible from Python, and vice versa.
+
+```{{r}}
+x <- 42
+```
+
+```{{python}}
+# This cannot access the R variable x
+y = 100
+```
+
+This is useful when you want to use the strengths of different languages in the same document.
+For example, you might use R for statistical modeling and Python for certain visualizations.
+
+::: callout-tip
+## Sharing data between languages
+
+To share data between R and Python cells, save intermediate results to files (e.g., CSV, Parquet) and read them in the other language.
+For tighter integration, consider the **reticulate** package, which allows R and Python to share objects directly.
+:::
+
+If your document contains only R code cells, Quarto uses the knitr engine.
+If it contains only Python cells, it uses Jupyter.
+When both are present, Quarto uses the engine specified in your YAML header, or knitr by default.
