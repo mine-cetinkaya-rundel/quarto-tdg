@@ -58,7 +58,7 @@ format:
 ```
 
 The `default` option uses the standard S3 print method, i.e., tables appear as they would in the R console.
-The `tibble` option prints the table as plain text tibble, which is equivalent to wrapping the resulting table with `tibble::tibble()`.
+The `tibble` option prints the table as a plain text tibble, which is equivalent to wrapping the resulting table with `tibble::tibble()`.
 The `kable` option applies `knitr::kable()` and supports various output formats, including HTML, PDF, and Word.
 In HTML documents, the `paged` option enables interactive tables with pagination.
 
@@ -88,7 +88,7 @@ ggplot(mtcars, aes(x = wt, y = mpg)) +
 
 Common choices include the following:
 
-- The `png` device is the default. It creates raster images that are fast to generate.
+- The `png` device is the default.
 - The `ragg_png` device creates higher-quality PNG images for better text rendering and anti-aliasing. Generating images figures with this device requires the [**ragg**](https://ragg.r-lib.org/) package.
 - The `svglite` device creates scalable HTML output in vector format. Figures created with this device are sharp at any zoom level and they require the [**svglite**](https://svglite.r-lib.org/) package.
 - The `pdf` device generates figures in standard PDF format. It is the default vector device for LaTeX/PDF output.
