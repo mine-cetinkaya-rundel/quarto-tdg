@@ -48,7 +48,7 @@ This produces bold text in the rendered output.
 ## Inline code in YAML
 
 Inline code cannot be used directly in YAML strings like titles or figure captions.
-For dynamic captions, use the cross-reference div syntax instead (TO DO: This needs to be cross-referenced to a section in authoring?).
+For dynamic captions, use the cross-reference div syntax instead (see @sec-crossreferences).
 :::
 
 ## Data frame printing {#sec-df-print}
@@ -474,10 +474,93 @@ quarto preview analysis.R
 
 This approach is useful when you want to keep your analysis as a plain R script that can also be sourced or run interactively.
 
+## Interactive output {#sec-interactive-output-r}
+
+R has a rich ecosystem of packages that produce interactive HTML output.
+These packages---collectively known as [htmlwidgets](https://www.htmlwidgets.org/)---work in Quarto documents without any special configuration.
+Just load the package and call the function as you would in an interactive R session.
+
+### Common htmlwidgets packages
+
+**Interactive plots with plotly:**
+
+```{{r}}
+#| eval: false
+library(plotly)
+library(ggplot2)
+
+p <- ggplot(mtcars, aes(x = wt, y = mpg, color = factor(cyl))) +
+  geom_point()
+
+ggplotly(p)
+```
+
+**Interactive tables with DT:**
+
+```{{r}}
+#| eval: false
+DT::datatable(mtcars, options = list(pageLength = 5))
+```
+
+**Interactive maps with leaflet:**
+
+```{{r}}
+#| eval: false
+library(leaflet)
+
+leaflet() |>
+  addTiles() |>
+  addMarkers(lng = -73.99, lat = 40.73, popup = "New York City")
+```
+
+Other popular htmlwidgets packages include **dygraphs** for time series, **visNetwork** for network graphs, and **reactable** for feature-rich tables.
+
+::: callout-warning
+## HTML-only
+
+Interactive widgets only work in HTML output formats.
+When rendering to PDF or Word, widgets will either produce a static fallback image or an error, depending on the package.
+Use `knitr::is_html_output()` (see @sec-conditional-execution) to conditionally include widgets only in HTML output.
+:::
+
+::: callout-note
+## Widget dependencies and self-contained documents
+
+Each htmlwidget brings its own JavaScript and CSS dependencies.
+In self-contained HTML documents (`embed-resources: true`), these dependencies are bundled into the file, which can increase its size.
+If your document uses many different widget packages, consider using the default non-self-contained output and hosting the result as a directory.
+:::
+
 ## Troubleshooting your R environment {#sec-troubleshooting-r}
 
 When Quarto renders a document, it starts a fresh R session.
 This session might use a different R installation or library paths than what you use interactively.
+
+### How Quarto finds R {#sec-quarto-finds-r}
+
+Quarto looks for an R installation in the following order:
+
+1. The `QUARTO_R` environment variable, if set
+2. The R executable found on your system `PATH`
+3. Platform-specific default locations (e.g., `/usr/local/bin/R` on macOS, the Windows registry)
+
+If Quarto is using a different R than you expect, you can override the lookup by setting `QUARTO_R` to the path of your preferred R binary.
+One way to do this is in a `.env` file in your project directory:
+
+```{.bash filename=".env"}
+QUARTO_R=/opt/R/4.4.0/bin/R
+```
+
+Quarto automatically reads `.env` files in the project root during rendering.
+
+To see which R installation Quarto is currently using, run `quarto check` from the terminal:
+
+```bash
+quarto check knitr
+```
+
+The output includes the detected R version and path, along with the knitr and rmarkdown package versions.
+If the R path shown doesn't match what you expect, that's likely the source of any "package not found" or version mismatch issues.
 
 ### Diagnosing environment issues
 
