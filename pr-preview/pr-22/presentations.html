@@ -423,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>In addition to long-form documents, you can also use Quarto to create presentations.</p>
-<p>Quarto supports three main presentation formats. <a href="#tbl-pres-formats" class="quarto-xref">Table&nbsp;<span>11.1</span></a> summarizes these formats and their use cases.</p>
+<p>Quarto supports three main presentation formats <a href="#tbl-pres-formats" class="quarto-xref">Table&nbsp;<span>11.1</span></a> summarizes these formats and their use cases.</p>
 <div id="tbl-pres-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pres-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1337,7 +1337,7 @@ Figure&nbsp;11.3: Slide with tabbed content
 <span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">monospace</span><span class="kw">:</span><span class="at"> JetBrains Mono</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Swap <code>source: google</code> for <code>source: bunny</code> if you’d prefer <a href="https://fonts.bunny.net">Bunny Fonts</a>—a GDPR compliant alternative to Google Fonts.</p>
-<p>If you are using brand.yml across your organization’s projects (e.g.&nbsp;for both a website and presentations), you can place <code>_brand.yml</code> in a parent directory and it will be found automatically. You can read about all the options available in the <a href="https://quarto.org/docs/authoring/brand.html">Quarto documentation Guide to using brand.yml</a>.</p>
+<p>If you are using brand.yml across your organization’s projects (e.g., for both a website and presentations), you can place <code>_brand.yml</code> in a parent directory and it will be found automatically. You can read about all the options available in the <a href="https://quarto.org/docs/authoring/brand.html">Quarto documentation Guide to using brand.yml</a>.</p>
 </section>
 <section id="custom-css" class="level3" data-number="11.5.5">
 <h3 data-number="11.5.5" class="anchored" data-anchor-id="custom-css"><span class="header-section-number">11.5.5</span> Custom CSS</h3>
@@ -1645,19 +1645,19 @@ Figure&nbsp;11.3: Slide with tabbed content
 <p>Accessible presentations ensure all audience members can engage with your content, regardless of how they consume it.</p>
 <section id="structure-and-semantics" class="level3" data-number="11.8.1">
 <h3 data-number="11.8.1" class="anchored" data-anchor-id="structure-and-semantics"><span class="header-section-number">11.8.1</span> Structure and semantics</h3>
-<p>Consider using heading levels consistently throughout your presentation, as they define the slide structure for screen readers and other assistive technologies. Keeping slide content concise helps everyone follow along—not just those using assistive technology. You can also improve accessibility by placing content in the order it should be read, ensuring a logical reading order for those who navigate sequentially.</p>
+<p>Consider using heading levels consistently throughout your presentation, as they define the slide structure for screen readers and other assistive technologies. Keeping slide content concise helps everyone follow along—not just those using assistive technologies.</p>
 </section>
 <section id="images-and-media" class="level3" data-number="11.8.2">
 <h3 data-number="11.8.2" class="anchored" data-anchor-id="images-and-media"><span class="header-section-number">11.8.2</span> Images and media</h3>
 <p>You should provide alt text for all images that convey information:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="al">![A bar chart showing sales growth from 2020 to 2024](chart.png)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="al">![](chart.png)</span>{fig-alt="A bar chart showing sales growth from 2020 to 2024."}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For decorative images that don’t convey information, you can use empty alt text to indicate they should be skipped:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="al">![](decorative-border.png)</span>{fig-alt=""}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If your presentation includes video or audio content, consider adding captions or transcripts so that all audience members can access the information.</p>
 </section>
 <section id="color-and-contrast" class="level3" data-number="11.8.3">
 <h3 data-number="11.8.3" class="anchored" data-anchor-id="color-and-contrast"><span class="header-section-number">11.8.3</span> Color and contrast</h3>
-<p>You should maintain sufficient contrast between text and background—WCAG recommends a minimum ratio of 4.5:1 for normal text. Rather than relying on color alone to convey meaning, you can pair color with text labels, patterns, or icons so that color-blind users can distinguish elements. Testing your theme with a contrast checker before presenting helps catch issues early.</p>
+<p>You should maintain sufficient contrast between text and background—WCAG recommends a minimum ratio of 4.5:1 for normal text. Rather than relying on color alone to convey meaning, you can pair color with text labels, patterns, or icons so that color-blind users can distinguish elements. Testing your theme with a contrast checker before presenting can help catch issues early.</p>
 </section>
 <section id="navigation-aids" class="level3" data-number="11.8.4">
 <h3 data-number="11.8.4" class="anchored" data-anchor-id="navigation-aids"><span class="header-section-number">11.8.4</span> Navigation aids</h3>
@@ -1674,7 +1674,7 @@ Figure&nbsp;11.3: Slide with tabbed content
 <span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">history</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Setting <code>hash-type: number</code> creates predictable URLs (<code>#/3</code> for slide 3), making it easier for attendees to share or return to specific slides.</p>
+<p>Setting <code>hash-type: number</code> creates predictable URLs (<code>#/3</code> for slide 3 or <code>#/2/1</code> for section 2, slide 1), making it easier for attendees to share or return to specific slides. <code>history: true</code> pushes each slide change to the browser history, allowing users to navigate back and forth with the browser’s back and forward buttons.</p>
 </section>
 <section id="slide-tone" class="level3" data-number="11.8.5">
 <h3 data-number="11.8.5" class="anchored" data-anchor-id="slide-tone"><span class="header-section-number">11.8.5</span> Slide tone</h3>
