@@ -1035,11 +1035,11 @@ Two do the central work: `typst-template.typ` defines an `article()` function th
 ## Partials and templates change over time
 
 We've documented the template and partials as of the time of writing, but they are subject to change as Quarto evolves.
-If you want to view the exact state of the template and partials, you can look at their source code for your version of Quarto in the [`quarto-cli` repo](https://github.com/quarto-dev/quarto-cli/) at <https://github.com/quarto-dev/quarto-cli/tree/v1.10.11/src/resources/formats/typst/pandoc/quarto> replacing `v1.10.11` with your version of Quarto.
+If you want to view the exact state of the template and partials, you can look at their source code for your version of Quarto in the [`quarto-cli` repo](https://github.com/quarto-dev/quarto-cli/) at <https://github.com/quarto-dev/quarto-cli/tree/v1.10.11/src/resources/formats/typst/pandoc/quarto>, replacing `v1.10.11` with your version of Quarto.
 
 :::
 
-It's best practice to start by editing partials, and only if you can't get what you need override the complete template.
+It's best practice to start by editing partials, and only if you can't get what you need, override the complete template.
 A complete discussion of editing partials and templates is beyond the scope of this book, but to give you a feel for how this kind of customization works, we'll walk through a small example of adding a running header to every page of a document.
 
 In Typst a page header is a parameter of the `page()` function. 
@@ -1083,7 +1083,7 @@ For example `$papersize$` is replaced with the value you set for `papersize` in 
 Essentially, this chunk is setting any `page()` parameters you've specified as document options, and setting default values if you haven't.
 
 To add a header we need to call `page()` with a `header` argument anywhere after this chunk, but before the call to `article()` in `typst-show.typ`.
-It makes sense to do this in `page.typ`, since page setup is nominally its job, and doing so means we don't need to track updates to the more complicated `typst-show.typ`, and `typst-template.typ` partials.
+It makes sense to do this in `page.typ`, since page setup is nominally its job, and doing so means we don't need to track updates to the more complicated `typst-show.typ` and `typst-template.typ` partials.
 
 To do so, you can copy the default `page.typ` into your project, then append this additional `#set page()` call to the bottom of the file:
 
@@ -1094,7 +1094,7 @@ To do so, you can copy the default `page.typ` into your project, then append thi
 ```
 
 Notice this addition directly references `$title$`.
-This pulls in the `title` you've set in the document header and means changes to `title` will automatically propagate to our page header.
+This pulls in the `title` you've set in the document header, so changes to `title` will automatically propagate to our page header.
 
 To have Quarto use this custom partial, set the `template-partials` document option to point at your edited copy of `page.typ`:
 
@@ -1115,7 +1115,7 @@ You can read more about building Typst format extensions in the [Quarto document
 ## Wrapping Up
 
 In this chapter, you created your first PDF with `format: typst`, then worked through the types of content you'll most often use: navigation, links, citations, math, code blocks, and computational outputs.
-You saw how to make a PDF accessible by targeting the PDF/UA-1 standard, and how to customize its appearance through document options, and brand.
+You saw how to make a PDF accessible by targeting the PDF/UA-1 standard, and how to customize its appearance through document options and brand.
 When you need further customization, you can use `set` and `show` rules in raw Typst blocks, and template partials.
 
 There's plenty more you can do with `format: typst` that we didn't cover. Two more worth knowing about:
@@ -1123,6 +1123,6 @@ There's plenty more you can do with `format: typst` that we didn't cover. Two mo
 * **Typst books.** This chapter focused on single documents, but Typst output works in Quarto [books](https://quarto.org/docs/books/) too.
 
 * **Prebuilt templates.** The community publishes Typst formats, such as journal article templates, that you can add to your project with `quarto use template`. 
-A good place to look for them are on [Quarto's format listing](https://quarto.org/docs/extensions/listing-formats.html) and the community run [Quarto extensions listing](https://m.canouil.dev/quarto-extensions/).
+A good place to look for them is on [Quarto's format listing](https://quarto.org/docs/extensions/listing-formats.html) and the community-run [Quarto extensions listing](https://m.canouil.dev/quarto-extensions/).
 
 We only covered a subset of the document options available for `format: typst`. For the full set, see the [Typst format reference](https://quarto.org/docs/reference/formats/typst.html) in the Quarto documentation.
