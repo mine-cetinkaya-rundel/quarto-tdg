@@ -837,10 +837,12 @@ format:
 ::: {.callout-warning}
 ## Coordinate code backgrounds with syntax highlighting
 
-Each theme you can pick from  `syntax-highlighting`  is tuned for either a light or dark background. 
-To maintain sufficient contrast between your code and its background, make sure you pick a dark-tuned syntax highlighting theme when using a dark code background.
+Highlighting themes you set in `syntax-highlighting` are designed for either a light or dark background. 
+To maintain sufficient contrast between your code and its background, don't use a theme designed for a light background with a dark background, or vice versa. 
 
-Also be aware that some syntax highlighting themes explicitly set a background color (e.g., `github`), and you cannot alter it via brand.
+The themes `a11y`, `arrow`, `atom-one`, `ayu`, `breeze`, `github`, and `gruvbox` all have a dark variant, which you can select by appending `-dark` to the theme name.
+
+Be aware that some syntax highlighting themes explicitly set a background color (e.g., `github`), and you cannot alter it via brand.
 :::
 
 #### Fonts
