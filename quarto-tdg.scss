@@ -10,6 +10,12 @@ $font-size-root: 18px !default;
   @extend .rounded;
 }
 
+.rendered {
+  @extend .p-2;
+  @extend .border;
+  @extend .rounded;
+}
+
 .sidebar-title {
   color: #39729E;
 }
