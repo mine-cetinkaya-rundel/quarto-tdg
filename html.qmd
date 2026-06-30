@@ -1,6 +1,192 @@
 # HTML {#sec-html}
 
-## Self-contained HTML {#sec-sharing-other-ways}
+## Overview
+
+::: todo
+[CVW] Why HTML: Quarto's *default* format; web-native, interactive, reflows to any
+screen, generally the *most accessible* format. When to choose HTML vs PDF
+(cross-ref @sec-typst). Scope note: this chapter is single HTML documents;
+multi-page sites are covered in @sec-websites.
+:::
+
+## Your first HTML document {#sec-html-first-document}
+
+::: todo
+[CVW] `format: html` (note it's the default). Minimal complete example + render /
+preview. Example file and screenshot TBD. Talk about serving vs. viewing HTML. 
+:::
+
+## HTML is responsive and interactive
+
+::: todo
+[CVW] Give general sense of how HTML is more adaptive, responsive and interactive.
+Preview features like: responsive layout, hover effects for citations/cross-references/footnotes, interactive showing/hiding of code, callouts, tabsets etc. 
+:::
+
+## Navigation
+
+### Table of contents
+
+::: todo
+[CVW] `toc`, `toc-location`, `toc-depth`; the floating on-this-page TOC as an HTML
+strength. Mention section anchors.
+:::
+
+### Links
+
+### Cross References
+
+### Other navigational elements
+
+::: todo
+[CVW] Grab what is relevant from the table in the corresponding section of Websites. E.g. Other formats, Code links, Other links, GitHub links. 
+:::
+
+
+## Code blocks
+
+::: todo
+[CVW] HTML reader tools: copy button (default), `code-fold`, `code-tools`, syntax
+highlighting incl. adaptive/dark, line numbers, filename, code annotation. Link to HTML code blocks docs.
+:::
+
+## Tabsets
+
+::: todo
+[CVW] HTML-specific interactive panels (`::: panel-tabset`).
+:::
+
+## Mathematical equations
+
+::: todo
+[CVW] MathJax by default; note KaTeX/alternatives, link to docs.
+:::
+
+## Citations and references
+
+::: todo
+[CVW] Full section (mirrors Typst Citations): bibliography, `csl`, in-text
+citations, reference list. Note HTML's hover reference popups come free, link to
+docs for styling.
+:::
+
+### Computational outputs
+
+### Figures
+
+::: todo
+[CVW] Default formats, interactive options.
+:::
+
+### Tables
+
+::: todo
+[CVW] `df-print`, scrolling/paging for long tables. Interactive options.
+:::
+
+### Widgets
+
+::: todo
+[CVW] Interactive HTML widgets ?
+:::
+
+## Page layout and margin content
+
+::: todo
+[CVW] Article layout: full-width (`.column-page`) and margin content
+(`.column-margin`), margin figures/notes, sidenotes. Parallels Typst's
+full-width/margin section. Keep curated.
+:::
+
+## Raw HTML
+
+::: todo
+[CVW] The escape hatch when markdown isn't enough — parallels Typst's "Raw Typst
+blocks". Raw HTML blocks (` ```{=html} `) and inline raw HTML; passes straight
+through and is ignored by non-HTML formats. Common uses: embedding an iframe,
+widget, or custom element. Caution: raw HTML bypasses Quarto processing, so
+accessibility (alt text, semantic markup, contrast) is on you — tie back to
+@sec-html-accessibility. Link to the Pandoc/raw-content docs.
+:::
+
+## Defaults worth knowing
+
+::: todo
+[CVW] Behaviours HTML enables by default: citation/cross-ref hover popups,
+external-link icons, anchor-on-hover section links, smooth scrolling, code copy.
+State they're on by default; link to html-basics docs for toggling/customizing.
+(Absorbs the small "appearance" items so they don't each get a section.)
+:::
+
+## Making accessible HTML {#sec-html-accessibility}
+
+::: todo
+[CVW] HTML is generally the most accessible format. Practical best practices:
+semantic headings, alt text, color contrast, descriptive link text, table headers.
+The `axe: true` checker (axe-core): enabling it, `document`/`json`/`console`
+output, using it inside a debug profile to avoid shipping reports. Link to the
+html-accessibility docs. When axe flags a contrast violation, point forward to
+@sec-html-customizing-appearance for the CSS/SCSS fix.
+:::
+
+## Customizing appearance {#sec-html-customizing-appearance}
+
+::: todo
+[CVW] Abbreviated, for a first *single* HTML document (document-level YAML, not
+`_quarto.yml`). The comprehensive treatment lives in @sec-websites-theme; this
+section just gets readers started and links forward. Intro: three-tier escalation
+(built-in theme → brand → CSS/SCSS), scoped to one document. State up front that
+dark mode, combining brand with a built-in theme, and the role of Bootstrap are
+covered in @sec-websites-theme. This section also covers styling the title (header)
+block.
+:::
+
+### Built-in themes
+
+::: todo
+[CVW] Set `theme:` in the document's `format: html` block; mention the default
+theme; Bootswatch as the gallery (link to bootswatch.com). Forward-ref
+@sec-websites-theme for applying site-wide and the light/dark toggle.
+:::
+
+### brand.yml
+
+::: todo
+[CVW] `_brand.yml` for custom colors (`background`, `foreground`, `primary`, plus
+`link`) and fonts (`base`, `headings`, `monospace` via Google/Bunny). Include the
+code-color note (`monospace-inline`/`monospace-block`) since changing `background`
+affects code-block contrast — bridges to accessibility. Link to the brand.yml docs
+and @sec-websites-theme for dark brands and layering with a theme.
+:::
+
+### Custom CSS and SCSS
+
+::: todo
+[CVW] Deliberately abbreviated, anchored on *fixing a contrast problem flagged by
+`axe`*. One sentence on CSS vs SCSS, the two injection points (`css` and `theme`),
+then a single worked example bumping a low-contrast link/text color to pass the
+check — cross-ref back to @sec-html-accessibility. Forward-link to @sec-websites-theme
+(Adding CSS or SCSS) and the html-themes Sass-variables docs for everything deeper,
+including Bootstrap.
+:::
+
+### Title block
+
+::: todo
+[CVW] The header block at the top of an HTML doc. VERIFY the exact field list
+against the quarto-cli *source* (the HTML title-block template/partial), not the
+docs. Tentative default-block fields to confirm: `title`, `subtitle`, `author`
+(with `affiliation`, `orcid`/`email`/`url`), `date`, `doi`, `abstract`; banner
+style adds `description` and `categories`; broader scholarly fields (`keywords`,
+`funding`, `copyright`, `license`, `citation`) likely aren't in the default top
+block. HTML-specific styling: `title-block-banner` (a color or image banner) and
+`title-block-style`. Connect back to @sec-html-first-document, where the default
+block first appears. Link to the front-matter and title-block docs for readers.
+:::
+
+## Sharing
+
+### Self-contained HTML {#sec-sharing-other-ways}
 
 You can share self-contained output files like PDFs or MS Word documents in any usual way: by email, placing on a shared drive, or using cloud storage.
 You can do the same with other output files but you need to be careful to also share any dependencies of those files.
@@ -31,6 +217,21 @@ format:
 ---
 ```
 
-## Share a directory
+### Share a directory
 
 Another option for HTML output is to use a project, set an output directory (`output-dir`), render and share the entire directory.
+
+### `quarto publish`
+
+::: todo
+[CVW] Brief: Quarto Pub, GitHub Pages, Netlify, Posit Connect; link to the
+html-publishing docs. Website publishing covered in @sec-website-publish / @sec-ci.
+:::
+
+## Wrapping up
+
+::: todo
+[CVW] Pointers: @sec-websites (multi-page sites), @sec-authoring (cross-format
+features), and relevant Quarto docs. 
+Things we haven't talked about: Commenting, 
+:::
