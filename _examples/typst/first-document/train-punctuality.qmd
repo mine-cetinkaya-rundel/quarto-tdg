@@ -1,0 +1,30 @@
+---
+title: "Route Punctuality Report"
+author: "Dr. Sarah Okonkwo"
+format: typst
+---
+
+## On-time performance
+
+@tbl-punctuality shows the on-time rate for six routes during Q4, broken down by peak and off-peak services.
+
+| Route             | Peak (%) | Off-peak (%) |
+|:------------------|:--------:|:------------:|
+| Central–North     | 82       | 91           |
+| Central–East      | 78       | 88           |
+| Harbour–Airport   | 71       | 85           |
+| West Loop         | 88       | 94           |
+| Coastal Express   | 65       | 79           |
+| University Line   | 90       | 96           |
+
+: On-time rates by route and service period {#tbl-punctuality}
+
+Off-peak services consistently outperform peak services across all routes, with the Coastal Express showing the largest gap.
+
+## Recommendations
+
+Based on the results in @tbl-punctuality:
+
+- Investigate causes of delays on the Coastal Express and Harbour–Airport routes
+- Review peak-hour scheduling on Central–East to close the gap with off-peak performance
+- Use the University Line and West Loop as benchmarks for network-wide improvement

@@ -1,0 +1,22 @@
+---
+# screenshot: full-page
+# Same as columns.qmd, but widens the gap between the two body columns with a
+# raw `#set columns(gutter: ...)` rule (Quarto has no YAML option for it).
+format:
+  typst:
+    papersize: us-letter
+    margin:
+      top: 0.75in
+      bottom: 0.75in
+      left: 0.6in
+      right: 0.6in
+    columns: 2
+    page-numbering: ""
+---
+
+```{=typst}
+#set columns(gutter: 2cm)
+#block(fill: rgb("#d6d6d6"), width: 100%, height: 9.5in, radius: 1pt)
+#colbreak()
+#block(fill: rgb("#d6d6d6"), width: 100%, height: 6in, radius: 1pt)
+```

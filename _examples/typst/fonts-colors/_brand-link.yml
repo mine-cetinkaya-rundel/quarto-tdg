@@ -1,0 +1,8 @@
+color:
+  background: "#fdf6e3"
+  foreground: "#073642"
+  primary: "#b58900"
+typography:
+  link:
+    color: "#2e5090"
+    decoration: underline

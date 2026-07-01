@@ -1,0 +1,76 @@
+---
+format:
+  html: default
+  typst:
+    output-file: all-theorems-typst.pdf
+  revealjs:
+    output-file: all-theorems-revealjs.html
+    slide-level: 4
+  pdf: default
+---
+
+::: {#thm-fund}
+## Fundamental Theorem of Arithmetic
+Every integer greater than 1 has a unique factorization into primes.
+:::
+
+::: {#lem-pigeon}
+## Pigeonhole
+If $n+1$ items are placed in $n$ boxes, some box contains at least two items.
+:::
+
+::: {#cor-prime}
+## Infinitely Many Primes
+There is no largest prime.
+:::
+
+::: {#prp-even}
+## Even Squares
+If $n$ is even, then $n^2$ is divisible by 4.
+:::
+
+::: {#cnj-twin}
+## Twin Prime Conjecture
+There are infinitely many primes $p$ such that $p + 2$ is also prime.
+:::
+
+::: {#alg-euclid}
+## Euclid's Algorithm
+To compute $\gcd(a, b)$, replace $(a, b)$ with $(b, a \bmod b)$ until $b = 0$; the remaining $a$ is the gcd.
+:::
+
+::: {#def-prime}
+## Prime
+A positive integer $p > 1$ is prime if its only positive divisors are 1 and $p$.
+:::
+
+::: {#exm-six}
+## Composite
+$6 = 2 \times 3$, so $6$ is not prime.
+:::
+
+::: {#exr-factor}
+## Factorize
+Find the prime factorization of $360$.
+:::
+
+:::: {.content-hidden when-format="latex"}
+::: {#prf-even}
+## Proof
+Write $n = 2k$; then $n^2 = 4k^2$.
+:::
+::::
+
+::: {.proof}
+Write $n = 2k$; then $n^2 = 4k^2$.
+:::
+
+::: {#rem-largest}
+## Remark
+The infinitude of primes was proved by Euclid around 300 BCE.
+:::
+
+::: {#sol-factor}
+## Solution
+$360 = 2^3 \times 3^2 \times 5$.
+:::

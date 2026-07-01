@@ -355,7 +355,7 @@ You won't usually write HTML syntax by hand, but it is a common output from comp
 Tables are so important in Quarto documents that we dedicate an entire part of this book to them.
 For more details, see @sec-figtab.
 
-### Markdown pipe tables
+### Markdown pipe tables {#sec-markdown-pipe-tables}
 
 The simplest syntax for a table in Quarto markdown is known as the **pipe table**, named because columns are separated by the pipe (`|`) character. 
 A pipe table consists of column headers, a separator row of dashes (`-`) and pipes (`|`), and data rows with pipe-separated cells.
@@ -401,7 +401,7 @@ To include more complicated content in cells, like code blocks or formulas, incl
 {{< include _examples/authoring/tables/list-table-complicated.qmd >}}
 ````
 
-### HTML tables
+### HTML tables {#sec-html-tables}
 
 You can also use HTML to create tables in Quarto documents, regardless of your target format.
 You typically won't write HTML tables by hand---instead, you'll generate them with code cells or import them from other tools.
@@ -488,7 +488,13 @@ To add an identifier, caption, or alternative text use the code cell options `la
 
 ## Mathematical equations {#sec-equations}
 
-You can include formulas and equations in your document using TeX syntax.
+You can include formulas and equations in your document using **TeX math** syntax.
+TeX math is the notation originally developed for the TeX typesetting system.
+It's now the de facto standard across technical writing tools — Wikipedia, scientific journals, Jupyter notebooks, and nearly every markdown processor understand it.
+If you're new to TeX math, the [LaTeX Wikibook's Mathematics chapter](https://en.wikibooks.org/wiki/LaTeX/Mathematics) is a gentle tutorial.
+Not all TeX math constructs are supported, but most of the common ones are. 
+The best way to know whether a particular construct is supported is to render and see.
+
 There are two ways to include math: **inline math**, using single `$`, appears within a line of text; while **display math**, using `$$` appears centered on its own line.
 @tbl-math-examples shows examples of both.
 
@@ -526,6 +532,70 @@ To number and cross-reference a display equation, add an identifier starting wit
 Math syntax examples and their rendered output
 :::
 
+
+### Theorems and proofs {#sec-theorems-proofs}
+
+To get special styling for theorems, proofs, and related blocks, wrap the block in a fenced div with an identifier that uses the appropriate prefix, see @tbl-theorem-prefixes.
+The block is numbered automatically and can be cross-referenced with `@`:
+
+````{.markdown .code-overflow-wrap}
+::: {#thm-pyth}
+## Pythagorean Theorem
+For a right triangle with legs $a$ and $b$ and hypotenuse $c$:
+$$a^2 + b^2 = c^2$$
+:::
+
+The Pythagorean theorem (@thm-pyth) is fundamental to Euclidean geometry.
+````
+
+@tbl-theorem-prefixes lists the available prefixes and the block they produce.
+
+::: {#tbl-theorem-prefixes}
+
+::: {.list-table header-rows=1 widths='1,2' aligns=l,l}
+* - Prefix
+  - Block
+
+* - `thm-`
+  - Theorem
+* - `lem-`
+  - Lemma
+* - `cor-`
+  - Corollary
+* - `prp-`
+  - Proposition
+* - `cnj-`
+  - Conjecture
+* - `alg-`
+  - Algorithm
+* - `def-`
+  - Definition
+* - `exm-`
+  - Example
+* - `exr-`
+  - Exercise
+* - `prf-`
+  - Proof (`format: typst` and `format: html` only)
+* - `rem-`
+  - Remark
+* - `sol-`
+  - Solution
+:::
+
+Identifier prefixes for theorem-like and proof-like blocks.
+:::
+
+The `prf-` prefix isn't supported under `format: pdf` (LaTeX).
+For a cross-format proof, use the class form instead:
+
+````markdown
+::: {.proof}
+Apply Markov's inequality to $(X - \mu)^2$.
+:::
+````
+
+The result is an unnumbered, non-cross-referenceable proof block.
+Similarly, `.remark` and `.solution` classes are available for unnumbered forms of `#rem` and `#sol`.
 
 ## Cross-references {#sec-crossreferences}
 
@@ -1021,7 +1091,7 @@ See the [Quarto documentation](https://quarto.org/docs/authoring/article-layout.
 
 You can also see more examples with figures and tables, including computational outputs in @sec-figtab-layout.
 
-## Raw blocks 
+## Raw blocks {#sec-raw-blocks}
 
 Occasionally, you may need to directly add format specific syntax to your document.
 Raw blocks provide a way to do this that protects their contents from being processed by Quarto, and omits them from formats where they aren't relevant.
