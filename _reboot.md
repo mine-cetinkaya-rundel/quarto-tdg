@@ -12,7 +12,7 @@ A restructured book with progressive depth, plus basic format coverage.
 * Mid-Jan: Existing content restructured
 * Late-Jan: Tools chapter merged in
 * Feb: Opt-in to new quarto markdown syntax (not relevant anymore, 1.9 isn't using it)
-* Late-March/early-April: First draft complete
+* Late-April/early-May: First draft complete
 * Summer: reviews, revisions, final production
 
 ## Target Audience
@@ -36,8 +36,8 @@ New Quarto users who want to learn Quarto systematically. The book takes readers
 | Quarto and Python | [python.qmd](https://quarto-tdg.org/python.html) | 14 | 🔴 Notes only |
 | **Part: Documents** | [part-formats.qmd](https://quarto-tdg.org/part-formats.html) | 2 | Part intro |
 | HTML | [html.qmd](https://quarto-tdg.org/html.html) | 36 | 🔴 Some notes |
-| PDF | [typst.qmd](https://quarto-tdg.org/typst.html) | 2 | 🔴 Placeholder |
-| Presentations | [presentations.qmd](https://quarto-tdg.org/presentations.html) | 56 | 🔶 Started |
+| PDF | [typst.qmd](https://quarto-tdg.org/typst.html) | 2 | ✅ Substantial |
+| Presentations | [presentations.qmd](https://quarto-tdg.org/presentations.html) | 56 | ✅ Substantial |
 | **Part: Mastering Quarto** | [part-going-deeper.qmd](https://quarto-tdg.org/part-going-deeper.html) | 2 | Part intro |
 | Authoring | [authoring.qmd](https://quarto-tdg.org/authoring.html) | 1104 | ✅ Substantial |
 | Projects | [projects.qmd](https://quarto-tdg.org/projects.html) | 579 | ✅ Complete |

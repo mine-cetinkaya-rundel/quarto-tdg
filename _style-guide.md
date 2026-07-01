@@ -288,6 +288,7 @@ Overall figure caption
 - Always include `fig-alt` for accessibility
 - Use descriptive alt text that explains what's shown
 - Store images in `images/` directory
+- Name image files with a chapter prefix: `{chapter}-{description}.png` (e.g., `typst-train-punctuality.png`)
 - Use PNG format for screenshots
 - Include figure captions that can stand alone
 
