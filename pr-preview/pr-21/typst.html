@@ -428,12 +428,12 @@ window.Quarto = {
 
 <section id="overview" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">10.1</span> Overview</h2>
-<p>In this chapter, you’ll learn how to create PDF documents with Quarto. PDF is the right target when you plan to print, need a single self-contained file to share, or care about precise layout of content on “pages”.</p>
-<p>We’ll focus exclusively on creating PDFs via Typst, i.e.&nbsp;<code>format: typst</code>. Typst is a modern typesetting system that comes bundled with Quarto. There are alternatives in Quarto, most notably, <code>format: pdf</code> which creates a PDF via LaTeX. We think for new authors, its both easier to get started, and easier to advance with Typst:</p>
+<p>In this chapter, you’ll learn how to create PDF documents with Quarto. PDF is the right target when you plan to print, need a single self-contained file to share, or care about the precise layout of content on “pages”.</p>
+<p>We’ll focus exclusively on creating PDFs via Typst, i.e., <code>format: typst</code>. Typst is a modern typesetting system that comes bundled with Quarto. There are alternatives in Quarto, most notably, <code>format: pdf</code> which creates a PDF via LaTeX. We think for new authors, it’s both easier to get started and easier to advance with Typst:</p>
 <ul>
 <li><p>Typst comes bundled with Quarto, so getting to your first PDF document requires nothing more than adding <code>format: typst</code>.</p></li>
 <li><p>Typst compiles very quickly, reducing the time it takes to preview your changes.</p></li>
-<li><p>Typst’s scripting language is similar to other languages you may already know (like R and Python) which makes it easier to understand existing templates, and customize your documents.</p></li>
+<li><p>Typst’s scripting language is similar to other languages you may already know (like R and Python), which makes it easier to understand existing templates and customize your documents.</p></li>
 </ul>
 <p>There are situations where LaTeX may be a better fit:</p>
 <ul>
@@ -443,7 +443,7 @@ window.Quarto = {
 <p>If you are in these situations, you may find the <a href="https://quarto.org/docs/output-formats/pdf-basics.htmlv">PDF Basics guide</a> in the Quarto documentation a better place to start.</p>
 <p>Readers who use screen readers and other assistive technologies generally have a smoother experience with HTML (<a href="html.html" class="quarto-xref"><span>Chapter 9</span></a>) than with PDF. If that describes part of your audience — or if accessibility is a primary concern — HTML is often the better target. Accessible PDFs are possible (we’ll cover that in <a href="#sec-pdf-accessibility" class="quarto-xref"><span>Section 10.11</span></a>), but the tooling ecosystem is younger.</p>
 <p>In the next section, you’ll create your first PDF document with <code>format: typst</code>. Then, you’ll cover the types of content you’ll most likely need in your first few documents: navigation, citations, math, code blocks, and computational outputs.</p>
-<p>In <a href="#sec-pdf-accessibility" class="quarto-xref"><span>Section 10.11</span></a> you’ll learn the keys to creating accessible PDFs, and in <a href="#sec-customizing-appearance" class="quarto-xref"><span>Section 10.12</span></a> how to customize the page layout, fonts, and colors of your document.</p>
+<p>In <a href="#sec-pdf-accessibility" class="quarto-xref"><span>Section 10.11</span></a>, you’ll learn the keys to creating accessible PDFs, and in <a href="#sec-customizing-appearance" class="quarto-xref"><span>Section 10.12</span></a>, how to customize the page layout, fonts, and colors of your document.</p>
 <p>Finally, you’ll learn where to head next if you need to go beyond Quarto’s default Typst options.</p>
 </section>
 <section id="your-first-pdf-document" class="level2" data-number="10.2">
@@ -452,7 +452,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> typst</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Here’s a short, but complete example, with some common content types — headings, a table, and cross-references:</p>
+<p>Here’s a short but complete example, with some common content types — headings, a table, and cross-references:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>train-punctuality.qmd</strong></pre>
@@ -488,7 +488,7 @@ window.Quarto = {
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Review peak-hour scheduling on Central–East to close the gap with off-peak performance</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the University Line and West Loop as benchmarks for network-wide improvement</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>To create the PDF, render, either by Previewing in your IDE, or in the terminal:</p>
+<p>To create the PDF, render, either by Previewing in your IDE or in the terminal:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Terminal</strong></pre>
@@ -517,13 +517,13 @@ Figure&nbsp;10.1: The rendered output of <code>train-punctuality.qmd</code>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can try swapping to <code>format: typst</code> in any existing Quarto document. Most markdown features will carry over, but beware of features that introduce interactivity, like code folding, or hover effects, these won’t be supported in PDF because PDF is a static format.</p>
+<p>You can try swapping to <code>format: typst</code> in any existing Quarto document. Most markdown features will carry over, but beware of features that introduce interactivity, like code folding or hover effects; these won’t be supported in PDF because PDF is a static format.</p>
 </div>
 </div>
 </section>
 <section id="navigation" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="navigation"><span class="header-section-number">10.3</span> Navigation</h2>
-<p>PDF documents support links, allowing your readers to quickly navigate your document. To make navigation easier for readers, you can add a table of contents (<code>toc</code>), and section numbers (<code>number-sections</code>) in your document header:</p>
+<p>PDF documents support links, allowing your readers to quickly navigate your document. To make navigation easier for readers, you can add a table of contents (<code>toc</code>) and section numbers (<code>number-sections</code>) in your document header:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>train-punctuality.qmd</strong></pre>
@@ -593,7 +593,7 @@ Figure&nbsp;10.3: Default citation style
 </figcaption>
 </figure>
 </div>
-<p>Citations in <code>format: typst</code> use Typst’s native processing, and consequently, a different default citation style to other Quarto formats. You can specify the citation style with the <code>csl</code> option. Set <code>csl: chicago-author-date</code> to get the same Chicago author-date style as HTML output:</p>
+<p>Citations in <code>format: typst</code> use Typst’s native processing and, consequently, a different default citation style from other Quarto formats. You can specify the citation style with the <code>csl</code> option. Set <code>csl: chicago-author-date</code> to get the same Chicago author-date style as HTML output:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>train-punctuality.qmd</strong></pre>
@@ -649,13 +649,13 @@ Figure&nbsp;10.5: Inline and display math rendered in Typst
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Typst’s has it’s own (non-TeX) math notation, but you won’t need to learn it, because Quarto converts TeX math to Typst math for you. This keeps math portable — the same TeX syntax renders across HTML, Typst and other formats without edits.</p>
+<p>Typst has its own (non-TeX) math notation, but you won’t need to learn it, because Quarto converts TeX math to Typst math for you. This keeps math portable — the same TeX syntax renders across HTML, Typst and other formats without edits.</p>
 </div>
 </div>
 <p>You can read more about writing equations, including cross-referencing, in <a href="authoring.html#sec-equations" class="quarto-xref"><span>Section 12.9</span></a>.</p>
 <section id="sec-typst-math-alt" class="level3" data-number="10.6.1">
 <h3 data-number="10.6.1" class="anchored" data-anchor-id="sec-typst-math-alt"><span class="header-section-number">10.6.1</span> Alt text</h3>
-<p>Alt text makes an equation accessible to screen readers, and is required to meet the PDF/UA-1 standard. You can add alternative text to cross-referenced display equations with an <code>alt=</code> attribute:</p>
+<p>Alt text makes an equation accessible to screen readers and is required to meet the PDF/UA-1 standard (you’ll learn more about this standard in <span class="quarto-unresolved-ref">?sec-accessibility</span>). You can add alternative text to cross-referenced display equations with an <code>alt=</code> attribute:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>equations.qmd</strong></pre>
@@ -690,7 +690,7 @@ Figure&nbsp;10.6: Display equation with alt text
 </section>
 <section id="theorems" class="level3" data-number="10.6.2">
 <h3 data-number="10.6.2" class="anchored" data-anchor-id="theorems"><span class="header-section-number">10.6.2</span> Theorems</h3>
-<p>When you use one Quarto’s theorem environments you’ll get special styling in Typst. To declare a theorem, you wrap it in a fenced div with an identifier that starts with <code>#thm-</code>:</p>
+<p>When you use one of Quarto’s theorem environments, you’ll get special styling in Typst. To declare a theorem, you wrap it in a fenced div with an identifier that starts with <code>#thm-</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>theorem.qmd</strong></pre>
@@ -776,12 +776,12 @@ Figure&nbsp;10.7: Available values for <code>theorem-appearance</code> to style 
 </figcaption>
 </figure>
 </div>
-<p><code>theorem-appearance</code> applies to every type of theorem-like element Quarto recognizes, not just <code>thm-</code>. When you use <code>fancy</code>, <code>clouds</code> or <code>rainbow</code>, different types get different accent colors so you can tell a definition from a theorem at a glance. You can find all the available types in <a href="authoring.html#sec-theorems-proofs" class="quarto-xref"><span>Section 12.9.1</span></a>.</p>
+<p><code>theorem-appearance</code> applies to every type of theorem-like element Quarto recognizes, not just <code>thm-</code>. When you use <code>fancy</code>, <code>clouds</code>, or <code>rainbow</code>, different types get different accent colors so you can tell a definition from a theorem at a glance. You can find all the available types in <a href="authoring.html#sec-theorems-proofs" class="quarto-xref"><span>Section 12.9.1</span></a>.</p>
 </section>
 </section>
 <section id="code-blocks" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="code-blocks"><span class="header-section-number">10.7</span> Code blocks</h2>
-<p>When you include a code block it will get automatic syntax highlighting based on the language you specify. For example, here’s a code block specified as <code>r</code>:</p>
+<p>When you include a code block, it will get automatic syntax highlighting based on the language you specify. For example, here’s a code block specified as <code>r</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
@@ -953,7 +953,7 @@ Figure&nbsp;10.11: Rendered output of the figure cell, with the figure inserted 
 </figcaption>
 </figure>
 </div>
-<p>While most computational outputs render as expected, there a few quirks to be aware of, which we’ll cover the sections below: figure format, table formats and long tables.</p>
+<p>While most computational outputs render as expected, there are a few quirks to be aware of that we’ll cover in the sections below: figure formats, table formats, and long tables.</p>
 <section id="figure-format" class="level3" data-number="10.8.1">
 <h3 data-number="10.8.1" class="anchored" data-anchor-id="figure-format"><span class="header-section-number">10.8.1</span> Figure format</h3>
 <p>Quarto defaults to SVG for computational figures in Typst. SVG is a vector format, so it scales well and looks crisp at any size. However, it can be slow to render when a figure contains many elements, like a busy scatterplot with thousands of points. Set <code>fig-format</code> in the document header to switch default format, e.g.&nbsp;to <code>png</code> for raster output:</p>
@@ -970,7 +970,7 @@ Figure&nbsp;10.11: Rendered output of the figure cell, with the figure inserted 
 </section>
 <section id="table-formats" class="level3" data-number="10.8.2">
 <h3 data-number="10.8.2" class="anchored" data-anchor-id="table-formats"><span class="header-section-number">10.8.2</span> Table formats</h3>
-<p>Any code that produces a markdown, HTML, or raw Typst table will render to a table in your PDF. Often it’s not easy to tell which format you’ve ended up with. The easiest way to check is to add <code>keep-md</code> to your header:</p>
+<p>Any code that produces a markdown, HTML, or raw Typst table will render as a table in your PDF. Often it’s not easy to tell which format you’ve ended up with. The easiest way to check is to add <code>keep-md</code> to your header:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
@@ -982,8 +982,8 @@ Figure&nbsp;10.11: Rendered output of the figure cell, with the figure inserted 
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then examine the table output in the resulting <code>.md</code> file, e.g.&nbsp;<code>report.typst.md</code>.</p>
-<p>For simple tables, code that outputs a markdown table (<a href="authoring.html#sec-markdown-pipe-tables" class="quarto-xref"><span>Section 12.7.1</span></a>), will often be the best choice. Markdown tables are converted to native Typst tables by Quarto, and it will inherit your documents styling, like fonts and colors, so the table will blend with the rest of your document.</p>
-<p>The advantage of HTML tables (<a href="authoring.html#sec-html-tables" class="quarto-xref"><span>Section 12.7.3</span></a>), is that cell-level formatting, like coloring that depends on the data, will be preserved. For example, these code blocks use the <code>gt</code> package in R and <code>great_tables</code> in Python to produce tables with colored cells:</p>
+<p>For simple tables, code that outputs a markdown table (<a href="authoring.html#sec-markdown-pipe-tables" class="quarto-xref"><span>Section 12.7.1</span></a>) will often be the best choice. Markdown tables are converted to native Typst tables by Quarto and inherit your document’s styling, such as fonts and colors, so the table blends with the rest of your document.</p>
+<p>The advantage of HTML tables (<a href="authoring.html#sec-html-tables" class="quarto-xref"><span>Section 12.7.3</span></a>) is that cell-level formatting, such as data-dependent coloring, will be preserved. For example, the following code blocks use the <code>gt</code> package in R and <code>great_tables</code> in Python to produce tables with colored cells:</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content">
@@ -1023,7 +1023,7 @@ Figure&nbsp;10.11: Rendered output of the figure cell, with the figure inserted 
 </div>
 </div>
 </div>
-<p>When rendered to Typst the cell level coloring survives, as shown in <a href="#fig-typst-computational-outputs-tables" class="quarto-xref">Figure&nbsp;<span>10.12</span></a>. However, notice the font is now the <code>gt</code>/<code>great_tables</code> default san-serif font.</p>
+<p>When rendered to Typst, the cell-level coloring survives, as shown in <a href="#fig-typst-computational-outputs-tables" class="quarto-xref">Figure&nbsp;<span>10.12</span></a>. However, notice the font is now the <code>gt</code>/<code>great_tables</code> default san-serif font.</p>
 <div id="fig-typst-computational-outputs-tables" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A table of on-time rates by route with four columns: Route, On time, Total, and On-time rate (%).">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-typst-computational-outputs-tables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1034,13 +1034,13 @@ Figure&nbsp;10.12: A <code>gt</code> table rendered in Typst
 </figcaption>
 </figure>
 </div>
-<p>Most packages that produce HTML tables will have a way to customize the styles in the tables they produce. You’ll need to look into the package documentation to find out how.</p>
-<p>Packages that produce raw Typst tables, may get the best of both worlds, inheriting the document’s fonts and styling, while allowing for cell-level formatting. However, there are currently very few packages that produce raw Typst tables.</p>
+<p>Most packages that produce HTML tables offer a way to customize the styles of the tables they produce. You’ll need to look into the package documentation to find out how.</p>
+<p>Packages that produce raw Typst tables may get the best of both worlds, inheriting the document’s fonts and styling while allowing for cell-level formatting. However, there are currently very few packages that produce raw Typst tables.</p>
 </section>
 <section id="long-tables" class="level3" data-number="10.8.3">
 <h3 data-number="10.8.3" class="anchored" data-anchor-id="long-tables"><span class="header-section-number">10.8.3</span> Long tables</h3>
-<p>When your code creates a very long table, you’ll want it to break across pages, rather than being cut off at the bottom of the page. If you haven’t set <code>label:</code> and <code>tbl-cap:</code>, i.e.&nbsp;it isn’t cross-referenceable, the table will break across pages by default.</p>
-<p>If you have set <code>label:</code> and <code>tbl-cap:</code>, the table won’t be breakable by default, and will overflow the page instead of breaking across it, as shown in <a href="#fig-typst-computational-outputs-long-table-broken" class="quarto-xref">Figure&nbsp;<span>10.13</span></a>.</p>
+<p>When your code creates a very long table, you’ll want it to break across pages, rather than being cut off at the bottom of the page. If you haven’t set <code>label:</code> and <code>tbl-cap:</code>, i.e., it isn’t cross-referenceable, the table will break across pages by default.</p>
+<p>If you have set <code>label:</code> and <code>tbl-cap:</code>, the table won’t be breakable by default and will overflow the page instead of breaking across it, as shown in <a href="#fig-typst-computational-outputs-long-table-broken" class="quarto-xref">Figure&nbsp;<span>10.13</span></a>.</p>
 <div id="fig-typst-computational-outputs-long-table-broken" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A long gt table whose last two rows are cut off at the bottom of the page.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-typst-computational-outputs-long-table-broken-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1131,11 +1131,11 @@ Figure&nbsp;10.15: A blue status badge labelled “Normal” rendered below the 
 </figcaption>
 </figure>
 </div>
-<p>Another good use case for raw blocks is to customize appearance with set and show rules as you’ll see in <a href="#sec-use-show-rules" class="quarto-xref"><span>Section 10.13.1</span></a>.</p>
+<p>Another good use case for raw blocks is to customize appearance with set and show rules, as you’ll see in <a href="#sec-use-show-rules" class="quarto-xref"><span>Section 10.13.1</span></a>.</p>
 </section>
 <section id="sec-typst-full-width-margin" class="level2" data-number="10.10">
 <h2 data-number="10.10" class="anchored" data-anchor-id="sec-typst-full-width-margin"><span class="header-section-number">10.10</span> Full-width or margin content</h2>
-<p>By default, your document content will sit in the body column of your PDF document. Sometimes you may want to break out of that column, and use the full page width, or put content into the right margin.</p>
+<p>By default, your document content will appear in the body column of your PDF. Sometimes you may want to break out of that column and use the full page width, or put content into the right margin.</p>
 <p>Add the <code>.column-margin</code> class to a fenced div to push content into the margin as an aside:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -1216,13 +1216,13 @@ Figure&nbsp;10.18: Extent column classes on a single page
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Both apply to every cross-referenceable table or figure in the document — markdown pipe tables, list tables, and computational outputs alike. Tables and figures without an identifier are unaffected, as are non-cross-referenceable images and tables.</p>
-<p>When you place content outside the default body column, the layout mechanism of your document changes from a simple single body area, to a layout using the Typst <a href="https://typst.app/universe/package/marginalia/">marginalia package</a> to manage the margin allocation. You’ll learn more about managing this layout in <a href="#sec-margin-geometry" class="quarto-xref"><span>Section 10.12.1.5</span></a>.</p>
+<p>When you place content outside the default body column, the layout mechanism of your document changes from a simple single body area to a layout using the Typst <a href="https://typst.app/universe/package/marginalia/">marginalia package</a> to manage the margin allocation. You’ll learn more about managing this layout in <a href="#sec-margin-geometry" class="quarto-xref"><span>Section 10.12.1.5</span></a>.</p>
 </section>
 <section id="sec-pdf-accessibility" class="level2" data-number="10.11">
 <h2 data-number="10.11" class="anchored" data-anchor-id="sec-pdf-accessibility"><span class="header-section-number">10.11</span> Making accessible PDFs</h2>
 <p>Accessibility is about increasing the reach of your documents. A PDF that’s well-structured can be used by more people – like readers who navigate with a screen reader, who zoom to 400%, who can’t tell red from green, or who depend on assistive technology to work through a long document.</p>
-<p>The Web Content Accessibility Guidelines (WCAG) are the most widely accepted standard for what counts as “accessible”. When a regulation says your document must be accessible, it almost always points to these guidelines. However, since the WCAG was written for the web, and is deliberately technology-agnostic, it doesn’t directly map to requirements for PDFs.</p>
-<p>For PDF documents, you’ll more likely be working with a PDF standard. PDF/UA-1 is one such standard, supported by Typst, that translates WCAG into testable rules for PDFs. You can target this standard by setting <code>pdf-standard: ua-1</code> in your document header:</p>
+<p>The Web Content Accessibility Guidelines (WCAG) are the most widely accepted standard for what counts as “accessible”. When a regulation says your document must be accessible, it almost always points to these guidelines. However, since the WCAG was written for the web and is deliberately technology-agnostic, it doesn’t directly map to requirements for PDFs.</p>
+<p>For PDF documents, you’ll be more likely to work with a PDF standard. PDF/UA-1 is one such standard, supported by Typst, that translates WCAG into testable rules for PDFs. You can target this standard by setting <code>pdf-standard: ua-1</code> in your document header:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
@@ -1236,7 +1236,7 @@ Figure&nbsp;10.18: Extent column classes on a single page
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">pdf-standard</span><span class="kw">:</span><span class="at"> ua-1</span></span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>When you do so, your document is marked as targeting this standard, and is checked twice during the rendering process:</p>
+<p>When you do so, your document is marked as targeting this standard and is checked twice during the rendering process:</p>
 <ol type="1">
 <li><p>By Typst itself, when it compiles the <code>.typ</code> to <code>.pdf</code>.</p></li>
 <li><p>By Quarto, which uses veraPDF to validate the resulting <code>.pdf</code> against the PDF/UA-1 standard.</p></li>
@@ -1290,7 +1290,7 @@ Figure&nbsp;10.18: Extent column classes on a single page
 <blockquote class="blockquote">
 <p>PDF/UA-1: 7.1-8: <code>dc:title</code> clearly identifies the document.</p>
 </blockquote>
-<p>The <code>dc:title</code> element is set by <code>title</code> in your document header. Validation can check <code>dc:title</code> is set, but it can’t check it “clearly identifies the document”. As the human, meeting rules that require human judgement is your responsibility.</p>
+<p>The <code>dc:title</code> element is set by <code>title</code> in your document header. Validation can check <code>dc:title</code> is set, but it can’t check it “clearly identifies the document”. As a human, meeting rules that require human judgment is your responsibility.</p>
 </section>
 <section id="meeting-pdfua-1-does-not-mean-your-document-meets-wcag" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="meeting-pdfua-1-does-not-mean-your-document-meets-wcag">Meeting PDF/UA-1 does not mean your document meets WCAG</h4>
@@ -1298,7 +1298,7 @@ Figure&nbsp;10.18: Extent column classes on a single page
 <blockquote class="blockquote">
 <p>WCAG 2.1: 1.4.3 Contrast (Minimum): The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for the following: …</p>
 </blockquote>
-<p>This rule has no PDF/UA-1 equivalent, so you can fully meet all machine and human checkable PDF/UA-1 requirements without meeting WCAG. Some tools can check additional WCAG rules but these are beyond the automated checks you’ll get from Quarto.</p>
+<p>This rule has no PDF/UA-1 equivalent, so you can fully meet all machine- and human-checkable PDF/UA-1 requirements without meeting WCAG. Some tools can check additional WCAG rules but these are beyond the automated checks you’ll get from Quarto.</p>
 </section>
 </section>
 <section id="accessibility-best-practices" class="level3" data-number="10.11.2">
@@ -1306,7 +1306,7 @@ Figure&nbsp;10.18: Extent column classes on a single page
 <p>The following best practices will help you meet most PDF/UA-1 and WCAG AA requirements.</p>
 <section id="use-semantic-structure" class="level4" data-number="10.11.2.1">
 <h4 data-number="10.11.2.1" class="anchored" data-anchor-id="use-semantic-structure"><span class="header-section-number">10.11.2.1</span> Use semantic structure</h4>
-<p>Your resulting PDF needs to tag content based on what it is, not how it looks: a section heading needs to be tagged as a heading not just be big and bold. Quarto’s markdown encourages this naturally — when you write <code>## Recommendations</code>, Quarto knows this is a second-level heading, and it gets tagged as such in the PDF. Be careful not to skip heading levels, e.g.&nbsp;jumping from <code>##</code> to <code>####</code> without an intervening <code>###</code>. Skipping levels can make navigation difficult for screen readers.</p>
+<p>Your resulting PDF needs to tag content based on what it is, not how it looks: a section heading needs to be tagged as a heading, not just be big and bold. Quarto’s markdown encourages this naturally — when you write <code>## Recommendations</code>, Quarto knows it is a second-level heading and tags it as such in the PDF. Be careful not to skip heading levels, e.g., jumping from <code>##</code> to <code>####</code> without an intervening <code>###</code>. Skipping levels can make navigation difficult for screen readers.</p>
 </section>
 <section id="communicate-a-logical-reading-order" class="level4" data-number="10.11.2.2">
 <h4 data-number="10.11.2.2" class="anchored" data-anchor-id="communicate-a-logical-reading-order"><span class="header-section-number">10.11.2.2</span> Communicate a logical reading order</h4>
@@ -1315,7 +1315,7 @@ Figure&nbsp;10.18: Extent column classes on a single page
 <section id="set-required-metadata" class="level4" data-number="10.11.2.3">
 <h4 data-number="10.11.2.3" class="anchored" data-anchor-id="set-required-metadata"><span class="header-section-number">10.11.2.3</span> Set required metadata</h4>
 <p>PDF/UA-1 validation will flag missing required metadata. For example, you must set <code>title</code> in your document header to pass validation.</p>
-<p>Some metadata is filled with default values so you’ll pass validation without setting them. One example is <code>lang</code>, the document language, which is set to <code>en-US</code> by default. If your document is written in a language other than English, set <code>lang</code> appropriately.</p>
+<p>Some metadata is filled with default values, so you’ll pass validation without setting them. One example is <code>lang</code>, the document language, which is set to <code>en-US</code> by default. If your document is written in a language other than English, set <code>lang</code> appropriately.</p>
 </section>
 <section id="provide-alternative-text-for-all-images-and-equations" class="level4" data-number="10.11.2.4">
 <h4 data-number="10.11.2.4" class="anchored" data-anchor-id="provide-alternative-text-for-all-images-and-equations"><span class="header-section-number">10.11.2.4</span> Provide alternative text for all images and equations</h4>
@@ -1327,7 +1327,7 @@ Figure&nbsp;10.18: Extent column classes on a single page
 </section>
 <section id="use-color-choices-that-are-readable" class="level4" data-number="10.11.2.6">
 <h4 data-number="10.11.2.6" class="anchored" data-anchor-id="use-color-choices-that-are-readable"><span class="header-section-number">10.11.2.6</span> Use color choices that are readable</h4>
-<p>No automated check covers color or contrast — these are your responsibility. Foreground and background must have sufficient contrast, both in textual elements (body text, headings, code blocks, syntax highlighting) and in any parts of a figure important for understanding it (points, bars, lines, key icons etc.). Meaning shouldn’t depend on color alone — supplement with labels, patterns, or shape.</p>
+<p>No automated check covers color or contrast — these are your responsibility. Foreground and background must have sufficient contrast, both in textual elements (body text, headings, code blocks, syntax highlighting) and in any parts of a figure important for understanding it (points, bars, lines, key icons, etc.). Meaning shouldn’t depend on color alone — supplement with labels, patterns, or shape.</p>
 </section>
 </section>
 </section>
@@ -1335,7 +1335,7 @@ Figure&nbsp;10.18: Extent column classes on a single page
 <h2 data-number="10.12" class="anchored" data-anchor-id="sec-customizing-appearance"><span class="header-section-number">10.12</span> Customizing appearance</h2>
 <p>While the default appearance of <code>format: typst</code> is great for many “working” documents, you’ll likely need to customize the appearance for published documents.</p>
 <p>In this section, you’ll learn how to customize the page layout (<a href="#sec-typst-page-layout" class="quarto-xref"><span>Section 10.12.1</span></a>) with document options, and fonts and colors with brand.yml (<a href="#sec-typst-fonts-colors" class="quarto-xref"><span>Section 10.12.2</span></a>).</p>
-<p>If none of the techniques in this section reach your needs, you’ll might need the techniques in <a href="#sec-advanced-customization" class="quarto-xref"><span>Section 10.13</span></a>.</p>
+<p>If none of the techniques in this section meet your needs, you might need the techniques in <a href="#sec-advanced-customization" class="quarto-xref"><span>Section 10.13</span></a>.</p>
 <section id="sec-typst-page-layout" class="level3" data-number="10.12.1">
 <h3 data-number="10.12.1" class="anchored" data-anchor-id="sec-typst-page-layout"><span class="header-section-number">10.12.1</span> Page layout</h3>
 <p>You can control some aspects of your page layout by specifying options in your document header. <a href="#fig-typst-page-layout" class="quarto-xref">Figure&nbsp;<span>10.19</span></a> illustrates those that apply regardless of how you lay out your body content: <code>papersize</code>, <code>margin</code>, and <code>page-numbering</code>.</p>
@@ -1677,8 +1677,9 @@ Figure&nbsp;10.25: A dark code block with <code>a11y-dark</code> syntax highligh
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Each theme you can pick from <code>syntax-highlighting</code> is tuned for either a light or dark background. To maintain sufficient contrast between your code and it’s background, make sure you pick a dark-tuned syntax highlighting theme when you use a dark code background.</p>
-<p>Also be aware, some syntax highlighting themes explicitly set a background color (e.g.&nbsp;<code>github</code>) and you can not alter it via brand.</p>
+<p>Highlighting themes you set in <code>syntax-highlighting</code> are designed for either a light or dark background. To maintain sufficient contrast between your code and its background, don’t use a theme designed for a light background with a dark background, or vice versa.</p>
+<p>The themes <code>a11y</code>, <code>arrow</code>, <code>atom-one</code>, <code>ayu</code>, <code>breeze</code>, <code>github</code>, and <code>gruvbox</code> all have a dark variant, which you can select by appending <code>-dark</code> to the theme name.</p>
+<p>Be aware that some syntax highlighting themes explicitly set a background color (e.g., <code>github</code>), and you cannot alter it via brand.</p>
 </div>
 </div>
 </section>
@@ -1729,7 +1730,7 @@ Figure&nbsp;10.27: The color and font settings combined in a single <code>_brand
 </section>
 <section id="sec-advanced-customization" class="level2" data-number="10.13">
 <h2 data-number="10.13" class="anchored" data-anchor-id="sec-advanced-customization"><span class="header-section-number">10.13</span> Advanced customization</h2>
-<p>Most of the time the strategies in <a href="#sec-customizing-appearance" class="quarto-xref"><span>Section 10.12</span></a> will be enough to get a document that meets your needs, but there are limitations to those strategies. When you need to customize something beyond what document options and brand can do, you’ll need to use Typst syntax to achieve your goals.</p>
+<p>Most of the time, the strategies in <a href="#sec-customizing-appearance" class="quarto-xref"><span>Section 10.12</span></a> will be enough to produce a document that meets your needs, but they have limitations. When you need to customize something beyond what document options and brand can do, you’ll need to use Typst syntax to achieve your goals.</p>
 <p>You’ll learn about two approaches in this section:</p>
 <ul>
 <li><p>Using raw Typst blocks in the body of your document to write set and show rules (<a href="#sec-use-show-rules" class="quarto-xref"><span>Section 10.13.1</span></a>)</p></li>
@@ -1771,7 +1772,7 @@ Figure&nbsp;10.28: A running header at the top of the page
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Typst treats <code>#set page()</code> as a page break — the current page finishes, and the new settings take effect on the page that follows. A raw block at the top of your content with <code>#set page()</code> starts a new page after the title block with the new defaults. To reach the first page, override the <code>page.typ</code> partial instead (see <a href="#custom-templates">Custom templates</a>).</p>
+<p>Typst treats <code>#set page()</code> as a page break — the current page ends, and the new settings take effect on the following page. A raw block at the top of your content with <code>#set page()</code> starts a new page after the title block with the new defaults. To reach the first page, override the <code>page.typ</code> partial instead (see <a href="#custom-templates">Custom templates</a>).</p>
 </div>
 </div>
 <p>As another example, the <a href=""><code>par()</code> function</a> is called on every paragraph of text. It has arguments for things like spacing between lines (<code>leading</code>), spacing between paragraphs (<code>spacing</code>), justification (<code>justify</code>) and hanging indents (<code>hanging-indents</code>). You could double the line spacing from the default of <code>0.65em</code> with a set rule on <code>par()</code>:</p>
@@ -1797,7 +1798,7 @@ Figure&nbsp;10.29: Paragraphs with wider line spacing
 </section>
 <section id="show-rules" class="level4" data-number="10.13.1.2">
 <h4 data-number="10.13.1.2" class="anchored" data-anchor-id="show-rules"><span class="header-section-number">10.13.1.2</span> Show rules</h4>
-<p>Show rules allow you to set the defaults for a function within the scope of another. For example, the headings in your document are created with the <a href="https://typst.app/docs/reference/model/heading/"><code>heading()</code> function</a>. The <code>heading()</code> function takes arguments for things like the level of the heading, how it should be numbered etc, but not how it appears. To control the appearance of a heading you use set rules for the appropriate elements inside a show rule on <code>heading()</code>.</p>
+<p>Show rules allow you to set the defaults for a function within the scope of another. For example, the headings in your document are created with the <a href="https://typst.app/docs/reference/model/heading/"><code>heading()</code> function</a>. The <code>heading()</code> function takes arguments for things like the level of the heading, how it should be numbered etc, but not how it appears. To control the appearance of a heading, you use set rules for the appropriate elements inside a show rule on <code>heading()</code>.</p>
 <p>For example, the space above and below a heading is controlled by the <code>above</code> and <code>below</code> parameters of the <a href="https://typst.app/docs/reference/layout/block/"><code>block()</code> function</a>. To increase the space above a heading you use a show rule on <code>heading()</code> combined with a set rule on <code>block</code> which sets the <code>above</code> argument:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -1857,7 +1858,7 @@ Figure&nbsp;10.31: A level-2 Observations heading in italic, between upright lev
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50" data-filename="_brand.yml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">color</span><span class="kw">:</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#2e5090"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>You can access that color in raw Typst blocks with <code>brand-color.primary</code>. For example, you could have only first level headings appear using your primary color, by using a show rule on headings that targets only <code>level: 1</code> with a set rule on <code>text()</code> setting <code>fill</code> to <code>brand-color.primary</code>:</p>
+<p>You can access that color in raw Typst blocks with <code>brand-color.primary</code>. For example, you could have only first-level headings appear using your primary color by using a show rule on headings that targets only <code>level: 1</code> with a set rule on <code>text()</code> setting <code>fill</code> to <code>brand-color.primary</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
@@ -1876,7 +1877,7 @@ Figure&nbsp;10.32: Level 1 headings rendered in the brand primary color, with a 
 </figcaption>
 </figure>
 </div>
-<p>You can also provide custom functions as show rules. These functions take the existing element as input and can return anything, but usually you’ll return a transformed version of the input. As an example, you could place a horizontal rule beneath every heading by returning the original heading followed by a <a href="https://typst.app/docs/reference/visualize/line/"><code>line()</code></a>:</p>
+<p>You can also provide custom functions as show rules. These functions take an existing element as input and can return anything, but you’ll usually return a transformed version of the input. As an example, you could place a horizontal rule beneath every heading by returning the original heading followed by a <a href="https://typst.app/docs/reference/visualize/line/"><code>line()</code></a>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
@@ -1934,10 +1935,10 @@ Figure&nbsp;10.33: Each heading followed by a thin gray horizontal rule
 </section>
 <section id="sec-typst-templates" class="level3" data-number="10.13.2">
 <h3 data-number="10.13.2" class="anchored" data-anchor-id="sec-typst-templates"><span class="header-section-number">10.13.2</span> Custom templates</h3>
-<p>When set and show rules aren’t enough, you can customize further by providing your own <strong>template partials</strong>. Partials reach places a raw Typst block in your document body can’t:</p>
+<p>When the set and show rules aren’t enough, you can further customize by providing your own <strong>template partials</strong>. Partials reach places a raw Typst block in your document body can’t:</p>
 <ul>
 <li>You can apply set and show rules to content that appears before your body, i.e., the title block.</li>
-<li>You can provide your own definition for how the title, authors, and date etc. should be laid out.</li>
+<li>You can provide your own definition for how the title, authors, date, etc. should be laid out.</li>
 <li>You can reference options you’ve set in the document header.</li>
 <li>You can add new kinds of document elements.</li>
 </ul>
@@ -1963,10 +1964,10 @@ Figure&nbsp;10.34: <code>template.typ</code> includes each partial in order. <co
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We’ve documented the template and partials as of the time of writing, but they are subject to change as Quarto evolves. If you want to view the exact state of the template and partials, you can look at their source code for your version of Quarto in the <a href="https://github.com/quarto-dev/quarto-cli/"><code>quarto-cli</code> repo</a> at <a href="https://github.com/quarto-dev/quarto-cli/tree/v1.10.11/src/resources/formats/typst/pandoc/quarto" class="uri">https://github.com/quarto-dev/quarto-cli/tree/v1.10.11/src/resources/formats/typst/pandoc/quarto</a> replacing <code>v1.10.11</code> with your version of Quarto.</p>
+<p>We’ve documented the template and partials as of the time of writing, but they are subject to change as Quarto evolves. If you want to view the exact state of the template and partials, you can look at their source code for your version of Quarto in the <a href="https://github.com/quarto-dev/quarto-cli/"><code>quarto-cli</code> repo</a> at <a href="https://github.com/quarto-dev/quarto-cli/tree/v1.10.11/src/resources/formats/typst/pandoc/quarto" class="uri">https://github.com/quarto-dev/quarto-cli/tree/v1.10.11/src/resources/formats/typst/pandoc/quarto</a>, replacing <code>v1.10.11</code> with your version of Quarto.</p>
 </div>
 </div>
-<p>It’s best practice to start by editing partials, and only if you can’t get what you need override the complete template. A complete discussion of editing partials and templates is beyond the scope of this book, but to give you a feel for how this kind of customization works, we’ll walk through a small example of adding a running header to every page of a document.</p>
+<p>It’s best practice to start by editing partials, and only if you can’t get what you need, override the complete template. A complete discussion of editing partials and templates is beyond the scope of this book, but to give you a feel for how this kind of customization works, we’ll walk through a small example of adding a running header to every page of a document.</p>
 <p>In Typst a page header is a parameter of the <code>page()</code> function. In <a href="#sec-use-show-rules" class="quarto-xref"><span>Section 10.13.1</span></a> you saw that you can use a set rule inside a raw block to set the header, but this won’t reach the first page of your document. The first page of your document is governed by <code>#set page()</code> called earlier in the intermediate <code>.typ</code> file:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -2004,7 +2005,7 @@ Figure&nbsp;10.34: <code>template.typ</code> includes each partial in order. <co
 <span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="co">// ... </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <code>$</code> wrap Pandoc’s template syntax, which is used for basic control flow, and to translate your document options into Typst syntax. For example <code>$papersize$</code> is replaced with the value you set for <code>papersize</code> in your document header. Essentially, this chunk is setting any <code>page()</code> parameters you’ve specified as document options, and setting default values if you haven’t.</p>
-<p>To add a header we need to call <code>page()</code> with a <code>header</code> argument anywhere after this chunk, but before the call to <code>article()</code> in <code>typst-show.typ</code>. It makes sense to do this in <code>page.typ</code>, since page setup is nominally its job, and doing so means we don’t need to track updates to the more complicated <code>typst-show.typ</code>, and <code>typst-template.typ</code> partials.</p>
+<p>To add a header we need to call <code>page()</code> with a <code>header</code> argument anywhere after this chunk, but before the call to <code>article()</code> in <code>typst-show.typ</code>. It makes sense to do this in <code>page.typ</code>, since page setup is nominally its job, and doing so means we don’t need to track updates to the more complicated <code>typst-show.typ</code> and <code>typst-template.typ</code> partials.</p>
 <p>To do so, you can copy the default <code>page.typ</code> into your project, then append this additional <code>#set page()</code> call to the bottom of the file:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -2019,7 +2020,7 @@ Figure&nbsp;10.34: <code>template.typ</code> includes each partial in order. <co
 <span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">],</span></span>
 <span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Notice this addition directly references <code>$title$</code>. This pulls in the <code>title</code> you’ve set in the document header and means changes to <code>title</code> will automatically propagate to our page header.</p>
+<p>Notice this addition directly references <code>$title$</code>. This pulls in the <code>title</code> you’ve set in the document header, so changes to <code>title</code> will automatically propagate to our page header.</p>
 <p>To have Quarto use this custom partial, set the <code>template-partials</code> document option to point at your edited copy of <code>page.typ</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -2050,11 +2051,11 @@ Figure&nbsp;10.35: First page rendered with the custom <code>page.typ</code> par
 </section>
 <section id="wrapping-up" class="level2" data-number="10.14">
 <h2 data-number="10.14" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">10.14</span> Wrapping Up</h2>
-<p>In this chapter, you created your first PDF with <code>format: typst</code>, then worked through the types of content you’ll most often use: navigation, links, citations, math, code blocks, and computational outputs. You saw how to make a PDF accessible by targeting the PDF/UA-1 standard, and how to customize its appearance through document options, and brand. When you need further customization, you can use <code>set</code> and <code>show</code> rules in raw Typst blocks, and template partials.</p>
+<p>In this chapter, you created your first PDF with <code>format: typst</code>, then worked through the types of content you’ll most often use: navigation, links, citations, math, code blocks, and computational outputs. You saw how to make a PDF accessible by targeting the PDF/UA-1 standard, and how to customize its appearance through document options and brand. When you need further customization, you can use <code>set</code> and <code>show</code> rules in raw Typst blocks, and template partials.</p>
 <p>There’s plenty more you can do with <code>format: typst</code> that we didn’t cover. Two more worth knowing about:</p>
 <ul>
 <li><p><strong>Typst books.</strong> This chapter focused on single documents, but Typst output works in Quarto <a href="https://quarto.org/docs/books/">books</a> too.</p></li>
-<li><p><strong>Prebuilt templates.</strong> The community publishes Typst formats, such as journal article templates, that you can add to your project with <code>quarto use template</code>. A good place to look for them are on <a href="https://quarto.org/docs/extensions/listing-formats.html">Quarto’s format listing</a> and the community run <a href="https://m.canouil.dev/quarto-extensions/">Quarto extensions listing</a>.</p></li>
+<li><p><strong>Prebuilt templates.</strong> The community publishes Typst formats, such as journal article templates, that you can add to your project with <code>quarto use template</code>. A good place to look for them is on <a href="https://quarto.org/docs/extensions/listing-formats.html">Quarto’s format listing</a> and the community-run <a href="https://m.canouil.dev/quarto-extensions/">Quarto extensions listing</a>.</p></li>
 </ul>
 <p>We only covered a subset of the document options available for <code>format: typst</code>. For the full set, see the <a href="https://quarto.org/docs/reference/formats/typst.html">Typst format reference</a> in the Quarto documentation.</p>
 
