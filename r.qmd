@@ -115,52 +115,6 @@ format:
 Use this when you only need to change the output file format without customizing the specific graphics device.
 When both `dev` and `fig-format` are set, `dev` takes precedence.
 
-### Multiple figures from a code cell {#sec-multiple-figures}
-
-A single R code cell can produce multiple plots.
-By default, each plot appears as a separate figure in the output.
-Use `fig-cap` and `fig-subcap` to arrange them as labeled subfigures.
-
-You can provide `fig-cap` as the overall caption and `fig-subcap` as a list of individual subcaptions:
-
-```{{r}}
-#| label: fig-mtcars-panels
-#| fig-cap: "Motor Trend car data"
-#| fig-subcap:
-#|   - "Weight vs. fuel efficiency"
-#|   - "Displacement vs. fuel efficiency"
-#| layout-ncol: 2
-library(ggplot2)
-
-ggplot(mtcars, aes(x = wt, y = mpg)) +
-  geom_point()
-
-ggplot(mtcars, aes(x = disp, y = mpg)) +
-  geom_point()
-```
-
-This produces two side-by-side subfigures, each with its own caption, under a shared parent caption.
-The individual panels are cross-referenceable as `@fig-mtcars-panels-1` and `@fig-mtcars-panels-2`, while `@fig-mtcars-panels` refers to the group.
-
-Additionally, the `layout-ncol` option controls how many columns the subfigures occupy.
-For more complex arrangements, you can use the `layout` option to specify custom grids:
-
-```{{r}}
-#| label: fig-custom-layout
-#| fig-cap: A figure with custom layout
-#| fig-subcap:
-#|   - Plot A
-#|   - Plot B
-#|   - Plot C
-#| layout: [[1,1], [1]]
-plot(1:10)
-plot(10:1)
-plot(1:20)
-```
-
-The `layout: [[1,1], [1]]` specification places the first two plots side by side in the first row, with the third plot spanning the full width of the second row.
-For a full explanation of the layout syntax, see @sec-layout.
-
 ### Interactive output {#sec-interactive-output-r}
 
 Many R packages produce interactive HTML output---plots, tables, maps---through the [htmlwidgets](https://www.htmlwidgets.org/) framework.
