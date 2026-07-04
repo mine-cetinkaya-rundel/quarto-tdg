@@ -1,6 +1,9 @@
 /.quarto/
 _book/
 .Rproj.user
+/env/
+
+**/*.quarto_ipynb
 /.venv/
 
 **/*.quarto_ipynb
