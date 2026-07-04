@@ -73,7 +73,7 @@ The contents of `_site/` for a minimal Quarto website
 :::
 
 To view your website, you need a webserver to serve up the contents of this directory.
-This could be a local webserver like the one used for `quarto preview`, or a remote one like those provided by Quarto Pub or GitHub Pages.
+This could be a local webserver like the one used for `quarto preview`, or a remote one like those provided by Posit Connect Cloud or GitHub Pages.
 
 
 ::: callout-tip
@@ -140,7 +140,7 @@ File paths from your project root directly translate to URL paths from your base
 
 We use the placeholder `{ base }` to represent the base URL of your website.
 When you are previewing locally that will be something like `http://localhost:3884`, where the number `3884` may be something else.
-When you publish your website, the base URL will depend on where you host it. For GitHub Pages it might look something like `https://username.github.io/repository-name`, and on Quarto Pub something like `https://username.quarto.pub/project-name`, or you might even have a custom domain `https://yourdomain.com`.
+When you publish your website, the base URL will depend on where you host it. For GitHub Pages it might look something like `https://username.github.io/repository-name`, and on Posit Connect Cloud something like `https://username-project.share.connect.posit.cloud`, or you might even have a custom domain `https://yourdomain.com`.
 
 Consider the file `about.qmd` at the top level of your website project.
 It will be available at `about.html` at the top level of your website.
@@ -1503,21 +1503,21 @@ Drop in `_site/`, and Netlify will give you a URL at which your site is availabl
 ### Providers
 
 The `quarto publish` command supports several publishing providers.
-The three we think are most useful if you are choosing for yourself are Quarto Pub, GitHub Pages, and Netlify.
+The three we think are most useful if you are choosing for yourself are Posit Connect Cloud, GitHub Pages, and Netlify.
 A brief summary comparing their features is shown in @tbl-providers.
 
-| Provider   | Private Source | Private Site                 | Custom Domain |
-|------------|----------------|------------------------------|---------------|
-| Quarto Pub | ✔️             | ✖️                           | ✖️            |
-| GitHub     | Paid plans     | GitHub Enterprise Cloud only | ✔️            |
-| Netlify    | ✔️             | Paid plans                   | ✔️            |
+| Provider             | Private Source | Private Site                 | Custom Domain |
+|----------------------|----------------|------------------------------|---------------|
+| Posit Connect Cloud  | ✔️             | Paid plans                   | Paid plans    |
+| GitHub               | Paid plans     | GitHub Enterprise Cloud only | ✔️            |
+| Netlify              | ✔️             | Paid plans                   | ✔️            |
 
 : A comparison of three popular publishing providers {#tbl-providers}
 
 You can specify the provider directly in the call to `quarto publish`:
 
 ``` {.bash filename="Terminal"}
-quarto publish quarto-pub
+quarto publish posit-connect-cloud
 ```
 
 #### GitHub Pages {#sec-publishing-github}
@@ -1533,7 +1533,7 @@ When you publish, Quarto creates a special `gh-pages` branch, renders your docum
 This branch is then processed on GitHub's side, making it available at a URL of the form `{ user }.github.io/repo-name`.
 
 If you use GitHub through one of its "Free" plans you can only use GitHub Pages on public repositories.
-If you'd prefer your source documents weren't available publicly you'll either need to upgrade your GitHub plan, or use something like Netlify or Quarto Pub instead.
+If you'd prefer your source documents weren't available publicly you'll either need to upgrade your GitHub plan, or use something like Netlify or Posit Connect Cloud instead.
 
 You can read more about publishing to GitHub with `quarto publish` on the [GitHub Pages page](https://quarto.org/docs/publishing/github-pages.html#publish-command) in the Quarto documentation.
 

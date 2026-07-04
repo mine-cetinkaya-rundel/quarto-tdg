@@ -1,0 +1,13 @@
+color:
+  palette:
+    paper: "#fdf6e3"
+    ink: "#073642"
+    gold: "#b58900"
+    navy: "#2e5090"
+  background: paper
+  foreground: ink
+  primary: gold
+typography:
+  link:
+    color: navy
+    decoration: underline

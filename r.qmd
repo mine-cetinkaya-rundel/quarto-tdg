@@ -16,3 +16,15 @@ assume knitr
     - apply at cell level https://quarto.org/docs/reference/cells/cells-knitr.html, and only some of them work at document level (and not all of these work for other engines)
 
 end with other combinations of engines and why you might use them -- 2 languages in the same document without embedding and passing objects between languages
+
+- Accessing info about your document from your R session: Conditional Execution
+
+- Knitr and R options
+
+- Quarto R package -- rendering from code
+
+- https://quarto.org/docs/computations/render-scripts.html#knitr
+
+- https://quarto.org/docs/computations/execution-options.html#raw-output -- do for python too
+
+- https://quarto.org/docs/computations/parameters.html

@@ -16,7 +16,7 @@ The command will prompt you to select a **Provider**:
 
 ```
 ? Provider:
-❯ Quarto Pub
+❯ Posit Connect Cloud
   GitHub Pages
   Posit Connect
   Netlify
@@ -24,45 +24,44 @@ The command will prompt you to select a **Provider**:
   Hugging Face Spaces
 ```
 
-You'll learn a bit more about the providers later in this chapter, but let's use Quarto Pub for illustration.
+You'll learn a bit more about the providers later in this chapter, but let's use Posit Connect Cloud for illustration.
 
 ::: callout-tip
-[Quarto Pub](https://quartopub.com) is a free service.
-To follow along, you'll need to [**Sign Up**](https://quartopub.com/sign-up) for an account first.
+[Posit Connect Cloud](https://connect.posit.cloud) has a free tier with unlimited static documents.
+To follow along, you'll need to [**Sign Up**](https://connect.posit.cloud) for an account first.
 :::
 
 Quarto will prompt you to authorize your account when you select a Provider for the first time.
-This looks different for each provider, but for Quarto Pub, you'll be asked to authorize your account via your default internet browser:
+This looks different for each provider, but for Posit Connect Cloud, you'll be asked to authorize your account via your default internet browser:
 
 ```
-? Provider: › Quarto Pub
+? Provider: › Posit Connect Cloud
 ? Authorize (Y/n) ›
-❯ In order to publish to Quarto Pub you need to authorize your account.
-  Please be sure you are logged into the correct Quarto Pub account in your
+❯ In order to publish to Posit Connect Cloud you need to authorize your account.
+  Please be sure you are logged into the correct Posit Connect Cloud account in your
   default web browser, then press Enter or 'Y' to authorize.
 ```
 
-Once authorized, Quarto will ask you to confirm the document title.
-Then Quarto will render your document one more time, before sending it (and all its required resources) to the Provider.
-Once done, a browser will open to view your published content, as shown in @fig-quartopub.
+Once authorized, Quarto will render your document one more time, before sending it (and all its required resources) to the Provider.
+Once done, Quarto will give you a URL to view your published content, as shown in @fig-posit-connect-cloud.
 
-![Quarto will open a browser to view the published document. Share the link labeled "Published at".](images/publishing-quartopub.png){#fig-quartopub fig-alt="Screenshot of the site administration view of a published document on Quarto Pubs."}
+![After publishing, Quarto opens a browser to the content view on Posit Connect Cloud.](images/publishing-posit-connect-cloud.png){#fig-posit-connect-cloud fig-alt="Screenshot of the admin view of a published document on Posit Connect Cloud."}
 
-::: callout-tip
-## Your view depends on whether you are logged into Quarto Pub
+The URL Quarto returns is for managing your content, not for sharing.
+To find your shareable URL, navigate to **Settings** > **URL**, as shown in @fig-posit-connect-cloud-settings.
 
-If you aren't logged in to Quarto Pubs your browser will open to the public URL, rather than the site administration view shown in @fig-quartopub.
-:::
+![The Settings > URL page shows the Default URL for sharing your content.](images/publishing-posit-connect-cloud-settings.png){#fig-posit-connect-cloud-settings fig-alt="Screenshot of the Settings URL page on Posit Connect Cloud showing the Default URL."}
 
-Pages published on Quarto Pub have public URLs of the form: `{ username }.quarto.pub/{ document_title }/`.
-You can share the URL and anyone can view your rendered content.
+Shareable URLs end in `.share.connect.posit.cloud`.
+By default, URLs use an auto-generated identifier, but you can customize them to something memorable like `cwickham-document.share.connect.posit.cloud`.
+Share the URL and anyone can view your rendered content.
 
 ## The publishing process {#sec-publishing-process}
 
 The `quarto publish` command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local installation of the Quarto CLI. Only the output files are then transferred to the publishing provider.
 In @fig-pub-process we illustrate this as two separate steps—render then publish— but they both occur when you run the `quarto publish` command.
 
-![The `quarto publish` process. Input files are rendered locally, then the output files and their dependencies are uploaded to the publishing provider.](images/publishing-process.jpg){#fig-pub-process fig-alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on quartopub.com."}
+![The `quarto publish` process. Input files are rendered locally, then the output files and their dependencies are uploaded to the publishing provider.](images/publishing-process.jpg){#fig-pub-process fig-alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on connect.posit.cloud."}
 
 Quarto generates a single self-contained output file for some output formats, like PDF or Word documents.
 This single output file is the only thing that needs to be transferred to the provider to share it with others.
@@ -75,10 +74,10 @@ The advantage of `quarto publish` is that Quarto identifies all these required f
 When you use `quarto publish` details about what and where you publish are stored in a file called `_publish.yml`:
 
 ``` {.yaml filename="_publish.yml"}
-- source: hello.qmd
-  quarto-pub:
-    - id: 8f059af6-06e1-4594-b7b0-252dab8c0d9e
-      url: 'https://quartopub-test.quarto.pub/test'
+- source: document.qmd
+  posit-connect-cloud:
+    - id: 019cd4a5-d2da-c2cf-f7f9-dc78e0748f72
+      url: 'https://connect.posit.cloud/cwickham/content/019cd4a5-d2da-c2cf-f7f9-dc78e0748f72'
 ```
 
 This means when you run `quarto publish` on a document or project a second time, you'll be given the option of using the same details---in effect updating your published content.

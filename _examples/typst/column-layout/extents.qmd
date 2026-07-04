@@ -1,0 +1,67 @@
+---
+title: Column extents
+---
+
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#dde"), inset: 6pt)[#raw(".column-body") (default)]
+```
+
+::: {.column-margin}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#fcd"), inset: 6pt)[#raw(".column-margin")]
+```
+:::
+
+::: {.column-body-outset}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#dfd"), inset: 6pt)[#raw(".column-body-outset")]
+```
+:::
+
+::: {.column-body-outset-left}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#dfd"), inset: 6pt)[#raw(".column-body-outset-left")]
+```
+:::
+
+::: {.column-body-outset-right}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#dfd"), inset: 6pt)[#raw(".column-body-outset-right")]
+```
+:::
+
+::: {.column-page-inset}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#fed"), inset: 6pt)[#raw(".column-page-inset")]
+```
+:::
+
+::: {.column-page-inset-left}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#fed"), inset: 6pt)[#raw(".column-page-inset-left")]
+```
+:::
+
+::: {.column-page-inset-right}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#fed"), inset: 6pt)[#raw(".column-page-inset-right")]
+```
+:::
+
+::: {.column-page}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#cdf"), inset: 6pt)[#raw(".column-page")]
+```
+:::
+
+::: {.column-page-left}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#cdf"), inset: 6pt)[#raw(".column-page-left")]
+```
+:::
+
+::: {.column-page-right}
+```{=typst}
+#rect(width: 100%, height: 0.7cm, fill: rgb("#cdf"), inset: 6pt)[#raw(".column-page-right")]
+```
+:::

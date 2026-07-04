@@ -1,0 +1,4 @@
+- source: document.qmd
+  posit-connect-cloud:
+    - id: 019cd4a5-d2da-c2cf-f7f9-dc78e0748f72
+      url: https://connect.posit.cloud/cwickham/content/019cd4a5-d2da-c2cf-f7f9-dc78e0748f72

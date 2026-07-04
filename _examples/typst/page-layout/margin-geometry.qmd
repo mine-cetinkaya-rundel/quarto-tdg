@@ -1,0 +1,40 @@
+---
+# Renders the margin-geometry example shown in the chapter. The format
+# block mirrors _margin-geometry.yml (the config-only partial the chapter
+# displays); this file adds the body content. Uses all three column
+# classes: .column-body (regular text), .column-page, .column-margin.
+#
+# The "screenshot: full-page" marker tells screenshot-examples.sh to keep
+# the whole page (skip its -trim) so the page margins stay visible.
+# screenshot: full-page
+format:
+  typst:
+    papersize: us-letter
+    margin:
+      top: 0.75in
+      bottom: 0.75in
+    margin-geometry:
+      inner:
+        far: 1in
+        width: 0in
+        separation: 0.25in
+      outer:
+        far: 1in
+        width: 1.5in
+        separation: 0.25in
+    page-numbering: ""
+---
+
+{{< lipsum 1 >}}
+
+::: {.column-margin}
+A `.column-margin` note sits in the 1.5-inch outer margin column.
+:::
+
+{{< lipsum 1 >}}
+
+::: {.column-page}
+{{< lipsum 1 >}}
+:::
+
+{{< lipsum 1 >}}
