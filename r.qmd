@@ -188,9 +188,7 @@ Common document-level execution options include the following and take on values
 
 Additionally, `fig-width` and `fig-height` can be set at the document level to define default figure dimensions in inches.
 
-#### Knitr-specific options
-
-The knitr engine has additional options that you can set using the `knitr` key.
+Furthermore, the knitr engine has additional options that you can set at the document level using the `knitr` key.
 These map directly to knitr's chunk options:
 
 ```yaml
