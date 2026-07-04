@@ -1,0 +1,10 @@
+---
+brand: _brand-all.yml
+format:
+  typst:
+    syntax-highlighting: a11y-dark
+---
+
+{{< include _body.qmd >}}
+
+{{< include _code.qmd >}}

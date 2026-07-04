@@ -1,0 +1,13 @@
+{{< include _heading-rule.qmd >}}
+
+## Summary
+
+Quarterly on-time performance held above 80% across the network, though peak-hour services on long-distance routes remained a concern.
+
+### Observations
+
+Off-peak services consistently outperformed peak services across all routes, with the Coastal Express showing the largest gap.
+
+## Recommendations
+
+Investigate delays on the Coastal Express and Harbour–Airport routes during peak periods.

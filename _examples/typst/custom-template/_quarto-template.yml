@@ -1,0 +1,4 @@
+format:
+  typst:
+    template-partials:
+      - page.typ

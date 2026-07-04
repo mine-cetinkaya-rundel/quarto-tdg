@@ -1,0 +1,8 @@
+Compute on-time rates from counts for each route:
+
+```r
+on_time <- c(142, 98, 201, 87, 165)
+total   <- c(154, 110, 215, 95, 178)
+rate    <- round(on_time / total * 100, 1)
+cat("On-time rates (%):", rate)
+```

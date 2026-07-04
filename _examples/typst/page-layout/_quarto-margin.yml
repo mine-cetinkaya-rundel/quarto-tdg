@@ -1,0 +1,7 @@
+format:
+  typst:
+    margin:
+      top: 2cm
+      bottom: 2cm
+      left: 3cm
+      right: 3cm

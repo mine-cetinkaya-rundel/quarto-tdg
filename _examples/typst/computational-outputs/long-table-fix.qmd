@@ -1,0 +1,10 @@
+```{=typst}
+#show figure: set block(breakable: true)
+```
+
+```{r}
+#| label: tbl-punctuality
+#| tbl-cap: Punctuality by route
+#| echo: false
+{{< include long-table.R >}}
+```

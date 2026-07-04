@@ -1,0 +1,4 @@
+format:
+  typst:
+    toc: true
+    number-sections: true
