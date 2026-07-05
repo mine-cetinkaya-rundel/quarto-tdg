@@ -12,7 +12,7 @@ We spend more time on Positron than on RStudio because RStudio's Quarto support 
 
 ## Document structure
 
-Quarto documents are plain text files that use Markdown syntax for formatting and can include executable code cells.
+Quarto documents are plain-text files that use Markdown for formatting and can include executable code cells.
 They have the file extension `.qmd` and can be rendered to various output formats, including HTML, PDF, Word documents, and more.
 They comprise three main components: a YAML header for metadata, markdown text for content, and code cells for executable code.
 
@@ -37,7 +37,7 @@ Use `quarto preview` while you are actively writing.
 Preview renders your document, opens the result, and keeps watching for changes. 
 Each time you save the source file, Quarto updates the preview so you can see the effect of your edits.
 
-Use `quarto render` when you want to produce the final output file. 
+Use `quarto render` to produce the final output file. 
 Rendering creates the output once and then stops. 
 This is the command you will typically use when you are ready to share or publish a document.
 
@@ -169,7 +169,7 @@ Additionally, Positron offers specialized features for Quarto authoring, such as
 ### Installation
 
 To get started with Quarto in Positron, download and install Positron from [positron.posit.co](https://positron.posit.co).
-Since Quarto is built into Positron, no additional installation is required for Quarto itself.
+Since Quarto is built into Positron, no additional installation is required.
 Depending on your language of choice, you'll also need to have R or Python installed on your system—R from [cran.r-project.org](https://cran.r-project.org) or Python from [python.org](https://www.python.org).
 
 Positron's Quarto support comes from the bundled Quarto extension, which is included as a *bootstrapped extension*—it behaves just as if you had installed it yourself, updates automatically as new versions appear in the extension gallery, and can be uninstalled if you ever need to.
@@ -284,7 +284,7 @@ quarto convert notebook.qmd
 
 ### Running code cells
 
-The interactive execution introduced above is backed by a full set of commands for running R, Python, and Julia cells, with output appearing in the Console.
+The interactive execution introduced above is supported by a full set of commands to run R, Python, and Julia cells, with output appearing in the Console.
 You can run the current cell, the next or previous cell, all cells, the cells above or below the cursor, or just the selected line(s):
 
 | Command | macOS | Windows/Linux |
@@ -545,7 +545,7 @@ The best tool for Quarto authoring depends on your specific needs and existing w
 
 - If you prefer keyboard-driven, terminal-based workflows, editors like Neovim or Vim can be configured to work effectively with Quarto.
 
-Whichever editor you choose, the core Quarto workflow is the same: write plain-text source, preview while developing, render to produce final output, and use projects/environments to make the work reproducible.
+Whichever editor you choose, the core Quarto workflow is the same: write plain-text source, preview as you develop, render to produce the final output, and use projects/environments to make the work reproducible.
 
 ::: todo
 [MCR] Try all shortcuts with default settings before finalizing.
