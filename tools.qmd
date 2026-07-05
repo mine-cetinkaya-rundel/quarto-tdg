@@ -6,25 +6,46 @@ You can author Quarto documents in any plain text editor and render them with th
 However, we recommend using an integrated development environment (IDE) when working with Quarto for features like preview and live rendering that let you see how your content will look as you write, syntax highlighting, project management, version control integration, debugging tools, and efficiency and productivity features such as snippets, templates, and keyboard shortcuts.
 Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting, which can help you quickly find the right syntax and catch errors.
 
-In this chapter, we detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring.
+In this chapter, you’ll learn how to render and preview Quarto documents from the command line, how Quarto executes R and Python code, how Positron and RStudio support interactive authoring, and how to choose the right tool for your workflow.
+We detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring.
 We spend more time on Positron than on RStudio because RStudio's Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.
 
 ## Document structure
 
-Quarto documents are plain text files that use Markdown syntax for formatting and can include executable code chunks.
+Quarto documents are plain text files that use Markdown syntax for formatting and can include executable code cells.
 They have the file extension `.qmd` and can be rendered to various output formats, including HTML, PDF, Word documents, and more.
-They comprise three main components: a YAML header for metadata, markdown text for content, and code chunks for executable code.
+They comprise three main components: a YAML header for metadata, markdown text for content, and code cells for executable code.
 
 1. YAML header: Metadata enclosed by `---` markers, including the title, format, theme, and other document options.
-
-2. Code chunks: Executable code cells marked with ` ```{r} ` or ` ```{python} ` that can include optional chunk options to control execution and output.
-
-3. Markdown text: Formatted text using standard Markdown syntax for headings, lists, links, emphasis, and more.
+2. Markdown text: Formatted text using standard Markdown syntax for headings, lists, links, emphasis, and more.
+3. Code cells: Executable code cells marked with ` ```{r} ` or ` ```{python} ` that can include optional cell options to control execution and output.
 
 ## Quarto CLI {#sec-quarto-cli}
 
 Before diving into specific IDEs, let's start with the fundamentals: the Quarto Command Line Interface (CLI).
 The Quarto CLI is the core tool that powers all Quarto rendering, regardless of which editor you use.
+
+When you are getting started, you only need a small set of commands for most Quarto work:
+
+```bash
+quarto preview document.qmd
+quarto render document.qmd
+quarto check
+```
+
+Use `quarto preview` while you are actively writing. 
+Preview renders your document, opens the result, and keeps watching for changes. 
+Each time you save the source file, Quarto updates the preview so you can see the effect of your edits.
+
+Use `quarto render` when you want to produce the final output file. 
+Rendering creates the output once and then stops. 
+This is the command you will typically use when you are ready to share or publish a document.
+
+Use `quarto check` when you first install Quarto or when something is not rendering as expected. 
+It verifies that Quarto and its supporting tools, such as knitr, Jupyter, and LaTeX, are available on your system.
+
+The same basic workflow applies whether you work from the terminal or from an IDE. 
+IDEs such as Positron, RStudio, and VS Code provide buttons, keyboard shortcuts, and preview panes for these tasks, but the underlying Quarto workflow is the same.
 
 ### Rendering
 
@@ -71,12 +92,6 @@ To see which version of Quarto you have installed, run:
 
 ```bash
 quarto --version
-```
-
-To verify that your installation and its dependencies (such as Jupyter, knitr, and LaTeX) are correctly configured, run:
-
-```bash
-quarto check
 ```
 
 When your document is ready to share, `quarto publish` can render and push it to a variety of destinations, including GitHub Pages, Posit Connect, and Posit Connect Cloud:
@@ -529,6 +544,8 @@ The best tool for Quarto authoring depends on your specific needs and existing w
 - If your workflow is notebook-first, JupyterLab lets you keep authoring in `.ipynb` files and render them with Quarto, with optional `.qmd` support via the Quarto extension.
 
 - If you prefer keyboard-driven, terminal-based workflows, editors like Neovim or Vim can be configured to work effectively with Quarto.
+
+Whichever editor you choose, the core Quarto workflow is the same: write plain-text source, preview while developing, render to produce final output, and use projects/environments to make the work reproducible.
 
 ::: todo
 [MCR] Try all shortcuts with default settings before finalizing.
