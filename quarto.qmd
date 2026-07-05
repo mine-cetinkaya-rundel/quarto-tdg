@@ -37,6 +37,40 @@ You can download the latest release version of the Quarto CLI at [https://quarto
 You can also download development versions of Quarto at <https://quarto.org/docs/download/prerelease.html> however note that pre-release builds are intended for testing purposes, and are not recommended for general use.
 :::
 
+## Document structure
+
+Quarto documents and plain text files with the extension `.qmd` and they consist of three main components:
+
+1. **YAML header:** Configuration metadata enclosed by `---` markers, specifying the title, format, and various options for your document.
+
+```markdown
+---
+title: Document title
+format: html
+---
+```
+
+2. **Code cells:** Executable blocks marked with three backticks  ` ``` ` and the name of the language in curly braces `{r}` containing your computational code,e.g.,
+
+    ```` markdown
+    ```{{r}}
+    # R code here
+    ```
+    ````
+
+    or
+
+    ```` markdown
+    ```{{python}}
+    # R code here
+    ```
+    ````
+
+3. **Markdown text:** Narrative content with formatting, links, images, and other markdown elements.
+
+Quarto documents can also include other elements such as figures and tables (which may be the result of executable code cells, created with markdown text, or included from an image), citations, cross-references, and more.
+In later chapters we go into further detail about the various components of Quarto documents.
+
 ## Tools for authoring
 
 You do not need a specific tool for authoring and rendering Quarto documents.
@@ -46,4 +80,4 @@ However we recommend using an integrated development environment (IDE) when work
 Some compelling reasons for using an IDE with Quarto include preview and live rendering features that allow you to see how your content will look as you write it, syntax highlighting, project management features, version control integration, debugging tools, and efficiency and productivity features like snippets, templates, and keyboard shortcuts.
 Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting which can help you quickly find the right syntax and catch errors.
 
-In the next chapter we go into further detail about using Quarto in various IDEs including RStudio, VS Code, and Jupyter Lab.
+In the next chapter we go into further detail about using Quarto in various IDEs such as Positron, RStudio and a variety of others, including VS Code, Jupyter Lab, and others.
