@@ -425,7 +425,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <p>In this chapter, you’ll learn how to render and preview Quarto documents from the command line, how Quarto executes R and Python code, how Positron and RStudio support interactive authoring, and how to choose the right tool for your workflow. We detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring. We spend more time on Positron than on RStudio because RStudio’s Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.</p>
 <section id="document-structure" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="document-structure"><span class="header-section-number">2.1</span> Document structure</h2>
-<p>Quarto documents are plain text files that use Markdown syntax for formatting and can include executable code cells. They have the file extension <code>.qmd</code> and can be rendered to various output formats, including HTML, PDF, Word documents, and more. They comprise three main components: a YAML header for metadata, markdown text for content, and code cells for executable code.</p>
+<p>Quarto documents are plain-text files that use Markdown for formatting and can include executable code cells. They have the file extension <code>.qmd</code> and can be rendered to various output formats, including HTML, PDF, Word documents, and more. They comprise three main components: a YAML header for metadata, markdown text for content, and code cells for executable code.</p>
 <ol type="1">
 <li>YAML header: Metadata enclosed by <code>---</code> markers, including the title, format, theme, and other document options.</li>
 <li>Markdown text: Formatted text using standard Markdown syntax for headings, lists, links, emphasis, and more.</li>
@@ -440,7 +440,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use <code>quarto preview</code> while you are actively writing. Preview renders your document, opens the result, and keeps watching for changes. Each time you save the source file, Quarto updates the preview so you can see the effect of your edits.</p>
-<p>Use <code>quarto render</code> when you want to produce the final output file. Rendering creates the output once and then stops. This is the command you will typically use when you are ready to share or publish a document.</p>
+<p>Use <code>quarto render</code> to produce the final output file. Rendering creates the output once and then stops. This is the command you will typically use when you are ready to share or publish a document.</p>
 <p>Use <code>quarto check</code> when you first install Quarto or when something is not rendering as expected. It verifies that Quarto and its supporting tools, such as knitr, Jupyter, and LaTeX, are available on your system.</p>
 <p>The same basic workflow applies whether you work from the terminal or from an IDE. IDEs such as Positron, RStudio, and VS Code provide buttons, keyboard shortcuts, and preview panes for these tasks, but the underlying Quarto workflow is the same.</p>
 <section id="rendering" class="level3" data-number="2.2.1">
@@ -509,7 +509,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <p>Positron is a next-generation data science IDE that comes pre-configured for Quarto—the Quarto CLI is built in, and the Quarto VS Code extension is bundled. Additionally, Positron offers specialized features for Quarto authoring, such as integrated rendering and preview for Quarto documents, completion and diagnostics for Quarto options, and full R and Python support for code that is inside code cells in a Quarto document, including interactive execution of code in the Console, code completion, help, and diagnostics.</p>
 <section id="installation" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">2.4.1</span> Installation</h3>
-<p>To get started with Quarto in Positron, download and install Positron from <a href="https://positron.posit.co">positron.posit.co</a>. Since Quarto is built into Positron, no additional installation is required for Quarto itself. Depending on your language of choice, you’ll also need to have R or Python installed on your system—R from <a href="https://cran.r-project.org">cran.r-project.org</a> or Python from <a href="https://www.python.org">python.org</a>.</p>
+<p>To get started with Quarto in Positron, download and install Positron from <a href="https://positron.posit.co">positron.posit.co</a>. Since Quarto is built into Positron, no additional installation is required. Depending on your language of choice, you’ll also need to have R or Python installed on your system—R from <a href="https://cran.r-project.org">cran.r-project.org</a> or Python from <a href="https://www.python.org">python.org</a>.</p>
 <p>Positron’s Quarto support comes from the bundled Quarto extension, which is included as a <em>bootstrapped extension</em>—it behaves just as if you had installed it yourself, updates automatically as new versions appear in the extension gallery, and can be uninstalled if you ever need to.</p>
 </section>
 <section id="managing-quarto-installations" class="level3" data-number="2.4.2">
@@ -624,7 +624,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="running-code-cells" class="level3" data-number="2.4.7">
 <h3 data-number="2.4.7" class="anchored" data-anchor-id="running-code-cells"><span class="header-section-number">2.4.7</span> Running code cells</h3>
-<p>The interactive execution introduced above is backed by a full set of commands for running R, Python, and Julia cells, with output appearing in the Console. You can run the current cell, the next or previous cell, all cells, the cells above or below the cursor, or just the selected line(s):</p>
+<p>The interactive execution introduced above is supported by a full set of commands to run R, Python, and Julia cells, with output appearing in the Console. You can run the current cell, the next or previous cell, all cells, the cells above or below the cursor, or just the selected line(s):</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1021,7 +1021,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <li><p>If your workflow is notebook-first, JupyterLab lets you keep authoring in <code>.ipynb</code> files and render them with Quarto, with optional <code>.qmd</code> support via the Quarto extension.</p></li>
 <li><p>If you prefer keyboard-driven, terminal-based workflows, editors like Neovim or Vim can be configured to work effectively with Quarto.</p></li>
 </ul>
-<p>Whichever editor you choose, the core Quarto workflow is the same: write plain-text source, preview while developing, render to produce final output, and use projects/environments to make the work reproducible.</p>
+<p>Whichever editor you choose, the core Quarto workflow is the same: write plain-text source, preview as you develop, render to produce the final output, and use projects/environments to make the work reproducible.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
