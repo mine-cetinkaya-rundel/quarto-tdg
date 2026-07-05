@@ -7,6 +7,7 @@ However, we recommend using an integrated development environment (IDE) when wor
 Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting, which can help you quickly find the right syntax and catch errors.
 
 In this chapter, we detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring.
+We spend more time on Positron than on RStudio as RStudio's Quarto support is mature and extensively documented elsewhere, while Positron is newer and its Quarto features are less widely covered.
 
 ## Document structure
 
@@ -60,13 +61,28 @@ quarto preview document.qmd
 This command is particularly useful during active authoring, as it lets you see your changes immediately without having to manually rerun the render command.
 The preview server will continue running until you stop it (typically with Ctrl+C in the Terminal).
 
+Preview isn't limited to single documents: run `quarto preview` in a project directory—such as a website or book—and Quarto serves the whole project, refreshing whichever pages you edit.
+
 ### Other useful commands
 
 Beyond rendering and previewing, the Quarto CLI offers several other helpful commands.
-For example, you can check the version of Quarto and its dependencies by running the following command:
+
+To see which version of Quarto you have installed, run:
+
+```bash
+quarto --version
+```
+
+To verify that your installation and its dependencies (such as Jupyter, knitr, and LaTeX) are correctly configured, run:
 
 ```bash
 quarto check
+```
+
+When your document is ready to share, `quarto publish` can render and push it to a variety of destinations, including GitHub Pages, Posit Connect, and Posit Connect Cloud:
+
+```bash
+quarto publish document.qmd
 ```
 
 To get help, you can use the following command:
@@ -81,7 +97,54 @@ Or you can use `--help` with any command to see available options and usage info
 quarto render --help
 ```
 
-Now that you understand the structure of Quarto documents and foundational CLI commands, let's explore how different IDEs integrate these capabilities into their interfaces to support your authoring experience.
+## Computation engines {#sec-engines}
+
+Quarto delegates the execution of your code to a computation engine—knitr for R and Jupyter for Python (and other languages with Jupyter kernels).
+The concepts in this section apply no matter which editor you use, so we cover them here before turning to specific IDEs.
+
+A quick note on terminology: knitr and R Markdown traditionally call a block of executable code a *chunk*, while Jupyter calls it a *cell*.
+Quarto's documentation—and this book—use *cell*, but you'll see both terms in the wild, and they mean the same thing.
+
+### Knitr engine
+
+Quarto is designed to be highly compatible with existing [R Markdown](https://rmarkdown.rstudio.com/) documents—you can generally render an existing `.Rmd` file with Quarto without any changes.
+
+The main difference to be aware of is how cell options are specified.
+In Quarto, cell options are typically written as special comments at the top of the cell using the `#|` prefix, rather than on the line that opens the cell:
+
+```{{r}}
+#| echo: false
+#| fig-cap: "Air Quality"
+library(ggplot2)
+ggplot(airquality, aes(Temp, Ozone)) +
+  geom_point() +
+  geom_smooth(method = "loess", se = FALSE)
+```
+
+This makes it easier to work with longer options like `fig-cap`, `fig-subcap`, and `fig-alt`, and to edit cell options in structured editors such as notebooks.
+Since options use YAML syntax rather than R syntax, when you need an R expression for a value, you need to prefix it with `!expr`:
+
+```
+#| fig-cap: !expr 'paste("Air", "Quality")'
+```
+
+### Jupyter engine
+
+To execute Python code, Quarto documents use the Jupyter engine.
+These documents include a `jupyter` option in the YAML front matter that specifies the kernel to use:
+
+```yaml
+---
+title: Matplotlib Demo
+author: Norah Smith
+jupyter: python3
+---
+```
+
+One execution behavior worth remembering: when you render a `.qmd` file, Quarto always executes its cells, but when you render an `.ipynb` notebook, Quarto does *not* execute cells by default—it assumes you already ran them while editing.
+We return to this asymmetry when discussing notebook editing in Positron (@sec-positron).
+
+Now that you understand the foundational CLI commands and how Quarto executes code, let's explore how different IDEs integrate these capabilities into their interfaces to support your authoring experience.
 
 ## Positron {#sec-positron}
 
@@ -111,15 +174,18 @@ After changing your Quarto version, restart Positron so the status bar updates.
 
 ### Core features
 
-Positron provides several features that make Quarto authoring efficient and productive:
+Positron provides several features that make Quarto authoring efficient and productive.
+Here's an overview; the subsections that follow cover each in more depth:
 
-Rendering: Use the Quarto: Preview command, keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux), or the Preview button in the toolbar to render `.qmd` files to HTML, PDF, Word, or other formats.
+- Previewing: render `.qmd` files and view the result side by side with your source, using the Quarto: Preview command, the keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux), or the Preview button in the toolbar.
 
-Dual editor modes: Switch between source and visual editing modes using the Edit in Visual Mode / Edit in Source Mode commands or the keyboard shortcut (⇧⌘F4 on macOS, Ctrl+Shift+F4 on Windows/Linux).
+- Dual editor modes: switch between source and visual editing (see [Visual editor](#visual-editor)).
 
-Polyglot language support: Positron's first-class support for R and Python makes it an excellent choice for Quarto projects with computational cells in either language or both languages.
+- Polyglot language support: first-class support for R and Python makes Positron an excellent choice for Quarto projects with computational cells in either language or both languages.
 
-Interactive code execution: Positron lets you run individual code cells directly in the Console without rendering the entire document, which is useful for developing and testing code incrementally.
+- Interactive code execution: run individual code cells in the Console without rendering the entire document (see [Running code cells](#running-code-cells)).
+
+- Code completion and diagnostics: as you type, Positron suggests valid Quarto and YAML options and flags syntax errors, helping you catch problems before you render.
 
 Note that for executing code cells in Quarto documents in Positron, you'll need to install some packages depending on your language of choice.
 
@@ -135,10 +201,6 @@ install.packages("knitr")
 pip install jupyter
 ```
 
-Side-by-side preview: You can view your source and rendered output at the same time, in a preview panel next to the editor.
-
-Code completion and diagnostics: As you type, Positron suggests valid Quarto and YAML options and flags syntax errors, helping you catch problems before you render.
-
 ::: todo
 [MCR] A screenshot of Quarto help that appears as you type?
 :::
@@ -152,11 +214,12 @@ The typical workflow for authoring Quarto documents in Positron follows these st
 3. Iterate on your content by making edits and re-running the preview. You can optionally enable *Render on Save* to automatically update the preview whenever you save your file.
 4. Execute code interactively by running individual code cells using the Run Cell button, which allows you to test your code without rendering the entire document.
 
-![](images/tools-positron-hello-python.png){fig-alt="Positron with a Quarto document titled "Penguins, meet Quarto!" open on the left side and the rendered version of the document on the right side."}
+![](images/tools-positron-hello-python.png){fig-alt="Positron with a Quarto document titled 'Penguins, meet Quarto!' open on the left side and the rendered version of the document on the right side."}
 
 ### Visual editor
 
-The dual editor modes noted above give you access to Positron's visual editor, a WYSIWYM interface for editing Quarto markdown without working directly in the source.
+The dual editor modes noted above give you access to Positron's visual editor, a WYSIWYM ("what you see is what you mean") interface for editing Quarto markdown without working directly in the source.
+Use the Edit in Visual Mode / Edit in Source Mode commands or the keyboard shortcut (⇧⌘F4 on macOS, Ctrl+Shift+F4 on Windows/Linux) to switch between modes.
 Beyond basic formatting, it supports many of Quarto's richer constructs, including tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX.
 The visual editor's support is still somewhat limited in Positron, though: it's a great fit for rich-text authoring, but running code and other language features aren't available in visual mode, so switch to source mode when you need them.
 We keep the coverage brief here and highlight visual-editor features throughout the book where they're relevant.
@@ -179,7 +242,7 @@ Editing an `.ipynb` for Quarto differs from a `.qmd` file in a few ways:
 - Cell options use the same `#|` comment prefix as `.qmd` files and must appear at the very start of the cell.
 
 Rendering and preview work just as they do for `.qmd` files: run the Quarto: Preview command once, and the preview refreshes each time you save.
-One key difference is execution—when rendering an `.ipynb`, Quarto does *not* run the cells by default, assuming you've already executed them while editing.
+One key difference is execution—as noted in @sec-engines, `.qmd` files are always executed when rendered, but when rendering an `.ipynb`, Quarto does *not* run the cells by default, assuming you've already executed them while editing.
 To execute cells during the render, pass the `--execute` flag:
 
 ```bash
@@ -226,14 +289,10 @@ Enhanced features like completion and execution are built in for R and Python ce
 
 By default, running a code cell sends it to the Console, as described above.
 Positron can instead display cell output *inline*, directly beneath each cell in the source editor—much like a Jupyter notebook or RStudio's R Notebooks.
-Enable it with the `positron.quarto.inlineOutput.enabled` setting.
+To use this feature, you must first enable it in your user or workspace settings.
 
 Turning on inline output also changes the execution model.
 Rather than sharing a single Console across every document, Positron gives each `.qmd` file its own isolated R or Python session.
-
-Because a document with inline output behaves like a notebook, it has no Console attached by default.
-To run code interactively in the same session, use the Console: Show Notebook Console command (or set `console.showNotebookConsoles` to always show one).
-Positron saves outputs as you run cells; the Quarto: Clear All Outputs command clears them.
 
 ::: todo
 [MCR] Screenshot of a `.qmd` with inline output beneath a cell?
@@ -336,7 +395,6 @@ RStudio comes with Quarto pre-installed and provides a rich set of features that
 ### Installation
 
 To get started with Quarto in RStudio, download and install the latest version of RStudio from [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/).
-Support for editing and previewing Quarto documents was added in RStudio v2022.07, so you'll need that release or later; using the latest release is recommended.
 Also make sure that you have R installed on your system, which you can get from [cran.r-project.org](https://cran.r-project.org).
 
 ### Creating documents
@@ -363,7 +421,7 @@ Features like dual editor mode, interactive code execution, and side-by-side pre
 [MCR] Screenshot?
 :::
 
-- Interactive code execution: Run individual code chunks within the editor using the run button or ⇧⌘⏎ (Ctrl+Shift+Enter on Windows/Linux) shortcut without rendering the entire document.
+- Interactive code execution: Run individual code cells within the editor using the run button or ⇧⌘Enter (Ctrl+Shift+Enter on Windows/Linux) shortcut without rendering the entire document.
 
 ::: todo
 [MCR] Screenshot?
@@ -371,9 +429,7 @@ Features like dual editor mode, interactive code execution, and side-by-side pre
 
 ### Visual editor
 
-The dual editor modes noted above give you access to RStudio's visual editor, a WYSIWYM interface for editing Quarto markdown without working directly in the source.
-Beyond basic formatting, it supports many of Quarto's richer constructs, including tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX.
-We keep the coverage brief here and highlight visual-editor features throughout the book where they're relevant.
+RStudio pioneered the visual editor that Positron later inherited, so the experience described in @sec-positron largely carries over: a WYSIWYM interface covering tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX.
 
 ::: todo
 [MCR] Screenshot of the RStudio visual editor.
@@ -390,42 +446,9 @@ It also provides options to initialize a [git](https://git-scm.com/) repository 
 [MCR] Screenshot of the Create Quarto Project wizard?
 :::
 
-### Knitr engine
+### Python environments
 
-Quarto is designed to be highly compatible with existing [R Markdown](https://rmarkdown.rstudio.com/) documents—you can generally render an existing `.Rmd` file with Quarto without any changes.
-
-The main difference to be aware of is how chunk options are specified.
-In Quarto, chunk options are typically written as special comments at the top of the chunk using the `#|` prefix, rather than on the line that opens the chunk:
-
-```{{r}}
-#| echo: false
-#| fig-cap: "Air Quality"
-library(ggplot2)
-ggplot(airquality, aes(Temp, Ozone)) +
-  geom_point() +
-  geom_smooth(method = "loess", se = FALSE)
-```
-
-This makes it easier to work with longer options like `fig-cap`, `fig-subcap`, and `fig-alt`, and to edit chunk options in structured editors such as notebooks.
-Since options use YAML syntax rather than R syntax, when you need an R expression for a value, you need to prefix it with `!expr`:
-
-```
-#| fig-cap: !expr 'paste("Air", "Quality")'
-```
-
-### Jupyter engine
-
-You can also author Quarto documents that use the Jupyter engine in RStudio, for example to execute Python code.
-These documents include a `jupyter` option in the YAML front matter that specifies the kernel to use:
-
-```yaml
----
-title: Matplotlib Demo
-author: Norah Smith
-jupyter: python3
----
-```
-
+You can author Quarto documents that use the Jupyter engine (@sec-engines) in RStudio, for example to execute Python code.
 To work within a Python virtual environment (venv), use the File > New Project… command, choose the Jupyter engine, and specify the packages you'd like to seed the environment with.
 RStudio then activates this environment automatically whenever you open the project.
 You can install additional packages later from the RStudio Terminal tab, for example:
@@ -470,7 +493,7 @@ VS Code is particularly popular among Python developers and those who work acros
 
 To get started with VS Code, first install VS Code from [code.visualstudio.com](https://code.visualstudio.com). Then install the Quarto CLI from [quarto.org](https://quarto.org/docs/get-started/) and the Quarto extension from the VS Code Marketplace.
 
-Similar to Positron and RStudio, you can preview documents with the keyboard shortcut ⇧⌘K (Ctrl+Shift+K on Windows/Linux) and run individual code cells with ⇧⌘⏎ (Ctrl+Shift+Enter on Windows/Linux).
+Similar to Positron and RStudio, you can preview documents with the keyboard shortcut ⇧⌘K (Ctrl+Shift+K on Windows/Linux) and run individual code cells with ⇧⌘Enter (Ctrl+Shift+Enter on Windows/Linux).
 
 ### JupyterLab
 
@@ -503,11 +526,9 @@ The best tool for Quarto authoring depends on your specific needs and existing w
 
 - If you already use VS Code for development, adding the Quarto extension gives you powerful Quarto capabilities in your familiar environment.
 
+- If your workflow is notebook-first, JupyterLab lets you keep authoring in `.ipynb` files and render them with Quarto, with optional `.qmd` support via the Quarto extension.
+
 - If you prefer keyboard-driven, terminal-based workflows, editors like Neovim or Vim can be configured to work effectively with Quarto.
-
-Throughout this book, we'll call out features specific to the visual editor available in RStudio and Positron when relevant, as this mode offers a different authoring experience than working directly with markdown source.
-
-However, all the concepts and techniques we cover are applicable regardless of which tool you choose.
 
 ::: todo
 [MCR] Try all shortcuts with default settings before finalizing.
