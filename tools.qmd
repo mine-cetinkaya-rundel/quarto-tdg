@@ -7,7 +7,7 @@ However, we recommend using an integrated development environment (IDE) when wor
 Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting, which can help you quickly find the right syntax and catch errors.
 
 In this chapter, we detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring.
-We spend more time on Positron than on RStudio as RStudio's Quarto support is mature and extensively documented elsewhere, while Positron is newer and its Quarto features are less widely covered.
+We spend more time on Positron than on RStudio because RStudio's Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.
 
 ## Document structure
 
@@ -243,7 +243,7 @@ Editing an `.ipynb` for Quarto differs from a `.qmd` file in a few ways:
 
 Rendering and preview work just as they do for `.qmd` files: run the Quarto: Preview command once, and the preview refreshes each time you save.
 One key difference is execution—as noted in @sec-engines, `.qmd` files are always executed when rendered, but when rendering an `.ipynb`, Quarto does *not* run the cells by default, assuming you've already executed them while editing.
-To execute cells during the render, pass the `--execute` flag:
+To execute cells during rendering, pass the `--execute` flag:
 
 ```bash
 quarto render notebook.ipynb --execute
@@ -328,7 +328,7 @@ After you preview a different format, Quarto: Preview and its keyboard shortcut 
 Embedded, side-by-side preview is available for HTML- and PDF-based formats, including `revealjs` and `beamer` slides.
 For Word and other formats, Positron renders the file, but you'll open it in an external application to view the result.
 
-Because preview only renders one format at a time, use the Quarto: Render Document command when a document declares multiple formats, and you want to produce them all.
+Because preview renders only one format at a time, use the Quarto: Render Document command when a document declares multiple formats and you want to produce all of them.
 This command lets you render all declared formats at once, or selectively render any declared or standard format, such as PDF or MS Word.
 
 ::: todo
@@ -512,7 +512,7 @@ Community-developed plugins provide features like syntax highlighting, code exec
 Since Quarto documents are plain text files, you can author them in virtually any text editor:
 
 - Emacs: With Markdown mode and language-specific modes (ESS for R, python-mode, etc.).
-- Sublime Text: Using markdown packages and build systems.
+- Sublime Text: Using Markdown packages and build systems.
 - Zed: With Markdown support and terminal integration.
 - Any plain text editor: You can always author in your favorite editor and use `quarto render` from the command line.
 
