@@ -71,3 +71,10 @@ crossref:
 
 filters: 
   - list-table
+  - custom-callout
+
+custom-callout:
+  todo:
+    icon-symbol: "📝"
+    color: "#bf6bc9"
+    title: "TO-DO"
