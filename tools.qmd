@@ -25,30 +25,6 @@ They comprise three main components: a YAML header for metadata, markdown text f
 Before diving into specific IDEs, let's start with the fundamentals: the Quarto Command Line Interface (CLI).
 The Quarto CLI is the core tool that powers all Quarto rendering, regardless of which editor you use.
 
-When you are getting started, you only need a small set of commands for most Quarto work:
-
-```bash
-quarto preview document.qmd
-quarto render document.qmd
-quarto check
-```
-
-Use `quarto preview` while you are actively writing. 
-Preview renders your document, opens the result, and keeps watching for changes. 
-Each time you save the source file, Quarto updates the preview so you can see the effect of your edits.
-
-Use `quarto render` to produce the final output file. 
-Rendering creates the output once and then stops. 
-This is the command you will typically use when you are ready to share or publish a document.
-
-Use `quarto check` when you first install Quarto or when something is not rendering as expected. 
-It verifies that Quarto and its supporting tools, such as knitr, Jupyter, and LaTeX, are available on your system.
-
-The same basic workflow applies whether you work from the terminal or from an IDE. 
-IDEs such as Positron, RStudio, and VS Code provide buttons, keyboard shortcuts, and preview panes for these tasks, but the underlying Quarto workflow is the same.
-
-### Rendering
-
 The most fundamental Quarto command is `quarto render`, which converts your Quarto document into the desired output format.
 Quarto uses the term render to describe the process of taking this source document and producing a new file that combines the output from the executed code cells with the Markdown.
 You can render a specific Quarto document in the Terminal with:
@@ -71,8 +47,6 @@ quarto render document.qmd --to pdf
 quarto render document.qmd --to docx
 ```
 
-### Previewing
-
 While `quarto render` creates the output file and stops, `quarto preview` renders your document, opens it in your web browser, and automatically re-renders when you save changes to the source file:
 
 ```bash
@@ -84,14 +58,18 @@ The preview server will continue running until you stop it (typically with Ctrl+
 
 Preview isn't limited to single documents: run `quarto preview` in a project directory—such as a website or book—and Quarto serves the whole project, refreshing whichever pages you edit.
 
-### Other useful commands
-
 Beyond rendering and previewing, the Quarto CLI offers several other helpful commands.
 
 To see which version of Quarto you have installed, run:
 
 ```bash
 quarto --version
+```
+
+To verify that your installation and its dependencies (such as Jupyter, knitr, and LaTeX) are correctly configured, run:
+
+```bash
+quarto check
 ```
 
 When your document is ready to share, `quarto publish` can render and push it to a variety of destinations, including GitHub Pages, Posit Connect, and Posit Connect Cloud:
@@ -111,6 +89,9 @@ Or you can use `--help` with any command to see available options and usage info
 ```bash
 quarto render --help
 ```
+
+The same basic workflow applies whether you work from the terminal or from an IDE. 
+IDEs such as Positron, RStudio, and VS Code provide buttons, keyboard shortcuts, and preview panes for these tasks, but the underlying Quarto workflow is the same.
 
 ## Computation engines {#sec-engines}
 
@@ -166,7 +147,7 @@ Now that you understand the foundational CLI commands and how Quarto executes co
 Positron is a next-generation data science IDE that comes pre-configured for Quarto—the Quarto CLI is built in, and the Quarto VS Code extension is bundled.
 Additionally, Positron offers specialized features for Quarto authoring, such as integrated rendering and preview for Quarto documents, completion and diagnostics for Quarto options, and full R and Python support for code that is inside code cells in a Quarto document, including interactive execution of code in the Console, code completion, help, and diagnostics.
 
-### Installation
+### Installation {#installation-positron}
 
 To get started with Quarto in Positron, download and install Positron from [positron.posit.co](https://positron.posit.co).
 Since Quarto is built into Positron, no additional installation is required.
@@ -174,11 +155,10 @@ Depending on your language of choice, you'll also need to have R or Python insta
 
 Positron's Quarto support comes from the bundled Quarto extension, which is included as a *bootstrapped extension*—it behaves just as if you had installed it yourself, updates automatically as new versions appear in the extension gallery, and can be uninstalled if you ever need to.
 
-### Managing Quarto installations
-
 Positron ships with its own copy of the Quarto CLI, but you aren't locked into it.
 If you'd prefer to use a version of Quarto that you've installed yourself—say, to match the version your project uses elsewhere—that generally works automatically.
-When you need finer control over exactly which Quarto is used, set the `quarto.path` setting to point at the installation you want.
+When you need finer control over exactly which Quarto is used, set the *Quarto: Path* setting to point at the installation you want.
+You can do this at the user or workspace level.
 
 To see which version is currently active, check Positron's bottom status bar.
 After changing your Quarto version, restart Positron so the status bar updates.
@@ -187,18 +167,18 @@ After changing your Quarto version, restart Positron so the status bar updates.
 [MCR] Screenshot of the status bar showing the active Quarto version?
 :::
 
-### Core features
+### Core features {#core-features-positron}
 
 Positron provides several features that make Quarto authoring efficient and productive.
 Here's an overview; the subsections that follow cover each in more depth:
 
 - Previewing: render `.qmd` files and view the result side by side with your source, using the Quarto: Preview command, the keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux), or the Preview button in the toolbar.
 
-- Dual editor modes: switch between source and visual editing (see [Visual editor](#visual-editor)).
+- Dual editor modes: switch between source and visual editing (see [Visual editor](#visual-editor-positron)).
 
 - Polyglot language support: first-class support for R and Python makes Positron an excellent choice for Quarto projects with computational cells in either language or both languages.
 
-- Interactive code execution: run individual code cells in the Console without rendering the entire document (see [Running code cells](#running-code-cells)).
+- Interactive code execution: run individual code cells in the Console without rendering the entire document (see [Running code cells](#running-code-cells-positron)).
 
 - Code completion and diagnostics: as you type, Positron suggests valid Quarto and YAML options and flags syntax errors, helping you catch problems before you render.
 
@@ -220,7 +200,7 @@ pip install jupyter
 [MCR] A screenshot of Quarto help that appears as you type?
 :::
 
-### Basic workflow
+### Basic workflow {#basic-workflow-positron}
 
 The typical workflow for authoring Quarto documents in Positron follows these steps:
 
@@ -231,7 +211,7 @@ The typical workflow for authoring Quarto documents in Positron follows these st
 
 ![](images/tools-positron-hello-python.png){fig-alt="Positron with a Quarto document titled 'Penguins, meet Quarto!' open on the left side and the rendered version of the document on the right side."}
 
-### Visual editor
+### Visual editor {#visual-editor-positron}
 
 The dual editor modes noted above give you access to Positron's visual editor, a WYSIWYM ("what you see is what you mean") interface for editing Quarto markdown without working directly in the source.
 Use the Edit in Visual Mode / Edit in Source Mode commands or the keyboard shortcut (⇧⌘F4 on macOS, Ctrl+Shift+F4 on Windows/Linux) to switch between modes.
@@ -282,7 +262,7 @@ quarto convert notebook.qmd
 [MCR] Screenshot of the Notebook Editor with a Raw front-matter cell?
 :::
 
-### Running code cells
+### Running code cells {#running-code-cells-positron}
 
 The interactive execution introduced above is supported by a full set of commands to run R, Python, and Julia cells, with output appearing in the Console.
 You can run the current cell, the next or previous cell, all cells, the cells above or below the cursor, or just the selected line(s):
@@ -300,7 +280,7 @@ You can run the current cell, the next or previous cell, all cells, the cells ab
 You can insert a new code cell with ⇧⌘I (Ctrl+Shift+I on Windows/Linux).
 Enhanced features like completion and execution are built in for R and Python cells; for Julia, install the Julia extension to enable them.
 
-### Inline output
+### Inline output {#inline-output-positron}
 
 By default, running a code cell sends it to the Console, as described above.
 Positron can instead display cell output *inline*, directly beneath each cell in the source editor—much like a Jupyter notebook or RStudio's R Notebooks.
@@ -313,7 +293,7 @@ Rather than sharing a single Console across every document, Positron gives each 
 [MCR] Screenshot of a `.qmd` with inline output beneath a cell?
 :::
 
-### Contextual assistance
+### Contextual assistance {#contextual-assistance-positron}
 
 While you edit R and Python code cells, Positron offers the same assistance you'd get in a script or the Console: completion for functions and their arguments, help tooltips as you type or hover over a function, and full documentation in the Help pane when you press F1 with the cursor in a function.
 
@@ -334,7 +314,7 @@ The preview appears in the Quarto assist panel alongside your document, so you c
 [MCR] Screenshot or GIF of a live diagram preview?
 :::
 
-### Previewing and rendering other formats
+### Previewing and rendering other formats {#previewing-and-rendering-other-formats-positron}
 
 The Quarto: Preview command renders and previews your document's *default* format.
 To preview a different format, use the Quarto: Preview Format command, which offers a list of formats to choose from—those declared in the document plus standard options like PDF and MS Word.
@@ -350,7 +330,7 @@ This command lets you render all declared formats at once, or selectively render
 [MCR] Screenshot of the Preview Format quick pick?
 :::
 
-### Render on Save
+### Render on Save {#render-on-save-positron}
 
 By default, Positron does not re-render your document every time you save—rendering can be slow if it involves long-running computations, and it's useful to be able to save freely without triggering a full render.
 When you do want automatic rendering, you have three ways to enable Render on Save:
@@ -366,7 +346,7 @@ editor:
 
 With Render on Save enabled, the preview refreshes automatically each time you save.
 
-### External preview
+### External preview {#external-preview-positron}
 
 By default, the rendered preview opens in a side-by-side panel inside Positron.
 If you'd rather preview in an external browser—or suppress the automatic preview entirely—change the Preview Type setting.
@@ -407,7 +387,7 @@ Positron provides several additional features and tools that enhance your Quarto
 RStudio is an IDE specifically designed for R, and it provides excellent support for Quarto authoring.
 RStudio comes with Quarto pre-installed and provides a rich set of features that make it easy to create, edit, and render Quarto documents, including syntax highlighting, code completion, integrated rendering and preview, and support for both visual and source editing modes.
 
-### Installation
+### Installation {#installation-rstudio}
 
 To get started with Quarto in RStudio, download and install the latest version of RStudio from [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop/).
 Also make sure that you have R installed on your system, which you can get from [cran.r-project.org](https://cran.r-project.org).
@@ -421,33 +401,76 @@ This opens the New Quarto Document dialog, where you can give the document a tit
 [MCR] Screenshot of the New Quarto Document dialog?
 :::
 
-### Core features
+### Core features {#core-features-rstudio}
 
 Like Positron, RStudio provides several features that make Quarto authoring efficient and productive.
+Here's an overview; the subsections that follow cover each in more depth:
 
-For example, you can use the Render button or keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux) to render `.qmd` files to HTML, PDF, Word, or other formats.
-The "Render on Save" option enables automatic updates during editing, so your preview refreshes every time you save your document.
+- Rendering and preview: render `.qmd` files to HTML, PDF, Word, or other formats with the Render button or the keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux).
 
-Features like dual editor mode, interactive code execution, and side-by-side preview are also available in RStudio, though they are accessed in different ways:
+- Dual editor modes: switch between source and visual editing.
 
-- Dual editor modes: Switch between source and visual editing modes using the buttons in the toolbar or the keyboard shortcut (⇧⌘F4 on macOS, Ctrl+Shift+F4 on Windows/Linux).
+- Interactive code execution: run individual code cells without rendering the entire document.
 
-::: todo
-[MCR] Screenshot?
-:::
+- Code completion and diagnostics: as you type, RStudio suggests valid Quarto and YAML options and flags errors before you render.
 
-- Interactive code execution: Run individual code cells within the editor using the run button or ⇧⌘Enter (Ctrl+Shift+Enter on Windows/Linux) shortcut without rendering the entire document.
+### Basic workflow {#basic-workflow-rstudio}
 
-::: todo
-[MCR] Screenshot?
-:::
+The authoring loop in RStudio mirrors the one described for Positron above: create or open a `.qmd` file, click the Render button (or press ⇧⌘K / Ctrl+Shift+K) to preview the output, then iterate as you edit.
+You can enable Render on Save so the preview refreshes automatically, and run individual code cells as you go rather than rendering the whole document each time.
 
-### Visual editor
+### Visual editor {#visual-editor-rstudio}
 
 RStudio pioneered the visual editor that Positron later inherited, so the experience described in @sec-positron largely carries over: a WYSIWYM interface covering tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX.
+Switch between source and visual modes with the buttons in the editor toolbar or the keyboard shortcut (⇧⌘F4 on macOS, Ctrl+Shift+F4 on Windows/Linux).
 
 ::: todo
 [MCR] Screenshot of the RStudio visual editor.
+:::
+
+### Running code cells {#running-code-cells-rstudio}
+
+As in Positron, you can execute code cells interactively rather than rendering the whole document.
+Each cell has a Run button in its top-right corner, and ⇧⌘Enter (Ctrl+Shift+Enter on Windows/Linux) runs the current cell, with additional commands to run the next cell or all cells above or below.
+
+::: todo
+[MCR] Confirm RStudio's default cell-execution shortcuts against the current keyboard shortcut reference.
+:::
+
+### Inline output {#inline-output-rstudio}
+
+RStudio pioneered inline output for R Markdown, and the same behavior is available for Quarto documents: cell output can appear directly beneath each cell in the source editor instead of in the Console (see @sec-positron for the equivalent Positron feature).
+Toggle between inline and console output from the gear (settings) menu in the editor toolbar, or set a default for all documents in RStudio's global options.
+
+::: todo
+[MCR] Confirm the exact menu path and labels for the inline-vs-console output toggle in RStudio.
+:::
+
+### Contextual assistance {#contextual-assistance-rstudio}
+
+While you edit cells, RStudio offers the same kinds of assistance as Positron: completion for functions and their arguments, function documentation via F1, and help in the Help pane.
+
+### Previewing and rendering other formats {#previewing-and-rendering-other-formats-rstudio}
+
+RStudio's Render button renders the format declared in your document's YAML header.
+To produce a different format, change the `format` in the YAML header—or pick one from the dropdown next to the Render button—and render again.
+
+::: todo
+[MCR] Confirm the Render button's format dropdown behavior in the current RStudio release.
+:::
+
+### Render on Save {#render-on-save-rstudio}
+
+Like Positron, RStudio can re-render your document automatically each time you save.
+Enable Render on Save with the checkbox in the editor toolbar; RStudio then refreshes the preview whenever you save the file.
+
+### External preview {#external-preview-rstudio}
+
+By default, RStudio shows the rendered preview in the Viewer pane, beside the editor.
+You can change where previews appear—for example, opening them in a separate window—in RStudio's global options.
+
+::: todo
+[MCR] Confirm the preview-location options and their labels (Viewer pane, Window, etc.) in RStudio's global options.
 :::
 
 ### Projects
