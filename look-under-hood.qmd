@@ -38,7 +38,7 @@ You'll dive into the details of each step below.
 
 ![The `quarto render` process for `html-r.qmd`](images/look-under-hood-render-html-r.jpg){#fig-render-html-r fig-alt="Diagram showing a `.qmd` file entering a box labelled Quarto, it flows through `knitr` to a `.html.md` file, then through Pandoc, exiting the box as a `.html` file along with a folder with the name `_files.`."}
 
-### Before the computational engine
+### Before the computational engine {#sec-engine-selection}
 
 Before anything else, Quarto parses your file to extract the document header and code cells.
 Quarto determines the set of formats that need to be rendered and select the appropriate computational engine.
