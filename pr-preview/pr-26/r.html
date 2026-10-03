@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -59,7 +62,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -78,10 +100,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3cc411cc7de4e6fcd8f1d819c78e5b30.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0a373b8e2e9e59cc6500e1a18ade50e5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -322,6 +344,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Jupyter</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -429,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sec-graphics-devices" class="level3" data-number="7.1.3">
 <h3 data-number="7.1.3" class="anchored" data-anchor-id="sec-graphics-devices"><span class="header-section-number">7.1.3</span> Graphics devices</h3>
-<p>When R generates a plot, knitr uses a <em>graphics device</em> to save it to a file, which is then included in the output. The default device is <code>png</code>, and it works well in most situations. You may want to change it to improve text rendering, achieve scalable output, or ensure PDF compatibility.</p>
+<p>When R generates a plot, knitr uses a <em>graphics device</em> to save it to a file, which is then included in the output. The default device is <code>png</code> for HTML formats, <code>pdf</code> for LaTeX, and <code>svg</code> for typst. You may want to change it to improve text rendering, achieve scalable output, or ensure PDF compatibility.</p>
 <p>You can set the graphics device with the <code>dev</code> option, either at the document level or for individual cells:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">knitr</span><span class="kw">:</span></span>
@@ -445,8 +473,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Common choices include the following:</p>
 <ul>
 <li>The <code>png</code> device is the default.</li>
-<li>The <code>ragg_png</code> device creates higher-quality PNG images for better text rendering and anti-aliasing. Generating images figures with this device requires the <a href="https://ragg.r-lib.org/"><strong>ragg</strong></a> package.</li>
-<li>The <code>svglite</code> device creates scalable HTML output in vector format. Figures created with this device are sharp at any zoom level and they require the <a href="https://svglite.r-lib.org/"><strong>svglite</strong></a> package.</li>
+<li>The <code>ragg_png</code> device creates higher-quality PNG images for better text rendering and anti-aliasing. Generating figures with this device requires the <a href="https://ragg.r-lib.org/"><strong>ragg</strong></a> package.</li>
+<li>The <code>svglite</code> device creates scalable HTML output in vector format. Figures created with this device are sharp at any zoom level. This device requires the <a href="https://svglite.r-lib.org/"><strong>svglite</strong></a> package.</li>
 <li>The <code>pdf</code> device generates figures in standard PDF format. It is the default vector device for LaTeX/PDF output.</li>
 <li>The <code>cairo_pdf</code> device generates figures in PDF format with Unicode text. It is especially useful for handling non-Latin characters and special symbols.</li>
 </ul>
@@ -493,7 +521,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addMarkers</span>(<span class="at">lng =</span> <span class="sc">-</span><span class="fl">73.99</span>, <span class="at">lat =</span> <span class="fl">40.73</span>, <span class="at">popup =</span> <span class="st">"New York City"</span>)</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>It is important to note that interactive widgets only work in HTML output formats. When rendering to PDF or Word, widgets will either produce a static fallback image or an error, depending on the package. You can use <code>knitr::is_html_output()</code> (see <a href="#sec-conditional-execution" class="quarto-xref"><span>Section 7.2.3</span></a>) to conditionally include widgets only in HTML output.</p>
+<p>It is important to note that interactive widgets only work in HTML output formats. When rendering to PDF or Word, Quarto defers to knitr’s behavior, which by default is to stop with an error reporting that functions producing HTML output were found in a document targeting a non-HTML format.</p>
+<p>There are two ways around this. The first is to install the <a href="https://rstudio.github.io/webshot2/">webshot2</a> package along with Google Chrome or another Chromium-based browser. When both are available, knitr automatically takes a static screenshot of each widget and includes that image in the output instead:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"webshot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The second is to use <code>knitr::is_html_output()</code> (see <a href="#sec-conditional-execution" class="quarto-xref"><span>Section 7.2.3</span></a>) to conditionally include widgets only in HTML output, falling back to a static plot or table for other formats. This gives you more control over the non-HTML version than a screenshot does, at the cost of writing the fallback yourself.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -510,39 +541,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="raw-markdown-output" class="level3" data-number="7.1.5">
 <h3 data-number="7.1.5" class="anchored" data-anchor-id="raw-markdown-output"><span class="header-section-number">7.1.5</span> Raw markdown output</h3>
-<p>Sometimes you want your R code to produce raw markdown that Quarto processes directly, rather than being wrapped in output containers. Use <code>output: asis</code> for this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"## A Dynamic Heading</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"This paragraph was generated by R.</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>One common use case is programmatically generating sections in a loop. For example, you can iterate over the groups in a dataset, emitting a heading and some content for each:</p>
+<p>Sometimes you want your R code to produce raw markdown that Quarto processes directly, rather than being wrapped in output containers. Use <code>output: asis</code> for this, and you will usually want <code>echo: false</code> as well:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (cyl <span class="cf">in</span> <span class="fu">sort</span>(<span class="fu">unique</span>(mtcars<span class="sc">$</span>cyl))) {</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"### Cars with"</span>, cyl, <span class="st">"cylinders</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  group <span class="ot">&lt;-</span> mtcars[mtcars<span class="sc">$</span>cyl <span class="sc">==</span> cyl, ]</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Mean fuel efficiency:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(group<span class="sc">$</span>mpg), <span class="dv">1</span>), <span class="st">"mpg.</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"## A Dynamic Heading</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"This paragraph was generated by R.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>One common use case is programmatically generating sections in a loop. For example, you can iterate over the groups in a dataset, emitting a heading and some content for each:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (cyl <span class="cf">in</span> <span class="fu">sort</span>(<span class="fu">unique</span>(mtcars<span class="sc">$</span>cyl))) {</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"### Cars with"</span>, cyl, <span class="st">"cylinders</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  group <span class="ot">&lt;-</span> mtcars[mtcars<span class="sc">$</span>cyl <span class="sc">==</span> cyl, ]</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Mean fuel efficiency:"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(group<span class="sc">$</span>mpg), <span class="dv">1</span>), <span class="st">"mpg.</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Separating each piece of output with <code>\n\n</code> is important: the blank line tells Quarto to treat the heading and the paragraph as distinct markdown blocks rather than running them together. For example, the code cell above results in the following output:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>### Cars with 4 cylinders
-
-Mean fuel efficiency: 26.7 mpg.
-
-### Cars with 6 cylinders
-
-Mean fuel efficiency: 19.7 mpg.
-
-### Cars with 8 cylinders
-
-Mean fuel efficiency: 15.1 mpg.</code></pre>
-</div>
-</div>
 </section>
+<div class="rendered">
+<section id="cars-with-4-cylinders" class="level3 unnumbered unlisted">
+<h3 class="unnumbered unlisted anchored" data-anchor-id="cars-with-4-cylinders">Cars with 4 cylinders</h3>
+<p>Mean fuel efficiency: 26.7 mpg.</p>
+</section>
+<section id="cars-with-6-cylinders" class="level3 unnumbered unlisted">
+<h3 class="unnumbered unlisted anchored" data-anchor-id="cars-with-6-cylinders">Cars with 6 cylinders</h3>
+<p>Mean fuel efficiency: 19.7 mpg.</p>
+</section>
+<section id="cars-with-8-cylinders" class="level3 unnumbered unlisted">
+<h3 class="unnumbered unlisted anchored" data-anchor-id="cars-with-8-cylinders">Cars with 8 cylinders</h3>
+<p>Mean fuel efficiency: 15.1 mpg.</p>
+</section>
+</div>
+<p>This approach works well for text output, but not for code cells that produce figures or tables.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 </section>
 <section id="sec-execution-options-r" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="sec-execution-options-r"><span class="header-section-number">7.2</span> Execution</h2>
@@ -556,7 +589,7 @@ Mean fuel efficiency: 15.1 mpg.</code></pre>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Common document-level execution options include the following and take on values <code>true</code> or <code>false</code>, unless specified otherwise:</p>
+<p>Common document-level execution options include the following, which take <code>true</code> or <code>false</code> unless noted otherwise:</p>
 <ul>
 <li><code>eval</code>: Whether to execute code cells</li>
 <li><code>echo</code>: Whether to display source code</li>
@@ -590,6 +623,7 @@ Mean fuel efficiency: 15.1 mpg.</code></pre>
 </ul></li>
 <li>Some control the output:
 <ul>
+<li><code>output</code>: Whether and how to show results (<code>true</code>, <code>false</code>, or <code>asis</code> to indicate that the output is raw markdown and should not have any of Quarto’s standard enclosing markdown)</li>
 <li><code>results</code>: How to display text results (<code>markup</code>, <code>asis</code>, <code>hold</code>, <code>hide</code>)</li>
 <li><code>collapse</code>: Merge code and output into a single block</li>
 <li><code>comment</code>: Prefix for output lines (default <code>"##"</code>)</li>
@@ -613,8 +647,7 @@ Mean fuel efficiency: 15.1 mpg.</code></pre>
 </section>
 <section id="sec-conditional-execution" class="level3" data-number="7.2.3">
 <h3 data-number="7.2.3" class="anchored" data-anchor-id="sec-conditional-execution"><span class="header-section-number">7.2.3</span> Conditional execution</h3>
-<p>Sometimes you need code to behave differently depending on the output format. Quarto provides several ways to access format information from your R code.</p>
-<p>The knitr package provides functions to check the output format:</p>
+<p>Sometimes you need code to behave differently depending on the output format. knitr provides helper functions that report the format being rendered:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (knitr<span class="sc">::</span><span class="fu">is_html_output</span>()) {</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code for HTML output only</span></span>
@@ -624,12 +657,12 @@ Mean fuel efficiency: 15.1 mpg.</code></pre>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Code for PDF output only</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You can also check the specific Pandoc output format:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">pandoc_to</span>()</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns e.g., "html", "latex", "docx"</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You can also use Quarto environment variables for conditional execution. For more detailed format information, Quarto sets the <code>QUARTO_EXECUTE_INFO</code> environment variable during rendering:</p>
+<p>For formats without a dedicated helper, <code>knitr::pandoc_to()</code> returns the Pandoc output format, or tests against one when you pass a name:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">pandoc_to</span>()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns e.g., "html", "latex", "docx"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">pandoc_to</span>(<span class="st">"typst"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns TRUE if the output is typst</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Quarto also exposes format information through the <code>QUARTO_EXECUTE_INFO</code> environment variable, which it sets during rendering:<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>info <span class="ot">&lt;-</span> jsonlite<span class="sc">::</span><span class="fu">fromJSON</span>(<span class="fu">Sys.getenv</span>(<span class="st">"QUARTO_EXECUTE_INFO"</span>))</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>format_name <span class="ot">&lt;-</span> info<span class="sc">$</span>format<span class="sc">$</span>identifier<span class="sc">$</span><span class="st">`</span><span class="at">base-format</span><span class="st">`</span></span>
@@ -672,12 +705,45 @@ Mean fuel efficiency: 15.1 mpg.</code></pre>
 </div>
 <p>Then reference it when rendering:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render report.qmd <span class="at">--execute-params</span> params-south.yml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-simple callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Parameter values must be valid YAML
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>However you set them, parameters reach your document through YAML serialization. Every value must therefore be something YAML can represent: strings, numbers, booleans, and lists or nested maps of those. You cannot pass R objects as parameters—a data frame, a fitted model, or a function will not survive the trip.</p>
+<p>When a parameter needs to stand in for a complex object, pass a value that identifies it instead: a file path, a database query, or an ID that the document uses to load the object itself.</p>
+</div>
+</div>
 </section>
 <section id="sec-r-rendering" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="sec-r-rendering"><span class="header-section-number">7.4</span> Rendering</h2>
 <section id="sec-render-from-r" class="level3" data-number="7.4.1">
 <h3 data-number="7.4.1" class="anchored" data-anchor-id="sec-render-from-r"><span class="header-section-number">7.4.1</span> Rendering from R</h3>
-<p>The <a href="https://quarto-dev.github.io/quarto-r/"><strong>quarto</strong></a> R package provides functions to render documents directly from R, without using the terminal. This package is optional — you don’t need it to use Quarto with R. It’s a convenience for those who prefer working entirely within the R console.</p>
+<p>The <a href="https://quarto-dev.github.io/quarto-r/"><strong>quarto</strong></a> R package provides functions to render documents directly from R, without using the terminal. This package is optional—you don’t need it to use Quarto with R. It’s a convenience for those who prefer working entirely within the R console.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>More than rendering
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>quarto</strong> package also includes helpers for other tasks you might otherwise do by hand:</p>
+<ul>
+<li>Theme helpers such as <code>theme_brand_ggplot2()</code> and <code>theme_brand_gt()</code> style plots and tables to match the fonts and colors in your project’s <code>_brand.yml</code> (see <a href="typst.html#sec-typst-fonts-colors" class="quarto-xref"><span>Section 10.12.2</span></a>).</li>
+<li>Table helpers such as <code>tbl_qmd_div()</code> and <code>tbl_qmd_span()</code> let tables built in R code cells contain Quarto markdown, which Quarto then renders correctly in both HTML and LaTeX output.</li>
+<li>YAML helpers such as <code>write_yaml_metadata_block()</code> pass computed values from R into document metadata for Pandoc to use, while <code>yaml_quote_string()</code> quotes strings so they survive YAML parsing intact.</li>
+</ul>
+<p>See the <a href="https://quarto-dev.github.io/quarto-r/reference/index.html">package reference</a> for the full list.</p>
+</div>
+</div>
 <p>You can use <code>quarto_render()</code> to render a document:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quarto)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -693,6 +759,9 @@ Mean fuel efficiency: 15.1 mpg.</code></pre>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"report.qmd"</span>,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">execute_params =</span> <span class="fu">list</span>(<span class="at">region =</span> <span class="st">"South"</span>, <span class="at">year =</span> <span class="dv">2025</span>)</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Values passed this way are serialized to YAML before reaching your document, so the restrictions in <a href="#sec-parameters" class="quarto-xref"><span>Section 7.3</span></a> apply—<code>execute_params</code> takes an R list, but not arbitrary R objects:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fails: a data frame is not a YAML value</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quarto_render</span>(<span class="st">"report.qmd"</span>, <span class="at">execute_params =</span> <span class="fu">list</span>(<span class="at">data =</span> sales_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="sec-render-scripts" class="level3" data-number="7.4.2">
 <h3 data-number="7.4.2" class="anchored" data-anchor-id="sec-render-scripts"><span class="header-section-number">7.4.2</span> Rendering R scripts</h3>
@@ -707,33 +776,33 @@ Mean fuel efficiency: 15.1 mpg.</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>analysis.R</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-filename="analysis.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' ---</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' title: Penguin Analysis</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' author: Soraya Drake</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' format: html</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' ---</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' ## Setup</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' ## Bill Size Analysis</span></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @fig-bill-sizes shows the relationship between</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' bill length and depth.</span></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-bill-sizes</span></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Bill dimensions by species</span></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30" data-filename="analysis.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' ---</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' title: Penguin Analysis</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' author: Soraya Drake</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' format: html</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' ---</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' ## Setup</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co">#' ## Bill Size Analysis</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co">#' @fig-bill-sizes shows the relationship between</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co">#' bill length and depth.</span></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-bill-sizes</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Bill dimensions by species</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can render the script just like a <code>.qmd</code> file:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render analysis.R</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview analysis.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render analysis.R</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview analysis.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This lets you keep your analysis as a plain R script that can also be sourced or run interactively.</p>
 </section>
 </section>
@@ -744,31 +813,34 @@ Mean fuel efficiency: 15.1 mpg.</code></pre>
 <p>Quarto looks for an R installation in the following order:</p>
 <ol type="1">
 <li>The <code>QUARTO_R</code> environment variable, if set</li>
+<li>The <code>R_HOME</code> environment variable, if set</li>
 <li>The R executable found on your system <code>PATH</code></li>
-<li>Platform-specific default locations (e.g., <code>/usr/local/bin/R</code> on macOS)</li>
+<li>On Windows only, the R installation recorded in the registry, and failing that, an <code>R</code> directory under <code>%programfiles%</code></li>
 </ol>
-<p>If Quarto is using a different R than you expect, you can override the lookup by setting <code>QUARTO_R</code> to the path of your preferred R binary. One way to do this is in a <code>.env</code> file in your project directory:</p>
+<p>On macOS and Linux there are no further fallbacks: if none of the first three locate R, Quarto tries to run <code>R</code> directly and the render fails if your shell can’t resolve it.</p>
+<p>If Quarto is using a different R than you expect, you can override the lookup by setting <code>QUARTO_R</code> to the path of your preferred R binary. You can give it either the binary itself or the directory containing it, and Quarto warns you if the path doesn’t exist rather than silently moving on. In a Quarto project, one way to do this is an <a href="https://quarto.org/docs/projects/environment.html"><code>_environment</code> file</a> alongside <code>_quarto.yml</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>.env</strong></pre>
+<pre><strong>_environment</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31" data-filename=".env"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_R</span><span class="op">=</span>/opt/R/4.4.0/bin/R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-filename="_environment"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="va">QUARTO_R</span><span class="op">=</span>/opt/R/4.4.0/bin/R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Quarto automatically reads <code>.env</code> files in the project root during rendering.</p>
+<p>Note that Quarto invokes <code>Rscript</code> rather than <code>R</code>, and it resolves that name against the directory your path points to. The setting above therefore sends Quarto to <code>/opt/R/4.4.0/bin/Rscript</code>: only the directory matters, not the binary name you happen to write.</p>
+<p>Quarto reads <code>_environment</code> from the project root during rendering, so this applies to every document in the project. Use <code>_environment.local</code> for values specific to your own machine—Quarto adds <code>/_*.local</code> to <code>.gitignore</code> to keep them out of version control. Variables already set in your shell take precedence over the file, and because this is a project-level feature, a standalone document outside a project needs <code>QUARTO_R</code> set in your environment instead.</p>
 <p>To see which R installation Quarto is currently using, run <code>quarto check</code> from the terminal:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check knitr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check knitr</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The output will include the detected R version and path, along with the knitr and rmarkdown package versions, e.g.:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Quarto</span> 1.10.3</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking R installation...........OK</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Version:</span> 4.6.0</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Path:</span> /Library/Frameworks/R.framework/Resources</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>      <span class="ex">LibPaths:</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>        <span class="ex">-</span> /Users/mine/Library/R/arm64/4.6/library</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        <span class="ex">-</span> /Library/Frameworks/R.framework/Versions/4.6/Resources/library</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>      <span class="ex">knitr:</span> 1.51</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>      <span class="ex">rmarkdown:</span> 2.31</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking Knitr engine render......OK</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Quarto</span> 1.10.3</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking R installation...........OK</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Version:</span> 4.6.0</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>      <span class="ex">Path:</span> /Library/Frameworks/R.framework/Resources</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>      <span class="ex">LibPaths:</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        <span class="ex">-</span> /Users/mine/Library/R/arm64/4.6/library</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>        <span class="ex">-</span> /Library/Frameworks/R.framework/Versions/4.6/Resources/library</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>      <span class="ex">knitr:</span> 1.51</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>      <span class="ex">rmarkdown:</span> 2.31</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="ex">[✓]</span> Checking Knitr engine render......OK</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If the R path shown doesn’t match what you expect, that’s likely the source of any “package not found” or version mismatch issues.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -788,46 +860,79 @@ Mean fuel efficiency: 15.1 mpg.</code></pre>
 <h3 data-number="7.5.2" class="anchored" data-anchor-id="sec-diagnosing-env"><span class="header-section-number">7.5.2</span> Diagnosing environment issues</h3>
 <p>When Quarto renders a document, it starts a fresh R session. This session might use a different R installation or library paths than what you use interactively. In particular, packages you’ve installed in your interactive session may not be available if the rendering session uses different library paths, and environment variables like <code>PATH</code> may also differ.</p>
 <p>Add a code cell to your document that outputs your session information:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>()</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This will show the R version and the library paths used during rendering. For more detailed diagnostics, use the <a href="https://sessioninfo.r-lib.org/"><strong>sessioninfo</strong></a> package:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">to_file =</span> <span class="st">"quarto-session-info.txt"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>()</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This will show the R version and the library paths used during rendering. For more detailed diagnostics, use the <a href="https://sessioninfo.r-lib.org/"><strong>sessioninfo</strong></a> package:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sessioninfo<span class="sc">::</span><span class="fu">session_info</span>(<span class="at">to_file =</span> <span class="st">"quarto-session-info.txt"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Compare either output with your interactive R session to identify discrepancies. If library paths differ, that explains missing packages; if the R version differs, see <a href="#sec-quarto-finds-r" class="quarto-xref"><span>Section 7.5.1</span></a> for how to control which R installation Quarto uses.</p>
+<p>When the R version is the problem, you can watch Quarto perform the search described in <a href="#sec-quarto-finds-r" class="quarto-xref"><span>Section 7.5.1</span></a> by adding <code>--log-level debug</code> to <code>quarto check</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check knitr <span class="at">--log-level</span> debug</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The output names each location Quarto tries, in order, and which one succeeded:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Quarto</span> version: 1.10.18</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Quarto</span> 1.10.18</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Searching for R binary <span class="at">--</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Looking</span> for <span class="st">'Rscript'</span> in QUARTO_R: undefined</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Looking</span> for <span class="st">'Rscript'</span> in R_HOME: undefined</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Looking</span> for <span class="st">'Rscript'</span> in PATH.</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[execProcess]</span> which Rscript</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[execProcess]</span> Success: true, code: 0</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Found</span> in PATH at /usr/local/bin/Rscript</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is the quickest way to tell whether a stale <code>QUARTO_R</code> or <code>R_HOME</code> is redirecting Quarto to an R installation you didn’t intend.</p>
 </section>
 </section>
 <section id="sec-multiple-languages" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="sec-multiple-languages"><span class="header-section-number">7.6</span> Multiple languages</h2>
-<p>While this chapter focuses on R, Quarto documents can include code cells from multiple languages. Each language runs in its own separate session—objects created in R are not directly accessible from Python, and vice versa.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">42</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This cannot access the R variable x</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You might, for example, use R for statistical modeling and Python for certain visualizations.</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
+<p>While this chapter focuses on R, documents using the knitr engine can include code cells in other languages. Quarto itself does nothing special here: any document with at least one <code>{r}</code> cell is run through the knitr engine, and knitr then evaluates each non-R cell with one of its own language engines—Python, Julia, SQL, and others.</p>
+<p>For Python cells, knitr uses the <a href="https://rstudio.github.io/reticulate/"><strong>reticulate</strong></a> package by default, which runs R and Python in a single session. That means values move between the two languages: Python reads R objects through <code>r.</code>, and R reads Python objects through <code>py$</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">42</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># reticulate makes R objects available through `r.`</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> r.x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and Python objects through `py$`, once reticulate is attached</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>py<span class="sc">$</span>y</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Because reticulate is the default rather than an add-on, it needs to be installed—if it isn’t, the render stops with an error telling you to install it or opt out. Using it also means Python output is handled properly, with matplotlib figures and pandas data frames rendering as you’d expect <span class="citation" data-cites="xie2020">(<a href="references.html#ref-xie2020" role="doc-biblioref">Xie et al. 2020</a>)</span>.</p>
+<div class="callout callout-style-simple callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Sharing data between languages
+<span class="screen-reader-only">Caution</span>Opting out of reticulate
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To share data between R and Python cells, save intermediate results to files (e.g., CSV, Parquet) and read them in the other language. For tighter integration, consider the <a href="https://rstudio.github.io/reticulate/"><strong>reticulate</strong></a> package, which allows R and Python to share objects directly.</p>
+<p>Setting the <code>python.reticulate</code> knitr option to <code>false</code> runs Python cells with the <code>python</code> executable on your <code>PATH</code> instead:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">knitr</span><span class="kw">:</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">opts_chunk</span><span class="kw">:</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">python.reticulate</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>R and Python are then fully independent: <code>r.</code> and <code>py$</code> are unavailable, and you’d have to pass data between the languages by writing it to files (e.g., CSV or Parquet). We don’t recommend this, as knitr’s support for Python is built around reticulate and much of it doesn’t apply without it.</p>
 </div>
 </div>
-<p>If your document contains only R code cells, Quarto uses the knitr engine. If it contains only Python cells, it uses Jupyter. When both are present, Quarto uses the engine specified in your YAML header, or knitr by default.</p>
+<p>For the full set of rules Quarto uses to choose an engine—including what happens in documents with no R cells at all—see <a href="look-under-hood.html#sec-engine-selection" class="quarto-xref"><span>Section 16.2.1</span></a>.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-xie2020" class="csl-entry" role="listitem">
+Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbook</em>. Chapman &amp; Hall/CRC. <a href="https://pkg.yihui.org/rmarkdown-cookbook/">https://pkg.yihui.org/rmarkdown-cookbook/</a>.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>For situations like this we refer readers to the R Markdown Cookbook <span class="citation" data-cites="xie2020">(<a href="references.html#ref-xie2020" role="doc-biblioref">Xie et al. 2020</a>)</span> for knitr functionality on <a href="https://pkg.yihui.org/rmarkdown-cookbook/child-document">child documents</a> and <a href="https://pkg.yihui.org/rmarkdown-cookbook/knit-expand"><code>knit_expand()</code></a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>For more information, see Quarto documentation on execution context information at <a href="https://quarto.org/docs/advanced/quarto-execute-info.html" class="uri">https://quarto.org/docs/advanced/quarto-execute-info.html</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

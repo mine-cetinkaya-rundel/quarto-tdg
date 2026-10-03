@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -97,10 +100,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3cc411cc7de4e6fcd8f1d819c78e5b30.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0a373b8e2e9e59cc6500e1a18ade50e5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -130,7 +133,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -370,6 +373,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Jupyter</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -577,15 +586,15 @@ Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown. TODO
 </tr>
 <tr class="even">
 <td rowspan="3" style="text-align: left;"> <strong>Citations</strong> <a href="#sec-citations" class="quarto-xref"><span>Section 12.11</span></a></td>
-<td style="text-align: left;"><span class="citation" data-cites="knuth1984">Knuth (<a href="authoring.html#ref-knuth1984" role="doc-biblioref">1984</a>)</span> shows …</td>
+<td style="text-align: left;"><span class="citation" data-cites="knuth1984">Knuth (<a href="references.html#ref-knuth1984" role="doc-biblioref">1984</a>)</span> shows …</td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>@knuth1984 shows ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">… <span class="citation" data-cites="knuth1984">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>)</span></td>
+<td style="text-align: left;">… <span class="citation" data-cites="knuth1984">(<a href="references.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>)</span></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>... <span class="co">[</span><span class="ot">@knuth1984</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="citation" data-cites="knuth1984 wickham2023">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>; <a href="authoring.html#ref-wickham2023" role="doc-biblioref">Wickham et al. 2023</a>)</span></td>
+<td style="text-align: left;"><span class="citation" data-cites="knuth1984 wickham2023">(<a href="references.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>; <a href="references.html#ref-wickham2023" role="doc-biblioref">Wickham et al. 2023</a>)</span></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@knuth1984; @wickham2023</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="odd">
@@ -1193,19 +1202,19 @@ Table&nbsp;12.6: Common citation syntax
 <tbody>
 <tr class="odd">
 <th><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>@knuth1984 shows ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></th>
-<td><span class="citation" data-cites="knuth1984">Knuth (<a href="authoring.html#ref-knuth1984" role="doc-biblioref">1984</a>)</span> shows …</td>
+<td><span class="citation" data-cites="knuth1984">Knuth (<a href="references.html#ref-knuth1984" role="doc-biblioref">1984</a>)</span> shows …</td>
 </tr>
 <tr class="even">
 <th><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>... <span class="co">[</span><span class="ot">@knuth1984</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></th>
-<td>… <span class="citation" data-cites="knuth1984">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>)</span></td>
+<td>… <span class="citation" data-cites="knuth1984">(<a href="references.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>)</span></td>
 </tr>
 <tr class="odd">
 <th><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>As Knuth <span class="co">[</span><span class="ot">-@knuth1984</span><span class="co">]</span> shows ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></th>
-<td>As Knuth <span class="citation" data-cites="knuth1984">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">1984</a>)</span> shows …</td>
+<td>As Knuth <span class="citation" data-cites="knuth1984">(<a href="references.html#ref-knuth1984" role="doc-biblioref">1984</a>)</span> shows …</td>
 </tr>
 <tr class="even">
 <th><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">@knuth1984; @wickham2023</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></th>
-<td><span class="citation" data-cites="knuth1984 wickham2023">(<a href="authoring.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>; <a href="authoring.html#ref-wickham2023" role="doc-biblioref">Wickham et al. 2023</a>)</span></td>
+<td><span class="citation" data-cites="knuth1984 wickham2023">(<a href="references.html#ref-knuth1984" role="doc-biblioref">Knuth 1984</a>; <a href="references.html#ref-wickham2023" role="doc-biblioref">Wickham et al. 2023</a>)</span></td>
 </tr>
 </tbody>
 </table>
@@ -1217,8 +1226,14 @@ Table&nbsp;12.6: Common citation syntax
 <div aria-describedby="fig-references-section-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <section id="references" class="level2 unnumbered unlisted rendered" style="text-align: left;">
 <h2 class="unnumbered unlisted anchored" data-anchor-id="references">References</h2>
-
-
+<div class="csl-bib-body hanging-indent" role="list">
+<div class="csl-entry" role="listitem">
+Knuth, Donald E. 1984. “Literate Programming.” <em>The Computer Journal</em> 27 (2): 97–111.
+</div>
+<div class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd ed.&nbsp;O’Reilly Media. <a href="https://r4ds.hadley.nz/" class="uri">https://r4ds.hadley.nz/</a>.
+</div>
+</div>
 </section>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-references-section-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1589,6 +1604,14 @@ Figure&nbsp;12.12: Shortcode syntax and rendered output for the <code>meta</code
 <p>You’ve also learned how to use key Quarto features like cross-references, citations, footnotes, and callouts. Fenced divs let you create special regions like callouts or multi-column layouts, while shortcodes and includes help you reuse content efficiently. We’ve focused on syntax that works across multiple output formats, leaving format-specific details for later chapters—you’ll likely want to return to specific sections as reference when authoring your own documents.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-knuth1984" class="csl-entry" role="listitem">
+Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>The Computer Journal</em> 27 (2): 97–111.
+</div>
+<div id="ref-wickham2023" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd ed. O’Reilly Media. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
+</div>
+</div>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

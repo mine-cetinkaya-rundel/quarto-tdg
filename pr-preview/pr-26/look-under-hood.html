@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -78,10 +81,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-36cf4cdb0ee03797f1f323ab13dbd87f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f2ea732ee293b4a59d201e7aaa2af9ac.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -322,6 +325,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Jupyter</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -337,7 +346,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#what-does-quarto-do" id="toc-what-does-quarto-do" class="nav-link active" data-scroll-target="#what-does-quarto-do"><span class="header-section-number">16.1</span> What does Quarto do?</a></li>
   <li><a href="#an-html-document-with-r-code-cells" id="toc-an-html-document-with-r-code-cells" class="nav-link" data-scroll-target="#an-html-document-with-r-code-cells"><span class="header-section-number">16.2</span> An HTML document with R code cells</a>
   <ul class="collapse">
-  <li><a href="#before-the-computational-engine" id="toc-before-the-computational-engine" class="nav-link" data-scroll-target="#before-the-computational-engine"><span class="header-section-number">16.2.1</span> Before the computational engine</a></li>
+  <li><a href="#sec-engine-selection" id="toc-sec-engine-selection" class="nav-link" data-scroll-target="#sec-engine-selection"><span class="header-section-number">16.2.1</span> Before the computational engine</a></li>
   <li><a href="#computational-engine" id="toc-computational-engine" class="nav-link" data-scroll-target="#computational-engine"><span class="header-section-number">16.2.2</span> Computational engine</a></li>
   <li><a href="#pandoc" id="toc-pandoc" class="nav-link" data-scroll-target="#pandoc"><span class="header-section-number">16.2.3</span> Pandoc</a></li>
   <li><a href="#monitoring-the-process-on-the-command-line" id="toc-monitoring-the-process-on-the-command-line" class="nav-link" data-scroll-target="#monitoring-the-process-on-the-command-line"><span class="header-section-number">16.2.4</span> Monitoring the process on the command line</a></li>
@@ -351,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#sec-pdf-r" id="toc-sec-pdf-r" class="nav-link" data-scroll-target="#sec-pdf-r"><span class="header-section-number">16.4</span> A PDF document with R code cells</a>
   <ul class="collapse">
-  <li><a href="#before-the-computational-engine-1" id="toc-before-the-computational-engine-1" class="nav-link" data-scroll-target="#before-the-computational-engine-1"><span class="header-section-number">16.4.1</span> Before the computational engine</a></li>
+  <li><a href="#before-the-computational-engine" id="toc-before-the-computational-engine" class="nav-link" data-scroll-target="#before-the-computational-engine"><span class="header-section-number">16.4.1</span> Before the computational engine</a></li>
   <li><a href="#computational-engine-2" id="toc-computational-engine-2" class="nav-link" data-scroll-target="#computational-engine-2"><span class="header-section-number">16.4.2</span> Computational engine</a></li>
   <li><a href="#pandoc-2" id="toc-pandoc-2" class="nav-link" data-scroll-target="#pandoc-2"><span class="header-section-number">16.4.3</span> Pandoc</a></li>
   <li><a href="#after-pandoc" id="toc-after-pandoc" class="nav-link" data-scroll-target="#after-pandoc"><span class="header-section-number">16.4.4</span> After Pandoc</a></li>
@@ -447,8 +456,8 @@ Figure&nbsp;16.1: The <code>quarto render</code> process for <code>html-r.qmd</c
 </figcaption>
 </figure>
 </div>
-<section id="before-the-computational-engine" class="level3" data-number="16.2.1">
-<h3 data-number="16.2.1" class="anchored" data-anchor-id="before-the-computational-engine"><span class="header-section-number">16.2.1</span> Before the computational engine</h3>
+<section id="sec-engine-selection" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="sec-engine-selection"><span class="header-section-number">16.2.1</span> Before the computational engine</h3>
 <p>Before anything else, Quarto parses your file to extract the document header and code cells. Quarto determines the set of formats that need to be rendered and select the appropriate computational engine.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -909,8 +918,8 @@ Figure&nbsp;16.7: The <code>quarto render</code> process for <code>pdf-r.qmd</co
 </figcaption>
 </figure>
 </div>
-<section id="before-the-computational-engine-1" class="level3" data-number="16.4.1">
-<h3 data-number="16.4.1" class="anchored" data-anchor-id="before-the-computational-engine-1"><span class="header-section-number">16.4.1</span> Before the computational engine</h3>
+<section id="before-the-computational-engine" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="before-the-computational-engine"><span class="header-section-number">16.4.1</span> Before the computational engine</h3>
 <p>Quarto identifies the target format as PDF, and selects the <code>knitr</code> engine.</p>
 </section>
 <section id="computational-engine-2" class="level3" data-number="16.4.2">
