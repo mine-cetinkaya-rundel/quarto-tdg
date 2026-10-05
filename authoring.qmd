@@ -1005,7 +1005,7 @@ There are two common ways to control layout:
 
 * **Column classes** arrange content across different widths of the page, useful when you need to give content more horizontal space, or put elements in the margin.
 
-### Panel layouts
+### Panel layouts {#sec-layout-panel}
 
 Use a fenced div with the `layout-ncol` key-value attribute to arrange content in multiple columns.
 It's best to be explicit about what each item is by nesting them each in their own fenced div. 

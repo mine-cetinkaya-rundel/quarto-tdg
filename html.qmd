@@ -25,6 +25,15 @@ General outline of chapter.
 
 ## Your first HTML document {#sec-html-first-document}
 
+
+```{.markdown filename="report.qmd"}
+---
+format: html
+---
+```
+
+### 
+
 ::: todo
 [CVW] `format: html` (note it's the default). Minimal complete example + render /
 preview. Example file and screenshot TBD. Talk about serving vs. viewing HTML. 
@@ -32,9 +41,33 @@ preview. Example file and screenshot TBD. Talk about serving vs. viewing HTML.
 
 ## HTML is responsive and interactive
 
+It's worth pausing to highlight some of the properties unique to HTML output.
+(These also apply to other formats that produce `.html` like RevealJS).
+
+We call HTML output **responsive** because it responds to the properties of the browser window in which it is viewed:
+
+* Your main body content resizes. On small screens, the full width of the screen is used for your content. On a larger screen, your content only takes up the middle column, and other things, like a table of contents, lie in the margin.
+
+* Images, by default, are the same width as the content.
+
+* Panel layouts (@sec-layout-panel) that lay out components out in a row, collapse into columns on small screens.
+
+We call HTML **interactive** because readers actions can change the visible content:
+
+* Readers can hover over cross-references, footnotes and citations to see the linked content.
+
+* Readers can expand collapsed callouts or code blocks to reveal content.
+
+* [Something else]{.todo}
+
+These HTML features do benefit many readers but you should keep in mind their limitations:
+
+* Responsive and interactive features don't transfer to static formats like `docx`, `pdf` and `typst`. 
+
+* Responsive and interactive features may pose accessibility challenges.
+
 ::: todo
-[CVW] Give general sense of how HTML is more adaptive, responsive and interactive.
-Preview features like: responsive layout, hover effects for citations/cross-references/footnotes, interactive showing/hiding of code, callouts, tabsets etc. 
+Come back and finish with what we choose to include/omit in this chapter: e.g. "we choose to omit interactive features that won't serve you in other formats". Or, "we'll point you to the docs for many interactive features"
 :::
 
 ## Navigation
