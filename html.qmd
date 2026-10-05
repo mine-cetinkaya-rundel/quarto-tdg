@@ -2,11 +2,25 @@
 
 ## Overview
 
+This chapter covers HTML documents, the default format in Quarto.
+There are good reasons HTML is the default:
+
+* It renders fast: a quick edit-preview cycle means you can iterate on your document without friction.
+
+* It displays almost anywhere: all that a reader needs is a web browser, available on desktops, Chromebooks, tablets and mobile devices. 
+
+* It's one of the most accessible formats: HTML has a long history of support from assistive technologies and guidelines, like the WCAG, exist for authoring accessible HTML.
+
+Here we focus on `format: html` for single standalone documents. 
+However, HTML documents are also the building blocks of websites, where each HTML document becomes a webpage. 
+Read this chapter to learn about what goes on a web page, and head to @sec-websites to learn how to combine them into a website.
+
+For standalone documents where you want content to appear exactly the same for every viewer, or you need to conform to a  "paged" layout, PDF may be a better option.
+PDF viewers are also widely available, but have a shorter history of supporting assistive technology. 
+You can learn more about creating PDFs in @sec-typst.
+
 ::: todo
-[CVW] Why HTML: Quarto's *default* format; web-native, interactive, reflows to any
-screen, generally the *most accessible* format. When to choose HTML vs PDF
-(cross-ref @sec-typst). Scope note: this chapter is single HTML documents;
-multi-page sites are covered in @sec-websites.
+General outline of chapter.
 :::
 
 ## Your first HTML document {#sec-html-first-document}
@@ -224,7 +238,7 @@ Another option for HTML output is to use a project, set an output directory (`ou
 ### `quarto publish`
 
 ::: todo
-[CVW] Brief: Quarto Pub, GitHub Pages, Netlify, Posit Connect; link to the
+[CVW] Brief: GitHub Pages, Netlify, Posit Connect, Posit Connect Cloud; link to the
 html-publishing docs. Website publishing covered in @sec-website-publish / @sec-ci.
 :::
 
