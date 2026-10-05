@@ -1,0 +1,5 @@
+format:
+  typst:
+    page-numbering: "1 / 1"
+    section-numbering: "1.A"
+    number-sections: true

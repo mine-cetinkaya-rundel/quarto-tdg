@@ -1,0 +1,3 @@
+```{=typst}
+#show heading: set block(above: 2em)
+```

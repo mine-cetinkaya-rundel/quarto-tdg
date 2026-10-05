@@ -1,0 +1,4 @@
+format:
+  typst:
+    page-numbering: ""
+    fig-format: png

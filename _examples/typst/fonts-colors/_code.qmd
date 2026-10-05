@@ -1,0 +1,9 @@
+### Network on-time rate
+
+Pool the per-route counts to get the network's on-time rate:
+
+```r
+on_time <- c(412, 388, 351)
+trips <- c(500, 500, 500)
+sum(on_time) / sum(trips)
+```

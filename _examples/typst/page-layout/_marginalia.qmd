@@ -1,0 +1,49 @@
+---
+# Source for the marginalia-geometry diagram (build-marginalia.sh).
+# Uses margin-geometry directly so inner/outer far + separation are symmetric
+# (inner.sep == outer.sep == 0.3in), unlike _anatomy.qmd which drives geometry
+# through margin/grid. Body blocks are identical to _anatomy.qmd.
+format:
+  typst:
+    papersize: us-letter
+    margin:
+      top: 0.75in
+      bottom: 0.75in
+    margin-geometry:
+      inner:
+        far: 0.6in
+        width: 0.811in
+        separation: 0.3in
+      outer:
+        far: 0.6in
+        width: 1.5in
+        separation: 0.3in
+    page-numbering: "1"
+    keep-typ: true
+---
+
+::: {.column-page}
+```{=typst}
+#block(fill: rgb("#b9cfe2"), width: 100%, height: 1.5cm, radius: 1pt)
+```
+:::
+
+::: {.column-margin}
+```{=typst}
+#block(fill: rgb("#cfcfcf"), width: 100%, height: 3.6cm, radius: 1pt)
+```
+:::
+
+```{=typst}
+#let para(h) = {
+  block(fill: rgb("#d6d6d6"), width: 100%, height: h, radius: 1pt, breakable: true)
+  v(0.5em)
+}
+#para(3.0cm)
+#para(2.6cm)
+#para(3.2cm)
+#para(2.4cm)
+#para(2.8cm)
+#para(2.6cm)
+#para(8.0cm)
+```

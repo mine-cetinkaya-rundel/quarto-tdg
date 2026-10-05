@@ -1,4 +1,14 @@
 /.quarto/
 _book/
 .Rproj.user
-/env/
+/.venv/
+
+**/*.quarto_ipynb
+
+/.luarc.json
+
+# Rendered example PDFs are build artifacts; the book embeds the PNGs in images/.
+# Keep the few PDFs that feed hand-built SVG figures (see build-*.sh).
+_examples/**/*.pdf
+!_examples/typst/page-layout/_anatomy.pdf
+!_examples/typst/page-layout/_marginalia.pdf

@@ -1,0 +1,3 @@
+```{=typst}
+#show heading.where(level: 2): set text(style: "italic")
+```

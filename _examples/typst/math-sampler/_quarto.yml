@@ -1,0 +1,4 @@
+format:
+  typst:
+    keep-typ: true
+    page-numbering: ""

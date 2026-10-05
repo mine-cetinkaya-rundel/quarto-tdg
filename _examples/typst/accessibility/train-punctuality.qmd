@@ -1,0 +1,33 @@
+---
+title: "Route Punctuality Report"
+author: "Dr. Sarah Okonkwo"
+date: 2026-04-15
+lang: en
+format:
+  typst:
+    pdf-standard: ua-1
+---
+
+## On-time performance
+
+The mean on-time rate across routes is computed using @eq-mean.
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
+$$ {#eq-mean alt="The sample mean is the sum of observations divided by the number of observations."}
+
+### Results by route
+
+@tbl-punctuality shows on-time rates during Q4.
+
+| Route             | Peak (%) | Off-peak (%) |
+|:------------------|:--------:|:------------:|
+| Central–North     | 82       | 91           |
+| Central–East      | 78       | 88           |
+| Harbour–Airport   | 71       | 85           |
+
+: On-time rates by route and service period {#tbl-punctuality}
+
+## Recommendations
+
+Investigate causes of delays on the Harbour–Airport route during peak periods.

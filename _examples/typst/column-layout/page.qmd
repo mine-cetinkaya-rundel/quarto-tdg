@@ -1,0 +1,11 @@
+On-time rates during Q4, broken out by service period and day type:
+
+::: {.column-page}
+
+| Route             | Peak Weekday (%) | Off-peak Weekday (%) | Peak Weekend (%) | Off-peak Weekend (%) | Total services |
+|:------------------|:----------------:|:--------------------:|:----------------:|:--------------------:|:--------------:|
+| Central–North     | 82               | 91                   | 86               | 94                   | 12,480         |
+| Central–East      | 78               | 88                   | 84               | 92                   | 11,220         |
+| Harbour–Airport   | 71               | 85                   | 79               | 89                   |  9,840         |
+
+:::

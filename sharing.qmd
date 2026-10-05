@@ -58,7 +58,7 @@ Share the URL and anyone can view your rendered content.
 
 ## The publishing process {#sec-publishing-process}
 
-The `quarto publish` command relies on local rendering — that is, your Quarto documents are rendered locally on your computer using your local installation of the Quarto CLI. Only the output files are then transferred to the publishing provider.
+The `quarto publish` command relies on local rendering---that is, your Quarto documents are rendered locally on your computer using your local installation of the Quarto CLI. Only the output files are then transferred to the publishing provider.
 In @fig-pub-process we illustrate this as two separate steps—render then publish— but they both occur when you run the `quarto publish` command.
 
 ![The `quarto publish` process. Input files are rendered locally, then the output files and their dependencies are uploaded to the publishing provider.](images/publishing-process.jpg){#fig-pub-process fig-alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on connect.posit.cloud."}

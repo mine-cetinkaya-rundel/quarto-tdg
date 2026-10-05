@@ -1,0 +1,9 @@
+```{python}
+#| echo: false
+{{< include data.py >}}
+```
+
+```{python}
+#| echo: false
+{{< include tables.py >}}
+```
