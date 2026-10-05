@@ -1,0 +1,5 @@
+- image: html-first-document-report.png
+  source: _examples/html/first-document/report.qmd
+  selector: main
+  expand: 16
+  generated: '2026-10-05T19:24:22Z'

@@ -53,6 +53,8 @@ Readers then recognize the content and can focus on the feature.
   ```
   /.quarto/
   **/*.quarto_ipynb
+  *.html
+  *_files/
   ```
 
 - Do not commit rendered output (`*.html`, `*_files/`).
@@ -63,4 +65,47 @@ Readers then recognize the content and can focus on the feature.
 Put screenshots in `images/` in the project root with the name `html-{section-slug}-{example}.png` (for example `html-first-document-report.png`).
 Give every figure an ID that matches (`#fig-html-first-document-report`), the `.border` class, and `fig-alt` text.
 
-TODO: decide how to capture HTML screenshots (headless browser, viewport width, light/dark mode) and record each image in `screenshots.yml`, as the Typst examples do.
+### Taking screenshots
+
+`screenshot-examples.R` renders an example and captures it with headless Chrome (chromote).
+It records every image in `screenshots.yml`, as the Typst examples do.
+Run it from the project root:
+
+```r
+source("_examples/html/screenshot-examples.R")
+
+# Render one example, take the screenshot, and update screenshots.yml
+shoot("_examples/html/first-document/report.qmd", selector = "main", expand = 16)
+
+# Regenerate every image in screenshots.yml
+rebuild()
+```
+
+From the shell: `Rscript _examples/html/screenshot-examples.R --manifest`.
+
+`shoot()` options (the manifest records only the values that are not the default):
+
+| Option      | Default | Effect                                                                 |
+|-------------|---------|------------------------------------------------------------------------|
+| `selector`  | none    | Trim to the bounding box of a CSS selector (`main`, `#fig-x`, `.callout`). With no selector, capture the viewport. |
+| `expand`    | 0       | Padding in CSS px around the selected element.                         |
+| `width`     | 1200    | Viewport width in CSS px. This controls the layout and the text size in the book. |
+| `height`    | 800     | Viewport height in CSS px.                                             |
+| `full-page` | false   | Capture the full page height, not only the viewport.                   |
+| `scale`     | 2       | Pixel density. This does not change the layout.                        |
+| `profile`   | none    | Quarto profile. The image name gets a `-{profile}` suffix.             |
+| `name`      | file name | Changes the `{example}` part of the image name.                      |
+
+Use `name` to take more than one screenshot of the same source.
+
+### Text size
+
+The book shrinks each image to the width of its column.
+A wide viewport therefore gives small text.
+Quarto limits the width of the body text, so extra viewport width only adds empty margin.
+Trim to an element where you can.
+To compare widths, use `compare_widths(source, widths = c(800, 1000, 1200))`.
+It writes to a temporary directory and does not change the manifest.
+
+TODO: choose a default `width` after comparing widths in the rendered book.
+TODO: add light/dark mode (`prefers-color-scheme` emulation) when the appearance section needs it.
