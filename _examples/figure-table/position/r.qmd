@@ -1,0 +1,34 @@
+---
+echo: false
+keep-md: true
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+:::{#column-screen}
+
+{{< lipsum 1 >}}
+
+```{r}
+#| column: screen
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+{{< lipsum 1 >}}
+
+:::
+
+:::{#column-margin}
+
+{{< lipsum 1 >}}
+
+```{r}
+#| column: margin
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+{{< lipsum 1 >}}
+
+:::

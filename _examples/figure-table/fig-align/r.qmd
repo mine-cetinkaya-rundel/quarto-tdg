@@ -1,0 +1,46 @@
+---
+echo: false
+keep-md: true
+fig-width: 3
+fig-height: 2
+grid: 
+  body-width: 400px
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+:::{#align-left}
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "Penguin bill length versus depth by species"
+#| fig-align: left
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+:::
+
+:::{#align-right}
+
+```{r}
+#| label: fig-scatter-2
+#| fig-cap: "Penguin bill length versus depth by species"
+#| fig-align: right
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+:::
+
+
+:::{#align-center}
+
+```{r}
+#| label: fig-scatter-3
+#| fig-cap: "Penguin bill length versus depth by species"
+#| fig-align: center
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+:::

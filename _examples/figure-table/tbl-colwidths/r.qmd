@@ -1,0 +1,39 @@
+---
+echo: false
+keep-md: true
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+
+HTML output, column width don't apply:
+```{r}
+#| label: tbl-species-html
+#| tbl-colwidths: [25, 75]
+{{< include ../_code-snippets/species-count.R >}}
+```
+
+Markdown outputs, column widths do apply:
+```{r}
+#| label: tbl-species-count
+#| tbl-colwidths: [25, 75]
+{{< include ../_code-snippets/species-count-markdown.R >}}
+```
+
+HTML output, specify width in code
+
+```{r}
+#| label: tbl-species-count-2
+penguins |>
+  count(species) |>
+  gt() |> 
+  tab_options(
+    table.width = pct(100),
+  ) |> 
+  cols_width(
+    species ~ pct(25),
+    n ~ pct(75)
+  )
+```

@@ -1,0 +1,203 @@
+# Cross-references {#sec-figtab-crossref}
+
+You'll start by diving into the two required step to cross-reference a figure or table:
+
+1. Give your figure or table an identifier that Quarto recognizes as a cross-reference, this means that it starts with `fig-` or `tbl-`.
+
+2. Refer to your figure or table using the syntax `@ID`.
+
+Then, you'll learn about creating sub-references. 
+
+This chapter focuses on creating and using cross-references. 
+If you are interested in customizing the way your figures and tables are numbered or labeled see @sec-figtab-captions.
+
+## Adding an identifier to a figure or table
+
+Depending on how you create your figure or table, there are three ways to add an identifier that Quarto recognizes for cross-referencing:
+
+* **Non-computational**: as an ID attribute, starting with `#`, in markdown syntax
+* **Computational**: as `label` code cell option in a computational code cell
+* **Both**: as an ID attribute, starting with `#`, in the fenced div syntax
+
+We illustrate each of these for figures in @fig-id-figure, and tables in @fig-id-table.
+The caption, and alternative text for figures, are optional, but you'll generally include them, so our examples do too.
+
+
+::: {#fig-id-figure}
+
+:::{#fig-id-figure-md}
+```markdown
+![Caption](path/to/image.jpg){#fig-id fig-alt="Alt text"}
+```
+
+Markdown figure
+:::
+
+::: {#fig-id-figure-comp}
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Caption"
+#| fig-alt: "Alt text"
+# Code to generate a single figure
+```
+````
+
+Computational figure
+:::
+
+:::{#fig-id-fenced-div-markdown}
+````markdown
+::: {#fig-id}
+![](path/to/image.jpg){fig-alt="Alt text"}
+
+Caption
+:::
+````
+
+Fenced div markdown figure
+:::
+
+:::{#fig-id-fenced-div-comp}
+````markdown
+::: {#fig-id}
+```{{LANGUAGE}}
+#| fig-alt: "Alt text"
+# Code to generate a single figure
+```
+
+Caption
+:::
+````
+Fenced div computational figure
+:::
+
+Ways to add the identifier `fig-id` to a figure using (a) markdown, (b) computational code cell, (c) fenced div with markdown, and (d) fenced div with computational code cell.
+:::
+
+::: {#fig-id-table}
+
+:::{#fig-id-table-md}
+```markdown
+| Column 1 | Column 2 |
+|----------|----------|
+| Cell A   | Cell B   |
+
+: Caption {#tbl-id}
+```
+Markdown table
+:::
+
+::: {#fig-id-table-comp}
+````markdown
+```{{LANGUAGE}}
+#| label: tbl-id
+#| tbl-cap: "Caption"
+# Code to generate a single table
+```
+````
+Computational table
+:::
+
+::: {#fig-id-fenced-div-markdown}
+````markdown
+::: {#tbl-id}
+| Column 1 | Column 2 |
+|----------|----------|
+| Cell A   | Cell B   |
+
+Caption
+:::
+````
+Fenced div markdown table
+:::
+
+::: {#fig-id-fenced-div-table}
+````markdown
+::: {#tbl-id}
+```{{LANGUAGE}}
+# Code to generate a single table
+```
+Caption
+:::
+````
+Fenced div computational table
+:::  
+
+Ways to add the identifier `tbl-id` to a table.
+
+:::
+
+For figures and tables you'll usually use the prefixes `fig-` and `tbl-` respectively, but see @sec-crossreferences for other available prefixes.
+For working examples of computational figures and tables with cross-references see @sec-computational-figures-tables
+
+::: {.callout-tip}
+
+## Anything can be a "Figure"
+
+Quarto doesn't care what the content of the fenced div is. 
+You can put anything inside: an image, a code block, a tabset, a table, markdown etc. 
+The label prefix determines how Quarto labels it.
+For example, using `fig-` gets you a "Figure X" regardless of the content.
+
+:::
+
+## Referring to a figure or table
+
+To refer to the an output, use an `@` followed by the identifier (@fig-crossref-inline-syntax).
+When rendered the cross-references are replaced with the figure or table counter and become links (@fig-crossref-inline-rendered).
+In HTML formats, hovering on the links also shows a preview of the figure or table.
+
+::: {#fig-crossref-inline layout-ncol="2"}
+
+::: {#fig-crossref-inline-syntax}
+```markdown
+See table @tbl-id. 
+@fig-id shows ...
+```
+:::
+
+
+:::{#fig-crossref-inline-rendered}
+![](images/figure-table-simple.png){.border .p-3 fig-alt="Rendered cross-references to a figure and a table shows the text 'See Table 1. Figure 1 shows...', where 'Table 1' and 'Figure 1' are clickable links."}
+:::
+
+Referring to a figure and a table using cross-references.
+
+:::
+
+::: {.callout-warning}
+
+## Cross-references are within document only
+
+Cross-references are generally limited to the figures and tables within the same document.
+The one exception is a Quarto book project---this is your best option if across document (i.e. chapter) cross-references are important to you.
+For documents in a webpage project, an alternative approach is to link to the figure or table identifier, as explained in the @sec-websites-anchors.
+
+:::
+
+## Sub-references
+
+Sub-references allow you to refer to specific parts of a multi-part figure or table.
+
+There are some special cases @sec-multiple-figures @sec-multiple-tables 
+
+Generally, nest cross-referenceable element inside a parent fenced div.
+
+````markdown
+::: {#fig-parent}
+
+![](){#fig-child1}
+
+![](){#fig-child2}
+
+Overall caption
+:::
+````
+
+
+Otherwise most explicit syntax is to nest fenced divs. 
+
+
+
+

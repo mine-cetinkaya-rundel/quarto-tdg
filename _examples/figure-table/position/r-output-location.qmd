@@ -1,0 +1,18 @@
+---
+format: revealjs
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+:::{#output-location}
+
+```{r}
+#| echo: true
+#| output-location: slide
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+:::
+  
