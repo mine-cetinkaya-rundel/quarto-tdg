@@ -736,33 +736,8 @@ Link to:
 
 ### Panel layout: `layout` {#sec-panel-layout}
 
-Use `layout` to control arrangement.
-
-Do some examples without captions, but use fenced divs e.g.
-
-````
-::: {layout-ncol="2"}
-::: {}
-| Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|
-| Row 1    | Data A   | Value X  |
-| Row 2    | Data B   | Value Y  |
-| Row 3    | Data C   | Value Z  |
-:::
-
-::: {}
-| Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|
-| Row 1    | Data A   | Value X  |
-| Row 2    | Data B   | Value Y  |
-| Row 3    | Data C   | Value Z  |
-:::
-:::
-````
-
-Then talk about cross-references and captions by filling in the empty `{}` divs with labels, and adding extra caption lines. 
-
-Tricky combo: caption but not cross referenceable. Ignore? Mention. What's the general translation for the examples we do do. 
+Panel layouts arrange content in a grid with the `layout-ncol`, `layout-nrow`, or `layout` attributes, as introduced in @sec-layout.
+This section covers what is specific to figures and tables: arranging several outputs, and adding captions and cross-references to them.
 
 #### Arranging multiple tables and/or figures {#sec-multiple-outputs}
 
@@ -863,18 +838,7 @@ You should instead nest fenced divs to create complex layouts.
 
 ### Position relative to the page: `column` {#sec-page-columns}
 
-Combining column classes `column` with fenced div
-
-Available columns:
-https://quarto.org/docs/authoring/article-layout.html#available-columns
-
-Via code cell option, or fenced div attribute.
-
-#### Page location: `column` {#sec-page-location-column}
-
-In `html` and `pdf` formats, a page is divided into columns, which contain the main body of the document, a margin on the right, and in `html`, a margin on the left often used for a sidebar.
-
-Special `.column-` classes allow document elements to span various combinations of these columns. 
+Fenced divs with `.column-` classes place content in different columns of the page, like the right margin (@sec-layout).
 The `column` code cell option is a way to apply these classes to figures or tables produced by your code cells.
 
 For example, if you have a figure that would benefit from more horizontal space, you could set `column: screen` (@fig-page-columns-code), to allow the figure to span the full width available.
