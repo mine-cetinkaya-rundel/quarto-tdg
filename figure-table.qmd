@@ -407,237 +407,102 @@ To arrange them in rows and columns, add layout attributes to the parent fenced 
 
 ## Captions {#sec-figtab-captions}
 
+A caption has two parts: the caption text _you_ write, and, for cross-referenceable figures and tables, a title and number that _Quarto_ adds (e.g., "Figure 1:").
+This section covers two specific cases of caption text: long captions and dynamic captions.
+The text, how to move captions, and how to change the titles and numbering.
+
+::: todo
+[CVW] Rewrite to orient then point at the subsections and make it easier to find the syntax for the tweaks you need.
+:::
+
 ### Caption text
 
-Refer to previous sections:
+There are four places to set the caption text:
 
-* Use code cell options or last element in fenced divs to set content of captions.
-* Include dynamic content in captions by using div syntax and inline code.
+* **Markdown figures**: the text in the square brackets, `![Caption](path/to/image.jpg)`.
+* **Markdown tables**: the line that starts with a colon, `: Caption`, directly after the table.
+* **Computational figures and tables**: the `fig-cap` or `tbl-cap` code cell option.
+* **Fenced div syntax** (@sec-syntax-variations): the last paragraph inside the div, for both markdown and computational content.
 
-### The fenced div syntax {#sec-figtab-fenced-div}
-
-As an alternative to setting the `label` and `fig-cap`/`tbl-cap` code cell options, you can use Quarto's fenced div syntax to organize your computational figures and tables. 
-This approach separates the content generation from the labeling and captioning.
-This can be useful in certain scenarios, two of which we'll explore in this section: long captions and dynamic captions.
-
-The basic structure uses a fenced div with the `label` as an identifier, followed by a code cell that generates your content, and ends with the caption as the last line: 
-
-````{.markdown}
-::: {#LABEL}
-```{{LANGUAGE}}
-# Generate your figure or table here
-```
-
-CAPTION
-
-:::
-````
+The fenced div syntax is more verbose, but because a fenced div caption is ordinary markdown, and not a YAML string or a single line, it's useful in two specific situations: long captions and dynamic captions.
 
 ::: callout-note
-
-### Fenced div syntax only works with cross-referenceable figures and tables
-
-To be processed as content along with a caption, the label used in the fenced div must start with a prefix recognized by Quarto's cross-reference syntax. 
-For computational figures and tables this usually means starting with `fig-` or `tbl-`.
-
+The fenced div syntax only gives you a caption when the div's identifier starts with a cross-reference prefix, such as `fig-` or `tbl-`.
 :::
-
-@fig-fenced-div shows how the same figure from @fig-figures would look using the fenced div approach.
-The `label` code cell becomes an identifier for the fenced div (`#fig-scatter`),
-the code cell no longer has `label` or `fig-cap` options,
-and the caption is the last line before the closing of the fenced div.s
-
-::: {#fig-fenced-div}
-::: {.panel-tabset group="language"}
-
-### R
-
-````{.markdown}
-::: {#fig-scatter} 
-```{{r}} 
-#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
-
-{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
-```
-
-Penguin bill length versus depth by species
-
-:::
-````
-
-### Python
-
-````{.markdown}
-::: {#fig-scatter}
-```{{python}}
-#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
-
-{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
-```
-
-Penguin bill length versus depth by species
-
-:::
-````
-
-:::
-
-Using the fenced div syntax to acheive the same result as @fig-figures.
-
-:::
-
-Two examples of when this can be useful are: long captions, and dynamic captions.
 
 #### Long captions {#sec-long-captions}
 
-If your caption is getting long and it is increasingly painful to track as a code cell option, consider using the div syntax instead.
-You can then split lines in a way that makes sense and not have to worry about the YAML syntax.
+A long caption is hard to edit as a code cell option, because it must be a valid YAML string on one line.
+In a fenced div, the caption is a markdown paragraph, so you can break lines where it makes sense and use markdown formatting.
+@fig-long-captions shows an example, where `{ IMAGE }` is a markdown image or a code cell that makes a figure (@sec-syntax-variations).
 
 ::: {#fig-long-captions}
 
-::: {.panel-tabset group="language"}
-
-### R
- 
 ````{.markdown}
 ::: {#fig-scatter}
+{ IMAGE }
 
-```{{r}}
-#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
-
-{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
-```
-
-Scatter plot depicting the relationship between bill length (mm) and bill depth (mm) across different penguin species. 
-The clustering of the species reveals morphological differences in bill dimensions: 
+Scatter plot of bill length (mm) against bill depth (mm) for three penguin species.
+The species form separate clusters:
 **Adelie** penguins have short, deep bills,
-whereas **Gentoo** penguins have long, shallow bills.
-**Chinstrap** penguins have similar depth bills to Adelie penguins but there bills are longer.
-
+and **Gentoo** penguins have long, shallow bills.
+**Chinstrap** penguins have bills as deep as Adelie penguins, but longer.
 :::
 ````
- 
-### Python
- 
-````{.markdown}
-::: {#fig-scatter}
 
-```{{python}}
-#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
-
-{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
-```
-
-Scatter plot depicting the relationship between bill length (mm) and bill depth (mm) across different penguin species. 
-The clustering of the species reveals morphological differences in bill dimensions: 
-**Adelie** penguins have short, deep bills,
-whereas **Gentoo** penguins have long, shallow bills.
-**Chinstrap** penguins have similar depth bills to Adelie penguins but there bills are longer.
-
-::: 
-````
- 
-:::
+A long caption in the fenced div syntax. The line breaks in the caption are for readability in the source; the caption renders as one paragraph.
 
 :::
 
-:::{.callout-important}
+::: callout-important
+## No multi-paragraph captions
 
-### No multi-paragraph captions
-
-Quarto doesn't support captions that consist of multiple paragraphs.
-
+A caption must be one paragraph.
+If you leave a blank line in the caption, Quarto uses only the last paragraph as the caption, and puts the earlier paragraphs in the body of the figure or table.
 :::
 
 #### Dynamic captions {#sec-dynamic-captions}
 
-Dynamic captions are caption which depend on some computational result.
-By using the fenced div syntax, you include computation in your caption via inline code execution.
-
-For example, @fig-dynamic-captions, uses inline code to include the number of rows in the `penguins` dataset in the caption.
+A dynamic caption includes a computed value.
+Inline code expressions, such as `` `{r} nrow(penguins)` ``, do not run inside the `fig-cap` or `tbl-cap` options, but they do run in the caption paragraph of a fenced div.
+For example, the caption in @fig-dynamic-captions includes the number of penguins in the data.
 
 ::: {#fig-dynamic-captions}
 
 ::: {.panel-tabset group="language"}
 
-### R
- 
+## R
+
 ````{.markdown}
 ::: {#fig-scatter}
+{ IMAGE }
 
-```{{r}}
-#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
-
-{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
-```
-
-Penguin bill length versus depth by species for `{{r}} nrow(penguins)` penguins.
-
+Bill length versus depth for `{{r}} nrow(penguins)` penguins.
 :::
 ````
- 
-### Python
- 
+
+## Python
+
 ````{.markdown}
 ::: {#fig-scatter}
+{ IMAGE }
 
-```{{python}}
-#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
-
-{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
-```
-
-Penguin bill length versus depth by species `{{python}} penguins.height` penguins.
-
-::: 
+Bill length versus depth for `{{python}} len(penguins)` penguins.
+:::
 ````
- 
-:::
 
 :::
 
+A dynamic caption that uses inline code.
+
+:::
 
 ### Caption location {#sec-caption-location}
 
-By default, Quarto puts figure captions at the bottom of the figure, and table captions at the top of the table.
-You can control this with the `cap-location` option for both figures and tables, or separately with the `fig-cap-location` and `tbl-cap-location` options.
-Can take the values `top`, `bottom`, or `margin` (`margin` only in some formats).
-
-Document level to control computational and non-computational figures and tables.
-
-Code cell level for individual figures and tables.
-
-Is there an attribute equivalent for markdown figures and tables?
-
-::: {.panel-tabset group="language"}
-
-### R
- 
-````{.markdown filename="document.qmd"}
-```{{r}}
-#| label: tbl-species-count
-#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
-#| cap-location: bottom
-
-{{< include _examples/figure-table/_code-snippets/species-count.R >}}
-``` 
-````
- 
-### Python
- 
-````{.markdown filename="document.qmd"}
-```{{python}}
-#| label: tbl-species-count
-#| tbl-cap: "Penguins sampled from the Palmer Archipelago"
-#| cap-location: bottom
-
-{{< include _examples/figure-table/_code-snippets/species-count.py >}}
-``` 
-````
- 
-:::
-
-For example,
+By default, figure captions are placed below figures and table captions are placed above tables.
+You can control this placement for figures and tables separately with the `fig-cap-location` and `tbl-cap-location` options, or use `cap-location` to control both.
+Available values for these options are `top`, `bottom`, and `margin` as illustrated for a table in @fig-cap-location.
+The `margin` value applies only to formats that have a margin, such as `html` and `typst` (@sec-layout).
 
 ::: {#fig-cap-location}
 
@@ -660,35 +525,67 @@ For example,
 :::
 :::
 
-Tables with the code cell option `cap-location` set to: `top`, `bottom` and `margin`.
+A table with `tbl-cap-location` set to `top`, `bottom`, and `margin`.
 
 :::
 
+You can set these options at three levels:
 
-::: {#fig-cap-location-document}
+* In `_quarto.yml` to control all figures and tables in a project:
 
-:::{layout-ncol="2"}
-```{.yaml filename="document.qmd"}
----
-title: "My Document"
-cap-location: bottom
----
-```
+    ```{.yaml filename="_quarto.yml"}
+    cap-location: bottom
+    ```
 
-```{.yaml filename="_quarto.yml"}
-cap-location: bottom
-```
-:::
+* In the document header to control all figures and tables in a document:
 
-You can set the caption location for the entire document in the document header, or for all documents in a project using `_quarto.yml`.
+    ```{.yaml filename="document.qmd"}
+    ---
+    title: "My Document"
+    cap-location: bottom
+    ---
+    ```
+    
+* On individual tables or figures to control just a single instance. 
+    Use the code cell option for computational outputs:
 
-:::
+    ````{.markdown}
+    ```{{LANGUAGE}}
+    #| label: tbl-island-count
+    #| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+    #| cap-location: bottom
+
+    # Code to generate a single table
+    ```
+    ````
+    
+    Or the attribute form for markdown figures or tables:
+    
+    ```markdown
+    | Island    | Count |
+    |-----------|-------|
+    | Biscoe    | 168   |
+    | Dream     | 124   |
+    | Torgersen | 52    |
+
+    : Penguins sampled from the Palmer Archipelago {#tbl-island-count cap-location="bottom"}
+    ```
+
+    With the fenced div syntax, put the attribute on the div:
+
+    ```markdown
+    ::: {#tbl-island-count cap-location="bottom"}
+    { TABLE }
+
+    Penguins sampled from the Palmer Archipelago
+    :::
+    ```
 
 ### Caption titles and numbering
 
-Titles and numbering require a cross-reference. 
-
-Document level (or project level options)!
+Quarto adds a title and a number to figures and tables that are cross-referenceable.
+The title and number appear in the caption, and in the inline reference.
+You can control these using the `crossref` options described in @tbl-crossref-options and illustrated for tables in @fig-cap-title.
 
 :::{#fig-cap-title}
 
@@ -696,7 +593,7 @@ Document level (or project level options)!
 :::{}
 ![](images/figure-table-caption-format.jpeg){.border width="50%"}
 
-Table Caption
+Table caption
 :::
 
 :::{}
@@ -706,7 +603,59 @@ Inline reference
 :::
 
 :::
+The default title and number in a table caption and in a cross-reference to the table.
 :::
+
+::: {#tbl-crossref-options}
+
+::: {.list-table header-rows=1 aligns=l,l,l}
+
+* - Option
+  - Controls
+  - Default
+
+* - | `fig-title`
+    | `tbl-title`
+  - Title in the caption
+  - | `Figure`
+    | `Table`
+
+* - | `fig-prefix`
+    | `tbl-prefix`
+  - Text before the number in a cross-reference
+  - | `Figure`
+    | `Table`
+
+* - | `fig-labels`
+    | `tbl-labels`
+  - Number style
+  - | `arabic`
+    | `arabic`
+
+* - `subref-labels`
+  - Number style for sub-references (@sec-figtab-crossref)
+  - `alpha a`
+
+* - `title-delim`
+  - Text between the number and the caption
+  - `:`
+
+:::
+
+Options under `crossref` that change caption titles and numbering.
+
+:::
+
+The number style options take these values:
+
+* `arabic`: 1, 2, 3
+* `roman`: I, II, III
+* `roman i`: i, ii, iii
+* `alpha a`: a, b, c. To start at a different letter, give that letter, for example `alpha c` or `alpha A`.
+
+You can set these options in the document header or in `_quarto.yml`.
+
+For example, you might change the title of tables to "Sheet", the prefix to "Sh", the numbers to Roman numerals, and the delimiter to an em dash:
 
 ```{.yaml filename="document.qmd"}
 ---
@@ -715,37 +664,20 @@ crossref:
   tbl-title: Sheet
   tbl-prefix: Sh
   tbl-labels: roman
-  title-delim: "—"   
+  title-delim: "—"
 ---
 ```
 
-![](images/figure-table-caption-format-edit.png)
+@fig-cap-title-edit shows the result.
 
-Same for `fig`: `fig-title`, `fig-prefix`, `fig-labels`
-
-Shared: `title-delim`
-
-`labels`, `subref-labels`,`fig-labels`, `tbl-labels`:`arabic`, `alpha a`, `alpha A`, `roman i`, `roman I` 
-
-
-```{.yaml filename="document.qmd"}
----
-title: "My Document"
-crossref:
-  fig-title: Fig
-  fig-prefix: Fig
-  fig-labels: roman
-  title-delim: "."   
----
-```
-
+![A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.](images/figure-table-caption-format-edit.png){#fig-cap-title-edit}
 
 ::: {.callout-tip}
+### Custom cross-reference types
 
-### Custom cross-references
-
-If you need a custom title, prefix and numbering scheme, but also want to keep the defaults for figures or tables, define a custom cross-reference type. See ... 
-
+The `crossref` options change all figures or all tables in a document.
+To keep the defaults for figures and tables and add a different kind of numbered element (for example, "Supplementary Table S1"), define a custom cross-reference type.
+See [Custom Cross-Reference Types](https://quarto.org/docs/authoring/cross-references-custom.html) in the Quarto documentation.
 :::
 
 ## Layout {#sec-figtab-layout}
