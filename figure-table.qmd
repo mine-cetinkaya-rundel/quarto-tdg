@@ -970,7 +970,18 @@ Change the alignment of a figure in its enclosing container with `fig-align`.
 :::
 
 
-### Table column widths: `tbl-colwidth` {#sec-table-column-widths}
+### Table column alignment and widths {#sec-table-column-widths}
+
+#### Column alignment
+
+In a markdown pipe table, you can add colons to the separator row to align columns to the left, right, or center.
+For example, the following table aligns the first column to the left, the second column to the center, and the third column to the right:
+
+::: {}
+````markdown
+{{< include _examples/authoring/tables/markdown-table-align.md >}}
+````
+:::
 
 #### Column widths
 
@@ -982,6 +993,15 @@ However, sometimes you may want to set specific column widths.
 The option `tbl-colwidths` allows you to specify widths for columns for *markdown* tables.
 It takes an array of values, one per column, expressed as percentages.
 You can set it as a *document option* to apply to all tables in a document, or as a *code cell option* to apply to a single table.
+
+For a markdown table, add a `tbl-colwidths` attribute to the attributes after the caption.
+For example, you might give the first column 80% of the width and the remaining two columns each 10% of the width:
+
+::: {}
+````markdown
+{{< include _examples/authoring/tables/markdown-table-colwidths.md >}}
+````
+:::
 
 For example, @fig-tbl-colwidths-markdown shows how to set the column widths for a single markdown table using the code cell option `tbl-colwidths`.
 
