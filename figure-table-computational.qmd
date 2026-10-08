@@ -1,4 +1,4 @@
-# Computational figures and tables {#sec-computational-figures-tables}
+# Computational figures and tables {#sec-figure-table-computational}
 
 ```{r}
 #| eval: false
@@ -513,6 +513,7 @@ Like `fig-format` you can set this for all formats, or for all documents in a pr
 
 If your code cell produces multiple figures, you combine them into a single panel by providing individual sub-captions for each figure using the `fig-subcap` code cell option.
 For example, @fig-multiple-figures, produces two figures in a single code cell, and thus provides an array of two values to both `fig-subcap` and `fig-alt`.
+To arrange the figures in the panel, see @sec-multiple-outputs.
 
 ::: {#fig-multiple-figures}
 
@@ -730,6 +731,7 @@ you can give the tables sub-captions by providing an array to `tbl-subcap`.
 
 For example, @fig-multiple-tables shows a code cell that produces two tables, with sub-captions provided via `tbl-subcap`.
 The rendered output is shown in @fig-multiple-tables-rendered. 
+To arrange the tables in the panel, see @sec-multiple-outputs.
 
 ::: {#fig-multiple-tables}
 
