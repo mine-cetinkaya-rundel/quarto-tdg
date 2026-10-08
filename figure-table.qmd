@@ -352,29 +352,58 @@ For documents in a webpage project, an alternative approach is to link to the fi
 
 ### Sub-references
 
-Sub-references allow you to refer to specific parts of a multi-part figure or table.
+Sub-references let you refer to one part of a multi-part figure or table, for example "Figure 1 (a)".
+To make sub-references, nest your cross-referenceable elements inside a parent fenced div that has a caption and an identifier.
+The children's identifiers must use the same prefix as the parent's.
+For example, here the parent div has the identifier `fig-animals` and contains two markdown images, each with its own `fig-` identifier:
 
-There are some special cases @sec-multiple-figures @sec-multiple-tables 
+```markdown
+::: {#fig-animals}
 
-Generally, nest cross-referenceable element inside a parent fenced div.
+![Elephant](images/elephant.png){#fig-elephant fig-alt="Line drawing of an elephant."}
 
-````markdown
-::: {#fig-parent}
+![Panther](images/panther.png){#fig-panther fig-alt="Line drawing of a panther."}
 
-![](){#fig-child1}
-
-![](){#fig-child2}
-
-Overall caption
+Two animals.
 :::
-````
+```
 
+Use `@fig-animals` to refer to the whole figure ("Figure 1"), and `@fig-elephant` to refer to one part ("Figure 1 (a)").
+The captions of the children become sub-captions.
 
-Otherwise most explicit syntax is to nest fenced divs. 
+When the children become more complicated, we recommend using an explicit fenced div for each one.
+For example, the general structure becomes:
 
+```markdown
+:::: {#fig-main}
 
+::: {#fig-sub1}
+CONTENT 1
 
+Sub-caption 1
+:::
 
+::: {#fig-sub2}
+CONTENT 2
+
+Sub-caption 2
+:::
+
+Main caption
+::::
+```
+
+Here, `CONTENT` can be markdown or a code cell, and can contain any kind of content.
+
+::: callout-tip
+We've used additional colons (`:`) to help you see the nesting, but they aren't required.
+:::
+
+If the children all come from one code cell that makes several outputs of the same type (all figures or all tables), you can use the `fig-subcap` or `tbl-subcap` code cell options instead.
+See @sec-multiple-figures for figures and @sec-multiple-tables for tables.
+
+By default, the children are placed one after the other.
+To arrange them in rows and columns, add layout attributes to the parent fenced div as shown in @sec-panel-layout.
 
 ## Captions {#sec-figtab-captions}
 
