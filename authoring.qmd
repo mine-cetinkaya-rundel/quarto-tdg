@@ -1048,7 +1048,7 @@ You can see more examples using figures and tables as content in @sec-figtab-lay
 
 ### Column classes
 
-For `format: html` and `format: pdf`, the page is divided into a body content area and a right margin.
+For `format: html` and `format: typst`, the page is divided into a body content area and a right margin.
 By default, your content will be placed in the body area.
 You can override this by putting content in a fenced div and adding special `column` classes.
 

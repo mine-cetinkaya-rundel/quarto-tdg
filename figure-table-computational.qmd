@@ -343,7 +343,7 @@ How these values are applied depends on the engine:
 
 The default values are format specific.
 For example, the default figure size for `format: html` is 7x5 inches, 
-which is different to that for `format: pdf` at 5.5x3.5 in.
+which is different to that for `format: typst` at 5.5x3.5 in.
 
 You can override these defaults using `fig-width` and `fig-height` *document options*.
 For example, @lst-fig-width-height shows how to set the default figure size to 4x6 in for `html` output.
@@ -469,7 +469,7 @@ For example, in plotnine you can resize a plot through the `theme()` function as
 ### Figure format and resolution
 
 The default image format saved by the engines differs by target format.
-For example, for `format: html`, images will be PNG (`.png`) by default, for `format: pdf`, images will be PDF (`.pdf`) by default.
+For example, for `format: html`, images will be PNG (`.png`) by default, for `format: typst`, images will be SVG (`.svg`) by default.
 
 You can override these defaults using `fig-format` *document option*.
 For example, @lst-fig-format shows how to set the default figure format to `svg` for `html` output.
@@ -662,7 +662,7 @@ For example, you can set the default print style for polars DataFrames to markdo
 #### HTML
 
 The tables in @fig-tables were produced using the GT package in R and great_tables package in Python.
-Both packages produce HTML tables by default (they can also produce LaTeX tables see @sec-tables-other-formats).
+Both packages produce HTML tables by default (for other formats, see @sec-tables-other-formats).
 
 For example, Figure @lst-intermediate-markdown-table shows a simplified excerpt from the intermediate markdown for the computational table produced in @fig-tables when `format: html`.
 
@@ -720,7 +720,7 @@ Read the documentation for your chosen package to see how to customize the appea
 
 The computational engine is aware of your target format.
 This means packages can produce tables in formats other than markdown or HTML when appropriate.
-For example, both the GT (R) and great_tables (Python) packages will produce tables using LaTeX syntax when the target is `pdf`.
+For example, Quarto converts HTML tables to Typst tables, so the GT (R) and great_tables (Python) packages still produce HTML tables when the target is `typst`.
 Other packages may produce RTF tables when the target format is `docx`.
 Refer to the documentation for your chosen package to see what formats are supported.
 

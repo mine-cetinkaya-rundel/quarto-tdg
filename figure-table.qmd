@@ -385,14 +385,6 @@ Refer to previous sections:
 * Use code cell options or last element in fenced divs to set content of captions.
 * Include dynamic content in captions by using div syntax and inline code.
 
-:::{.callout-tip}
-
-### Short figure captions for LaTeX
-
-`fig-scap` attribute and code cell option to provide succinct descriptions of figures for use in "Table of Figures" in `format: pdf` output.
-
-:::
-
 ### The fenced div syntax {#sec-figtab-fenced-div}
 
 As an alternative to setting the `label` and `fig-cap`/`tbl-cap` code cell options, you can use Quarto's fenced div syntax to organize your computational figures and tables. 
@@ -731,7 +723,6 @@ If you need a custom title, prefix and numbering scheme, but also want to keep t
 
 Link to: 
 
-* `pdf` figure attributes and code cell option: `fig-env`, `fig-pos`
 * `revealjs` code cell option: `output-location`
 
 ### Panel layout: `layout` {#sec-panel-layout}
@@ -879,7 +870,7 @@ Alternatively, for figures that are small and supplementary to the main text, yo
 
 ![`column: margin`](images/figure-table-column-margin.png){#fig-page-columns-margin}
 
-Use the `column` code cell option to place a table in different parts of the page, e.g. full width of the screen, or in the margin. Applies for `html` and `pdf` formats.
+Use the `column` code cell option to place a table in different parts of the page, e.g. full width of the screen, or in the margin. Applies for `html` and `typst` formats.
 
 ::: 
 
