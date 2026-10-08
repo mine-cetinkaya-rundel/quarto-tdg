@@ -895,7 +895,7 @@ For example, on small screens, there is only one column, regardless of `column` 
 #### Figure alignment: `fig-align` {#sec-fig-align}
 
 When figure is placed in your document, think about it being placed inside a container. 
-By default, the width of that container is the width of the body text, but you can alter it by placing the figure in a column (@sec-page-location-column).
+By default, the width of that container is the width of the body text, but you can alter it by placing the figure in a column (@sec-page-columns).
 Figure alignment refers to the horizontal alignment of a figure within that container.
 
 You can alter figure alignment with `fig-align`, which is a *code cell option* and a *document option*.
