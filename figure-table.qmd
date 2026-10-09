@@ -350,7 +350,7 @@ For documents in a webpage project, an alternative approach is to link to the fi
 
 :::
 
-### Sub-references
+### Sub-references {#sec-sub-references}
 
 Sub-references let you refer to one part of a multi-part figure or table, for example "Figure 1 (a)".
 To make sub-references, nest your cross-referenceable elements inside a parent fenced div that has a caption and an identifier.
@@ -403,7 +403,7 @@ If the children all come from one code cell that makes several outputs of the sa
 See @sec-multiple-figures for figures and @sec-multiple-tables for tables.
 
 By default, the children are placed one after the other.
-To arrange them in rows and columns, add layout attributes to the parent fenced div as shown in @sec-panel-layout.
+To arrange them in rows and columns, nest a fenced div with layout attributes inside the parent, as shown in @sec-panel-layout.
 
 ## Captions {#sec-figtab-captions}
 
@@ -686,148 +686,262 @@ See [Custom Cross-Reference Types](https://quarto.org/docs/authoring/cross-refer
 
 ## Layout {#sec-figtab-layout}
 
-Link to: 
+This section covers where figures and tables go:
 
-* `revealjs` code cell option: `output-location`
+* next to each other, in a grid (@sec-panel-layout),
+* in a column of the page, such as the margin (@sec-page-columns),
+* to the left, center, or right of their container (@sec-figure-alignment).
 
-### Panel layout: `layout` {#sec-panel-layout}
+The last part is about the columns inside a table (@sec-table-column-widths).
 
-Panel layouts arrange content in a grid with the `layout-ncol`, `layout-nrow`, or `layout` attributes, as introduced in @sec-layout.
-This section covers what is specific to figures and tables: arranging several outputs, and adding captions and cross-references to them.
+Layout uses the same fenced divs and attributes as other content (@sec-layout).
+Most examples here use the shorthand from @sec-syntax-variations, so `{ IMAGE }` and `{ TABLE }` can be markdown or a code cell.
+Where a code cell needs a different syntax, we show the code cell option too.
+For slides, the `output-location` code cell option can put output on the next slide or next to the code. See @sec-output-location.
 
-#### Arranging multiple tables and/or figures {#sec-multiple-outputs}
+### Panel layout {#sec-panel-layout}
 
-Quarto provides a set of layout code cell options and attributes that allow you to arrange multiple figures or tables in a single panel.
-As an example, `layout-ncol` specifies the number of columns in a panel layout.
-You can use it as a code cell option:
+Panel layouts arrange content in a grid with the `layout-ncol`, `layout-nrow`, or `layout` attributes (@sec-layout).
+This section covers the most common cases for figures and tables: arranging them in a grid, grouping them under a shared caption, and aligning them in the grid.
 
-````{.markdown}
-```{{LANGUAGE}}
-#| layout-ncol: 2
+#### Arranging multiple figures and tables {#sec-multiple-outputs}
 
-# CODE TO GENERATE TWO FIGURES/TABLES
-```
-````
+@sec-layout covered the basic case of placing content in a grid.
+Use a fenced div with the `layout-ncol` attribute, and place each element of your content in its own fenced div:
 
-Or you can use it as an attribute in a fenced div:
-
-````{.markdown}
-::: {layout-ncol="2"}
-
-```{{LANGUAGE}}
-# CODE TO GENERATE A SINGLE FIGURE OR TABLE
-```
-
-```{{LANGUAGE}}
-# CODE TO GENERATE ANOTHER FIGURE OR TABLE
-```
-:::
-
-````
-
-Using the code cell option is the simplest approach, 
-but as soon as you want some combination of: a mix of figures and tables, 
-individual captions, to control placement on the page, or individual cross-references, we recommend using the attribute in a fenced div and nesting your code inside.
-
-In the following sections, learn about `layout-nrow`/`layout-ncol`, and `layout`.
-
-`layout-align`/`layout-valign` 
-
-
-````{.markdown}
-::: {layout-ncol="2"}
-
-```{{LANGUAGE}}
-#| label: fig-1
-#| fig-cap: "Figure 1 caption"
-# CODE TO GENERATE A SINGLE FIGURE OR TABLE
-```
-
-```{{LANGUAGE}}
-#| label: fig-2
-# CODE TO GENERATE ANOTHER FIGURE OR TABLE
-```
-:::
-````
-
-````{.markdown}
-::: {#fig-plots}
+````markdown
 ::::: {layout-ncol="2"}
+::: {}
+{ CONTENT 1 }
+:::
 
-```{{LANGUAGE}}
-# CODE TO GENERATE A SINGLE FIGURE OR TABLE
-```
+::: {}
+{ CONTENT 2 }
+:::
+:::::
+````
 
-```{{LANGUAGE}}
-# CODE TO GENERATE ANOTHER FIGURE OR TABLE
-```
+The placeholders, `{ CONTENT 1 }` and `{ CONTENT 2}`, could by anything, including any variation of a figure or table: a markdown image, a markdown table, or a code cell that produces a figure or table.
+
+This example arranges the content in two columns (`layout-ncol="2"`). 
+You can include more elements as fenced divs inside the layout div and Quarto will add rows to accommodate them.
+Increase `layout-ncol` to add additional columns.
+
+@fig-panel-images illustrates this side-by-side layout with an image and a table neither of which is cross-referenceable.
+The other panels in @fig-panel-cases illustrate cases where identifiers are added to create one or more cross-referenceable element.
+Add an identifier with a cross-reference prefix to each _inner_ div to make each item its own cross-referenceable figure or table.
+Add an _outer_ div with an identifier around the layout div to make one cross-referenceable figure from the whole panel.
+Do both to make one cross-referenceable figure with sub-figures.
+@tbl-panel-cases summarizes these syntax differences and we give a full code example in each of the following sections.
+
+:::: {#fig-panel-cases}
+::: {layout-ncol="2"}
+
+![Content side by side.](images/figure-table-panel-images.svg){#fig-panel-images .border fig-alt="An image placeholder and a table placeholder side by side, with no captions and no numbers."}
+
+![Cross-referenceable figures or tables side by side.](images/figure-table-panel-figures.svg){#fig-panel-figures .border fig-alt="A separately outlined figure and table side by side, captioned Figure 1: Caption 1 and Table 1: Caption 2."}
+
+![One cross-referenceable figure that contains content.](images/figure-table-panel-figure-of-images.svg){#fig-panel-figure-of-images .border fig-alt="One outlined figure around an uncaptioned image placeholder and table placeholder, with one caption below: Figure 1: Main caption."}
+
+![One cross-referenceable figure with sub-figures.](images/figure-table-panel-subfigures.svg){#fig-panel-subfigures .border fig-alt="One outer figure around two outlined sub-figures, an image and a table, captioned (a) Sub-caption 1 and (b) Sub-caption 2, with Figure 1: Main caption below both."}
+:::
+
+The four ways to combine a panel layout with figures. A dashed outline marks each cross-referenceable element, labeled with its identifier.
+::::
+
+
+| Inner divs | Outer div | Result | Example |
+|:--|:--|:--|:--|
+| `{}` | none | Content side by side, not cross-referenceable | @fig-panel-images |
+| `{#fig-1}`, `{#tbl-1}` | none | Separate cross-referenceable figures or tables side by side: "Figure 1", "Table 1" | @fig-panel-figures |
+| `{}` | `{#fig-main}` | One cross-referenceable figure that contains content side by side: "Figure 1" | @fig-panel-figure-of-images |
+| `{#fig-sub1}`, `{#fig-sub2}` | `{#fig-main}` | One cross-referenceable figure with sub-figures: "Figure 1", "Figure 1 (a)", "Figure 1 (b)" | @fig-panel-subfigures |
+
+: How identifiers on the inner and outer divs change a panel layout. {#tbl-panel-cases}
+
+What changes when you add identifiers depends on which divs get them.
+@tbl-panel-cases summarizes the four combinations, and @fig-panel-cases shows what each one looks like.
+
+##### Cross-referenceable figures or tables side by side
+
+To make each item its own cross-referenceable figure or table, give each inner div an identifier and a caption:
+
+````markdown
+::::: {layout-ncol="2"}
+::: {#fig-1}
+{ CONTENT 1 }
+
+Caption 1
+:::
+
+::: {#tbl-1}
+{ CONTENT 2 }
+
+Caption 2
+:::
+:::::
+````
+
+Each item has its own caption and number, here "Figure 1" and "Table 1" (@fig-panel-figures).
+Because each item is cross-referenced on its own, the prefixes can differ, so you can put a figure next to a table.
+
+##### One cross-referenceable figure that contains content
+
+To make the whole panel into one cross-referenceable figure, wrap the layout div in an outer div with an identifier and a caption:
+
+````markdown
+:::::: {#fig-main}
+::::: {layout-ncol="2"}
+::: {}
+{ CONTENT 1 }
+:::
+
+::: {}
+{ CONTENT 2 }
+:::
 :::::
 
-CAPTION
+Main caption
+::::::
+````
+
+The result is a single cross-referenceable figure, "Figure 1", with one caption below the panel (@fig-panel-figure-of-images).
+You can refer to the whole figure, but not to the items inside it.
+The prefix of the outer div decides the type, so here the whole panel is a figure, even though one item is a table.
+
+##### One cross-referenceable figure with sub-figures
+
+To make one cross-referenceable figure that you can also refer to in parts, do both: add an outer div with an identifier, and give each inner div an identifier with the same prefix:
+
+````markdown
+:::::: {#fig-main}
+::::: {layout-ncol="2"}
+::: {#fig-sub1}
+{ CONTENT 1 }
+
+Sub-caption 1
+:::
+
+::: {#fig-sub2}
+{ CONTENT 2 }
+
+Sub-caption 2
+:::
+:::::
+
+Main caption
+::::::
+````
+
+The inner captions become sub-captions (@fig-panel-subfigures).
+Use `@fig-main` to refer to the whole figure ("Figure 1"), and `@fig-sub1` to refer to one part ("Figure 1 (a)"), as described in @sec-sub-references.
+The sub-figures must all use the same prefix as the parent.
+The prefix sets the type of the caption, not what the content is, so in @fig-panel-subfigures the table is still "Figure 1 (b)".
+To number the whole panel as a table, use `tbl-` for the outer div and every inner div.
+
+::: callout-tip
+Do not put a cross-reference identifier and a layout attribute or column class on the same fenced div, for example `{#fig-id layout-ncol="2"}` or `{#fig-id .column-screen}`.
+The result can be unpredictable.
+Use one fenced div for the cross-reference and a separate, nested fenced div for the layout.
+:::
+If one code cell makes all the figures or tables, you can use `layout-ncol` as a code cell option instead of a fenced div:
+
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Main caption"
+#| fig-subcap:
+#|   - "Sub-caption 1"
+#|   - "Sub-caption 2"
+#| layout-ncol: 2
+
+# Code to generate two figures
+```
+````
+
+See @sec-multiple-figures and @sec-multiple-tables for the details.
+The code cell option is the shortest way, but use a fenced div if you want to mix figures and tables, mix markdown and code cell content, or put text between items.
+
+#### Rows, columns, and custom grids
+
+`layout-ncol` sets the number of columns, and Quarto adds rows as necessary.
+`layout-nrow` sets the number of rows, and Quarto adds columns as necessary.
+Each item gets the same width.
+
+For different widths, or a different number of items in each row, use the `layout` attribute.
+Its value is a list of rows.
+Each row is a list of numbers that give the relative width of each item.
+For example, `layout="[[1,1],[1]]"` puts two items of equal width in the first row and one item at full width in the second row:
+
+````markdown
+::: {#fig-id}
+:::: {layout="[[1,1],[1]]"}
+{ IMAGE 1 }
+
+{ IMAGE 2 }
+
+{ IMAGE 3 }
+::::
+
+Caption
 :::
 ````
 
-Arranging multiple figures or tables in a single panel is a common requirement.
-You can do this using the `layout` code cell options, or by using fenced divs with the `layout` classes. 
+The numbers are relative, so `layout="[[70,30]]"` gives a row where the first item is 70% of the width and the second item is 30%.
+A negative number adds empty space.
+For example, `layout="[40,-20,40]"` puts a 20% gap between two items.
 
-It's possible to specify a layout of multiple figures or tables produced in a single code cell using the `layout` or `layout-ncol`/`layout-nrow` code cell options.
+#### Alignment in a panel
 
-````{.markdown}
-::: {layout-ncol="2"}
+Items in a row are frequently different heights, for example a tall figure next to a short table.
+Use `layout-valign` to set the vertical alignment of the items in each row: `top`, `center`, or `bottom`.
 
-```{{LANGUAGE}}
-# CODE TO GENERATE A SINGLE FIGURE OR TABLE
-```
+````markdown
+::: {layout-ncol="2" layout-valign="bottom"}
+{ IMAGE }
 
-```{{LANGUAGE}}
-# CODE TO GENERATE ANOTHER FIGURE OR TABLE
-```
+{ TABLE }
 :::
-
 ````
 
-However, we recommend using fenced divs instead, because they are more flexible and easier to read.
-
-Combing multiple layout classes in a single fenced div can be unpredictable.
-You should instead nest fenced divs to create complex layouts.
-
+Use `layout-align` to set the horizontal alignment of each item in its cell: `left`, `center`, or `right`.
+Both attributes are also code cell options.
 
 ### Position relative to the page: `column` {#sec-page-columns}
 
-Fenced divs with `.column-` classes place content in different columns of the page, like the right margin (@sec-layout).
-The `column` code cell option is a way to apply these classes to figures or tables produced by your code cells.
-
-For example, if you have a figure that would benefit from more horizontal space, you could set `column: screen` (@fig-page-columns-code), to allow the figure to span the full width available.
-Alternatively, for figures that are small and supplementary to the main text, you could set `column: margin` to place them in the margin area.
-@fig-page-columns shows the result in the resulting `html` output.
-
-::: {#fig-page-columns-code}
-::: {.panel-tabset group="language"}
-
-### R
+Fenced divs with `.column-` classes put content in different columns of the page, for example the right margin (@sec-layout).
+To move a figure or table, wrap its fenced div in a fenced div with the class.
+For example, to give a wide figure the full width of the screen, use `.column-screen`:
 
 ````markdown
-```{{r}}
-#| column: screen
+::: {.column-screen}
+:::: {#fig-id}
+{ IMAGE }
 
-{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
-```
-````
- 
-### Python
- 
-```` 
-```{{python}}
-#| column: screen
-
-{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
-```
+Caption
+::::
+:::
 ````
 
-:::
-:::
+For a small figure that supports the main text, use `.column-margin` to put it in the margin.
+The figure keeps its caption and number.
+As with panel layouts, keep the column class and the identifier on separate fenced divs.
 
+For a code cell, use the `column` code cell option instead of a class.
+The value is the class name without the `column-` prefix:
 
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Caption"
+#| column: screen
+
+# Code to generate a single figure
+```
+````
+
+The `fig-column` and `tbl-column` code cell options are similar, but they move only the figure or table output, not the other output of the cell.
+@fig-page-columns shows the result in `html` output.
 
 ::: {#fig-page-columns layout-ncol="2"}
 
@@ -835,36 +949,30 @@ Alternatively, for figures that are small and supplementary to the main text, yo
 
 ![`column: margin`](images/figure-table-column-margin.png){#fig-page-columns-margin}
 
-Use the `column` code cell option to place a table in different parts of the page, e.g. full width of the screen, or in the margin. Applies for `html` and `typst` formats.
-
-::: 
-
-You can find all the possible values for `column` in the Quarto documentation on [Article Layout](https://quarto.org/docs/authoring/article-layout.html#available-columns).
-
-::: {.callout-tip}
-
-### Columns are responsive in `html` output
-
-When you view the HTML output, the definition of the columns depends on your screen size.
-For example, on small screens, there is only one column, regardless of `column` all elements will span the full width of the screen.
+A figure in different columns of the page: (a) the full width of the screen and (b) the margin. Columns apply to the `html` and `typst` formats.
 
 :::
 
+You can find all the possible column values in the Quarto documentation on [Article Layout](https://quarto.org/docs/authoring/article-layout.html#available-columns).
 
+::: callout-tip
 
+### Columns are responsive in `html` output
+
+In HTML output, the columns change with the screen size.
+For example, a small screen has only one column, so all content uses the full width of the screen, whatever its column class.
+
+:::
 
 ### Figure alignment: `fig-align` {#sec-figure-alignment}
 
+A figure is in a container.
+By default, the container is the width of the body text, but you can change this if you put the figure in a column (@sec-page-columns).
+Figure alignment is the horizontal position of a figure in its container.
 
-
-#### Figure alignment: `fig-align` {#sec-fig-align}
-
-When figure is placed in your document, think about it being placed inside a container. 
-By default, the width of that container is the width of the body text, but you can alter it by placing the figure in a column (@sec-page-columns).
-Figure alignment refers to the horizontal alignment of a figure within that container.
-
-You can alter figure alignment with `fig-align`, which is a *code cell option* and a *document option*.
-@fig-fig-align illustrates the three possible values: `default` (the default for the target format), `left`, `right`, or `center`.
+Use `fig-align` to change the alignment.
+Its values are `default` (the default for the output format), `left`, `center`, and `right`.
+@fig-fig-align shows the effect of `left`, `center`, and `right`.
 
 ::: {#fig-fig-align layout-ncol="3"}
 
@@ -878,7 +986,8 @@ Examples showing the effect of different `fig-align` settings: `left`, `center`,
 
 :::
 
-You can set `fig-align` at document level to apply to all figures (computational or not) in a document as shown in @lst-fig-align-document.
+To align all the figures in a document, set `fig-align` as a document option (@lst-fig-align-document).
+This applies to figures from markdown and from code cells.
 
 ::: {#lst-fig-align-document}
 
@@ -888,43 +997,27 @@ fig-align: left
 ---
 ```
 
-You can specify the alignment of all figures in a document using the `fig-align` document option.
+Use the `fig-align` document option to set the alignment of all figures in a document.
 
 :::
 
+To align one figure, and override the document option, add a `fig-align` attribute to a markdown image:
 
-You can then override the document level alignment on a code cell basis.
-For example, @fig-fig-align-code aligns a single figure to the left of its container using `fig-align: right`.
+```markdown
+![Caption](path/to/image.jpg){#fig-id fig-align="right"}
+```
 
-::: {#fig-fig-align-code}
-::: {.panel-tabset group="language"}
+Or, for a figure from a code cell, use the `fig-align` code cell option:
 
-### R
- 
-````{.markdown}
-```{{r}}
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Caption"
 #| fig-align: right
 
-{{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
+# Code to generate a single figure
 ```
 ````
- 
-### Python
- 
-````{.markdown}
-```{{r}}
-#| fig-align: right
-
-{{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
-```
-````
-
-:::
-
-Change the alignment of a figure in its enclosing container with `fig-align`.
-
-:::
-
 
 ### Table column alignment and widths {#sec-table-column-widths}
 
