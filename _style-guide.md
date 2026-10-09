@@ -148,6 +148,13 @@ In this chapter, you'll dive into the three big components of a website:
 - "You set code cell options using YAML with hashpipe (or other language appropriate) comments at the top of a code cell."
 - "You set project level options using YAML in `_quarto.yml`."
 
+### Punctuation and Spelling
+
+- Use American spelling (e.g., "color", "center", "labeled", "labeling")
+- Always put a comma after "e.g." and "i.e." ("e.g., a table")
+- Use the Oxford comma in lists of three or more ("captions, identifiers, and alternative text")
+- Avoid slashes as shorthand in prose: write "figure or table", not "figure/table". Slashes are fine between option names, e.g., `fig-cap`/`tbl-cap`
+
 ### Callouts
 
 Use callouts to highlight important information:
@@ -170,7 +177,7 @@ Content of the callout...
 ### Tables
 
 - Use tables for reference information and comparisons
-- Include descriptive captions with cross-reference IDs
+- Include descriptive captions, ending with a period, with cross-reference IDs
 - Use `tbl-colwidths` when needed to control column proportions
 - Keep table content concise
 
@@ -291,6 +298,7 @@ Overall figure caption
 - Name image files with a chapter prefix: `{chapter}-{description}.png` (e.g., `typst-train-punctuality.png`)
 - Use PNG format for screenshots
 - Include figure captions that can stand alone
+- End figure, table, and listing captions with a period. This rule doesn't apply to placeholder captions in example source (e.g., `Caption`) or to short sub-captions in a panel (e.g., "Markdown figure")
 
 ### Callouts
 
@@ -399,7 +407,7 @@ Ordered list:
 ```
 
 **Conventions:**
-- Use `-` for unordered lists (consistent throughout)
+- Use `-` or `*` for unordered lists, but use the same marker throughout a list
 - Blank line before first list item
 - Indent nested items with 2 spaces
 - Can use `1.` for all numbered items (auto-renumbered)

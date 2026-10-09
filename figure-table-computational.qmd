@@ -96,7 +96,7 @@ echo: false
 
 :::
 
-Code required before executing the examples in this chapter
+Code required before executing the examples in this chapter.
 
 :::
 
@@ -136,13 +136,13 @@ Some text after the code cell.
 
 :::
 
-A document with an executable code cell that produces a figure
+A document with an executable code cell that produces a figure.
 
 :::
 
 When the document is rendered that figure appears right where the code cell was (@fig-quick-start-figure).
 
-![A rendered document with a figure produced by a code cell](images/figure-table-quick-start-figure.png){#fig-quick-start-figure .border fig-alt="Screenshot of Quarto HTML document with a scatterplot shown below the line of text 'Some text before the code cell' and above the line of text 'Some text after the code cell'."}
+![A rendered document with a figure produced by a code cell.](images/figure-table-quick-start-figure.png){#fig-quick-start-figure .border fig-alt="Screenshot of Quarto HTML document with a scatterplot shown below the line of text 'Some text before the code cell' and above the line of text 'Some text after the code cell'."}
 
 For non-computational figures and tables, additional context, like a caption or identifier, is added via markdown syntax.
 For computational figures and tables, additional context is added via code cell options.
@@ -196,7 +196,7 @@ Basic code cell options used to add an identifier (`label`), caption (`fig-cap`)
 The rendered result is shown in @fig-basic-cell-options-figure.
 The caption here is prefaced by "Figure 1:" because the label started with `fig-`, the signal that this is a cross-referenceable figure. 
 
-![Example output when @fig-figures is rendered](images/figure-table-basic-cell-options-figure.png){#fig-basic-cell-options-figure fig-alt="A scatterplot of penguin bill depth versus bill length, colored by species (Adelie, Chinstrap, Gentoo), with the caption 'Figure 1: Penguin bill length versus depth by species'."}
+![Example output when @fig-figures is rendered.](images/figure-table-basic-cell-options-figure.png){#fig-basic-cell-options-figure fig-alt="A scatterplot of penguin bill depth versus bill length, colored by species (Adelie, Chinstrap, Gentoo), with the caption 'Figure 1: Penguin bill length versus depth by species'."}
 
 @fig-tables demonstrates the same concept for tables.
 To caption a table use the `tbl-cap` option, 
@@ -238,7 +238,7 @@ Basic code cell options used to add an identifier (`label`) and caption (`tbl-ca
 The result is shown in @fig-basic-cell-options-table.
 The table caption is prefaced by "Table 1:" because `label` started with `tbl-`, the signal that this is a cross-referenceable table.
 
-![Example output when @fig-tables is rendered](images/figure-table-basic-cell-options-table.png){#fig-basic-cell-options-table fig-alt="Rendered table with caption above it 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'."}
+![Example output when @fig-tables is rendered.](images/figure-table-basic-cell-options-table.png){#fig-basic-cell-options-table fig-alt="Rendered table with caption above it 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'."}
 
 ### Fenced div syntax
 
