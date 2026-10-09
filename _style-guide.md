@@ -28,7 +28,7 @@ This style guide summarizes the writing conventions and Quarto syntax patterns u
 
 #### Chapter Organization
 1. **Chapter title with identifier**: Start with a level-1 heading and cross-reference ID
-2. **Overview section**: Begin chapters with an "Overview" section that:
+2. **Opening material, no "Overview" heading**: Do not add an explicit `## Overview` section. The overview is the first chunk of material after the chapter title, before the first `##` heading. It:
    - Explains what the chapter covers
    - Provides context and motivation
    - Outlines the structure with forward references to sections
@@ -43,8 +43,6 @@ This style guide summarizes the writing conventions and Quarto syntax patterns u
 **Example structure:**
 ```markdown
 # Chapter Title {#sec-chapter-name}
-
-## Overview
 
 Brief introduction explaining what this chapter covers...
 
