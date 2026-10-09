@@ -352,8 +352,7 @@ To have cells with complicated cell contents, you can use an alternative syntax 
 You can also use **HTML table syntax**, regardless of your target format, to create tables in Quarto documents.
 You won't usually write HTML syntax by hand, but it is a common output from computational packages that create tables.
 
-Tables are so important in Quarto documents that we dedicate an entire part of this book to them.
-For more details, see @sec-figtab.
+Tables are so important in Quarto documents that we dedicate two chapters to them: @sec-figure-table and @sec-figure-table-computational.
 
 ### Markdown pipe tables {#sec-markdown-pipe-tables}
 
@@ -432,8 +431,7 @@ To add an identifier and caption to the table use the code cell options `label` 
 
 You can include images in your document either from an image file, or from the output of an executable code cell.
 
-Figures are so important in Quarto documents that we dedicate an entire part of this book to them.
-For more details, see @sec-figtab.
+Figures are so important in Quarto documents that we dedicate two chapters to them: @sec-figure-table and @sec-figure-table-computational.
 
 ::: {.callout-tip}
 
@@ -610,7 +608,7 @@ To create a cross-reference you need to do two things:
 
 @tbl-crossref-prefixes give examples of common elements, their prefixes and an example of adding the identifier as an attribute.
 For computational outputs, like figures and tables generated from code cells, you add the identifier using the `label` code cell option.
-You can see an example for a table in @sec-computational-table, a figure in @sec-computational-figure, and many more details in @sec-figtab-crossrefs.
+You can see an example for a table in @sec-computational-table, a figure in @sec-computational-figure, and many more details in @sec-figtab-crossref.
 
 ::: {#tbl-crossref-prefixes}
 ::: {.list-table header-rows=1 widths='1,2,2' aligns=l,l,l}
@@ -1050,7 +1048,7 @@ You can see more examples using figures and tables as content in @sec-figtab-lay
 
 ### Column classes
 
-For `format: html` and `format: pdf`, the page is divided into a body content area and a right margin.
+For `format: html` and `format: typst`, the page is divided into a body content area and a right margin.
 By default, your content will be placed in the body area.
 You can override this by putting content in a fenced div and adding special `column` classes.
 

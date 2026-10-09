@@ -1,0 +1,1210 @@
+# Figures and tables {#sec-figure-table}
+
+Figures and tables are how most scientific and technical documents communicate data and results. 
+You often need precise control over their placement within documents, their captions, and the ability to group them into panels and cross-reference them throughout the text. 
+Given their importance, we've devoted two chapters to figures and tables: this one and @sec-figure-table-computational.
+
+This chapter applies however you produce your figures and tables---whether you write them in markdown or generate them from code cells. 
+We've done this on purpose, because most aspects of working with figures and tables are independent of their source. 
+For example, document-level options that control figures and tables often apply universally, as do many layout features that involve surrounding figures or tables in additional markdown.
+There are a few exceptions where you'll need to use specific attributes for markdown-based content or code cell options for computational output, and we'll point these out clearly when they arise.
+
+You should review @sec-syntax-variations, which explains how to translate between markdown and computational syntax for figures and tables.
+It also introduces what we call the fenced div syntax, which will help you understand and apply the examples used throughout the rest of both chapters.
+
+We expect you'll turn to these chapters to solve particular tasks with your own tables and figures.
+@tbl-figtab-tasks points you to the relevant section.
+
+| How do I... | See |
+|:--|:--|
+| Cross-reference a figure or table | @sec-figtab-crossref |
+| Change the caption text, location, or title | @sec-figtab-captions |
+| Arrange multiple figures or tables in a panel | @sec-figtab-layout |
+| Put a figure or table in the margin, or make it wider than the text | @sec-page-columns |
+| Align a figure left, center, or right | @sec-figure-alignment |
+| Align or size the columns of a table | @sec-table-column-widths |
+| Control the size or aspect ratio of a computational figure | @sec-figure-size |
+| Control the format and styling of a computational table | @sec-figtab-tables |
+| Troubleshoot figure or table output from a package | @sec-figtab-troubleshooting |
+
+: Common figure and table tasks. {#tbl-figtab-tasks}
+
+## Syntax variations {#sec-syntax-variations}
+
+### Markdown vs computational
+
+As you read this chapter you'll see examples of figures and tables that are produced in two ways: directly with markdown and computationally.
+@fig-figure-syntax reminds you of the syntax for figures, and @fig-table-syntax for tables. 
+
+::: {#fig-figure-syntax}
+
+::: {#fig-figure-syntax-md}
+```markdown
+![Caption](path/to/image.jpg){#fig-id fig-alt="Alternative text"}
+```
+
+Markdown
+:::
+
+
+::: {#fig-figure-syntax-comp}
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Caption"
+#| fig-alt: "Alternative text"
+
+# Code to generate a single figure
+```
+````
+
+Executable code cell
+:::
+
+Syntax for a figure with a numbered caption and alternative text produced with (a) markdown and (b) an executable code cell.
+
+:::
+
+::: {#fig-table-syntax}
+
+::: {#fig-table-syntax-md}
+```markdown
+| Column 1 | Column 2 |
+|----------|----------|
+| Cell A   | Cell B   |
+
+: Caption {#tbl-id}
+```
+
+Markdown
+:::
+
+
+::: {#fig-table-syntax-comp}
+````markdown
+```{{LANGUAGE}}
+#| label: tbl-id
+#| tbl-cap: "Caption"
+
+# Code to generate a single table
+```
+````
+
+Executable code cell
+:::
+
+Syntax for a table with a numbered caption produced with (a) markdown and (b) an executable code cell.
+
+:::
+
+The key difference is that for computational figures and tables you use code cell options to specify captions, identifiers, and alternative text.
+When the computational engine executes a code cell that produces a table or figure, it uses the output, along with the code cell options, to construct the same markdown you would write by hand to render a figure or table.
+This means for figure or table tweaks that involve setting document options, or surrounding the figure or table in additional markdown, you can swap a markdown example with a computational one and vice versa.
+For tweaks that involve changes to the markdown itself, like adding an attribute, you'll usually find a corresponding code cell option for a computational output.
+
+### Fenced div syntax
+
+When a figure or table is cross-referenceable (i.e., it has an identifier that starts with `fig-`, `tbl-`, or one of the other special prefixes), another syntax variant is useful---the fenced div syntax.
+
+The fenced div syntax moves the caption and identifier outside of the image or table markdown.
+This provides a consistent syntax for both computational and non-computational figures and tables.
+For example, @fig-fenced-div-figure shows the fenced div syntax for figures.
+
+::: {#fig-fenced-div-figure}
+
+::: {#fig-fenced-div-figure-md}
+````markdown
+::: {#fig-id}
+![](path/to/image.jpg){fig-alt="Alternative text"}
+
+Caption
+:::
+````
+Markdown
+:::
+
+:::{#fig-fenced-div-figure-comp}
+````markdown
+::: {#fig-id}
+```{{LANGUAGE}}
+#| fig-alt: "Alternative text"
+
+# Code to generate a single figure
+```
+
+Caption
+:::
+````
+
+Executable code cell
+:::
+
+Fenced div syntax for a figure with a numbered caption and alternative text produced with (a) markdown and (b) an executable code cell.
+
+:::
+
+The fenced div syntax abstracts away whether the figure or table is produced in markdown or computationally.
+So, in the rest of this chapter and in @sec-figure-table-computational, we'll use the shorthand:
+
+````markdown
+::: {#fig-id}
+{ IMAGE }
+
+Caption
+:::
+````
+
+where `{ IMAGE }` could be a markdown image or a code cell generating a figure.
+Conveniently, even if you don't replace `{ IMAGE }`, this is valid Quarto markdown and will render like @fig-id.
+
+::: {#fig-id}
+{ IMAGE }
+
+Caption
+:::
+
+The same fenced div syntax applies to tables and we'll use a similar shorthand:
+
+````markdown
+::: {#tbl-id}
+{ TABLE }
+
+Caption
+:::
+````
+
+where `{ TABLE }` could be a code cell generating a table, or a table written directly in markdown as a pipe table, list table, or HTML table in a raw HTML block.
+
+## Cross-references {#sec-figtab-crossref}
+
+You'll start with the two required steps to cross-reference a figure or table:
+
+1. Give your figure or table an identifier that Quarto recognizes as a cross-reference; that is, one that starts with `fig-` or `tbl-`.
+
+2. Refer to your figure or table using the syntax `@ID`.
+
+Then, you'll learn about creating sub-references. 
+
+This section focuses on creating and using cross-references. 
+If you are interested in customizing the way your figures and tables are numbered or labeled, see @sec-figtab-captions.
+
+### Adding an identifier to a figure or table
+
+Depending on how you create your figure or table, there are three ways to add an identifier that Quarto recognizes for cross-referencing:
+
+* **Non-computational**: as an ID attribute, starting with `#`, in markdown syntax
+* **Computational**: as the `label` code cell option
+* **Both**: as an ID attribute, starting with `#`, in the fenced div syntax
+
+We illustrate each of these for figures in @fig-id-figure and for tables in @fig-id-table.
+The caption, and alternative text for figures, are optional, but you'll generally include them, so our examples do too.
+
+
+::: {#fig-id-figure}
+
+:::{#fig-id-figure-md}
+```markdown
+![Caption](path/to/image.jpg){#fig-id fig-alt="Alt text"}
+```
+
+Markdown figure
+:::
+
+::: {#fig-id-figure-comp}
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Caption"
+#| fig-alt: "Alt text"
+# Code to generate a single figure
+```
+````
+
+Computational figure
+:::
+
+:::{#fig-id-fenced-div-markdown}
+````markdown
+::: {#fig-id}
+![](path/to/image.jpg){fig-alt="Alt text"}
+
+Caption
+:::
+````
+
+Fenced div markdown figure
+:::
+
+:::{#fig-id-fenced-div-comp}
+````markdown
+::: {#fig-id}
+```{{LANGUAGE}}
+#| fig-alt: "Alt text"
+# Code to generate a single figure
+```
+
+Caption
+:::
+````
+Fenced div computational figure
+:::
+
+Ways to add the identifier `fig-id` to a figure using (a) markdown, (b) computational code cell, (c) fenced div with markdown, and (d) fenced div with computational code cell.
+:::
+
+::: {#fig-id-table}
+
+:::{#fig-id-table-md}
+```markdown
+| Column 1 | Column 2 |
+|----------|----------|
+| Cell A   | Cell B   |
+
+: Caption {#tbl-id}
+```
+Markdown table
+:::
+
+::: {#fig-id-table-comp}
+````markdown
+```{{LANGUAGE}}
+#| label: tbl-id
+#| tbl-cap: "Caption"
+# Code to generate a single table
+```
+````
+Computational table
+:::
+
+::: {#fig-id-table-fenced-md}
+````markdown
+::: {#tbl-id}
+| Column 1 | Column 2 |
+|----------|----------|
+| Cell A   | Cell B   |
+
+Caption
+:::
+````
+Fenced div markdown table
+:::
+
+::: {#fig-id-table-fenced-comp}
+````markdown
+::: {#tbl-id}
+```{{LANGUAGE}}
+# Code to generate a single table
+```
+Caption
+:::
+````
+Fenced div computational table
+:::  
+
+Ways to add the identifier `tbl-id` to a table using (a) markdown, (b) a computational code cell, (c) a fenced div with markdown, and (d) a fenced div with a computational code cell.
+
+:::
+
+For figures and tables you'll usually use the prefixes `fig-` and `tbl-` respectively, but see @sec-crossreferences for other available prefixes.
+For working examples of computational figures and tables with cross-references, see @sec-figure-table-computational.
+
+::: {.callout-tip}
+
+## Anything can be a "Figure"
+
+Quarto doesn't care what the content of the fenced div is. 
+You can put anything inside: an image, a code block, a tabset, a table, markdown, etc. 
+The label prefix determines how Quarto labels it.
+For example, using `fig-` gets you a "Figure X" regardless of the content.
+
+:::
+
+### Referring to a figure or table
+
+To refer to a figure or table, use `@` followed by the identifier (@fig-crossref-inline-syntax).
+When rendered, the cross-references are replaced with the figure or table counter and become links (@fig-crossref-inline-rendered).
+In HTML formats, hovering on the links also shows a preview of the figure or table.
+
+::: {#fig-crossref-inline layout-ncol="2"}
+
+::: {#fig-crossref-inline-syntax}
+```markdown
+See @tbl-id.
+@fig-id shows ...
+```
+:::
+
+
+:::{#fig-crossref-inline-rendered}
+![](images/figure-table-simple.png){.border .p-3 fig-alt="Rendered cross-references to a figure and a table shows the text 'See Table 1. Figure 1 shows...', where 'Table 1' and 'Figure 1' are clickable links."}
+:::
+
+Referring to a figure and a table using cross-references.
+
+:::
+
+::: {.callout-warning}
+
+## Cross-references are within document only
+
+Cross-references are generally limited to the figures and tables within the same document.
+The one exception is a Quarto book project---this is your best option if cross-document (i.e., cross-chapter) cross-references are important to you.
+For documents in a website project, an alternative approach is to link to the figure or table identifier, as explained in @sec-websites-anchors.
+
+:::
+
+### Sub-references {#sec-sub-references}
+
+Sub-references let you refer to one part of a multi-part figure or table, for example "Figure 1 (a)".
+To make sub-references, nest your cross-referenceable elements inside a parent fenced div that has a caption and an identifier.
+The children's identifiers must use the same prefix as the parent's.
+For example, here the parent div has the identifier `fig-animals` and contains two markdown images, each with its own `fig-` identifier:
+
+```markdown
+::: {#fig-animals}
+
+![Elephant](images/elephant.png){#fig-elephant fig-alt="Line drawing of an elephant."}
+
+![Panther](images/panther.png){#fig-panther fig-alt="Line drawing of a panther."}
+
+Two animals.
+:::
+```
+
+Use `@fig-animals` to refer to the whole figure ("Figure 1"), and `@fig-elephant` to refer to one part ("Figure 1 (a)").
+The captions of the children become sub-captions.
+@fig-sub-references-rendered shows the result, with a sentence that uses both cross-references.
+
+![The `fig-animals` example in `html` output. The sub-figures are labeled (a) and (b), and the sub-reference renders as "Figure 1 (a)".](images/figure-table-sub-references.png){#fig-sub-references-rendered .border .p-3 fig-alt="A rendered figure with a line drawing of an elephant captioned '(a) Elephant' above a line drawing of a panther captioned '(b) Panther', and the overall caption 'Figure 1: Two animals.' Below it, the text 'Figure 1 shows two animals. Figure 1 (a) is an elephant.' with both references as links."}
+
+When the children become more complicated, we recommend using an explicit fenced div for each one.
+For example, the general structure becomes:
+
+```markdown
+:::: {#fig-main}
+
+::: {#fig-sub1}
+CONTENT 1
+
+Sub-caption 1
+:::
+
+::: {#fig-sub2}
+CONTENT 2
+
+Sub-caption 2
+:::
+
+Main caption
+::::
+```
+
+Here, `CONTENT` can be any markdown or code cell output.
+
+::: callout-tip
+We've used additional colons (`:`) to help you see the nesting, but they aren't required.
+:::
+
+If the children all come from one code cell that makes several outputs of the same type (all figures or all tables), you can use the `fig-subcap` or `tbl-subcap` code cell options instead.
+See @sec-multiple-figures for figures and @sec-multiple-tables for tables.
+
+By default, the children are placed one after the other.
+To arrange them in rows and columns, nest a fenced div with layout attributes inside the parent, as shown in @sec-figtab-layout.
+
+## Captions {#sec-figtab-captions}
+
+A caption has two parts: the caption text _you_ write, and, for cross-referenceable figures and tables, a title and number that _Quarto_ adds (e.g., "Figure 1:").
+@tbl-caption-tasks outlines the caption tasks we cover in this section.
+
+| To... | Use | See |
+|:--|:--|:--|
+| Write a long caption, with line breaks or formatting | The last paragraph of a fenced div | @sec-long-captions |
+| Include a computed value in a caption | Inline code in a fenced div caption | @sec-dynamic-captions |
+| Move captions above, below, or into the margin | `cap-location`, `fig-cap-location`, `tbl-cap-location` | @sec-caption-location |
+| Change "Figure" or "Table", the numbering style, or the `:` | `crossref` options in the document header or `_quarto.yml` | @sec-caption-titles |
+
+: Common caption tasks covered in this section. {#tbl-caption-tasks}
+
+There are four places to set the caption text:
+
+* **Markdown figures**: the text in the square brackets, `![Caption](path/to/image.jpg)`.
+* **Markdown tables**: the line that starts with a colon, `: Caption`, directly after the table.
+* **Computational figures and tables**: the `fig-cap` or `tbl-cap` code cell option.
+* **Fenced div syntax** (@sec-syntax-variations): the last paragraph inside the div, for both markdown and computational content.
+
+The fenced div syntax is more verbose.
+But because its caption is an ordinary markdown paragraph, not a one-line YAML string, it is useful in two situations: long captions and dynamic captions.
+
+::: callout-note
+The fenced div syntax only gives you a caption when the div's identifier starts with a cross-reference prefix, such as `fig-` or `tbl-`.
+:::
+
+### Long captions {#sec-long-captions}
+
+A long caption is hard to edit as a code cell option, because it must be a valid YAML string on one line.
+In a fenced div, the caption is a markdown paragraph, so you can break lines where it makes sense and use markdown formatting.
+@fig-long-captions shows an example, where `{ IMAGE }` is a markdown image or a code cell that makes a figure (@sec-syntax-variations).
+
+::: {#fig-long-captions}
+
+````{.markdown}
+::: {#fig-scatter}
+{ IMAGE }
+
+Scatter plot of bill length (mm) against bill depth (mm) for three penguin species.
+The species form separate clusters:
+**Adelie** penguins have short, deep bills,
+and **Gentoo** penguins have long, shallow bills.
+**Chinstrap** penguins have bills as deep as Adelie penguins, but longer.
+:::
+````
+
+A long caption in the fenced div syntax. The line breaks in the caption are for readability in the source; the caption renders as one paragraph.
+
+:::
+
+::: callout-important
+## No multi-paragraph captions
+
+A caption must be one paragraph.
+If you leave a blank line in the caption, Quarto uses only the last paragraph as the caption, and puts the earlier paragraphs in the body of the figure or table.
+:::
+
+### Dynamic captions {#sec-dynamic-captions}
+
+A dynamic caption includes a computed value.
+Inline code expressions, such as `` `{r} nrow(penguins)` ``, do not run inside the `fig-cap` or `tbl-cap` options, but they do run in the caption paragraph of a fenced div.
+For example, the caption in @fig-dynamic-captions includes the number of penguins in the data.
+
+::: {#fig-dynamic-captions}
+
+::: {.panel-tabset group="language"}
+
+## R
+
+````{.markdown}
+::: {#fig-scatter}
+{ IMAGE }
+
+Bill length versus depth for `{{r}} nrow(penguins)` penguins.
+:::
+````
+
+## Python
+
+````{.markdown}
+::: {#fig-scatter}
+{ IMAGE }
+
+Bill length versus depth for `{{python}} len(penguins)` penguins.
+:::
+````
+
+:::
+
+A dynamic caption that uses inline code.
+
+:::
+
+### Caption location {#sec-caption-location}
+
+By default, figure captions are placed below figures and table captions are placed above tables.
+You can control this placement for figures and tables separately with the `fig-cap-location` and `tbl-cap-location` options, or use `cap-location` to control both.
+Available values for these options are `top`, `bottom`, and `margin` as illustrated for a table in @fig-cap-location.
+The `margin` value applies only to formats that have a margin, such as `html` and `typst` (@sec-layout).
+
+::: {#fig-cap-location}
+
+:::{layout="[[1,1], [1]]"}
+:::{}
+![](images/figure-table-captions-location-top.png){.border fig-alt="A table of penguin counts by species (Adelie 151, Chinstrap 68, Gentoo 123) with the caption 'Table 1: Penguins sampled from the Palmer Archipelago' above it."}
+
+`top`
+:::
+:::{}
+![](images/figure-table-captions-location-bottom.png){.border fig-alt="The same penguin counts table with its caption below the table."}
+
+`bottom`
+:::
+
+:::{}
+![](images/figure-table-captions-location-margin.png){.border fig-alt="The same penguin counts table with its caption in the right margin, next to the table."}
+
+`margin`
+:::
+:::
+
+A table with `tbl-cap-location` set to `top`, `bottom`, and `margin`.
+
+:::
+
+You can set these options at three levels:
+
+* In `_quarto.yml` to control all figures and tables in a project:
+
+    ```{.yaml filename="_quarto.yml"}
+    cap-location: bottom
+    ```
+
+* In the document header to control all figures and tables in a document:
+
+    ```{.yaml filename="document.qmd"}
+    ---
+    title: "My Document"
+    cap-location: bottom
+    ---
+    ```
+    
+* On an individual figure or table, to control only that one.
+    Use the code cell option for computational outputs:
+
+    ````{.markdown}
+    ```{{LANGUAGE}}
+    #| label: tbl-island-count
+    #| tbl-cap: "Penguins sampled from the Palmer Archipelago"
+    #| cap-location: bottom
+
+    # Code to generate a single table
+    ```
+    ````
+    
+    Or the attribute form for markdown figures or tables:
+    
+    ```markdown
+    | Island    | Count |
+    |-----------|-------|
+    | Biscoe    | 168   |
+    | Dream     | 124   |
+    | Torgersen | 52    |
+
+    : Penguins sampled from the Palmer Archipelago {#tbl-island-count cap-location="bottom"}
+    ```
+
+    With the fenced div syntax, put the attribute on the div:
+
+    ```markdown
+    ::: {#tbl-island-count cap-location="bottom"}
+    { TABLE }
+
+    Penguins sampled from the Palmer Archipelago
+    :::
+    ```
+
+### Caption titles and numbering {#sec-caption-titles}
+
+Quarto adds a title and a number to figures and tables that are cross-referenceable.
+The title and number appear in the caption, and in the inline reference.
+You can control these using the `crossref` options described in @tbl-crossref-options and illustrated for tables in @fig-cap-title.
+
+:::{#fig-cap-title}
+
+::: {layout="[2, 1]"}
+:::{}
+![](images/figure-table-caption-format.jpeg){.border width="50%" fig-alt="The caption 'Table 1: Penguins sampled from ...' with labels that point to its parts: 'Table' is tbl-title, '1' is tbl-labels, and ':' is title-delim."}
+
+Table caption
+:::
+
+:::{}
+![](images/figure-table-cross-reference-form.jpeg){.border width="50%" fig-alt="The text 'See Table 1 ...', where 'Table' in the link is labeled tbl-prefix."}
+
+Inline reference
+:::
+
+:::
+The default title and number in a table caption and in a cross-reference to the table.
+:::
+
+::: {#tbl-crossref-options}
+
+::: {.list-table header-rows=1 aligns=l,l,l}
+
+* - Option
+  - Controls
+  - Default
+
+* - | `fig-title`
+    | `tbl-title`
+  - Title in the caption
+  - | `Figure`
+    | `Table`
+
+* - | `fig-prefix`
+    | `tbl-prefix`
+  - Text before the number in a cross-reference
+  - | `Figure`
+    | `Table`
+
+* - | `fig-labels`
+    | `tbl-labels`
+  - Number style
+  - | `arabic`
+    | `arabic`
+
+* - `subref-labels`
+  - Number style for sub-references (@sec-sub-references)
+  - `alpha a`
+
+* - `title-delim`
+  - Text between the number and the caption
+  - `:`
+
+:::
+
+Options under `crossref` that change caption titles and numbering.
+
+:::
+
+The number style options take these values:
+
+* `arabic`: 1, 2, 3
+* `roman`: I, II, III
+* `roman i`: i, ii, iii
+* `alpha a`: a, b, c. To start at a different letter, give that letter, for example `alpha c` or `alpha A`.
+
+You can set these options in the document header or in `_quarto.yml`.
+
+For example, you might change the title of tables to "Sheet", the prefix to "Sh", the numbers to Roman numerals, and the delimiter to an em dash:
+
+```{.yaml filename="document.qmd"}
+---
+title: "My Document"
+crossref:
+  tbl-title: Sheet
+  tbl-prefix: Sh
+  tbl-labels: roman
+  title-delim: "—"
+---
+```
+
+@fig-cap-title-edit shows the result.
+
+![A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.](images/figure-table-caption-format-edit.png){#fig-cap-title-edit fig-alt="A caption that reads 'Sheet I— Penguins sampled from ...' and a cross-reference that reads 'See Sh I ...'."}
+
+::: {.callout-tip}
+## Custom cross-reference types
+
+The `crossref` options change all figures or all tables in a document.
+To keep the defaults for figures and tables and add a different kind of numbered element (for example, "Supplementary Table S1"), define a custom cross-reference type.
+See [Custom Cross-Reference Types](https://quarto.org/docs/authoring/cross-references-custom.html) in the Quarto documentation.
+:::
+
+## Panel layout {#sec-figtab-layout}
+
+Panel layouts arrange content in a grid with the `layout-ncol`, `layout-nrow`, or `layout` attributes (@sec-layout).
+This section covers the most common cases for figures and tables: arranging them in a grid, grouping them under a shared caption, and aligning them in the grid.
+
+### Arranging multiple figures and tables {#sec-multiple-outputs}
+
+Recall from @sec-layout that you place content in a grid with a fenced div with the `layout-ncol` attribute.
+Put each element in its own fenced div, as shown in @fig-panel-images.
+
+::::::: {#fig-panel-images}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
+````markdown
+::::: {layout-ncol="2"}
+::: {}
+{ CONTENT 1 }
+:::
+
+::: {}
+{ CONTENT 2 }
+:::
+:::::
+````
+:::::
+
+![](images/figure-table-panel-images.svg){.border fig-alt="An image placeholder and a table placeholder side by side, with no captions and no numbers."}
+::::::
+
+Content side by side. Neither item is cross-referenceable.
+:::::::
+
+This example arranges the content in two columns (`layout-ncol="2"`). 
+Increase `layout-ncol` to add additional columns.
+If you have more than `layout-ncol` elements, Quarto adds rows to accommodate them.
+
+The placeholders, `{ CONTENT 1 }` and `{ CONTENT 2 }`, could be anything, including any variation of a figure or table: a markdown image, a markdown table, or a code cell that produces a figure or table.
+
+Neither element in @fig-panel-images is cross-referenceable. 
+To make one or more cross-referenceable elements, add identifiers.
+Add an identifier with a cross-reference prefix to each _inner_ div to make each item its own cross-referenceable figure or table (@fig-panel-figures).
+Add an _outer_ div with an identifier around the layout div to make one cross-referenceable figure from the whole panel (@fig-panel-figure-of-images).
+Do both to make one cross-referenceable figure with sub-figures (@fig-panel-subfigures).
+
+::::::: {#fig-panel-figures}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
+````markdown
+::::: {layout-ncol="2"}
+::: {#fig-1}
+{ CONTENT 1 }
+
+Caption 1
+:::
+
+::: {#tbl-1}
+{ CONTENT 2 }
+
+Caption 2
+:::
+:::::
+````
+:::::
+
+![](images/figure-table-panel-figures.svg){.border fig-alt="A separately outlined figure and table side by side, captioned Figure 1: Caption 1 and Table 1: Caption 2."}
+::::::
+
+Cross-referenceable figures or tables side by side. Each item has its own caption and number, here "Figure 1" and "Table 1". Because each item is cross-referenced on its own, the prefixes can differ.
+:::::::
+
+::::::: {#fig-panel-figure-of-images}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
+````markdown
+:::::: {#fig-main}
+::::: {layout-ncol="2"}
+::: {}
+{ CONTENT 1 }
+:::
+
+::: {}
+{ CONTENT 2 }
+:::
+:::::
+
+Main caption
+::::::
+````
+:::::
+
+![](images/figure-table-panel-figure-of-images.svg){.border fig-alt="One outlined figure around an uncaptioned image placeholder and table placeholder, with one caption below: Figure 1: Main caption."}
+::::::
+
+One cross-referenceable figure that contains both items. You can refer to the whole figure, but not to the items inside it. The prefix of the outer div decides the type, so the whole panel is a figure, even though one item is a table.
+:::::::
+
+::::::: {#fig-panel-subfigures}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
+````markdown
+:::::: {#fig-main}
+::::: {layout-ncol="2"}
+::: {#fig-sub1}
+{ CONTENT 1 }
+
+Sub-caption 1
+:::
+
+::: {#fig-sub2}
+{ CONTENT 2 }
+
+Sub-caption 2
+:::
+:::::
+
+Main caption
+::::::
+````
+:::::
+
+![](images/figure-table-panel-subfigures.svg){.border fig-alt="One outer figure around two outlined sub-figures, an image and a table, captioned (a) Sub-caption 1 and (b) Sub-caption 2, with Figure 1: Main caption below both."}
+::::::
+
+One cross-referenceable figure with sub-figures. The inner captions become sub-captions. The prefix of the inner elements must match that of the outer element, all `fig-` in this example.
+:::::::
+
+In @fig-panel-subfigures, use `@fig-main` to refer to the whole figure ("Figure 1"), and `@fig-sub1` to refer to one part ("Figure 1 (a)"), as described in @sec-sub-references.
+
+::: callout-tip
+## Use separate divs
+
+Mixing cross-reference identifiers and layout attributes or column classes on the same fenced div, e.g., `{#fig-id layout-ncol="2"}`, often works, but it can give unexpected results in some cases.
+If it does, use one fenced div for the cross-reference and a separate, nested fenced div for the layout.
+:::
+
+If one code cell makes all the figures or tables, you can use `layout-ncol` as a code cell option instead of a fenced div:
+
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Main caption"
+#| fig-subcap:
+#|   - "Sub-caption 1"
+#|   - "Sub-caption 2"
+#| layout-ncol: 2
+
+# Code to generate two figures
+```
+````
+
+See @sec-multiple-figures and @sec-multiple-tables for the details.
+When it is appropriate, the code cell option has concise syntax, but you'll need to switch to a fenced div if you want to mix figures, tables, markdown, or code cell output in the same panel.
+
+### Rows, columns, and custom grids
+
+`layout-ncol` sets the number of columns, and Quarto adds rows as necessary.
+`layout-nrow` sets the number of rows, and Quarto adds columns as necessary.
+Each item gets the same width.
+
+For different widths, or a different number of items in each row, use the `layout` attribute.
+Its value is an array of rows.
+Each row is an array of numbers that give the relative width of each item.
+For example, `layout="[[1,1],[1]]"` puts two items of equal width in the first row and one item at full width in the second row (@fig-panel-custom-grid).
+
+::::::: {#fig-panel-custom-grid}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
+````markdown
+::::: {layout="[[1,1],[1]]"}
+::: {}
+{ CONTENT 1 }
+:::
+
+::: {}
+{ CONTENT 2 }
+:::
+
+::: {}
+{ CONTENT 3 }
+:::
+:::::
+````
+:::::
+
+![](images/figure-table-panel-custom-grid.svg){.border fig-alt="Two placeholders of equal width side by side in the first row, and one full-width placeholder in the second row, with no captions."}
+::::::
+
+A custom grid with `layout="[[1,1],[1]]"`: two items in the first row and one item at full width in the second row.
+:::::::
+
+As with `layout-ncol`, add identifiers to the inner or outer divs to make the items, or the whole panel, cross-referenceable.
+
+The numbers are relative, so `layout="[[70,30]]"` gives a row where the first item is 70% of the width and the second item is 30%.
+A negative number adds empty space.
+For example, `layout="[40,-20,40]"` puts a 20% gap between two items.
+
+### Alignment in a panel
+
+Items in a row are frequently different heights, for example, a tall figure next to a short table.
+Use `layout-valign` to set the vertical alignment of the items in each row: `top`, `center`, or `bottom` (@fig-panel-valign).
+
+::::::: {#fig-panel-valign}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
+````markdown
+::::: {layout-ncol="2" layout-valign="bottom"}
+::: {}
+{ CONTENT 1 }
+:::
+
+::: {}
+{ CONTENT 2 }
+:::
+:::::
+````
+:::::
+
+![](images/figure-table-panel-valign.svg){.border fig-alt="A tall image placeholder next to a short table placeholder, with their bottom edges aligned."}
+::::::
+
+Content of different heights aligned with `layout-valign="bottom"`. The bottom edges of the items line up.
+:::::::
+
+Use `layout-align` to set the horizontal alignment of each item in its cell: `left`, `center`, or `right`.
+Both attributes are also code cell options.
+
+## Position and alignment {#sec-figtab-position}
+
+You can move a figure or table into a different column of the page, and align it inside its container.
+For slides, see @sec-output-location for the `output-location` code cell option, which can put output on the next slide or next to the code.
+
+### Position relative to the page: `column` {#sec-page-columns}
+
+Fenced divs with `.column-` classes put content in different columns of the page, for example the right margin (@sec-layout).
+To move a figure or table, wrap its fenced div in a fenced div with the class.
+For example, to give a wide figure the full width of the screen, use `.column-screen`:
+
+````markdown
+::: {.column-screen}
+:::: {#fig-id}
+{ IMAGE }
+
+Caption
+::::
+:::
+````
+
+For a small figure that supports the main text, use `.column-margin` to put it in the margin.
+The figure keeps its caption and number.
+As with panel layouts, keep the column class and the identifier on separate fenced divs.
+
+For a code cell, use the `column` code cell option instead of a class.
+The value is the class name without the `column-` prefix:
+
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Caption"
+#| column: screen
+
+# Code to generate a single figure
+```
+````
+
+The `fig-column` and `tbl-column` code cell options are similar, but they move only the figure or table output, not the other output of the cell.
+@fig-page-columns shows the result in `html` output.
+
+::: {#fig-page-columns layout-ncol="2"}
+
+![`column: screen`](images/figure-table-column-screen.png){#fig-page-columns-screen fig-alt="A scatterplot of penguin bill depth versus bill length, colored by species, that spans the full width of the page, wider than the paragraphs above and below it."}
+
+![`column: margin`](images/figure-table-column-margin.png){#fig-page-columns-margin fig-alt="A paragraph of placeholder text with a small version of the penguin scatterplot in the right margin beside it."}
+
+A figure in different columns of the page: (a) the full width of the screen and (b) the margin. Columns apply to the `html` and `typst` formats.
+
+:::
+
+You can find all the possible column values in the Quarto documentation on [Article Layout](https://quarto.org/docs/authoring/article-layout.html#available-columns).
+
+::: callout-tip
+
+## Columns are responsive in `html` output
+
+In HTML output, the columns change with the screen size.
+For example, a small screen has only one column, so all content uses the full width of the screen, whatever its column class.
+
+:::
+
+### Figure alignment: `fig-align` {#sec-figure-alignment}
+
+Every figure sits in a container.
+By default, the container is the width of the body text, but you can change this if you put the figure in a column (@sec-page-columns).
+Figure alignment is the horizontal position of a figure in its container.
+
+Use `fig-align` to change the alignment.
+Its values are `default` (the default for the output format), `left`, `center`, and `right`.
+@fig-fig-align shows the effect of `left`, `center`, and `right`.
+
+::: {#fig-fig-align layout-ncol="3"}
+
+![`fig-align: left`](images/figure-table-align-left.png){fig-alt="A scatterplot aligned to the left of the page."}
+
+![`fig-align: center`](images/figure-table-align-center.png){fig-alt="A scatterplot centered on the page."}
+
+![`fig-align: right`](images/figure-table-align-right.png){fig-alt="A scatterplot aligned to the right of the page."}
+
+Examples showing the effect of different `fig-align` settings: `left`, `center`, and `right`.
+
+:::
+
+To align all the figures in a document, set `fig-align` as a document option (@lst-fig-align-document).
+This applies to figures from markdown and from code cells.
+
+::: {#lst-fig-align-document}
+
+```{.yaml filename="document.qmd"}
+---
+fig-align: left
+---
+```
+
+Use the `fig-align` document option to set the alignment of all figures in a document.
+
+:::
+
+To align one figure, and override the document option, add a `fig-align` attribute to a markdown image:
+
+```markdown
+![Caption](path/to/image.jpg){#fig-id fig-align="right"}
+```
+
+Or, for a figure from a code cell, use the `fig-align` code cell option:
+
+````markdown
+```{{LANGUAGE}}
+#| label: fig-id
+#| fig-cap: "Caption"
+#| fig-align: right
+
+# Code to generate a single figure
+```
+````
+
+## Table column alignment and widths {#sec-table-column-widths}
+
+Inside a table, each column has an alignment and a width.
+Column alignment is the horizontal position of the content in each cell of the column.
+Column width is the proportion of the table width that the column uses.
+By default, the output format sets the alignment, and the widths depend on the content of the columns.
+
+How you change alignment and width depends on how you make the table: in markdown, with a code cell that outputs a markdown table, or with a package that outputs an HTML table.
+
+### Markdown tables
+
+To align the columns of a pipe table, add colons to the separator row.
+A colon on the left aligns the column to the left, a colon on the right aligns it to the right, and colons on both sides center it.
+This table aligns the first column to the left, the second column to the center, and the third column to the right:
+
+````markdown
+{{< include _examples/authoring/tables/markdown-table-align.md >}}
+````
+
+To align the columns of a list table, add an `aligns` attribute to the `.list-table` div.
+Its value is a comma-separated list with one letter per column: `l` (left), `c` (center), `r` (right), or `d` (default).
+This list table has the same alignment as the pipe table above:
+
+````markdown
+{{< include _examples/authoring/tables/list-table-align.qmd >}}
+````
+
+To set column widths, use `tbl-colwidths`.
+Its value is an array of percentages, one per column.
+For a pipe table, add a `tbl-colwidths` attribute after the caption.
+This table gives the first column 80% of the width, and the other two columns 10% each:
+
+````markdown
+{{< include _examples/authoring/tables/markdown-table-colwidths.md >}}
+````
+
+For a list table, you can add the same `tbl-colwidths` attribute to the `.list-table` div.
+Or, use the list table attribute `widths`, with a comma-separated list of widths:
+
+````markdown
+{{< include _examples/authoring/tables/list-table-widths.qmd >}}
+````
+
+To set the column widths of all the markdown tables in a document, set `tbl-colwidths` as a document option (@lst-tbl-colwidths-document).
+A `tbl-colwidths` attribute on a table overrides the document option, but a `widths` attribute does not.
+
+::: {#lst-tbl-colwidths-document}
+
+```{.yaml filename="document.qmd"}
+---
+tbl-colwidths: [80, 10, 10]
+---
+```
+
+Use the `tbl-colwidths` document option to set the column widths of all markdown tables in a document.
+
+:::
+
+### Tables from code cells
+
+A code cell can output a markdown table, for example with `knitr::kable()` in R or `tabulate()` from the tabulate package in Python.
+There is no code cell option for column alignment.
+Instead, set the alignment with the function that makes the table.
+In @lst-tbl-align-code, the `align` argument to `knitr::kable()` and the `colalign` argument to `tabulate()` align the species column to the left and the count column to the right.
+
+::: {#lst-tbl-align-code}
+::: {.panel-tabset group="language"}
+
+### R
+
+````{.markdown}
+```{{r}}
+{{< include _examples/figure-table/_code-snippets/species-count-markdown-align.R >}}
+```
+````
+
+### Python
+
+````{.markdown}
+```{{python}}
+{{< include _examples/figure-table/_code-snippets/species-count-markdown-align.py >}}
+```
+````
+
+:::
+
+Set the column alignment of a markdown table from a code cell with the function that makes the table.
+
+:::
+
+To set column widths, use the `tbl-colwidths` code cell option (@lst-tbl-colwidths-code).
+It overrides the document option.
+
+::: {#lst-tbl-colwidths-code}
+::: {.panel-tabset group="language"}
+
+### R
+
+````{.markdown}
+```{{r}}
+#| tbl-colwidths: [25, 75]
+{{< include _examples/figure-table/_code-snippets/species-count-markdown.R >}}
+```
+````
+
+### Python
+
+````{.markdown}
+```{{python}}
+#| tbl-colwidths: [25, 75]
+{{< include _examples/figure-table/_code-snippets/species-count-markdown.py >}}
+```
+````
+
+:::
+
+Use the `tbl-colwidths` code cell option to set the column widths of a markdown table from a code cell.
+
+:::
+
+### HTML tables
+
+`tbl-colwidths` applies only to markdown tables.
+A package that makes HTML tables, such as gt in R or great_tables in Python, styles the table itself.
+Use the functions of the package to set the alignment and width of the columns.
+
+In @lst-tbl-gt, `cols_align()` aligns the count column to the right, `cols_width()` gives the species column 25% of the width and the count column 75%, and `tab_options()` makes the table the full width of its container.
+
+::: {#lst-tbl-gt}
+::: {.panel-tabset group="language"}
+
+### R
+
+````{.markdown}
+```{{r}}
+penguins |>
+  count(species) |>
+  gt() |>
+  tab_options(table.width = pct(100)) |>
+  cols_align(align = "right", columns = n) |>
+  cols_width(
+    species ~ pct(25),
+    n ~ pct(75)
+  )
+```
+````
+
+### Python
+
+````{.markdown}
+```{{python}}
+(
+  pl.DataFrame(penguins)
+  .group_by('species')
+  .len()
+  .pipe(GT)
+  .tab_options(table_width="100%")
+  .cols_align(align="right", columns="len")
+  .cols_width(
+    species="25%",
+    len="75%"
+  )
+)
+```
+````
+
+:::
+
+Use gt or great_tables functions to set the alignment and width of the columns of an HTML table.
+
+:::
+
+## Wrapping Up
+
+Everything in this chapter applies to computational figures and tables too.
+In @sec-figure-table-computational, you'll learn the code cell options that control them, and how to troubleshoot them when the output isn't what you expect.
