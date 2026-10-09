@@ -718,11 +718,12 @@ Read the documentation for your chosen package to see how to customize the appea
 
 #### Other formats {#sec-tables-other-formats}
 
-The computational engine is aware of your target format.
-This means packages can produce tables in formats other than markdown or HTML when appropriate.
-For example, Quarto converts HTML tables to Typst tables, so the GT (R) and great_tables (Python) packages still produce HTML tables when the target is `typst`.
-Other packages may produce RTF tables when the target format is `docx`.
-Refer to the documentation for your chosen package to see what formats are supported.
+The computational engine tells your code which format you're rendering to, so a package can choose what kind of table to produce.
+Some packages produce a table in the target format directly.
+For example, flextable (R) produces a native Word table when the target is `docx`.
+Other packages always produce HTML and rely on Quarto to convert it.
+For example, GT (R) and great_tables (Python) produce HTML tables when the target is `typst`, and Quarto converts them to Typst tables.
+Refer to the documentation for your chosen package to see which formats it supports.
 
 ### Multiple tables {#sec-multiple-tables}
 
