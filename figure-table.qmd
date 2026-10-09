@@ -408,12 +408,16 @@ To arrange them in rows and columns, add layout attributes to the parent fenced 
 ## Captions {#sec-figtab-captions}
 
 A caption has two parts: the caption text _you_ write, and, for cross-referenceable figures and tables, a title and number that _Quarto_ adds (e.g., "Figure 1:").
-This section covers two specific cases of caption text: long captions and dynamic captions.
-The text, how to move captions, and how to change the titles and numbering.
+@tbl-caption-tasks outlines the caption tasks we cover in this section.
 
-::: todo
-[CVW] Rewrite to orient then point at the subsections and make it easier to find the syntax for the tweaks you need.
-:::
+| To... | Use | See |
+|:--|:--|:--|
+| Write a long caption, with line breaks or formatting | The last paragraph of a fenced div | @sec-long-captions |
+| Include a computed value in a caption | Inline code in a fenced div caption | @sec-dynamic-captions |
+| Move captions above, below, or into the margin | `cap-location`, `fig-cap-location`, `tbl-cap-location` | @sec-caption-location |
+| Change "Figure" or "Table", the numbering style, or the `:` | `crossref` options in the document header or `_quarto.yml` | @sec-caption-titles |
+
+: Common caption tasks covered in this section. {#tbl-caption-tasks}
 
 ### Caption text
 
@@ -581,7 +585,7 @@ You can set these options at three levels:
     :::
     ```
 
-### Caption titles and numbering
+### Caption titles and numbering {#sec-caption-titles}
 
 Quarto adds a title and a number to figures and tables that are cross-referenceable.
 The title and number appear in the caption, and in the inline reference.
