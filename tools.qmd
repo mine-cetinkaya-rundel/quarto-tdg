@@ -54,7 +54,7 @@ quarto preview document.qmd
 ```
 
 This command is particularly useful during active authoring, as it lets you see your changes immediately without having to manually rerun the render command.
-The preview server will continue running until you stop it (typically with Ctrl+C in the Terminal).
+The preview server will continue running until you stop it (typically with {{< kbd Ctrl-C >}} in the Terminal).
 
 Preview isn't limited to single documents: run `quarto preview` in a project directory—such as a website or book—and Quarto serves the whole project, refreshing whichever pages you edit.
 
