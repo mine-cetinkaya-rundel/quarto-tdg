@@ -245,10 +245,10 @@ For cross-referenceable figures and tables, fenced divs provide an alternative m
 Instead of using the code cell options `label` and `fig-cap`/`tbl-cap`, you set the identifier on a fenced div, and the caption as the last line inside the fenced div.
 The contents above the last line becomes the content of the figure or table, and could be a code cell.
 
-As a concrete example, @fig-fenced-div-figure gives the labelled and captioned figure as the code cell in @fig-figures.
-@fig-fenced-div-table does the same for the table in @fig-tables.
+As a concrete example, @fig-fenced-div-code-figure gives the labelled and captioned figure as the code cell in @fig-figures.
+@fig-fenced-div-code-table does the same for the table in @fig-tables.
 
-::: {#fig-fenced-div-figure}
+::: {#fig-fenced-div-code-figure}
 ::: {.panel-tabset group="language"}
 
 ## R
@@ -288,7 +288,7 @@ The equivalent fenced div syntax for @fig-figures.
 :::
 
 
-:::{#fig-fenced-div-table}
+:::{#fig-fenced-div-code-table}
 
 ::: {.panel-tabset group="language"}
 
