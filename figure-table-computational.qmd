@@ -817,14 +817,14 @@ It's useful to think about the process of getting your figures or tables into th
 
 3. Rendering of the markdown to include the figure or table in the final output format.
 
-To troubleshoot a computational figure or table that doesn't come out looking right, we suggest troubleshooting each of these steps in turn.
+To troubleshoot a computational figure or table that doesn't come out looking right, we suggest checking each step in turn.
 The following sections provide some tips for doing this.
 
-### Execute your code interactively 
+### Execute your code interactively
 
 Execute the code cell interactively in your computational environment.
-Be careful to ensure your local computational environment (interpreter versions and package versions) match those used by Quarto. 
-Check the figure or table looks like you expect. 
+Be careful to ensure your local computational environment (interpreter versions and package versions) matches those used by Quarto.
+Check that the figure or table looks as you expect.
 If it doesn't, you need to fix your code based on the documentation for the packages you are using.
 
 ### Examine intermediate markdown
@@ -840,45 +840,50 @@ keep-md: true
 ---
 ```
 
-Render your document, and then open the generated markdown file, `{filename}.{format}.md` file.
+Render your document, and then open the generated markdown file, `{filename}.{format}.md`.
 Find the relevant figure or table (e.g., by searching for its `label`) and examine it carefully.
-When examining the intermediate markdown ask yourself:
+When examining the intermediate markdown, ask yourself:
 
 * Is the format of the figure or table what you expect? 
 
-* Is the content of the figure or table what you expect? Compare to the result of evaluating your code cells locally. For figures, use the image path in the markdown to find the image file in the `{filename}_files/figure-{format}/` folder, and open it directly. For tables, you'll need to rely on examining the HTML or markdown syntax.
+* Is the content of the figure or table what you expect?
+    Compare to the result of evaluating your code cells locally.
+    For figures, use the image path in the markdown to find the image file in the `{filename}_files/figure-{format}/` folder, and open it directly.
+    For tables, you'll need to rely on examining the HTML or markdown syntax.
 
-* Is the surrounding markdown what you expect? For example, are the attributes present on the figure or table markdown? Are the correct classes on the surrounding fenced divs?
+* Is the surrounding markdown what you expect?
+    For example, are the attributes present on the figure or table markdown?
+    Are the correct classes on the surrounding fenced divs?
 
 Tracking down problems here is tricky because they could be coming from the packages you are using, the engine, or the interaction between the two. 
 Here are some strategies to help you isolate the source of the problem.
 
 #### Explore package options
 
-Some packages are Quarto (or `knitr`/`jupyter`) aware, and will adjust their output based on the context of your document.
-Other packages may not be Quarto aware but will provide options that may force a format, or omit extraneous markup.
+Some packages are Quarto-aware (or `knitr`- or `jupyter`-aware), and will adjust their output based on the context of your document.
+Other packages aren't Quarto-aware but provide options that force a format or omit extraneous markup.
 Check the documentation for your chosen package to see if/how it supports Quarto, and what options are available.
 
 #### Separate code from markdown
 
-Some code options, like `column` and the `layout*` options, 
-don't have an impact on how your code produces your figures and tables, 
-but instead on the markdown that surrounds them in the document.
+Some code cell options, like `column` and the `layout*` options,
+don't affect how your code produces your figures and tables;
+instead, they affect the markdown that surrounds them in the document.
 
 If you are using these options,
 a good first step is to pull apart the layout from the code that produces the figure or table.
 
 Remove the layout options entirely, and check the tables and figures themselves look right.
-Then, introduce the layout back in, but use the fenced div approach (as outlined in @sec-layout), rather than the code cell options.
+Then, introduce the layout back in, but use the fenced div approach (as outlined in @sec-figtab-layout), rather than the code cell options.
 
-#### Do the translation yourself 
+#### Do the translation yourself
 
 If you can't figure out why you aren't getting the right markdown, you can consider doing the translation yourself.
 Instead of your code cell producing a figure or table, have it produce the markdown to include the figure or table.
 
 You'll need to set the code cell option `output: asis` to tell Quarto not to further process the output of your code cell.
 Then write code to output text that is the markdown to include your figure or table.
-For figures, you will need to save the image file with code, you will be responsible for setting the format, size, and path.
+For figures, you need to save the image file in your code, and you are responsible for its format, size, and path.
 
 For example, if your code saves an image to a path defined in `image_path`, @fig-translate-yourself shows how to produce the markdown to include it.
 
@@ -913,7 +918,7 @@ print(f"![Caption]({image_path}){{#fig-plot1 fig-alt='Alt text'}}\n")
 Code cells that produce markdown to include a figure saved in the path defined in `image_path`.
 :::
 
-### Compare to a non-computational outputs
+### Check rendering with a non-computational output
 
 If you see no problems with your intermediate markdown, you should be able to reproduce your problem with a non-computational example.
 Replace your executable code cells with markdown equivalents.
@@ -921,4 +926,4 @@ For example, save your figure as an image file, and include it with standard mar
 
 You can use your intermediate markdown as a guide, but simplify as much as you can, while still reproducing your problem.
 You have now eliminated the computational environment as a source of the problem, so it's possibly a Quarto problem.
-It's time to ask for help, see @sec-ask-for-help.
+It's time to ask for help (@sec-ask-for-help).
