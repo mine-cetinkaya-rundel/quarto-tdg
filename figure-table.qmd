@@ -42,6 +42,8 @@ As you read this chapter you'll see examples of figures and tables that are prod
 ```markdown
 ![Caption](path/to/image.jpg){#fig-id fig-alt="Alternative text"}
 ```
+
+Markdown
 :::
 
 
@@ -55,6 +57,8 @@ As you read this chapter you'll see examples of figures and tables that are prod
 # Code to generate a single figure
 ```
 ````
+
+Executable code cell
 :::
 
 Syntax for a figure with a numbered caption and alternative text produced with (a) markdown and (b) an executable code cell.
@@ -71,6 +75,8 @@ Syntax for a figure with a numbered caption and alternative text produced with (
 
 : Caption {#tbl-id}
 ```
+
+Markdown
 :::
 
 
@@ -83,6 +89,8 @@ Syntax for a figure with a numbered caption and alternative text produced with (
 # Code to generate a single table
 ```
 ````
+
+Executable code cell
 :::
 
 Syntax for a table with a numbered caption produced with (a) markdown and (b) an executable code cell.
@@ -112,6 +120,7 @@ For example, @fig-fenced-div-figure shows the fenced div syntax for figures.
 Caption
 :::
 ````
+Markdown
 :::
 
 :::{#fig-fenced-div-figure-comp}
@@ -126,6 +135,8 @@ Caption
 Caption
 :::
 ````
+
+Executable code cell
 :::
 
 Fenced div syntax for a figure with a numbered caption and alternative text produced with (a) markdown and (b) an executable code cell.
@@ -146,12 +157,13 @@ Caption
 where `{ IMAGE }` could be a markdown image or a code cell generating a figure.
 Conveniently, even if you don't replace `{ IMAGE }`, this is valid Quarto markdown and will render like @fig-id.
 
+:::: {.rendered}
 ::: {#fig-id}
 { IMAGE }
 
 Caption
 :::
-
+::::
 
 The same fenced div syntax applies to tables and we'll use a similar shorthand:
 
