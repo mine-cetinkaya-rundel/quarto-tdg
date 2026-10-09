@@ -26,7 +26,7 @@ Producing figures and tables with code has many advantages:
 
 You'll start by reviewing the most common code cell options for figures and tables---those that add captions, identifiers and alternative text.
 
-Then, we split the rest of the chapter into two sections: one for figures (covering size, format, resolution, and creating multiple figures) and one for tables (covering table formats, and creating multiple tables).
+Then, we split the rest of the chapter into two sections: one for figures (covering size, format, resolution, and multiple figures) and one for tables (covering table formats and multiple tables).
 
 Much of the control of computational figures and tables comes from code cell options.
 To help you navigate this, and other chapters, we list the most common code cell options in @tbl-figtab-ref.
@@ -52,7 +52,7 @@ Use the [Quarto Code Cell Reference](https://quarto.org/docs/reference/cells/) f
 | `layout-align` / `layout-valign` | | Alignment when arranging multiple figures or tables in a single panel | @sec-figtab-layout |
 | `cap-location` / `fig-cap-location` /  `tbl-cap-location` | ☑ | Location of caption relative to figure or table | @sec-caption-location |
 
-: Commmon code cell options for figures and tables {#tbl-figtab-ref tbl-colwidths="[25,5,40,30]"}
+: Common code cell options for figures and tables {#tbl-figtab-ref tbl-colwidths="[25,5,40,30]"}
 
 ### The examples in this chapter
 
@@ -328,7 +328,9 @@ The fenced div syntax is useful if you want long captions (@sec-long-captions), 
 
 ## Figures {#sec-figtab-figures}
 
-In this section you'll learn about figure-specific options: **figure size**, **format and resolution**, and **alignment**. Some of these controls are *document options* (set in your document header and applied to all figures), some are *code cell options* (applied to individual code cells), and others need to be configured directly in your plotting code. We'll use *emphasis* to highlight when an option is a document-level setting versus a code cell option. 
+In this section you'll learn about figure-specific options: figure size, format and resolution, and multiple figures.
+For figure alignment, see @sec-figure-alignment.
+Some of these controls are document options (set in your document header and applied to all figures), some are code cell options (applied to individual code cells), and others need to be configured directly in your plotting code.
 
 ### Default figure size
 
@@ -428,7 +430,7 @@ sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="speci
 ```
 ````    
 
-Use matlplotlibs `rcParams` to change default figure size for all subsequent plots.
+Use matplotlib's `rcParams` to change default figure size for all subsequent plots.
 
 :::
 
@@ -464,6 +466,9 @@ For example, in plotnine you can resize a plot through the `theme()` function as
 )
 ```
 ````
+
+Use the `figure_size` argument to plotnine's `theme()` to set the size of a single plot.
+
 :::
 
 ### Figure format and resolution
@@ -535,6 +540,7 @@ To arrange the figures in the panel, see @sec-multiple-outputs.
 {{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
 
 {{< include _examples/figure-table/_code-snippets/size-scatter.R >}}
+```
 ````
  
 ## Python
@@ -553,6 +559,7 @@ To arrange the figures in the panel, see @sec-multiple-outputs.
 {{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
 
 {{< include _examples/figure-table/_code-snippets/size-scatter.py >}}
+```
 ````
  
 :::
@@ -577,7 +584,8 @@ You can learn more about this approach in @sec-figtab-layout.
 
 ## Tables  {#sec-figtab-tables}
 
-In this section you'll learn about table-specific options, in particular choosing a  **table format** and controlling things like column alignment and width
+In this section you'll learn about table-specific options, in particular choosing a **table format**.
+For column alignment and widths, see @sec-table-column-widths.
 
 ### Table format
 
@@ -589,7 +597,7 @@ Choose:
 
 * **Markdown**: for simple tables that don't require any row, cell or column specific formatting. 
 
-* **HTML**: for more complex tables that require row, cell or column specific styling. While HTML allows for more control over the appearance of the table, not all customization will propagate through to all target formats. The best support for HTML styling is in HTML based formats (`html`, `dashboards` and `revealjs`), and `typst`.
+* **HTML**: for more complex tables that require row, cell or column specific styling. While HTML allows for more control over the appearance of the table, not all customization will propagate through to all target formats. The best support for HTML styling is in HTML-based formats (`html`, `dashboard`, and `revealjs`), and `typst`.
 
 Your package and function choices, along with your target format, determine which format is produced.
 Often the format is explicit in your code, e.g. by a call to `Markdown()` in Python.
@@ -664,7 +672,7 @@ For example, you can set the default print style for polars DataFrames to markdo
 The tables in @fig-tables were produced using the GT package in R and great_tables package in Python.
 Both packages produce HTML tables by default (for other formats, see @sec-tables-other-formats).
 
-For example, Figure @lst-intermediate-markdown-table shows a simplified excerpt from the intermediate markdown for the computational table produced in @fig-tables when `format: html`.
+For example, @lst-intermediate-markdown-table shows a simplified excerpt from the intermediate markdown for the computational table produced in @fig-tables when `format: html`.
 
 :::{#lst-intermediate-markdown-table}
 ::: {.panel-tabset group="language"}
@@ -741,7 +749,7 @@ To arrange the tables in the panel, see @sec-multiple-outputs.
 ## R
  
 ````{.markdown}
-```{{python}}
+```{{r}}
 #| label: tbl-species-count
 #| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
 #| tbl-subcap: 
@@ -778,9 +786,9 @@ An example of a code cell that produces two tables. Individual table captions ar
 
 ![Result of rendering,  @fig-multiple-tables, a code cell with multiple tables.](images/figure-table-multiple-tables.png){#fig-multiple-tables-rendered fig-alt="Two tables, one above the other. Each table has a caption prefaced by '(a)' and '(b)' respectively. The overall caption is 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'."}
 
-When rendered, the tables are placed together in a single "Table" where the overall caption is provided by `tbl-cap` and prefaced by "table 1:".
+When rendered, the tables are placed together in a single "Table" where the overall caption is provided by `tbl-cap` and prefaced by "Table 1:".
 Each individual table in the panel has its own sub-caption prefaced by "(a)" and "(b)".
-You can cross reference the entire panel with the `label`, e.g. `@tbl-soecies-count`, or individual tables by appending an index, e.g.  `@tbl-soecies-count-1` and `@tbl-soecies-count-2`.
+You can cross-reference the entire panel with the `label`, e.g. `@tbl-species-count`, or individual tables by appending an index, e.g.  `@tbl-species-count-1` and `@tbl-species-count-2`.
 
 Often the use of `tbl-subcap` is combined with layout options to arrange the tables in a specific way.
 For example, the `layout-ncol` code cell option will arrange the tables in a specified number of columns. 
@@ -805,7 +813,7 @@ The following sections provide some tips for doing this.
 ### Execute your code interactively 
 
 Execute the code cell interactively in your computational environment.
-Be careful to ensure your local computational environment (interpreter versions and package versions) matche those used by Quarto. 
+Be careful to ensure your local computational environment (interpreter versions and package versions) match those used by Quarto. 
 Check the figure or table looks like you expect. 
 If it doesn't, you need to fix your code based on the documentation for the packages you are using.
 
@@ -828,7 +836,7 @@ When examining the intermediate markdown ask yourself:
 
 * Is the format of the figure or table what you expect? 
 
-* Is the content of the figure or table what you expect? Compare to the result of evaluating your code cells locally. For figures, use the image path in the markdown to find the image file in the `{filename}_files/figure-{format}/` folder, and open it directly. For tables, you'll need to rely on examing the HTML or markdown syntax.
+* Is the content of the figure or table what you expect? Compare to the result of evaluating your code cells locally. For figures, use the image path in the markdown to find the image file in the `{filename}_files/figure-{format}/` folder, and open it directly. For tables, you'll need to rely on examining the HTML or markdown syntax.
 
 * Is the surrounding markdown what you expect? For example, are the attributes present on the figure or table markdown? Are the correct classes on the surrounding fenced divs?
 
@@ -838,7 +846,7 @@ Here are some strategies to help you isolate the source of the problem.
 #### Explore package options
 
 Some packages are Quarto (or `knitr`/`jupyter`) aware, and will adjust their output based on the context of your document.
-Other packages may not be Quarto aware but will provide options that may force a format, or omit extranuous markup.
+Other packages may not be Quarto aware but will provide options that may force a format, or omit extraneous markup.
 Check the documentation for your chosen package to see if/how it supports Quarto, and what options are available.
 
 #### Separate code from markdown
@@ -902,5 +910,5 @@ Replace your executable code cells with markdown equivalents.
 For example, save your figure as an image file, and include it with standard markdown image syntax.
 
 You can use your intermediate markdown as a guide, but simplify as much as you can, while still reproducing your problem.
-You have now elimated the computational environment as a source of the problem, so it's possibly a Quarto problem.
+You have now eliminated the computational environment as a source of the problem, so it's possibly a Quarto problem.
 It's time to ask for help, see @sec-ask-for-help.

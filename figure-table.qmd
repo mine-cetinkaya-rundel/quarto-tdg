@@ -89,13 +89,13 @@ Syntax for a table with a numbered caption produced via (a) markdown and by (b) 
 :::
 
 The key difference is that for computational figures and tables you use code cell options to specify captions, identifiers, and alternative text.
-When the computational engine executes a code cell that produces a table or figure, it uses the output, along with the code cell options to construct the same markdown you would write by hand to to render a figure or table.
+When the computational engine executes a code cell that produces a table or figure, it uses the output, along with the code cell options to construct the same markdown you would write by hand to render a figure or table.
 This means for figure or table tweaks that involve setting document options, or surrounding the figure or table in additional markdown, you can swap a markdown example with a computational one and vice versa.
 For tweaks that involve changes to the markdown itself, like adding an attribute, you'll usually find a corresponding code cell option for a computational output.
 
 ### Fenced div syntax
 
-When a figure or table is cross-referenceable (i.e. it has an identifier that starts with `fig-`, `tab-` or one of the other special prefixes) another syntax variant is useful--- the fenced div syntax.
+When a figure or table is cross-referenceable (i.e., it has an identifier that starts with `fig-`, `tbl-`, or one of the other special prefixes), another syntax variant is useful---the fenced div syntax.
 
 The fenced div syntax moves the caption and identifier outside of the image or table markdown.
 This provides a consistent syntax for both computational and non-computational figures and tables.
@@ -166,7 +166,7 @@ Where `{ TABLE }` could be a code cell generating a table, or a table written di
 
 ## Cross-references {#sec-figtab-crossref}
 
-You'll start by diving into the two required step to cross-reference a figure or table:
+You'll start by diving into the two required steps to cross-reference a figure or table:
 
 1. Give your figure or table an identifier that Quarto recognizes as a cross-reference, this means that it starts with `fig-` or `tbl-`.
 
@@ -265,7 +265,7 @@ Markdown table
 Computational table
 :::
 
-::: {#fig-id-fenced-div-markdown}
+::: {#fig-id-table-fenced-md}
 ````markdown
 ::: {#tbl-id}
 | Column 1 | Column 2 |
@@ -278,7 +278,7 @@ Caption
 Fenced div markdown table
 :::
 
-::: {#fig-id-fenced-div-table}
+::: {#fig-id-table-fenced-comp}
 ````markdown
 ::: {#tbl-id}
 ```{{LANGUAGE}}
@@ -290,7 +290,7 @@ Caption
 Fenced div computational table
 :::  
 
-Ways to add the identifier `tbl-id` to a table.
+Ways to add the identifier `tbl-id` to a table using (a) markdown, (b) a computational code cell, (c) a fenced div with markdown, and (d) a fenced div with a computational code cell.
 
 :::
 
@@ -310,7 +310,7 @@ For example, using `fig-` gets you a "Figure X" regardless of the content.
 
 ### Referring to a figure or table
 
-To refer to the an output, use an `@` followed by the identifier (@fig-crossref-inline-syntax).
+To refer to a figure or table, use `@` followed by the identifier (@fig-crossref-inline-syntax).
 When rendered the cross-references are replaced with the figure or table counter and become links (@fig-crossref-inline-rendered).
 In HTML formats, hovering on the links also shows a preview of the figure or table.
 
@@ -318,7 +318,7 @@ In HTML formats, hovering on the links also shows a preview of the figure or tab
 
 ::: {#fig-crossref-inline-syntax}
 ```markdown
-See table @tbl-id. 
+See @tbl-id.
 @fig-id shows ...
 ```
 :::
@@ -337,8 +337,8 @@ Referring to a figure and a table using cross-references.
 ### Cross-references are within document only
 
 Cross-references are generally limited to the figures and tables within the same document.
-The one exception is a Quarto book project---this is your best option if across document (i.e. chapter) cross-references are important to you.
-For documents in a webpage project, an alternative approach is to link to the figure or table identifier, as explained in the @sec-websites-anchors.
+The one exception is a Quarto book project---this is your best option if cross-document (i.e., cross-chapter) cross-references are important to you.
+For documents in a website project, an alternative approach is to link to the figure or table identifier, as explained in @sec-websites-anchors.
 
 :::
 
@@ -713,7 +713,7 @@ This example arranges the content in two columns (`layout-ncol="2"`).
 Increase `layout-ncol` to add additional columns.
 If you have more than `layout-ncol` elements Quarto will add rows to accommodate them.
 
-The placeholders, `{ CONTENT 1 }` and `{ CONTENT 2}`, could by anything, including any variation of a figure or table: a markdown image, a markdown table, or a code cell that produces a figure or table.
+The placeholders, `{ CONTENT 1 }` and `{ CONTENT 2 }`, could be anything, including any variation of a figure or table: a markdown image, a markdown table, or a code cell that produces a figure or table.
 
 Neither element in @fig-panel-images is cross-referenceable. 
 To make one or more cross-referenceable elements, add identifiers.
