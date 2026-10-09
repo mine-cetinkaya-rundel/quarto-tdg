@@ -384,6 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#tables-from-code-cells" id="toc-tables-from-code-cells" class="nav-link" data-scroll-target="#tables-from-code-cells"><span class="header-section-number">13.6.2</span> Tables from code cells</a></li>
   <li><a href="#html-tables" id="toc-html-tables" class="nav-link" data-scroll-target="#html-tables"><span class="header-section-number">13.6.3</span> HTML tables</a></li>
   </ul></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up"><span class="header-section-number">13.7</span> Wrapping Up</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/figure-table.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -409,9 +410,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Figures and tables are essential components of scientific and technical documents, serving as powerful tools to communicate data and results visually. You often need precise control over their placement within documents, their captions, and the ability to group them into panels and cross-reference them throughout the text. Given their importance, we’ve devoted two chapters to figures and tables: this one and <a href="figure-table-computational.html" class="quarto-xref"><span>Chapter 14</span></a>.</p>
-<p>This chapter is written in a way that applies regardless of how your figures and tables are produced—whether you create them directly with markdown syntax or generate them computationally from code cells. This approach is intentional because most aspects of working with figures and tables are independent of their source. For example, document-level options that control figures and tables often apply universally, as do many layout features that involve surrounding figures or tables in additional markdown. There are a few exceptions where you’ll need to use specific attributes for markdown-based content or code cell options for computational output, and we’ll point these out clearly when they arise.</p>
-<p>You should review <a href="#sec-syntax-variations" class="quarto-xref"><span>Section 13.1</span></a> which explains how to translate between markdown and computational syntax for figures and tables, as well as what we call the fenced div syntax, which will help you understand and apply the examples used throughout the rest of both chapters.</p>
+<p>Figures and tables are how most scientific and technical documents communicate data and results. You often need precise control over their placement within documents, their captions, and the ability to group them into panels and cross-reference them throughout the text. Given their importance, we’ve devoted two chapters to figures and tables: this one and <a href="figure-table-computational.html" class="quarto-xref"><span>Chapter 14</span></a>.</p>
+<p>This chapter applies however you produce your figures and tables—whether you write them in markdown or generate them from code cells. We’ve done this on purpose, because most aspects of working with figures and tables are independent of their source. For example, document-level options that control figures and tables often apply universally, as do many layout features that involve surrounding figures or tables in additional markdown. There are a few exceptions where you’ll need to use specific attributes for markdown-based content or code cell options for computational output, and we’ll point these out clearly when they arise.</p>
+<p>You should review <a href="#sec-syntax-variations" class="quarto-xref"><span>Section 13.1</span></a>, which explains how to translate between markdown and computational syntax for figures and tables. It also introduces what we call the fenced div syntax, which will help you understand and apply the examples used throughout the rest of both chapters.</p>
 <p>We expect you’ll turn to these chapters to solve particular tasks with your own tables and figures. <a href="#tbl-figtab-tasks" class="quarto-xref">Table&nbsp;<span>13.1</span></a> points you to the relevant section.</p>
 <div id="tbl-figtab-tasks" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -457,15 +458,15 @@ Table&nbsp;13.1: Common figure and table tasks.
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Control the size or aspect ratio of a computational figure</td>
-<td style="text-align: left;"><a href="figure-table-computational.html#sec-figure-size" class="quarto-xref"><span>Section 14.3.2</span></a></td>
+<td style="text-align: left;"><a href="figure-table-computational.html#sec-figure-size" class="quarto-xref"><span>Section 14.2.2</span></a></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Control the format and styling of a computational table</td>
-<td style="text-align: left;"><a href="figure-table-computational.html#sec-figtab-tables" class="quarto-xref"><span>Section 14.4</span></a></td>
+<td style="text-align: left;"><a href="figure-table-computational.html#sec-figtab-tables" class="quarto-xref"><span>Section 14.3</span></a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Troubleshoot figure or table output from a package</td>
-<td style="text-align: left;"><a href="figure-table-computational.html#sec-figtab-troubleshooting" class="quarto-xref"><span>Section 14.5</span></a></td>
+<td style="text-align: left;"><a href="figure-table-computational.html#sec-figtab-troubleshooting" class="quarto-xref"><span>Section 14.4</span></a></td>
 </tr>
 </tbody>
 </table>
@@ -476,7 +477,7 @@ Table&nbsp;13.1: Common figure and table tasks.
 <h2 data-number="13.1" class="anchored" data-anchor-id="sec-syntax-variations"><span class="header-section-number">13.1</span> Syntax variations</h2>
 <section id="markdown-vs-computational" class="level3" data-number="13.1.1">
 <h3 data-number="13.1.1" class="anchored" data-anchor-id="markdown-vs-computational"><span class="header-section-number">13.1.1</span> Markdown vs computational</h3>
-<p>As you read this chapter you’ll see examples of figures and tables that are produced in two ways: directly with markdown and computationally. A reminder of the syntax is shown for figures in <a href="#fig-figure-syntax" class="quarto-xref">Figure&nbsp;<span>13.1</span></a>, and for tables in <a href="#fig-table-syntax" class="quarto-xref">Figure&nbsp;<span>13.2</span></a>.</p>
+<p>As you read this chapter you’ll see examples of figures and tables that are produced in two ways: directly with markdown and computationally. <a href="#fig-figure-syntax" class="quarto-xref">Figure&nbsp;<span>13.1</span></a> reminds you of the syntax for figures, and <a href="#fig-table-syntax" class="quarto-xref">Figure&nbsp;<span>13.2</span></a> for tables.</p>
 <div id="fig-figure-syntax" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-figure-syntax-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -508,7 +509,7 @@ Table&nbsp;13.1: Common figure and table tasks.
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-figure-syntax-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.1: Syntax for a figure with a numbered caption and alternative text produced via (a) markdown and by (b) an executable code cell.
+Figure&nbsp;13.1: Syntax for a figure with a numbered caption and alternative text produced with (a) markdown and (b) an executable code cell.
 </figcaption>
 </figure>
 </div>
@@ -546,15 +547,15 @@ Figure&nbsp;13.1: Syntax for a figure with a numbered caption and alternative te
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-table-syntax-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.2: Syntax for a table with a numbered caption produced via (a) markdown and by (b) an executable code cell.
+Figure&nbsp;13.2: Syntax for a table with a numbered caption produced with (a) markdown and (b) an executable code cell.
 </figcaption>
 </figure>
 </div>
-<p>The key difference is that for computational figures and tables you use code cell options to specify captions, identifiers, and alternative text. When the computational engine executes a code cell that produces a table or figure, it uses the output, along with the code cell options to construct the same markdown you would write by hand to to render a figure or table. This means for figure or table tweaks that involve setting document options, or surrounding the figure or table in additional markdown, you can swap a markdown example with a computational one and vice versa. For tweaks that involve changes to the markdown itself, like adding an attribute, you’ll usually find a corresponding code cell option for a computational output.</p>
+<p>The key difference is that for computational figures and tables you use code cell options to specify captions, identifiers, and alternative text. When the computational engine executes a code cell that produces a table or figure, it uses the output, along with the code cell options, to construct the same markdown you would write by hand to render a figure or table. This means for figure or table tweaks that involve setting document options, or surrounding the figure or table in additional markdown, you can swap a markdown example with a computational one and vice versa. For tweaks that involve changes to the markdown itself, like adding an attribute, you’ll usually find a corresponding code cell option for a computational output.</p>
 </section>
 <section id="fenced-div-syntax" class="level3" data-number="13.1.2">
 <h3 data-number="13.1.2" class="anchored" data-anchor-id="fenced-div-syntax"><span class="header-section-number">13.1.2</span> Fenced div syntax</h3>
-<p>When a figure or table is cross-referenceable (i.e.&nbsp;it has an identifier that starts with <code>fig-</code>, <code>tab-</code> or one of the other special prefixes) another syntax variant is useful— the fenced div syntax.</p>
+<p>When a figure or table is cross-referenceable (i.e., it has an identifier that starts with <code>fig-</code>, <code>tbl-</code>, or one of the other special prefixes), another syntax variant is useful—the fenced div syntax.</p>
 <p>The fenced div syntax moves the caption and identifier outside of the image or table markdown. This provides a consistent syntax for both computational and non-computational figures and tables. For example, <a href="#fig-fenced-div-figure" class="quarto-xref">Figure&nbsp;<span>13.3</span></a> shows the fenced div syntax for figures.</p>
 <div id="fig-fenced-div-figure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -593,11 +594,11 @@ Figure&nbsp;13.2: Syntax for a table with a numbered caption produced via (a) ma
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fenced-div-figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.3: Fenced div syntax for a figure with a numbered caption and alternative text produced via (a) markdown and by (b) an executable code cell.
+Figure&nbsp;13.3: Fenced div syntax for a figure with a numbered caption and alternative text produced with (a) markdown and (b) an executable code cell.
 </figcaption>
 </figure>
 </div>
-<p>The fenced div syntax abstracts away whether the figure or table is produced in markdown or computationally. So, in the examples later in the chapter we’ll use the shorthand:</p>
+<p>The fenced div syntax abstracts away whether the figure or table is produced in markdown or computationally. So, in the rest of this chapter and in <a href="figure-table-computational.html" class="quarto-xref"><span>Chapter 14</span></a>, we’ll use the shorthand:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>{ IMAGE }</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -620,27 +621,27 @@ Figure&nbsp;13.4: Caption
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Caption</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Where <code>{ TABLE }</code> could be a code cell generating a table, or a table written directly in markdown as a pipe table, list table, or HTML table in a raw HTML block.</p>
+<p>where <code>{ TABLE }</code> could be a code cell generating a table, or a table written directly in markdown as a pipe table, list table, or HTML table in a raw HTML block.</p>
 </section>
 </section>
 <section id="sec-figtab-crossref" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="sec-figtab-crossref"><span class="header-section-number">13.2</span> Cross-references</h2>
-<p>You’ll start by diving into the two required step to cross-reference a figure or table:</p>
+<p>You’ll start with the two required steps to cross-reference a figure or table:</p>
 <ol type="1">
-<li><p>Give your figure or table an identifier that Quarto recognizes as a cross-reference, this means that it starts with <code>fig-</code> or <code>tbl-</code>.</p></li>
+<li><p>Give your figure or table an identifier that Quarto recognizes as a cross-reference; that is, one that starts with <code>fig-</code> or <code>tbl-</code>.</p></li>
 <li><p>Refer to your figure or table using the syntax <code>@ID</code>.</p></li>
 </ol>
 <p>Then, you’ll learn about creating sub-references.</p>
-<p>This chapter focuses on creating and using cross-references. If you are interested in customizing the way your figures and tables are numbered or labeled see <a href="#sec-figtab-captions" class="quarto-xref"><span>Section 13.3</span></a>.</p>
+<p>This section focuses on creating and using cross-references. If you are interested in customizing the way your figures and tables are numbered or labeled, see <a href="#sec-figtab-captions" class="quarto-xref"><span>Section 13.3</span></a>.</p>
 <section id="adding-an-identifier-to-a-figure-or-table" class="level3" data-number="13.2.1">
 <h3 data-number="13.2.1" class="anchored" data-anchor-id="adding-an-identifier-to-a-figure-or-table"><span class="header-section-number">13.2.1</span> Adding an identifier to a figure or table</h3>
 <p>Depending on how you create your figure or table, there are three ways to add an identifier that Quarto recognizes for cross-referencing:</p>
 <ul>
 <li><strong>Non-computational</strong>: as an ID attribute, starting with <code>#</code>, in markdown syntax</li>
-<li><strong>Computational</strong>: as <code>label</code> code cell option in a computational code cell</li>
+<li><strong>Computational</strong>: as the <code>label</code> code cell option</li>
 <li><strong>Both</strong>: as an ID attribute, starting with <code>#</code>, in the fenced div syntax</li>
 </ul>
-<p>We illustrate each of these for figures in <a href="#fig-id-figure" class="quarto-xref">Figure&nbsp;<span>13.5</span></a>, and tables in <a href="#fig-id-table" class="quarto-xref">Figure&nbsp;<span>13.6</span></a>. The caption, and alternative text for figures, are optional, but you’ll generally include them, so our examples do too.</p>
+<p>We illustrate each of these for figures in <a href="#fig-id-figure" class="quarto-xref">Figure&nbsp;<span>13.5</span></a> and for tables in <a href="#fig-id-table" class="quarto-xref">Figure&nbsp;<span>13.6</span></a>. The caption, and alternative text for figures, are optional, but you’ll generally include them, so our examples do too.</p>
 <div id="fig-id-figure" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-id-figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -737,9 +738,9 @@ Figure&nbsp;13.5: Ways to add the identifier <code>fig-id</code> to a figure usi
 </figcaption>
 </figure>
 </div>
-<div id="fig-id-fenced-div-markdown" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-id-table-fenced-md" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-id-fenced-div-markdown-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-id-table-fenced-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-id}</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column 1 <span class="pp">|</span> Column 2 <span class="pp">|</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|</span></span>
@@ -748,14 +749,14 @@ Figure&nbsp;13.5: Ways to add the identifier <code>fig-id</code> to a figure usi
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>Caption</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-id-fenced-div-markdown-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-id-table-fenced-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) Fenced div markdown table
 </figcaption>
 </figure>
 </div>
-<div id="fig-id-fenced-div-table" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-id-table-fenced-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-id-fenced-div-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-id-table-fenced-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-id}</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate a single table</span></span>
@@ -763,18 +764,18 @@ Figure&nbsp;13.5: Ways to add the identifier <code>fig-id</code> to a figure usi
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>Caption</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-id-fenced-div-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-id-table-fenced-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (d) Fenced div computational table
 </figcaption>
 </figure>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-id-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.6: Ways to add the identifier <code>tbl-id</code> to a table.
+Figure&nbsp;13.6: Ways to add the identifier <code>tbl-id</code> to a table using (a) markdown, (b) a computational code cell, (c) a fenced div with markdown, and (d) a fenced div with a computational code cell.
 </figcaption>
 </figure>
 </div>
-<p>For figures and tables you’ll usually use the prefixes <code>fig-</code> and <code>tbl-</code> respectively, but see <a href="authoring.html#sec-crossreferences" class="quarto-xref"><span>Section 12.10</span></a> for other available prefixes. For working examples of computational figures and tables with cross-references see <a href="figure-table-computational.html" class="quarto-xref"><span>Chapter 14</span></a></p>
+<p>For figures and tables you’ll usually use the prefixes <code>fig-</code> and <code>tbl-</code> respectively, but see <a href="authoring.html#sec-crossreferences" class="quarto-xref"><span>Section 12.10</span></a> for other available prefixes. For working examples of computational figures and tables with cross-references, see <a href="figure-table-computational.html" class="quarto-xref"><span>Chapter 14</span></a>.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -785,13 +786,13 @@ Figure&nbsp;13.6: Ways to add the identifier <code>tbl-id</code> to a table.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Quarto doesn’t care what the content of the fenced div is. You can put anything inside: an image, a code block, a tabset, a table, markdown etc. The label prefix determines how Quarto labels it. For example, using <code>fig-</code> gets you a “Figure X” regardless of the content.</p>
+<p>Quarto doesn’t care what the content of the fenced div is. You can put anything inside: an image, a code block, a tabset, a table, markdown, etc. The label prefix determines how Quarto labels it. For example, using <code>fig-</code> gets you a “Figure X” regardless of the content.</p>
 </div>
 </div>
 </section>
 <section id="referring-to-a-figure-or-table" class="level3" data-number="13.2.2">
 <h3 data-number="13.2.2" class="anchored" data-anchor-id="referring-to-a-figure-or-table"><span class="header-section-number">13.2.2</span> Referring to a figure or table</h3>
-<p>To refer to the an output, use an <code>@</code> followed by the identifier (<a href="#fig-crossref-inline-syntax" class="quarto-xref">Figure&nbsp;<span>13.7 (a)</span></a>). When rendered the cross-references are replaced with the figure or table counter and become links (<a href="#fig-crossref-inline-rendered" class="quarto-xref">Figure&nbsp;<span>13.7 (b)</span></a>). In HTML formats, hovering on the links also shows a preview of the figure or table.</p>
+<p>To refer to a figure or table, use <code>@</code> followed by the identifier (<a href="#fig-crossref-inline-syntax" class="quarto-xref">Figure&nbsp;<span>13.7 (a)</span></a>). When rendered, the cross-references are replaced with the figure or table counter and become links (<a href="#fig-crossref-inline-rendered" class="quarto-xref">Figure&nbsp;<span>13.7 (b)</span></a>). In HTML formats, hovering on the links also shows a preview of the figure or table.</p>
 <div id="fig-crossref-inline" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-crossref-inline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -800,7 +801,7 @@ Figure&nbsp;13.6: Ways to add the identifier <code>tbl-id</code> to a table.
 <div id="fig-crossref-inline-syntax" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-crossref-inline-syntax-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>See table @tbl-id. </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>See @tbl-id.</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>@fig-id shows ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-crossref-inline-syntax-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -838,7 +839,7 @@ Figure&nbsp;13.7: Referring to a figure and a table using cross-references.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Cross-references are generally limited to the figures and tables within the same document. The one exception is a Quarto book project—this is your best option if across document (i.e.&nbsp;chapter) cross-references are important to you. For documents in a webpage project, an alternative approach is to link to the figure or table identifier, as explained in the <a href="websites.html#sec-websites-anchors" class="quarto-xref"><span>Section 16.4.2.2</span></a>.</p>
+<p>Cross-references are generally limited to the figures and tables within the same document. The one exception is a Quarto book project—this is your best option if cross-document (i.e., cross-chapter) cross-references are important to you. For documents in a website project, an alternative approach is to link to the figure or table identifier, as explained in <a href="websites.html#sec-websites-anchors" class="quarto-xref"><span>Section 16.4.2.2</span></a>.</p>
 </div>
 </div>
 </section>
@@ -853,7 +854,17 @@ Figure&nbsp;13.7: Referring to a figure and a table using cross-references.
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>Two animals.</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Use <code>@fig-animals</code> to refer to the whole figure (“Figure 1”), and <code>@fig-elephant</code> to refer to one part (“Figure 1 (a)”). The captions of the children become sub-captions.</p>
+<p>Use <code>@fig-animals</code> to refer to the whole figure (“Figure 1”), and <code>@fig-elephant</code> to refer to one part (“Figure 1 (a)”). The captions of the children become sub-captions. <a href="#fig-sub-references-rendered" class="quarto-xref">Figure&nbsp;<span>13.8</span></a> shows the result, with a sentence that uses both cross-references.</p>
+<div id="fig-sub-references-rendered" class="p-3 quarto-float quarto-figure quarto-figure-center anchored" alt="A rendered figure with a line drawing of an elephant captioned '(a) Elephant' above a line drawing of a panther captioned '(b) Panther', and the overall caption 'Figure 1: Two animals.' Below it, the text 'Figure 1 shows two animals. Figure 1 (a) is an elephant.' with both references as links.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sub-references-rendered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/figure-table-sub-references.png" class="border p-3 img-fluid figure-img" alt="A rendered figure with a line drawing of an elephant captioned '(a) Elephant' above a line drawing of a panther captioned '(b) Panther', and the overall caption 'Figure 1: Two animals.' Below it, the text 'Figure 1 shows two animals. Figure 1 (a) is an elephant.' with both references as links.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sub-references-rendered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.8: The <code>fig-animals</code> example in <code>html</code> output. The sub-figures are labeled (a) and (b), and the sub-reference renders as “Figure 1 (a)”.
+</figcaption>
+</figure>
+</div>
 <p>When the children become more complicated, we recommend using an explicit fenced div for each one. For example, the general structure becomes:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>:::: {#fig-main}</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -871,7 +882,7 @@ Figure&nbsp;13.7: Referring to a figure and a table using cross-references.
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>Main caption</span>
 <span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Here, <code>CONTENT</code> can be markdown or a code cell, and can contain any kind of content.</p>
+<p>Here, <code>CONTENT</code> can be any markdown or code cell output.</p>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -882,7 +893,7 @@ Figure&nbsp;13.7: Referring to a figure and a table using cross-references.
 </div>
 </div>
 </div>
-<p>If the children all come from one code cell that makes several outputs of the same type (all figures or all tables), you can use the <code>fig-subcap</code> or <code>tbl-subcap</code> code cell options instead. See <a href="figure-table-computational.html#sec-multiple-figures" class="quarto-xref"><span>Section 14.3.4</span></a> for figures and <a href="figure-table-computational.html#sec-multiple-tables" class="quarto-xref"><span>Section 14.4.2</span></a> for tables.</p>
+<p>If the children all come from one code cell that makes several outputs of the same type (all figures or all tables), you can use the <code>fig-subcap</code> or <code>tbl-subcap</code> code cell options instead. See <a href="figure-table-computational.html#sec-multiple-figures" class="quarto-xref"><span>Section 14.2.4</span></a> for figures and <a href="figure-table-computational.html#sec-multiple-tables" class="quarto-xref"><span>Section 14.3.2</span></a> for tables.</p>
 <p>By default, the children are placed one after the other. To arrange them in rows and columns, nest a fenced div with layout attributes inside the parent, as shown in <a href="#sec-figtab-layout" class="quarto-xref"><span>Section 13.4</span></a>.</p>
 </section>
 </section>
@@ -941,7 +952,7 @@ Table&nbsp;13.2: Common caption tasks covered in this section.
 <li><strong>Computational figures and tables</strong>: the <code>fig-cap</code> or <code>tbl-cap</code> code cell option.</li>
 <li><strong>Fenced div syntax</strong> (<a href="#sec-syntax-variations" class="quarto-xref"><span>Section 13.1</span></a>): the last paragraph inside the div, for both markdown and computational content.</li>
 </ul>
-<p>The fenced div syntax is more verbose, but because a fenced div caption is ordinary markdown, and not a YAML string or a single line, it’s useful in two specific situations: long captions and dynamic captions.</p>
+<p>The fenced div syntax is more verbose. But because its caption is an ordinary markdown paragraph, not a one-line YAML string, it is useful in two situations: long captions and dynamic captions.</p>
 <div class="callout callout-style-simple callout-note">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -954,7 +965,7 @@ Table&nbsp;13.2: Common caption tasks covered in this section.
 </div>
 <section id="sec-long-captions" class="level3" data-number="13.3.1">
 <h3 data-number="13.3.1" class="anchored" data-anchor-id="sec-long-captions"><span class="header-section-number">13.3.1</span> Long captions</h3>
-<p>A long caption is hard to edit as a code cell option, because it must be a valid YAML string on one line. In a fenced div, the caption is a markdown paragraph, so you can break lines where it makes sense and use markdown formatting. <a href="#fig-long-captions" class="quarto-xref">Figure&nbsp;<span>13.8</span></a> shows an example, where <code>{ IMAGE }</code> is a markdown image or a code cell that makes a figure (<a href="#sec-syntax-variations" class="quarto-xref"><span>Section 13.1</span></a>).</p>
+<p>A long caption is hard to edit as a code cell option, because it must be a valid YAML string on one line. In a fenced div, the caption is a markdown paragraph, so you can break lines where it makes sense and use markdown formatting. <a href="#fig-long-captions" class="quarto-xref">Figure&nbsp;<span>13.9</span></a> shows an example, where <code>{ IMAGE }</code> is a markdown image or a code cell that makes a figure (<a href="#sec-syntax-variations" class="quarto-xref"><span>Section 13.1</span></a>).</p>
 <div id="fig-long-captions" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-long-captions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -969,7 +980,7 @@ Table&nbsp;13.2: Common caption tasks covered in this section.
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-long-captions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.8: A long caption in the fenced div syntax. The line breaks in the caption are for readability in the source; the caption renders as one paragraph.
+Figure&nbsp;13.9: A long caption in the fenced div syntax. The line breaks in the caption are for readability in the source; the caption renders as one paragraph.
 </figcaption>
 </figure>
 </div>
@@ -989,7 +1000,7 @@ Figure&nbsp;13.8: A long caption in the fenced div syntax. The line breaks in th
 </section>
 <section id="sec-dynamic-captions" class="level3" data-number="13.3.2">
 <h3 data-number="13.3.2" class="anchored" data-anchor-id="sec-dynamic-captions"><span class="header-section-number">13.3.2</span> Dynamic captions</h3>
-<p>A dynamic caption includes a computed value. Inline code expressions, such as <code>`{r} nrow(penguins)`</code>, do not run inside the <code>fig-cap</code> or <code>tbl-cap</code> options, but they do run in the caption paragraph of a fenced div. For example, the caption in <a href="#fig-dynamic-captions" class="quarto-xref">Figure&nbsp;<span>13.9</span></a> includes the number of penguins in the data.</p>
+<p>A dynamic caption includes a computed value. Inline code expressions, such as <code>`{r} nrow(penguins)`</code>, do not run inside the <code>fig-cap</code> or <code>tbl-cap</code> options, but they do run in the caption paragraph of a fenced div. For example, the caption in <a href="#fig-dynamic-captions" class="quarto-xref">Figure&nbsp;<span>13.10</span></a> includes the number of penguins in the data.</p>
 <div id="fig-dynamic-captions" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dynamic-captions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1014,38 +1025,38 @@ Figure&nbsp;13.8: A long caption in the fenced div syntax. The line breaks in th
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dynamic-captions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.9: A dynamic caption that uses inline code.
+Figure&nbsp;13.10: A dynamic caption that uses inline code.
 </figcaption>
 </figure>
 </div>
 </section>
 <section id="sec-caption-location" class="level3" data-number="13.3.3">
 <h3 data-number="13.3.3" class="anchored" data-anchor-id="sec-caption-location"><span class="header-section-number">13.3.3</span> Caption location</h3>
-<p>By default, figure captions are placed below figures and table captions are placed above tables. You can control this placement for figures and tables separately with the <code>fig-cap-location</code> and <code>tbl-cap-location</code> options, or use <code>cap-location</code> to control both. Available values for these options are <code>top</code>, <code>bottom</code>, and <code>margin</code> as illustrated for a table in <a href="#fig-cap-location" class="quarto-xref">Figure&nbsp;<span>13.10</span></a>. The <code>margin</code> value applies only to formats that have a margin, such as <code>html</code> and <code>typst</code> (<a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>).</p>
+<p>By default, figure captions are placed below figures and table captions are placed above tables. You can control this placement for figures and tables separately with the <code>fig-cap-location</code> and <code>tbl-cap-location</code> options, or use <code>cap-location</code> to control both. Available values for these options are <code>top</code>, <code>bottom</code>, and <code>margin</code> as illustrated for a table in <a href="#fig-cap-location" class="quarto-xref">Figure&nbsp;<span>13.11</span></a>. The <code>margin</code> value applies only to formats that have a margin, such as <code>html</code> and <code>typst</code> (<a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>).</p>
 <div id="fig-cap-location" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cap-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-panel" data-layout="[[1,1], [1]]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/figure-table-captions-location-top.png" class="border img-fluid figure-img"></p>
+<p><img src="images/figure-table-captions-location-top.png" class="border img-fluid figure-img" alt="A table of penguin counts by species (Adelie 151, Chinstrap 68, Gentoo 123) with the caption 'Table 1: Penguins sampled from the Palmer Archipelago' above it."></p>
 <p><code>top</code></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/figure-table-captions-location-bottom.png" class="border img-fluid figure-img"></p>
+<p><img src="images/figure-table-captions-location-bottom.png" class="border img-fluid figure-img" alt="The same penguin counts table with its caption below the table."></p>
 <p><code>bottom</code></p>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="images/figure-table-captions-location-margin.png" class="border img-fluid figure-img"></p>
+<p><img src="images/figure-table-captions-location-margin.png" class="border img-fluid figure-img" alt="The same penguin counts table with its caption in the right margin, next to the table."></p>
 <p><code>margin</code></p>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cap-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.10: A table with <code>tbl-cap-location</code> set to <code>top</code>, <code>bottom</code>, and <code>margin</code>.
+Figure&nbsp;13.11: A table with <code>tbl-cap-location</code> set to <code>top</code>, <code>bottom</code>, and <code>margin</code>.
 </figcaption>
 </figure>
 </div>
@@ -1068,7 +1079,7 @@ Figure&nbsp;13.10: A table with <code>tbl-cap-location</code> set to <code>top</
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cap-location</span><span class="kw">:</span><span class="at"> bottom</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
-<li><p>On individual tables or figures to control just a single instance. Use the code cell option for computational outputs:</p>
+<li><p>On an individual figure or table, to control only that one. Use the code cell option for computational outputs:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: tbl-island-count</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-cap: "Penguins sampled from the Palmer Archipelago"</span></span>
@@ -1094,25 +1105,25 @@ Figure&nbsp;13.10: A table with <code>tbl-cap-location</code> set to <code>top</
 </section>
 <section id="sec-caption-titles" class="level3" data-number="13.3.4">
 <h3 data-number="13.3.4" class="anchored" data-anchor-id="sec-caption-titles"><span class="header-section-number">13.3.4</span> Caption titles and numbering</h3>
-<p>Quarto adds a title and a number to figures and tables that are cross-referenceable. The title and number appear in the caption, and in the inline reference. You can control these using the <code>crossref</code> options described in <a href="#tbl-crossref-options" class="quarto-xref">Table&nbsp;<span>13.3</span></a> and illustrated for tables in <a href="#fig-cap-title" class="quarto-xref">Figure&nbsp;<span>13.11</span></a>.</p>
+<p>Quarto adds a title and a number to figures and tables that are cross-referenceable. The title and number appear in the caption, and in the inline reference. You can control these using the <code>crossref</code> options described in <a href="#tbl-crossref-options" class="quarto-xref">Table&nbsp;<span>13.3</span></a> and illustrated for tables in <a href="#fig-cap-title" class="quarto-xref">Figure&nbsp;<span>13.12</span></a>.</p>
 <div id="fig-cap-title" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cap-title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-panel" data-layout="[2, 1]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
-<p><img src="images/figure-table-caption-format.jpeg" class="border img-fluid figure-img"></p>
+<p><img src="images/figure-table-caption-format.jpeg" class="border img-fluid figure-img" alt="The caption 'Table 1: Penguins sampled from ...' with labels that point to its parts: 'Table' is tbl-title, '1' is tbl-labels, and ':' is title-delim."></p>
 <p>Table caption</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="images/figure-table-cross-reference-form.jpeg" class="border img-fluid figure-img"></p>
+<p><img src="images/figure-table-cross-reference-form.jpeg" class="border img-fluid figure-img" alt="The text 'See Table 1 ...', where 'Table' in the link is labeled tbl-prefix."></p>
 <p>Inline reference</p>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cap-title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.11: The default title and number in a table caption and in a cross-reference to the table.
+Figure&nbsp;13.12: The default title and number in a table caption and in a cross-reference to the table.
 </figcaption>
 </figure>
 </div>
@@ -1154,7 +1165,7 @@ Table&nbsp;13.3: Options under <code>crossref</code> that change caption titles 
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>subref-labels</code></td>
-<td style="text-align: left;">Number style for sub-references (<a href="#sec-figtab-crossref" class="quarto-xref"><span>Section 13.2</span></a>)</td>
+<td style="text-align: left;">Number style for sub-references (<a href="#sec-sub-references" class="quarto-xref"><span>Section 13.2.3</span></a>)</td>
 <td style="text-align: left;"><code>alpha a</code></td>
 </tr>
 <tr class="odd">
@@ -1189,14 +1200,14 @@ Table&nbsp;13.3: Options under <code>crossref</code> that change caption titles 
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title-delim</span><span class="kw">:</span><span class="at"> </span><span class="st">"—"</span></span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="#fig-cap-title-edit" class="quarto-xref">Figure&nbsp;<span>13.12</span></a> shows the result.</p>
-<div id="fig-cap-title-edit" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p><a href="#fig-cap-title-edit" class="quarto-xref">Figure&nbsp;<span>13.13</span></a> shows the result.</p>
+<div id="fig-cap-title-edit" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A caption that reads 'Sheet I— Penguins sampled from ...' and a cross-reference that reads 'See Sh I ...'.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cap-title-edit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/figure-table-caption-format-edit.png" class="img-fluid figure-img">
+<img src="images/figure-table-caption-format-edit.png" class="img-fluid figure-img" alt="A caption that reads 'Sheet I— Penguins sampled from ...' and a cross-reference that reads 'See Sh I ...'.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cap-title-edit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.12: A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.
+Figure&nbsp;13.13: A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.
 </figcaption>
 </figure>
 </div>
@@ -1220,7 +1231,7 @@ Figure&nbsp;13.12: A table caption and cross-reference with the custom title, pr
 <p>Panel layouts arrange content in a grid with the <code>layout-ncol</code>, <code>layout-nrow</code>, or <code>layout</code> attributes (<a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>). This section covers the most common cases for figures and tables: arranging them in a grid, grouping them under a shared caption, and aligning them in the grid.</p>
 <section id="sec-multiple-outputs" class="level3" data-number="13.4.1">
 <h3 data-number="13.4.1" class="anchored" data-anchor-id="sec-multiple-outputs"><span class="header-section-number">13.4.1</span> Arranging multiple figures and tables</h3>
-<p><a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a> covered the basic case of placing content in a grid. Use a fenced div with the <code>layout-ncol</code> attribute, and place each element of your content in its own fenced div, as shown in <a href="#fig-panel-images" class="quarto-xref">Figure&nbsp;<span>13.13</span></a>.</p>
+<p>Recall from <a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a> that you place content in a grid with a fenced div with the <code>layout-ncol</code> attribute. Put each element in its own fenced div, as shown in <a href="#fig-panel-images" class="quarto-xref">Figure&nbsp;<span>13.14</span></a>.</p>
 <div id="fig-panel-images" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-panel-images-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1244,13 +1255,13 @@ Figure&nbsp;13.12: A table caption and cross-reference with the custom title, pr
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-images-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.13: Content side by side. Neither item is cross-referenceable.
+Figure&nbsp;13.14: Content side by side. Neither item is cross-referenceable.
 </figcaption>
 </figure>
 </div>
-<p>This example arranges the content in two columns (<code>layout-ncol="2"</code>). Increase <code>layout-ncol</code> to add additional columns. If you have more than <code>layout-ncol</code> elements Quarto will add rows to accommodate them.</p>
-<p>The placeholders, <code>{ CONTENT 1 }</code> and <code>{ CONTENT 2}</code>, could by anything, including any variation of a figure or table: a markdown image, a markdown table, or a code cell that produces a figure or table.</p>
-<p>Neither element in <a href="#fig-panel-images" class="quarto-xref">Figure&nbsp;<span>13.13</span></a> is cross-referenceable. To make one or more cross-referenceable elements, add identifiers. Add an identifier with a cross-reference prefix to each <em>inner</em> div to make each item its own cross-referenceable figure or table (<a href="#fig-panel-figures" class="quarto-xref">Figure&nbsp;<span>13.14</span></a>). Add an <em>outer</em> div with an identifier around the layout div to make one cross-referenceable figure from the whole panel (<a href="#fig-panel-figure-of-images" class="quarto-xref">Figure&nbsp;<span>13.15</span></a>). Do both to make one cross-referenceable figure with sub-figures (<a href="#fig-panel-subfigures" class="quarto-xref">Figure&nbsp;<span>13.16</span></a>).</p>
+<p>This example arranges the content in two columns (<code>layout-ncol="2"</code>). Increase <code>layout-ncol</code> to add additional columns. If you have more than <code>layout-ncol</code> elements, Quarto adds rows to accommodate them.</p>
+<p>The placeholders, <code>{ CONTENT 1 }</code> and <code>{ CONTENT 2 }</code>, could be anything, including any variation of a figure or table: a markdown image, a markdown table, or a code cell that produces a figure or table.</p>
+<p>Neither element in <a href="#fig-panel-images" class="quarto-xref">Figure&nbsp;<span>13.14</span></a> is cross-referenceable. To make one or more cross-referenceable elements, add identifiers. Add an identifier with a cross-reference prefix to each <em>inner</em> div to make each item its own cross-referenceable figure or table (<a href="#fig-panel-figures" class="quarto-xref">Figure&nbsp;<span>13.15</span></a>). Add an <em>outer</em> div with an identifier around the layout div to make one cross-referenceable figure from the whole panel (<a href="#fig-panel-figure-of-images" class="quarto-xref">Figure&nbsp;<span>13.16</span></a>). Do both to make one cross-referenceable figure with sub-figures (<a href="#fig-panel-subfigures" class="quarto-xref">Figure&nbsp;<span>13.17</span></a>).</p>
 <div id="fig-panel-figures" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-panel-figures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1278,7 +1289,7 @@ Figure&nbsp;13.13: Content side by side. Neither item is cross-referenceable.
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-figures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.14: Cross-referenceable figures or tables side by side. Each item has its own caption and number, here “Figure 1” and “Table 1”. Because each item is cross-referenced on its own, the prefixes can differ.
+Figure&nbsp;13.15: Cross-referenceable figures or tables side by side. Each item has its own caption and number, here “Figure 1” and “Table 1”. Because each item is cross-referenced on its own, the prefixes can differ.
 </figcaption>
 </figure>
 </div>
@@ -1309,7 +1320,7 @@ Figure&nbsp;13.14: Cross-referenceable figures or tables side by side. Each item
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-figure-of-images-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.15: One cross-referenceable figure that contains content. You can refer to the whole figure, but not to the items inside it. The prefix of the outer div decides the type, so the whole panel is a figure, even though one item is a table.
+Figure&nbsp;13.16: One cross-referenceable figure that contains both items. You can refer to the whole figure, but not to the items inside it. The prefix of the outer div decides the type, so the whole panel is a figure, even though one item is a table.
 </figcaption>
 </figure>
 </div>
@@ -1344,11 +1355,11 @@ Figure&nbsp;13.15: One cross-referenceable figure that contains content. You can
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-subfigures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.16: One cross-referenceable figure with sub-figures. The inner captions become sub-captions. The prefix of the inner elements must match that of the outer element, all <code>fig-</code> in this example.
+Figure&nbsp;13.17: One cross-referenceable figure with sub-figures. The inner captions become sub-captions. The prefix of the inner elements must match that of the outer element, all <code>fig-</code> in this example.
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-panel-subfigures" class="quarto-xref">Figure&nbsp;<span>13.16</span></a>, use <code>@fig-main</code> to refer to the whole figure (“Figure 1”), and <code>@fig-sub1</code> to refer to one part (“Figure 1 (a)”), as described in <a href="#sec-sub-references" class="quarto-xref"><span>Section 13.2.3</span></a>.</p>
+<p>In <a href="#fig-panel-subfigures" class="quarto-xref">Figure&nbsp;<span>13.17</span></a>, use <code>@fig-main</code> to refer to the whole figure (“Figure 1”), and <code>@fig-sub1</code> to refer to one part (“Figure 1 (a)”), as described in <a href="#sec-sub-references" class="quarto-xref"><span>Section 13.2.3</span></a>.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1359,7 +1370,7 @@ Figure&nbsp;13.16: One cross-referenceable figure with sub-figures. The inner ca
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Mixing cross-reference identifiers and layout attributes or column classes on the same fenced div, e.g.&nbsp;<code>{#fig-id layout-ncol="2"}</code> can be unpredictable. Use one fenced div for the cross-reference and a separate, nested fenced div for the layout.</p>
+<p>Mixing cross-reference identifiers and layout attributes or column classes on the same fenced div, e.g., <code>{#fig-id layout-ncol="2"}</code>, often works, but it can give unexpected results in some cases. If it does, use one fenced div for the cross-reference and a separate, nested fenced div for the layout.</p>
 </div>
 </div>
 <p>If one code cell makes all the figures or tables, you can use <code>layout-ncol</code> as a code cell option instead of a fenced div:</p>
@@ -1373,12 +1384,12 @@ Figure&nbsp;13.16: One cross-referenceable figure with sub-figures. The inner ca
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate two figures</span></span>
 <span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>See <a href="figure-table-computational.html#sec-multiple-figures" class="quarto-xref"><span>Section 14.3.4</span></a> and <a href="figure-table-computational.html#sec-multiple-tables" class="quarto-xref"><span>Section 14.4.2</span></a> for the details. For cases it is appropriate, the code cell option has concise syntax, but you’ll need switch to a fenced div if you want to mix figures, tables, markdown or code cell output in the same panel.</p>
+<p>See <a href="figure-table-computational.html#sec-multiple-figures" class="quarto-xref"><span>Section 14.2.4</span></a> and <a href="figure-table-computational.html#sec-multiple-tables" class="quarto-xref"><span>Section 14.3.2</span></a> for the details. When it is appropriate, the code cell option has concise syntax, but you’ll need to switch to a fenced div if you want to mix figures, tables, markdown, or code cell output in the same panel.</p>
 </section>
 <section id="rows-columns-and-custom-grids" class="level3" data-number="13.4.2">
 <h3 data-number="13.4.2" class="anchored" data-anchor-id="rows-columns-and-custom-grids"><span class="header-section-number">13.4.2</span> Rows, columns, and custom grids</h3>
 <p><code>layout-ncol</code> sets the number of columns, and Quarto adds rows as necessary. <code>layout-nrow</code> sets the number of rows, and Quarto adds columns as necessary. Each item gets the same width.</p>
-<p>For different widths, or a different number of items in each row, use the <code>layout</code> attribute. Its value is an array of rows. Each row is an array of numbers that give the relative width of each item. For example, <code>layout="[[1,1],[1]]"</code> puts two items of equal width in the first row and one item at full width in the second row (<a href="#fig-panel-custom-grid" class="quarto-xref">Figure&nbsp;<span>13.17</span></a>).</p>
+<p>For different widths, or a different number of items in each row, use the <code>layout</code> attribute. Its value is an array of rows. Each row is an array of numbers that give the relative width of each item. For example, <code>layout="[[1,1],[1]]"</code> puts two items of equal width in the first row and one item at full width in the second row (<a href="#fig-panel-custom-grid" class="quarto-xref">Figure&nbsp;<span>13.18</span></a>).</p>
 <div id="fig-panel-custom-grid" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-panel-custom-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1406,7 +1417,7 @@ Figure&nbsp;13.16: One cross-referenceable figure with sub-figures. The inner ca
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-custom-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.17: A custom grid with <code>layout="[[1,1],[1]]"</code>: two items in the first row and one item at full width in the second row.
+Figure&nbsp;13.18: A custom grid with <code>layout="[[1,1],[1]]"</code>: two items in the first row and one item at full width in the second row.
 </figcaption>
 </figure>
 </div>
@@ -1415,7 +1426,7 @@ Figure&nbsp;13.17: A custom grid with <code>layout="[[1,1],[1]]"</code>: two ite
 </section>
 <section id="alignment-in-a-panel" class="level3" data-number="13.4.3">
 <h3 data-number="13.4.3" class="anchored" data-anchor-id="alignment-in-a-panel"><span class="header-section-number">13.4.3</span> Alignment in a panel</h3>
-<p>Items in a row are frequently different heights, for example a tall figure next to a short table. Use <code>layout-valign</code> to set the vertical alignment of the items in each row: <code>top</code>, <code>center</code>, or <code>bottom</code> (<a href="#fig-panel-valign" class="quarto-xref">Figure&nbsp;<span>13.18</span></a>).</p>
+<p>Items in a row are frequently different heights, for example, a tall figure next to a short table. Use <code>layout-valign</code> to set the vertical alignment of the items in each row: <code>top</code>, <code>center</code>, or <code>bottom</code> (<a href="#fig-panel-valign" class="quarto-xref">Figure&nbsp;<span>13.19</span></a>).</p>
 <div id="fig-panel-valign" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-panel-valign-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1439,7 +1450,7 @@ Figure&nbsp;13.17: A custom grid with <code>layout="[[1,1],[1]]"</code>: two ite
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-valign-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.18: Content of different heights aligned with <code>layout-valign="bottom"</code>. The bottom edges of the items line up.
+Figure&nbsp;13.19: Content of different heights aligned with <code>layout-valign="bottom"</code>. The bottom edges of the items line up.
 </figcaption>
 </figure>
 </div>
@@ -1448,7 +1459,7 @@ Figure&nbsp;13.18: Content of different heights aligned with <code>layout-valign
 </section>
 <section id="sec-figtab-position" class="level2" data-number="13.5">
 <h2 data-number="13.5" class="anchored" data-anchor-id="sec-figtab-position"><span class="header-section-number">13.5</span> Position and alignment</h2>
-<p>You can move a figure or table into a different column of the page, and align it inside its container. For slides, the <code>output-location</code> code cell option can put output on the next slide or next to the code. See <a href="presentations.html#sec-output-location" class="quarto-xref"><span>Section 11.1.1</span></a>.</p>
+<p>You can move a figure or table into a different column of the page, and align it inside its container. For slides, see <a href="presentations.html#sec-output-location" class="quarto-xref"><span>Section 11.1.1</span></a> for the <code>output-location</code> code cell option, which can put output on the next slide or next to the code.</p>
 <section id="sec-page-columns" class="level3" data-number="13.5.1">
 <h3 data-number="13.5.1" class="anchored" data-anchor-id="sec-page-columns"><span class="header-section-number">13.5.1</span> Position relative to the page: <code>column</code></h3>
 <p>Fenced divs with <code>.column-</code> classes put content in different columns of the page, for example the right margin (<a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>). To move a figure or table, wrap its fenced div in a fenced div with the class. For example, to give a wide figure the full width of the screen, use <code>.column-screen</code>:</p>
@@ -1468,16 +1479,16 @@ Figure&nbsp;13.18: Content of different heights aligned with <code>layout-valign
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate a single figure</span></span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>fig-column</code> and <code>tbl-column</code> code cell options are similar, but they move only the figure or table output, not the other output of the cell. <a href="#fig-page-columns" class="quarto-xref">Figure&nbsp;<span>13.19</span></a> shows the result in <code>html</code> output.</p>
+<p>The <code>fig-column</code> and <code>tbl-column</code> code cell options are similar, but they move only the figure or table output, not the other output of the cell. <a href="#fig-page-columns" class="quarto-xref">Figure&nbsp;<span>13.20</span></a> shows the result in <code>html</code> output.</p>
 <div id="fig-page-columns" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-page-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-page-columns" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-page-columns-screen" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-page-columns-screen" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A scatterplot of penguin bill depth versus bill length, colored by species, that spans the full width of the page, wider than the paragraphs above and below it.">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-page-columns-screen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/figure-table-column-screen.png" class="img-fluid figure-img" data-ref-parent="fig-page-columns">
+<img src="images/figure-table-column-screen.png" class="img-fluid figure-img" data-ref-parent="fig-page-columns" alt="A scatterplot of penguin bill depth versus bill length, colored by species, that spans the full width of the page, wider than the paragraphs above and below it.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-page-columns-screen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) <code>column: screen</code>
@@ -1486,10 +1497,10 @@ Figure&nbsp;13.18: Content of different heights aligned with <code>layout-valign
 </div>
 </div>
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-page-columns" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-page-columns-margin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-page-columns-margin" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A paragraph of placeholder text with a small version of the penguin scatterplot in the right margin beside it.">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-page-columns-margin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/figure-table-column-margin.png" class="img-fluid figure-img" data-ref-parent="fig-page-columns">
+<img src="images/figure-table-column-margin.png" class="img-fluid figure-img" data-ref-parent="fig-page-columns" alt="A paragraph of placeholder text with a small version of the penguin scatterplot in the right margin beside it.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-page-columns-margin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) <code>column: margin</code>
@@ -1500,7 +1511,7 @@ Figure&nbsp;13.18: Content of different heights aligned with <code>layout-valign
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-page-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.19: A figure in different columns of the page: (a) the full width of the screen and (b) the margin. Columns apply to the <code>html</code> and <code>typst</code> formats.
+Figure&nbsp;13.20: A figure in different columns of the page: (a) the full width of the screen and (b) the margin. Columns apply to the <code>html</code> and <code>typst</code> formats.
 </figcaption>
 </figure>
 </div>
@@ -1521,8 +1532,8 @@ Figure&nbsp;13.19: A figure in different columns of the page: (a) the full width
 </section>
 <section id="sec-figure-alignment" class="level3" data-number="13.5.2">
 <h3 data-number="13.5.2" class="anchored" data-anchor-id="sec-figure-alignment"><span class="header-section-number">13.5.2</span> Figure alignment: <code>fig-align</code></h3>
-<p>A figure is in a container. By default, the container is the width of the body text, but you can change this if you put the figure in a column (<a href="#sec-page-columns" class="quarto-xref"><span>Section 13.5.1</span></a>). Figure alignment is the horizontal position of a figure in its container.</p>
-<p>Use <code>fig-align</code> to change the alignment. Its values are <code>default</code> (the default for the output format), <code>left</code>, <code>center</code>, and <code>right</code>. <a href="#fig-fig-align" class="quarto-xref">Figure&nbsp;<span>13.20</span></a> shows the effect of <code>left</code>, <code>center</code>, and <code>right</code>.</p>
+<p>Every figure sits in a container. By default, the container is the width of the body text, but you can change this if you put the figure in a column (<a href="#sec-page-columns" class="quarto-xref"><span>Section 13.5.1</span></a>). Figure alignment is the horizontal position of a figure in its container.</p>
+<p>Use <code>fig-align</code> to change the alignment. Its values are <code>default</code> (the default for the output format), <code>left</code>, <code>center</code>, and <code>right</code>. <a href="#fig-fig-align" class="quarto-xref">Figure&nbsp;<span>13.21</span></a> shows the effect of <code>left</code>, <code>center</code>, and <code>right</code>.</p>
 <div id="fig-fig-align" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fig-align-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1554,7 +1565,7 @@ Figure&nbsp;13.19: A figure in different columns of the page: (a) the full width
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig-align-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.20: Examples showing the effect of different <code>fig-align</code> settings: <code>left</code>, <code>center</code>, and <code>right</code>.
+Figure&nbsp;13.21: Examples showing the effect of different <code>fig-align</code> settings: <code>left</code>, <code>center</code>, and <code>right</code>.
 </figcaption>
 </figure>
 </div>
@@ -1663,7 +1674,7 @@ Snippet&nbsp;13.2: Use the <code>tbl-colwidths</code> document option to set the
 </section>
 <section id="tables-from-code-cells" class="level3" data-number="13.6.2">
 <h3 data-number="13.6.2" class="anchored" data-anchor-id="tables-from-code-cells"><span class="header-section-number">13.6.2</span> Tables from code cells</h3>
-<p>A code cell can output a markdown table, for example with <code>knitr::kable()</code> in R or <code>tabulate()</code> in Python. There is no code cell option for column alignment. Instead, set the alignment with the function that makes the table. In <a href="#lst-tbl-align-code" class="quarto-xref">Snippet&nbsp;<span>13.3</span></a>, the <code>align</code> argument to <code>knitr::kable()</code> and the <code>colalign</code> argument to <code>tabulate()</code> align the species column to the left and the count column to the right.</p>
+<p>A code cell can output a markdown table, for example with <code>knitr::kable()</code> in R or <code>tabulate()</code> from the tabulate package in Python. There is no code cell option for column alignment. Instead, set the alignment with the function that makes the table. In <a href="#lst-tbl-align-code" class="quarto-xref">Snippet&nbsp;<span>13.3</span></a>, the <code>align</code> argument to <code>knitr::kable()</code> and the <code>colalign</code> argument to <code>tabulate()</code> align the species column to the left and the count column to the right.</p>
 <div id="lst-tbl-align-code" class="listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-tbl-align-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1745,12 +1756,12 @@ Snippet&nbsp;13.4: Use the <code>tbl-colwidths</code> code cell option to set th
 </section>
 <section id="html-tables" class="level3" data-number="13.6.3">
 <h3 data-number="13.6.3" class="anchored" data-anchor-id="html-tables"><span class="header-section-number">13.6.3</span> HTML tables</h3>
-<p><code>tbl-colwidths</code> applies only to markdown tables. A package that makes HTML tables, such as GT in R or great_tables in Python, sets the styles of the table itself. Use the functions of the package to set the alignment and width of the columns.</p>
+<p><code>tbl-colwidths</code> applies only to markdown tables. A package that makes HTML tables, such as gt in R or great_tables in Python, styles the table itself. Use the functions of the package to set the alignment and width of the columns.</p>
 <p>In <a href="#lst-tbl-gt" class="quarto-xref">Snippet&nbsp;<span>13.5</span></a>, <code>cols_align()</code> aligns the count column to the right, <code>cols_width()</code> gives the species column 25% of the width and the count column 75%, and <code>tab_options()</code> makes the table the full width of its container.</p>
 <div id="lst-tbl-gt" class="listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-tbl-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;13.5: Use GT or great_tables functions to set the alignment and width of the columns of an HTML table.
+Snippet&nbsp;13.5: Use gt or great_tables functions to set the alignment and width of the columns of an HTML table.
 </figcaption>
 <div aria-describedby="lst-tbl-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
@@ -1790,9 +1801,13 @@ Snippet&nbsp;13.5: Use GT or great_tables functions to set the alignment and wid
 </div>
 </figure>
 </div>
-
-
 </section>
+</section>
+<section id="wrapping-up" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">13.7</span> Wrapping Up</h2>
+<p>Everything in this chapter applies to computational figures and tables too. In <a href="figure-table-computational.html" class="quarto-xref"><span>Chapter 14</span></a>, you’ll learn the code cell options that control them, and how to troubleshoot them when the output isn’t what you expect.</p>
+
+
 </section>
 
 </main> <!-- /main -->
