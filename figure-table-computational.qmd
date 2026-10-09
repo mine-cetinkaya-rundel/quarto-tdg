@@ -903,10 +903,3 @@ For example, save your figure as an image file, and include it with standard mar
 You can use your intermediate markdown as a guide, but simplify as much as you can, while still reproducing your problem.
 You have now elimated the computational environment as a source of the problem, so it's possibly a Quarto problem.
 It's time to ask for help, see @sec-ask-for-help.
-
-
-## To be covered somewhere else
-
-* Interactive figures/tables
-
-* Embedding figures/tables from other documents
