@@ -27,12 +27,21 @@ screenshots <- tribble(
   "captions/location-margin.qmd", "captions-location-margin",
 )
 
+# Override the default selector (`#id`) and add padding (CSS px, top/right/bottom/left)
+# fmt: skip
+overrides <- tribble(
+  ~id,             ~selector,                ~expand,
+  "column-screen", "#column-screen > .cell", c(70, 0, 70, 0),
+)
+
 screenshots <- screenshots |>
+  left_join(overrides, by = "id") |>
   mutate(
     document = path(source_dir, file),
     html = path_ext_set(document, "html"),
     filename = path(image_dir, paste0("figure-table-", id), ext = "png"),
-    selector = paste0("#", id)
+    selector = coalesce(selector, paste0("#", id)),
+    expand = purrr::map(expand, \(e) e %||% 0)
   )
 
 # quarto_render() rather than the quarto CLI, so the project's renv library is used
@@ -45,6 +54,13 @@ file_delete(dir_ls(source_dir, recurse = TRUE, glob = "*.html.md"))
 for (i in seq_len(nrow(screenshots))) {
   with(
     screenshots[i, ],
-    htmlshot(html, filename, selector = selector, width = 992, scale = 1)
+    htmlshot(
+      html,
+      filename,
+      selector = selector,
+      expand = expand[[1]],
+      width = 992,
+      scale = 1
+    )
   )
 }
