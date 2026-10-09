@@ -588,26 +588,29 @@ But if you want to mix figures and tables, control where each item goes on the p
 You can learn more about this approach in @sec-figtab-layout.
 
 
-## Tables  {#sec-figtab-tables}
+## Tables {#sec-figtab-tables}
 
 In this section you'll learn about table-specific options, in particular choosing a **table format**.
 For column alignment and widths, see @sec-table-column-widths.
 
 ### Table format
 
-When you produce a computational table, the engine is writing the resulting table in some plain text format.
+When you produce a computational table, the engine writes the table in a plain-text format.
 The most common formats are markdown pipe tables and HTML tables.
-Both markdown pipe tables and HTML tables are supported across all of Quarto's output formats, the choice between them often comes down to how much control you want over the appearance of the table.
+Both markdown pipe tables and HTML tables are supported across all of Quarto's output formats.
+The choice between them often comes down to how much control you want over the appearance of the table.
 
 Choose:
 
-* **Markdown**: for simple tables that don't require any row, cell or column specific formatting. 
+* **Markdown**: for simple tables that don't require any row-, cell-, or column-specific formatting.
 
-* **HTML**: for more complex tables that require row, cell or column specific styling. While HTML allows for more control over the appearance of the table, not all customization will propagate through to all target formats. The best support for HTML styling is in HTML-based formats (`html`, `dashboard`, and `revealjs`), and `typst`.
+* **HTML**: for more complex tables that require row-, cell-, or column-specific styling.
+    While HTML allows for more control over the appearance of the table, not all customization will propagate through to all target formats.
+    The best support for HTML styling is in HTML-based formats (`html`, `dashboard`, and `revealjs`), and `typst`.
 
 Your package and function choices, along with your target format, determine which format is produced.
 Often the format is explicit in your code, e.g., by a call to `Markdown()` in Python.
-If it isn't, and you aren't sure which format you have produced, check the intermediate markdown that Quarto produces after executing your code cells.
+If it isn't, and you aren't sure which format you have produced, check the intermediate markdown that Quarto produces after executing your code cells (@sec-figtab-troubleshooting).
 
 #### Markdown 
 
@@ -617,7 +620,7 @@ There are many ways to produce a markdown table computationally, but we highligh
 ##### R
 
 The `kable()` function from the [knitr](https://yihui.org/knitr/) package produces markdown tables by default.
-Simply pass your table object to `kable()` and it will return the markdown table:
+Pass your table object to `kable()` and it will return the markdown table:
 
 ````markdown
 ```{{r}}
@@ -636,11 +639,12 @@ The intermediate markdown produced is:
 ````
 
 Control the alignment of columns (i.e., the position of the colons, `:`) with the `align` argument to `kable()`.
+For a full example, see @sec-table-column-widths.
 
 
 ##### Python
 
-The `tabulate()` function from the [tabulate](https://github.com/astanin/python-tabulate) packages can produce markdown tables from a variety of Python data structure. 
+The `tabulate()` function from the [tabulate](https://github.com/astanin/python-tabulate) package can produce markdown tables from a variety of Python data structures.
 
 A general approach to create markdown tables is:
 
@@ -648,7 +652,7 @@ A general approach to create markdown tables is:
 
 2. Pass the table to `tabulate()` with `tablefmt='pipe'`
 
-3. Return the result surrounded by `Markdown()` from `IPython.display`
+3. Wrap the result in `Markdown()` from `IPython.display`
 
 For example, to apply this strategy to a summary table created by Polars:
 
@@ -668,14 +672,15 @@ When executed, this intermediate markdown is produced:
 | Chinstrap |    68 |
 ````
 
-Control the alignment of columns (i.e., the position of the colons, `:`)  with the `colalign` argument to `tabulate()`.
+Control the alignment of columns (i.e., the position of the colons, `:`) with the `colalign` argument to `tabulate()`.
+For a full example, see @sec-table-column-widths.
 
-While `tabulate()` is useful general approach you may find simpler ways for your specific situation.
-For example, you can set the default print style for polars DataFrames to markdown pipe tables using [`polars.Config.set_tbl_formatting`](https://docs.pola.rs/api/python/stable/reference/api/polars.Config.set_tbl_formatting.html).
+While `tabulate()` is a useful general approach, you may find simpler ways for your specific situation.
+For example, you can set the default print style for Polars DataFrames to markdown pipe tables using [`polars.Config.set_tbl_formatting`](https://docs.pola.rs/api/python/stable/reference/api/polars.Config.set_tbl_formatting.html).
 
 #### HTML
 
-The tables in @fig-tables were produced using the gt package in R and great_tables package in Python.
+The tables in @fig-tables were produced using the gt package in R and the great_tables package in Python.
 Both packages produce HTML tables by default (for other formats, see @sec-tables-other-formats).
 
 For example, @lst-intermediate-markdown-table shows a simplified excerpt from the intermediate markdown for the computational table produced in @fig-tables when `format: html`.
@@ -698,7 +703,6 @@ For example, @lst-intermediate-markdown-table shows a simplified excerpt from th
 </div>
 ```
 
-:::
 :::
 ````
  
@@ -727,7 +731,7 @@ Intermediate markdown from the code cells in @fig-tables. The `...` indicate par
 Inside the `::: {.cell-output-display}` div, you'll notice the raw HTML block syntax `` ```{=html} ``, and the table is created with the HTML tags `<table>`, `<thead>` and `<tbody>`.
 In other words, the code cell has produced an HTML table.
 
-When producing HTML tables, you'll often find the package you are using provides its own styling (i.e., inside `<style>` tags), and ways to customize styling via their own functions.
+When producing HTML tables, you'll often find the package you are using provides its own styling (i.e., inside `<style>` tags), and ways to customize styling via its own functions.
 Read the documentation for your chosen package to see how to customize the appearance of your tables.
 
 #### Other formats {#sec-tables-other-formats}
@@ -765,7 +769,7 @@ To arrange the tables in the panel, see @sec-multiple-outputs.
 {{< include _examples/figure-table/_code-snippets/species-count.R >}}
 
 {{< include _examples/figure-table/_code-snippets/species-year.R >}}
-``` 
+```
 ````
  
 ## Python
@@ -781,16 +785,16 @@ To arrange the tables in the panel, see @sec-multiple-outputs.
 {{< include _examples/figure-table/_code-snippets/species-count.py >}}
 
 {{< include _examples/figure-table/_code-snippets/species-year.py >}}
-``` 
+```
 ````
  
 :::
 
-An example of a code cell that produces two tables. Individual table captions are provided as an array to  `tbl-subcap`.
+An example of a code cell that produces two tables. Individual table captions are provided as an array to `tbl-subcap`.
 
 :::
 
-![Result of rendering,  @fig-multiple-tables, a code cell with multiple tables.](images/figure-table-multiple-tables.png){#fig-multiple-tables-rendered fig-alt="Two tables, one above the other. Each table has a caption prefaced by '(a)' and '(b)' respectively. The overall caption is 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'."}
+![Result of rendering the code cell with multiple tables in @fig-multiple-tables.](images/figure-table-multiple-tables.png){#fig-multiple-tables-rendered fig-alt="Two tables, one above the other. Each table has a caption prefaced by '(a)' and '(b)' respectively. The overall caption is 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'."}
 
 When rendered, the tables are placed together in a single "Table" where the overall caption is provided by `tbl-cap` and prefaced by "Table 1:".
 Each individual table in the panel has its own sub-caption prefaced by "(a)" and "(b)".
@@ -798,10 +802,10 @@ You can cross-reference the entire panel with the `label`, e.g., `@tbl-species-c
 
 Often the use of `tbl-subcap` is combined with layout options to arrange the tables in a specific way.
 For example, the `layout-ncol` code cell option will arrange the tables in a specified number of columns. 
-Adding the code cell option `layout-ncol: 2` to the above example would result in the tables laid out side-by-side rather than one above the other.
+Adding the code cell option `layout-ncol: 2` to @fig-multiple-tables would result in the tables laid out side by side rather than one above the other.
 
-Using `tbl-subcap` is a quick way to make a multi-panel table. But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them (@sec-figtab-layout).
-You can learn more about this approach in @sec-figtab-layout.
+Using `tbl-subcap` is a quick way to make a multi-panel table.
+But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them (@sec-figtab-layout).
 
 ## Troubleshooting {#sec-figtab-troubleshooting}
 
