@@ -1194,5 +1194,7 @@ Use gt or great_tables functions to set the alignment and width of the columns o
 
 :::
 
+## Wrapping Up
+
 Everything in this chapter applies to computational figures and tables too.
 In @sec-figure-table-computational, you'll learn the code cell options that control them, and how to troubleshoot them when the output isn't what you expect.
