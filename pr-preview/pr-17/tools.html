@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -81,10 +81,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-0a373b8e2e9e59cc6500e1a18ade50e5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -448,7 +450,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> docx</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>While <code>quarto render</code> creates the output file and stops, <code>quarto preview</code> renders your document, opens it in your web browser, and automatically re-renders when you save changes to the source file:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview document.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This command is particularly useful during active authoring, as it lets you see your changes immediately without having to manually rerun the render command. The preview server will continue running until you stop it (typically with Ctrl+C in the Terminal).</p>
+<p>This command is particularly useful during active authoring, as it lets you see your changes immediately without having to manually rerun the render command. The preview server will continue running until you stop it (typically with <kbd title="Ctrl-C" aria-hidden="true">Ctrl-C</kbd><span class="visually-hidden">Ctrl-C</span> in the Terminal).</p>
 <p>Preview isn’t limited to single documents: run <code>quarto preview</code> in a project directory—such as a website or book—and Quarto serves the whole project, refreshing whichever pages you edit.</p>
 <p>Beyond rendering and previewing, the Quarto CLI offers several other helpful commands.</p>
 <p>To see which version of Quarto you have installed, run:</p>
