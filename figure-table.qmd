@@ -300,7 +300,7 @@ For working examples of computational figures and tables with cross-references, 
 
 ::: {.callout-tip}
 
-### Anything can be a "Figure"
+## Anything can be a "Figure"
 
 Quarto doesn't care what the content of the fenced div is. 
 You can put anything inside: an image, a code block, a tabset, a table, markdown, etc. 
@@ -335,7 +335,7 @@ Referring to a figure and a table using cross-references.
 
 ::: {.callout-warning}
 
-### Cross-references are within document only
+## Cross-references are within document only
 
 Cross-references are generally limited to the figures and tables within the same document.
 The one exception is a Quarto book project---this is your best option if cross-document (i.e., cross-chapter) cross-references are important to you.
@@ -365,7 +365,7 @@ Use `@fig-animals` to refer to the whole figure ("Figure 1"), and `@fig-elephant
 The captions of the children become sub-captions.
 @fig-sub-references-rendered shows the result, with a sentence that uses both cross-references.
 
-![The `fig-animals` example in `html` output. The sub-figures are labelled (a) and (b), and the sub-reference renders as "Figure 1 (a)".](images/figure-table-sub-references.png){#fig-sub-references-rendered .border .p-3 fig-alt="A rendered figure with a line drawing of an elephant captioned '(a) Elephant' above a line drawing of a panther captioned '(b) Panther', and the overall caption 'Figure 1: Two animals.' Below it, the text 'Figure 1 shows two animals. Figure 1 (a) is an elephant.' with both references as links."}
+![The `fig-animals` example in `html` output. The sub-figures are labeled (a) and (b), and the sub-reference renders as "Figure 1 (a)".](images/figure-table-sub-references.png){#fig-sub-references-rendered .border .p-3 fig-alt="A rendered figure with a line drawing of an elephant captioned '(a) Elephant' above a line drawing of a panther captioned '(b) Panther', and the overall caption 'Figure 1: Two animals.' Below it, the text 'Figure 1 shows two animals. Figure 1 (a) is an elephant.' with both references as links."}
 
 When the children become more complicated, we recommend using an explicit fenced div for each one.
 For example, the general structure becomes:
@@ -671,7 +671,7 @@ crossref:
 ![A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.](images/figure-table-caption-format-edit.png){#fig-cap-title-edit}
 
 ::: {.callout-tip}
-### Custom cross-reference types
+## Custom cross-reference types
 
 The `crossref` options change all figures or all tables in a document.
 To keep the defaults for figures and tables and add a different kind of numbered element (for example, "Supplementary Table S1"), define a custom cross-reference type.
@@ -809,8 +809,8 @@ In @fig-panel-subfigures, use `@fig-main` to refer to the whole figure ("Figure 
 ::: callout-tip
 ## Use separate divs
 
-Mixing cross-reference identifiers and layout attributes or column classes on the same fenced div, e.g. `{#fig-id layout-ncol="2"}` can be unpredictable.
-Use one fenced div for the cross-reference and a separate, nested fenced div for the layout.
+Mixing cross-reference identifiers and layout attributes or column classes on the same fenced div, e.g., `{#fig-id layout-ncol="2"}`, often works, but it can give unexpected results in some cases.
+If it does, use one fenced div for the cross-reference and a separate, nested fenced div for the layout.
 :::
 
 If one code cell makes all the figures or tables, you can use `layout-ncol` as a code cell option instead of a fenced div:
@@ -829,7 +829,7 @@ If one code cell makes all the figures or tables, you can use `layout-ncol` as a
 ````
 
 See @sec-multiple-figures and @sec-multiple-tables for the details.
-For cases it is appropriate, the code cell option has concise syntax, but you'll need switch to a fenced div if you want to mix figures, tables, markdown or code cell output in the same panel.
+For cases it is appropriate, the code cell option has concise syntax, but you'll need switch to a fenced div if you want to mix figures, tables, markdown, or code cell output in the same panel.
 
 ### Rows, columns, and custom grids
 
@@ -959,7 +959,7 @@ You can find all the possible column values in the Quarto documentation on [Arti
 
 ::: callout-tip
 
-### Columns are responsive in `html` output
+## Columns are responsive in `html` output
 
 In HTML output, the columns change with the screen size.
 For example, a small screen has only one column, so all content uses the full width of the screen, whatever its column class.
@@ -1144,7 +1144,7 @@ Use the `tbl-colwidths` code cell option to set the column widths of a markdown 
 ### HTML tables
 
 `tbl-colwidths` applies only to markdown tables.
-A package that makes HTML tables, such as GT in R or great_tables in Python, sets the styles of the table itself.
+A package that makes HTML tables, such as gt in R or great_tables in Python, sets the styles of the table itself.
 Use the functions of the package to set the alignment and width of the columns.
 
 In @lst-tbl-gt, `cols_align()` aligns the count column to the right, `cols_width()` gives the species column 25% of the width and the count column 75%, and `tab_options()` makes the table the full width of its container.
@@ -1189,6 +1189,6 @@ penguins |>
 
 :::
 
-Use GT or great_tables functions to set the alignment and width of the columns of an HTML table.
+Use gt or great_tables functions to set the alignment and width of the columns of an HTML table.
 
 :::
