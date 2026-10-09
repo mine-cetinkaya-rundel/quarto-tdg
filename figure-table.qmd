@@ -2,39 +2,31 @@
 
 Figures and tables are essential components of scientific and technical documents, serving as powerful tools to communicate data and results visually. 
 You often need precise control over their placement within documents, their captions, and the ability to group them into panels and cross-reference them throughout the text. 
-Given their importance, we've devoted an entire part of this book to exploring figures and tables in depth. 
+Given their importance, we've devoted two chapters to figures and tables: this one and @sec-figure-table-computational.
 
-The first several chapters in this part are written in a way that applies regardless of how your figures and tables are produced---whether you create them directly with markdown syntax or generate them computationally from code cells. 
+This chapter is written in a way that applies regardless of how your figures and tables are produced---whether you create them directly with markdown syntax or generate them computationally from code cells. 
 This approach is intentional because most aspects of working with figures and tables are independent of their source. 
 For example, document-level options that control figures and tables often apply universally, as do many layout features that involve surrounding figures or tables in additional markdown.
 There are a few exceptions where you'll need to use specific attributes for markdown-based content or code cell options for computational output, and we'll point these out clearly when they arise.
 
-Of course, there are some topics specific to computationally-generated figures and tables---these topics are covered in @sec-figure-table-computational.
+You should review @sec-syntax-variations which explains how to translate between markdown and computational syntax for figures and tables, as well as what we call the fenced div syntax, which will help you understand and apply the examples used throughout the rest of both chapters.
 
-We expect you'll turn to this part of the book to solve particular tasks with your own tables and figures. 
-The next section is designed to point you quickly to the relevant chapter to solve your problem. 
+We expect you'll turn to these chapters to solve particular tasks with your own tables and figures.
+@tbl-figtab-tasks points you to the relevant section.
 
-You should review @sec-syntax-variations which explains how to translate between markdown and computational syntax for figures and tables, as well as what we call the fenced div syntax, which will help you understand and apply the examples used throughout the rest of this part.
+| How do I... | See |
+|:--|:--|
+| Cross-reference a figure or table | @sec-figtab-crossref |
+| Change the caption text, location, or title | @sec-figtab-captions |
+| Arrange multiple figures or tables in a panel | @sec-figtab-layout |
+| Put a figure or table in the margin, or make it wider than the text | @sec-page-columns |
+| Align a figure left, center, or right | @sec-figure-alignment |
+| Align or size the columns of a table | @sec-table-column-widths |
+| Control the size or aspect ratio of a computational figure | @sec-figure-size |
+| Control the format and styling of a computational table | @sec-figtab-tables |
+| Troubleshoot figure or table output from a package | @sec-figtab-troubleshooting |
 
-## Common tasks
-
-TODO: revisit and link each to this chapter or advanced chapter
-
-How do I :
-
-* Cross-reference my figure/table 
-
-* Change the position of the figure/table
-
-* Arrange multiple figures and/or tables in a single panel
-
-* Change the format or location of the caption
-
-* Control the size or aspect ratio of my figure
-
-* Control the styling of my table 
-
-* Troubleshoot the table or figure output from a particular package
+: Common figure and table tasks. {#tbl-figtab-tasks}
 
 ## Syntax variations {#sec-syntax-variations}
 
@@ -403,7 +395,7 @@ If the children all come from one code cell that makes several outputs of the sa
 See @sec-multiple-figures for figures and @sec-multiple-tables for tables.
 
 By default, the children are placed one after the other.
-To arrange them in rows and columns, nest a fenced div with layout attributes inside the parent, as shown in @sec-panel-layout.
+To arrange them in rows and columns, nest a fenced div with layout attributes inside the parent, as shown in @sec-figtab-layout.
 
 ## Captions {#sec-figtab-captions}
 
@@ -419,8 +411,6 @@ A caption has two parts: the caption text _you_ write, and, for cross-referencea
 
 : Common caption tasks covered in this section. {#tbl-caption-tasks}
 
-### Caption text
-
 There are four places to set the caption text:
 
 * **Markdown figures**: the text in the square brackets, `![Caption](path/to/image.jpg)`.
@@ -434,7 +424,7 @@ The fenced div syntax is more verbose, but because a fenced div caption is ordin
 The fenced div syntax only gives you a caption when the div's identifier starts with a cross-reference prefix, such as `fig-` or `tbl-`.
 :::
 
-#### Long captions {#sec-long-captions}
+### Long captions {#sec-long-captions}
 
 A long caption is hard to edit as a code cell option, because it must be a valid YAML string on one line.
 In a fenced div, the caption is a markdown paragraph, so you can break lines where it makes sense and use markdown formatting.
@@ -465,7 +455,7 @@ A caption must be one paragraph.
 If you leave a blank line in the caption, Quarto uses only the last paragraph as the caption, and puts the earlier paragraphs in the body of the figure or table.
 :::
 
-#### Dynamic captions {#sec-dynamic-captions}
+### Dynamic captions {#sec-dynamic-captions}
 
 A dynamic caption includes a computed value.
 Inline code expressions, such as `` `{r} nrow(penguins)` ``, do not run inside the `fig-cap` or `tbl-cap` options, but they do run in the caption paragraph of a fenced div.
@@ -684,27 +674,12 @@ To keep the defaults for figures and tables and add a different kind of numbered
 See [Custom Cross-Reference Types](https://quarto.org/docs/authoring/cross-references-custom.html) in the Quarto documentation.
 :::
 
-## Layout {#sec-figtab-layout}
-
-This section covers where figures and tables go:
-
-* next to each other, in a grid (@sec-panel-layout),
-* in a column of the page, such as the margin (@sec-page-columns),
-* to the left, center, or right of their container (@sec-figure-alignment).
-
-The last part is about the columns inside a table (@sec-table-column-widths).
-
-Layout uses the same fenced divs and attributes as other content (@sec-layout).
-Most examples here use the shorthand from @sec-syntax-variations, so `{ IMAGE }` and `{ TABLE }` can be markdown or a code cell.
-Where a code cell needs a different syntax, we show the code cell option too.
-For slides, the `output-location` code cell option can put output on the next slide or next to the code. See @sec-output-location.
-
-### Panel layout {#sec-panel-layout}
+## Panel layout {#sec-figtab-layout}
 
 Panel layouts arrange content in a grid with the `layout-ncol`, `layout-nrow`, or `layout` attributes (@sec-layout).
 This section covers the most common cases for figures and tables: arranging them in a grid, grouping them under a shared caption, and aligning them in the grid.
 
-#### Arranging multiple figures and tables {#sec-multiple-outputs}
+### Arranging multiple figures and tables {#sec-multiple-outputs}
 
 @sec-layout covered the basic case of placing content in a grid.
 Use a fenced div with the `layout-ncol` attribute, and place each element of your content in its own fenced div, as shown in @fig-panel-images.
@@ -852,50 +827,83 @@ If one code cell makes all the figures or tables, you can use `layout-ncol` as a
 See @sec-multiple-figures and @sec-multiple-tables for the details.
 For cases it is appropriate, the code cell option has concise syntax, but you'll need switch to a fenced div if you want to mix figures, tables, markdown or code cell output in the same panel.
 
-#### Rows, columns, and custom grids
+### Rows, columns, and custom grids
 
 `layout-ncol` sets the number of columns, and Quarto adds rows as necessary.
 `layout-nrow` sets the number of rows, and Quarto adds columns as necessary.
 Each item gets the same width.
 
 For different widths, or a different number of items in each row, use the `layout` attribute.
-Its value is a list of rows.
-Each row is a list of numbers that give the relative width of each item.
-For example, `layout="[[1,1],[1]]"` puts two items of equal width in the first row and one item at full width in the second row:
+Its value is an array of rows.
+Each row is an array of numbers that give the relative width of each item.
+For example, `layout="[[1,1],[1]]"` puts two items of equal width in the first row and one item at full width in the second row (@fig-panel-custom-grid).
 
+::::::: {#fig-panel-custom-grid}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
 ````markdown
-::: {#fig-id}
-:::: {layout="[[1,1],[1]]"}
-{ IMAGE 1 }
-
-{ IMAGE 2 }
-
-{ IMAGE 3 }
-::::
-
-Caption
+::::: {layout="[[1,1],[1]]"}
+::: {}
+{ CONTENT 1 }
 :::
+
+::: {}
+{ CONTENT 2 }
+:::
+
+::: {}
+{ CONTENT 3 }
+:::
+:::::
 ````
+:::::
+
+![](images/figure-table-panel-custom-grid.svg){.border fig-alt="Two placeholders of equal width side by side in the first row, and one full-width placeholder in the second row, with no captions."}
+::::::
+
+A custom grid with `layout="[[1,1],[1]]"`: two items in the first row and one item at full width in the second row.
+:::::::
+
+As with `layout-ncol`, add identifiers to the inner or outer divs to make the items, or the whole panel, cross-referenceable.
 
 The numbers are relative, so `layout="[[70,30]]"` gives a row where the first item is 70% of the width and the second item is 30%.
 A negative number adds empty space.
 For example, `layout="[40,-20,40]"` puts a 20% gap between two items.
 
-#### Alignment in a panel
+### Alignment in a panel
 
 Items in a row are frequently different heights, for example a tall figure next to a short table.
-Use `layout-valign` to set the vertical alignment of the items in each row: `top`, `center`, or `bottom`.
+Use `layout-valign` to set the vertical alignment of the items in each row: `top`, `center`, or `bottom` (@fig-panel-valign).
 
+::::::: {#fig-panel-valign}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
 ````markdown
-::: {layout-ncol="2" layout-valign="bottom"}
-{ IMAGE }
-
-{ TABLE }
+::::: {layout-ncol="2" layout-valign="bottom"}
+::: {}
+{ CONTENT 1 }
 :::
+
+::: {}
+{ CONTENT 2 }
+:::
+:::::
 ````
+:::::
+
+![](images/figure-table-panel-valign.svg){.border fig-alt="A tall image placeholder next to a short table placeholder, with their bottom edges aligned."}
+::::::
+
+Content of different heights aligned with `layout-valign="bottom"`. The bottom edges of the items line up.
+:::::::
 
 Use `layout-align` to set the horizontal alignment of each item in its cell: `left`, `center`, or `right`.
 Both attributes are also code cell options.
+
+## Position and alignment {#sec-figtab-position}
+
+You can move a figure or table into a different column of the page, and align it inside its container.
+For slides, the `output-location` code cell option can put output on the next slide or next to the code. See @sec-output-location.
 
 ### Position relative to the page: `column` {#sec-page-columns}
 
@@ -1009,77 +1017,136 @@ Or, for a figure from a code cell, use the `fig-align` code cell option:
 ```
 ````
 
-### Table column alignment and widths {#sec-table-column-widths}
+## Table column alignment and widths {#sec-table-column-widths}
 
-#### Column alignment
+Inside a table, each column has an alignment and a width.
+Column alignment is the horizontal position of the content in each cell of the column.
+Column width is the proportion of the table width that the column uses.
+By default, the output format sets the alignment, and the widths depend on the content of the columns.
 
-In a markdown pipe table, you can add colons to the separator row to align columns to the left, right, or center.
-For example, the following table aligns the first column to the left, the second column to the center, and the third column to the right:
+How you change alignment and width depends on how you make the table: in markdown, with a code cell that outputs a markdown table, or with a package that outputs an HTML table.
 
-::: {}
+### Markdown tables
+
+To align the columns of a pipe table, add colons to the separator row.
+A colon on the left aligns the column to the left, a colon on the right aligns it to the right, and colons on both sides center it.
+This table aligns the first column to the left, the second column to the center, and the third column to the right:
+
 ````markdown
 {{< include _examples/authoring/tables/markdown-table-align.md >}}
 ````
-:::
 
-#### Column widths
+To align the columns of a list table, add an `aligns` attribute to the `.list-table` div.
+Its value is a comma-separated list with one letter per column: `l` (left), `c` (center), `r` (right), or `d` (default).
+This list table has the same alignment as the pipe table above:
 
-Usually, column widths in tables are determined automatically based on the content of each column.
-However, sometimes you may want to set specific column widths.
+````markdown
+{{< include _examples/authoring/tables/list-table-align.qmd >}}
+````
 
-##### Markdown tables: `tbl-colwidths` {#sec-tbl-colwidths}
+To set column widths, use `tbl-colwidths`.
+Its value is an array of percentages, one per column.
+For a pipe table, add a `tbl-colwidths` attribute after the caption.
+This table gives the first column 80% of the width, and the other two columns 10% each:
 
-The option `tbl-colwidths` allows you to specify widths for columns for *markdown* tables.
-It takes an array of values, one per column, expressed as percentages.
-You can set it as a *document option* to apply to all tables in a document, or as a *code cell option* to apply to a single table.
-
-For a markdown table, add a `tbl-colwidths` attribute to the attributes after the caption.
-For example, you might give the first column 80% of the width and the remaining two columns each 10% of the width:
-
-::: {}
 ````markdown
 {{< include _examples/authoring/tables/markdown-table-colwidths.md >}}
 ````
+
+For a list table, you can add the same `tbl-colwidths` attribute to the `.list-table` div.
+Or, use the list table attribute `widths`, with a comma-separated list of widths:
+
+````markdown
+{{< include _examples/authoring/tables/list-table-widths.qmd >}}
+````
+
+To set the column widths of all the markdown tables in a document, set `tbl-colwidths` as a document option (@lst-tbl-colwidths-document).
+A `tbl-colwidths` attribute on a table overrides the document option, but a `widths` attribute does not.
+
+::: {#lst-tbl-colwidths-document}
+
+```{.yaml filename="document.qmd"}
+---
+tbl-colwidths: [80, 10, 10]
+---
+```
+
+Use the `tbl-colwidths` document option to set the column widths of all markdown tables in a document.
+
 :::
 
-For example, @fig-tbl-colwidths-markdown shows how to set the column widths for a single markdown table using the code cell option `tbl-colwidths`.
+### Tables from code cells
 
-::: {#fig-tbl-colwidths-markdown}
+A code cell can output a markdown table, for example with `knitr::kable()` in R or `tabulate()` in Python.
+There is no code cell option for column alignment.
+Instead, set the alignment with the function that makes the table.
+In @lst-tbl-align-code, the `align` argument to `knitr::kable()` and the `colalign` argument to `tabulate()` align the species column to the left and the count column to the right.
+
+::: {#lst-tbl-align-code}
 ::: {.panel-tabset group="language"}
 
 ### R
- 
+
+````{.markdown}
+```{{r}}
+{{< include _examples/figure-table/_code-snippets/species-count-markdown-align.R >}}
+```
+````
+
+### Python
+
+````{.markdown}
+```{{python}}
+{{< include _examples/figure-table/_code-snippets/species-count-markdown-align.py >}}
+```
+````
+
+:::
+
+Set the column alignment of a markdown table from a code cell with the function that makes the table.
+
+:::
+
+To set column widths, use the `tbl-colwidths` code cell option (@lst-tbl-colwidths-code).
+It overrides the document option.
+
+::: {#lst-tbl-colwidths-code}
+::: {.panel-tabset group="language"}
+
+### R
+
 ````{.markdown}
 ```{{r}}
 #| tbl-colwidths: [25, 75]
 {{< include _examples/figure-table/_code-snippets/species-count-markdown.R >}}
-``` 
+```
 ````
- 
+
 ### Python
- 
+
 ````{.markdown}
 ```{{python}}
 #| tbl-colwidths: [25, 75]
 {{< include _examples/figure-table/_code-snippets/species-count-markdown.py >}}
-``` 
+```
 ````
- 
-:::
-
-Use `tbl-colwidths` to set relative column widths for markdown tables.
 
 :::
 
-##### HTML tables
+Use the `tbl-colwidths` code cell option to set the column widths of a markdown table from a code cell.
 
-Since HTML tables usually provide their styling, column width (and table width) are usually controlled via the package you are using to create the table.
-For example, @fig-tbl-colwidths-gt shows how to replicate the table and column widths above for HTML tables using the GT and great_tables packages.
+:::
 
+### HTML tables
 
-::: {#fig-tbl-colwidths-gt}
+`tbl-colwidths` applies only to markdown tables.
+A package that makes HTML tables, such as GT in R or great_tables in Python, sets the styles of the table itself.
+Use the functions of the package to set the alignment and width of the columns.
 
-:::{.panel-tabset group="language"}
+In @lst-tbl-gt, `cols_align()` aligns the count column to the right, `cols_width()` gives the species column 25% of the width and the count column 75%, and `tab_options()` makes the table the full width of its container.
+
+::: {#lst-tbl-gt}
+::: {.panel-tabset group="language"}
 
 ### R
 
@@ -1087,10 +1154,9 @@ For example, @fig-tbl-colwidths-gt shows how to replicate the table and column w
 ```{{r}}
 penguins |>
   count(species) |>
-  gt() |> 
-  tab_options(
-    table.width = pct(100),
-  ) |> 
+  gt() |>
+  tab_options(table.width = pct(100)) |>
+  cols_align(align = "right", columns = n) |>
   cols_width(
     species ~ pct(25),
     n ~ pct(75)
@@ -1106,17 +1172,19 @@ penguins |>
   pl.DataFrame(penguins)
   .group_by('species')
   .len()
-  .pipe(GT) 
+  .pipe(GT)
   .tab_options(table_width="100%")
+  .cols_align(align="right", columns="len")
   .cols_width(
-    species="25%", 
+    species="25%",
     len="75%"
   )
 )
 ```
 ````
+
 :::
 
-GT and great_tables provide their own functions to set table (`tab_options()`) and column widths (`cols_width()`).
+Use GT or great_tables functions to set the alignment and width of the columns of an HTML table.
 
 :::

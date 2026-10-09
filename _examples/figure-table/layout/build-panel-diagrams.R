@@ -71,14 +71,14 @@ xref_box <- function(x, y, w, h, id, col = "#2e5090") {
   )
 }
 
-write_svg <- function(file, title, desc, body) {
+write_svg <- function(file, title, desc, body, height = H) {
   writeLines(
     c(
       '<?xml version="1.0" encoding="UTF-8" standalone="no"?>',
-      sprintf('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" role="img" aria-labelledby="svg-title svg-desc">', W, H),
+      sprintf('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 %d %d" role="img" aria-labelledby="svg-title svg-desc">', W, height),
       sprintf('  <title id="svg-title">%s</title>', title),
       sprintf('  <desc id="svg-desc">%s</desc>', desc),
-      sprintf('  <rect x="0" y="0" width="%d" height="%d" fill="#ececec"/>', W, H),
+      sprintf('  <rect x="0" y="0" width="%d" height="%d" fill="#ececec"/>', W, height),
       paste0("  ", body),
       "</svg>"
     ),
@@ -132,5 +132,26 @@ write_svg(
     xref_box(R - 30, Y - 20, 460, 390, "fig-sub2"),
     caption(L, Y + 440, "Main caption", "Figure 1:", anchor = "start"),
     xref_box(L - 70, Y - 70, 1040, 550, "fig-main")
+  )
+)
+
+write_svg(
+  "figure-table-panel-custom-grid.svg",
+  "Three pieces of content in a custom grid",
+  "Two placeholders of equal width side by side in the first row, an image and a table, and one full-width image placeholder in the second row. No captions and no numbers.",
+  c(
+    contents,
+    placeholder_image(L, Y + 320, w = 900, h = 280)
+  ),
+  height = Y + 320 + 280 + 110
+)
+
+write_svg(
+  "figure-table-panel-valign.svg",
+  "Two pieces of content of different heights aligned at the bottom",
+  "A tall image placeholder on the left and a short table placeholder on the right. The bottom edges of the two placeholders line up. No captions and no numbers.",
+  c(
+    placeholder_image(L, Y, h = 420),
+    placeholder_table(R, Y + 420 - 200, h = 200, nrow = 4)
   )
 )

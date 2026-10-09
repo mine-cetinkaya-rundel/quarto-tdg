@@ -42,14 +42,14 @@ Use the [Quarto Code Cell Reference](https://quarto.org/docs/reference/cells/) f
 | `fig-alt` | | Alternative text description of the figure  | @sec-figtab-basic |
 | `fig-subcap` | | Sub-captions for multiple figures produced in a single code cell | @sec-multiple-figures |
 | `tbl-subcap` | | Sub-captions for multiple tables produced in a single code cell |@sec-multiple-tables  |
-| `layout-ncol`/ `layout-nrow` | | Number of columns when arranging multiple figures or tables in a single panel | For figures see @sec-multiple-figures, for tables see @sec-multiple-tables. For more complicated layouts see @sec-panel-layout. |
+| `layout-ncol`/ `layout-nrow` | | Number of columns when arranging multiple figures or tables in a single panel | For figures see @sec-multiple-figures, for tables see @sec-multiple-tables. For more complicated layouts see @sec-figtab-layout. |
 | `column` / `fig-column` / `tbl-column` | | Place figure or table in a specific column relative to page | @sec-page-columns |
 | `output-location` | | Place figure or table in a specific location relative to slide | @sec-output-location. |
 | `fig-width` / `fig-height` **knitr engine only** | ☑ | Size of figure in inches | @sec-figure-size, also includes options for `jupyter` engine |
 | `fig-align`| ☑ | Alignment of figures in their surrounding container | @sec-figure-alignment |
 | `tbl-colwidths` | ☑ | Column widths for markdown tables | @sec-table-column-widths |
-| `layout` | | Layout specification when arranging multiple figures or tables in a single panel | @sec-panel-layout |
-| `layout-align` / `layout-valign` | | Alignment when arranging multiple figures or tables in a single panel | @sec-panel-layout |
+| `layout` | | Layout specification when arranging multiple figures or tables in a single panel | @sec-figtab-layout |
+| `layout-align` / `layout-valign` | | Alignment when arranging multiple figures or tables in a single panel | @sec-figtab-layout |
 | `cap-location` / `fig-cap-location` /  `tbl-cap-location` | ☑ | Location of caption relative to figure or table | @sec-caption-location |
 
 : Commmon code cell options for figures and tables {#tbl-figtab-ref tbl-colwidths="[25,5,40,30]"}
@@ -324,7 +324,7 @@ The equivalent fenced div syntax for @fig-tables.
 
 :::
 
-The fenced div syntax is useful if you want long captions (@sec-long-captions), dynamic captions that depend on code output (@sec-dynamic-captions), or to combine multiple figures and tables into a single panel with a shared caption (@sec-panel-layout).
+The fenced div syntax is useful if you want long captions (@sec-long-captions), dynamic captions that depend on code output (@sec-dynamic-captions), or to combine multiple figures and tables into a single panel with a shared caption (@sec-figtab-layout).
 
 ## Figures {#sec-figtab-figures}
 
