@@ -362,6 +362,9 @@ Two animals.
 
 Use `@fig-animals` to refer to the whole figure ("Figure 1"), and `@fig-elephant` to refer to one part ("Figure 1 (a)").
 The captions of the children become sub-captions.
+@fig-sub-references-rendered shows the result, with a sentence that uses both cross-references.
+
+![The `fig-animals` example in `html` output. The sub-figures are labelled (a) and (b), and the sub-reference renders as "Figure 1 (a)".](images/figure-table-sub-references.png){#fig-sub-references-rendered .border .p-3 fig-alt="A rendered figure with a line drawing of an elephant captioned '(a) Elephant' above a line drawing of a panther captioned '(b) Panther', and the overall caption 'Figure 1: Two animals.' Below it, the text 'Figure 1 shows two animals. Figure 1 (a) is an elephant.' with both references as links."}
 
 When the children become more complicated, we recommend using an explicit fenced div for each one.
 For example, the general structure becomes:

@@ -19,6 +19,7 @@ screenshots <- tribble(
   "basic-cell-options/r.qmd",     "basic-cell-options-table",
   "basic-cell-options/r.qmd",     "basic-cell-options-figure",
   "cross-references/simple.qmd",  "simple",
+  "cross-references/sub-references.qmd", "sub-references",
   "fig-align/r.qmd",              "align-left",
   "fig-align/r.qmd",              "align-center",
   "fig-align/r.qmd",              "align-right",
