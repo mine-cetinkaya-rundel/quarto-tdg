@@ -25,15 +25,14 @@ Producing figures and tables with code has many advantages:
 - You can change labeling, styling, colors, etc., right in the document source.
 - Quarto handles file formats and paths, so you don't have to.
 
-You'll start by reviewing the most common *code cell options* for figures and tables---those that add captions, identifiers, and alternative text.
+You'll start by reviewing the most common code cell options for figures and tables---those that add captions, identifiers, and alternative text.
 
 We've split the rest of the chapter into two sections: one for figures (covering size, format, resolution, and multiple figures) and one for tables (covering table formats and multiple tables).
 
-Much of the control of computational figures and tables comes from *code cell options*.
-To help you navigate this, and other chapters, we list the most common *code cell options* in @tbl-figtab-ref.
+Much of the control of computational figures and tables comes from code cell options.
+To help you navigate this, and other chapters, we list the most common code cell options in @tbl-figtab-ref.
 With one exception, we only list options common to both the `knitr` and `jupyter` engines.
 Use the [Quarto Code Cell Reference](https://quarto.org/docs/reference/cells/) for the full list of available options.
-We'll use *emphasis* to highlight when an option is a document-level setting versus a code cell option.
 
 
 | Option | Document option | Description | Reference |
@@ -54,7 +53,7 @@ We'll use *emphasis* to highlight when an option is a document-level setting ver
 | `layout-align` / `layout-valign` | | Alignment when arranging multiple figures or tables in a single panel | @sec-figtab-layout |
 | `cap-location` / `fig-cap-location` / `tbl-cap-location` | ☑ | Location of caption relative to figure or table | @sec-caption-location |
 
-: Common *code cell options* for figures and tables {#tbl-figtab-ref tbl-colwidths="[25,5,40,30]"}
+: Common code cell options for figures and tables {#tbl-figtab-ref tbl-colwidths="[25,5,40,30]"}
 
 A ☑ in the Document option column marks options you can also set at the document level.
 
@@ -69,7 +68,7 @@ so we've limited ourselves to a few packages (ggplot2 and gt in R, and plotnine 
 We've provided examples in both R and Python so you can reproduce them in your favorite language.
 The concepts you are learning are independent of language and package, 
 so while the executable code is different,
-the *code cell options* and markdown syntax are identical.
+the code cell options and markdown syntax are identical.
 
 The code to generate the example figures and tables is shown without any other context.
 If you want to recreate them, you'll need the setup code as shown in @fig-setup.
@@ -148,7 +147,7 @@ When the document is rendered, the figure appears right where the code cell was 
 ![A rendered document with a figure produced by a code cell.](images/figure-table-quick-start-figure.png){#fig-quick-start-figure .border fig-alt="Screenshot of Quarto HTML document with a scatterplot shown below the line of text 'Some text before the code cell' and above the line of text 'Some text after the code cell'."}
 
 For non-computational figures and tables, you add context, like a caption or identifier, with markdown syntax.
-For computational ones, you use *code cell options*.
+For computational ones, you use code cell options.
 
 The most common options are:
 
@@ -160,7 +159,7 @@ The most common options are:
 
 *  `fig-alt`: Alternative text for the resulting figure. There is no `tbl` equivalent, because tables are text-based and generally accessible to screen readers.
 
-For example, @fig-figures uses the same code as @fig-figure-quick but adds an identifier, caption, and alternative text with *code cell options*.
+For example, @fig-figures uses the same code as @fig-figure-quick but adds an identifier, caption, and alternative text with code cell options.
 
 ::: {#fig-figures}
 
@@ -192,7 +191,7 @@ For example, @fig-figures uses the same code as @fig-figure-quick but adds an id
 
 :::
 
-Basic *code cell options* used to add an identifier (`label`), caption (`fig-cap`), and alternative text (`fig-alt`) to a computational figure.
+Basic code cell options used to add an identifier (`label`), caption (`fig-cap`), and alternative text (`fig-alt`) to a computational figure.
 
 :::
 
@@ -234,7 +233,7 @@ and start the label with `tbl-` to make it cross-referenceable.
 
 :::
 
-Basic *code cell options* used to add an identifier (`label`) and caption (`tbl-cap`) for a computational table.
+Basic code cell options used to add an identifier (`label`) and caption (`tbl-cap`) for a computational table.
 
 :::
 
@@ -246,7 +245,7 @@ The table caption is prefaced by "Table 1:" because the label started with `tbl-
 ### Fenced div syntax
 
 For cross-referenceable figures and tables, fenced divs provide an alternative method for labeling and captioning. 
-Instead of using the *code cell options* `label` and `fig-cap`/`tbl-cap`, you set the identifier on a fenced div, and the caption as the last paragraph inside the fenced div.
+Instead of using the code cell options `label` and `fig-cap`/`tbl-cap`, you set the identifier on a fenced div, and the caption as the last paragraph inside the fenced div.
 The content above the caption becomes the content of the figure or table, and could be a code cell.
 
 As a concrete example, @fig-fenced-div-code-figure gives the same labeled and captioned figure as the code cell in @fig-figures.
@@ -334,11 +333,11 @@ The fenced div syntax is useful if you want long captions (@sec-long-captions), 
 
 In this section you'll learn about figure-specific options: figure size, format and resolution, and multiple figures.
 For figure alignment, see @sec-figure-alignment.
-Some of these controls are *document options* (set in your document header and applied to all figures), some are *code cell options* (applied to individual code cells), and others need to be configured directly in your plotting code.
+Some of these controls are document options (set in your document header and applied to all figures), some are code cell options (applied to individual code cells), and others need to be configured directly in your plotting code.
 
 ### Default figure size
 
-The *document options* `fig-width` and `fig-height` control the default size of figures produced by all the code cells in a document. 
+The document options `fig-width` and `fig-height` control the default size of figures produced by all the code cells in a document. 
 
 How these values are applied depends on the engine:
 
@@ -351,7 +350,7 @@ The default values are format specific.
 For example, the default figure size for `format: html` is 7 × 5 inches, 
 and for `format: typst` it is 5.5 × 3.5 inches.
 
-You can override these defaults using `fig-width` and `fig-height` *document options*.
+You can override these defaults using `fig-width` and `fig-height` document options.
 For example, @lst-fig-width-height shows how to set the default figure size to 4 × 6 inches for `html` output.
 
 ::: {#lst-fig-width-height}
@@ -365,7 +364,7 @@ format:
 ---
 ```
 
-Use the `fig-width` and `fig-height` *document options* to set the default figure size for a target output format.
+Use the `fig-width` and `fig-height` document options to set the default figure size for a target output format.
 
 :::
 
@@ -374,13 +373,13 @@ You could also set `fig-width` and `fig-height` in `_quarto.yml` to apply to all
 
 ### Custom figure size {#sec-figure-size}
 
-The defaults set by the *document options* will apply to all code cells. 
+The defaults set by the document options will apply to all code cells. 
 However, you often want to customize figure sizes, and aspect ratios, for individual plots.
 How you do this depends on the engine. 
 
 #### `knitr`
 
-With the `knitr` engine, use the `fig-width` and `fig-height` *code cell options* (@lst-figure-size).
+With the `knitr` engine, use the `fig-width` and `fig-height` code cell options (@lst-figure-size).
 
 ::: {#lst-figure-size}
 ````{.markdown}
@@ -392,21 +391,21 @@ With the `knitr` engine, use the `fig-width` and `fig-height` *code cell options
 ```
 ````
 
-When using the `knitr` engine, use the *code cell options* `fig-width` and `fig-height` to customize figure size for individual plots.
+When using the `knitr` engine, use the code cell options `fig-width` and `fig-height` to customize figure size for individual plots.
 
 :::
 
 
 #### `jupyter` 
 
-There are no `fig-width` or `fig-height` *code cell options* for the `jupyter` engine.
+There are no `fig-width` or `fig-height` code cell options for the `jupyter` engine.
 You need to set the figure size in the code itself.
 This will depend on the plotting package you are using.
 
 For plotting packages that use matplotlib and respect its defaults, you can set figure sizes using matplotlib directly.
 
 For example, @lst-seaborn-figure shows code to create a scatterplot of the `penguins` data using [seaborn](https://seaborn.pydata.org). 
-With no further adjustment, the size of the figure will reflect the default `fig-height` and `fig-width` *document options*.
+With no further adjustment, the size of the figure will reflect the default `fig-height` and `fig-width` document options.
 
 ::: {#lst-seaborn-figure}
 ````markdown
@@ -480,7 +479,7 @@ Use the `figure_size` argument to plotnine's `theme()` to set the size of a sing
 The default image format saved by the engines differs by target format.
 For example, for `format: html`, images will be PNG (`.png`) by default; for `format: typst`, images will be SVG (`.svg`) by default.
 
-You can override these defaults using the `fig-format` *document option*.
+You can override these defaults using the `fig-format` document option.
 For example, @lst-fig-format shows how to set the default figure format to `svg` for `html` output.
 
 ::: {#lst-fig-format}
@@ -493,14 +492,14 @@ format:
 ---
 ````
 
-Use the `fig-format` *document option* to set the default figure format for a target output format.
+Use the `fig-format` document option to set the default figure format for a target output format.
 
 :::
 
 Setting `fig-format` at the top level applies to all output formats.
 You can also set `fig-format` in `_quarto.yml`, at the top level or under a format, to apply it to all documents in a project.
 
-For raster image formats like `png` and `jpg`, you can also control the resolution of the saved image using the `fig-dpi` *document option*.
+For raster image formats like `png` and `jpg`, you can also control the resolution of the saved image using the `fig-dpi` document option.
 
 For example, @lst-fig-dpi shows how to set the default figure resolution to 300 dots per inch (DPI) for `html` output.
 
@@ -514,7 +513,7 @@ format:
 ---
 ````
 
-Use the `fig-dpi` *document option* to set the default figure resolution for a target output format.
+Use the `fig-dpi` document option to set the default figure resolution for a target output format.
 
 :::
 
@@ -522,7 +521,7 @@ Like `fig-format`, you can set `fig-dpi` for all formats, or for all documents i
 
 ### Multiple figures {#sec-multiple-figures}
 
-If your code cell produces multiple figures, you can combine them into a single panel by providing individual sub-captions for each figure using the `fig-subcap` *code cell option*.
+If your code cell produces multiple figures, you can combine them into a single panel by providing individual sub-captions for each figure using the `fig-subcap` code cell option.
 For example, @fig-multiple-figures produces two figures in a single code cell, and thus provides an array of two values to both `fig-subcap` and `fig-alt`.
 To arrange the figures in the panel, see @sec-multiple-outputs.
 
@@ -581,8 +580,8 @@ Each individual figure in the panel has its own sub-caption prefaced by "(a)" an
 You can cross-reference the entire panel with the `label`, e.g., `@fig-scatter`, or individual figures by appending an index, e.g., `@fig-scatter-1` and `@fig-scatter-2`.
 
 Often the use of `fig-subcap` is combined with layout options to arrange the figures in a specific way.
-For example, the `layout-ncol` *code cell option* will arrange the figures in a specified number of columns. 
-Adding the *code cell option* `layout-ncol: 2` to @fig-multiple-figures would result in the figures laid out side by side rather than one above the other.
+For example, the `layout-ncol` code cell option will arrange the figures in a specified number of columns. 
+Adding the code cell option `layout-ncol: 2` to @fig-multiple-figures would result in the figures laid out side by side rather than one above the other.
 
 Using `fig-subcap` is a quick way to make a multi-panel figure.
 But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them (@sec-figtab-layout).
@@ -798,8 +797,8 @@ Each individual table in the panel has its own sub-caption prefaced by "(a)" and
 You can cross-reference the entire panel with the `label`, e.g., `@tbl-species-count`, or individual tables by appending an index, e.g., `@tbl-species-count-1` and `@tbl-species-count-2`.
 
 Often the use of `tbl-subcap` is combined with layout options to arrange the tables in a specific way.
-For example, the `layout-ncol` *code cell option* will arrange the tables in a specified number of columns. 
-Adding the *code cell option* `layout-ncol: 2` to the above example would result in the tables laid out side-by-side rather than one above the other.
+For example, the `layout-ncol` code cell option will arrange the tables in a specified number of columns. 
+Adding the code cell option `layout-ncol: 2` to the above example would result in the tables laid out side-by-side rather than one above the other.
 
 Using `tbl-subcap` is a quick way to make a multi-panel table. But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them (@sec-figtab-layout).
 You can learn more about this approach in @sec-figtab-layout.
@@ -866,14 +865,14 @@ If you are using these options,
 a good first step is to pull apart the layout from the code that produces the figure or table.
 
 Remove the layout options entirely, and check the tables and figures themselves look right.
-Then, introduce the layout back in, but use the fenced div approach (as outlined in @sec-layout), rather than the *code cell options*.
+Then, introduce the layout back in, but use the fenced div approach (as outlined in @sec-layout), rather than the code cell options.
 
 #### Do the translation yourself 
 
 If you can't figure out why you aren't getting the right markdown, you can consider doing the translation yourself.
 Instead of your code cell producing a figure or table, have it produce the markdown to include the figure or table.
 
-You'll need to set the *code cell option* `output: asis` to tell Quarto not to further process the output of your code cell.
+You'll need to set the code cell option `output: asis` to tell Quarto not to further process the output of your code cell.
 Then write code to output text that is the markdown to include your figure or table.
 For figures, you will need to save the image file with code, you will be responsible for setting the format, size, and path.
 
