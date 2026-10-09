@@ -707,8 +707,11 @@ This section covers the most common cases for figures and tables: arranging them
 #### Arranging multiple figures and tables {#sec-multiple-outputs}
 
 @sec-layout covered the basic case of placing content in a grid.
-Use a fenced div with the `layout-ncol` attribute, and place each element of your content in its own fenced div:
+Use a fenced div with the `layout-ncol` attribute, and place each element of your content in its own fenced div, as shown in @fig-panel-images.
 
+::::::: {#fig-panel-images}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
 ````markdown
 ::::: {layout-ncol="2"}
 ::: {}
@@ -720,52 +723,29 @@ Use a fenced div with the `layout-ncol` attribute, and place each element of you
 :::
 :::::
 ````
+:::::
+
+![](images/figure-table-panel-images.svg){.border fig-alt="An image placeholder and a table placeholder side by side, with no captions and no numbers."}
+::::::
+
+Content side by side. Neither item is cross-referenceable.
+:::::::
+
+This example arranges the content in two columns (`layout-ncol="2"`). 
+Increase `layout-ncol` to add additional columns.
+If you have more than `layout-ncol` elements Quarto will add rows to accommodate them.
 
 The placeholders, `{ CONTENT 1 }` and `{ CONTENT 2}`, could by anything, including any variation of a figure or table: a markdown image, a markdown table, or a code cell that produces a figure or table.
 
-This example arranges the content in two columns (`layout-ncol="2"`). 
-You can include more elements as fenced divs inside the layout div and Quarto will add rows to accommodate them.
-Increase `layout-ncol` to add additional columns.
+Neither element in @fig-panel-images is cross-referenceable. 
+To make one or more cross-referenceable elements, add identifiers.
+Add an identifier with a cross-reference prefix to each _inner_ div to make each item its own cross-referenceable figure or table (@fig-panel-figures).
+Add an _outer_ div with an identifier around the layout div to make one cross-referenceable figure from the whole panel (@fig-panel-figure-of-images).
+Do both to make one cross-referenceable figure with sub-figures (@fig-panel-subfigures).
 
-@fig-panel-images illustrates this side-by-side layout with an image and a table neither of which is cross-referenceable.
-The other panels in @fig-panel-cases illustrate cases where identifiers are added to create one or more cross-referenceable element.
-Add an identifier with a cross-reference prefix to each _inner_ div to make each item its own cross-referenceable figure or table.
-Add an _outer_ div with an identifier around the layout div to make one cross-referenceable figure from the whole panel.
-Do both to make one cross-referenceable figure with sub-figures.
-@tbl-panel-cases summarizes these syntax differences and we give a full code example in each of the following sections.
-
-:::: {#fig-panel-cases}
-::: {layout-ncol="2"}
-
-![Content side by side.](images/figure-table-panel-images.svg){#fig-panel-images .border fig-alt="An image placeholder and a table placeholder side by side, with no captions and no numbers."}
-
-![Cross-referenceable figures or tables side by side.](images/figure-table-panel-figures.svg){#fig-panel-figures .border fig-alt="A separately outlined figure and table side by side, captioned Figure 1: Caption 1 and Table 1: Caption 2."}
-
-![One cross-referenceable figure that contains content.](images/figure-table-panel-figure-of-images.svg){#fig-panel-figure-of-images .border fig-alt="One outlined figure around an uncaptioned image placeholder and table placeholder, with one caption below: Figure 1: Main caption."}
-
-![One cross-referenceable figure with sub-figures.](images/figure-table-panel-subfigures.svg){#fig-panel-subfigures .border fig-alt="One outer figure around two outlined sub-figures, an image and a table, captioned (a) Sub-caption 1 and (b) Sub-caption 2, with Figure 1: Main caption below both."}
-:::
-
-The four ways to combine a panel layout with figures. A dashed outline marks each cross-referenceable element, labeled with its identifier.
-::::
-
-
-| Inner divs | Outer div | Result | Example |
-|:--|:--|:--|:--|
-| `{}` | none | Content side by side, not cross-referenceable | @fig-panel-images |
-| `{#fig-1}`, `{#tbl-1}` | none | Separate cross-referenceable figures or tables side by side: "Figure 1", "Table 1" | @fig-panel-figures |
-| `{}` | `{#fig-main}` | One cross-referenceable figure that contains content side by side: "Figure 1" | @fig-panel-figure-of-images |
-| `{#fig-sub1}`, `{#fig-sub2}` | `{#fig-main}` | One cross-referenceable figure with sub-figures: "Figure 1", "Figure 1 (a)", "Figure 1 (b)" | @fig-panel-subfigures |
-
-: How identifiers on the inner and outer divs change a panel layout. {#tbl-panel-cases}
-
-What changes when you add identifiers depends on which divs get them.
-@tbl-panel-cases summarizes the four combinations, and @fig-panel-cases shows what each one looks like.
-
-##### Cross-referenceable figures or tables side by side
-
-To make each item its own cross-referenceable figure or table, give each inner div an identifier and a caption:
-
+::::::: {#fig-panel-figures}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
 ````markdown
 ::::: {layout-ncol="2"}
 ::: {#fig-1}
@@ -781,14 +761,17 @@ Caption 2
 :::
 :::::
 ````
+:::::
 
-Each item has its own caption and number, here "Figure 1" and "Table 1" (@fig-panel-figures).
-Because each item is cross-referenced on its own, the prefixes can differ, so you can put a figure next to a table.
+![](images/figure-table-panel-figures.svg){.border fig-alt="A separately outlined figure and table side by side, captioned Figure 1: Caption 1 and Table 1: Caption 2."}
+::::::
 
-##### One cross-referenceable figure that contains content
+Cross-referenceable figures or tables side by side. Each item has its own caption and number, here "Figure 1" and "Table 1". Because each item is cross-referenced on its own, the prefixes can differ.
+:::::::
 
-To make the whole panel into one cross-referenceable figure, wrap the layout div in an outer div with an identifier and a caption:
-
+::::::: {#fig-panel-figure-of-images}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
 ````markdown
 :::::: {#fig-main}
 ::::: {layout-ncol="2"}
@@ -804,15 +787,17 @@ To make the whole panel into one cross-referenceable figure, wrap the layout div
 Main caption
 ::::::
 ````
+:::::
 
-The result is a single cross-referenceable figure, "Figure 1", with one caption below the panel (@fig-panel-figure-of-images).
-You can refer to the whole figure, but not to the items inside it.
-The prefix of the outer div decides the type, so here the whole panel is a figure, even though one item is a table.
+![](images/figure-table-panel-figure-of-images.svg){.border fig-alt="One outlined figure around an uncaptioned image placeholder and table placeholder, with one caption below: Figure 1: Main caption."}
+::::::
 
-##### One cross-referenceable figure with sub-figures
+One cross-referenceable figure that contains content. You can refer to the whole figure, but not to the items inside it. The prefix of the outer div decides the type, so the whole panel is a figure, even though one item is a table.
+:::::::
 
-To make one cross-referenceable figure that you can also refer to in parts, do both: add an outer div with an identifier, and give each inner div an identifier with the same prefix:
-
+::::::: {#fig-panel-subfigures}
+:::::: {layout="[[1,1]]" layout-valign="center"}
+::::: {}
 ````markdown
 :::::: {#fig-main}
 ::::: {layout-ncol="2"}
@@ -832,18 +817,23 @@ Sub-caption 2
 Main caption
 ::::::
 ````
+:::::
 
-The inner captions become sub-captions (@fig-panel-subfigures).
-Use `@fig-main` to refer to the whole figure ("Figure 1"), and `@fig-sub1` to refer to one part ("Figure 1 (a)"), as described in @sec-sub-references.
-The sub-figures must all use the same prefix as the parent.
-The prefix sets the type of the caption, not what the content is, so in @fig-panel-subfigures the table is still "Figure 1 (b)".
-To number the whole panel as a table, use `tbl-` for the outer div and every inner div.
+![](images/figure-table-panel-subfigures.svg){.border fig-alt="One outer figure around two outlined sub-figures, an image and a table, captioned (a) Sub-caption 1 and (b) Sub-caption 2, with Figure 1: Main caption below both."}
+::::::
+
+One cross-referenceable figure with sub-figures. The inner captions become sub-captions. The prefix of the inner elements must match that of the outer element, all `fig-` in this example.
+:::::::
+
+In @fig-panel-subfigures, use `@fig-main` to refer to the whole figure ("Figure 1"), and `@fig-sub1` to refer to one part ("Figure 1 (a)"), as described in @sec-sub-references.
 
 ::: callout-tip
-Do not put a cross-reference identifier and a layout attribute or column class on the same fenced div, for example `{#fig-id layout-ncol="2"}` or `{#fig-id .column-screen}`.
-The result can be unpredictable.
+## Use separate divs
+
+Mixing cross-reference identifiers and layout attributes or column classes on the same fenced div, e.g. `{#fig-id layout-ncol="2"}` can be unpredictable.
 Use one fenced div for the cross-reference and a separate, nested fenced div for the layout.
 :::
+
 If one code cell makes all the figures or tables, you can use `layout-ncol` as a code cell option instead of a fenced div:
 
 ````markdown
@@ -860,7 +850,7 @@ If one code cell makes all the figures or tables, you can use `layout-ncol` as a
 ````
 
 See @sec-multiple-figures and @sec-multiple-tables for the details.
-The code cell option is the shortest way, but use a fenced div if you want to mix figures and tables, mix markdown and code cell content, or put text between items.
+For cases it is appropriate, the code cell option has concise syntax, but you'll need switch to a fenced div if you want to mix figures, tables, markdown or code cell output in the same panel.
 
 #### Rows, columns, and custom grids
 
