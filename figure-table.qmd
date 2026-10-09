@@ -1,15 +1,16 @@
 # Figures and tables {#sec-figure-table}
 
-Figures and tables are essential components of scientific and technical documents, serving as powerful tools to communicate data and results visually. 
+Figures and tables are how most scientific and technical documents communicate data and results. 
 You often need precise control over their placement within documents, their captions, and the ability to group them into panels and cross-reference them throughout the text. 
 Given their importance, we've devoted two chapters to figures and tables: this one and @sec-figure-table-computational.
 
-This chapter is written in a way that applies regardless of how your figures and tables are produced---whether you create them directly with markdown syntax or generate them computationally from code cells. 
-This approach is intentional because most aspects of working with figures and tables are independent of their source. 
+This chapter applies however you produce your figures and tables---whether you write them in markdown or generate them from code cells. 
+We've done this on purpose, because most aspects of working with figures and tables are independent of their source. 
 For example, document-level options that control figures and tables often apply universally, as do many layout features that involve surrounding figures or tables in additional markdown.
 There are a few exceptions where you'll need to use specific attributes for markdown-based content or code cell options for computational output, and we'll point these out clearly when they arise.
 
-You should review @sec-syntax-variations which explains how to translate between markdown and computational syntax for figures and tables, as well as what we call the fenced div syntax, which will help you understand and apply the examples used throughout the rest of both chapters.
+You should review @sec-syntax-variations, which explains how to translate between markdown and computational syntax for figures and tables.
+It also introduces what we call the fenced div syntax, which will help you understand and apply the examples used throughout the rest of both chapters.
 
 We expect you'll turn to these chapters to solve particular tasks with your own tables and figures.
 @tbl-figtab-tasks points you to the relevant section.
@@ -33,7 +34,7 @@ We expect you'll turn to these chapters to solve particular tasks with your own 
 ### Markdown vs computational
 
 As you read this chapter you'll see examples of figures and tables that are produced in two ways: directly with markdown and computationally.
-A reminder of the syntax is shown for figures in @fig-figure-syntax, and for tables in @fig-table-syntax. 
+@fig-figure-syntax reminds you of the syntax for figures, and @fig-table-syntax for tables. 
 
 ::: {#fig-figure-syntax}
 
@@ -56,7 +57,7 @@ A reminder of the syntax is shown for figures in @fig-figure-syntax, and for tab
 ````
 :::
 
-Syntax for a figure with a numbered caption and alternative text produced via (a) markdown and by (b) an executable code cell.
+Syntax for a figure with a numbered caption and alternative text produced with (a) markdown and (b) an executable code cell.
 
 :::
 
@@ -84,12 +85,12 @@ Syntax for a figure with a numbered caption and alternative text produced via (a
 ````
 :::
 
-Syntax for a table with a numbered caption produced via (a) markdown and by (b) an executable code cell.
+Syntax for a table with a numbered caption produced with (a) markdown and (b) an executable code cell.
 
 :::
 
 The key difference is that for computational figures and tables you use code cell options to specify captions, identifiers, and alternative text.
-When the computational engine executes a code cell that produces a table or figure, it uses the output, along with the code cell options to construct the same markdown you would write by hand to render a figure or table.
+When the computational engine executes a code cell that produces a table or figure, it uses the output, along with the code cell options, to construct the same markdown you would write by hand to render a figure or table.
 This means for figure or table tweaks that involve setting document options, or surrounding the figure or table in additional markdown, you can swap a markdown example with a computational one and vice versa.
 For tweaks that involve changes to the markdown itself, like adding an attribute, you'll usually find a corresponding code cell option for a computational output.
 
@@ -127,12 +128,12 @@ Caption
 ````
 :::
 
-Fenced div syntax for a figure with a numbered caption and alternative text produced via (a) markdown and by (b) an executable code cell.
+Fenced div syntax for a figure with a numbered caption and alternative text produced with (a) markdown and (b) an executable code cell.
 
 :::
 
 The fenced div syntax abstracts away whether the figure or table is produced in markdown or computationally.
-So, in the examples later in the chapter we'll use the shorthand:
+So, in the rest of this chapter and in @sec-figure-table-computational, we'll use the shorthand:
 
 ````markdown
 ::: {#fig-id}
@@ -162,30 +163,30 @@ Caption
 :::
 ````
 
-Where `{ TABLE }` could be a code cell generating a table, or a table written directly in markdown as a pipe table, list table, or HTML table in a raw HTML block.
+where `{ TABLE }` could be a code cell generating a table, or a table written directly in markdown as a pipe table, list table, or HTML table in a raw HTML block.
 
 ## Cross-references {#sec-figtab-crossref}
 
-You'll start by diving into the two required steps to cross-reference a figure or table:
+You'll start with the two required steps to cross-reference a figure or table:
 
-1. Give your figure or table an identifier that Quarto recognizes as a cross-reference, this means that it starts with `fig-` or `tbl-`.
+1. Give your figure or table an identifier that Quarto recognizes as a cross-reference; that is, one that starts with `fig-` or `tbl-`.
 
 2. Refer to your figure or table using the syntax `@ID`.
 
 Then, you'll learn about creating sub-references. 
 
-This chapter focuses on creating and using cross-references. 
-If you are interested in customizing the way your figures and tables are numbered or labeled see @sec-figtab-captions.
+This section focuses on creating and using cross-references. 
+If you are interested in customizing the way your figures and tables are numbered or labeled, see @sec-figtab-captions.
 
 ### Adding an identifier to a figure or table
 
 Depending on how you create your figure or table, there are three ways to add an identifier that Quarto recognizes for cross-referencing:
 
 * **Non-computational**: as an ID attribute, starting with `#`, in markdown syntax
-* **Computational**: as `label` code cell option in a computational code cell
+* **Computational**: as the `label` code cell option
 * **Both**: as an ID attribute, starting with `#`, in the fenced div syntax
 
-We illustrate each of these for figures in @fig-id-figure, and tables in @fig-id-table.
+We illustrate each of these for figures in @fig-id-figure and for tables in @fig-id-table.
 The caption, and alternative text for figures, are optional, but you'll generally include them, so our examples do too.
 
 
@@ -295,14 +296,14 @@ Ways to add the identifier `tbl-id` to a table using (a) markdown, (b) a computa
 :::
 
 For figures and tables you'll usually use the prefixes `fig-` and `tbl-` respectively, but see @sec-crossreferences for other available prefixes.
-For working examples of computational figures and tables with cross-references see @sec-figure-table-computational
+For working examples of computational figures and tables with cross-references, see @sec-figure-table-computational.
 
 ::: {.callout-tip}
 
 ### Anything can be a "Figure"
 
 Quarto doesn't care what the content of the fenced div is. 
-You can put anything inside: an image, a code block, a tabset, a table, markdown etc. 
+You can put anything inside: an image, a code block, a tabset, a table, markdown, etc. 
 The label prefix determines how Quarto labels it.
 For example, using `fig-` gets you a "Figure X" regardless of the content.
 
@@ -311,7 +312,7 @@ For example, using `fig-` gets you a "Figure X" regardless of the content.
 ### Referring to a figure or table
 
 To refer to a figure or table, use `@` followed by the identifier (@fig-crossref-inline-syntax).
-When rendered the cross-references are replaced with the figure or table counter and become links (@fig-crossref-inline-rendered).
+When rendered, the cross-references are replaced with the figure or table counter and become links (@fig-crossref-inline-rendered).
 In HTML formats, hovering on the links also shows a preview of the figure or table.
 
 ::: {#fig-crossref-inline layout-ncol="2"}
@@ -388,7 +389,7 @@ Main caption
 ::::
 ```
 
-Here, `CONTENT` can be markdown or a code cell, and can contain any kind of content.
+Here, `CONTENT` can be any markdown or code cell output.
 
 ::: callout-tip
 We've used additional colons (`:`) to help you see the nesting, but they aren't required.
