@@ -422,7 +422,8 @@ There are four places to set the caption text:
 * **Computational figures and tables**: the `fig-cap` or `tbl-cap` code cell option.
 * **Fenced div syntax** (@sec-syntax-variations): the last paragraph inside the div, for both markdown and computational content.
 
-The fenced div syntax is more verbose, but because a fenced div caption is ordinary markdown, and not a YAML string or a single line, it's useful in two specific situations: long captions and dynamic captions.
+The fenced div syntax is more verbose.
+But because its caption is an ordinary markdown paragraph, not a one-line YAML string, it is useful in two situations: long captions and dynamic captions.
 
 ::: callout-note
 The fenced div syntax only gives you a caption when the div's identifier starts with a cross-reference prefix, such as `fig-` or `tbl-`.
@@ -544,7 +545,7 @@ You can set these options at three levels:
     ---
     ```
     
-* On individual tables or figures to control just a single instance. 
+* On an individual figure or table, to control only that one.
     Use the code cell option for computational outputs:
 
     ````{.markdown}
@@ -631,7 +632,7 @@ The default title and number in a table caption and in a cross-reference to the 
     | `arabic`
 
 * - `subref-labels`
-  - Number style for sub-references (@sec-figtab-crossref)
+  - Number style for sub-references (@sec-sub-references)
   - `alpha a`
 
 * - `title-delim`
@@ -685,8 +686,8 @@ This section covers the most common cases for figures and tables: arranging them
 
 ### Arranging multiple figures and tables {#sec-multiple-outputs}
 
-@sec-layout covered the basic case of placing content in a grid.
-Use a fenced div with the `layout-ncol` attribute, and place each element of your content in its own fenced div, as shown in @fig-panel-images.
+Recall from @sec-layout that you place content in a grid with a fenced div with the `layout-ncol` attribute.
+Put each element in its own fenced div, as shown in @fig-panel-images.
 
 ::::::: {#fig-panel-images}
 :::::: {layout="[[1,1]]" layout-valign="center"}
@@ -712,7 +713,7 @@ Content side by side. Neither item is cross-referenceable.
 
 This example arranges the content in two columns (`layout-ncol="2"`). 
 Increase `layout-ncol` to add additional columns.
-If you have more than `layout-ncol` elements Quarto will add rows to accommodate them.
+If you have more than `layout-ncol` elements, Quarto adds rows to accommodate them.
 
 The placeholders, `{ CONTENT 1 }` and `{ CONTENT 2 }`, could be anything, including any variation of a figure or table: a markdown image, a markdown table, or a code cell that produces a figure or table.
 
@@ -771,7 +772,7 @@ Main caption
 ![](images/figure-table-panel-figure-of-images.svg){.border fig-alt="One outlined figure around an uncaptioned image placeholder and table placeholder, with one caption below: Figure 1: Main caption."}
 ::::::
 
-One cross-referenceable figure that contains content. You can refer to the whole figure, but not to the items inside it. The prefix of the outer div decides the type, so the whole panel is a figure, even though one item is a table.
+One cross-referenceable figure that contains both items. You can refer to the whole figure, but not to the items inside it. The prefix of the outer div decides the type, so the whole panel is a figure, even though one item is a table.
 :::::::
 
 ::::::: {#fig-panel-subfigures}
@@ -829,7 +830,7 @@ If one code cell makes all the figures or tables, you can use `layout-ncol` as a
 ````
 
 See @sec-multiple-figures and @sec-multiple-tables for the details.
-For cases it is appropriate, the code cell option has concise syntax, but you'll need switch to a fenced div if you want to mix figures, tables, markdown, or code cell output in the same panel.
+When it is appropriate, the code cell option has concise syntax, but you'll need to switch to a fenced div if you want to mix figures, tables, markdown, or code cell output in the same panel.
 
 ### Rows, columns, and custom grids
 
@@ -876,7 +877,7 @@ For example, `layout="[40,-20,40]"` puts a 20% gap between two items.
 
 ### Alignment in a panel
 
-Items in a row are frequently different heights, for example a tall figure next to a short table.
+Items in a row are frequently different heights, for example, a tall figure next to a short table.
 Use `layout-valign` to set the vertical alignment of the items in each row: `top`, `center`, or `bottom` (@fig-panel-valign).
 
 ::::::: {#fig-panel-valign}
@@ -907,7 +908,7 @@ Both attributes are also code cell options.
 ## Position and alignment {#sec-figtab-position}
 
 You can move a figure or table into a different column of the page, and align it inside its container.
-For slides, the `output-location` code cell option can put output on the next slide or next to the code. See @sec-output-location.
+For slides, see @sec-output-location for the `output-location` code cell option, which can put output on the next slide or next to the code.
 
 ### Position relative to the page: `column` {#sec-page-columns}
 
@@ -968,7 +969,7 @@ For example, a small screen has only one column, so all content uses the full wi
 
 ### Figure alignment: `fig-align` {#sec-figure-alignment}
 
-A figure is in a container.
+Every figure sits in a container.
 By default, the container is the width of the body text, but you can change this if you put the figure in a column (@sec-page-columns).
 Figure alignment is the horizontal position of a figure in its container.
 
@@ -1081,7 +1082,7 @@ Use the `tbl-colwidths` document option to set the column widths of all markdown
 
 ### Tables from code cells
 
-A code cell can output a markdown table, for example with `knitr::kable()` in R or `tabulate()` in Python.
+A code cell can output a markdown table, for example with `knitr::kable()` in R or `tabulate()` from the tabulate package in Python.
 There is no code cell option for column alignment.
 Instead, set the alignment with the function that makes the table.
 In @lst-tbl-align-code, the `align` argument to `knitr::kable()` and the `colalign` argument to `tabulate()` align the species column to the left and the count column to the right.
@@ -1144,7 +1145,7 @@ Use the `tbl-colwidths` code cell option to set the column widths of a markdown 
 ### HTML tables
 
 `tbl-colwidths` applies only to markdown tables.
-A package that makes HTML tables, such as gt in R or great_tables in Python, sets the styles of the table itself.
+A package that makes HTML tables, such as gt in R or great_tables in Python, styles the table itself.
 Use the functions of the package to set the alignment and width of the columns.
 
 In @lst-tbl-gt, `cols_align()` aligns the count column to the right, `cols_width()` gives the species column 25% of the width and the count column 75%, and `tab_options()` makes the table the full width of its container.
@@ -1192,3 +1193,6 @@ penguins |>
 Use gt or great_tables functions to set the alignment and width of the columns of an HTML table.
 
 :::
+
+Everything in this chapter applies to computational figures and tables too.
+In @sec-figure-table-computational, you'll learn the code cell options that control them, and how to troubleshoot them when the output isn't what you expect.
