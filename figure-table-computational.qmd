@@ -333,7 +333,8 @@ The fenced div syntax is useful if you want long captions (@sec-long-captions), 
 
 In this section you'll learn about figure-specific options: figure size, format and resolution, and multiple figures.
 For figure alignment, see @sec-figure-alignment.
-Some of these controls are document options (set in your document header and applied to all figures), some are code cell options (applied to individual code cells), and others need to be configured directly in your plotting code.
+Some of these controls are *document options* (set in your document header and applied to all figures), some are *code cell options* (applied to individual code cells), and others need to be configured directly in your plotting code.
+We'll use *emphasis* to highlight when an option is a document-level setting versus a code cell option.
 
 ### Default figure size
 
@@ -344,14 +345,14 @@ How these values are applied depends on the engine:
 * `knitr`: the values are passed along to the graphics device, and thus apply regardless of the package you use to create the plots.
 * `jupyter`: the values are used to set the default figure size for matplotlib. 
     Many popular plotting packages, including seaborn, depend on matplotlib, and will respect these defaults.
-    Other packages may not respect matplotlib defaults, like plotnine, but have themselves implemented something to use and respect the  environment variables Quarto sets `QUARTO_FIG_WIDTH` and `QUARTO_FIG_HEIGHT`.
+    Some packages, like plotnine, don't use matplotlib defaults but do respect the environment variables Quarto sets: `QUARTO_FIG_WIDTH` and `QUARTO_FIG_HEIGHT`.
 
 The default values are format specific.
-For example, the default figure size for `format: html` is 7x5 inches, 
-which is different to that for `format: typst` at 5.5x3.5 in.
+For example, the default figure size for `format: html` is 7 × 5 inches, 
+and for `format: typst` it is 5.5 × 3.5 inches.
 
 You can override these defaults using `fig-width` and `fig-height` *document options*.
-For example, @lst-fig-width-height shows how to set the default figure size to 4x6 in for `html` output.
+For example, @lst-fig-width-height shows how to set the default figure size to 4 × 6 inches for `html` output.
 
 ::: {#lst-fig-width-height}
 
@@ -364,22 +365,22 @@ format:
 ---
 ```
 
-Use the `fig-width` and `fig-height` document options to set the default figure size for a target output format.
+Use the `fig-width` and `fig-height` *document options* to set the default figure size for a target output format.
 
 :::
 
-Set `fig-width` and `fig-height` at the top-level (i.e., not nested under a format) to apply to all formats.
+Set `fig-width` and `fig-height` at the top level (i.e., not nested under a format) to apply to all formats.
 You could also set `fig-width` and `fig-height` in `_quarto.yml` to apply to all documents in a project.
 
 ### Custom figure size {#sec-figure-size}
 
-The defaults set by the document options will apply to all code cells. 
+The defaults set by the *document options* will apply to all code cells. 
 However, you often want to customize figure sizes, and aspect ratios, for individual plots.
 How you do this depends on the engine. 
 
 #### `knitr`
 
-In `knitr` use the *code cell options* `fig-width`, `fig-height`
+With the `knitr` engine, use the `fig-width` and `fig-height` *code cell options* (@lst-figure-size).
 
 ::: {#lst-figure-size}
 ````{.markdown}
@@ -391,21 +392,21 @@ In `knitr` use the *code cell options* `fig-width`, `fig-height`
 ```
 ````
 
-When using the `knitr` engine, use the code cell options `fig-width` and `fig-height` to customize figure size for individual plots.
+When using the `knitr` engine, use the *code cell options* `fig-width` and `fig-height` to customize figure size for individual plots.
 
 :::
 
 
 #### `jupyter` 
 
-There are no `fig-width` or `fig-height` code cell options for the `jupyter` engine.
+There are no `fig-width` or `fig-height` *code cell options* for the `jupyter` engine.
 You need to set the figure size in the code itself.
 This will depend on the plotting package you are using.
 
 For plotting packages that use matplotlib and respect its defaults, you can set figure sizes using matplotlib directly.
 
 For example, @lst-seaborn-figure shows code to create a scatterplot of the `penguins` data using [seaborn](https://seaborn.pydata.org). 
-With no further adjustment the size of the figure will reflect the default `fig-height` and `fig-width` document options.
+With no further adjustment, the size of the figure will reflect the default `fig-height` and `fig-width` *document options*.
 
 ::: {#lst-seaborn-figure}
 ````markdown
@@ -416,11 +417,11 @@ sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="speci
 ```
 ````
 
-Code to create seaborn plot of its own `penguins` data. 
+Code to create a seaborn plot of seaborn's own `penguins` data. 
 
 :::
 
-To change the size of the figure you change the matplotlib default plot size using `rcParams`. 
+To change the size of the figure you change the matplotlib default plot size using `rcParams` (@lst-seaborn-figure-rcparams).
 This mimics the way the `jupyter` engine sets the default plot sizes and will apply to all plots created in subsequent code cells. 
 
 ::: {#lst-seaborn-figure-rcparams}
@@ -477,9 +478,9 @@ Use the `figure_size` argument to plotnine's `theme()` to set the size of a sing
 ### Figure format and resolution
 
 The default image format saved by the engines differs by target format.
-For example, for `format: html`, images will be PNG (`.png`) by default, for `format: typst`, images will be SVG (`.svg`) by default.
+For example, for `format: html`, images will be PNG (`.png`) by default; for `format: typst`, images will be SVG (`.svg`) by default.
 
-You can override these defaults using `fig-format` *document option*.
+You can override these defaults using the `fig-format` *document option*.
 For example, @lst-fig-format shows how to set the default figure format to `svg` for `html` output.
 
 ::: {#lst-fig-format}
@@ -492,16 +493,16 @@ format:
 ---
 ````
 
-Use the `fig-format` document option to set the default figure format for a target output format.
+Use the `fig-format` *document option* to set the default figure format for a target output format.
 
 :::
 
-Setting `fig-format` at the top-level will apply to all output formats.
-You can also set `fig-format`, at the top-level, or nested under a `format` in `_quarto.yml` to apply it to all documents in a project.
+Setting `fig-format` at the top level applies to all output formats.
+You can also set `fig-format` in `_quarto.yml`, at the top level or under a format, to apply it to all documents in a project.
 
-For raster image formats like `png` and `jpg`, you can also control the resolution of the saved image using the `fig-dpi` document option.
+For raster image formats like `png` and `jpg`, you can also control the resolution of the saved image using the `fig-dpi` *document option*.
 
-For example, @lst-fig-dpi shows how to set the default figure resolution to 300 dots-per-inch for `html` output.
+For example, @lst-fig-dpi shows how to set the default figure resolution to 300 dots per inch (DPI) for `html` output.
 
 ::: {#lst-fig-dpi}
 
@@ -512,15 +513,17 @@ format:
     fig-dpi: 300
 ---
 ````
-Use the `fig-dpi` document option to set the default figure resolution for a target output format.
-Like `fig-format` you can set this for all formats, or for all documents in a project via `_quarto.yml`.
+
+Use the `fig-dpi` *document option* to set the default figure resolution for a target output format.
 
 :::
 
+Like `fig-format`, you can set `fig-dpi` for all formats, or for all documents in a project with `_quarto.yml`.
+
 ### Multiple figures {#sec-multiple-figures}
 
-If your code cell produces multiple figures, you combine them into a single panel by providing individual sub-captions for each figure using the `fig-subcap` code cell option.
-For example, @fig-multiple-figures, produces two figures in a single code cell, and thus provides an array of two values to both `fig-subcap` and `fig-alt`.
+If your code cell produces multiple figures, you can combine them into a single panel by providing individual sub-captions for each figure using the `fig-subcap` *code cell option*.
+For example, @fig-multiple-figures produces two figures in a single code cell, and thus provides an array of two values to both `fig-subcap` and `fig-alt`.
 To arrange the figures in the panel, see @sec-multiple-outputs.
 
 ::: {#fig-multiple-figures}
@@ -567,21 +570,22 @@ To arrange the figures in the panel, see @sec-multiple-outputs.
  
 :::
 
-An example of a code cell that produces two figures. Individual figure captions are provided as an array to  `fig-subcap`, and alternative text descriptions are provided as an array to `fig-alt`.
+An example of a code cell that produces two figures. Individual figure captions are provided as an array to `fig-subcap`, and alternative text descriptions are provided as an array to `fig-alt`.
 
 :::
 
-![Result of rendering,  @fig-multiple-figures, a code cell with multiple figures.](images/figure-table-multiple-figures.png){#fig-multiple-figures-rendered fig-alt="Two scatterplots one above the other. Each plot has a caption prefaced by '(a)' and '(b)' respectively. The overall caption is 'Figure 1: Physical dimensions of penguins'."}
+![Result of rendering the code cell with multiple figures in @fig-multiple-figures.](images/figure-table-multiple-figures.png){#fig-multiple-figures-rendered fig-alt="Two scatterplots one above the other. Each plot has a caption prefaced by '(a)' and '(b)' respectively. The overall caption is 'Figure 1: Physical dimensions of penguins'."}
 
 When rendered, the figures are placed together in a single "Figure" where the overall caption is provided by `fig-cap` and prefaced by "Figure 1:".
 Each individual figure in the panel has its own sub-caption prefaced by "(a)" and "(b)".
-You can cross reference the entire panel with the `label`, e.g., `@fig-scatter`, or individual figures by appending an index, e.g., `@fig-scatter-1` and `@fig-scatter-2`.
+You can cross-reference the entire panel with the `label`, e.g., `@fig-scatter`, or individual figures by appending an index, e.g., `@fig-scatter-1` and `@fig-scatter-2`.
 
 Often the use of `fig-subcap` is combined with layout options to arrange the figures in a specific way.
-For example, the `layout-ncol` code cell option will arrange the figures in a specified number of columns. 
-Adding the code cell option `layout-ncol: 2` to the above example would result in the figures laid out side-by-side rather than one above the other.
+For example, the `layout-ncol` *code cell option* will arrange the figures in a specified number of columns. 
+Adding the *code cell option* `layout-ncol: 2` to @fig-multiple-figures would result in the figures laid out side by side rather than one above the other.
 
-Using `fig-subcap` is a quick way to make a multi-panel figure. But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them (@sec-figtab-layout).
+Using `fig-subcap` is a quick way to make a multi-panel figure.
+But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them (@sec-figtab-layout).
 You can learn more about this approach in @sec-figtab-layout.
 
 
