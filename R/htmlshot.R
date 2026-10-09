@@ -26,6 +26,16 @@ htmlshot <- function(
   # Avoid capturing before web fonts are applied
   b$Runtime$evaluate("document.fonts.ready.then(() => true)", awaitPromise = TRUE)
 
+  # Quarto sets `html { height: 100% }`, and chromote clips selector bounds to
+  # the <html> box, so elements below the first screen would be cut off or fall
+  # back to the viewport. Make the viewport as tall as the page.
+  if (!is.null(selector) || full_page) {
+    page_height <- b$Runtime$evaluate(
+      "document.documentElement.scrollHeight"
+    )$result$value
+    b$set_viewport_size(width, max(height, page_height))
+  }
+
   if (is.null(selector)) {
     selector <- "html"
     cliprect <- if (full_page) NULL else c(0, 0, width, height)
