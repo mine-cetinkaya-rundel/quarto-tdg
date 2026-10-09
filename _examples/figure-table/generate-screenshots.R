@@ -13,18 +13,19 @@ image_dir <- here("images")
 screenshots <- tribble(
   ~file,                      ~id,
   "quick-start/r.qmd"      , "quick-start-figure",
-  "quick-start/r.qmd"      , "basic-cell-options-table",
   "multiple/r.qmd"         ,  "multiple-figures",
   "multiple/r.qmd"         ,  "multiple-tables",
   "position/r.qmd"         ,  "column-screen",
   "position/r.qmd"         ,  "column-margin",
   "basic-cell-options/r.qmd", "basic-cell-options-table",
   "basic-cell-options/r.qmd", "basic-cell-options-figure",
-  "cross-references/r.qmd"  , "cross-references-link",
   "cross-references/simple.qmd", "simple",
   "fig-align/r.qmd",         "align-left",
   "fig-align/r.qmd",         "align-center",
   "fig-align/r.qmd",         "align-right",
+  "captions/location-top.qmd",    "captions-location-top",
+  "captions/location-bottom.qmd", "captions-location-bottom",
+  "captions/location-margin.qmd", "captions-location-margin",
 )
 
 screenshots <- screenshots |>
