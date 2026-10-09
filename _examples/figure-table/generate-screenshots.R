@@ -1,3 +1,9 @@
+# Render the figure and table examples and screenshot them to images/.
+# See README.md in this directory for how to add a screenshot.
+#
+# Run from the project root in an R session (so renv is used):
+#   source("_examples/figure-table/generate-screenshots.R")
+
 library(here)
 library(fs)
 library(dplyr)

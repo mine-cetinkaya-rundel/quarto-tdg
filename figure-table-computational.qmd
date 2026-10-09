@@ -5,7 +5,8 @@
 #| label: screenshots
 #| include: false
 
-## Occasionally run this re-generate screenshots
+# Regenerates the screenshots for this chapter and figure-table.qmd.
+# See _examples/figure-table/README.md.
 source("_examples/figure-table/generate-screenshots.R")
 ```
 ```{r}
