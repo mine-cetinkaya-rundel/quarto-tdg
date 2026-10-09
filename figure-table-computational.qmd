@@ -196,7 +196,7 @@ Basic code cell options used to add an identifier (`label`), caption (`fig-cap`)
 The rendered result is shown in @fig-basic-cell-options-figure.
 The caption here is prefaced by "Figure 1:" because the label started with `fig-`, the signal that this is a cross-referenceable figure. 
 
-![Example output when @fig-figures is rendered](images/figure-table-basic-cell-options-figure.png){#fig-basic-cell-options-figure fig-alt=""}
+![Example output when @fig-figures is rendered](images/figure-table-basic-cell-options-figure.png){#fig-basic-cell-options-figure fig-alt="A scatterplot of penguin bill depth versus bill length, colored by species (Adelie, Chinstrap, Gentoo), with the caption 'Figure 1: Penguin bill length versus depth by species'."}
 
 @fig-tables demonstrates the same concept for tables.
 To caption a table use the `tbl-cap` option, 

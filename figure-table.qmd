@@ -506,18 +506,18 @@ The `margin` value applies only to formats that have a margin, such as `html` an
 
 :::{layout="[[1,1], [1]]"}
 :::{}
-![](images/figure-table-captions-location-top.png){.border}
+![](images/figure-table-captions-location-top.png){.border fig-alt="A table of penguin counts by species (Adelie 151, Chinstrap 68, Gentoo 123) with the caption 'Table 1: Penguins sampled from the Palmer Archipelago' above it."}
 
 `top`
 :::
 :::{}
-![](images/figure-table-captions-location-bottom.png){.border}
+![](images/figure-table-captions-location-bottom.png){.border fig-alt="The same penguin counts table with its caption below the table."}
 
 `bottom`
 :::
 
 :::{}
-![](images/figure-table-captions-location-margin.png){.border}
+![](images/figure-table-captions-location-margin.png){.border fig-alt="The same penguin counts table with its caption in the right margin, next to the table."}
 
 `margin`
 :::
@@ -589,13 +589,13 @@ You can control these using the `crossref` options described in @tbl-crossref-op
 
 ::: {layout="[2, 1]"}
 :::{}
-![](images/figure-table-caption-format.jpeg){.border width="50%"}
+![](images/figure-table-caption-format.jpeg){.border width="50%" fig-alt="The caption 'Table 1: Penguins sampled from ...' with labels that point to its parts: 'Table' is tbl-title, '1' is tbl-labels, and ':' is title-delim."}
 
 Table caption
 :::
 
 :::{}
-![](images/figure-table-cross-reference-form.jpeg){.border width="50%"}
+![](images/figure-table-cross-reference-form.jpeg){.border width="50%" fig-alt="The text 'See Table 1 ...', where 'Table' in the link is labeled tbl-prefix."}
 
 Inline reference
 :::
@@ -668,7 +668,7 @@ crossref:
 
 @fig-cap-title-edit shows the result.
 
-![A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.](images/figure-table-caption-format-edit.png){#fig-cap-title-edit}
+![A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.](images/figure-table-caption-format-edit.png){#fig-cap-title-edit fig-alt="A caption that reads 'Sheet I— Penguins sampled from ...' and a cross-reference that reads 'See Sh I ...'."}
 
 ::: {.callout-tip}
 ## Custom cross-reference types
@@ -947,9 +947,9 @@ The `fig-column` and `tbl-column` code cell options are similar, but they move o
 
 ::: {#fig-page-columns layout-ncol="2"}
 
-![`column: screen`](images/figure-table-column-screen.png){#fig-page-columns-screen}
+![`column: screen`](images/figure-table-column-screen.png){#fig-page-columns-screen fig-alt="A scatterplot of penguin bill depth versus bill length, colored by species, that spans the full width of the page, wider than the paragraphs above and below it."}
 
-![`column: margin`](images/figure-table-column-margin.png){#fig-page-columns-margin}
+![`column: margin`](images/figure-table-column-margin.png){#fig-page-columns-margin fig-alt="A paragraph of placeholder text with a small version of the penguin scatterplot in the right margin beside it."}
 
 A figure in different columns of the page: (a) the full width of the screen and (b) the margin. Columns apply to the `html` and `typst` formats.
 
