@@ -157,13 +157,11 @@ Caption
 where `{ IMAGE }` could be a markdown image or a code cell generating a figure.
 Conveniently, even if you don't replace `{ IMAGE }`, this is valid Quarto markdown and will render like @fig-id.
 
-:::: {.rendered}
 ::: {#fig-id}
 { IMAGE }
 
 Caption
 :::
-::::
 
 The same fenced div syntax applies to tables and we'll use a similar shorthand:
 
