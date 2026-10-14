@@ -177,24 +177,26 @@ where `{ TABLE }` could be a code cell generating a table, or a table written di
 
 ## Cross-references {#sec-figtab-crossref}
 
-You'll start with the two required steps to cross-reference a figure or table:
+You were introduced to cross-references in @sec-crossreferences.
+As a reminder, there are two required steps to cross-reference a figure or table:
 
-1. Give your figure or table an identifier that Quarto recognizes as a cross-reference; that is, one that starts with `fig-` or `tbl-`.
+1. Give your figure or table an identifier that Quarto recognizes as a cross-reference; that is, one that starts with `fig-` or `tbl-` (@sec-figtab-add-id).
 
-2. Refer to your figure or table using the syntax `@ID`.
+2. Refer to your figure or table using the `@` syntax (@sec-figtab-refer).
 
-Then, you'll learn about creating sub-references. 
+@sec-figtab-add-id goes into more detail than @sec-crossreferences, showing how to add an identifier to computational outputs and when using the fenced div syntax, in addition to markdown.
+Then, in @sec-sub-references, you'll learn about creating sub-references. 
 
 This section focuses on creating and using cross-references. 
 If you are interested in customizing the way your figures and tables are numbered or labeled, see @sec-figtab-captions.
 
-### Adding an identifier to a figure or table
+### Adding an identifier to a figure or table {#sec-figtab-add-id}
 
 Depending on how you create your figure or table, there are three ways to add an identifier that Quarto recognizes for cross-referencing:
 
-* **Non-computational**: as an ID attribute, starting with `#`, in markdown syntax
-* **Computational**: as the `label` code cell option
-* **Both**: as an ID attribute, starting with `#`, in the fenced div syntax
+* **Markdown figures or tables**: as an ID attribute, starting with `#`, in markdown syntax
+* **Computational figures or tables**: as the `label` code cell option
+* **Fenced div syntax**: as an ID attribute, starting with `#`, in the fenced div syntax
 
 We illustrate each of these for figures in @fig-id-figure and for tables in @fig-id-table.
 The caption, and alternative text for figures, are optional, but you'll generally include them, so our examples do too.
@@ -319,11 +321,12 @@ For example, using `fig-` gets you a "Figure X" regardless of the content.
 
 :::
 
-### Referring to a figure or table
+### Referring to a figure or table {#sec-figtab-refer}
 
 To refer to a figure or table, use `@` followed by the identifier (@fig-crossref-inline-syntax).
 When rendered, the cross-references are replaced with the figure or table counter and become links (@fig-crossref-inline-rendered).
 In HTML formats, hovering on the links also shows a preview of the figure or table.
+For variations on this syntax, like customizing the prefix or showing only the number, see @tbl-crossref-examples.
 
 ::: {#fig-crossref-inline layout-ncol="2"}
 
@@ -358,9 +361,10 @@ For documents in a website project, an alternative approach is to link to the fi
 Sub-references let you refer to one part of a multi-part figure or table, for example "Figure 1 (a)".
 To make sub-references, nest your cross-referenceable elements inside a parent fenced div that has a caption and an identifier.
 The children's identifiers must use the same prefix as the parent's.
+
 For example, here the parent div has the identifier `fig-animals` and contains two markdown images, each with its own `fig-` identifier:
 
-```markdown
+```{.markdown .code-overflow-wrap}
 ::: {#fig-animals}
 
 ![Elephant](images/elephant.png){#fig-elephant fig-alt="Line drawing of an elephant."}
