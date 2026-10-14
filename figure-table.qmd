@@ -719,7 +719,7 @@ Put each element in its own fenced div, as shown in @fig-panel-images.
 ````
 :::::
 
-![](images/figure-table-panel-images.svg){.border fig-alt="An image placeholder and a table placeholder side by side, with no captions and no numbers."}
+![](images/figure-table-panel-images.svg){.border fig-alt="Two placeholders, CONTENT 1 and CONTENT 2, side by side, with no captions and no numbers."}
 ::::::
 
 Content side by side. Neither item is cross-referenceable.
@@ -757,7 +757,7 @@ Caption 2
 ````
 :::::
 
-![](images/figure-table-panel-figures.svg){.border fig-alt="A separately outlined figure and table side by side, captioned Figure 1: Caption 1 and Table 1: Caption 2."}
+![](images/figure-table-panel-figures.svg){.border fig-alt="Two separately outlined placeholders, CONTENT 1 and CONTENT 2, side by side, captioned Figure 1: Caption 1 and Table 1: Caption 2."}
 ::::::
 
 Cross-referenceable figures or tables side by side. Each item has its own caption and number, here "Figure 1" and "Table 1". Because each item is cross-referenced on its own, the prefixes can differ.
@@ -783,7 +783,7 @@ Main caption
 ````
 :::::
 
-![](images/figure-table-panel-figure-of-images.svg){.border fig-alt="One outlined figure around an uncaptioned image placeholder and table placeholder, with one caption below: Figure 1: Main caption."}
+![](images/figure-table-panel-figure-of-images.svg){.border fig-alt="One outlined figure around two uncaptioned placeholders, CONTENT 1 and CONTENT 2, with one caption below: Figure 1: Main caption."}
 ::::::
 
 One cross-referenceable figure that contains both items. You can refer to the whole figure, but not to the items inside it. The prefix of the outer div decides the type, so the whole panel is a figure, even though one item is a table.
@@ -813,7 +813,7 @@ Main caption
 ````
 :::::
 
-![](images/figure-table-panel-subfigures.svg){.border fig-alt="One outer figure around two outlined sub-figures, an image and a table, captioned (a) Sub-caption 1 and (b) Sub-caption 2, with Figure 1: Main caption below both."}
+![](images/figure-table-panel-subfigures.svg){.border fig-alt="One outer figure around two outlined sub-figures, CONTENT 1 and CONTENT 2, captioned (a) Sub-caption 1 and (b) Sub-caption 2, with Figure 1: Main caption below both."}
 ::::::
 
 One cross-referenceable figure with sub-figures. The inner captions become sub-captions. The prefix of the inner elements must match that of the outer element, all `fig-` in this example.
@@ -877,7 +877,7 @@ For example, `layout="[[1,1],[1]]"` puts two items of equal width in the first r
 ````
 :::::
 
-![](images/figure-table-panel-custom-grid.svg){.border fig-alt="Two placeholders of equal width side by side in the first row, and one full-width placeholder in the second row, with no captions."}
+![](images/figure-table-panel-custom-grid.svg){.border fig-alt="Two placeholders of equal width, CONTENT 1 and CONTENT 2, side by side in the first row, and one full-width placeholder, CONTENT 3, in the second row, with no captions."}
 ::::::
 
 A custom grid with `layout="[[1,1],[1]]"`: two items in the first row and one item at full width in the second row.
@@ -910,7 +910,7 @@ Use `layout-valign` to set the vertical alignment of the items in each row: `top
 ````
 :::::
 
-![](images/figure-table-panel-valign.svg){.border fig-alt="A tall image placeholder next to a short table placeholder, with their bottom edges aligned."}
+![](images/figure-table-panel-valign.svg){.border fig-alt="A tall placeholder, CONTENT 1, next to a short placeholder, CONTENT 2, with their bottom edges aligned."}
 ::::::
 
 Content of different heights aligned with `layout-valign="bottom"`. The bottom edges of the items line up.
