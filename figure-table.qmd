@@ -39,7 +39,7 @@ As you read this chapter you'll see examples of figures and tables that are prod
 ::: {#fig-figure-syntax}
 
 ::: {#fig-figure-syntax-md}
-```markdown
+```{.markdown .code-overflow-wrap}
 ![Caption](path/to/image.jpg){#fig-id fig-alt="Alternative text"}
 ```
 
@@ -48,7 +48,7 @@ Markdown
 
 
 ::: {#fig-figure-syntax-comp}
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{LANGUAGE}}
 #| label: fig-id
 #| fig-cap: "Caption"
@@ -68,7 +68,7 @@ Syntax for a figure with a numbered caption and alternative text produced with (
 ::: {#fig-table-syntax}
 
 ::: {#fig-table-syntax-md}
-```markdown
+```{.markdown .code-overflow-wrap}
 | Column 1 | Column 2 |
 |----------|----------|
 | Cell A   | Cell B   |
@@ -81,7 +81,7 @@ Markdown
 
 
 ::: {#fig-table-syntax-comp}
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{LANGUAGE}}
 #| label: tbl-id
 #| tbl-cap: "Caption"
@@ -113,7 +113,7 @@ For example, @fig-fenced-div-figure shows the fenced div syntax for figures.
 ::: {#fig-fenced-div-figure}
 
 ::: {#fig-fenced-div-figure-md}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::: {#fig-id}
 ![](path/to/image.jpg){fig-alt="Alternative text"}
 
@@ -124,7 +124,7 @@ Markdown
 :::
 
 :::{#fig-fenced-div-figure-comp}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::: {#fig-id}
 ```{{LANGUAGE}}
 #| fig-alt: "Alternative text"
@@ -146,7 +146,7 @@ Fenced div syntax for a figure with a numbered caption and alternative text prod
 The fenced div syntax abstracts away whether the figure or table is produced in markdown or computationally.
 So, in the rest of this chapter and in @sec-figure-table-computational, we'll use the shorthand:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 ::: {#fig-id}
 { IMAGE }
 
@@ -165,7 +165,7 @@ Caption
 
 The same fenced div syntax applies to tables and we'll use a similar shorthand:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 ::: {#tbl-id}
 { TABLE }
 
@@ -205,7 +205,7 @@ The caption, and alternative text for figures, are optional, but you'll generall
 ::: {#fig-id-figure}
 
 :::{#fig-id-figure-md}
-```markdown
+```{.markdown .code-overflow-wrap}
 ![Caption](path/to/image.jpg){#fig-id fig-alt="Alt text"}
 ```
 
@@ -213,7 +213,7 @@ Markdown figure
 :::
 
 ::: {#fig-id-figure-comp}
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{LANGUAGE}}
 #| label: fig-id
 #| fig-cap: "Caption"
@@ -226,7 +226,7 @@ Computational figure
 :::
 
 :::{#fig-id-fenced-div-markdown}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::: {#fig-id}
 ![](path/to/image.jpg){fig-alt="Alt text"}
 
@@ -238,7 +238,7 @@ Fenced div markdown figure
 :::
 
 :::{#fig-id-fenced-div-comp}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::: {#fig-id}
 ```{{LANGUAGE}}
 #| fig-alt: "Alt text"
@@ -257,7 +257,7 @@ Ways to add the identifier `fig-id` to a figure using (a) markdown, (b) computat
 ::: {#fig-id-table}
 
 :::{#fig-id-table-md}
-```markdown
+```{.markdown .code-overflow-wrap}
 | Column 1 | Column 2 |
 |----------|----------|
 | Cell A   | Cell B   |
@@ -268,7 +268,7 @@ Markdown table
 :::
 
 ::: {#fig-id-table-comp}
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{LANGUAGE}}
 #| label: tbl-id
 #| tbl-cap: "Caption"
@@ -279,7 +279,7 @@ Computational table
 :::
 
 ::: {#fig-id-table-fenced-md}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::: {#tbl-id}
 | Column 1 | Column 2 |
 |----------|----------|
@@ -292,7 +292,7 @@ Fenced div markdown table
 :::
 
 ::: {#fig-id-table-fenced-comp}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::: {#tbl-id}
 ```{{LANGUAGE}}
 # Code to generate a single table
@@ -331,7 +331,7 @@ For variations on this syntax, like customizing the prefix or showing only the n
 ::: {#fig-crossref-inline layout-ncol="2"}
 
 ::: {#fig-crossref-inline-syntax}
-```markdown
+```{.markdown .code-overflow-wrap}
 See @tbl-id.
 @fig-id shows ...
 ```
@@ -384,7 +384,7 @@ The captions of the children become sub-captions.
 When the children become more complicated, we recommend using an explicit fenced div for each one.
 For example, the general structure becomes:
 
-```markdown
+```{.markdown .code-overflow-wrap}
 :::: {#fig-main}
 
 ::: {#fig-sub1}
@@ -451,7 +451,7 @@ In a fenced div, the caption is a markdown paragraph, so you can break lines whe
 
 ::: {#fig-long-captions}
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ::: {#fig-scatter}
 { IMAGE }
 
@@ -486,7 +486,7 @@ For example, the caption in @fig-dynamic-captions includes the number of penguin
 
 ## R
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ::: {#fig-scatter}
 { IMAGE }
 
@@ -496,7 +496,7 @@ Bill length versus depth for `{{r}} nrow(penguins)` penguins.
 
 ## Python
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ::: {#fig-scatter}
 { IMAGE }
 
@@ -562,7 +562,7 @@ You can set these options at three levels:
 * On an individual figure or table, to control only that one.
     Use the code cell option for computational outputs:
 
-    ````{.markdown}
+    ````{.markdown .code-overflow-wrap}
     ```{{LANGUAGE}}
     #| label: tbl-island-count
     #| tbl-cap: "Penguins sampled from the Palmer Archipelago"
@@ -574,7 +574,7 @@ You can set these options at three levels:
     
     Or the attribute form for markdown figures or tables:
     
-    ```markdown
+    ```{.markdown .code-overflow-wrap}
     | Island    | Count |
     |-----------|-------|
     | Biscoe    | 168   |
@@ -586,7 +586,7 @@ You can set these options at three levels:
 
     With the fenced div syntax, put the attribute on the div:
 
-    ```markdown
+    ```{.markdown .code-overflow-wrap}
     ::: {#tbl-island-count cap-location="bottom"}
     { TABLE }
 
@@ -706,7 +706,7 @@ Put each element in its own fenced div, as shown in @fig-panel-images.
 ::::::: {#fig-panel-images}
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::::: {layout-ncol="2"}
 ::: {}
 { CONTENT 1 }
@@ -740,7 +740,7 @@ Do both to make one cross-referenceable figure with sub-figures (@fig-panel-subf
 ::::::: {#fig-panel-figures}
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::::: {layout-ncol="2"}
 ::: {#fig-1}
 { CONTENT 1 }
@@ -766,7 +766,7 @@ Cross-referenceable figures or tables side by side. Each item has its own captio
 ::::::: {#fig-panel-figure-of-images}
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
-````markdown
+````{.markdown .code-overflow-wrap}
 :::::: {#fig-main}
 ::::: {layout-ncol="2"}
 ::: {}
@@ -792,7 +792,7 @@ One cross-referenceable figure that contains both items. You can refer to the wh
 ::::::: {#fig-panel-subfigures}
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
-````markdown
+````{.markdown .code-overflow-wrap}
 :::::: {#fig-main}
 ::::: {layout-ncol="2"}
 ::: {#fig-sub1}
@@ -830,7 +830,7 @@ If it does, use one fenced div for the cross-reference and a separate, nested fe
 
 If one code cell makes all the figures or tables, you can use `layout-ncol` as a code cell option instead of a fenced div:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{LANGUAGE}}
 #| label: fig-id
 #| fig-cap: "Main caption"
@@ -860,7 +860,7 @@ For example, `layout="[[1,1],[1]]"` puts two items of equal width in the first r
 ::::::: {#fig-panel-custom-grid}
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::::: {layout="[[1,1],[1]]"}
 ::: {}
 { CONTENT 1 }
@@ -897,7 +897,7 @@ Use `layout-valign` to set the vertical alignment of the items in each row: `top
 ::::::: {#fig-panel-valign}
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
-````markdown
+````{.markdown .code-overflow-wrap}
 ::::: {layout-ncol="2" layout-valign="bottom"}
 ::: {}
 { CONTENT 1 }
@@ -930,7 +930,7 @@ Fenced divs with `.column-` classes put content in different columns of the page
 To move a figure or table, wrap its fenced div in a fenced div with the class.
 For example, to give a wide figure the full width of the screen, use `.column-screen`:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 ::: {.column-screen}
 :::: {#fig-id}
 { IMAGE }
@@ -947,7 +947,7 @@ As with panel layouts, keep the column class and the identifier on separate fenc
 For a code cell, use the `column` code cell option instead of a class.
 The value is the class name without the `column-` prefix:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{LANGUAGE}}
 #| label: fig-id
 #| fig-cap: "Caption"
@@ -1020,13 +1020,13 @@ Use the `fig-align` document option to set the alignment of all figures in a doc
 
 To align one figure, and override the document option, add a `fig-align` attribute to a markdown image:
 
-```markdown
+```{.markdown .code-overflow-wrap}
 ![Caption](path/to/image.jpg){#fig-id fig-align="right"}
 ```
 
 Or, for a figure from a code cell, use the `fig-align` code cell option:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{LANGUAGE}}
 #| label: fig-id
 #| fig-cap: "Caption"
@@ -1051,7 +1051,7 @@ To align the columns of a pipe table, add colons to the separator row.
 A colon on the left aligns the column to the left, a colon on the right aligns it to the right, and colons on both sides center it.
 This table aligns the first column to the left, the second column to the center, and the third column to the right:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 {{< include _examples/authoring/tables/markdown-table-align.md >}}
 ````
 
@@ -1059,7 +1059,7 @@ To align the columns of a list table, add an `aligns` attribute to the `.list-ta
 Its value is a comma-separated list with one letter per column: `l` (left), `c` (center), `r` (right), or `d` (default).
 This list table has the same alignment as the pipe table above:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 {{< include _examples/authoring/tables/list-table-align.qmd >}}
 ````
 
@@ -1068,14 +1068,14 @@ Its value is an array of percentages, one per column.
 For a pipe table, add a `tbl-colwidths` attribute after the caption.
 This table gives the first column 80% of the width, and the other two columns 10% each:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 {{< include _examples/authoring/tables/markdown-table-colwidths.md >}}
 ````
 
 For a list table, you can add the same `tbl-colwidths` attribute to the `.list-table` div.
 Or, use the list table attribute `widths`, with a comma-separated list of widths:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 {{< include _examples/authoring/tables/list-table-widths.qmd >}}
 ````
 
@@ -1106,7 +1106,7 @@ In @lst-tbl-align-code, the `align` argument to `knitr::kable()` and the `colali
 
 ### R
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 {{< include _examples/figure-table/_code-snippets/species-count-markdown-align.R >}}
 ```
@@ -1114,7 +1114,7 @@ In @lst-tbl-align-code, the `align` argument to `knitr::kable()` and the `colali
 
 ### Python
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 {{< include _examples/figure-table/_code-snippets/species-count-markdown-align.py >}}
 ```
@@ -1134,7 +1134,7 @@ It overrides the document option.
 
 ### R
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 #| tbl-colwidths: [25, 75]
 {{< include _examples/figure-table/_code-snippets/species-count-markdown.R >}}
@@ -1143,7 +1143,7 @@ It overrides the document option.
 
 ### Python
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 #| tbl-colwidths: [25, 75]
 {{< include _examples/figure-table/_code-snippets/species-count-markdown.py >}}
@@ -1169,7 +1169,7 @@ In @lst-tbl-gt, `cols_align()` aligns the count column to the right, `cols_width
 
 ### R
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 penguins |>
   count(species) |>
@@ -1185,7 +1185,7 @@ penguins |>
 
 ### Python
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 (
   pl.DataFrame(penguins)
