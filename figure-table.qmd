@@ -406,7 +406,7 @@ Main caption
 Here, `CONTENT` can be any markdown or code cell output.
 
 ::: callout-tip
-We've used additional colons (`:`) to help you see the nesting, but they aren't required.
+We've used additional colons (`:`) on the outer div to help you see the nesting, but they aren't required.
 :::
 
 If the children all come from one code cell that makes several outputs of the same type (all figures or all tables), you can use the `fig-subcap` or `tbl-subcap` code cell options instead.
@@ -724,7 +724,7 @@ Put each element of the panel in its own fenced div, as shown in @fig-panel-imag
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
 ````{.markdown .code-overflow-wrap}
-::::: {layout-ncol="2"}
+:::: {layout-ncol="2"}
 ::: {}
 { CONTENT 1 }
 :::
@@ -732,7 +732,7 @@ Put each element of the panel in its own fenced div, as shown in @fig-panel-imag
 ::: {}
 { CONTENT 2 }
 :::
-:::::
+::::
 ````
 :::::
 
@@ -760,7 +760,7 @@ Do both to make one cross-referenceable figure with sub-figures (@fig-panel-subf
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
 ````{.markdown .code-overflow-wrap}
-::::: {layout-ncol="2"}
+:::: {layout-ncol="2"}
 ::: {#fig-1}
 { CONTENT 1 }
 
@@ -772,7 +772,7 @@ Caption 1
 
 Caption 2
 :::
-:::::
+::::
 ````
 :::::
 
@@ -786,8 +786,8 @@ Cross-referenceable figures or tables side by side. Each item has its own captio
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
 ````{.markdown .code-overflow-wrap}
-:::::: {#fig-main}
-::::: {layout-ncol="2"}
+::::: {#fig-main}
+:::: {layout-ncol="2"}
 ::: {}
 { CONTENT 1 }
 :::
@@ -795,10 +795,10 @@ Cross-referenceable figures or tables side by side. Each item has its own captio
 ::: {}
 { CONTENT 2 }
 :::
-:::::
+::::
 
 Main caption
-::::::
+:::::
 ````
 :::::
 
@@ -812,8 +812,8 @@ One cross-referenceable figure that contains both items. You can refer to the wh
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
 ````{.markdown .code-overflow-wrap}
-:::::: {#fig-main}
-::::: {layout-ncol="2"}
+::::: {#fig-main}
+:::: {layout-ncol="2"}
 ::: {#fig-sub1}
 { CONTENT 1 }
 
@@ -825,10 +825,10 @@ Sub-caption 1
 
 Sub-caption 2
 :::
-:::::
+::::
 
 Main caption
-::::::
+:::::
 ````
 :::::
 
@@ -880,7 +880,7 @@ For example, `layout="[[1,1],[1]]"` puts two items of equal width in the first r
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
 ````{.markdown .code-overflow-wrap}
-::::: {layout="[[1,1],[1]]"}
+:::: {layout="[[1,1],[1]]"}
 ::: {}
 { CONTENT 1 }
 :::
@@ -892,7 +892,7 @@ For example, `layout="[[1,1],[1]]"` puts two items of equal width in the first r
 ::: {}
 { CONTENT 3 }
 :::
-:::::
+::::
 ````
 :::::
 
@@ -917,7 +917,7 @@ Use `layout-valign` to set the vertical alignment of the items in each row: `top
 :::::: {layout="[[1,1]]" layout-valign="center"}
 ::::: {}
 ````{.markdown .code-overflow-wrap}
-::::: {layout-ncol="2" layout-valign="bottom"}
+:::: {layout-ncol="2" layout-valign="bottom"}
 ::: {}
 { CONTENT 1 }
 :::
@@ -925,7 +925,7 @@ Use `layout-valign` to set the vertical alignment of the items in each row: `top
 ::: {}
 { CONTENT 2 }
 :::
-:::::
+::::
 ````
 :::::
 
@@ -950,13 +950,13 @@ To move a figure or table, wrap its fenced div in a fenced div with the class.
 For example, to give a wide figure the full width of the screen, use `.column-screen`:
 
 ````{.markdown .code-overflow-wrap}
-::: {.column-screen}
-:::: {#fig-id}
+:::: {.column-screen}
+::: {#fig-id}
 { IMAGE }
 
 Caption
-::::
 :::
+::::
 ````
 
 For a small figure that supports the main text, use `.column-margin` to put it in the margin.
