@@ -46,6 +46,18 @@ Not every `images/figure-table-*` file comes from `generate-screenshots.R`:
 
 - `figure-table-panel-*.svg`: diagrams made by `layout/build-panel-diagrams.R`.
   Run `Rscript _examples/figure-table/layout/build-panel-diagrams.R` from the project root.
+- `figure-table-caption-format.svg`, `figure-table-cross-reference-form.svg`, and their `-edit` versions: hand-written SVGs.
+  The `-edit` versions are copies with the rendered row changed to the custom values (`Sheet`, `Sh`, `roman`, `—`). Keep the template rows the same in both pairs.
+  They use the background and fonts of the panel diagrams.
+  Each shows the text as rendered, with a template row below it that has one pill per `crossref` option and a `␣` for each space.
+  Each option has a color, used for its pill and for a highlight behind the part it controls.
+  The colors are from the Okabe-Ito palette: `tbl-title` orange `#E69F00`, `tbl-labels` sky blue `#56B4E9`, `title-delim` reddish purple `#CC79A7`, `tbl-prefix` bluish green `#009E73`.
+  These are the pill outlines. The pill fills and the highlights are tints of the same colors: `#F3C770`, `#BFE3F7`, `#E0A9C7`, `#7FCDB3`.
+  The parts of the rendered text that options control are `#222`, including the cross-reference link. Text that the options do not control is `#888`.
+  `tbl-labels` has a light fill and its neighbors have deeper fills, so that adjacent parts differ in lightness and stay distinct with color-vision deficiency and in grayscale.
+  `tbl-labels` has the same color in both diagrams. `tbl-prefix` and `tbl-title` have different colors, because they are different options.
+  The two have the same height and a 2:1 width ratio, so that they scale the same in a `layout="[2, 1]"` panel.
+  The rendered text has fixed `textLength` values, so that the highlights fit in any font.
 - `figure-table-caption-format.jpeg`, `figure-table-cross-reference-form.jpeg`, `figure-table-caption-format-edit.png`: made by hand.
   They have no source document.
 

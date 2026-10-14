@@ -422,10 +422,10 @@ A caption has two parts: the caption text _you_ write, and, for cross-referencea
 
 | To... | Use | See |
 |:--|:--|:--|
-| Write a long caption, with line breaks or formatting | The last paragraph of a fenced div | @sec-long-captions |
+| Write a long caption | The last paragraph of a fenced div | @sec-long-captions |
 | Include a computed value in a caption | Inline code in a fenced div caption | @sec-dynamic-captions |
 | Move captions above, below, or into the margin | `cap-location`, `fig-cap-location`, `tbl-cap-location` | @sec-caption-location |
-| Change "Figure" or "Table", the numbering style, or the `:` | `crossref` options in the document header or `_quarto.yml` | @sec-caption-titles |
+| Change "Figure" or "Table", the style of the number, or the ":" between them | `crossref` options in the document header or `_quarto.yml` | @sec-caption-titles |
 
 : Common caption tasks covered in this section. {#tbl-caption-tasks}
 
@@ -559,7 +559,7 @@ You can set these options at three levels:
     ---
     ```
     
-* On an individual figure or table, to control only that one.
+* On an individual figure or table.
     Use the code cell option for computational outputs:
 
     ````{.markdown .code-overflow-wrap}
@@ -598,19 +598,19 @@ You can set these options at three levels:
 
 Quarto adds a title and a number to figures and tables that are cross-referenceable.
 The title and number appear in the caption, and in the inline reference.
-You can control these using the `crossref` options described in @tbl-crossref-options and illustrated for tables in @fig-cap-title.
+You can control these using the `crossref` document options described in @tbl-crossref-options and illustrated for tables in @fig-cap-title.
 
 :::{#fig-cap-title}
 
 ::: {layout="[2, 1]"}
 :::{}
-![](images/figure-table-caption-format.jpeg){.border width="50%" fig-alt="The caption 'Table 1: Penguins sampled from ...' with labels that point to its parts: 'Table' is tbl-title, '1' is tbl-labels, and ':' is title-delim."}
+![](images/figure-table-caption-format.svg){.border fig-alt="The caption 'Table 1: Penguins sampled from ...' above a row of the options that make it up. 'Table' is tbl-title, '1' is tbl-labels, and ':' is title-delim, each matched to its part by color."}
 
 Table caption
 :::
 
 :::{}
-![](images/figure-table-cross-reference-form.jpeg){.border width="50%" fig-alt="The text 'See Table 1 ...', where 'Table' in the link is labeled tbl-prefix."}
+![](images/figure-table-cross-reference-form.svg){.border fig-alt="The text 'See Table 1 ...' above a row of the options that make up the link. 'Table' is tbl-prefix and '1' is tbl-labels, each matched to its part by color."}
 
 Inline reference
 :::
@@ -629,7 +629,7 @@ The default title and number in a table caption and in a cross-reference to the 
 
 * - | `fig-title`
     | `tbl-title`
-  - Title in the caption
+  - Text before the number in the caption
   - | `Figure`
     | `Table`
 
@@ -659,14 +659,12 @@ Options under `crossref` that change caption titles and numbering.
 
 :::
 
-The number style options take these values:
+You can choose from these available styles for `fig-labels`, `tbl-labels`, and `ref-labels`:
 
 * `arabic`: 1, 2, 3
 * `roman`: I, II, III
 * `roman i`: i, ii, iii
 * `alpha a`: a, b, c. To start at a different letter, give that letter, for example `alpha c` or `alpha A`.
-
-You can set these options in the document header or in `_quarto.yml`.
 
 For example, you might change the title of tables to "Sheet", the prefix to "Sh", the numbers to Roman numerals, and the delimiter to an em dash:
 
@@ -683,7 +681,26 @@ crossref:
 
 @fig-cap-title-edit shows the result.
 
-![A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.](images/figure-table-caption-format-edit.png){#fig-cap-title-edit fig-alt="A caption that reads 'Sheet I— Penguins sampled from ...' and a cross-reference that reads 'See Sh I ...'."}
+:::{#fig-cap-title-edit}
+
+::: {layout="[2, 1]"}
+:::{}
+![](images/figure-table-caption-format-edit.svg){.border fig-alt="The caption 'Sheet I— Penguins sampled from ...' above a row of the options that make it up. 'Sheet' is tbl-title, 'I' is tbl-labels, and the em dash is title-delim, each matched to its part by color."}
+
+Table caption
+:::
+
+:::{}
+![](images/figure-table-cross-reference-form-edit.svg){.border fig-alt="The text 'See Sh I ...' above a row of the options that make up the link. 'Sh' is tbl-prefix and 'I' is tbl-labels, each matched to its part by color."}
+
+Inline reference
+:::
+
+:::
+A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.
+:::
+
+To apply these options to all documents in a project set them in `_quarto.yml`.
 
 ::: {.callout-tip}
 ## Custom cross-reference types
@@ -696,12 +713,12 @@ See [Custom Cross-Reference Types](https://quarto.org/docs/authoring/cross-refer
 ## Panel layout {#sec-figtab-layout}
 
 Panel layouts arrange content in a grid with the `layout-ncol`, `layout-nrow`, or `layout` attributes (@sec-layout).
-This section covers the most common cases for figures and tables: arranging them in a grid, grouping them under a shared caption, and aligning them in the grid.
+This section covers the most common cases for figures and tables: arranging them in a grid, grouping them under a shared caption, and aligning them within the grid.
 
 ### Arranging multiple figures and tables {#sec-multiple-outputs}
 
 Recall from @sec-layout that you place content in a grid with a fenced div with the `layout-ncol` attribute.
-Put each element in its own fenced div, as shown in @fig-panel-images.
+Put each element of the panel in its own fenced div, as shown in @fig-panel-images.
 
 ::::::: {#fig-panel-images}
 :::::: {layout="[[1,1]]" layout-valign="center"}
@@ -719,13 +736,15 @@ Put each element in its own fenced div, as shown in @fig-panel-images.
 ````
 :::::
 
+::: {}
 ![](images/figure-table-panel-images.svg){.border fig-alt="Two placeholders, CONTENT 1 and CONTENT 2, side by side, with no captions and no numbers."}
+::: 
 ::::::
 
 Content side by side. Neither item is cross-referenceable.
 :::::::
 
-This example arranges the content in two columns (`layout-ncol="2"`). 
+@fig-panel-images arranges the content in two columns, `layout-ncol="2"`. 
 Increase `layout-ncol` to add additional columns.
 If you have more than `layout-ncol` elements, Quarto adds rows to accommodate them.
 
@@ -846,7 +865,7 @@ If one code cell makes all the figures or tables, you can use `layout-ncol` as a
 See @sec-multiple-figures and @sec-multiple-tables for the details.
 When it is appropriate, the code cell option has concise syntax, but you'll need to switch to a fenced div if you want to mix figures, tables, markdown, or code cell output in the same panel.
 
-### Rows, columns, and custom grids
+### Rows, columns, and custom grids {#sec-panel-grids}
 
 `layout-ncol` sets the number of columns, and Quarto adds rows as necessary.
 `layout-nrow` sets the number of rows, and Quarto adds columns as necessary.
@@ -889,7 +908,7 @@ The numbers are relative, so `layout="[[70,30]]"` gives a row where the first it
 A negative number adds empty space.
 For example, `layout="[40,-20,40]"` puts a 20% gap between two items.
 
-### Alignment in a panel
+### Alignment in a panel {#sec-panel-alignment}
 
 Items in a row are frequently different heights, for example, a tall figure next to a short table.
 Use `layout-valign` to set the vertical alignment of the items in each row: `top`, `center`, or `bottom` (@fig-panel-valign).
