@@ -21,8 +21,9 @@ We expect you'll turn to these chapters to solve particular tasks with your own 
 | Change the caption text, location, or title | @sec-figtab-captions |
 | Arrange multiple figures or tables in a panel | @sec-figtab-layout |
 | Put a figure or table in the margin, or make it wider than the text | @sec-page-columns |
+| Make a figure smaller or larger on the page | @sec-figure-width |
 | Align a figure left, center, or right | @sec-figure-alignment |
-| Align or size the columns of a table | @sec-table-column-widths |
+| Align or size the columns of a table | @sec-table-column-alignment, @sec-table-column-widths |
 | Control the size or aspect ratio of a computational figure | @sec-figure-size |
 | Control the format and styling of a computational table | @sec-figtab-tables |
 | Troubleshoot figure or table output from a package | @sec-figtab-troubleshooting |
@@ -934,12 +935,13 @@ Content of different heights aligned with `layout-valign="bottom"`. The bottom e
 Use `layout-align` to set the horizontal alignment of each item in its cell: `left`, `center`, or `right`.
 You can also set `layout-valign` and `layout-valign` as code cell options.
 
-## Position and alignment {#sec-figtab-position}
+## Position, size, and alignment {#sec-figtab-position}
 
-You can move a figure or table into a different column of the page, and align it inside its container.
+You can move a figure or table into a different column of the page, change the width of a figure, and align a figure inside its container.
+Inside a table, you can also change the alignment and width of each column.
 For slides, see @sec-output-location for the `output-location` code cell option, which can put output on the next slide or next to the code.
 
-### Position relative to the page: `column` {#sec-page-columns}
+### Position relative to the page {#sec-page-columns}
 
 As you saw in @sec-layout, fenced divs with `.column-` classes put content in different columns of the page.
 To move a figure or table, wrap its fenced div in a fenced div with a `.column-` class.
@@ -996,11 +998,56 @@ For example, a small screen has only one column, so all content uses the full wi
 
 :::
 
-### Figure alignment: `fig-align` {#sec-figure-alignment}
+### Figure width {#sec-figure-width}
 
-Every figure sits in a container.
-By default, the container is the width of the body text, but you can change this if you put the figure in a column (@sec-page-columns).
+To set the width of a figure in the document, add a `width` attribute with a percentage of the figure's container, usually the body text, or the column (@sec-page-columns) or panel cell (@sec-figtab-layout) the figure sits in:
+
+```{.markdown .code-overflow-wrap}
+![Caption](path/to/image.png){#fig-id width="50%"}
+```
+
+This scales the display of the figure; the image itself is unchanged.
+
+::: callout-note
+
+## `width` vs. `fig-width`
+
+`width` sets the display width of a figure in the document; `fig-width` sets the size of the image a code cell generates. See @sec-figure-size for `fig-width`.
+
+:::
+
+By default, an image displays at its own width: an image narrower than its container displays as is, and an image wider than its container scales down to fit.
+Setting `width` overrides both behaviors, scaling an image up or down to the given share of its container.
+
+For a figure from a code cell with the `knitr` engine, use the `out-width` code cell option.
+Its value uses the same units as the `width` attribute:
+
+````{.markdown .code-overflow-wrap}
+```{{r}}
+#| label: fig-id
+#| fig-cap: "Caption"
+#| out-width: 50%
+
+# Code to generate a single figure
+```
+````
+
+The `jupyter` engine has no code cell option for the width of a figure in the document.
+
+::: callout-note
+
+## Absolute widths
+
+You can also give `width` an absolute length in inches, centimeters, or millimeters, for example `width="2in"`.
+A number with no unit is a width in pixels.
+An absolute width does not change with the container, so a percentage is usually a better choice.
+
+:::
+
+### Figure alignment {#sec-figure-alignment}
+
 Figure alignment is the horizontal position of a figure in its container.
+Alignment has a visible effect only when the figure is narrower than its container (@sec-figure-width).
 
 Use `fig-align` to change the alignment.
 Its values are `default` (the default for the output format), `left`, `center`, and `right`.
@@ -1046,16 +1093,11 @@ Or, for a figure from a code cell, use the `fig-align` code cell option:
 ```
 ````
 
-## Table column alignment and widths {#sec-table-column-widths}
+### Table column alignment {#sec-table-column-alignment}
 
-Inside a table, each column has an alignment and a width.
-Column alignment is the horizontal position of the content in each cell of the column.
-Column width is the proportion of the table width that the column uses.
-By default, the output format sets the alignment, and the widths depend on the content of the columns.
-
-How you change alignment and width depends on how you make the table: as a pipe table, as a list table, or with a code cell.
-
-### Column alignment
+Column alignment is the horizontal position of the content in each cell of a table column.
+By default, the output format sets the alignment.
+How you change it depends on how you make the table: as a pipe table, as a list table, or with a code cell.
 
 To align the columns of a pipe table, add colons to the separator row.
 A colon on the left aligns the column to the left, a colon on the right aligns it to the right, and colons on both sides center it.
@@ -1141,7 +1183,10 @@ Use the gt or great_tables function `cols_align()` to set the column alignment o
 
 :::
 
-### Column widths
+### Table column widths {#sec-table-column-widths}
+
+Column width is the proportion of the table width that a column uses.
+By default, the widths depend on the content of the columns.
 
 To set the column widths of a pipe table, add a `tbl-colwidths` attribute after the caption.
 Its value is an array of percentages, one per column.
