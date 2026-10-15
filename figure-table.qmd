@@ -447,9 +447,7 @@ The fenced div syntax only gives you a caption when the div's identifier starts 
 
 A long caption is hard to edit as a code cell option, because it must be a valid YAML string on one line.
 In a fenced div, the caption is a markdown paragraph, so you can break lines where it makes sense and use markdown formatting.
-@fig-long-captions shows an example, where `{ IMAGE }` is a markdown image or a code cell that makes a figure (@sec-syntax-variations).
-
-::: {#fig-long-captions}
+In this example, `{ IMAGE }` is a markdown image or a code cell that makes a figure (@sec-syntax-variations):
 
 ````{.markdown .code-overflow-wrap}
 ::: {#fig-scatter}
@@ -463,9 +461,7 @@ and **Gentoo** penguins have long, shallow bills.
 :::
 ````
 
-A long caption in the fenced div syntax. The line breaks in the caption are for readability in the source; the caption renders as one paragraph.
-
-:::
+The line breaks in the caption are for readability in the source; the caption renders as one paragraph.
 
 ::: callout-important
 ## No multi-paragraph captions
@@ -936,7 +932,7 @@ Content of different heights aligned with `layout-valign="bottom"`. The bottom e
 :::::::
 
 Use `layout-align` to set the horizontal alignment of each item in its cell: `left`, `center`, or `right`.
-Both attributes are also code cell options.
+You can also set `layout-valign` and `layout-valign` as code cell options.
 
 ## Position and alignment {#sec-figtab-position}
 
@@ -945,8 +941,8 @@ For slides, see @sec-output-location for the `output-location` code cell option,
 
 ### Position relative to the page: `column` {#sec-page-columns}
 
-Fenced divs with `.column-` classes put content in different columns of the page, for example the right margin (@sec-layout).
-To move a figure or table, wrap its fenced div in a fenced div with the class.
+As you saw in @sec-layout, fenced divs with `.column-` classes put content in different columns of the page.
+To move a figure or table, wrap its fenced div in a fenced div with a `.column-` class.
 For example, to give a wide figure the full width of the screen, use `.column-screen`:
 
 ````{.markdown .code-overflow-wrap}
@@ -1022,10 +1018,7 @@ Examples showing the effect of different `fig-align` settings: `left`, `center`,
 
 :::
 
-To align all the figures in a document, set `fig-align` as a document option (@lst-fig-align-document).
-This applies to figures from markdown and from code cells.
-
-::: {#lst-fig-align-document}
+To align all the figures in a document, set `fig-align` as a document option:
 
 ```{.yaml filename="document.qmd"}
 ---
@@ -1033,9 +1026,7 @@ fig-align: left
 ---
 ```
 
-Use the `fig-align` document option to set the alignment of all figures in a document.
-
-:::
+This applies to figures from markdown and from code cells.
 
 To align one figure, and override the document option, add a `fig-align` attribute to a markdown image:
 
@@ -1062,9 +1053,9 @@ Column alignment is the horizontal position of the content in each cell of the c
 Column width is the proportion of the table width that the column uses.
 By default, the output format sets the alignment, and the widths depend on the content of the columns.
 
-How you change alignment and width depends on how you make the table: in markdown, with a code cell that outputs a markdown table, or with a package that outputs an HTML table.
+How you change alignment and width depends on how you make the table: as a pipe table, as a list table, or with a code cell.
 
-### Markdown tables
+### Column alignment
 
 To align the columns of a pipe table, add colons to the separator row.
 A colon on the left aligns the column to the left, a colon on the right aligns it to the right, and colons on both sides center it.
@@ -1082,45 +1073,12 @@ This list table has the same alignment as the pipe table above:
 {{< include _examples/authoring/tables/list-table-align.qmd >}}
 ````
 
-To set column widths, use `tbl-colwidths`.
-Its value is an array of percentages, one per column.
-For a pipe table, add a `tbl-colwidths` attribute after the caption.
-This table gives the first column 80% of the width, and the other two columns 10% each:
-
-````{.markdown .code-overflow-wrap}
-{{< include _examples/authoring/tables/markdown-table-colwidths.md >}}
-````
-
-For a list table, you can add the same `tbl-colwidths` attribute to the `.list-table` div.
-Or, use the list table attribute `widths`, with a comma-separated list of widths:
-
-````{.markdown .code-overflow-wrap}
-{{< include _examples/authoring/tables/list-table-widths.qmd >}}
-````
-
-To set the column widths of all the markdown tables in a document, set `tbl-colwidths` as a document option (@lst-tbl-colwidths-document).
-A `tbl-colwidths` attribute on a table overrides the document option, but a `widths` attribute does not.
-
-::: {#lst-tbl-colwidths-document}
-
-```{.yaml filename="document.qmd"}
----
-tbl-colwidths: [80, 10, 10]
----
-```
-
-Use the `tbl-colwidths` document option to set the column widths of all markdown tables in a document.
-
-:::
-
-### Tables from code cells
-
-A code cell can output a markdown table, for example with `knitr::kable()` in R or `tabulate()` from the tabulate package in Python.
-There is no code cell option for column alignment.
+For a table from a code cell, there is no code cell option for column alignment.
 Instead, set the alignment with the function that makes the table.
-In @lst-tbl-align-code, the `align` argument to `knitr::kable()` and the `colalign` argument to `tabulate()` align the species column to the left and the count column to the right.
+A code cell can output a markdown table, for example with `knitr::kable()` in R or `tabulate()` from the tabulate package in Python.
+In @fig-tbl-align-code, the `align` argument to `knitr::kable()` and the `colalign` argument to `tabulate()` align the species column to the left and the count column to the right.
 
-::: {#lst-tbl-align-code}
+::: {#fig-tbl-align-code}
 ::: {.panel-tabset group="language"}
 
 ### R
@@ -1145,10 +1103,64 @@ Set the column alignment of a markdown table from a code cell with the function 
 
 :::
 
-To set column widths, use the `tbl-colwidths` code cell option (@lst-tbl-colwidths-code).
-It overrides the document option.
+A package that makes HTML tables, such as gt in R or great_tables in Python, styles the table itself.
+Use the functions of the package to set the column alignment.
+In @fig-tbl-align-gt, `cols_align()` aligns the count column to the right.
 
-::: {#lst-tbl-colwidths-code}
+::: {#fig-tbl-align-gt}
+::: {.panel-tabset group="language"}
+
+### R
+
+````{.markdown .code-overflow-wrap}
+```{{r}}
+penguins |>
+  count(species) |>
+  gt() |>
+  cols_align(align = "right", columns = n)
+```
+````
+
+### Python
+
+````{.markdown .code-overflow-wrap}
+```{{python}}
+(
+  pl.DataFrame(penguins)
+  .group_by('species')
+  .len()
+  .pipe(GT)
+  .cols_align(align="right", columns="len")
+)
+```
+````
+
+:::
+
+Use the gt or great_tables function `cols_align()` to set the column alignment of an HTML table.
+
+:::
+
+### Column widths
+
+To set the column widths of a pipe table, add a `tbl-colwidths` attribute after the caption.
+Its value is an array of percentages, one per column.
+This table gives the first column 80% of the width, and the other two columns 10% each:
+
+````{.markdown .code-overflow-wrap}
+{{< include _examples/authoring/tables/markdown-table-colwidths.md >}}
+````
+
+For a list table, you can add the same `tbl-colwidths` attribute to the `.list-table` div.
+Or, use the list table attribute `widths`, with a comma-separated list of widths:
+
+````{.markdown .code-overflow-wrap}
+{{< include _examples/authoring/tables/list-table-widths.qmd >}}
+````
+
+For a code cell that outputs a markdown table, use the `tbl-colwidths` code cell option (@fig-tbl-colwidths-code).
+
+::: {#fig-tbl-colwidths-code}
 ::: {.panel-tabset group="language"}
 
 ### R
@@ -1175,15 +1187,11 @@ Use the `tbl-colwidths` code cell option to set the column widths of a markdown 
 
 :::
 
-### HTML tables
-
 `tbl-colwidths` applies only to markdown tables.
-A package that makes HTML tables, such as gt in R or great_tables in Python, styles the table itself.
-Use the functions of the package to set the alignment and width of the columns.
+For an HTML table, use the functions of the package that makes it.
+In @fig-tbl-colwidths-gt, `tab_options()` makes the table the full width of its container, and `cols_width()` gives the species column 25% of the width and the count column 75%.
 
-In @lst-tbl-gt, `cols_align()` aligns the count column to the right, `cols_width()` gives the species column 25% of the width and the count column 75%, and `tab_options()` makes the table the full width of its container.
-
-::: {#lst-tbl-gt}
+::: {#fig-tbl-colwidths-gt}
 ::: {.panel-tabset group="language"}
 
 ### R
@@ -1194,7 +1202,6 @@ penguins |>
   count(species) |>
   gt() |>
   tab_options(table.width = pct(100)) |>
-  cols_align(align = "right", columns = n) |>
   cols_width(
     species ~ pct(25),
     n ~ pct(75)
@@ -1212,7 +1219,6 @@ penguins |>
   .len()
   .pipe(GT)
   .tab_options(table_width="100%")
-  .cols_align(align="right", columns="len")
   .cols_width(
     species="25%",
     len="75%"
@@ -1223,11 +1229,23 @@ penguins |>
 
 :::
 
-Use gt or great_tables functions to set the alignment and width of the columns of an HTML table.
+Use the gt or great_tables functions `tab_options()` and `cols_width()` to set the column widths of an HTML table.
 
 :::
 
+To set the column widths of all the markdown tables in a document, set `tbl-colwidths` as a document option:
+
+```{.yaml filename="document.qmd"}
+---
+tbl-colwidths: [80, 10, 10]
+---
+```
+
+A `tbl-colwidths` attribute on a table, or a `tbl-colwidths` code cell option, overrides the document option.
+A list table `widths` attribute does not.
+
 ## Wrapping Up
 
-Everything in this chapter applies to computational figures and tables too.
-In @sec-figure-table-computational, you'll learn the code cell options that control them, and how to troubleshoot them when the output isn't what you expect.
+You now know how to cross-reference, caption, lay out, and position any figure or table, whether it comes from markdown or code.
+But when code produces the output, some things are decided before Quarto ever sees it, like the size of a plot, the format of a table, or the styling a package adds.
+@sec-figure-table-computational covers the code cell options that control these, and how to troubleshoot output that isn't what you expect.
