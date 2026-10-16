@@ -490,7 +490,7 @@ To add an identifier, caption, or alternative text use the code cell options `la
 
 You can include formulas and equations in your document using **TeX math** syntax.
 TeX math is the notation originally developed for the TeX typesetting system.
-It's now the de facto standard across technical writing tools — Wikipedia, scientific journals, Jupyter notebooks, and nearly every markdown processor understand it.
+It's now the de facto standard across technical writing tools---Wikipedia, scientific journals, Jupyter notebooks, and nearly every markdown processor understand it.
 If you're new to TeX math, the [LaTeX Wikibook's Mathematics chapter](https://en.wikibooks.org/wiki/LaTeX/Mathematics) is a gentle tutorial.
 Not all TeX math constructs are supported, but most of the common ones are. 
 The best way to know whether a particular construct is supported is to render and see.

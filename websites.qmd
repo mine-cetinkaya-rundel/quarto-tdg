@@ -1547,7 +1547,7 @@ quarto publish netlify
 ```
 
 [Netlify](https://www.netlify.com) provides services for building, deploying, and managing websites.
-When you publish to Netlify using `quarto publish`, your document or site will be set up as what Netlify calls a [manual deploy](https://docs.netlify.com/cli/get-started/#manual-deploys) — you deploy by *manually* running `quarto publish`.
+When you publish to Netlify using `quarto publish`, your document or site will be set up as what Netlify calls a [manual deploy](https://docs.netlify.com/cli/get-started/#manual-deploys)---you deploy by *manually* running `quarto publish`.
 Your output files are sent to Netlify and Netlify serves them at a URL of the form `{ random identifier }.netlify.app`.
 
 You can manage your deployed site via Netlify's website, and Netlify includes some neat features like one-click rollbacks to a previously deployed site, and the ability to use a custom domain.
