@@ -232,15 +232,21 @@ Many of these options can also be set at the document level to apply to all code
 
 ### Document-level execution options
 
-Set execution options that apply to all cells in your document header:  
+Set execution options that apply to all cells in your document header:
 
+```yaml
+---
+title: My Report
+execute:
+  echo: false
+  warning: false
+---
 ```yaml
 ---
 title: My Report
 echo: false
 warning: false
 ---
-```
 
 Common document-level execution options include the following, which take `true` or `false` unless noted otherwise:
 
