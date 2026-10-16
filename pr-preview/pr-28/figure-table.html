@@ -356,8 +356,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#sec-figtab-crossref" id="toc-sec-figtab-crossref" class="nav-link" data-scroll-target="#sec-figtab-crossref"><span class="header-section-number">13.2</span> Cross-references</a>
   <ul class="collapse">
-  <li><a href="#adding-an-identifier-to-a-figure-or-table" id="toc-adding-an-identifier-to-a-figure-or-table" class="nav-link" data-scroll-target="#adding-an-identifier-to-a-figure-or-table"><span class="header-section-number">13.2.1</span> Adding an identifier to a figure or table</a></li>
-  <li><a href="#referring-to-a-figure-or-table" id="toc-referring-to-a-figure-or-table" class="nav-link" data-scroll-target="#referring-to-a-figure-or-table"><span class="header-section-number">13.2.2</span> Referring to a figure or table</a></li>
+  <li><a href="#sec-figtab-add-id" id="toc-sec-figtab-add-id" class="nav-link" data-scroll-target="#sec-figtab-add-id"><span class="header-section-number">13.2.1</span> Adding an identifier to a figure or table</a></li>
+  <li><a href="#sec-figtab-refer" id="toc-sec-figtab-refer" class="nav-link" data-scroll-target="#sec-figtab-refer"><span class="header-section-number">13.2.2</span> Referring to a figure or table</a></li>
   <li><a href="#sec-sub-references" id="toc-sec-sub-references" class="nav-link" data-scroll-target="#sec-sub-references"><span class="header-section-number">13.2.3</span> Sub-references</a></li>
   </ul></li>
   <li><a href="#sec-figtab-captions" id="toc-sec-figtab-captions" class="nav-link" data-scroll-target="#sec-figtab-captions"><span class="header-section-number">13.3</span> Captions</a>
@@ -370,21 +370,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-figtab-layout" id="toc-sec-figtab-layout" class="nav-link" data-scroll-target="#sec-figtab-layout"><span class="header-section-number">13.4</span> Panel layout</a>
   <ul class="collapse">
   <li><a href="#sec-multiple-outputs" id="toc-sec-multiple-outputs" class="nav-link" data-scroll-target="#sec-multiple-outputs"><span class="header-section-number">13.4.1</span> Arranging multiple figures and tables</a></li>
-  <li><a href="#rows-columns-and-custom-grids" id="toc-rows-columns-and-custom-grids" class="nav-link" data-scroll-target="#rows-columns-and-custom-grids"><span class="header-section-number">13.4.2</span> Rows, columns, and custom grids</a></li>
-  <li><a href="#alignment-in-a-panel" id="toc-alignment-in-a-panel" class="nav-link" data-scroll-target="#alignment-in-a-panel"><span class="header-section-number">13.4.3</span> Alignment in a panel</a></li>
+  <li><a href="#sec-panel-grids" id="toc-sec-panel-grids" class="nav-link" data-scroll-target="#sec-panel-grids"><span class="header-section-number">13.4.2</span> Rows, columns, and custom grids</a></li>
+  <li><a href="#sec-panel-alignment" id="toc-sec-panel-alignment" class="nav-link" data-scroll-target="#sec-panel-alignment"><span class="header-section-number">13.4.3</span> Alignment in a panel</a></li>
   </ul></li>
-  <li><a href="#sec-figtab-position" id="toc-sec-figtab-position" class="nav-link" data-scroll-target="#sec-figtab-position"><span class="header-section-number">13.5</span> Position and alignment</a>
+  <li><a href="#sec-figtab-position" id="toc-sec-figtab-position" class="nav-link" data-scroll-target="#sec-figtab-position"><span class="header-section-number">13.5</span> Position, size, and alignment</a>
   <ul class="collapse">
-  <li><a href="#sec-page-columns" id="toc-sec-page-columns" class="nav-link" data-scroll-target="#sec-page-columns"><span class="header-section-number">13.5.1</span> Position relative to the page: <code>column</code></a></li>
-  <li><a href="#sec-figure-alignment" id="toc-sec-figure-alignment" class="nav-link" data-scroll-target="#sec-figure-alignment"><span class="header-section-number">13.5.2</span> Figure alignment: <code>fig-align</code></a></li>
+  <li><a href="#sec-page-columns" id="toc-sec-page-columns" class="nav-link" data-scroll-target="#sec-page-columns"><span class="header-section-number">13.5.1</span> Position relative to the page</a></li>
+  <li><a href="#sec-figure-width" id="toc-sec-figure-width" class="nav-link" data-scroll-target="#sec-figure-width"><span class="header-section-number">13.5.2</span> Figure width</a></li>
+  <li><a href="#sec-figure-alignment" id="toc-sec-figure-alignment" class="nav-link" data-scroll-target="#sec-figure-alignment"><span class="header-section-number">13.5.3</span> Figure alignment</a></li>
+  <li><a href="#sec-table-column-alignment" id="toc-sec-table-column-alignment" class="nav-link" data-scroll-target="#sec-table-column-alignment"><span class="header-section-number">13.5.4</span> Table column alignment</a></li>
+  <li><a href="#sec-table-column-widths" id="toc-sec-table-column-widths" class="nav-link" data-scroll-target="#sec-table-column-widths"><span class="header-section-number">13.5.5</span> Table column widths</a></li>
   </ul></li>
-  <li><a href="#sec-table-column-widths" id="toc-sec-table-column-widths" class="nav-link" data-scroll-target="#sec-table-column-widths"><span class="header-section-number">13.6</span> Table column alignment and widths</a>
-  <ul class="collapse">
-  <li><a href="#markdown-tables" id="toc-markdown-tables" class="nav-link" data-scroll-target="#markdown-tables"><span class="header-section-number">13.6.1</span> Markdown tables</a></li>
-  <li><a href="#tables-from-code-cells" id="toc-tables-from-code-cells" class="nav-link" data-scroll-target="#tables-from-code-cells"><span class="header-section-number">13.6.2</span> Tables from code cells</a></li>
-  <li><a href="#html-tables" id="toc-html-tables" class="nav-link" data-scroll-target="#html-tables"><span class="header-section-number">13.6.3</span> HTML tables</a></li>
-  </ul></li>
-  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up"><span class="header-section-number">13.7</span> Wrapping Up</a></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up"><span class="header-section-number">13.6</span> Wrapping Up</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/figure-table.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -449,22 +446,26 @@ Table&nbsp;13.1: Common figure and table tasks.
 <td style="text-align: left;"><a href="#sec-page-columns" class="quarto-xref"><span>Section 13.5.1</span></a></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Align a figure left, center, or right</td>
-<td style="text-align: left;"><a href="#sec-figure-alignment" class="quarto-xref"><span>Section 13.5.2</span></a></td>
+<td style="text-align: left;">Make a figure smaller or larger on the page</td>
+<td style="text-align: left;"><a href="#sec-figure-width" class="quarto-xref"><span>Section 13.5.2</span></a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Align or size the columns of a table</td>
-<td style="text-align: left;"><a href="#sec-table-column-widths" class="quarto-xref"><span>Section 13.6</span></a></td>
+<td style="text-align: left;">Align a figure left, center, or right</td>
+<td style="text-align: left;"><a href="#sec-figure-alignment" class="quarto-xref"><span>Section 13.5.3</span></a></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Align or size the columns of a table</td>
+<td style="text-align: left;"><a href="#sec-table-column-alignment" class="quarto-xref"><span>Section 13.5.4</span></a>, <a href="#sec-table-column-widths" class="quarto-xref"><span>Section 13.5.5</span></a></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Control the size or aspect ratio of a computational figure</td>
 <td style="text-align: left;"><a href="figure-table-computational.html#sec-figure-size" class="quarto-xref"><span>Section 14.2.2</span></a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Control the format and styling of a computational table</td>
 <td style="text-align: left;"><a href="figure-table-computational.html#sec-figtab-tables" class="quarto-xref"><span>Section 14.3</span></a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Troubleshoot figure or table output from a package</td>
 <td style="text-align: left;"><a href="figure-table-computational.html#sec-figtab-troubleshooting" class="quarto-xref"><span>Section 14.4</span></a></td>
 </tr>
@@ -484,7 +485,7 @@ Table&nbsp;13.1: Common figure and table tasks.
 <div id="fig-figure-syntax-md" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-figure-syntax-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](path/to/image.jpg)</span>{#fig-id fig-alt="Alternative text"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](path/to/image.jpg)</span>{#fig-id fig-alt="Alternative text"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-figure-syntax-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Markdown
@@ -494,7 +495,7 @@ Table&nbsp;13.1: Common figure and table tasks.
 <div id="fig-figure-syntax-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-figure-syntax-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-id</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Caption"</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-alt: "Alternative text"</span></span>
@@ -519,7 +520,7 @@ Figure&nbsp;13.1: Syntax for a figure with a numbered caption and alternative te
 <div id="fig-table-syntax-md" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-table-syntax-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column 1 <span class="pp">|</span> Column 2 <span class="pp">|</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column 1 <span class="pp">|</span> Column 2 <span class="pp">|</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cell A   <span class="pp">|</span> Cell B   <span class="pp">|</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -533,7 +534,7 @@ Figure&nbsp;13.1: Syntax for a figure with a numbered caption and alternative te
 <div id="fig-table-syntax-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-table-syntax-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: tbl-id</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-cap: "Caption"</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -563,7 +564,7 @@ Figure&nbsp;13.2: Syntax for a table with a numbered caption produced with (a) m
 <div id="fig-fenced-div-figure-md" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-fenced-div-figure-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="al">![](path/to/image.jpg)</span>{fig-alt="Alternative text"}</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Caption</span>
@@ -577,7 +578,7 @@ Figure&nbsp;13.2: Syntax for a table with a numbered caption produced with (a) m
 <div id="fig-fenced-div-figure-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-fenced-div-figure-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-alt: "Alternative text"</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -599,7 +600,7 @@ Figure&nbsp;13.3: Fenced div syntax for a figure with a numbered caption and alt
 </figure>
 </div>
 <p>The fenced div syntax abstracts away whether the figure or table is produced in markdown or computationally. So, in the rest of this chapter and in <a href="figure-table-computational.html" class="quarto-xref"><span>Chapter 14</span></a>, we’ll use the shorthand:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>{ IMAGE }</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>Caption</span>
@@ -616,7 +617,7 @@ Figure&nbsp;13.4: Caption
 </figure>
 </div>
 <p>The same fenced div syntax applies to tables and we’ll use a similar shorthand:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-id}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-id}</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>{ TABLE }</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Caption</span>
@@ -626,20 +627,20 @@ Figure&nbsp;13.4: Caption
 </section>
 <section id="sec-figtab-crossref" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="sec-figtab-crossref"><span class="header-section-number">13.2</span> Cross-references</h2>
-<p>You’ll start with the two required steps to cross-reference a figure or table:</p>
+<p>You were introduced to cross-references in <a href="authoring.html#sec-crossreferences" class="quarto-xref"><span>Section 12.10</span></a>. As a reminder, there are two required steps to cross-reference a figure or table:</p>
 <ol type="1">
-<li><p>Give your figure or table an identifier that Quarto recognizes as a cross-reference; that is, one that starts with <code>fig-</code> or <code>tbl-</code>.</p></li>
-<li><p>Refer to your figure or table using the syntax <code>@ID</code>.</p></li>
+<li><p>Give your figure or table an identifier that Quarto recognizes as a cross-reference; that is, one that starts with <code>fig-</code> or <code>tbl-</code> (<a href="#sec-figtab-add-id" class="quarto-xref"><span>Section 13.2.1</span></a>).</p></li>
+<li><p>Refer to your figure or table using the <code>@</code> syntax (<a href="#sec-figtab-refer" class="quarto-xref"><span>Section 13.2.2</span></a>).</p></li>
 </ol>
-<p>Then, you’ll learn about creating sub-references.</p>
+<p><a href="#sec-figtab-add-id" class="quarto-xref"><span>Section 13.2.1</span></a> goes into more detail than <a href="authoring.html#sec-crossreferences" class="quarto-xref"><span>Section 12.10</span></a>, showing how to add an identifier to computational outputs and when using the fenced div syntax, in addition to markdown. Then, in <a href="#sec-sub-references" class="quarto-xref"><span>Section 13.2.3</span></a>, you’ll learn about creating sub-references.</p>
 <p>This section focuses on creating and using cross-references. If you are interested in customizing the way your figures and tables are numbered or labeled, see <a href="#sec-figtab-captions" class="quarto-xref"><span>Section 13.3</span></a>.</p>
-<section id="adding-an-identifier-to-a-figure-or-table" class="level3" data-number="13.2.1">
-<h3 data-number="13.2.1" class="anchored" data-anchor-id="adding-an-identifier-to-a-figure-or-table"><span class="header-section-number">13.2.1</span> Adding an identifier to a figure or table</h3>
+<section id="sec-figtab-add-id" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="sec-figtab-add-id"><span class="header-section-number">13.2.1</span> Adding an identifier to a figure or table</h3>
 <p>Depending on how you create your figure or table, there are three ways to add an identifier that Quarto recognizes for cross-referencing:</p>
 <ul>
-<li><strong>Non-computational</strong>: as an ID attribute, starting with <code>#</code>, in markdown syntax</li>
-<li><strong>Computational</strong>: as the <code>label</code> code cell option</li>
-<li><strong>Both</strong>: as an ID attribute, starting with <code>#</code>, in the fenced div syntax</li>
+<li><strong>Markdown figures or tables</strong>: as an ID attribute, starting with <code>#</code>, in markdown syntax</li>
+<li><strong>Computational figures or tables</strong>: as the <code>label</code> code cell option</li>
+<li><strong>Fenced div syntax</strong>: as an ID attribute, starting with <code>#</code>, in the fenced div syntax</li>
 </ul>
 <p>We illustrate each of these for figures in <a href="#fig-id-figure" class="quarto-xref">Figure&nbsp;<span>13.5</span></a> and for tables in <a href="#fig-id-table" class="quarto-xref">Figure&nbsp;<span>13.6</span></a>. The caption, and alternative text for figures, are optional, but you’ll generally include them, so our examples do too.</p>
 <div id="fig-id-figure" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -648,7 +649,7 @@ Figure&nbsp;13.4: Caption
 <div id="fig-id-figure-md" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-id-figure-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](path/to/image.jpg)</span>{#fig-id fig-alt="Alt text"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](path/to/image.jpg)</span>{#fig-id fig-alt="Alt text"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-id-figure-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Markdown figure
@@ -658,7 +659,7 @@ Figure&nbsp;13.4: Caption
 <div id="fig-id-figure-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-id-figure-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-id</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Caption"</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-alt: "Alt text"</span></span>
@@ -673,7 +674,7 @@ Figure&nbsp;13.4: Caption
 <div id="fig-id-fenced-div-markdown" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-id-fenced-div-markdown-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="al">![](path/to/image.jpg)</span>{fig-alt="Alt text"}</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Caption</span>
@@ -687,7 +688,7 @@ Figure&nbsp;13.4: Caption
 <div id="fig-id-fenced-div-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-id-fenced-div-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-alt: "Alt text"</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate a single figure</span></span>
@@ -713,7 +714,7 @@ Figure&nbsp;13.5: Ways to add the identifier <code>fig-id</code> to a figure usi
 <div id="fig-id-table-md" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-id-table-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column 1 <span class="pp">|</span> Column 2 <span class="pp">|</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column 1 <span class="pp">|</span> Column 2 <span class="pp">|</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cell A   <span class="pp">|</span> Cell B   <span class="pp">|</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -727,7 +728,7 @@ Figure&nbsp;13.5: Ways to add the identifier <code>fig-id</code> to a figure usi
 <div id="fig-id-table-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-id-table-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: tbl-id</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-cap: "Caption"</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate a single table</span></span>
@@ -741,7 +742,7 @@ Figure&nbsp;13.5: Ways to add the identifier <code>fig-id</code> to a figure usi
 <div id="fig-id-table-fenced-md" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-id-table-fenced-md-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-id}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-id}</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column 1 <span class="pp">|</span> Column 2 <span class="pp">|</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Cell A   <span class="pp">|</span> Cell B   <span class="pp">|</span></span>
@@ -757,7 +758,7 @@ Figure&nbsp;13.5: Ways to add the identifier <code>fig-id</code> to a figure usi
 <div id="fig-id-table-fenced-comp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-id-table-fenced-comp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-id}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-id}</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate a single table</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
@@ -790,9 +791,9 @@ Figure&nbsp;13.6: Ways to add the identifier <code>tbl-id</code> to a table usin
 </div>
 </div>
 </section>
-<section id="referring-to-a-figure-or-table" class="level3" data-number="13.2.2">
-<h3 data-number="13.2.2" class="anchored" data-anchor-id="referring-to-a-figure-or-table"><span class="header-section-number">13.2.2</span> Referring to a figure or table</h3>
-<p>To refer to a figure or table, use <code>@</code> followed by the identifier (<a href="#fig-crossref-inline-syntax" class="quarto-xref">Figure&nbsp;<span>13.7 (a)</span></a>). When rendered, the cross-references are replaced with the figure or table counter and become links (<a href="#fig-crossref-inline-rendered" class="quarto-xref">Figure&nbsp;<span>13.7 (b)</span></a>). In HTML formats, hovering on the links also shows a preview of the figure or table.</p>
+<section id="sec-figtab-refer" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="sec-figtab-refer"><span class="header-section-number">13.2.2</span> Referring to a figure or table</h3>
+<p>To refer to a figure or table, use <code>@</code> followed by the identifier (<a href="#fig-crossref-inline-syntax" class="quarto-xref">Figure&nbsp;<span>13.7 (a)</span></a>). When rendered, the cross-references are replaced with the figure or table counter and become links (<a href="#fig-crossref-inline-rendered" class="quarto-xref">Figure&nbsp;<span>13.7 (b)</span></a>). In HTML formats, hovering on the links also shows a preview of the figure or table. For variations on this syntax, like customizing the prefix or showing only the number, see <a href="authoring.html#tbl-crossref-examples" class="quarto-xref">Table&nbsp;<span>12.5</span></a>.</p>
 <div id="fig-crossref-inline" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-crossref-inline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -801,7 +802,7 @@ Figure&nbsp;13.6: Ways to add the identifier <code>tbl-id</code> to a table usin
 <div id="fig-crossref-inline-syntax" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-crossref-inline-syntax-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>See @tbl-id.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>See @tbl-id.</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>@fig-id shows ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-crossref-inline-syntax-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -845,8 +846,9 @@ Figure&nbsp;13.7: Referring to a figure and a table using cross-references.
 </section>
 <section id="sec-sub-references" class="level3" data-number="13.2.3">
 <h3 data-number="13.2.3" class="anchored" data-anchor-id="sec-sub-references"><span class="header-section-number">13.2.3</span> Sub-references</h3>
-<p>Sub-references let you refer to one part of a multi-part figure or table, for example “Figure 1 (a)”. To make sub-references, nest your cross-referenceable elements inside a parent fenced div that has a caption and an identifier. The children’s identifiers must use the same prefix as the parent’s. For example, here the parent div has the identifier <code>fig-animals</code> and contains two markdown images, each with its own <code>fig-</code> identifier:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-animals}</span>
+<p>Sub-references let you refer to one part of a multi-part figure or table, for example “Figure 1 (a)”. To make sub-references, nest your cross-referenceable elements inside a parent fenced div that has a caption and an identifier. The children’s identifiers must use the same prefix as the parent’s.</p>
+<p>For example, here the parent div has the identifier <code>fig-animals</code> and contains two markdown images, each with its own <code>fig-</code> identifier:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-animals}</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="al">![Elephant](images/elephant.png)</span>{#fig-elephant fig-alt="Line drawing of an elephant."}</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -866,7 +868,7 @@ Figure&nbsp;13.8: The <code>fig-animals</code> example in <code>html</code> outp
 </figure>
 </div>
 <p>When the children become more complicated, we recommend using an explicit fenced div for each one. For example, the general structure becomes:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>:::: {#fig-main}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>:::: {#fig-main}</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>::: {#fig-sub1}</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>CONTENT 1</span>
@@ -889,7 +891,7 @@ Figure&nbsp;13.8: The <code>fig-animals</code> example in <code>html</code> outp
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>We’ve used additional colons (<code>:</code>) to help you see the nesting, but they aren’t required.</p>
+<p>We’ve used additional colons (<code>:</code>) on the outer div to help you see the nesting, but they aren’t required.</p>
 </div>
 </div>
 </div>
@@ -921,7 +923,7 @@ Table&nbsp;13.2: Common caption tasks covered in this section.
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Write a long caption, with line breaks or formatting</td>
+<td style="text-align: left;">Write a long caption</td>
 <td style="text-align: left;">The last paragraph of a fenced div</td>
 <td style="text-align: left;"><a href="#sec-long-captions" class="quarto-xref"><span>Section 13.3.1</span></a></td>
 </tr>
@@ -936,7 +938,7 @@ Table&nbsp;13.2: Common caption tasks covered in this section.
 <td style="text-align: left;"><a href="#sec-caption-location" class="quarto-xref"><span>Section 13.3.3</span></a></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Change “Figure” or “Table”, the numbering style, or the <code>:</code></td>
+<td style="text-align: left;">Change “Figure” or “Table”, the style of the number, or the “:” between them</td>
 <td style="text-align: left;"><code>crossref</code> options in the document header or <code>_quarto.yml</code></td>
 <td style="text-align: left;"><a href="#sec-caption-titles" class="quarto-xref"><span>Section 13.3.4</span></a></td>
 </tr>
@@ -965,11 +967,8 @@ Table&nbsp;13.2: Common caption tasks covered in this section.
 </div>
 <section id="sec-long-captions" class="level3" data-number="13.3.1">
 <h3 data-number="13.3.1" class="anchored" data-anchor-id="sec-long-captions"><span class="header-section-number">13.3.1</span> Long captions</h3>
-<p>A long caption is hard to edit as a code cell option, because it must be a valid YAML string on one line. In a fenced div, the caption is a markdown paragraph, so you can break lines where it makes sense and use markdown formatting. <a href="#fig-long-captions" class="quarto-xref">Figure&nbsp;<span>13.9</span></a> shows an example, where <code>{ IMAGE }</code> is a markdown image or a code cell that makes a figure (<a href="#sec-syntax-variations" class="quarto-xref"><span>Section 13.1</span></a>).</p>
-<div id="fig-long-captions" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-long-captions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
+<p>A long caption is hard to edit as a code cell option, because it must be a valid YAML string on one line. In a fenced div, the caption is a markdown paragraph, so you can break lines where it makes sense and use markdown formatting. In this example, <code>{ IMAGE }</code> is a markdown image or a code cell that makes a figure (<a href="#sec-syntax-variations" class="quarto-xref"><span>Section 13.1</span></a>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>{ IMAGE }</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Scatter plot of bill length (mm) against bill depth (mm) for three penguin species.</span>
@@ -978,12 +977,7 @@ Table&nbsp;13.2: Common caption tasks covered in this section.
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>and **Gentoo** penguins have long, shallow bills.</span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>**Chinstrap** penguins have bills as deep as Adelie penguins, but longer.</span>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-long-captions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.9: A long caption in the fenced div syntax. The line breaks in the caption are for readability in the source; the caption renders as one paragraph.
-</figcaption>
-</figure>
-</div>
+<p>The line breaks in the caption are for readability in the source; the caption renders as one paragraph.</p>
 <div class="callout callout-style-simple callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1000,7 +994,7 @@ Figure&nbsp;13.9: A long caption in the fenced div syntax. The line breaks in th
 </section>
 <section id="sec-dynamic-captions" class="level3" data-number="13.3.2">
 <h3 data-number="13.3.2" class="anchored" data-anchor-id="sec-dynamic-captions"><span class="header-section-number">13.3.2</span> Dynamic captions</h3>
-<p>A dynamic caption includes a computed value. Inline code expressions, such as <code>`{r} nrow(penguins)`</code>, do not run inside the <code>fig-cap</code> or <code>tbl-cap</code> options, but they do run in the caption paragraph of a fenced div. For example, the caption in <a href="#fig-dynamic-captions" class="quarto-xref">Figure&nbsp;<span>13.10</span></a> includes the number of penguins in the data.</p>
+<p>A dynamic caption includes a computed value. Inline code expressions, such as <code>`{r} nrow(penguins)`</code>, do not run inside the <code>fig-cap</code> or <code>tbl-cap</code> options, but they do run in the caption paragraph of a fenced div. For example, the caption in <a href="#fig-dynamic-captions" class="quarto-xref">Figure&nbsp;<span>13.9</span></a> includes the number of penguins in the data.</p>
 <div id="fig-dynamic-captions" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dynamic-captions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1008,14 +1002,14 @@ Figure&nbsp;13.9: A long caption in the fenced div syntax. The line breaks in th
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>{ IMAGE }</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>Bill length versus depth for <span class="in">`{r} nrow(penguins)`</span> penguins.</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>{ IMAGE }</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Bill length versus depth for <span class="in">`{python} len(penguins)`</span> penguins.</span>
@@ -1025,14 +1019,14 @@ Figure&nbsp;13.9: A long caption in the fenced div syntax. The line breaks in th
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dynamic-captions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.10: A dynamic caption that uses inline code.
+Figure&nbsp;13.9: A dynamic caption that uses inline code.
 </figcaption>
 </figure>
 </div>
 </section>
 <section id="sec-caption-location" class="level3" data-number="13.3.3">
 <h3 data-number="13.3.3" class="anchored" data-anchor-id="sec-caption-location"><span class="header-section-number">13.3.3</span> Caption location</h3>
-<p>By default, figure captions are placed below figures and table captions are placed above tables. You can control this placement for figures and tables separately with the <code>fig-cap-location</code> and <code>tbl-cap-location</code> options, or use <code>cap-location</code> to control both. Available values for these options are <code>top</code>, <code>bottom</code>, and <code>margin</code> as illustrated for a table in <a href="#fig-cap-location" class="quarto-xref">Figure&nbsp;<span>13.11</span></a>. The <code>margin</code> value applies only to formats that have a margin, such as <code>html</code> and <code>typst</code> (<a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>).</p>
+<p>By default, figure captions are placed below figures and table captions are placed above tables. You can control this placement for figures and tables separately with the <code>fig-cap-location</code> and <code>tbl-cap-location</code> options, or use <code>cap-location</code> to control both. Available values for these options are <code>top</code>, <code>bottom</code>, and <code>margin</code> as illustrated for a table in <a href="#fig-cap-location" class="quarto-xref">Figure&nbsp;<span>13.10</span></a>. The <code>margin</code> value applies only to formats that have a margin, such as <code>html</code> and <code>typst</code> (<a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>).</p>
 <div id="fig-cap-location" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cap-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1056,7 +1050,7 @@ Figure&nbsp;13.10: A dynamic caption that uses inline code.
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cap-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.11: A table with <code>tbl-cap-location</code> set to <code>top</code>, <code>bottom</code>, and <code>margin</code>.
+Figure&nbsp;13.10: A table with <code>tbl-cap-location</code> set to <code>top</code>, <code>bottom</code>, and <code>margin</code>.
 </figcaption>
 </figure>
 </div>
@@ -1079,8 +1073,8 @@ Figure&nbsp;13.11: A table with <code>tbl-cap-location</code> set to <code>top</
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cap-location</span><span class="kw">:</span><span class="at"> bottom</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></li>
-<li><p>On an individual figure or table, to control only that one. Use the code cell option for computational outputs:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
+<li><p>On an individual figure or table. Use the code cell option for computational outputs:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: tbl-island-count</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-cap: "Penguins sampled from the Palmer Archipelago"</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| cap-location: bottom</span></span>
@@ -1088,7 +1082,7 @@ Figure&nbsp;13.11: A table with <code>tbl-cap-location</code> set to <code>top</
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate a single table</span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or the attribute form for markdown figures or tables:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Island    <span class="pp">|</span> Count <span class="pp">|</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Island    <span class="pp">|</span> Count <span class="pp">|</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------|-------|</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Biscoe    <span class="pp">|</span> 168   <span class="pp">|</span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Dream     <span class="pp">|</span> 124   <span class="pp">|</span></span>
@@ -1096,7 +1090,7 @@ Figure&nbsp;13.11: A table with <code>tbl-cap-location</code> set to <code>top</
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>: Penguins sampled from the Palmer Archipelago {#tbl-island-count cap-location="bottom"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>With the fenced div syntax, put the attribute on the div:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-island-count cap-location="bottom"}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-island-count cap-location="bottom"}</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>{ TABLE }</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>Penguins sampled from the Palmer Archipelago</span>
@@ -1105,25 +1099,25 @@ Figure&nbsp;13.11: A table with <code>tbl-cap-location</code> set to <code>top</
 </section>
 <section id="sec-caption-titles" class="level3" data-number="13.3.4">
 <h3 data-number="13.3.4" class="anchored" data-anchor-id="sec-caption-titles"><span class="header-section-number">13.3.4</span> Caption titles and numbering</h3>
-<p>Quarto adds a title and a number to figures and tables that are cross-referenceable. The title and number appear in the caption, and in the inline reference. You can control these using the <code>crossref</code> options described in <a href="#tbl-crossref-options" class="quarto-xref">Table&nbsp;<span>13.3</span></a> and illustrated for tables in <a href="#fig-cap-title" class="quarto-xref">Figure&nbsp;<span>13.12</span></a>.</p>
+<p>Quarto adds a title and a number to figures and tables that are cross-referenceable. The title and number appear in the caption, and in the inline reference. You can control these using the <code>crossref</code> document options described in <a href="#tbl-crossref-options" class="quarto-xref">Table&nbsp;<span>13.3</span></a> and illustrated for tables in <a href="#fig-cap-title" class="quarto-xref">Figure&nbsp;<span>13.11</span></a>.</p>
 <div id="fig-cap-title" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cap-title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-panel" data-layout="[2, 1]">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
-<p><img src="images/figure-table-caption-format.jpeg" class="border img-fluid figure-img" alt="The caption 'Table 1: Penguins sampled from ...' with labels that point to its parts: 'Table' is tbl-title, '1' is tbl-labels, and ':' is title-delim."></p>
+<p><img src="images/figure-table-caption-format.svg" class="border img-fluid figure-img" alt="The caption 'Table 1: Penguins sampled from ...' above a row of the options that make it up. 'Table' is tbl-title, '1' is tbl-labels, and ':' is title-delim, each matched to its part by color."></p>
 <p>Table caption</p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="images/figure-table-cross-reference-form.jpeg" class="border img-fluid figure-img" alt="The text 'See Table 1 ...', where 'Table' in the link is labeled tbl-prefix."></p>
+<p><img src="images/figure-table-cross-reference-form.svg" class="border img-fluid figure-img" alt="The text 'See Table 1 ...' above a row of the options that make up the link. 'Table' is tbl-prefix and '1' is tbl-labels, each matched to its part by color."></p>
 <p>Inline reference</p>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cap-title-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.12: The default title and number in a table caption and in a cross-reference to the table.
+Figure&nbsp;13.11: The default title and number in a table caption and in a cross-reference to the table.
 </figcaption>
 </figure>
 </div>
@@ -1145,7 +1139,7 @@ Table&nbsp;13.3: Options under <code>crossref</code> that change caption titles 
 <tr class="odd">
 <td style="text-align: left;"><div class="line-block"><code>fig-title</code><br>
 <code>tbl-title</code></div></td>
-<td style="text-align: left;">Title in the caption</td>
+<td style="text-align: left;">Text before the number in the caption</td>
 <td style="text-align: left;"><div class="line-block"><code>Figure</code><br>
 <code>Table</code></div></td>
 </tr>
@@ -1178,14 +1172,13 @@ Table&nbsp;13.3: Options under <code>crossref</code> that change caption titles 
 </div>
 </figure>
 </div>
-<p>The number style options take these values:</p>
+<p>You can choose from these available styles for <code>fig-labels</code>, <code>tbl-labels</code>, and <code>ref-labels</code>:</p>
 <ul>
 <li><code>arabic</code>: 1, 2, 3</li>
 <li><code>roman</code>: I, II, III</li>
 <li><code>roman i</code>: i, ii, iii</li>
 <li><code>alpha a</code>: a, b, c.&nbsp;To start at a different letter, give that letter, for example <code>alpha c</code> or <code>alpha A</code>.</li>
 </ul>
-<p>You can set these options in the document header or in <code>_quarto.yml</code>.</p>
 <p>For example, you might change the title of tables to “Sheet”, the prefix to “Sh”, the numbers to Roman numerals, and the delimiter to an em dash:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -1200,17 +1193,29 @@ Table&nbsp;13.3: Options under <code>crossref</code> that change caption titles 
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title-delim</span><span class="kw">:</span><span class="at"> </span><span class="st">"—"</span></span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="#fig-cap-title-edit" class="quarto-xref">Figure&nbsp;<span>13.13</span></a> shows the result.</p>
-<div id="fig-cap-title-edit" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A caption that reads 'Sheet I— Penguins sampled from ...' and a cross-reference that reads 'See Sh I ...'.">
+<p><a href="#fig-cap-title-edit" class="quarto-xref">Figure&nbsp;<span>13.12</span></a> shows the result.</p>
+<div id="fig-cap-title-edit" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cap-title-edit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/figure-table-caption-format-edit.png" class="img-fluid figure-img" alt="A caption that reads 'Sheet I— Penguins sampled from ...' and a cross-reference that reads 'See Sh I ...'.">
+<div class="quarto-layout-panel" data-layout="[2, 1]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
+<p><img src="images/figure-table-caption-format-edit.svg" class="border img-fluid figure-img" alt="The caption 'Sheet I— Penguins sampled from ...' above a row of the options that make it up. 'Sheet' is tbl-title, 'I' is tbl-labels, and the em dash is title-delim, each matched to its part by color."></p>
+<p>Table caption</p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="images/figure-table-cross-reference-form-edit.svg" class="border img-fluid figure-img" alt="The text 'See Sh I ...' above a row of the options that make up the link. 'Sh' is tbl-prefix and 'I' is tbl-labels, each matched to its part by color."></p>
+<p>Inline reference</p>
+</div>
+</div>
+</div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cap-title-edit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.13: A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.
+Figure&nbsp;13.12: A table caption and cross-reference with the custom title, prefix, numbering, and delimiter.
 </figcaption>
 </figure>
 </div>
+<p>To apply these options to all documents in a project set them in <code>_quarto.yml</code>.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1228,17 +1233,17 @@ Figure&nbsp;13.13: A table caption and cross-reference with the custom title, pr
 </section>
 <section id="sec-figtab-layout" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="sec-figtab-layout"><span class="header-section-number">13.4</span> Panel layout</h2>
-<p>Panel layouts arrange content in a grid with the <code>layout-ncol</code>, <code>layout-nrow</code>, or <code>layout</code> attributes (<a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>). This section covers the most common cases for figures and tables: arranging them in a grid, grouping them under a shared caption, and aligning them in the grid.</p>
+<p>Panel layouts arrange content in a grid with the <code>layout-ncol</code>, <code>layout-nrow</code>, or <code>layout</code> attributes (<a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>). This section covers the most common cases for figures and tables: arranging them in a grid, grouping them under a shared caption, and aligning them within the grid.</p>
 <section id="sec-multiple-outputs" class="level3" data-number="13.4.1">
 <h3 data-number="13.4.1" class="anchored" data-anchor-id="sec-multiple-outputs"><span class="header-section-number">13.4.1</span> Arranging multiple figures and tables</h3>
-<p>Recall from <a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a> that you place content in a grid with a fenced div with the <code>layout-ncol</code> attribute. Put each element in its own fenced div, as shown in <a href="#fig-panel-images" class="quarto-xref">Figure&nbsp;<span>13.14</span></a>.</p>
+<p>Recall from <a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a> that you place content in a grid with a fenced div with the <code>layout-ncol</code> attribute. Put each element of the panel in its own fenced div, as shown in <a href="#fig-panel-images" class="quarto-xref">Figure&nbsp;<span>13.13</span></a>.</p>
 <div id="fig-panel-images" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-panel-images-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-panel" data-layout="[[1,1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>::::: {layout-ncol="2"}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>:::: {layout-ncol="2"}</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>::: {}</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>{ CONTENT 1 }</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>:::</span>
@@ -1246,29 +1251,29 @@ Figure&nbsp;13.13: A table caption and cross-reference with the custom title, pr
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>::: {}</span>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>{ CONTENT 2 }</span>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>:::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/figure-table-panel-images.svg" class="border img-fluid figure-img" alt="An image placeholder and a table placeholder side by side, with no captions and no numbers."></p>
+<p><img src="images/figure-table-panel-images.svg" class="border img-fluid figure-img" alt="Two placeholders, CONTENT 1 and CONTENT 2, side by side, with no captions and no numbers."></p>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-images-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.14: Content side by side. Neither item is cross-referenceable.
+Figure&nbsp;13.13: Content side by side. Neither item is cross-referenceable.
 </figcaption>
 </figure>
 </div>
-<p>This example arranges the content in two columns (<code>layout-ncol="2"</code>). Increase <code>layout-ncol</code> to add additional columns. If you have more than <code>layout-ncol</code> elements, Quarto adds rows to accommodate them.</p>
+<p><a href="#fig-panel-images" class="quarto-xref">Figure&nbsp;<span>13.13</span></a> arranges the content in two columns, <code>layout-ncol="2"</code>. Increase <code>layout-ncol</code> to add additional columns. If you have more than <code>layout-ncol</code> elements, Quarto adds rows to accommodate them.</p>
 <p>The placeholders, <code>{ CONTENT 1 }</code> and <code>{ CONTENT 2 }</code>, could be anything, including any variation of a figure or table: a markdown image, a markdown table, or a code cell that produces a figure or table.</p>
-<p>Neither element in <a href="#fig-panel-images" class="quarto-xref">Figure&nbsp;<span>13.14</span></a> is cross-referenceable. To make one or more cross-referenceable elements, add identifiers. Add an identifier with a cross-reference prefix to each <em>inner</em> div to make each item its own cross-referenceable figure or table (<a href="#fig-panel-figures" class="quarto-xref">Figure&nbsp;<span>13.15</span></a>). Add an <em>outer</em> div with an identifier around the layout div to make one cross-referenceable figure from the whole panel (<a href="#fig-panel-figure-of-images" class="quarto-xref">Figure&nbsp;<span>13.16</span></a>). Do both to make one cross-referenceable figure with sub-figures (<a href="#fig-panel-subfigures" class="quarto-xref">Figure&nbsp;<span>13.17</span></a>).</p>
+<p>Neither element in <a href="#fig-panel-images" class="quarto-xref">Figure&nbsp;<span>13.13</span></a> is cross-referenceable. To make one or more cross-referenceable elements, add identifiers. Add an identifier with a cross-reference prefix to each <em>inner</em> div to make each item its own cross-referenceable figure or table (<a href="#fig-panel-figures" class="quarto-xref">Figure&nbsp;<span>13.14</span></a>). Add an <em>outer</em> div with an identifier around the layout div to make one cross-referenceable figure from the whole panel (<a href="#fig-panel-figure-of-images" class="quarto-xref">Figure&nbsp;<span>13.15</span></a>). Do both to make one cross-referenceable figure with sub-figures (<a href="#fig-panel-subfigures" class="quarto-xref">Figure&nbsp;<span>13.16</span></a>).</p>
 <div id="fig-panel-figures" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-panel-figures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-panel" data-layout="[[1,1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>::::: {layout-ncol="2"}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>:::: {layout-ncol="2"}</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>::: {#fig-1}</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>{ CONTENT 1 }</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1280,16 +1285,16 @@ Figure&nbsp;13.14: Content side by side. Neither item is cross-referenceable.
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>Caption 2</span>
 <span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>:::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/figure-table-panel-figures.svg" class="border img-fluid figure-img" alt="A separately outlined figure and table side by side, captioned Figure 1: Caption 1 and Table 1: Caption 2."></p>
+<p><img src="images/figure-table-panel-figures.svg" class="border img-fluid figure-img" alt="Two separately outlined placeholders, CONTENT 1 and CONTENT 2, side by side, captioned Figure 1: Caption 1 and Table 1: Caption 2."></p>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-figures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.15: Cross-referenceable figures or tables side by side. Each item has its own caption and number, here “Figure 1” and “Table 1”. Because each item is cross-referenced on its own, the prefixes can differ.
+Figure&nbsp;13.14: Cross-referenceable figures or tables side by side. Each item has its own caption and number, here “Figure 1” and “Table 1”. Because each item is cross-referenced on its own, the prefixes can differ.
 </figcaption>
 </figure>
 </div>
@@ -1299,8 +1304,8 @@ Figure&nbsp;13.15: Cross-referenceable figures or tables side by side. Each item
 <div class="quarto-layout-panel" data-layout="[[1,1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>:::::: {#fig-main}</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>::::: {layout-ncol="2"}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>::::: {#fig-main}</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>:::: {layout-ncol="2"}</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>::: {}</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>{ CONTENT 1 }</span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>:::</span>
@@ -1308,19 +1313,19 @@ Figure&nbsp;13.15: Cross-referenceable figures or tables side by side. Each item
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>::: {}</span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>{ CONTENT 2 }</span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>Main caption</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>::::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>:::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/figure-table-panel-figure-of-images.svg" class="border img-fluid figure-img" alt="One outlined figure around an uncaptioned image placeholder and table placeholder, with one caption below: Figure 1: Main caption."></p>
+<p><img src="images/figure-table-panel-figure-of-images.svg" class="border img-fluid figure-img" alt="One outlined figure around two uncaptioned placeholders, CONTENT 1 and CONTENT 2, with one caption below: Figure 1: Main caption."></p>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-figure-of-images-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.16: One cross-referenceable figure that contains both items. You can refer to the whole figure, but not to the items inside it. The prefix of the outer div decides the type, so the whole panel is a figure, even though one item is a table.
+Figure&nbsp;13.15: One cross-referenceable figure that contains both items. You can refer to the whole figure, but not to the items inside it. The prefix of the outer div decides the type, so the whole panel is a figure, even though one item is a table.
 </figcaption>
 </figure>
 </div>
@@ -1330,8 +1335,8 @@ Figure&nbsp;13.16: One cross-referenceable figure that contains both items. You 
 <div class="quarto-layout-panel" data-layout="[[1,1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>:::::: {#fig-main}</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>::::: {layout-ncol="2"}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>::::: {#fig-main}</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>:::: {layout-ncol="2"}</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>::: {#fig-sub1}</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>{ CONTENT 1 }</span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -1343,23 +1348,23 @@ Figure&nbsp;13.16: One cross-referenceable figure that contains both items. You 
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>Sub-caption 2</span>
 <span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>:::::</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>::::</span>
 <span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>Main caption</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>::::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>:::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/figure-table-panel-subfigures.svg" class="border img-fluid figure-img" alt="One outer figure around two outlined sub-figures, an image and a table, captioned (a) Sub-caption 1 and (b) Sub-caption 2, with Figure 1: Main caption below both."></p>
+<p><img src="images/figure-table-panel-subfigures.svg" class="border img-fluid figure-img" alt="One outer figure around two outlined sub-figures, CONTENT 1 and CONTENT 2, captioned (a) Sub-caption 1 and (b) Sub-caption 2, with Figure 1: Main caption below both."></p>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-subfigures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.17: One cross-referenceable figure with sub-figures. The inner captions become sub-captions. The prefix of the inner elements must match that of the outer element, all <code>fig-</code> in this example.
+Figure&nbsp;13.16: One cross-referenceable figure with sub-figures. The inner captions become sub-captions. The prefix of the inner elements must match that of the outer element, all <code>fig-</code> in this example.
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-panel-subfigures" class="quarto-xref">Figure&nbsp;<span>13.17</span></a>, use <code>@fig-main</code> to refer to the whole figure (“Figure 1”), and <code>@fig-sub1</code> to refer to one part (“Figure 1 (a)”), as described in <a href="#sec-sub-references" class="quarto-xref"><span>Section 13.2.3</span></a>.</p>
+<p>In <a href="#fig-panel-subfigures" class="quarto-xref">Figure&nbsp;<span>13.16</span></a>, use <code>@fig-main</code> to refer to the whole figure (“Figure 1”), and <code>@fig-sub1</code> to refer to one part (“Figure 1 (a)”), as described in <a href="#sec-sub-references" class="quarto-xref"><span>Section 13.2.3</span></a>.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1374,7 +1379,7 @@ Figure&nbsp;13.17: One cross-referenceable figure with sub-figures. The inner ca
 </div>
 </div>
 <p>If one code cell makes all the figures or tables, you can use <code>layout-ncol</code> as a code cell option instead of a fenced div:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-id</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Main caption"</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-subcap:</span></span>
@@ -1384,19 +1389,19 @@ Figure&nbsp;13.17: One cross-referenceable figure with sub-figures. The inner ca
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate two figures</span></span>
 <span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>See <a href="figure-table-computational.html#sec-multiple-figures" class="quarto-xref"><span>Section 14.2.4</span></a> and <a href="figure-table-computational.html#sec-multiple-tables" class="quarto-xref"><span>Section 14.3.2</span></a> for the details. When it is appropriate, the code cell option has concise syntax, but you’ll need to switch to a fenced div if you want to mix figures, tables, markdown, or code cell output in the same panel.</p>
+<p>See <a href="figure-table-computational.html#sec-multiple-figures" class="quarto-xref"><span>Section 14.2.4</span></a> and <a href="figure-table-computational.html#sec-multiple-tables" class="quarto-xref"><span>Section 14.3.2</span></a> for working examples with sub-captions. When it is appropriate, the code cell option has concise syntax, but you’ll need to switch to a fenced div if you want to mix figures, tables, markdown, or code cell output in the same panel.</p>
 </section>
-<section id="rows-columns-and-custom-grids" class="level3" data-number="13.4.2">
-<h3 data-number="13.4.2" class="anchored" data-anchor-id="rows-columns-and-custom-grids"><span class="header-section-number">13.4.2</span> Rows, columns, and custom grids</h3>
+<section id="sec-panel-grids" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="sec-panel-grids"><span class="header-section-number">13.4.2</span> Rows, columns, and custom grids</h3>
 <p><code>layout-ncol</code> sets the number of columns, and Quarto adds rows as necessary. <code>layout-nrow</code> sets the number of rows, and Quarto adds columns as necessary. Each item gets the same width.</p>
-<p>For different widths, or a different number of items in each row, use the <code>layout</code> attribute. Its value is an array of rows. Each row is an array of numbers that give the relative width of each item. For example, <code>layout="[[1,1],[1]]"</code> puts two items of equal width in the first row and one item at full width in the second row (<a href="#fig-panel-custom-grid" class="quarto-xref">Figure&nbsp;<span>13.18</span></a>).</p>
+<p>For different widths, or a different number of items in each row, use the <code>layout</code> attribute. Its value is an array of rows. Each row is an array of numbers that give the relative width of each item. For example, <code>layout="[[1,1],[1]]"</code> puts two items of equal width in the first row and one item at full width in the second row (<a href="#fig-panel-custom-grid" class="quarto-xref">Figure&nbsp;<span>13.17</span></a>).</p>
 <div id="fig-panel-custom-grid" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-panel-custom-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-panel" data-layout="[[1,1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>::::: {layout="[<span class="co">[</span><span class="ot">1,1</span><span class="co">]</span>,<span class="co">[</span><span class="ot">1</span><span class="co">]</span>]"}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>:::: {layout="[<span class="co">[</span><span class="ot">1,1</span><span class="co">]</span>,<span class="co">[</span><span class="ot">1</span><span class="co">]</span>]"}</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>::: {}</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>{ CONTENT 1 }</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>:::</span>
@@ -1408,32 +1413,32 @@ Figure&nbsp;13.17: One cross-referenceable figure with sub-figures. The inner ca
 <span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>::: {}</span>
 <span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>{ CONTENT 3 }</span>
 <span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>:::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/figure-table-panel-custom-grid.svg" class="border img-fluid figure-img" alt="Two placeholders of equal width side by side in the first row, and one full-width placeholder in the second row, with no captions."></p>
+<p><img src="images/figure-table-panel-custom-grid.svg" class="border img-fluid figure-img" alt="Two placeholders of equal width, CONTENT 1 and CONTENT 2, side by side in the first row, and one full-width placeholder, CONTENT 3, in the second row, with no captions."></p>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-custom-grid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.18: A custom grid with <code>layout="[[1,1],[1]]"</code>: two items in the first row and one item at full width in the second row.
+Figure&nbsp;13.17: A custom grid with <code>layout="[[1,1],[1]]"</code>: two items in the first row and one item at full width in the second row.
 </figcaption>
 </figure>
 </div>
 <p>As with <code>layout-ncol</code>, add identifiers to the inner or outer divs to make the items, or the whole panel, cross-referenceable.</p>
 <p>The numbers are relative, so <code>layout="[[70,30]]"</code> gives a row where the first item is 70% of the width and the second item is 30%. A negative number adds empty space. For example, <code>layout="[40,-20,40]"</code> puts a 20% gap between two items.</p>
 </section>
-<section id="alignment-in-a-panel" class="level3" data-number="13.4.3">
-<h3 data-number="13.4.3" class="anchored" data-anchor-id="alignment-in-a-panel"><span class="header-section-number">13.4.3</span> Alignment in a panel</h3>
-<p>Items in a row are frequently different heights, for example, a tall figure next to a short table. Use <code>layout-valign</code> to set the vertical alignment of the items in each row: <code>top</code>, <code>center</code>, or <code>bottom</code> (<a href="#fig-panel-valign" class="quarto-xref">Figure&nbsp;<span>13.19</span></a>).</p>
+<section id="sec-panel-alignment" class="level3" data-number="13.4.3">
+<h3 data-number="13.4.3" class="anchored" data-anchor-id="sec-panel-alignment"><span class="header-section-number">13.4.3</span> Alignment in a panel</h3>
+<p>Items in a row are frequently different heights, for example, a tall figure next to a short table. Use <code>layout-valign</code> to set the vertical alignment of the items in each row: <code>top</code>, <code>center</code>, or <code>bottom</code> (<a href="#fig-panel-valign" class="quarto-xref">Figure&nbsp;<span>13.18</span></a>).</p>
 <div id="fig-panel-valign" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-panel-valign-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-panel" data-layout="[[1,1]]">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>::::: {layout-ncol="2" layout-valign="bottom"}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>:::: {layout-ncol="2" layout-valign="bottom"}</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>::: {}</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>{ CONTENT 1 }</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>:::</span>
@@ -1441,45 +1446,45 @@ Figure&nbsp;13.18: A custom grid with <code>layout="[[1,1],[1]]"</code>: two ite
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>::: {}</span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>{ CONTENT 2 }</span>
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>:::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/figure-table-panel-valign.svg" class="border img-fluid figure-img" alt="A tall image placeholder next to a short table placeholder, with their bottom edges aligned."></p>
+<p><img src="images/figure-table-panel-valign.svg" class="border img-fluid figure-img" alt="A tall placeholder, CONTENT 1, next to a short placeholder, CONTENT 2, with their bottom edges aligned."></p>
 </div>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-panel-valign-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.19: Content of different heights aligned with <code>layout-valign="bottom"</code>. The bottom edges of the items line up.
+Figure&nbsp;13.18: Content of different heights aligned with <code>layout-valign="bottom"</code>. The bottom edges of the items line up.
 </figcaption>
 </figure>
 </div>
-<p>Use <code>layout-align</code> to set the horizontal alignment of each item in its cell: <code>left</code>, <code>center</code>, or <code>right</code>. Both attributes are also code cell options.</p>
+<p>Use <code>layout-align</code> to set the horizontal alignment of each item in its cell: <code>left</code>, <code>center</code>, or <code>right</code>. You can also set <code>layout-valign</code> and <code>layout-valign</code> as code cell options.</p>
 </section>
 </section>
 <section id="sec-figtab-position" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="sec-figtab-position"><span class="header-section-number">13.5</span> Position and alignment</h2>
-<p>You can move a figure or table into a different column of the page, and align it inside its container. For slides, see <a href="presentations.html#sec-output-location" class="quarto-xref"><span>Section 11.1.1</span></a> for the <code>output-location</code> code cell option, which can put output on the next slide or next to the code.</p>
+<h2 data-number="13.5" class="anchored" data-anchor-id="sec-figtab-position"><span class="header-section-number">13.5</span> Position, size, and alignment</h2>
+<p>You can move a figure or table into a different column of the page, change the width of a figure, and align a figure inside its container. Inside a table, you can also change the alignment and width of each column. For slides, see <span class="quarto-unresolved-ref">?sec-output-location</span> for the <code>output-location</code> code cell option, which can put output on the next slide or next to the code.</p>
 <section id="sec-page-columns" class="level3" data-number="13.5.1">
-<h3 data-number="13.5.1" class="anchored" data-anchor-id="sec-page-columns"><span class="header-section-number">13.5.1</span> Position relative to the page: <code>column</code></h3>
-<p>Fenced divs with <code>.column-</code> classes put content in different columns of the page, for example the right margin (<a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>). To move a figure or table, wrap its fenced div in a fenced div with the class. For example, to give a wide figure the full width of the screen, use <code>.column-screen</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>::: {.column-screen}</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>:::: {#fig-id}</span>
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="sec-page-columns"><span class="header-section-number">13.5.1</span> Position relative to the page</h3>
+<p>As you saw in <a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a>, fenced divs with <code>.column-</code> classes put content in different columns of the page. To move a figure or table, wrap its fenced div in a fenced div with a <code>.column-</code> class. For example, to give a wide figure the full width of the screen, use <code>.column-screen</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>:::: {.column-screen}</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>::: {#fig-id}</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>{ IMAGE }</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>Caption</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>::::</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>::::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For a small figure that supports the main text, use <code>.column-margin</code> to put it in the margin. The figure keeps its caption and number. As with panel layouts, keep the column class and the identifier on separate fenced divs.</p>
 <p>For a code cell, use the <code>column</code> code cell option instead of a class. The value is the class name without the <code>column-</code> prefix:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-id</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Caption"</span></span>
 <span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| column: screen</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate a single figure</span></span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The <code>fig-column</code> and <code>tbl-column</code> code cell options are similar, but they move only the figure or table output, not the other output of the cell. <a href="#fig-page-columns" class="quarto-xref">Figure&nbsp;<span>13.20</span></a> shows the result in <code>html</code> output.</p>
+<p>The <code>fig-column</code> and <code>tbl-column</code> code cell options are similar, but they move only the figure or table output, not the other output of the cell. <a href="#fig-page-columns" class="quarto-xref">Figure&nbsp;<span>13.19</span></a> shows the result in <code>html</code> output.</p>
 <div id="fig-page-columns" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-page-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1511,7 +1516,7 @@ Figure&nbsp;13.19: Content of different heights aligned with <code>layout-valign
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-page-columns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.20: A figure in different columns of the page: (a) the full width of the screen and (b) the margin. Columns apply to the <code>html</code> and <code>typst</code> formats.
+Figure&nbsp;13.19: A figure in different columns of the page: (a) the full width of the screen and (b) the margin. Columns apply to the <code>html</code> and <code>typst</code> formats.
 </figcaption>
 </figure>
 </div>
@@ -1530,10 +1535,52 @@ Figure&nbsp;13.20: A figure in different columns of the page: (a) the full width
 </div>
 </div>
 </section>
-<section id="sec-figure-alignment" class="level3" data-number="13.5.2">
-<h3 data-number="13.5.2" class="anchored" data-anchor-id="sec-figure-alignment"><span class="header-section-number">13.5.2</span> Figure alignment: <code>fig-align</code></h3>
-<p>Every figure sits in a container. By default, the container is the width of the body text, but you can change this if you put the figure in a column (<a href="#sec-page-columns" class="quarto-xref"><span>Section 13.5.1</span></a>). Figure alignment is the horizontal position of a figure in its container.</p>
-<p>Use <code>fig-align</code> to change the alignment. Its values are <code>default</code> (the default for the output format), <code>left</code>, <code>center</code>, and <code>right</code>. <a href="#fig-fig-align" class="quarto-xref">Figure&nbsp;<span>13.21</span></a> shows the effect of <code>left</code>, <code>center</code>, and <code>right</code>.</p>
+<section id="sec-figure-width" class="level3" data-number="13.5.2">
+<h3 data-number="13.5.2" class="anchored" data-anchor-id="sec-figure-width"><span class="header-section-number">13.5.2</span> Figure width</h3>
+<p>To set the width of a figure in the document, add a <code>width</code> attribute with a percentage of the figure’s container, usually the body text, or the column (<a href="#sec-page-columns" class="quarto-xref"><span>Section 13.5.1</span></a>) or panel cell (<a href="#sec-figtab-layout" class="quarto-xref"><span>Section 13.4</span></a>) the figure sits in:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](path/to/image.png)</span>{#fig-id width="50%"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This scales the display of the figure; the image itself is unchanged.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><code>width</code> vs.&nbsp;<code>fig-width</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>width</code> sets the display width of a figure in the document; <code>fig-width</code> sets the size of the image a code cell generates. See <a href="figure-table-computational.html#sec-figure-size" class="quarto-xref"><span>Section 14.2.2</span></a> for <code>fig-width</code>.</p>
+</div>
+</div>
+<p>By default, an image displays at its own width: an image narrower than its container displays as is, and an image wider than its container scales down to fit. Setting <code>width</code> overrides both behaviors, scaling an image up or down to the given share of its container.</p>
+<p>For a figure from a code cell with the <code>knitr</code> engine, use the <code>out-width</code> code cell option. Its value uses the same units as the <code>width</code> attribute:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-id</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Caption"</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: 50%</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to generate a single figure</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>jupyter</code> engine has no code cell option for the width of a figure in the document.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Absolute widths
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can also give <code>width</code> an absolute length in inches, centimeters, or millimeters, for example <code>width="2in"</code>. A number with no unit is a width in pixels. An absolute width does not change with the container, so a percentage is usually a better choice.</p>
+</div>
+</div>
+</section>
+<section id="sec-figure-alignment" class="level3" data-number="13.5.3">
+<h3 data-number="13.5.3" class="anchored" data-anchor-id="sec-figure-alignment"><span class="header-section-number">13.5.3</span> Figure alignment</h3>
+<p>Figure alignment is the horizontal position of a figure in its container. Alignment has a visible effect only when the figure is narrower than its container (<a href="#sec-figure-width" class="quarto-xref"><span>Section 13.5.2</span></a>).</p>
+<p>Use <code>fig-align</code> to change the alignment. Its values are <code>default</code> (the default for the output format), <code>left</code>, <code>center</code>, and <code>right</code>. <a href="#fig-fig-align" class="quarto-xref">Figure&nbsp;<span>13.20</span></a> shows the effect of <code>left</code>, <code>center</code>, and <code>right</code>.</p>
 <div id="fig-fig-align" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fig-align-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1565,79 +1612,42 @@ Figure&nbsp;13.20: A figure in different columns of the page: (a) the full width
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig-align-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.21: Examples showing the effect of different <code>fig-align</code> settings: <code>left</code>, <code>center</code>, and <code>right</code>.
+Figure&nbsp;13.20: Examples showing the effect of different <code>fig-align</code> settings: <code>left</code>, <code>center</code>, and <code>right</code>.
 </figcaption>
 </figure>
 </div>
-<p>To align all the figures in a document, set <code>fig-align</code> as a document option (<a href="#lst-fig-align-document" class="quarto-xref">Snippet&nbsp;<span>13.1</span></a>). This applies to figures from markdown and from code cells.</p>
-<div id="lst-fig-align-document" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-fig-align-document-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;13.1: Use the <code>fig-align</code> document option to set the alignment of all figures in a document.
-</figcaption>
-<div aria-describedby="lst-fig-align-document-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p>To align all the figures in a document, set <code>fig-align</code> as a document option:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fig-align</span><span class="kw">:</span><span class="at"> left</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fig-align</span><span class="kw">:</span><span class="at"> left</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</figure>
-</div>
+<p>This applies to figures from markdown and from code cells.</p>
 <p>To align one figure, and override the document option, add a <code>fig-align</code> attribute to a markdown image:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](path/to/image.jpg)</span>{#fig-id fig-align="right"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](path/to/image.jpg)</span>{#fig-id fig-align="right"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or, for a figure from a code cell, use the <code>fig-align</code> code cell option:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-id</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Caption"</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: right</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate a single figure</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{LANGUAGE}</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: fig-id</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "Caption"</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-align: right</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="in"># Code to generate a single figure</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-</section>
-<section id="sec-table-column-widths" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="sec-table-column-widths"><span class="header-section-number">13.6</span> Table column alignment and widths</h2>
-<p>Inside a table, each column has an alignment and a width. Column alignment is the horizontal position of the content in each cell of the column. Column width is the proportion of the table width that the column uses. By default, the output format sets the alignment, and the widths depend on the content of the columns.</p>
-<p>How you change alignment and width depends on how you make the table: in markdown, with a code cell that outputs a markdown table, or with a package that outputs an HTML table.</p>
-<section id="markdown-tables" class="level3" data-number="13.6.1">
-<h3 data-number="13.6.1" class="anchored" data-anchor-id="markdown-tables"><span class="header-section-number">13.6.1</span> Markdown tables</h3>
+<section id="sec-table-column-alignment" class="level3" data-number="13.5.4">
+<h3 data-number="13.5.4" class="anchored" data-anchor-id="sec-table-column-alignment"><span class="header-section-number">13.5.4</span> Table column alignment</h3>
+<p>Column alignment is the horizontal position of the content in each cell of a table column. By default, the output format sets the alignment. How you change it depends on how you make the table: as a pipe table, as a list table, or with a code cell.</p>
 <p>To align the columns of a pipe table, add colons to the separator row. A colon on the left aligns the column to the left, a colon on the right aligns it to the right, and colons on both sides center it. This table aligns the first column to the left, the second column to the center, and the third column to the right:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Algorithm           <span class="pp">|</span> Accuracy <span class="pp">|</span> Time  <span class="pp">|</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|:--------------------|:--------:|------:|</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Random Forest       <span class="pp">|</span> 96.7%    <span class="pp">|</span> 0.12s <span class="pp">|</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logistic Regression <span class="pp">|</span> 81.2%    <span class="pp">|</span> 0.08s <span class="pp">|</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Linear Regression   <span class="pp">|</span> 74.8%    <span class="pp">|</span> 0.05s <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To align the columns of a list table, add an <code>aligns</code> attribute to the <code>.list-table</code> div. Its value is a comma-separated list with one letter per column: <code>l</code> (left), <code>c</code> (center), <code>r</code> (right), or <code>d</code> (default). This list table has the same alignment as the pipe table above:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-perf-align .list-table header-rows=1 aligns="l,c,r"}</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>Training performance</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Algorithm</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Accuracy</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Time</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Random Forest</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>96.7%</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>0.12s</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Logistic Regression</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>81.2%</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>0.08s</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Linear Regression</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>74.8%</span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>0.05s</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To set column widths, use <code>tbl-colwidths</code>. Its value is an array of percentages, one per column. For a pipe table, add a <code>tbl-colwidths</code> attribute after the caption. This table gives the first column 80% of the width, and the other two columns 10% each:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Algorithm           <span class="pp">|</span> Accuracy <span class="pp">|</span> Time  <span class="pp">|</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Algorithm           <span class="pp">|</span> Accuracy <span class="pp">|</span> Time  <span class="pp">|</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|:--------------------|:--------:|------:|</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Random Forest       <span class="pp">|</span> 96.7%    <span class="pp">|</span> 0.12s <span class="pp">|</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logistic Regression <span class="pp">|</span> 81.2%    <span class="pp">|</span> 0.08s <span class="pp">|</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Linear Regression   <span class="pp">|</span> 74.8%    <span class="pp">|</span> 0.05s <span class="pp">|</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>: {tbl-colwidths="<span class="co">[</span><span class="ot">80, 10, 10</span><span class="co">]</span>"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For a list table, you can add the same <code>tbl-colwidths</code> attribute to the <code>.list-table</code> div. Or, use the list table attribute <code>widths</code>, with a comma-separated list of widths:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-perf-widths .list-table header-rows=1 widths="80,10,10"}</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Linear Regression   <span class="pp">|</span> 74.8%    <span class="pp">|</span> 0.05s <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To align the columns of a list table, add an <code>aligns</code> attribute to the <code>.list-table</code> div. Its value is a comma-separated list with one letter per column: <code>l</code> (left), <code>c</code> (center), <code>r</code> (right), or <code>d</code> (default). This list table has the same alignment as the pipe table above:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-perf-align .list-table header-rows=1 aligns="l,c,r"}</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>Training performance</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Algorithm</span>
@@ -1653,159 +1663,205 @@ Snippet&nbsp;13.1: Use the <code>fig-align</code> document option to set the ali
 <span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>74.8%</span>
 <span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>0.05s</span>
 <span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To set the column widths of all the markdown tables in a document, set <code>tbl-colwidths</code> as a document option (<a href="#lst-tbl-colwidths-document" class="quarto-xref">Snippet&nbsp;<span>13.2</span></a>). A <code>tbl-colwidths</code> attribute on a table overrides the document option, but a <code>widths</code> attribute does not.</p>
-<div id="lst-tbl-colwidths-document" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-tbl-colwidths-document-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;13.2: Use the <code>tbl-colwidths</code> document option to set the column widths of all markdown tables in a document.
-</figcaption>
-<div aria-describedby="lst-tbl-colwidths-document-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>document.qmd</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl-colwidths</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="dv">80</span><span class="kw">,</span><span class="at"> </span><span class="dv">10</span><span class="kw">,</span><span class="at"> </span><span class="dv">10</span><span class="kw">]</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</figure>
-</div>
-</section>
-<section id="tables-from-code-cells" class="level3" data-number="13.6.2">
-<h3 data-number="13.6.2" class="anchored" data-anchor-id="tables-from-code-cells"><span class="header-section-number">13.6.2</span> Tables from code cells</h3>
-<p>A code cell can output a markdown table, for example with <code>knitr::kable()</code> in R or <code>tabulate()</code> from the tabulate package in Python. There is no code cell option for column alignment. Instead, set the alignment with the function that makes the table. In <a href="#lst-tbl-align-code" class="quarto-xref">Snippet&nbsp;<span>13.3</span></a>, the <code>align</code> argument to <code>knitr::kable()</code> and the <code>colalign</code> argument to <code>tabulate()</code> align the species column to the left and the count column to the right.</p>
-<div id="lst-tbl-align-code" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-tbl-align-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;13.3: Set the column alignment of a markdown table from a code cell with the function that makes the table.
-</figcaption>
-<div aria-describedby="lst-tbl-align-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p>For a table from a code cell, there is no code cell option for column alignment. Instead, set the alignment with the function that makes the table. A code cell can output a markdown table, for example with <code>knitr::kable()</code> in R or <code>tabulate()</code> from the tabulate package in Python. In <a href="#fig-tbl-align-code" class="quarto-xref">Figure&nbsp;<span>13.21</span></a>, the <code>align</code> argument to <code>knitr::kable()</code> and the <code>colalign</code> argument to <code>tabulate()</code> align the species column to the left and the count column to the right.</p>
+<div id="fig-tbl-align-code" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tbl-align-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"r"</span>))</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">align =</span> <span class="fu">c</span>(<span class="st">"l"</span>, <span class="st">"r"</span>))</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>summary_table <span class="op">=</span> (</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  pl.DataFrame(penguins)</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a> .group_by(<span class="st">'species'</span>)</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a> .<span class="bu">len</span>()</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(summary_table.to_pandas(), </span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  tablefmt<span class="op">=</span><span class="st">'pipe'</span>, headers<span class="op">=</span><span class="st">'keys'</span>, showindex<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  colalign<span class="op">=</span>(<span class="st">'left'</span>, <span class="st">'right'</span>)))</span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>summary_table <span class="op">=</span> (</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  pl.DataFrame(penguins)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a> .group_by(<span class="st">'species'</span>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a> .<span class="bu">len</span>()</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(summary_table.to_pandas(), </span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  tablefmt<span class="op">=</span><span class="st">'pipe'</span>, headers<span class="op">=</span><span class="st">'keys'</span>, showindex<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  colalign<span class="op">=</span>(<span class="st">'left'</span>, <span class="st">'right'</span>)))</span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tbl-align-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.21: Set the column alignment of a markdown table from a code cell with the function that makes the table.
+</figcaption>
 </figure>
 </div>
-<p>To set column widths, use the <code>tbl-colwidths</code> code cell option (<a href="#lst-tbl-colwidths-code" class="quarto-xref">Snippet&nbsp;<span>13.4</span></a>). It overrides the document option.</p>
-<div id="lst-tbl-colwidths-code" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-tbl-colwidths-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;13.4: Use the <code>tbl-colwidths</code> code cell option to set the column widths of a markdown table from a code cell.
-</figcaption>
-<div aria-describedby="lst-tbl-colwidths-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p>A package that makes HTML tables, such as gt in R or great_tables in Python, styles the table itself. Use the functions of the package to set the column alignment. In <a href="#fig-tbl-align-gt" class="quarto-xref">Figure&nbsp;<span>13.22</span></a>, <code>cols_align()</code> aligns the count column to the right.</p>
+<div id="fig-tbl-align-gt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tbl-align-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-colwidths: [25, 75]</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(<span class="at">align =</span> <span class="st">"right"</span>, <span class="at">columns =</span> n)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-colwidths: [25, 75]</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>summary_table <span class="op">=</span> (</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  pl.DataFrame(penguins)</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a> .group_by(<span class="st">'species'</span>)</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a> .<span class="bu">len</span>()</span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(summary_table.to_pandas(), </span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  tablefmt<span class="op">=</span><span class="st">'pipe'</span>, headers<span class="op">=</span><span class="st">'keys'</span>, showindex<span class="op">=</span><span class="va">False</span>))</span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  pl.DataFrame(penguins)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  .group_by(<span class="st">'species'</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  .<span class="bu">len</span>()</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  .pipe(GT)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  .cols_align(align<span class="op">=</span><span class="st">"right"</span>, columns<span class="op">=</span><span class="st">"len"</span>)</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tbl-align-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.22: Use the gt or great_tables function <code>cols_align()</code> to set the column alignment of an HTML table.
+</figcaption>
 </figure>
 </div>
 </section>
-<section id="html-tables" class="level3" data-number="13.6.3">
-<h3 data-number="13.6.3" class="anchored" data-anchor-id="html-tables"><span class="header-section-number">13.6.3</span> HTML tables</h3>
-<p><code>tbl-colwidths</code> applies only to markdown tables. A package that makes HTML tables, such as gt in R or great_tables in Python, styles the table itself. Use the functions of the package to set the alignment and width of the columns.</p>
-<p>In <a href="#lst-tbl-gt" class="quarto-xref">Snippet&nbsp;<span>13.5</span></a>, <code>cols_align()</code> aligns the count column to the right, <code>cols_width()</code> gives the species column 25% of the width and the count column 75%, and <code>tab_options()</code> makes the table the full width of its container.</p>
-<div id="lst-tbl-gt" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-tbl-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;13.5: Use gt or great_tables functions to set the alignment and width of the columns of an HTML table.
-</figcaption>
-<div aria-describedby="lst-tbl-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<section id="sec-table-column-widths" class="level3" data-number="13.5.5">
+<h3 data-number="13.5.5" class="anchored" data-anchor-id="sec-table-column-widths"><span class="header-section-number">13.5.5</span> Table column widths</h3>
+<p>Column width is the proportion of the table width that a column uses. By default, the widths depend on the content of the columns.</p>
+<p>To set the column widths of a pipe table, add a <code>tbl-colwidths</code> attribute after the caption. Its value is an array of percentages, one per column. This table gives the first column 80% of the width, and the other two columns 10% each:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Algorithm           <span class="pp">|</span> Accuracy <span class="pp">|</span> Time  <span class="pp">|</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|:--------------------|:--------:|------:|</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Random Forest       <span class="pp">|</span> 96.7%    <span class="pp">|</span> 0.12s <span class="pp">|</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Logistic Regression <span class="pp">|</span> 81.2%    <span class="pp">|</span> 0.08s <span class="pp">|</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Linear Regression   <span class="pp">|</span> 74.8%    <span class="pp">|</span> 0.05s <span class="pp">|</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>: {tbl-colwidths="<span class="co">[</span><span class="ot">80, 10, 10</span><span class="co">]</span>"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For a list table, you can add the same <code>tbl-colwidths</code> attribute to the <code>.list-table</code> div. Or, use the list table attribute <code>widths</code>, with a comma-separated list of widths:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-perf-widths .list-table header-rows=1 widths="80,10,10"}</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>Training performance</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Algorithm</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Accuracy</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Time</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Random Forest</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>96.7%</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>0.12s</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Logistic Regression</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>81.2%</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>0.08s</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Linear Regression</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>74.8%</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>0.05s</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For a code cell that outputs a markdown table, use the <code>tbl-colwidths</code> code cell option (<a href="#fig-tbl-colwidths-code" class="quarto-xref">Figure&nbsp;<span>13.23</span></a>).</p>
+<div id="fig-tbl-colwidths-code" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tbl-colwidths-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.width =</span> <span class="fu">pct</span>(<span class="dv">100</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(<span class="at">align =</span> <span class="st">"right"</span>, <span class="at">columns =</span> n) <span class="sc">|&gt;</span></span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_width</span>(</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    species <span class="sc">~</span> <span class="fu">pct</span>(<span class="dv">25</span>),</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    n <span class="sc">~</span> <span class="fu">pct</span>(<span class="dv">75</span>)</span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-colwidths: [25, 75]</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  pl.DataFrame(penguins)</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  .group_by(<span class="st">'species'</span>)</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  .<span class="bu">len</span>()</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  .pipe(GT)</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  .tab_options(table_width<span class="op">=</span><span class="st">"100%"</span>)</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  .cols_align(align<span class="op">=</span><span class="st">"right"</span>, columns<span class="op">=</span><span class="st">"len"</span>)</span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  .cols_width(</span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    species<span class="op">=</span><span class="st">"25%"</span>,</span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">len</span><span class="op">=</span><span class="st">"75%"</span></span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-colwidths: [25, 75]</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>summary_table <span class="op">=</span> (</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  pl.DataFrame(penguins)</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a> .group_by(<span class="st">'species'</span>)</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a> .<span class="bu">len</span>()</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>Markdown(tabulate(summary_table.to_pandas(), </span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  tablefmt<span class="op">=</span><span class="st">'pipe'</span>, headers<span class="op">=</span><span class="st">'keys'</span>, showindex<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tbl-colwidths-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.23: Use the <code>tbl-colwidths</code> code cell option to set the column widths of a markdown table from a code cell.
+</figcaption>
 </figure>
 </div>
+<p><code>tbl-colwidths</code> applies only to markdown tables. For an HTML table, use the functions of the package that makes it. In <a href="#fig-tbl-colwidths-gt" class="quarto-xref">Figure&nbsp;<span>13.24</span></a>, <code>tab_options()</code> makes the table the full width of its container, and <code>cols_width()</code> gives the species column 25% of the width and the count column 75%.</p>
+<div id="fig-tbl-colwidths-gt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tbl-colwidths-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">table.width =</span> <span class="fu">pct</span>(<span class="dv">100</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_width</span>(</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    species <span class="sc">~</span> <span class="fu">pct</span>(<span class="dv">25</span>),</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    n <span class="sc">~</span> <span class="fu">pct</span>(<span class="dv">75</span>)</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  pl.DataFrame(penguins)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  .group_by(<span class="st">'species'</span>)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  .<span class="bu">len</span>()</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  .pipe(GT)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  .tab_options(table_width<span class="op">=</span><span class="st">"100%"</span>)</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  .cols_width(</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>    species<span class="op">=</span><span class="st">"25%"</span>,</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">len</span><span class="op">=</span><span class="st">"75%"</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tbl-colwidths-gt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.24: Use the gt or great_tables functions <code>tab_options()</code> and <code>cols_width()</code> to set the column widths of an HTML table.
+</figcaption>
+</figure>
+</div>
+<p>To set the column widths of all the markdown tables in a document, set <code>tbl-colwidths</code> as a document option:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>document.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl-colwidths</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="dv">80</span><span class="kw">,</span><span class="at"> </span><span class="dv">10</span><span class="kw">,</span><span class="at"> </span><span class="dv">10</span><span class="kw">]</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A <code>tbl-colwidths</code> attribute on a table, or a <code>tbl-colwidths</code> code cell option, overrides the document option. A list table <code>widths</code> attribute does not.</p>
 </section>
 </section>
-<section id="wrapping-up" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">13.7</span> Wrapping Up</h2>
-<p>Everything in this chapter applies to computational figures and tables too. In <a href="figure-table-computational.html" class="quarto-xref"><span>Chapter 14</span></a>, you’ll learn the code cell options that control them, and how to troubleshoot them when the output isn’t what you expect.</p>
+<section id="wrapping-up" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">13.6</span> Wrapping Up</h2>
+<p>You now know how to cross-reference, caption, lay out, and position any figure or table, whether it comes from markdown or code. But when code produces the output, some things are decided before Quarto ever sees it, like the size of a plot, the format of a table, or the styling a package adds. <a href="figure-table-computational.html" class="quarto-xref"><span>Chapter 14</span></a> covers the code cell options that control these, and how to troubleshoot output that isn’t what you expect.</p>
 
 
 </section>

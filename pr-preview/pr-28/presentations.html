@@ -349,10 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sections-and-slides" id="toc-sections-and-slides" class="nav-link active" data-scroll-target="#sections-and-slides"><span class="header-section-number">11.1</span> Sections and slides</a>
-  <ul class="collapse">
-  <li><a href="#sec-output-location" id="toc-sec-output-location" class="nav-link" data-scroll-target="#sec-output-location"><span class="header-section-number">11.1.1</span> Slide location: <code>output-location</code></a></li>
-  </ul></li>
+  <li><a href="#sections-and-slides" id="toc-sections-and-slides" class="nav-link active" data-scroll-target="#sections-and-slides"><span class="header-section-number">11.1</span> Sections and slides</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/presentations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -426,59 +423,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>figure sizing / stretch</li>
 </ul>
-<section id="sec-output-location" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="sec-output-location"><span class="header-section-number">11.1.1</span> Slide location: <code>output-location</code></h3>
-<p>For presentations with <code>format: revealjs</code> the <code>output-location</code> code cell option controls where the figure or table appears in relation to the slide containing the code cell that created it.</p>
-<p>For example, <a href="#fig-output-location" class="quarto-xref">Figure&nbsp;<span>11.1</span></a> uses <code>output-location: slide</code> to put a figure on the slide following the code cell.</p>
-<div id="fig-output-location" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-output-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
-<div class="tab-content" data-group="language">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| output-location: slide</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> penguin_colors) <span class="sc">+</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length (mm)"</span>, <span class="at">y =</span> <span class="st">"Bill Depth (mm)"</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| output-location: slide</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    ggplot(penguins, aes(x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"bill_depth_mm"</span>))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"species"</span>))</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> scale_color_manual(values<span class="op">=</span>penguin_colors)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> labs(x<span class="op">=</span><span class="st">"Bill Length (mm)"</span>, y<span class="op">=</span><span class="st">"Bill Depth (mm)"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-output-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.1: Use <code>output-location: slide</code> to place a figure on the slide following the code cell that created. Applies to <code>format: revealjs</code> presentations.
-</figcaption>
-</figure>
-</div>
-<p>Other values for <code>output-location</code> include:</p>
-<ul>
-<li><code>fragment</code>: place the output on the same slide, but only show it after a slide advance.</li>
-<li><code>column</code>: place the output in a separate column on the same slide.</li>
-<li><code>column-fragment</code>: place the output in a separate column on the same slide, but only show it after a slide advance.</li>
-</ul>
-<p>You can read more about these options in the Quarto documentation on <a href="https://quarto.org/docs/presentations/revealjs/#output-location">RevealJS presentations</a>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

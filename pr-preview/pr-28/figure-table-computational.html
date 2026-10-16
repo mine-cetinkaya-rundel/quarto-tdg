@@ -479,7 +479,7 @@ Table&nbsp;14.1: Common code cell options for figures and tables
 <td style="text-align: left;"><code>output-location</code></td>
 <td></td>
 <td style="text-align: left;">Place figure or table in a specific location relative to slide</td>
-<td style="text-align: left;"><a href="presentations.html#sec-output-location" class="quarto-xref"><span>Section 11.1.1</span></a></td>
+<td style="text-align: left;"><span class="quarto-unresolved-ref">?sec-output-location</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>fig-width</code> / <code>fig-height</code> <strong>knitr engine only</strong></td>
@@ -488,30 +488,36 @@ Table&nbsp;14.1: Common code cell options for figures and tables
 <td style="text-align: left;"><a href="#sec-figure-size" class="quarto-xref"><span>Section 14.2.2</span></a>, also includes options for <code>jupyter</code> engine</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><code>out-width</code> <strong>knitr engine only</strong></td>
+<td></td>
+<td style="text-align: left;">Display width of figure on the page</td>
+<td style="text-align: left;"><a href="figure-table.html#sec-figure-width" class="quarto-xref"><span>Section 13.5.2</span></a></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"><code>fig-align</code></td>
 <td>☑</td>
 <td style="text-align: left;">Alignment of figures in their surrounding container</td>
-<td style="text-align: left;"><a href="figure-table.html#sec-figure-alignment" class="quarto-xref"><span>Section 13.5.2</span></a></td>
+<td style="text-align: left;"><a href="figure-table.html#sec-figure-alignment" class="quarto-xref"><span>Section 13.5.3</span></a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>tbl-colwidths</code></td>
 <td>☑</td>
 <td style="text-align: left;">Column widths for markdown tables</td>
-<td style="text-align: left;"><a href="figure-table.html#sec-table-column-widths" class="quarto-xref"><span>Section 13.6</span></a></td>
+<td style="text-align: left;"><a href="figure-table.html#sec-table-column-widths" class="quarto-xref"><span>Section 13.5.5</span></a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>layout</code></td>
 <td></td>
 <td style="text-align: left;">Layout specification when arranging multiple figures or tables in a single panel</td>
 <td style="text-align: left;"><a href="figure-table.html#sec-figtab-layout" class="quarto-xref"><span>Section 13.4</span></a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>layout-align</code> / <code>layout-valign</code></td>
 <td></td>
 <td style="text-align: left;">Alignment when arranging multiple figures or tables in a single panel</td>
 <td style="text-align: left;"><a href="figure-table.html#sec-figtab-layout" class="quarto-xref"><span>Section 13.4</span></a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>cap-location</code> / <code>fig-cap-location</code> / <code>tbl-cap-location</code></td>
 <td>☑</td>
 <td style="text-align: left;">Location of caption relative to figure or table</td>
@@ -540,7 +546,7 @@ Table&nbsp;14.1: Common code cell options for figures and tables
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="document.qmd"><pre class="sourceCode yaml code-overflow-wrap code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -555,7 +561,7 @@ Table&nbsp;14.1: Common code cell options for figures and tables
 <div class="code-with-filename-file">
 <pre><strong>setup.R</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="setup.R"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="setup.R"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -576,7 +582,7 @@ Table&nbsp;14.1: Common code cell options for figures and tables
 <div class="code-with-filename-file">
 <pre><strong>setup.py</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="setup.py"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="setup.py"><pre class="sourceCode python code-overflow-wrap code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> great_tables <span class="im">import</span> GT</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> palmerpenguins <span class="im">import</span> load_penguins</span>
@@ -614,7 +620,7 @@ Figure&nbsp;14.1: Code required before executing the examples in this chapter.
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Some text before the code cell.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Some text before the code cell.</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -628,7 +634,7 @@ Figure&nbsp;14.1: Code required before executing the examples in this chapter.
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Some text after the code cell.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Some text before the code cell.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Some text before the code cell.</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -676,7 +682,7 @@ Figure&nbsp;14.3: A rendered document with a figure produced by a code cell.
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-scatter</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Penguin bill length versus depth by species"</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."</span></span>
@@ -690,7 +696,7 @@ Figure&nbsp;14.3: A rendered document with a figure produced by a code cell.
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-scatter</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Penguin bill length versus depth by species"</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."</span></span>
@@ -731,7 +737,7 @@ Figure&nbsp;14.5: Example output when <a href="#fig-figures" class="quarto-xref"
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-species-count</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -742,7 +748,7 @@ Figure&nbsp;14.5: Example output when <a href="#fig-figures" class="quarto-xref"
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-species-count</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -785,7 +791,7 @@ Figure&nbsp;14.7: Example output when <a href="#fig-tables" class="quarto-xref">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -802,7 +808,7 @@ Figure&nbsp;14.7: Example output when <a href="#fig-tables" class="quarto-xref">
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-scatter}</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -834,7 +840,7 @@ Figure&nbsp;14.8: The equivalent fenced div syntax for <a href="#fig-figures" cl
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-species-count}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-species-count}</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -847,7 +853,7 @@ Figure&nbsp;14.8: The equivalent fenced div syntax for <a href="#fig-figures" cl
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-species-count}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-species-count}</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>(</span>
@@ -875,7 +881,7 @@ Figure&nbsp;14.9: The equivalent fenced div syntax for <a href="#fig-tables" cla
 </section>
 <section id="sec-figtab-figures" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="sec-figtab-figures"><span class="header-section-number">14.2</span> Figures</h2>
-<p>In this section you’ll learn about figure-specific options: figure size, format and resolution, and multiple figures. For figure alignment, see <a href="figure-table.html#sec-figure-alignment" class="quarto-xref"><span>Section 13.5.2</span></a>. Some of these controls are document options (set in your document header and applied to all figures), some are code cell options (applied to individual code cells), and others need to be configured directly in your plotting code.</p>
+<p>In this section you’ll learn about figure-specific options: figure size, format and resolution, and multiple figures. For figure alignment, see <a href="figure-table.html#sec-figure-alignment" class="quarto-xref"><span>Section 13.5.3</span></a>. Some of these controls are document options (set in your document header and applied to all figures), some are code cell options (applied to individual code cells), and others need to be configured directly in your plotting code.</p>
 <section id="default-figure-size" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="default-figure-size"><span class="header-section-number">14.2.1</span> Default figure size</h3>
 <p>The document options <code>fig-width</code> and <code>fig-height</code> control the default size of figures produced by all the code cells in a document.</p>
@@ -885,26 +891,17 @@ Figure&nbsp;14.9: The equivalent fenced div syntax for <a href="#fig-tables" cla
 <li><code>jupyter</code>: the values are used to set the default figure size for matplotlib. Many popular plotting packages, including seaborn, depend on matplotlib, and will respect these defaults. Some packages, like plotnine, don’t use matplotlib defaults but do respect the environment variables Quarto sets: <code>QUARTO_FIG_WIDTH</code> and <code>QUARTO_FIG_HEIGHT</code>.</li>
 </ul>
 <p>The default values are format specific. For example, the default figure size for <code>format: html</code> is 7 × 5 inches, and for <code>format: typst</code> it is 5.5 × 3.5 inches.</p>
-<p>You can override these defaults using <code>fig-width</code> and <code>fig-height</code> document options. For example, <a href="#lst-fig-width-height" class="quarto-xref">Snippet&nbsp;<span>14.1</span></a> shows how to set the default figure size to 4 × 6 inches for <code>html</code> output.</p>
-<div id="lst-fig-width-height" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-fig-width-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;14.1: Use the <code>fig-width</code> and <code>fig-height</code> document options to set the default figure size for a target output format.
-</figcaption>
-<div aria-describedby="lst-fig-width-height-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p>You can override these defaults using <code>fig-width</code> and <code>fig-height</code> document options. For example, the following sets the default figure size to 4 × 6 inches for <code>html</code> output:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-filename="document.qmd"><pre class="sourceCode yaml code-overflow-wrap code-with-copy"><code class="sourceCode yaml"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span><span class="at">    </span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-width</span><span class="kw">:</span><span class="at"> </span><span class="dv">4</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-height</span><span class="kw">:</span><span class="at"> </span><span class="dv">6</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</figure>
 </div>
 <p>Set <code>fig-width</code> and <code>fig-height</code> at the top level (i.e., not nested under a format) to apply to all formats. You could also set <code>fig-width</code> and <code>fig-height</code> in <code>_quarto.yml</code> to apply to all documents in a project.</p>
 </section>
@@ -913,14 +910,8 @@ Snippet&nbsp;14.1: Use the <code>fig-width</code> and <code>fig-height</code> do
 <p>The defaults set by the document options will apply to all code cells. However, you often want to customize figure sizes, and aspect ratios, for individual plots. How you do this depends on the engine.</p>
 <section id="knitr" class="level4" data-number="14.2.2.1">
 <h4 data-number="14.2.2.1" class="anchored" data-anchor-id="knitr"><span class="header-section-number">14.2.2.1</span> <code>knitr</code></h4>
-<p>With the <code>knitr</code> engine, use the <code>fig-width</code> and <code>fig-height</code> code cell options (<a href="#lst-figure-size" class="quarto-xref">Snippet&nbsp;<span>14.2</span></a>).</p>
-<div id="lst-figure-size" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-figure-size-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;14.2: When using the <code>knitr</code> engine, use the code cell options <code>fig-width</code> and <code>fig-height</code> to customize figure size for individual plots.
-</figcaption>
-<div aria-describedby="lst-figure-size-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<p>With the <code>knitr</code> engine, use the <code>fig-width</code> and <code>fig-height</code> code cell options, specified in inches, to customize figure size for individual plots:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 4</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 6</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -931,68 +922,40 @@ Snippet&nbsp;14.2: When using the <code>knitr</code> engine, use the code cell o
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Species"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</figure>
-</div>
 </section>
 <section id="jupyter" class="level4" data-number="14.2.2.2">
 <h4 data-number="14.2.2.2" class="anchored" data-anchor-id="jupyter"><span class="header-section-number">14.2.2.2</span> <code>jupyter</code></h4>
 <p>There are no <code>fig-width</code> or <code>fig-height</code> code cell options for the <code>jupyter</code> engine. You need to set the figure size in the code itself. This will depend on the plotting package you are using.</p>
 <p>For plotting packages that use matplotlib and respect its defaults, you can set figure sizes using matplotlib directly.</p>
-<p>For example, <a href="#lst-seaborn-figure" class="quarto-xref">Snippet&nbsp;<span>14.3</span></a> shows code to create a scatterplot of the <code>penguins</code> data using <a href="https://seaborn.pydata.org">seaborn</a>. With no further adjustment, the size of the figure will reflect the default <code>fig-height</code> and <code>fig-width</code> document options.</p>
-<div id="lst-seaborn-figure" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-seaborn-figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;14.3: Code to create a seaborn plot of seaborn’s own <code>penguins</code> data.
-</figcaption>
-<div aria-describedby="lst-seaborn-figure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<p>For example, the following code creates a scatterplot of seaborn’s own <code>penguins</code> data using <a href="https://seaborn.pydata.org">seaborn</a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">"penguins"</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"bill_depth_mm"</span>, hue<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</figure>
-</div>
-<p>To change the size of the figure you change the matplotlib default plot size using <code>rcParams</code> (<a href="#lst-seaborn-figure-rcparams" class="quarto-xref">Snippet&nbsp;<span>14.4</span></a>). This mimics the way the <code>jupyter</code> engine sets the default plot sizes and will apply to all plots created in subsequent code cells.</p>
-<div id="lst-seaborn-figure-rcparams" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-seaborn-figure-rcparams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;14.4: Use matplotlib’s <code>rcParams</code> to change default figure size for all subsequent plots.
-</figcaption>
-<div aria-describedby="lst-seaborn-figure-rcparams-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"bill_depth_mm"</span>, hue<span class="op">=</span><span class="st">"species"</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>With no further adjustment, the size of the figure will reflect the default <code>fig-height</code> and <code>fig-width</code> document options.</p>
+<p>To change the size of the figure you change the matplotlib default plot size using <code>rcParams</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>mpl.rcParams[<span class="st">'figure.figsize'</span>] <span class="op">=</span> (<span class="dv">8</span>, <span class="dv">4</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"bill_depth_mm"</span>, hue<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</figure>
-</div>
-<p>Alternatively, to apply a new default for a single plot, use <code>rc_context</code> as shown in <a href="#lst-seaborn-figure-rccontext" class="quarto-xref">Snippet&nbsp;<span>14.5</span></a>.</p>
-<div id="lst-seaborn-figure-rccontext" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-seaborn-figure-rccontext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;14.5: Use <code>rc_context</code> to create a plot with a temporary change to the matplotlib default figure size.
-</figcaption>
-<div aria-describedby="lst-seaborn-figure-rccontext-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"bill_depth_mm"</span>, hue<span class="op">=</span><span class="st">"species"</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This mimics the way the <code>jupyter</code> engine sets the default plot sizes and will apply to all plots created in subsequent code cells.</p>
+<p>Alternatively, to apply a new default for a single plot, use <code>rc_context</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> mpl.rc_context({<span class="st">'figure.figsize'</span>: (<span class="dv">8</span>, <span class="dv">4</span>)}):</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    sns.scatterplot(data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"bill_depth_mm"</span>, hue<span class="op">=</span><span class="st">"species"</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</figure>
-</div>
-<p>For packages that don’t use matplotlib, or don’t respect its defaults, you’ll need to refer to their documentation for changing plot size. For example, in plotnine you can resize a plot through the <code>theme()</code> function as shown in <a href="#lst-plotnine-figure-size" class="quarto-xref">Snippet&nbsp;<span>14.6</span></a>.</p>
-<div id="lst-plotnine-figure-size" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-plotnine-figure-size-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;14.6: Use the <code>figure_size</code> argument to plotnine’s <code>theme()</code> to set the size of a single plot.
-</figcaption>
-<div aria-describedby="lst-plotnine-figure-size-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    sns.scatterplot(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>penguins, x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"bill_depth_mm"</span>, hue<span class="op">=</span><span class="st">"species"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For packages that don’t use matplotlib, or don’t respect its defaults, you’ll need to refer to their documentation for changing plot size. For example, in plotnine you can resize a plot through the <code>figure_size</code> argument to the <code>theme()</code> function:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    ggplot(penguins, aes(x<span class="op">=</span><span class="st">"bill_length_mm"</span>, y<span class="op">=</span><span class="st">"bill_depth_mm"</span>))</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_point(aes(color<span class="op">=</span><span class="st">"species"</span>))</span>
@@ -1001,55 +964,34 @@ Snippet&nbsp;14.6: Use the <code>figure_size</code> argument to plotnine’s <co
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> theme(figure_size<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</figure>
-</div>
 </section>
 </section>
 <section id="figure-format-and-resolution" class="level3" data-number="14.2.3">
 <h3 data-number="14.2.3" class="anchored" data-anchor-id="figure-format-and-resolution"><span class="header-section-number">14.2.3</span> Figure format and resolution</h3>
 <p>The default image format saved by the engines differs by target format. For example, for <code>format: html</code>, images will be PNG (<code>.png</code>) by default; for <code>format: typst</code>, images will be SVG (<code>.svg</code>) by default.</p>
-<p>You can override these defaults using the <code>fig-format</code> document option. For example, <a href="#lst-fig-format" class="quarto-xref">Snippet&nbsp;<span>14.7</span></a> shows how to set the default figure format to <code>svg</code> for <code>html</code> output.</p>
-<div id="lst-fig-format" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-fig-format-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;14.7: Use the <code>fig-format</code> document option to set the default figure format for a target output format.
-</figcaption>
-<div aria-describedby="lst-fig-format-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p>You can override these defaults using the <code>fig-format</code> document option. For example, the following sets the default figure format to <code>svg</code> for <code>html</code> output:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20" data-filename="document.qmd"><pre class="sourceCode yaml code-overflow-wrap code-with-copy"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-format</span><span class="kw">:</span><span class="at"> svg</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</figure>
-</div>
 <p>Setting <code>fig-format</code> at the top level applies to all output formats. You can also set <code>fig-format</code> in <code>_quarto.yml</code>, at the top level or under a format, to apply it to all documents in a project.</p>
 <p>For raster image formats like <code>png</code> and <code>jpg</code>, you can also control the resolution of the saved image using the <code>fig-dpi</code> document option.</p>
-<p>For example, <a href="#lst-fig-dpi" class="quarto-xref">Snippet&nbsp;<span>14.8</span></a> shows how to set the default figure resolution to 300 dots per inch (DPI) for <code>html</code> output.</p>
-<div id="lst-fig-dpi" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-fig-dpi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;14.8: Use the <code>fig-dpi</code> document option to set the default figure resolution for a target output format.
-</figcaption>
-<div aria-describedby="lst-fig-dpi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p>For example, the following sets the default figure resolution to 300 dots per inch (DPI) for <code>html</code> output:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21" data-filename="document.qmd"><pre class="sourceCode yaml code-overflow-wrap code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-dpi</span><span class="kw">:</span><span class="at"> </span><span class="dv">300</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</figure>
 </div>
 <p>Like <code>fig-format</code>, you can set <code>fig-dpi</code> for all formats, or for all documents in a project with <code>_quarto.yml</code>.</p>
 </section>
@@ -1063,7 +1005,7 @@ Snippet&nbsp;14.8: Use the <code>fig-dpi</code> document option to set the defau
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-scatter</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Physical dimensions of penguins</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: </span></span>
@@ -1089,7 +1031,7 @@ Snippet&nbsp;14.8: Use the <code>fig-dpi</code> document option to set the defau
 <span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-scatter</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Physical dimensions of penguins</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: </span></span>
@@ -1136,12 +1078,12 @@ Figure&nbsp;14.11: Result of rendering the code cell with multiple figures in <a
 </div>
 <p>When rendered, the figures are placed together in a single “Figure” where the overall caption is provided by <code>fig-cap</code> and prefaced by “Figure 1:”. Each individual figure in the panel has its own sub-caption prefaced by “(a)” and “(b)”. You can cross-reference the entire panel with the <code>label</code>, e.g., <code>@fig-scatter</code>, or individual figures by appending an index, e.g., <code>@fig-scatter-1</code> and <code>@fig-scatter-2</code>.</p>
 <p>Often the use of <code>fig-subcap</code> is combined with layout options to arrange the figures in a specific way. For example, the <code>layout-ncol</code> code cell option will arrange the figures in a specified number of columns. Adding the code cell option <code>layout-ncol: 2</code> to <a href="#fig-multiple-figures" class="quarto-xref">Figure&nbsp;<span>14.10</span></a> would result in the figures laid out side by side rather than one above the other.</p>
-<p>Using <code>fig-subcap</code> is a quick way to make a multi-panel figure. But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them (<a href="figure-table.html#sec-figtab-layout" class="quarto-xref"><span>Section 13.4</span></a>). You can learn more about this approach in <a href="figure-table.html#sec-figtab-layout" class="quarto-xref"><span>Section 13.4</span></a>.</p>
+<p>Using <code>fig-subcap</code> is a quick way to make a multi-panel figure. But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them. You can learn more about this approach in <a href="figure-table.html#sec-figtab-layout" class="quarto-xref"><span>Section 13.4</span></a>.</p>
 </section>
 </section>
 <section id="sec-figtab-tables" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="sec-figtab-tables"><span class="header-section-number">14.3</span> Tables</h2>
-<p>In this section you’ll learn about table-specific options, in particular choosing a <strong>table format</strong>. For column alignment and widths, see <a href="figure-table.html#sec-table-column-widths" class="quarto-xref"><span>Section 13.6</span></a>.</p>
+<p>In this section you’ll learn about table-specific options, in particular choosing a <strong>table format</strong>. For column alignment and widths, see <a href="figure-table.html#sec-table-column-alignment" class="quarto-xref"><span>Section 13.5.4</span></a> and <a href="figure-table.html#sec-table-column-widths" class="quarto-xref"><span>Section 13.5.5</span></a>.</p>
 <section id="table-format" class="level3" data-number="14.3.1">
 <h3 data-number="14.3.1" class="anchored" data-anchor-id="table-format"><span class="header-section-number">14.3.1</span> Table format</h3>
 <p>When you produce a computational table, the engine writes the table in a plain-text format. The most common formats are markdown pipe tables and HTML tables. Both markdown pipe tables and HTML tables are supported across all of Quarto’s output formats. The choice between them often comes down to how much control you want over the appearance of the table.</p>
@@ -1157,19 +1099,19 @@ Figure&nbsp;14.11: Result of rendering the code cell with multiple figures in <a
 <section id="r-7" class="level5" data-number="14.3.1.1.1">
 <h5 data-number="14.3.1.1.1" class="anchored" data-anchor-id="r-7"><span class="header-section-number">14.3.1.1.1</span> R</h5>
 <p>The <code>kable()</code> function from the <a href="https://yihui.org/knitr/">knitr</a> package produces markdown tables by default. Pass your table object to <code>kable()</code> and it will return the markdown table:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species) <span class="sc">|&gt;</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The intermediate markdown produced is:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>species   <span class="pp">|</span>   n<span class="pp">|</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>species   <span class="pp">|</span>   n<span class="pp">|</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|:---------|---:|</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>Adelie    <span class="pp">|</span> 151<span class="pp">|</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>Chinstrap <span class="pp">|</span>  68<span class="pp">|</span></span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span>Gentoo    <span class="pp">|</span> 123<span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Control the alignment of columns (i.e., the position of the colons, <code>:</code>) with the <code>align</code> argument to <code>kable()</code>. For a full example, see <a href="figure-table.html#sec-table-column-widths" class="quarto-xref"><span>Section 13.6</span></a>.</p>
+<p>Control the alignment of columns (i.e., the position of the colons, <code>:</code>) with the <code>align</code> argument to <code>kable()</code>. For a full example, see <a href="figure-table.html#sec-table-column-alignment" class="quarto-xref"><span>Section 13.5.4</span></a>.</p>
 </section>
 <section id="python-7" class="level5" data-number="14.3.1.1.2">
 <h5 data-number="14.3.1.1.2" class="anchored" data-anchor-id="python-7"><span class="header-section-number">14.3.1.1.2</span> Python</h5>
@@ -1181,7 +1123,7 @@ Figure&nbsp;14.11: Result of rendering the code cell with multiple figures in <a
 <li><p>Wrap the result in <code>Markdown()</code> from <code>IPython.display</code></p></li>
 </ol>
 <p>For example, to apply this strategy to a summary table created by Polars:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1195,25 +1137,22 @@ Figure&nbsp;14.11: Result of rendering the code cell with multiple figures in <a
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When executed, this intermediate markdown is produced:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> species   <span class="pp">|</span>   len <span class="pp">|</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> species   <span class="pp">|</span>   len <span class="pp">|</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|:----------|------:|</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Gentoo    <span class="pp">|</span>   123 <span class="pp">|</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Adelie    <span class="pp">|</span>   151 <span class="pp">|</span></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Chinstrap <span class="pp">|</span>    68 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Control the alignment of columns (i.e., the position of the colons, <code>:</code>) with the <code>colalign</code> argument to <code>tabulate()</code>. For a full example, see <a href="figure-table.html#sec-table-column-widths" class="quarto-xref"><span>Section 13.6</span></a>.</p>
+<p>Control the alignment of columns (i.e., the position of the colons, <code>:</code>) with the <code>colalign</code> argument to <code>tabulate()</code>. For a full example, see <a href="figure-table.html#sec-table-column-alignment" class="quarto-xref"><span>Section 13.5.4</span></a>.</p>
 <p>While <code>tabulate()</code> is a useful general approach, you may find simpler ways for your specific situation. For example, you can set the default print style for Polars DataFrames to markdown pipe tables using <a href="https://docs.pola.rs/api/python/stable/reference/api/polars.Config.set_tbl_formatting.html"><code>polars.Config.set_tbl_formatting</code></a>.</p>
 </section>
 </section>
 <section id="html" class="level4" data-number="14.3.1.2">
 <h4 data-number="14.3.1.2" class="anchored" data-anchor-id="html"><span class="header-section-number">14.3.1.2</span> HTML</h4>
 <p>The tables in <a href="#fig-tables" class="quarto-xref">Figure&nbsp;<span>14.6</span></a> were produced using the gt package in R and the great_tables package in Python. Both packages produce HTML tables by default (for other formats, see <a href="#sec-tables-other-formats" class="quarto-xref"><span>Section 14.3.1.3</span></a>).</p>
-<p>For example, <a href="#lst-intermediate-markdown-table" class="quarto-xref">Snippet&nbsp;<span>14.9</span></a> shows a simplified excerpt from the intermediate markdown for the computational table produced in <a href="#fig-tables" class="quarto-xref">Figure&nbsp;<span>14.6</span></a> when <code>format: html</code>.</p>
-<div id="lst-intermediate-markdown-table" class="listing quarto-float quarto-figure quarto-figure-left anchored">
-<figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-intermediate-markdown-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Snippet&nbsp;14.9: Intermediate markdown from the code cells in <a href="#fig-tables" class="quarto-xref">Figure&nbsp;<span>14.6</span></a>. The <code>...</code> indicate parts omitted for brevity.
-</figcaption>
-<div aria-describedby="lst-intermediate-markdown-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p>For example, <a href="#fig-intermediate-markdown-table" class="quarto-xref">Figure&nbsp;<span>14.12</span></a> shows a simplified excerpt from the intermediate markdown for the computational table produced in <a href="#fig-tables" class="quarto-xref">Figure&nbsp;<span>14.6</span></a> when <code>format: html</code>.</p>
+<div id="fig-intermediate-markdown-table" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-intermediate-markdown-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
@@ -1222,7 +1161,7 @@ Snippet&nbsp;14.9: Intermediate markdown from the code cells in <a href="#fig-ta
 <div class="code-with-filename-file">
 <pre><strong>document.html.md</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-filename="document.html.md"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>::: {.cell-output-display}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28" data-filename="document.html.md"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>::: {.cell-output-display}</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div id="czabgtycdf" ...&gt;</span></span>
@@ -1242,7 +1181,7 @@ Snippet&nbsp;14.9: Intermediate markdown from the code cells in <a href="#fig-ta
 <div class="code-with-filename-file">
 <pre><strong>document.html.md</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-filename="document.html.md"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>::: {.cell-output .cell-output-display execution_count=8}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29" data-filename="document.html.md"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>::: {.cell-output .cell-output-display execution_count=8}</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div id="jnzyjbmsji" ...&gt;</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;style&gt;...&lt;/style&gt;</span></span>
@@ -1258,6 +1197,9 @@ Snippet&nbsp;14.9: Intermediate markdown from the code cells in <a href="#fig-ta
 </div>
 </div>
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intermediate-markdown-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.12: Intermediate markdown from the code cells in <a href="#fig-tables" class="quarto-xref">Figure&nbsp;<span>14.6</span></a>. The <code>...</code> indicate parts omitted for brevity.
+</figcaption>
 </figure>
 </div>
 <p>Inside the <code>::: {.cell-output-display}</code> div, you’ll notice the raw HTML block syntax <code>```{=html}</code>, and the table is created with the HTML tags <code>&lt;table&gt;</code>, <code>&lt;thead&gt;</code> and <code>&lt;tbody&gt;</code>. In other words, the code cell has produced an HTML table.</p>
@@ -1271,7 +1213,7 @@ Snippet&nbsp;14.9: Intermediate markdown from the code cells in <a href="#fig-ta
 <section id="sec-multiple-tables" class="level3" data-number="14.3.2">
 <h3 data-number="14.3.2" class="anchored" data-anchor-id="sec-multiple-tables"><span class="header-section-number">14.3.2</span> Multiple tables</h3>
 <p>If your code cell produces more than one table, you can give the tables sub-captions by providing an array to <code>tbl-subcap</code>.</p>
-<p>For example, <a href="#fig-multiple-tables" class="quarto-xref">Figure&nbsp;<span>14.12</span></a> shows a code cell that produces two tables, with sub-captions provided via <code>tbl-subcap</code>. The rendered output is shown in <a href="#fig-multiple-tables-rendered" class="quarto-xref">Figure&nbsp;<span>14.13</span></a>. To arrange the tables in the panel, see <a href="figure-table.html#sec-multiple-outputs" class="quarto-xref"><span>Section 13.4.1</span></a>.</p>
+<p>For example, <a href="#fig-multiple-tables" class="quarto-xref">Figure&nbsp;<span>14.13</span></a> shows a code cell that produces two tables, with sub-captions provided via <code>tbl-subcap</code>. The rendered output is shown in <a href="#fig-multiple-tables-rendered" class="quarto-xref">Figure&nbsp;<span>14.14</span></a>. To arrange the tables in the panel, see <a href="figure-table.html#sec-multiple-outputs" class="quarto-xref"><span>Section 13.4.1</span></a>.</p>
 <div id="fig-multiple-tables" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-multiple-tables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1279,7 +1221,7 @@ Snippet&nbsp;14.9: Intermediate markdown from the code cells in <a href="#fig-ta
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-species-count</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-subcap: </span></span>
@@ -1302,7 +1244,7 @@ Snippet&nbsp;14.9: Intermediate markdown from the code cells in <a href="#fig-ta
 <span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-species-count</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-subcap: </span></span>
@@ -1334,7 +1276,7 @@ Snippet&nbsp;14.9: Intermediate markdown from the code cells in <a href="#fig-ta
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multiple-tables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.12: An example of a code cell that produces two tables. Individual table captions are provided as an array to <code>tbl-subcap</code>.
+Figure&nbsp;14.13: An example of a code cell that produces two tables. Individual table captions are provided as an array to <code>tbl-subcap</code>.
 </figcaption>
 </figure>
 </div>
@@ -1344,12 +1286,12 @@ Figure&nbsp;14.12: An example of a code cell that produces two tables. Individua
 <img src="images/figure-table-multiple-tables.png" class="img-fluid figure-img" alt="Two tables, one above the other. Each table has a caption prefaced by '(a)' and '(b)' respectively. The overall caption is 'Table 1: Number of penguins sampled from each species in the Palmer Archipelago'.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-multiple-tables-rendered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.13: Result of rendering the code cell with multiple tables in <a href="#fig-multiple-tables" class="quarto-xref">Figure&nbsp;<span>14.12</span></a>.
+Figure&nbsp;14.14: Result of rendering the code cell with multiple tables in <a href="#fig-multiple-tables" class="quarto-xref">Figure&nbsp;<span>14.13</span></a>.
 </figcaption>
 </figure>
 </div>
 <p>When rendered, the tables are placed together in a single “Table” where the overall caption is provided by <code>tbl-cap</code> and prefaced by “Table 1:”. Each individual table in the panel has its own sub-caption prefaced by “(a)” and “(b)”. You can cross-reference the entire panel with the <code>label</code>, e.g., <code>@tbl-species-count</code>, or individual tables by appending an index, e.g., <code>@tbl-species-count-1</code> and <code>@tbl-species-count-2</code>.</p>
-<p>Often the use of <code>tbl-subcap</code> is combined with layout options to arrange the tables in a specific way. For example, the <code>layout-ncol</code> code cell option will arrange the tables in a specified number of columns. Adding the code cell option <code>layout-ncol: 2</code> to <a href="#fig-multiple-tables" class="quarto-xref">Figure&nbsp;<span>14.12</span></a> would result in the tables laid out side by side rather than one above the other.</p>
+<p>Often the use of <code>tbl-subcap</code> is combined with layout options to arrange the tables in a specific way. For example, the <code>layout-ncol</code> code cell option will arrange the tables in a specified number of columns. Adding the code cell option <code>layout-ncol: 2</code> to <a href="#fig-multiple-tables" class="quarto-xref">Figure&nbsp;<span>14.13</span></a> would result in the tables laid out side by side rather than one above the other.</p>
 <p>Using <code>tbl-subcap</code> is a quick way to make a multi-panel table. But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them (<a href="figure-table.html#sec-figtab-layout" class="quarto-xref"><span>Section 13.4</span></a>).</p>
 </section>
 </section>
@@ -1373,7 +1315,7 @@ Figure&nbsp;14.13: Result of rendering the code cell with multiple tables in <a 
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32" data-filename="document.qmd"><pre class="sourceCode yaml code-overflow-wrap code-with-copy"><code class="sourceCode yaml"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My Document</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">keep-md</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1399,7 +1341,7 @@ Figure&nbsp;14.13: Result of rendering the code cell with multiple tables in <a 
 <h4 data-number="14.4.2.3" class="anchored" data-anchor-id="do-the-translation-yourself"><span class="header-section-number">14.4.2.3</span> Do the translation yourself</h4>
 <p>If you can’t figure out why you aren’t getting the right markdown, you can consider doing the translation yourself. Instead of your code cell producing a figure or table, have it produce the markdown to include the figure or table.</p>
 <p>You’ll need to set the code cell option <code>output: asis</code> to tell Quarto not to further process the output of your code cell. Then write code to output text that is the markdown to include your figure or table. For figures, you need to save the image file in your code, and you are responsible for its format, size, and path.</p>
-<p>For example, if your code saves an image to a path defined in <code>image_path</code>, <a href="#fig-translate-yourself" class="quarto-xref">Figure&nbsp;<span>14.14</span></a> shows how to produce the markdown to include it.</p>
+<p>For example, if your code saves an image to a path defined in <code>image_path</code>, <a href="#fig-translate-yourself" class="quarto-xref">Figure&nbsp;<span>14.15</span></a> shows how to produce the markdown to include it.</p>
 <div id="fig-translate-yourself" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-translate-yourself-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1407,7 +1349,7 @@ Figure&nbsp;14.13: Result of rendering the code cell with multiple tables in <a 
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Python</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1415,7 +1357,7 @@ Figure&nbsp;14.13: Result of rendering the code cell with multiple tables in <a 
 <span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1426,7 +1368,7 @@ Figure&nbsp;14.13: Result of rendering the code cell with multiple tables in <a 
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-translate-yourself-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14.14: Code cells that produce markdown to include a figure saved in the path defined in <code>image_path</code>.
+Figure&nbsp;14.15: Code cells that produce markdown to include a figure saved in the path defined in <code>image_path</code>.
 </figcaption>
 </figure>
 </div>
