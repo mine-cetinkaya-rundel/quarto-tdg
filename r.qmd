@@ -229,7 +229,12 @@ execute:
   echo: false
   warning: false
 ---
-```
+```yaml
+---
+title: My Report
+echo: false
+warning: false
+---
 
 Common document-level execution options include the following, which take `true` or `false` unless noted otherwise:
 
