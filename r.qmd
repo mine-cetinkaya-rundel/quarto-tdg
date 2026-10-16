@@ -220,7 +220,7 @@ Many of these options can also be set at the document level to apply to all code
 
 ### Document-level execution options
 
-Set execution options for the entire document using the `execute` key in your YAML header:
+Set execution options that apply to all cells in your document header:
 
 ```yaml
 ---
