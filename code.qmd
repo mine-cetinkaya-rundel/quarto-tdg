@@ -118,6 +118,44 @@ Other options might add information specific to the code cell:
 
 You'll learn how to know which options are available and where to put them in  @sec-execution-options.
 
+### Inline code {#sec-inline-code}
+
+In addition to code cells, you can embed R code directly within your markdown text using inline code, inserting computed values into your narrative without manually copying them.
+
+The syntax uses single backticks with `{r}` immediately after the opening backtick:
+
+```markdown
+The mean temperature was `{{r}} mean(airquality$Temp)` degrees.
+```
+
+We recommend that you avoid complex function calls or operations that do significant work in inline code and instead compute values in a code cell and then reference them inline:
+
+```{r}
+avg_temp <- mean(airquality$Temp)
+```
+
+```markdown
+The mean temperature was `{{r}} avg_temp` degrees.
+```
+
+This renders as: The mean temperature was `r avg_temp` degrees.
+
+By default, inline code produces plain text.
+To generate markdown-formatted output, wrap the result in `I()`:
+
+```markdown
+The result is `{{r}} I("**significant**")`.
+```
+
+This produces bold text in the rendered output.
+
+::: callout-note
+## Inline code in YAML
+
+Inline code cannot be used directly in YAML strings, such as titles or figure captions.
+For dynamic captions, use the cross-reference div syntax instead (see @sec-crossreferences).
+:::
+
 ## Basics of execution
 
 When you render a Quarto document containing code cells, Quarto executes the code and incorporates the results into your output.
