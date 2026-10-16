@@ -45,6 +45,7 @@ Use the [Quarto Code Cell Reference](https://quarto.org/docs/reference/cells/) f
 | `column` / `fig-column` / `tbl-column` | | Place figure or table in a specific column relative to page | @sec-page-columns |
 | `output-location` | | Place figure or table in a specific location relative to slide | @sec-output-location |
 | `fig-width` / `fig-height` **knitr engine only** | ☑ | Size of figure in inches | @sec-figure-size, also includes options for `jupyter` engine |
+| `out-width` **knitr engine only** | | Display width of figure on the page | @sec-figure-width |
 | `fig-align`| ☑ | Alignment of figures in their surrounding container | @sec-figure-alignment |
 | `tbl-colwidths` | ☑ | Column widths for markdown tables | @sec-table-column-widths |
 | `layout` | | Layout specification when arranging multiple figures or tables in a single panel | @sec-figtab-layout |
@@ -73,7 +74,7 @@ The code to generate the example figures and tables is shown without any other c
 If you want to recreate them, you'll need the setup code as shown in @fig-setup.
 We also show the rendered examples without the code; that is, we set `echo: false` in our document header:
 
-```{.yaml filename="document.qmd"}
+```{.yaml filename="document.qmd" .code-overflow-wrap}
 ---
 echo: false
 ---
@@ -85,13 +86,13 @@ echo: false
 
 ## R
 
-````{.r filename="setup.R"}
+````{.r filename="setup.R" .code-overflow-wrap}
 {{< include _examples/figure-table/_code-snippets/setup.R >}}
 ````
 
 ## Python
 
-```{.python filename="setup.py"}
+```{.python filename="setup.py" .code-overflow-wrap}
 {{< include _examples/figure-table/_code-snippets/setup.py >}}
 ```
 
@@ -115,7 +116,7 @@ For example, in @fig-figure-quick the code cell produces a figure.
 
 ## R
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 Some text before the code cell.
 
 ```{{r}}
@@ -127,7 +128,7 @@ Some text after the code cell.
 
 ## Python
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 Some text before the code cell.
 
 ```{{python}}
@@ -168,7 +169,7 @@ For example, @fig-figures uses the same code as @fig-figure-quick but adds an id
 
 ## R
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 #| label: fig-scatter
 #| fig-cap: "Penguin bill length versus depth by species"
@@ -180,7 +181,7 @@ For example, @fig-figures uses the same code as @fig-figure-quick but adds an id
 
 ## Python
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 #| label: fig-scatter
 #| fig-cap: "Penguin bill length versus depth by species"
@@ -212,7 +213,7 @@ and start the label with `tbl-` to make it cross-referenceable.
 
 ## R
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 #| label: tbl-species-count
 #| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
@@ -223,7 +224,7 @@ and start the label with `tbl-` to make it cross-referenceable.
 
 ## Python
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 #| label: tbl-species-count
 #| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
@@ -257,7 +258,7 @@ As a concrete example, @fig-fenced-div-code-figure gives the same labeled and ca
 
 ## R
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ::: {#fig-scatter}
 ```{{r}}
 #| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
@@ -272,7 +273,7 @@ Penguin bill length versus depth by species
 
 ## Python
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ::: {#fig-scatter}
 ```{{python}}
 #| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
@@ -298,7 +299,7 @@ The equivalent fenced div syntax for @fig-figures.
 
 ## R
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ::: {#tbl-species-count}
 
 ```{{r}}
@@ -311,7 +312,7 @@ Number of penguins sampled from each species in the Palmer Archipelago
 
 ## Python
 
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ::: {#tbl-species-count}
 
 ```{{python}}
@@ -352,11 +353,9 @@ For example, the default figure size for `format: html` is 7 × 5 inches,
 and for `format: typst` it is 5.5 × 3.5 inches.
 
 You can override these defaults using `fig-width` and `fig-height` document options.
-For example, @lst-fig-width-height shows how to set the default figure size to 4 × 6 inches for `html` output.
+For example, the following sets the default figure size to 4 × 6 inches for `html` output:
 
-::: {#lst-fig-width-height}
-
-```{.yaml filename="document.qmd"}
+```{.yaml filename="document.qmd" .code-overflow-wrap}
 ---
 format:
   html:    
@@ -364,10 +363,6 @@ format:
     fig-height: 6
 ---
 ```
-
-Use the `fig-width` and `fig-height` document options to set the default figure size for a target output format.
-
-:::
 
 Set `fig-width` and `fig-height` at the top level (i.e., not nested under a format) to apply to all formats.
 You could also set `fig-width` and `fig-height` in `_quarto.yml` to apply to all documents in a project.
@@ -380,10 +375,9 @@ How you do this depends on the engine.
 
 #### `knitr`
 
-With the `knitr` engine, use the `fig-width` and `fig-height` code cell options (@lst-figure-size).
+With the `knitr` engine, use the `fig-width` and `fig-height` code cell options, specified in inches, to customize figure size for individual plots:
 
-::: {#lst-figure-size}
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 #| fig-width: 4
 #| fig-height: 6
@@ -391,10 +385,6 @@ With the `knitr` engine, use the `fig-width` and `fig-height` code cell options 
 {{< include _examples/figure-table/_code-snippets/island-bar.R >}}
 ```
 ````
-
-When using the `knitr` engine, use the code cell options `fig-width` and `fig-height` to customize figure size for individual plots.
-
-:::
 
 
 #### `jupyter` 
@@ -405,61 +395,51 @@ This will depend on the plotting package you are using.
 
 For plotting packages that use matplotlib and respect its defaults, you can set figure sizes using matplotlib directly.
 
-For example, @lst-seaborn-figure shows code to create a scatterplot of the `penguins` data using [seaborn](https://seaborn.pydata.org). 
-With no further adjustment, the size of the figure will reflect the default `fig-height` and `fig-width` document options.
+For example, the following code creates a scatterplot of seaborn's own `penguins` data using [seaborn](https://seaborn.pydata.org): 
 
-::: {#lst-seaborn-figure}
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 import seaborn as sns
 penguins = sns.load_dataset("penguins")
-sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species")
+sns.scatterplot(
+    data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species"
+)
 ```
 ````
 
-Code to create a seaborn plot of seaborn's own `penguins` data. 
+With no further adjustment, the size of the figure will reflect the default `fig-height` and `fig-width` document options.
 
-:::
+To change the size of the figure you change the matplotlib default plot size using `rcParams`:
 
-To change the size of the figure you change the matplotlib default plot size using `rcParams` (@lst-seaborn-figure-rcparams).
-This mimics the way the `jupyter` engine sets the default plot sizes and will apply to all plots created in subsequent code cells. 
-
-::: {#lst-seaborn-figure-rcparams}
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 import matplotlib as mpl
 mpl.rcParams['figure.figsize'] = (8, 4)
 
-sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species")
+sns.scatterplot(
+    data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species"
+)
 ```
 ````    
 
-Use matplotlib's `rcParams` to change default figure size for all subsequent plots.
+This mimics the way the `jupyter` engine sets the default plot sizes and will apply to all plots created in subsequent code cells. 
 
-:::
+Alternatively, to apply a new default for a single plot, use `rc_context`:
 
-Alternatively, to apply a new default for a single plot, use `rc_context` as shown in @lst-seaborn-figure-rccontext.
-
-::: {#lst-seaborn-figure-rccontext}
-
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 import matplotlib as mpl
 with mpl.rc_context({'figure.figsize': (8, 4)}):
-    sns.scatterplot(data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species")
+    sns.scatterplot(
+        data=penguins, x="bill_length_mm", y="bill_depth_mm", hue="species"
+    )
 ```
 ````
 
-Use `rc_context` to create a plot with a temporary change to the matplotlib default figure size.
-
-:::
-
 For packages that don't use matplotlib, or don't respect its defaults, you'll need to refer to their documentation for changing plot size.
-For example, in plotnine you can resize a plot through the `theme()` function as shown in @lst-plotnine-figure-size.
+For example, in plotnine you can resize a plot through the `figure_size` argument to the `theme()` function:
 
-::: {#lst-plotnine-figure-size}
-
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 (
     ggplot(penguins, aes(x="bill_length_mm", y="bill_depth_mm"))
@@ -471,21 +451,15 @@ For example, in plotnine you can resize a plot through the `theme()` function as
 ```
 ````
 
-Use the `figure_size` argument to plotnine's `theme()` to set the size of a single plot.
-
-:::
-
 ### Figure format and resolution
 
 The default image format saved by the engines differs by target format.
 For example, for `format: html`, images will be PNG (`.png`) by default; for `format: typst`, images will be SVG (`.svg`) by default.
 
 You can override these defaults using the `fig-format` document option.
-For example, @lst-fig-format shows how to set the default figure format to `svg` for `html` output.
+For example, the following sets the default figure format to `svg` for `html` output:
 
-::: {#lst-fig-format}
-
-````{.yaml filename="document.qmd"}
+````{.yaml filename="document.qmd" .code-overflow-wrap}
 ---
 format:
   html:
@@ -493,30 +467,20 @@ format:
 ---
 ````
 
-Use the `fig-format` document option to set the default figure format for a target output format.
-
-:::
-
 Setting `fig-format` at the top level applies to all output formats.
 You can also set `fig-format` in `_quarto.yml`, at the top level or under a format, to apply it to all documents in a project.
 
 For raster image formats like `png` and `jpg`, you can also control the resolution of the saved image using the `fig-dpi` document option.
 
-For example, @lst-fig-dpi shows how to set the default figure resolution to 300 dots per inch (DPI) for `html` output.
+For example, the following sets the default figure resolution to 300 dots per inch (DPI) for `html` output:
 
-::: {#lst-fig-dpi}
-
-````{.yaml filename="document.qmd"}
+````{.yaml filename="document.qmd" .code-overflow-wrap}
 ---
 format:
   html:
     fig-dpi: 300
 ---
 ````
-
-Use the `fig-dpi` document option to set the default figure resolution for a target output format.
-
-:::
 
 Like `fig-format`, you can set `fig-dpi` for all formats, or for all documents in a project with `_quarto.yml`.
 
@@ -532,7 +496,7 @@ To arrange the figures in the panel, see @sec-multiple-outputs.
 
 ## R
  
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 #| label: fig-scatter
 #| fig-cap: Physical dimensions of penguins
@@ -551,7 +515,7 @@ To arrange the figures in the panel, see @sec-multiple-outputs.
  
 ## Python
  
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 #| label: fig-scatter
 #| fig-cap: Physical dimensions of penguins
@@ -585,14 +549,14 @@ For example, the `layout-ncol` code cell option will arrange the figures in a sp
 Adding the code cell option `layout-ncol: 2` to @fig-multiple-figures would result in the figures laid out side by side rather than one above the other.
 
 Using `fig-subcap` is a quick way to make a multi-panel figure.
-But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them (@sec-figtab-layout).
+But if you want to mix figures and tables, control where each item goes on the page, or caption and cross-reference items in your own way, we recommend one code cell for each output, with the fenced div syntax to label, caption, and arrange them.
 You can learn more about this approach in @sec-figtab-layout.
 
 
 ## Tables {#sec-figtab-tables}
 
 In this section you'll learn about table-specific options, in particular choosing a **table format**.
-For column alignment and widths, see @sec-table-column-widths.
+For column alignment and widths, see @sec-table-column-alignment and @sec-table-column-widths.
 
 ### Table format
 
@@ -623,7 +587,7 @@ There are many ways to produce a markdown table computationally, but we highligh
 The `kable()` function from the [knitr](https://yihui.org/knitr/) package produces markdown tables by default.
 Pass your table object to `kable()` and it will return the markdown table:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 {{< include _examples/figure-table/_code-snippets/species-count-markdown.R >}}
 ```
@@ -631,7 +595,7 @@ Pass your table object to `kable()` and it will return the markdown table:
 
 The intermediate markdown produced is:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 |species   |   n|
 |:---------|---:|
 |Adelie    | 151|
@@ -640,7 +604,7 @@ The intermediate markdown produced is:
 ````
 
 Control the alignment of columns (i.e., the position of the colons, `:`) with the `align` argument to `kable()`.
-For a full example, see @sec-table-column-widths.
+For a full example, see @sec-table-column-alignment.
 
 
 ##### Python
@@ -657,7 +621,7 @@ A general approach to create markdown tables is:
 
 For example, to apply this strategy to a summary table created by Polars:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 {{< include _examples/figure-table/_code-snippets/species-count-markdown.py >}}
 ```
@@ -665,7 +629,7 @@ For example, to apply this strategy to a summary table created by Polars:
 
 When executed, this intermediate markdown is produced:
 
-````markdown
+````{.markdown .code-overflow-wrap}
 | species   |   len |
 |:----------|------:|
 | Gentoo    |   123 |
@@ -674,7 +638,7 @@ When executed, this intermediate markdown is produced:
 ````
 
 Control the alignment of columns (i.e., the position of the colons, `:`) with the `colalign` argument to `tabulate()`.
-For a full example, see @sec-table-column-widths.
+For a full example, see @sec-table-column-alignment.
 
 While `tabulate()` is a useful general approach, you may find simpler ways for your specific situation.
 For example, you can set the default print style for Polars DataFrames to markdown pipe tables using [`polars.Config.set_tbl_formatting`](https://docs.pola.rs/api/python/stable/reference/api/polars.Config.set_tbl_formatting.html).
@@ -684,14 +648,14 @@ For example, you can set the default print style for Polars DataFrames to markdo
 The tables in @fig-tables were produced using the gt package in R and the great_tables package in Python.
 Both packages produce HTML tables by default (for other formats, see @sec-tables-other-formats).
 
-For example, @lst-intermediate-markdown-table shows a simplified excerpt from the intermediate markdown for the computational table produced in @fig-tables when `format: html`.
+For example, @fig-intermediate-markdown-table shows a simplified excerpt from the intermediate markdown for the computational table produced in @fig-tables when `format: html`.
 
-:::{#lst-intermediate-markdown-table}
+:::{#fig-intermediate-markdown-table}
 ::: {.panel-tabset group="language"}
 
 ## R
  
-````{.markdown filename="document.html.md"}
+````{.markdown filename="document.html.md" .code-overflow-wrap}
 ::: {.cell-output-display}
 
 ```{=html}
@@ -709,7 +673,7 @@ For example, @lst-intermediate-markdown-table shows a simplified excerpt from th
  
 ## Python
  
-````{.markdown filename="document.html.md"}
+````{.markdown filename="document.html.md" .code-overflow-wrap}
 ::: {.cell-output .cell-output-display execution_count=8}
 ```{=html}
 <div id="jnzyjbmsji" ...>
@@ -759,7 +723,7 @@ To arrange the tables in the panel, see @sec-multiple-outputs.
 
 ## R
  
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 #| label: tbl-species-count
 #| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
@@ -775,7 +739,7 @@ To arrange the tables in the panel, see @sec-multiple-outputs.
  
 ## Python
  
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 #| label: tbl-species-count
 #| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
@@ -834,7 +798,7 @@ The execution engine translates the output of your code cell into markdown.
 A good way to see what it has done is to examine the intermediate markdown after the engine has finished.
 Set `keep-md: true` in your document header:
 
-```{.yaml filename="document.qmd"}
+```{.yaml filename="document.qmd" .code-overflow-wrap}
 ---
 title: My Document
 keep-md: true
@@ -894,7 +858,7 @@ For example, if your code saves an image to a path defined in `image_path`, @fig
 
 ## R
  
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{r}}
 #| echo: false
 #| output: asis
@@ -905,7 +869,7 @@ cat(paste0("![Caption](", image_path, "){#fig-plot1 fig-alt='Alt text'}\n"))
  
 ## Python
  
-````{.markdown}
+````{.markdown .code-overflow-wrap}
 ```{{python}}
 #| echo: false
 #| output: asis

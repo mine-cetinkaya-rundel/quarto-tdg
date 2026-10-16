@@ -226,6 +226,7 @@ tbl-colwidths: [20, 80]
 - Prefix section IDs with `sec-`
 - Prefix figure IDs with `fig-`
 - Prefix table IDs with `tbl-`
+- Prefix listing IDs with `lst-`
 
 ### Code Blocks
 
@@ -268,6 +269,22 @@ library(ggplot2)
 ggplot(data, aes(x, y)) + geom_point()
 ```
 ````
+
+#### Plain block, listing, or figure
+
+Choose how to present an example by what it contains:
+
+| Use | When | Example |
+|:--|:--|:--|
+| Plain code block | A short snippet that completes the sentence before it (end that sentence with a colon). The text does not refer to it again. | A 3-line document option, `fig-align: left` |
+| Listing (`#lst-`) | One code block that the text refers to by number, or that is long or complete enough to stand alone. | `@lst-seaborn-figure`, `@lst-navbar-simple` |
+| Figure (`#fig-`) | Any R/Python (or other) tabset; code next to its rendered output; or syntax variants side by side as sub-figures. | `@fig-tbl-gt`, `@fig-panel-subfigures`, `@fig-figure-syntax` |
+
+**Conventions:**
+- Never put a tabset in a `#lst-` div. Use `#fig-`, even if the tabs contain only code
+- Never put a single code block, with no tabset or rendered output, in a `#fig-` div. Use a listing or a plain block
+- A plain code block has no caption. Put any explanation in the text before or after the block
+- Refer to listings and figures with `@lst-` or `@fig-` only. Don't add "Figure" or "Listing" before the reference, because Quarto adds it
 
 ### Figures
 

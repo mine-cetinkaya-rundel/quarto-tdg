@@ -859,7 +859,7 @@ If one code cell makes all the figures or tables, you can use `layout-ncol` as a
 ```
 ````
 
-See @sec-multiple-figures and @sec-multiple-tables for the details.
+See @sec-multiple-figures and @sec-multiple-tables for working examples with sub-captions.
 When it is appropriate, the code cell option has concise syntax, but you'll need to switch to a fenced div if you want to mix figures, tables, markdown, or code cell output in the same panel.
 
 ### Rows, columns, and custom grids {#sec-panel-grids}
