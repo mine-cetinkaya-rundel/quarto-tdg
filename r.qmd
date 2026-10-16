@@ -4,45 +4,18 @@ When you include R code cells in your document, Quarto uses the knitr engine to 
 The basics of code cells, including syntax and common options like `echo` and `include`, are covered in @sec-code.
 This chapter covers the features specific to R and knitr.
 
-## Output {#sec-r-output}
+::: callout-tip
+## Which R does Quarto use?
 
-### Inline code {#sec-inline-code}
+If you render from RStudio or Positron, Quarto usually uses the same R installation as your Console, so packages you can load interactively are also available when you render.
+Positron can discover multiple R installations and lets you switch between them; it sets the `QUARTO_R` environment variable to the R version active in your session.
+If you switch interpreters, restart any open Terminals so that they pick up the new value of `QUARTO_R` before you render from the command line.
 
-In addition to code cells, you can embed R code directly within your markdown text using inline code, inserting computed values into your narrative without manually copying them.
-
-The syntax uses single backticks with `{r}` immediately after the opening backtick:
-
-```markdown
-The mean temperature was `{{r}} mean(airquality$Temp)` degrees.
-```
-
-We recommend that you avoid complex function calls or operations that do significant work in inline code and instead compute values in a code cell and then reference them inline:
-
-```{r}
-avg_temp <- mean(airquality$Temp)
-```
-
-```markdown
-The mean temperature was `{{r}} avg_temp` degrees.
-```
-
-This renders as: The mean temperature was `r avg_temp` degrees.
-
-By default, inline code produces plain text.
-To generate markdown-formatted output, wrap the result in `I()`:
-
-```markdown
-The result is `{{r}} I("**significant**")`.
-```
-
-This produces bold text in the rendered output.
-
-::: callout-note
-## Inline code in YAML
-
-Inline code cannot be used directly in YAML strings, such as titles or figure captions.
-For dynamic captions, use the cross-reference div syntax instead (see @sec-crossreferences).
+If Quarto reports that a package isn't available even though it loads fine in your Console, Quarto is probably running a different R installation or library path.
+See @sec-r-environment for how to diagnose and fix this.
 :::
+
+## Output {#sec-r-output}
 
 ### Data frame printing {#sec-df-print}
 
@@ -114,6 +87,45 @@ format:
 
 Use this when you only need to change the output file format without customizing the specific graphics device.
 When both `dev` and `fig-format` are set, `dev` takes precedence.
+
+### Conditional execution {#sec-conditional-execution}
+
+Sometimes you need code to behave differently depending on the output format.
+knitr provides helper functions that report the format being rendered:
+
+```{{r}}
+if (knitr::is_html_output()) {
+  # Code for HTML output only
+}
+
+if (knitr::is_latex_output()) {
+  # Code for PDF output only
+}
+```
+
+For formats without a dedicated helper, `knitr::pandoc_to()` returns the Pandoc output format, or tests against one when you pass a name:
+
+``` r
+knitr::pandoc_to()
+# Returns e.g., "html", "latex", "docx"
+knitr::pandoc_to("typst")
+# Returns TRUE if the output is typst
+```
+
+Quarto also exposes format information through the `QUARTO_EXECUTE_INFO` environment variable, which it sets during rendering:[^r-2]
+
+[^r-2]: For more information, see Quarto documentation on execution context information at <https://quarto.org/docs/advanced/quarto-execute-info.html>.
+
+```{{r}}
+info <- jsonlite::fromJSON(Sys.getenv("QUARTO_EXECUTE_INFO"))
+format_name <- info$format$identifier$`base-format`
+
+if (format_name == "html") {
+  # HTML-specific code
+}
+```
+
+This provides finer-grained format details than `knitr::pandoc_to()`, such as sub-format identifiers and format options.
 
 ### Interactive output {#sec-interactive-output-r}
 
@@ -220,14 +232,13 @@ Many of these options can also be set at the document level to apply to all code
 
 ### Document-level execution options
 
-Set execution options for the entire document using the `execute` key in your YAML header:
+Set execution options that apply to all cells in your document header:  
 
 ```yaml
 ---
 title: My Report
-execute:
-  echo: false
-  warning: false
+echo: false
+warning: false
 ---
 ```
 
@@ -275,6 +286,7 @@ The knitr engine supports a large set of cell-level options.
   - `results`: How to display text results (`markup`, `asis`, `hold`, `hide`)
   - `collapse`: Merge code and output into a single block
   - `comment`: Prefix for output lines (default `"##"`)
+  - `message`: Whether to include messages
 
 - Some are specific to code cells that generate figures:
   - `fig-cap`: Caption
@@ -289,45 +301,6 @@ The knitr engine supports a large set of cell-level options.
   - `dependson`: Specify cells this one depends on
 
 For a complete list of knitr cell options, see the [Quarto reference](https://quarto.org/docs/reference/cells/cells-knitr.html).
-
-### Conditional execution {#sec-conditional-execution}
-
-Sometimes you need code to behave differently depending on the output format.
-knitr provides helper functions that report the format being rendered:
-
-```{{r}}
-if (knitr::is_html_output()) {
-  # Code for HTML output only
-}
-
-if (knitr::is_latex_output()) {
-  # Code for PDF output only
-}
-```
-
-For formats without a dedicated helper, `knitr::pandoc_to()` returns the Pandoc output format, or tests against one when you pass a name:
-
-``` r
-knitr::pandoc_to()
-# Returns e.g., "html", "latex", "docx"
-knitr::pandoc_to("typst")
-# Returns TRUE if the output is typst
-```
-
-Quarto also exposes format information through the `QUARTO_EXECUTE_INFO` environment variable, which it sets during rendering:[^r-2]
-
-[^r-2]: For more information, see Quarto documentation on execution context information at <https://quarto.org/docs/advanced/quarto-execute-info.html>.
-
-```{{r}}
-info <- jsonlite::fromJSON(Sys.getenv("QUARTO_EXECUTE_INFO"))
-format_name <- info$format$identifier$`base-format`
-
-if (format_name == "html") {
-  # HTML-specific code
-}
-```
-
-This provides finer-grained format details than `knitr::pandoc_to()`, such as sub-format identifiers and format options.
 
 ## Parameters {#sec-parameters}
 
@@ -376,6 +349,17 @@ Then reference it when rendering:
 ```bash
 quarto render report.qmd --execute-params params-south.yml
 ```
+
+Parameters can also be set programmatically when rendering from R using the `execute_params` argument to `quarto_render()`:
+
+```r
+quarto_render(
+  "report.qmd",
+  execute_params = list(region = "South", year = 2025)
+)
+```
+
+See @sec-render-from-r for more on `quarto_render()`.
 
 ::: callout-important
 ## Parameter values must be valid YAML
@@ -538,14 +522,7 @@ Quarto 1.10.3
 ```
 
 If the R path shown doesn't match what you expect, that's likely the source of any "package not found" or version mismatch issues.
-
-::: callout-tip
-## Rendering in Positron
-
-Positron can discover multiple R installations on your system and lets you switch between them.
-When you render a Quarto document, Positron sets `QUARTO_R` to the R version active in your session, so rendering uses the same R you're working with interactively.
-To render with a different version, switch your active R interpreter in Positron before rendering.
-:::
+In Positron, a common cause is a Terminal opened before you switched R interpreters, which still carries the old value of `QUARTO_R`.
 
 ### Diagnosing environment issues {#sec-diagnosing-env}
 
