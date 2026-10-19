@@ -1,0 +1,8 @@
+---
+format:
+  typst:
+    page-numbering: ""
+bibliography: references.bib
+---
+
+The industry standard for on-time performance is 90% [@railregulator2023].

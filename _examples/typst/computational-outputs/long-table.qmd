@@ -1,0 +1,6 @@
+```{r}
+#| label: tbl-punctuality
+#| tbl-cap: Punctuality by route
+#| echo: false
+{{< include long-table.R >}}
+```

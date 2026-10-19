@@ -1,0 +1,11 @@
+typography:
+  fonts:
+    - family: EB Garamond
+      source: google
+    - family: Barlow
+      source: google
+    - family: JetBrains Mono
+      source: google
+  base: EB Garamond
+  headings: Barlow
+  monospace: JetBrains Mono

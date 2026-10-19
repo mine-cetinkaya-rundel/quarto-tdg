@@ -1,0 +1,26 @@
+color:
+  palette:
+    paper: "#fdf6e3"
+    ink: "#073642"
+    gold: "#b58900"
+    navy: "#2e5090"
+    charcoal: "#1e1e2e"
+  background: paper
+  foreground: ink
+  primary: gold
+typography:
+  fonts:
+    - family: EB Garamond
+      source: google
+    - family: Barlow
+      source: google
+    - family: JetBrains Mono
+      source: google
+  base: EB Garamond
+  headings: Barlow
+  monospace: JetBrains Mono
+  link:
+    color: navy
+    decoration: underline
+  monospace-block:
+    background-color: charcoal

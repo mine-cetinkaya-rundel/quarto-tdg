@@ -1,0 +1,152 @@
+---
+title: "TeX math sampler for `format: typst`"
+---
+
+<!--
+A cross-section of TeX math constructs (drawn from the LaTeX Wikibook's
+Mathematics chapter) rendered under `format: typst` to see which survive
+the Pandoc texmath → Typst writer pipeline.
+
+Rendering this file produces sampler.pdf and sampler.typ (via keep-typ).
+Inspect sampler.typ to see how each construct is translated.
+
+Constructs known to fail are listed in the "Known broken" section at the
+end, commented out with notes so the rest still renders cleanly.
+-->
+
+## 1. Basics: sub/superscripts, fractions, roots
+
+Inline: $x^2$, $x_i$, $x_i^2$, $\frac{a}{b}$, $\sqrt{x}$, $\sqrt[3]{x}$, $\tfrac{1}{2}$, $\dfrac{1}{2}$.
+
+## 2. Decorated symbols
+
+$\bar{x}$, $\hat{x}$, $\tilde{x}$, $\vec{x}$, $\dot{x}$, $\ddot{x}$, $\overline{xyz}$, $\widehat{xyz}$, $\widetilde{xyz}$, $\overrightarrow{AB}$, $\overbrace{x+y+z}^{n}$, $\underbrace{a+b+c}_{m}$.
+
+## 3. Greek letters
+
+$\alpha, \beta, \gamma, \delta, \epsilon, \varepsilon, \zeta, \eta, \theta, \vartheta, \iota, \kappa, \lambda, \mu, \nu, \xi, \pi, \varpi, \rho, \varrho, \sigma, \varsigma, \tau, \upsilon, \phi, \varphi, \chi, \psi, \omega$
+
+Capitals: $\Gamma, \Delta, \Theta, \Lambda, \Xi, \Pi, \Sigma, \Upsilon, \Phi, \Psi, \Omega$
+
+## 4. Operators
+
+$\sum_{i=1}^{n} x_i$, $\prod_{i=1}^{n} x_i$, $\int_0^1 f(x)\,dx$, $\iint_D$, $\iiint_V$, $\oint$, $\lim_{x \to \infty}$, $\limsup$, $\liminf$, $\min_{x}$, $\max_{x}$.
+
+## 5. Relations
+
+$a = b$, $a \neq b$, $a \leq b$, $a \geq b$, $a \equiv b$, $a \approx b$, $a \sim b$, $a \simeq b$, $a \cong b$, $a \propto b$, $a \ll b$, $a \gg b$, $a \subset b$, $a \supseteq b$, $a \in b$, $a \notin b$.
+
+## 6. aligned (amsmath)
+
+$$
+\begin{aligned}
+f(x) &= (x + 1)^2 \\
+     &= x^2 + 2x + 1
+\end{aligned}
+$$
+
+## 7. gather
+
+$$
+\begin{gathered}
+a = b + c \\
+d = e - f
+\end{gathered}
+$$
+
+## 8. cases
+
+$$
+f(x) = \begin{cases} x & \text{if } x \geq 0 \\ -x & \text{if } x < 0 \end{cases}
+$$
+
+## 9. Matrices
+
+`pmatrix` and `bmatrix` work. `vmatrix` and `Vmatrix` are broken — see the "Known broken" section below.
+
+$$
+M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}, \quad
+N = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+$$
+
+## 10. Delimiters
+
+$\left( \frac{a}{b} \right)$, $\left[ x \right]$, $\left\{ y \right\}$, $\left| z \right|$, $\left\lfloor x \right\rfloor$, $\left\lceil x \right\rceil$, $\left\langle \phi \right\rangle$.
+
+## 11. Text and font styles
+
+$\text{for all } x \in X$, $\mathrm{rm}$, $\mathbf{bf}$, $\mathit{it}$, $\mathsf{sf}$, $\mathtt{tt}$, $\mathcal{CAL}$, $\mathbb{RN}$, $\mathfrak{FR}$.
+
+## 12. Spacing
+
+$a\,b$ (thin), $a\:b$ (medium), $a\;b$ (thick), $a\!b$ (neg), $a\quad b$, $a\qquad b$.
+
+## 13. Arrows
+
+$\to, \gets, \rightarrow, \leftarrow, \Rightarrow, \Leftarrow, \Leftrightarrow, \mapsto, \xrightarrow{f}, \xleftarrow{g}, \overset{!}{=}, \underset{n \to \infty}{\lim}$.
+
+## 14. Substack and stacked limits
+
+$$
+\sum_{\substack{i = 1 \\ i \neq j}}^{n} a_i
+$$
+
+## 15. mathtools (partial)
+
+`\coloneqq` and `\eqqcolon` work; most other mathtools commands don't (see "Known broken" below).
+
+$a \coloneqq b$, $a \eqqcolon b$.
+
+## Known broken
+
+The following constructs either crash the Typst compile, cause Pandoc to
+warn and pass raw TeX through, or silently drop content. Each is commented
+out to keep the rest of this file renderable.
+
+`vmatrix` and `Vmatrix` (fatal Typst error)
+: Pandoc's Typst writer emits `mat(delim: "||")` but Typst requires a
+  single-character delim. Workaround: raw Typst, or `pmatrix` with
+  explicit `\lvert`/`\lVert` delimiters.
+
+`\mathclap` (passes through as literal TeX)
+: Not recognised by texmath; the source appears verbatim in the PDF.
+
+`\begin{dcases}` (Pandoc parse error)
+: Not recognised by texmath. Use plain `cases`.
+
+`\tag{label}` (silently dropped)
+: The tag never appears in the output.
+
+`\color{red}{...}` (silently dropped)
+: `\color` is ignored; content renders in the default color.
+
+` ```tikz ` blocks (not converted)
+: The raw `\begin{tikzpicture}...\end{tikzpicture}` source appears as a
+  code block in the PDF, not a diagram.
+
+<!--
+Keep the broken examples here for reference. Uncomment one at a time to
+reproduce the failure mode.
+
+$$
+W = \begin{Vmatrix} p & q \\ r & s \end{Vmatrix}
+$$
+
+$\mathclap{\sum_{i=1}^{n}}$
+
+$$
+f(x) = \begin{dcases} x & x \geq 0 \\ -x & x < 0 \end{dcases}
+$$
+
+$$
+E = mc^2 \tag{Einstein}
+$$
+
+$\color{red}{x+y}$
+
+```tikz
+\begin{tikzpicture}
+  \draw (0,0) -- (1,1);
+\end{tikzpicture}
+```
+-->

@@ -1,0 +1,4 @@
+format:
+  typst:
+    page-numbering: ""
+    syntax-highlighting: github
