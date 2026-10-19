@@ -238,7 +238,7 @@ Or use a fenced div with Quarto's video shortcode:
 The video shortcode also supports YouTube, Vimeo, and other hosted videos:
 
 ```markdown
-{{< video https://www.youtube.com/embed/VIDEO_ID >}}
+{{{< video https://www.youtube.com/embed/VIDEO_ID >}}}
 ```
 
 #### iframes
