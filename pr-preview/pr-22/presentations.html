@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -78,10 +81,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-33269adcf1721b81efc5ea7fcfe7f0ee.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3cc411cc7de4e6fcd8f1d819c78e5b30.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6493e26f0b3f89d7b2cdf116b371f116.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -324,6 +327,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Jupyter</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -346,10 +355,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#content-overflow" id="toc-content-overflow" class="nav-link" data-scroll-target="#content-overflow"><span class="header-section-number">11.2.5</span> Content overflow</a></li>
   <li><a href="#image-sizing" id="toc-image-sizing" class="nav-link" data-scroll-target="#image-sizing"><span class="header-section-number">11.2.6</span> Image sizing</a></li>
   <li><a href="#embedding-media" id="toc-embedding-media" class="nav-link" data-scroll-target="#embedding-media"><span class="header-section-number">11.2.7</span> Embedding media</a></li>
-  <li><a href="#layout-helpers" id="toc-layout-helpers" class="nav-link" data-scroll-target="#layout-helpers"><span class="header-section-number">11.2.8</span> Layout helpers</a></li>
-  <li><a href="#slide-backgrounds" id="toc-slide-backgrounds" class="nav-link" data-scroll-target="#slide-backgrounds"><span class="header-section-number">11.2.9</span> Slide backgrounds</a></li>
-  <li><a href="#footer-and-logo" id="toc-footer-and-logo" class="nav-link" data-scroll-target="#footer-and-logo"><span class="header-section-number">11.2.10</span> Footer and logo</a></li>
-  <li><a href="#asides-and-footnotes" id="toc-asides-and-footnotes" class="nav-link" data-scroll-target="#asides-and-footnotes"><span class="header-section-number">11.2.11</span> Asides and footnotes</a></li>
+  <li><a href="#slide-backgrounds" id="toc-slide-backgrounds" class="nav-link" data-scroll-target="#slide-backgrounds"><span class="header-section-number">11.2.8</span> Slide backgrounds</a></li>
+  <li><a href="#footer-and-logo" id="toc-footer-and-logo" class="nav-link" data-scroll-target="#footer-and-logo"><span class="header-section-number">11.2.9</span> Footer and logo</a></li>
+  <li><a href="#asides-and-footnotes" id="toc-asides-and-footnotes" class="nav-link" data-scroll-target="#asides-and-footnotes"><span class="header-section-number">11.2.10</span> Asides and footnotes</a></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><span class="header-section-number">11.3</span> Code</a>
   <ul class="collapse">
@@ -423,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>In addition to long-form documents, you can also use Quarto to create presentations.</p>
-<p>Quarto supports three main presentation formats <a href="#tbl-pres-formats" class="quarto-xref">Table&nbsp;<span>11.1</span></a> summarizes these formats and their use cases.</p>
+<p>Quarto supports three main presentation formats. <a href="#tbl-pres-formats" class="quarto-xref">Table&nbsp;<span>11.1</span></a> summarizes these formats and their use cases.</p>
 <div id="tbl-pres-formats" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pres-formats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -616,7 +624,7 @@ Figure&nbsp;11.2: Title slide for a presentation
 </section>
 <section id="multiple-columns" class="level3" data-number="11.2.3">
 <h3 data-number="11.2.3" class="anchored" data-anchor-id="multiple-columns"><span class="header-section-number">11.2.3</span> Multiple columns</h3>
-<p>You can create side-by-side content using column divs:</p>
+<p>You can create side-by-side content by nesting fenced divs with the <code>.column</code> class inside a fenced div with the <code>.columns</code> class :</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>::: {.columns}</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>::: {.column}</span>
@@ -737,40 +745,39 @@ Figure&nbsp;11.3: Slide with tabbed content
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Video demo</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The video shortcode also supports YouTube, Vimeo, and other hosted videos:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/embed/VIDEO_ID &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="iframes" class="level4" data-number="11.2.7.2">
 <h4 data-number="11.2.7.2" class="anchored" data-anchor-id="iframes"><span class="header-section-number">11.2.7.2</span> iframes</h4>
 <p>Embed external web content using HTML iframes:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Live demo</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://example.com/app"</span><span class="ot"> width</span><span class="op">=</span><span class="st">"900"</span><span class="ot"> height</span><span class="op">=</span><span class="st">"500"</span><span class="ot"> frameborder</span><span class="op">=</span><span class="st">"0"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For interactive applications that need to respond to user input during a presentation, set <code>sandbox="allow-scripts allow-same-origin"</code> if the iframe content requires JavaScript.</p>
-<div class="callout callout-style-simple callout-tip">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Consider using <code>preview-links: auto</code> (see <a href="#preview-links">Preview links</a>) for simpler cases where you just want to show a linked webpage without leaving the presentation.</p>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="layout-helpers" class="level3" data-number="11.2.8">
-<h3 data-number="11.2.8" class="anchored" data-anchor-id="layout-helpers"><span class="header-section-number">11.2.8</span> Layout helpers</h3>
-<p>Reveal provides several utility classes for positioning and sizing content on slides.</p>
-<section id="absolute-positioning" class="level4" data-number="11.2.8.1">
-<h4 data-number="11.2.8.1" class="anchored" data-anchor-id="absolute-positioning"><span class="header-section-number">11.2.8.1</span> Absolute positioning</h4>
-<p>The <code>.absolute</code> class places elements at exact positions on a slide. Specify <code>top</code>, <code>left</code>, <code>bottom</code>, and/or <code>right</code> along with optional <code>width</code> and <code>height</code> (values without units are treated as pixels):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="al">![](image1.png)</span>{.absolute top=200 left=0 width="350" height="300"}</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="al">![](image2.png)</span>{.absolute top=50 right=50 width="450" height="250"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;iframe src="https://example.com/app" width="900" height="500" frameborder="0"&gt;&lt;/iframe&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>
+For interactive applications that need to respond to user input during a presentation, set `sandbox="allow-scripts allow-same-origin"` if the iframe content requires JavaScript.
+
+::: callout-tip
+Consider using `preview-links: auto` (see [Preview links]) for simpler cases where you just want to show a linked webpage without leaving the presentation.
+:::
+
+### Layout helpers
+
+Reveal provides several utility classes for positioning and sizing content on slides.
+
+#### Absolute positioning
+
+The `.absolute` class places elements at exact positions on a slide. 
+Specify `top`, `left`, `bottom`, and/or `right` along with optional `width` and `height` (values without units are treated as pixels):
+
+``` markdown
+![](image1.png){.absolute top=200 left=0 width="350" height="300"}
+
+![](image2.png){.absolute top=50 right=50 width="450" height="250"}</code></pre>
 <p>Positions are relative to the slide’s coordinate space (1050 × 700 by default; see <a href="#presentation-size">Presentation size</a>).</p>
 </section>
-<section id="stacking" class="level4" data-number="11.2.8.2">
-<h4 data-number="11.2.8.2" class="anchored" data-anchor-id="stacking"><span class="header-section-number">11.2.8.2</span> Stacking</h4>
+<section id="stacking" class="level4" data-number="11.2.7.3">
+<h4 data-number="11.2.7.3" class="anchored" data-anchor-id="stacking"><span class="header-section-number">11.2.7.3</span> Stacking</h4>
 <p>The <code>.r-stack</code> class centers multiple elements on top of each other. Combine it with fragments to incrementally reveal layered content:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>::: {.r-stack}</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="al">![](image1.png)</span>{.fragment width="450"}</span>
@@ -780,15 +787,15 @@ Figure&nbsp;11.3: Slide with tabbed content
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="al">![](image3.png)</span>{.fragment width="400"}</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="fit-text" class="level4" data-number="11.2.8.3">
-<h4 data-number="11.2.8.3" class="anchored" data-anchor-id="fit-text"><span class="header-section-number">11.2.8.3</span> Fit text</h4>
+<section id="fit-text" class="level4" data-number="11.2.7.4">
+<h4 data-number="11.2.7.4" class="anchored" data-anchor-id="fit-text"><span class="header-section-number">11.2.7.4</span> Fit text</h4>
 <p>The <code>.r-fit-text</code> class scales text to be as large as possible without overflowing the slide:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>::: {.r-fit-text}</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Big Text</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="centering" class="level4" data-number="11.2.8.4">
-<h4 data-number="11.2.8.4" class="anchored" data-anchor-id="centering"><span class="header-section-number">11.2.8.4</span> Centering</h4>
+<section id="centering" class="level4" data-number="11.2.7.5">
+<h4 data-number="11.2.7.5" class="anchored" data-anchor-id="centering"><span class="header-section-number">11.2.7.5</span> Centering</h4>
 <p>Add the <code>.center</code> class to a slide heading to vertically center its content:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Centered slide {.center}</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -796,17 +803,15 @@ Figure&nbsp;11.3: Slide with tabbed content
 <p>This is separate from <code>center: true</code> in YAML, which centers <em>all</em> slides, and <code>center-title-slide</code>, which controls only the title slide.</p>
 </section>
 </section>
-<section id="slide-backgrounds" class="level3" data-number="11.2.9">
-<h3 data-number="11.2.9" class="anchored" data-anchor-id="slide-backgrounds"><span class="header-section-number">11.2.9</span> Slide backgrounds</h3>
+<section id="slide-backgrounds" class="level3" data-number="11.2.8">
+<h3 data-number="11.2.8" class="anchored" data-anchor-id="slide-backgrounds"><span class="header-section-number">11.2.8</span> Slide backgrounds</h3>
 <p>You can customize individual slide backgrounds using heading attributes. Some options include:</p>
 <ul>
-<li>Color backgrounds:</li>
-</ul>
+<li><p>Color backgrounds:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide title {background-color="aquamarine"}</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>Content on colored background.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Gradient backgrounds:</li>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>Content on colored background.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Gradient backgrounds:</p></li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Gradient slide {background-gradient="linear-gradient(to right, red, blue)"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
@@ -831,8 +836,8 @@ Figure&nbsp;11.3: Slide with tabbed content
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="footer-and-logo" class="level3" data-number="11.2.10">
-<h3 data-number="11.2.10" class="anchored" data-anchor-id="footer-and-logo"><span class="header-section-number">11.2.10</span> Footer and logo</h3>
+<section id="footer-and-logo" class="level3" data-number="11.2.9">
+<h3 data-number="11.2.9" class="anchored" data-anchor-id="footer-and-logo"><span class="header-section-number">11.2.9</span> Footer and logo</h3>
 <p>You can add consistent branding across slides:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -842,8 +847,10 @@ Figure&nbsp;11.3: Slide with tabbed content
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">revealjs</span><span class="kw">:</span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">footer</span><span class="kw">:</span><span class="at"> Company Name - Conference 2024</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logo</span><span class="kw">:</span><span class="at"> images/logo.png</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">logo</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">path</span><span class="kw">:</span><span class="at"> images/logo.png</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">alt</span><span class="kw">:</span><span class="at"> Company Name logo</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Remove footer from specific slides:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Full screen slide {footer="false"}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -856,8 +863,8 @@ Figure&nbsp;11.3: Slide with tabbed content
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>Custom footer for this slide only.</span>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="asides-and-footnotes" class="level3" data-number="11.2.11">
-<h3 data-number="11.2.11" class="anchored" data-anchor-id="asides-and-footnotes"><span class="header-section-number">11.2.11</span> Asides and footnotes</h3>
+<section id="asides-and-footnotes" class="level3" data-number="11.2.10">
+<h3 data-number="11.2.10" class="anchored" data-anchor-id="asides-and-footnotes"><span class="header-section-number">11.2.10</span> Asides and footnotes</h3>
 <p>You can add peripheral commentary with asides:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide title</span></span>
@@ -893,20 +900,20 @@ Figure&nbsp;11.3: Slide with tabbed content
 <section id="code-highlighting" class="level4" data-number="11.3.1.1">
 <h4 data-number="11.3.1.1" class="anchored" data-anchor-id="code-highlighting"><span class="header-section-number">11.3.1.1</span> Code highlighting</h4>
 <p>You can highlight specific lines in code blocks:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="in">````{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-line-numbers="2,4"</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> example():</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    highlighted <span class="op">=</span> <span class="va">True</span>  <span class="co"># Line 2</span></span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    not_highlighted <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    also_highlighted <span class="op">=</span> <span class="va">True</span>  <span class="co"># Line 4</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For progressive highlighting through slide steps, use the pipe separator:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">````{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-line-numbers="|1|2|3"</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>first_step <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>second_step <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>third_step <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="height" class="level4" data-number="11.3.1.2">
 <h4 data-number="11.3.1.2" class="anchored" data-anchor-id="height"><span class="header-section-number">11.3.1.2</span> Height</h4>
@@ -1063,12 +1070,12 @@ Figure&nbsp;11.3: Slide with tabbed content
 </tbody>
 </table>
 <p>Example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="in">````{python}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| output-location: column</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="interactive-documents" class="level3" data-number="11.3.4">
