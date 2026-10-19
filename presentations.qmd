@@ -104,7 +104,7 @@ You can customize this behavior using the `slide-level` option in YAML, e.g., `s
 
 ### Multiple columns
 
-You can create side-by-side content using column divs:
+You can create side-by-side content by nesting fenced divs with the `.column` class inside a fenced div with the `.columns` class :
 
 ``` markdown
 ::: {.columns}
