@@ -248,7 +248,9 @@ Embed external web content using HTML iframes:
 ```markdown
 ## Live demo
 
+```{=html}
 <iframe src="https://example.com/app" width="900" height="500" frameborder="0"></iframe>
+```
 ```
 
 For interactive applications that need to respond to user input during a presentation, set `sandbox="allow-scripts allow-same-origin"` if the iframe content requires JavaScript.
