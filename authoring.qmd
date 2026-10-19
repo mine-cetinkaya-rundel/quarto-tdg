@@ -805,9 +805,16 @@ Common citation syntax
 ::: {.rendered style="text-align: left;"}
 ## References {.unnumbered .unlisted}
 
-::: {#refs}
+::: {.csl-bib-body .hanging-indent}
+::: {.csl-entry}
+Knuth, Donald E. 1984. "Literate Programming." *The Computer Journal* 27 (2): 97--111.
 :::
-::: 
+
+::: {.csl-entry}
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data*. 2nd ed. O'Reilly Media. <https://r4ds.hadley.nz/>.
+:::
+:::
+:::
 
 Automatically generated references section
 ::: 

@@ -50,6 +50,9 @@ book:
 
   appendices:
     - jupyter.qmd
+    - references.qmd
+
+bibliography: references.bib
 
 format:
   html:
