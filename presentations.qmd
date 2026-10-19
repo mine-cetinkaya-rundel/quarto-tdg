@@ -450,7 +450,7 @@ def example():
 For progressive highlighting through slide steps, use the pipe separator:
 
 ````` markdown
-````{{python}}
+```{{python}}
 #| code-line-numbers="|1|2|3"
 first_step = 1
 second_step = 2
