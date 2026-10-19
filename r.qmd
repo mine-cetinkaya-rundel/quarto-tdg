@@ -4,16 +4,28 @@ When you include R code cells in your document, Quarto uses the knitr engine to 
 The basics of code cells, including syntax and common options like `echo` and `include`, are covered in @sec-code.
 This chapter covers the features specific to R and knitr.
 
-The chapter starts by walking through what you get when you add a code cell that returns each of the most common kinds of results, and the options you're most likely to reach for with each:
-
-- A single value, in @sec-r-single-value
-- A data frame, in @sec-r-data-frame
-- A plot, in @sec-r-plot
+@sec-code-cell-results walks through the most common kinds of results R code cells produce (a single value, a data frame, and a plot), and the options you are most likely to reach for with each.
 
 You'll then see how parameters let one document produce many variations of a report (@sec-parameters).
 The rest of the chapter, starting with @sec-execution-options-r, covers the details of controlling R code cells.
 
-The examples in this chapter use three R packages, so let's load them first:
+::: callout-note
+
+## Code cell fences in this chapter
+
+Remember from @sec-code that code cells are fenced with three backticks and then the engine name in curly braces.
+For example, R code cells look like the following in a Quarto markdown (`.qmd`) file:
+
+```{r}
+#| echo: fenced
+# R code goes here
+```
+
+:::
+
+In this chapter we omit the fences around code cells in most of the examples, except for those where we want to also display and introduce the code cell options.
+
+Additionally, the examples in this chapter use three R packages, so let's load them first:
 
 ```{r}
 #| message: false
@@ -37,15 +49,20 @@ If you switch interpreters, restart any open Terminals so that they pick up the 
 
 :::
 
-## A single value {#sec-r-single-value}
+## Code cell results {#sec-code-cell-results}
+
+### A single value
 
 Start with a code cell that computes a single number: the average body mass of the penguins in the [**palmerpenguins**](https://allisonhorst.github.io/palmerpenguins/) package.
 Quarto shows the code followed by its result, as it would appear in the R Console:
 
+::: {.rendered}
+
 ```{r}
-#| echo: fenced
 mean(penguins$body_mass_g, na.rm = TRUE)
 ```
+
+:::
 
 The `[1]` is R's index for the first element of the result.
 
@@ -53,7 +70,6 @@ Output like this is fine for showing your work, but if a number belongs in a sen
 Instead, save the result in a code cell and insert it into your text with inline code (@sec-inline-code):
 
 ```{r}
-#| echo: fenced
 avg_mass <- mean(penguins$body_mass_g, na.rm = TRUE)
 ```
 
@@ -61,12 +77,16 @@ avg_mass <- mean(penguins$body_mass_g, na.rm = TRUE)
 The average penguin weighs `{{r}} round(avg_mass)` grams.
 ```
 
-This renders as: The average penguin weighs `r round(avg_mass)` grams.
+This renders as: 
+
+> The average penguin weighs `r round(avg_mass)` grams.
 
 Because the value is computed every time you render, the sentence stays correct when the data change.
 
 Sometimes you want R to write more than a single value into your text, for example a bulleted list with one item per species.
 Print the markdown with `cat()` and set `output: asis`, so that Quarto treats the result as markdown rather than code output:
+
+::: {.rendered}
 
 ```{r}
 #| echo: fenced
@@ -75,17 +95,22 @@ counts <- table(penguins$species)
 cat(paste0("- ", names(counts), ": ", counts, " penguins\n"), sep = "")
 ```
 
+:::
+
 @sec-raw-markdown-output covers this technique in more detail, including generating whole sections in a loop.
 
-## A data frame {#sec-r-data-frame}
+### A data frame
 
 Data frames are the most common result in a data analysis.
 By default, a data frame also prints as it would in the R Console:
 
+::: {.rendered}
+
 ```{r}
-#| echo: fenced
 penguins
 ```
+
+:::
 
 Because `penguins` is a tibble, you see its first ten rows as plain text.
 That works in any output format, but in an HTML document you can do better.
@@ -115,13 +140,16 @@ rmarkdown::paged_table(penguins)
 When a table is part of what you're reporting, rather than a quick look at the data, you will want to build it explicitly.
 `knitr::kable()` turns a data frame into a markdown table that works in every output format:
 
+::: {.rendered}
+
 ```{r}
-#| echo: fenced
 species_mass <- penguins |>
   group_by(species) |>
   summarize(body_mass_g = mean(body_mass_g, na.rm = TRUE))
 knitr::kable(species_mass, digits = 0)
 ```
+
+:::
 
 Adding the `label` and `tbl-cap` options turns the result into a numbered table with a caption that you can cross-reference (@sec-computational-table).
 For more control over styling, table packages such as [**gt**](https://gt.rstudio.com/) work the same way: the code cell returns a table, and Quarto includes it in your document.
@@ -129,21 +157,26 @@ For more control over styling, table packages such as [**gt**](https://gt.rstudi
 If you want readers to be able to search and sort the data themselves, you can use an interactive table widget such as `DT::datatable(penguins)`.
 Widgets only work in HTML output; @sec-interactive-output-r covers them, along with what to do when you also render to PDF or Word.
 
-## A plot {#sec-r-plot}
+### A plot
 
 A code cell that creates a plot includes it in your document as an image:
 
+::: {.rendered}
+
 ```{r}
-#| echo: fenced
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point()
 ```
+
+:::
 
 Two things stand out.
 First, ggplot2 warns about the two penguins with missing measurements.
 That warning is useful while you work, but you probably don't want it in your final report.
 Second, the plot has no caption, and readers who can't see it get no description of it.
 Code cell options take care of both:
+
+::: {.rendered}
 
 ```{r}
 #| echo: fenced
@@ -156,6 +189,8 @@ Code cell options take care of both:
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point()
 ```
+
+:::
 
 The `fig-` prefix on the label makes the plot a numbered figure you can cross-reference with `@fig-mass-flipper` (@sec-computational-figure).
 `fig-alt` adds alternative text, `fig-width` and `fig-height` set the size of the plot in inches, and `warning: false` hides the warning.
@@ -184,7 +219,7 @@ params:
 ---
 ```
 
-Parameters can be accessed in code through the `params` list and used in code cells and inline code:
+You can access parameters through the `params` list, in both code cells and inline code:
 
 ```{r}
 #| eval: false
@@ -200,7 +235,6 @@ Logical parameters like `show_details` are handy for turning parts of a report o
 Use `!expr` to set a cell option to the value of an R expression, here so that the cell runs only when `show_details` is `true`:
 
 ```{{r}}
-#| echo: false
 #| eval: !expr params$show_details
 penguins |>
   filter(species == params$species) |>
@@ -213,7 +247,7 @@ It is also possible to override parameters declared in the YAML header from the 
 quarto render report.qmd -P species:Gentoo -P year:2009
 ```
 
-For multiple parameter sets, you can create a YAML file with the values:
+To keep a set of parameter values together, you can put them in a YAML file:
 
 ```{.yaml filename="params-gentoo.yml"}
 species: Gentoo
@@ -324,7 +358,7 @@ For a complete list of knitr cell options, see the [Quarto reference](https://qu
 
 ## Data frame printing {#sec-df-print}
 
-Quarto provides the `df-print` option to control how data frames appear in your output, and it can be set at the document-level in the YAML header:
+Quarto provides the `df-print` option to control how data frames appear in your output, and it can be set at the document level in the YAML header:
 
 ```yaml
 ---
@@ -491,6 +525,8 @@ If your document uses many different widget packages, consider using the default
 Sometimes you want your R code to produce raw markdown that Quarto processes directly, rather than being wrapped in output containers.
 Use `output: asis` for this, and you will usually want `echo: false` as well:
 
+::: {.rendered}
+
 ```{{r}}
 #| output: asis
 #| echo: false
@@ -498,30 +534,24 @@ cat("## A Dynamic Heading\n\n")
 cat("This paragraph was generated by R.\n")
 ```
 
+``` 
+## A Dynamic Heading
+
+This paragraph was generated by R.
+```
+
+:::
+
 One common use case is programmatically generating sections in a loop.
 For example, you can iterate over the groups in a dataset, emitting a heading and some content for each:
+
+::: {.rendered}
 
 ```{{r}}
 #| output: asis
 #| echo: false
 for (sp in levels(penguins$species)) {
   cat("###", sp, "penguins\n\n")
-
-  group <- penguins[penguins$species == sp, ]
-  cat("Mean body mass:", round(mean(group$body_mass_g, na.rm = TRUE)), "grams.\n\n")
-}
-```
-
-Separating each piece of output with `\n\n` is important: the blank line tells Quarto to treat the heading and the paragraph as distinct markdown blocks rather than running them together.
-For example, the code cell above results in the following output:
-
-::: {.rendered}
-
-```{r}
-#| echo: false
-#| output: asis
-for (sp in levels(penguins$species)) {
-  cat("###", sp, "penguins {.unnumbered .unlisted}\n\n")
 
   group <- penguins[penguins$species == sp, ]
   cat(
@@ -532,11 +562,27 @@ for (sp in levels(penguins$species)) {
 }
 ```
 
+```
+### Adelie penguins
+
+Mean body mass: 3701 grams.
+
+### Chinstrap penguins
+
+Mean body mass: 3733 grams.
+
+### Gentoo penguins
+
+Mean body mass: 5076 grams.
+```
+
 :::
+
+Separating each piece of output with `\n\n` is important: the blank line tells Quarto to treat the heading and the paragraph as distinct markdown blocks rather than running them together.
 
 This approach works well for text output, but not for code cells that produce figures or tables.[^r-1]
 
-[^r-1]: For situations like this we refer readers to the R Markdown Cookbook [@xie2020] for knitr functionality on [child documents](https://pkg.yihui.org/rmarkdown-cookbook/child-document) and [`knit_expand()`](https://pkg.yihui.org/rmarkdown-cookbook/knit-expand).
+[^r-1]: For situations like this, we refer readers to the R Markdown Cookbook [@xie2020] for knitr functionality on [child documents](https://pkg.yihui.org/rmarkdown-cookbook/child-document) and [`knit_expand()`](https://pkg.yihui.org/rmarkdown-cookbook/knit-expand).
 
 ## Rendering {#sec-r-rendering}
 
@@ -677,13 +723,13 @@ quarto check knitr
 The output will include the detected R version and path, along with the knitr and rmarkdown package versions, e.g.:
 
 ```bash
-Quarto 1.10.3
+Quarto 1.10.18
 [✓] Checking R installation...........OK
-      Version: 4.6.0
+      Version: 4.6.1
       Path: /Library/Frameworks/R.framework/Resources
       LibPaths:
-        - /Users/mine/Library/R/arm64/4.6/library
-        - /Library/Frameworks/R.framework/Versions/4.6/Resources/library
+        - /Users/mine/Desktop/posit/quarto-tdg/renv/library/R-4.6/aarch64-apple-darwin23
+        - /Users/mine/Library/Caches/org.R-project.R/R/renv/sandbox/R-4.6/aarch64-apple-darwin23/46003b10
       knitr: 1.51
       rmarkdown: 2.31
 
