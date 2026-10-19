@@ -2,7 +2,7 @@
 
 In addition to long-form documents, you can also use Quarto to create presentations.
 
-Quarto supports three main presentation formats
+Quarto supports three main presentation formats.
 @tbl-pres-formats summarizes these formats and their use cases.
 
 | Format | Output | Use Case |
