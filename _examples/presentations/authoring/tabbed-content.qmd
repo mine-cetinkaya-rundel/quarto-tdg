@@ -1,0 +1,13 @@
+## Tabbed content
+
+::: {.panel-tabset}
+
+### Tab 1
+
+Content for first tab.
+
+### Tab 2
+
+Content for second tab.
+
+:::
