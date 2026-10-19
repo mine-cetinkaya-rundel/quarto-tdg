@@ -438,7 +438,7 @@ To display the code, set `echo: true` globally in YAML or per cell with `#| echo
 You can highlight specific lines in code blocks:
 
 ````` markdown
-````{{python}}
+```{{python}}
 #| code-line-numbers="2,4"
 def example():
     highlighted = True  # Line 2
