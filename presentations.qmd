@@ -603,12 +603,12 @@ You can control where code output appears using `output-location`:
 Example:
 
 ````` markdown
-````{{python}}
+```{{python}}
 #| output-location: column
 import matplotlib.pyplot as plt
 plt.plot([1, 2, 3])
 plt.show()
-````
+```
 `````
 
 ### Interactive documents
