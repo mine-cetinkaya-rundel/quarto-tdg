@@ -84,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-68811002a77d81a6f8eeccf05adf3c8d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-6677a1e021cd34ca327c93c59b7de840.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -337,6 +337,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Jupyter</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -352,7 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#what-does-quarto-do" id="toc-what-does-quarto-do" class="nav-link active" data-scroll-target="#what-does-quarto-do"><span class="header-section-number">18.1</span> What does Quarto do?</a></li>
   <li><a href="#an-html-document-with-r-code-cells" id="toc-an-html-document-with-r-code-cells" class="nav-link" data-scroll-target="#an-html-document-with-r-code-cells"><span class="header-section-number">18.2</span> An HTML document with R code cells</a>
   <ul class="collapse">
-  <li><a href="#before-the-computational-engine" id="toc-before-the-computational-engine" class="nav-link" data-scroll-target="#before-the-computational-engine"><span class="header-section-number">18.2.1</span> Before the computational engine</a></li>
+  <li><a href="#sec-engine-selection" id="toc-sec-engine-selection" class="nav-link" data-scroll-target="#sec-engine-selection"><span class="header-section-number">18.2.1</span> Before the computational engine</a></li>
   <li><a href="#computational-engine" id="toc-computational-engine" class="nav-link" data-scroll-target="#computational-engine"><span class="header-section-number">18.2.2</span> Computational engine</a></li>
   <li><a href="#pandoc" id="toc-pandoc" class="nav-link" data-scroll-target="#pandoc"><span class="header-section-number">18.2.3</span> Pandoc</a></li>
   <li><a href="#monitoring-the-process-on-the-command-line" id="toc-monitoring-the-process-on-the-command-line" class="nav-link" data-scroll-target="#monitoring-the-process-on-the-command-line"><span class="header-section-number">18.2.4</span> Monitoring the process on the command line</a></li>
@@ -366,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#sec-pdf-r" id="toc-sec-pdf-r" class="nav-link" data-scroll-target="#sec-pdf-r"><span class="header-section-number">18.4</span> A PDF document with R code cells</a>
   <ul class="collapse">
-  <li><a href="#before-the-computational-engine-1" id="toc-before-the-computational-engine-1" class="nav-link" data-scroll-target="#before-the-computational-engine-1"><span class="header-section-number">18.4.1</span> Before the computational engine</a></li>
+  <li><a href="#before-the-computational-engine" id="toc-before-the-computational-engine" class="nav-link" data-scroll-target="#before-the-computational-engine"><span class="header-section-number">18.4.1</span> Before the computational engine</a></li>
   <li><a href="#computational-engine-2" id="toc-computational-engine-2" class="nav-link" data-scroll-target="#computational-engine-2"><span class="header-section-number">18.4.2</span> Computational engine</a></li>
   <li><a href="#pandoc-2" id="toc-pandoc-2" class="nav-link" data-scroll-target="#pandoc-2"><span class="header-section-number">18.4.3</span> Pandoc</a></li>
   <li><a href="#after-pandoc" id="toc-after-pandoc" class="nav-link" data-scroll-target="#after-pandoc"><span class="header-section-number">18.4.4</span> After Pandoc</a></li>
@@ -462,8 +468,8 @@ Figure&nbsp;18.1: The <code>quarto render</code> process for <code>html-r.qmd</c
 </figcaption>
 </figure>
 </div>
-<section id="before-the-computational-engine" class="level3" data-number="18.2.1">
-<h3 data-number="18.2.1" class="anchored" data-anchor-id="before-the-computational-engine"><span class="header-section-number">18.2.1</span> Before the computational engine</h3>
+<section id="sec-engine-selection" class="level3" data-number="18.2.1">
+<h3 data-number="18.2.1" class="anchored" data-anchor-id="sec-engine-selection"><span class="header-section-number">18.2.1</span> Before the computational engine</h3>
 <p>Before anything else, Quarto parses your file to extract the document header and code cells. Quarto determines the set of formats that need to be rendered and select the appropriate computational engine.</p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -924,8 +930,8 @@ Figure&nbsp;18.7: The <code>quarto render</code> process for <code>pdf-r.qmd</co
 </figcaption>
 </figure>
 </div>
-<section id="before-the-computational-engine-1" class="level3" data-number="18.4.1">
-<h3 data-number="18.4.1" class="anchored" data-anchor-id="before-the-computational-engine-1"><span class="header-section-number">18.4.1</span> Before the computational engine</h3>
+<section id="before-the-computational-engine" class="level3" data-number="18.4.1">
+<h3 data-number="18.4.1" class="anchored" data-anchor-id="before-the-computational-engine"><span class="header-section-number">18.4.1</span> Before the computational engine</h3>
 <p>Quarto identifies the target format as PDF, and selects the <code>knitr</code> engine.</p>
 </section>
 <section id="computational-engine-2" class="level3" data-number="18.4.2">
