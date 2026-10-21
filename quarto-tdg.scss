@@ -14,6 +14,7 @@ $font-size-root: 18px !default;
   @extend .p-2;
   @extend .border;
   @extend .rounded;
+  margin-bottom: 1rem;
 }
 
 .sidebar-title {
