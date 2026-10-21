@@ -146,7 +146,7 @@ subtitle: 'Quotes: \U0001F4E8'
 Q: where does the `\U` go in `subtitle` go?
 YAML might be interpreting literally but Quarto/Pandoc might escape somewhere?
 
-### Long strings
+### Long strings {#sec-yaml-long-strings}
 
 For strings that are longer than you'd comfortably put on a single line, or need explicit line breaks, you can use what YAML calls **block scalars** \index{block scalar}.
 

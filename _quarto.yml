@@ -42,6 +42,8 @@ book:
     - part: part-going-deeper.qmd
       chapters:
         - authoring.qmd
+        - figure-table.qmd
+        - figure-table-computational.qmd
         - projects.qmd
         - websites.qmd
         - yaml.qmd
