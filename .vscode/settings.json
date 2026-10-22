@@ -1,3 +1,4 @@
 {
-    "quarto.visualEditor.markdownWrap": "sentence"
+    "quarto.visualEditor.markdownWrap": "sentence",
+    "ai.enabled": true
 }
