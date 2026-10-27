@@ -532,6 +532,33 @@ To number and cross-reference a display equation, add an identifier starting wit
 Math syntax examples and their rendered output
 :::
 
+### Defining your own commands {#sec-equations-macros}
+
+If you write the same notation often, you can define your own TeX commands, or macros, with `\newcommand`.
+Put each definition on its own line in the body of your document, outside any `$` or `$$`.
+@fig-math-macros shows an example rendered to `format: html`.
+
+::: {#fig-math-macros}
+::: {.markdown filename="document.qmd"}
+````markdown
+{{< include _examples/authoring/math/macros.md >}}
+````
+:::
+
+::: {}
+![](images/authoring-math-macros.png){.border fig-alt="Rendered output shows the text 'For any bold x in the real numbers to the power n,' followed by the centered display equation 'Var of bold x is greater than or equal to 0.'"}
+:::
+
+Macro definitions in markdown and the rendered output
+:::
+
+Quarto replaces each use of a command with its definition before it writes the output, so the same definitions work for `html`, `revealjs`, and `typst`.
+
+To share definitions between the documents in a project, put them in a file, for example `_macros.qmd`, and include it at the top of each document (@sec-includes):
+
+```{.markdown filename="document.qmd"}
+{{{< include _macros.qmd >}}}
+```
 
 ### Theorems and proofs {#sec-theorems-proofs}
 
