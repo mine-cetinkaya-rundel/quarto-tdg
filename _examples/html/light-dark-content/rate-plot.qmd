@@ -1,0 +1,25 @@
+```{r}
+#| echo: false
+{{< include data.R >}}
+```
+
+## Renderings
+
+```{r}
+{{< include _rate-plot.R >}}
+```
+
+## With a caption and cross-reference
+
+@fig-rate shows on-time rates across the network's routes.
+
+::: {#fig-rate}
+
+```{r}
+#| echo: false
+{{< include _rate-crossref.R >}}
+```
+
+On-time rate by route
+
+:::

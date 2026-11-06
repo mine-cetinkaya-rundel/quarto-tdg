@@ -1,0 +1,5 @@
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly

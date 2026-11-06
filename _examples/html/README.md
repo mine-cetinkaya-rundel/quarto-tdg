@@ -14,7 +14,7 @@ Include the source with the `include` shortcode, inside a four-backtick block so
 
 `````markdown
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
-{{< include _examples/html/first-document/report.qmd >}}
+{{< include _examples/html/first-document/train-punctuality.qmd >}}
 ````
 `````
 
@@ -62,8 +62,8 @@ Readers then recognize the content and can focus on the feature.
 
 ## Screenshots
 
-Put screenshots in `images/` in the project root with the name `html-{section-slug}-{example}.png` (for example `html-first-document-report.png`).
-Give every figure an ID that matches (`#fig-html-first-document-report`), the `.border` class, and `fig-alt` text.
+Put screenshots in `images/` in the project root with the name `html-{section-slug}-{example}.png` (for example `html-first-document-train-punctuality.png`).
+Give every figure an ID that matches (`#fig-html-first-document-train-punctuality`), the `.border` class, and `fig-alt` text.
 
 ### Taking screenshots
 
@@ -75,7 +75,7 @@ Run it from the project root:
 source("_examples/html/screenshot-examples.R")
 
 # Render one example, take the screenshot, and update screenshots.yml
-shoot("_examples/html/first-document/report.qmd", selector = "main", expand = 16)
+shoot("_examples/html/first-document/train-punctuality.qmd", selector = "main", expand = 16)
 
 # Regenerate every image in screenshots.yml
 rebuild()
@@ -95,6 +95,11 @@ From the shell: `Rscript _examples/html/screenshot-examples.R --manifest`.
 | `scale`     | 2       | Pixel density. This does not change the layout.                        |
 | `profile`   | none    | Quarto profile. The image name gets a `-{profile}` suffix.             |
 | `name`      | file name | Changes the `{example}` part of the image name.                      |
+| `click`     | none    | CSS selector of an element to click before the capture, for example to open a menu (`#quarto-code-tools-menu`). |
+| `hover`     | none    | CSS selector of an element to move the mouse over before the capture, for example to show a copy button (`.code-copy-outer-scaffold`). |
+| `color-scheme` | `light` | Set to `dark` to switch Quarto's light/dark toggle before the capture. The image name gets a `-dark` suffix. The example needs both a light and a dark theme. |
+
+Selectors match only visible elements, so a selector such as `.cell-output-display` picks the rendering that is shown in the current color scheme.
 
 Use `name` to take more than one screenshot of the same source.
 
@@ -108,4 +113,3 @@ To compare widths, use `compare_widths(source, widths = c(800, 1000, 1200))`.
 It writes to a temporary directory and does not change the manifest.
 
 TODO: choose a default `width` after comparing widths in the rendered book.
-TODO: add light/dark mode (`prefers-color-scheme` emulation) when the appearance section needs it.

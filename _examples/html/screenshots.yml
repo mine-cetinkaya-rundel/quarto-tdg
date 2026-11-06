@@ -1,5 +1,44 @@
-- image: html-first-document-report.png
-  source: _examples/html/first-document/report.qmd
+- image: html-code-features-code-annotation.png
+  source: _examples/html/code-features/code-annotation.qmd
   selector: main
   expand: 16
-  generated: '2026-10-05T19:24:22Z'
+  width: 800
+  generated: '2026-11-06T19:57:49Z'
+- image: html-code-features-code-fold.png
+  source: _examples/html/code-features/code-fold.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-06T19:57:43Z'
+- image: html-code-features-code-tools.png
+  source: _examples/html/code-features/code-tools.qmd
+  selector: main, .dropdown-menu.show
+  click: '#quarto-code-tools-menu'
+  expand: 16
+  width: 800
+  generated: '2026-11-06T19:57:46Z'
+- image: html-code-features-copy-button.png
+  source: _examples/html/code-features/copy-button.qmd
+  selector: .code-copy-outer-scaffold
+  hover: .code-copy-outer-scaffold
+  expand: 16
+  width: 800
+  generated: '2026-11-06T19:57:39Z'
+- image: html-first-document-train-punctuality.png
+  source: _examples/html/first-document/train-punctuality.qmd
+  selector: main
+  expand: 16
+  generated: '2026-10-28T18:49:03Z'
+- image: html-light-dark-content-crossref-dark.png
+  source: _examples/html/light-dark-content/rate-plot.qmd
+  selector: '#with-a-caption-and-cross-reference'
+  expand: 16
+  width: 800
+  color-scheme: dark
+  generated: '2026-10-28T18:50:13Z'
+- image: html-light-dark-content-crossref.png
+  source: _examples/html/light-dark-content/rate-plot.qmd
+  selector: '#with-a-caption-and-cross-reference'
+  expand: 16
+  width: 800
+  generated: '2026-10-28T18:50:09Z'

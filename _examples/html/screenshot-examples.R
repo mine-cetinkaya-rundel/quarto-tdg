@@ -2,9 +2,9 @@
 #
 # Interactive use (from the project root):
 #   source("_examples/html/screenshot-examples.R")
-#   shoot("_examples/html/first-document/report.qmd", selector = "main")
+#   shoot("_examples/html/first-document/train-punctuality.qmd", selector = "main")
 #   rebuild()                       # regenerate every image in screenshots.yml
-#   compare_widths("_examples/html/first-document/report.qmd")
+#   compare_widths("_examples/html/first-document/train-punctuality.qmd")
 #
 # Command line:
 #   Rscript _examples/html/screenshot-examples.R --manifest
@@ -20,7 +20,10 @@ html_dir <- here("_examples", "html")
 image_dir <- here("images")
 manifest_path <- path(html_dir, "screenshots.yml")
 
-defaults <- list(width = 1200, height = 800, scale = 2, `full-page` = FALSE, expand = 0)
+defaults <- list(
+  width = 1200, height = 800, scale = 2, `full-page` = FALSE, expand = 0,
+  `color-scheme` = "light", click = NULL, hover = NULL
+)
 
 # Render `source` (path relative to project root) and return the HTML path.
 render_example <- function(source, profile = NULL) {
@@ -36,11 +39,12 @@ render_example <- function(source, profile = NULL) {
   path(path_dir(qmd), out)
 }
 
-# html-{section}-{name}[-{profile}].png
-image_name <- function(source, name = NULL, profile = NULL) {
+# html-{section}-{name}[-{profile}][-dark].png
+image_name <- function(source, name = NULL, profile = NULL, color_scheme = "light") {
   section <- path_file(path_dir(source))
   name <- name %||% path_ext_remove(path_file(source))
-  paste0(paste(c("html", section, name, profile), collapse = "-"), ".png")
+  dark <- if (identical(color_scheme, "dark")) "dark"
+  paste0(paste(c("html", section, name, profile, dark), collapse = "-"), ".png")
 }
 
 shoot_entry <- function(entry, html) {
@@ -53,7 +57,10 @@ shoot_entry <- function(entry, html) {
     height = e$height,
     scale = e$scale,
     full_page = isTRUE(e$`full-page`),
-    expand = e$expand
+    expand = e$expand,
+    color_scheme = e$`color-scheme`,
+    click = e$click,
+    hover = e$hover
   )
 }
 
@@ -88,7 +95,10 @@ shoot <- function(
   if (length(bad)) stop("Unknown option(s): ", paste(bad, collapse = ", "))
 
   entry <- c(
-    list(image = image_name(source, name, profile), source = as.character(source)),
+    list(
+      image = image_name(source, name, profile, opts$`color-scheme` %||% "light"),
+      source = as.character(source)
+    ),
     if (!is.null(selector)) list(selector = selector),
     if (!is.null(profile)) list(profile = profile),
     opts[!mapply(identical, opts, defaults[names(opts)])]
