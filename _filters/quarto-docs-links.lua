@@ -1,7 +1,9 @@
 --- quarto-docs-links.lua
 --- Adds the class `quarto-docs` to links that point at the Quarto
 --- documentation (https://quarto.org/docs/...), so they can be styled
---- and identified programmatically.
+--- and identified programmatically. Also wraps the first word of the link
+--- text in `<span class="docs-lead">`, which quarto-tdg.scss uses to put a
+--- Quarto icon before the link without the icon wrapping onto its own line.
 ---
 --- Currently only applied to HTML output.
 
@@ -29,10 +31,17 @@ end
 return {
   {
     Link = function(el)
-      if is_quarto_docs(el.target) and not has_class(el, DOCS_CLASS) then
-        el.classes:insert(DOCS_CLASS)
-        return el
+      if not is_quarto_docs(el.target) or #el.content == 0 then
+        return nil
       end
+      if not has_class(el, DOCS_CLASS) then
+        el.classes:insert(DOCS_CLASS)
+      end
+      local first = el.content[1]
+      if not (first.t == "Span" and has_class(first, "docs-lead")) then
+        el.content[1] = pandoc.Span({ first }, { class = "docs-lead" })
+      end
+      return el
     end,
   },
 }
