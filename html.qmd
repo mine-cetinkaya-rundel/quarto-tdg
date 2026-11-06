@@ -277,33 +277,77 @@ It's useful to know these exist but we point you to the documentation for the de
 
   ![A code block with three annotated lines](images/html-code-features-code-annotation.png){#fig-html-code-features-code-annotation .border fig-alt="A code block of three lines of R code, each with a circled number at the end. Below the block, a numbered list explains each line."}
 
-## Tabsets
+## Tabsets {#sec-html-tabsets}
 
-HTML only (including revealjs).
-Best for content where viewer only needs to see one at a time.
+A tabset shows several panels of content in the same space, one at a time.
+Readers click a tab to switch between panels.
+Tabsets work best for alternatives where a reader only needs to see one: the same code in R and Python, instructions for different operating systems, or details for different routes.
 
-```{.markdown filename="document.qmd"}
-::: {.panel-tabset}
+To create a tabset, put your content in a fenced div with the class `.panel-tabset`:
 
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/tabsets/route-tabs.qmd >}}
+````
+
+Headings inside the div start new tabs, and the heading text becomes the tab label.
+
+The result is shown in @fig-html-tabsets-route-tabs.
+
+![A tabset with one tab for each route. The first tab is selected.](images/html-tabsets-route-tabs.png){#fig-html-tabsets-route-tabs .border fig-alt="A section titled Route details with three tabs labelled Harbour–Airport, West Loop and University Line. The Harbour–Airport tab is selected and shows two sentences about its on-time rates."}
+
+::: callout-note
+## Tabsets are best in HTML formats
+
+Tabsets are inherently an HTML feature. 
+In static formats like PDF and MS Word, all tabs will be rendered one after another, with no interactive switching. 
 :::
+
+### Linking tabsets with `group`
+
+When your document has more than one tabset with the same tabs, give them the same `group` attribute:
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/tabsets/grouped-tabs.qmd >}}
+````
+
+Now, when a reader selects "Off-peak" in one tabset, every tabset in the `period` group switches to "Off-peak" too.
+The reader's browser also remembers the choice, so the same tab is selected when they come back to the page, or move to another page in the same website.
+
+## Mathematical equations {#sec-html-math}
+
+You write equations for HTML the same way as for any other format: with TeX math syntax.
+Use single dollar signs (`$...$`) for inline math, and double dollar signs (`$$...$$`) for display equations:
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/math/equations.qmd >}}
+````
+
+The result is shown in @fig-html-math-equations.
+
+![Inline and display math rendered with MathJax](images/html-math-equations.png){#fig-html-math-equations .border fig-alt="A sentence with an inline x-bar symbol, then a centered display equation for the sample mean numbered (1) at the right margin, then a sentence with a link to Equation 1."}
+
+Like other cross-references in HTML, readers can hover over the link to `@eq-mean` to see a preview of the equation.
+
+You can read more about writing equations, including cross-references and defining your own commands, in @sec-equations.
+
+### Math rendering methods
+
+By default, Quarto uses [MathJax](https://www.mathjax.org/), a JavaScript library that typesets the math in the reader's browser.
+MathJax supports almost all common TeX math commands, and it makes equations available to screen readers.
+
+MathJax loads from the web, so readers who are offline won't see typeset math.
+If that matters, set `html-math-method: mathml`.
+MathML is a markup language for math that browsers display without JavaScript, but it supports fewer TeX commands:
+
+```{.yaml filename="report.qmd"}
+---
+format:
+  html:
+    html-math-method: mathml
+---
 ```
 
-
-Add `group` to link tabsets to switch together.
-
-## Mathematical equations
-
-You write using TeX. Quarto adds MathJax to render them.
-
-There are other math renderer option.
-MathJax is a good default choice: accessible, wide support for LaTeX commands. 
-
-Other options: mathml (for no Javascript or CDN, slightly less support for Latex)
-
-::: todo
-[CVW] Link to https://quarto.org/docs/output-formats/html-basics.html#latex-equations
-
-:::
+For other methods, see [LaTeX Equations](https://quarto.org/docs/output-formats/html-basics.html#latex-equations) in the Quarto documentation.
 
 ## Citations
 

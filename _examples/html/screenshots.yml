@@ -42,3 +42,15 @@
   expand: 16
   width: 800
   generated: '2026-10-28T18:50:09Z'
+- image: html-math-equations.png
+  source: _examples/html/math/equations.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-06T21:50:04Z'
+- image: html-tabsets-route-tabs.png
+  source: _examples/html/tabsets/route-tabs.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-06T20:54:49Z'

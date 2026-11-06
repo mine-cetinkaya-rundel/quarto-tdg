@@ -27,7 +27,7 @@ You need only one of the following:
 
 - **Python**: Install Python and the `jupyter` package. Check the `Checking Python 3 installation` section in the `quarto check`  output.
 
-## Syntax
+## Syntax {#sec-code-syntax}
 
 A code cell starts and ends with three backticks. 
 The language is specified in curly braces after the opening backticks:
