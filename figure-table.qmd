@@ -975,6 +975,18 @@ The value is the class name without the `column-` prefix:
 ````
 
 The `fig-column` and `tbl-column` code cell options are similar, but they move only the figure or table output, not the other output of the cell.
+
+To set a default for the whole document, use these options in the document header:
+
+```{.yaml filename="report.qmd"}
+---
+fig-column: page
+tbl-column: margin
+---
+```
+
+In the header, `fig-column` and `tbl-column` apply to every cross-referenceable figure or table, from markdown or from a code cell.
+`column` in the header applies to both figures and tables, but not to other cell output.
 @fig-page-columns shows the result in `html` output.
 
 ::: {#fig-page-columns layout-ncol="2"}
