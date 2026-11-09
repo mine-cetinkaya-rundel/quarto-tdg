@@ -1,33 +1,15 @@
-## Q4 on-time rates
+::: {.panel-tabset group="route"}
 
-::: {.panel-tabset group="period"}
+### Harbour–Airport
 
-### Peak
+...
 
-| Route           | On time (%) |
-|:----------------|:-----------:|
-| Harbour–Airport | 71          |
-| West Loop       | 88          |
+### West Loop
 
-### Off-peak
+...
 
-| Route           | On time (%) |
-|:----------------|:-----------:|
-| Harbour–Airport | 85          |
-| West Loop       | 94          |
+### University Line
 
-:::
-
-## Recommendations
-
-::: {.panel-tabset group="period"}
-
-### Peak
-
-Add services to the Harbour–Airport route between 7 and 9am.
-
-### Off-peak
-
-No changes needed.
+...
 
 :::

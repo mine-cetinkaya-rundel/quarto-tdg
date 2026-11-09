@@ -1,3 +1,28 @@
+- image: html-citations-train-punctuality-ieee.png
+  source: _examples/html/citations/train-punctuality.qmd
+  selector: main
+  profile: ieee
+  expand: 16
+  width: 800
+  generated: '2026-11-09T17:39:29Z'
+- image: html-citations-train-punctuality.png
+  source: _examples/html/citations/train-punctuality.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-09T16:29:45Z'
+- image: html-code-blocks-filename.png
+  source: _examples/html/code-blocks/filename.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-09T16:29:05Z'
+- image: html-code-blocks-highlight.png
+  source: _examples/html/code-blocks/highlight.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-09T16:29:03Z'
 - image: html-code-features-code-annotation.png
   source: _examples/html/code-features/code-annotation.qmd
   selector: main
@@ -24,6 +49,19 @@
   expand: 16
   width: 800
   generated: '2026-11-06T19:57:39Z'
+- image: html-computational-outputs-figures.png
+  source: _examples/html/computational-outputs/figures.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-09T17:53:02Z'
+- image: html-first-document-train-punctuality-xref-hover.png
+  source: _examples/html/first-document/train-punctuality.qmd
+  selector: '#recommendations, .tippy-box'
+  hover: '#recommendations a.quarto-xref'
+  expand: 16
+  width: 800
+  generated: '2026-11-09T16:29:34Z'
 - image: html-first-document-train-punctuality.png
   source: _examples/html/first-document/train-punctuality.qmd
   selector: main
@@ -47,7 +85,27 @@
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-06T21:50:04Z'
+  generated: '2026-11-09T17:39:46Z'
+- image: html-navigation-other-links.png
+  source: _examples/html/navigation/other-links.qmd
+  selector: '#quarto-content'
+  width: 800
+  generated: '2026-11-09T17:25:37Z'
+- image: html-navigation-toc-margin.png
+  source: _examples/html/navigation/toc.qmd
+  selector: '#title-block-header, #on-time-performance > h2, #TOC'
+  expand: 16
+  generated: '2026-11-09T17:22:37Z'
+- image: html-navigation-toc-narrow.png
+  source: _examples/html/navigation/toc.qmd
+  width: 450
+  height: 885
+  generated: '2026-11-09T17:18:39Z'
+- image: html-navigation-toc.png
+  source: _examples/html/navigation/toc.qmd
+  selector: 'main, #TOC'
+  expand: 16
+  generated: '2026-11-09T16:28:54Z'
 - image: html-tabsets-route-tabs.png
   source: _examples/html/tabsets/route-tabs.qmd
   selector: main

@@ -137,6 +137,8 @@ csl: chicago-author-date
 
 ![Chicago author-date citation style, the default for HTML formats](images/typst-citations-chicago-train-punctuality.png){#fig-typst-citations-chicago .border fig-alt="A short PDF document showing a Chicago author-date in-text citation and a bibliography entry."}
 
+You can find a list of available styles in the Typst documentation for [Bibliography](https://typst.app/docs/reference/model/bibliography/#parameters-style), or alternatively provide a URL to `csl` as described for HTML in @sec-html-citations.
+
 You can read more about citations in @sec-citations, including about various `@` syntax variations.
 
 ## Mathematical equations
@@ -148,7 +150,7 @@ Use single dollar signs (`$...$`) for inline math, and double dollar signs (`$$.
 {{< include _examples/typst/math/equations.qmd >}}
 ````
 
-![Inline and display math rendered in Typst](images/typst-math-equations.png){#fig-typst-math-equations .border fig-alt="A PDF showing an inline mean symbol in a sentence and a numbered display equation for the sample mean."}
+![Inline and display math rendered in Typst](images/typst-math-equations.png){#fig-typst-math-equations .border fig-alt="A PDF showing a sentence with inline symbols p, t sub i and k sub i, a numbered display equation for the network on-time rate as a ratio of two sums, and a sentence with a link to Equation 1."}
 
 ::: {.callout-note}
 ## Typst has its own math syntax
@@ -168,7 +170,7 @@ You can add alternative text to cross-referenced display equations with an `alt=
 {{< include _examples/typst/math/equations-alt.qmd >}}
 ````
 
-![Display equation with alt text](images/typst-math-equations-alt.png){#fig-typst-math-equations-alt .border fig-alt="A PDF showing a numbered display equation for the sample mean."}
+![Display equation with alt text](images/typst-math-equations-alt.png){#fig-typst-math-equations-alt .border fig-alt="A PDF showing a numbered display equation for the network on-time rate as a ratio of two sums."}
 
 ::: {.callout-caution}
 

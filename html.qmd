@@ -38,8 +38,8 @@ When rendered the result is `train-punctuality.html`, shown in @fig-html-first-d
 
 ![The rendered output of `train-punctuality.qmd`](images/html-first-document-train-punctuality.png){#fig-html-first-document-train-punctuality .border fig-alt="A rendered HTML page showing a Route Punctuality Report with a table of on-time rates by route and a recommendations section."}
 
-::: {.callout-note}
-## Preview, don't open
+
+## Preview vs. render
 
 When you call `quarto preview` on an document targeting `format: html`, there are two steps Quarto takes. 
 First, it renders the document, then it serves it with a local webserver. The preview you see comes from pointing your browser at this webserver: you'll see the URL starting with something like `http://localhost`.
@@ -58,7 +58,6 @@ Some features you might lose include:
 * tabsets in the same `group` switching together.
 
 In general, you'll always want to examine your rendered document from the preview, not open the resulting `.html`.
-:::
 
 ## HTML is responsive and interactive
 
@@ -73,13 +72,24 @@ We call HTML output **responsive** because it responds to the properties of the 
 
 * Panel layouts (@sec-layout-panel) that lay out components out in a row, collapse into columns on small screens.
 
+You can see this in @fig-html-responsive, which shows the document from @sec-html-first-document, with a table of contents added, at two screen widths.
+On a wide screen the table of contents sits in the right margin, but on a narrow screen it's hidden and the body text uses the full width.
+
+::: {#fig-html-responsive layout="[70,30]" layout-valign="top"}
+![Wide screen (1200px)](images/html-navigation-toc.png){#fig-html-responsive-wide .border fig-alt="The Route Punctuality Report with the body text on the left and a table of contents, listing On-time performance and Recommendations, in the right margin."}
+
+![Narrow screen (450px)](images/html-navigation-toc-narrow.png){#fig-html-responsive-narrow .border fig-alt="The same Route Punctuality Report in a narrow window. There is no table of contents, the table fills the width of the window, and long lines wrap."}
+
+The Route Punctuality Report from @sec-html-first-document viewed at two screen widths
+:::
+
 We call HTML **interactive** because readers actions can change the visible content:
 
-* Readers can hover over cross-references, footnotes and citations to see the linked content.
+* Readers can hover over cross-references, footnotes and citations to see the linked content (@fig-html-crossrefs-hover).
 
 * Readers can expand collapsed callouts or code blocks to reveal content.
 
-* [Something else]{.todo}
+* Readers can switch between tabs in a tabset (@sec-html-tabsets).
 
 These HTML features do benefit many readers but you should keep in mind their limitations:
 
@@ -88,8 +98,6 @@ These HTML features do benefit many readers but you should keep in mind their li
 * Responsive and interactive features may pose accessibility challenges.
 
 ::: todo
-Add screenshots of the "First document" at different screen sizes and with the cross-reference hovered. Refer to these in the text.
-
 Come back and finish with what we choose to include/omit in this chapter: e.g. "we choose to omit interactive features that won't serve you in other formats". Or, "we'll point you to the docs for many interactive features"
 :::
 
@@ -97,7 +105,7 @@ Come back and finish with what we choose to include/omit in this chapter: e.g. "
 
 ### Table of contents
 
-A table of contents gives readers an outline fo your document, along with quick navigation to sections.
+A table of contents gives readers an outline of your document, along with quick navigation to sections.
 
 You can can one with `toc: true` in your document header:
 
@@ -110,11 +118,9 @@ toc: true
 ---
 ```
 
-By default, the table of contents appears in the right margin, and disappears on small screens.
+By default, the table of contents appears in the right margin (@fig-html-navigation-toc), and disappears on small screens (@fig-html-responsive).
 
-::: todo
-Screenshot
-:::
+![A table of contents in the right margin](images/html-navigation-toc-margin.png){#fig-html-navigation-toc .border fig-alt="The title, author and first heading of the Route Punctuality Report, with a table of contents in the right margin listing the two sections, On-time performance and Recommendations. On-time performance is highlighted as the current section."}
 
 Exclude a heading by adding the `.unnumbered` and `.unlisted` classes:
 
@@ -166,6 +172,8 @@ In HTML cross-references (@sec-crossreferences) serve as a richer type of link t
 Readers can hover over the cross-reference to get a preview of the element,
 and click the cross-reference to navigate to the element.
 
+![Hovering over a cross-reference shows a preview of the table it links to](images/html-first-document-train-punctuality-xref-hover.png){#fig-html-crossrefs-hover .border fig-alt="The Recommendations section of the Route Punctuality Report. The mouse is over the link Table 1, and a pop-up above the link shows a copy of the table with its caption."}
+
 You can turn off the hover behavior with the document option `crossrefs-hover: false`.
 
 ::: todo
@@ -182,26 +190,26 @@ These are shown under the following headings:
 * Code links: add with `code-links` 
 * Other formats: added automatically when more than one `format` is specified, or with `other-formats`.
 
+@fig-html-navigation-other-links shows a document with all three.
+
+![Other formats, other links and code links below the table of contents](images/html-navigation-other-links.png){#fig-html-navigation-other-links .border fig-alt="The Route Punctuality Report with its body text on the left. The right margin has four headed lists: Table of contents with two sections; Other Formats with a link to Typst; Other Links with a link to Network timetable; and Code Links with a GitHub icon and a link to Analysis code."}
+
 You can read more about these in the documentation for [Code links and other links](https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links) and [Including Other Formats](https://quarto.org/docs/output-formats/html-multi-format.html#specifying-formats-to-link).
 
-::: todo
-[CVW] Screenshot (borrow from websites?)
-:::
-
-## Code blocks
+## Code blocks {#sec-html-code-blocks}
 
 When you include a code block, it will get automatic syntax highlighting based
 on the language you specify.
 For example, here's a code block specified as `r`:
 
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
-
+{{< include _examples/html/code-blocks/highlight.qmd >}}
 ````
 
 In the HTML, the block gets R syntax highlighting as shown in @fig-html-code-blocks-highlight.
 Executable code cells that are echoed in your document get the same treatment, so your code is styled consistently.
 
-![Default `arrow` syntax highlighting of an R code block in an HTML document](){#fig-html-code-blocks-highlight .border fig-alt=""}
+![Default `arrow` syntax highlighting of an R code block in an HTML document](images/html-code-blocks-highlight.png){#fig-html-code-blocks-highlight .border fig-alt="A sentence followed by an R code block with colored syntax highlighting on a light grey background."}
 
 The default highlighting theme is `arrow`.
 Pick a different one with `syntax-highlighting`:
@@ -227,14 +235,12 @@ Adding a filename to a code block can provide additional context about where cod
 Add one with the `filename` attribute:
 
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
-```{.r filename="analysis.R"}
-
-```
+{{< include _examples/html/code-blocks/filename.qmd >}}
 ````
 
 The filename renders as a label on the code block, as shown in @fig-html-code-blocks-filename.
 
-![A code block labelled with its filename, `analysis.R`](){#fig-html-code-blocks-filename .border fig-alt=""}
+![A code block labelled with its filename, `analysis.R`](images/html-code-blocks-filename.png){#fig-html-code-blocks-filename .border fig-alt="A sentence followed by a syntax-highlighted R code block with a darker grey header bar labelled analysis.R."}
 
 ::: callout-tip
 
@@ -242,10 +248,6 @@ The filename renders as a label on the code block, as shown in @fig-html-code-bl
 
 You can put any string in `filename` so it doesn't necessarily have to be a filename. 
 We often use `"R Console"`, or `"Terminal"` in teaching settings to make it clear where learners should be writing and executing code.
-:::
-
-::: todo
-Fill in code example and screenshot, match typst chapter.
 :::
 
 ### Other code features {#sec-html-code-features}
@@ -304,13 +306,13 @@ In static formats like PDF and MS Word, all tabs will be rendered one after anot
 
 ### Linking tabsets with `group`
 
-When your document has more than one tabset with the same tabs, give them the same `group` attribute:
+When your document has more than one tabset with the same tabs, give each of them the same `group` attribute:
 
 ````{.markdown filename="report.qmd" .code-overflow-wrap}
 {{< include _examples/html/tabsets/grouped-tabs.qmd >}}
 ````
 
-Now, when a reader selects "Off-peak" in one tabset, every tabset in the `period` group switches to "Off-peak" too.
+Now, when a reader selects "West Loop" in one tabset, every tabset in the `route` group switches to "West Loop" too.
 The reader's browser also remembers the choice, so the same tab is selected when they come back to the page, or move to another page in the same website.
 
 ## Mathematical equations {#sec-html-math}
@@ -324,9 +326,9 @@ Use single dollar signs (`$...$`) for inline math, and double dollar signs (`$$.
 
 The result is shown in @fig-html-math-equations.
 
-![Inline and display math rendered with MathJax](images/html-math-equations.png){#fig-html-math-equations .border fig-alt="A sentence with an inline x-bar symbol, then a centered display equation for the sample mean numbered (1) at the right margin, then a sentence with a link to Equation 1."}
+![Inline and display math rendered with MathJax](images/html-math-equations.png){#fig-html-math-equations .border fig-alt="A sentence with inline symbols p, t sub i and k sub i, then a centered display equation for the network on-time rate as a ratio of two sums, numbered (1) at the right margin, then a sentence with a link to Equation 1."}
 
-Like other cross-references in HTML, readers can hover over the link to `@eq-mean` to see a preview of the equation.
+Like other cross-references in HTML, readers can hover over the link to `@eq-network-rate` to see a preview of the equation.
 
 You can read more about writing equations, including cross-references and defining your own commands, in @sec-equations.
 
@@ -349,68 +351,141 @@ format:
 
 For other methods, see [LaTeX Equations](https://quarto.org/docs/output-formats/html-basics.html#latex-equations) in the Quarto documentation.
 
-## Citations
+## Citations {#sec-html-citations}
 
 Citations require a bibliography file holding reference metadata. 
 A common format for this is BibTeX (`.bib`):
 
 ```{.bibtex filename="references.bib"}
-{{{< include _examples/typst/citations/references.bib >}}}
+{{< include _examples/html/citations/references.bib >}}
 ```
 
 To cite an item in the bibliography, specify the bibliography file in `bibliography` and use the `@` syntax in your text:
 
 ````{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
-{{{< include _examples/typst/citations/train-punctuality.qmd >}}}
+{{< include _examples/html/citations/train-punctuality.qmd >}}
 ````
 
-![Default citation style](){#fig-html-citations .border fig-alt=""}
+The citation renders in the text, and Quarto adds a References section at the end of the document, as shown in @fig-html-citations.
 
-You can specify the citation style with the `csl` option.
+![Default citation style](images/html-citations-train-punctuality.png){#fig-html-citations .border fig-alt="A sentence ending in the author-date citation (Office of Rail and Road 2023), followed by a References section with the full entry."}
+
+Citations styles are specified by Citation Language Style (CSL) files. 
+The [Zotero style repository](https://www.zotero.org/styles) provides a user friendly way to browse and download available styles maintained in the [citation-style-language/styles Github repository](https://github.com/citation-style-language/styles).
+
+The default comes from Pandoc and is [`chicago-author-date`](https://www.zotero.org/styles/chicago-author-date) which corresponds to the Chicago Manual of Style, 18th edition, author-date style.
+
+To use a different style, for example IEEE, provide a URL to the `csl` option:
 
 ````{.yaml filename="train-punctuality.qmd"}
 ---
 format: html
 bibliography: references.bib
-csl: chicago-author-date.csl
+csl: https://www.zotero.org/styles/ieee
 ---
 ````
 
-![Chicago author-date citation style, the default for HTML formats](){#fig-html-citations-chicago .border fig-alt=""}
+Alternatively, download the `.csl` file and provide a path to the downloaded file.
+
+The IEEE result is shown in @fig-html-citations-ieee.
+
+![IEEE citation style](images/html-citations-train-punctuality-ieee.png){#fig-html-citations-ieee .border fig-alt="A sentence ending in the numbered citation [1], followed by a References section with the numbered entry [1], the title in quotation marks, and the year at the end."}
 
 You can read more about citations in @sec-citations, including about various `@` syntax variations.
 
-::: todo
-[CVW] Edit for `csl` needing a `.csl` file. Note HTML's hover reference popups come free, turn off with `citations-hover`. Put in margin with `citation-location`.
+By default, when readers hover over a citation in the text,
+they'll get a preview of the full citation.
+You can turn off this behavior with the document option `citations-hover`:
+
+```{.markdown}
+---
+citations-hover: false
+---
+```
+
+## Computational outputs {#sec-html-computational-outputs}
+
+Computational code cells work in `format: html` just as they do in other formats.
+Outputs like figures, tables, and inline values are inserted into the document where the code cell was.
+
+For example, here's a cell that produces a figure:
+
+::: {.panel-tabset group="language"}
+## R
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+```{{r}}
+{{< include _examples/html/computational-outputs/figure-cell.R >}}
+```
+````
+
+## Python
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+```{{python}}
+{{< include _examples/html/computational-outputs/figure-cell.py >}}
+```
+````
 :::
 
-## Computational outputs
+The figure appears directly below the surrounding prose with a numbered caption, as shown in @fig-html-computational-outputs-figures.
 
-::: todo
+![Rendered output of the figure cell, with the figure inserted directly below the introductory sentence](images/html-computational-outputs-figures.png){#fig-html-computational-outputs-figures .border fig-alt="A sentence with a link to Figure 1, followed by a bar chart of on-time rate by route, captioned Figure 1: On-time rate by route."}
 
-General intro. These just work. Appear where code cell is. Add captions, alternative text, label starting with `fig-`/`tbl-` to get cross-references.
-Point forward to Computational Figures and Tables chapter for more details.
-Point forward to relevant customizing appearance sections for light/dark figures and table appearance.
-Lead into "some HTML specific tweaks"
-If your document has a light and a dark mode, you can also provide a version of each plot for each mode (@sec-html-light-dark-content).
+You'll find the code cell options for captions, alternative text and cross-references, along with many more details about figures and tables from code, in @sec-figtab.
 
-:::
+Figures and tables, whether they come from code or not, also pick up some of your document's appearance settings.
+You'll learn how to provide light and dark versions of images and plots in @sec-html-light-dark-content, and how Quarto styles tables in @sec-html-tables-appearance.
+
+The sections below cover a few things that are specific to HTML: figure formats, table formats, and interactive widgets.
 
 ### Figure formats
 
-Default format and size. Point forward to computational outputs chapter.
+The default figure format for HTML is `retina`.
+This encodes both a default format, PNG, and that the image should be generated with twice as many pixels as its display size so it appears sharp on high-resolution screens.
 
-SVG also a reasonable option. Check accessibility. 
+Another reasonable format for HTML is SVG.
+SVG is a vector format, so it scales without pixelation, however far a reader zooms in.
+However, it can be slow to display when a figure contains many elements, like a scatterplot with thousands of points.
+Set `fig-format` in the document header to switch the default format:
+
+```{.yaml filename="report.qmd"}
+---
+format:
+  html:
+    fig-format: svg
+---
+```
+
+You'll learn how to change the size of figures, along with other figure options, in @sec-figtab-computational.
 
 ### Table formats
 
-Get markdown or HTML. Markdown tables get some standard classes added by Quarto. HTML tables will usually retain package styling.
+Any code that produces a markdown or HTML table will result in a table in your HTML document.
 
-Raw, but pretty, table options:
-* `knitr::kable()`
-* pandas DataFrames
+Markdown tables are a good choice for simple tables. 
+Markdown tables from code behave just like raw markdown tables you might write by hand with one exception: Quarto adds extra classes to the resulting `<table>` element. 
+This means markdown tables produced computationally look visually different from those produced by markdown directly.
+You can learn more about these classes in @sec-html-tables-appearance.
 
-For a table that you want readers to read, use a package like great_tables to format it (@sec-figtab-tables).
+HTML tables are a better fit when you need more complicated table structure, like merged cells, hierarchical headers, or styling that depends on cell contents. 
+HTML is also a common output for dedicated table packages.
+Quarto keeps the structure of an HTML table: its rows, cells, merged cells, and any classes or inline styles on individual cells.
+However, Quarto may change the `<table>` element itself, adding its own classes and removing any inline styles.
+If your rendered table looks drastically different from the one you expected, Quarto's table processing is often the culprit.
+
+Some Quarto-aware table packages will provide an option to turn this processing off. 
+If the package you are using doesn't, and you'd like to, add the `html-table-processing` code option:
+
+````{.markdown filename="document.qmd"}
+```{{r}}
+#| html-table-processing: none
+# Code that produces an HTML table.
+```
+````
+
+For general details about layout, labelling, etc., see @sec-figtab. 
+For more details on computational tables, see @sec-figtab-tables. 
 
 ### Widgets
 
@@ -489,6 +564,7 @@ There are some limitations to keep in mind:
 [CVW] Article layout: full-width (`.column-page`) and margin content
 (`.column-margin`), margin figures/notes, sidenotes. Parallels Typst's
 full-width/margin section. Keep curated. 
+Put citations in margin with `citation-location`.
 :::
 
 ## Raw HTML
@@ -521,7 +597,7 @@ The part in the URL after the `#` is known as ...
 
 ```
 
-Preface with @sec if you also want it to be cross-referenceable.
+Start the identifier with `sec-` if you also want to cross-reference the section.
 
 Turn off with `anchor-sections: false`
 
@@ -715,7 +791,7 @@ block. HTML-specific styling: `title-block-banner` (a color or image banner) and
 block first appears. Link to the front-matter and title-block docs for readers.
 :::
 
-### Tables
+### Tables {#sec-html-tables-appearance}
 
 Quarto styles tables in HTML with [Bootstrap](https://getbootstrap.com/docs/5.3/content/tables/), the CSS framework behind Quarto's HTML themes.
 Every markdown table gets Bootstrap's base table styling, so it matches your theme's fonts and colors.

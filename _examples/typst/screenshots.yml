@@ -8,10 +8,6 @@
   screenshot: full-page
   density: 200
   generated: 2026-03-31T18:58:51Z
-- image: typst-citations-train-punctuality.png
-  source: _examples/typst/citations/train-punctuality.qmd
-  density: 200
-  generated: 2026-04-22T19:14:38Z
 - image: typst-math-theorem.png
   source: _examples/typst/math/theorem.qmd
   density: 200
@@ -65,10 +61,6 @@
   source: _examples/typst/column-layout/extents.qmd
   density: 200
   generated: 2026-05-08T16:50:31Z
-- image: typst-citations-chicago-train-punctuality.png
-  source: _examples/typst/citations-chicago/train-punctuality.qmd
-  density: 200
-  generated: 2026-06-04T19:47:43Z
 - image: typst-code-blocks-highlight.png
   source: _examples/typst/code-blocks/highlight.qmd
   density: 200
@@ -104,14 +96,6 @@
   source: _examples/typst/computational-outputs/tables.qmd
   density: 200
   generated: 2026-06-04T19:47:52Z
-- image: typst-math-equations.png
-  source: _examples/typst/math/equations.qmd
-  density: 200
-  generated: 2026-06-04T19:48:00Z
-- image: typst-math-equations-alt.png
-  source: _examples/typst/math/equations-alt.qmd
-  density: 200
-  generated: 2026-06-04T19:48:01Z
 - image: typst-raw-typst-text-fill.png
   source: _examples/typst/raw-typst/text-fill.qmd
   density: 200
@@ -200,3 +184,19 @@
   source: _examples/typst/raw-typst/heading-rule.qmd
   density: 200
   generated: 2026-06-16T20:59:45Z
+- image: typst-citations-train-punctuality.png
+  source: _examples/typst/citations/train-punctuality.qmd
+  density: 200
+  generated: 2026-11-09T16:45:08Z
+- image: typst-citations-chicago-train-punctuality.png
+  source: _examples/typst/citations-chicago/train-punctuality.qmd
+  density: 200
+  generated: 2026-11-09T16:45:09Z
+- image: typst-math-equations.png
+  source: _examples/typst/math/equations.qmd
+  density: 200
+  generated: 2026-11-09T17:39:28Z
+- image: typst-math-equations-alt.png
+  source: _examples/typst/math/equations-alt.qmd
+  density: 200
+  generated: 2026-11-09T17:39:29Z
