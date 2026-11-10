@@ -26,6 +26,7 @@ We expect you'll turn to these chapters to solve particular tasks with your own 
 | Align or size the columns of a table | @sec-table-column-alignment, @sec-table-column-widths |
 | Control the size or aspect ratio of a computational figure | @sec-figure-size |
 | Control the format and styling of a computational table | @sec-figtab-tables |
+| Provide light and dark versions of a figure | @sec-figtab-light-dark |
 | Troubleshoot figure or table output from a package | @sec-figtab-troubleshooting |
 
 : Common figure and table tasks. {#tbl-figtab-tasks}
@@ -1300,6 +1301,124 @@ tbl-colwidths: [80, 10, 10]
 
 A `tbl-colwidths` attribute on a table, or a `tbl-colwidths` code cell option, overrides the document option.
 A list table `widths` attribute does not.
+
+## Light and dark content {#sec-figtab-light-dark}
+
+::: todo
+[CVW] Moved as-is from `html.qmd`. Rewrite for this chapter following the proposal in https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/36. Example sources are in `_examples/figure-table/light-dark-content/` and the screenshots (`images/html-light-dark-content-crossref{,-dark}.png`) were taken with `_examples/html/screenshot-examples.R` in the `html` branch, so they need regenerating with this chapter's tooling.
+:::
+
+When you give your document both a light and a dark theme, readers can switch between them with a toggle:
+
+```{.yaml filename="report.qmd"}
+---
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+---
+```
+
+You'll learn more about light and dark themes, including light and dark brands, in @sec-websites-theme.
+
+Although text and backgrounds change with the theme, 
+images will not.
+An image with a light background might look great in your light theme, but stick out in your dark theme.
+To provide an integrated look, provide two versions of the image that Quarto switches depending on the theme.
+
+Depending on how your content is generated you either add `.light-content` and `.dark-content` classes, or use the `renderings` code cell option.
+
+### Images and other content
+
+Add the class `.light-content` to content that should appear only in light mode, and `.dark-content` to content that should appear only in dark mode.
+For example, for an image with a light and a dark version:
+
+```{.markdown filename="report.qmd"}
+![](diagram-light.png){.light-content fig-alt="..."}
+
+![](diagram-dark.png){.dark-content fig-alt="..."}
+```
+
+Both images are present in the HTML, but only one will be visible at a time.
+Give both versions the same alternative text. 
+
+The classes work on any element, not only images.
+For example, you could use a fenced div to show a note only in dark mode:
+
+```{.markdown filename="report.qmd"}
+::: {.dark-content}
+The diagrams on this page use the dark color scheme.
+:::
+```
+
+If your images needs to be cross-referencable you'll need to use the fenced div syntax (@sec-syntax-variations):
+
+```{.markdown filename="report.qmd"}
+::: {#fig-diagram}
+![](diagram-light.png){.light-content fig-alt="..."}
+
+![](diagram-dark.png){.dark-content fig-alt="..."}
+
+The architecture of the system.
+:::
+```
+
+### Computational figures
+
+For an image made by a code cell, use the `renderings` code cell option.
+For example, set `renderings: [light, dark]`, and produce two plots in your code cell:
+
+::: {.panel-tabset group="language"}
+
+## R
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+```{{r}}
+{{< include _examples/figure-table/light-dark-content/_rate-plot.R >}}
+```
+````
+
+## Python
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+```{{python}}
+{{< include _examples/figure-table/light-dark-content/_rate-plot.py >}}
+```
+````
+
+:::
+
+Quarto adds the `.light-content` class to the first output and the `.dark-content` class to the second.
+A single `fig-alt` string applies to both renderings, so the light and dark plots get the same alternative text.
+
+To add a caption and cross-reference, use the fenced div syntax, as for images:
+
+````{.markdown .code-overflow-wrap filename="report.qmd"}
+@fig-rate shows on-time rates across the network's routes.
+
+::: {#fig-rate}
+
+```{{r}}
+#| echo: false
+{{< include _examples/figure-table/light-dark-content/_rate-crossref.R >}}
+```
+
+On-time rate by route
+
+:::
+````
+
+The plot switches along with the rest of the page (@fig-html-light-dark-content-crossref).
+
+::: {#fig-html-light-dark-content-crossref layout-ncol="2"}
+![Light mode](images/html-light-dark-content-crossref.png){#fig-html-light-dark-content-crossref-light .border fig-alt="A heading, a sentence linking to Figure 1, and a captioned bar chart of on-time rates, with dark text and dark grey bars on a white page."}
+
+![Dark mode](images/html-light-dark-content-crossref-dark.png){#fig-html-light-dark-content-crossref-dark .border fig-alt="The same heading, sentence, and captioned bar chart, with white text and light grey bars on a dark grey page."}
+
+The cross-referenced figure, with the page in light mode and in dark mode.
+:::
+
 
 ## Wrapping Up
 
