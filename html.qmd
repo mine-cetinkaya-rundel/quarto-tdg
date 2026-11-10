@@ -734,167 +734,135 @@ Read more on the [Lightbox Figures](https://quarto.org/docs/output-formats/html-
 semantic headings, alt text, color contrast, descriptive link text, table headers.
 The `axe: true` checker (axe-core): enabling it, `document`/`json`/`console`
 output, using it inside a debug profile to avoid shipping reports. Link to the
-html-accessibility docs. When axe flags a contrast violation, point forward to
-@sec-html-customizing-appearance for the CSS/SCSS fix.
+html-accessibility docs.
 :::
 
 ## Customizing appearance {#sec-html-customizing-appearance}
 
-::: todo
-[CVW] Abbreviated, for a first *single* HTML document (document-level YAML, not
-`_quarto.yml`). The comprehensive treatment lives in @sec-websites-theme; this
-section just gets readers started and links forward. Intro: three-tier escalation
-(built-in theme → brand → CSS/SCSS), scoped to one document. State up front that
-dark mode, combining brand with a built-in theme, and the role of Bootstrap are
-covered in @sec-websites-theme. This section also covers styling the title (header)
-block.
-:::
+In this section you'll learn basic ways to change how your HTML document looks.
+It starts with how to adjust the horizontal space devoted to the body and margin columns (@sec-html-grid)
+Then it covers theming: the colors, fonts, borders and space on your page.
 
-### Built-in themes
+There are three levels of customization. 
+Each gives you more control than the one before:
 
-::: todo
-[CVW] Set `theme:` in the document's `format: html` block; mention the default
-theme; Bootswatch as the gallery (link to bootswatch.com). Forward-ref
-@sec-websites-theme for applying site-wide and the light/dark toggle.
-:::
+1. A built-in theme, set with `theme` (@sec-html-themes).
+2. Your own colors and fonts, set with `brand` (@sec-html-brand).
+3. Your own CSS rules, added with `css` (@sec-html-css).
 
-### brand.yml
+This section covers what we think are the most useful tweaks for a single document.
+We delay more in-depth coverage of theming to @sec-websites-theme on Websites.
+There you'll learn about dark mode, how to combine **brand.yml** with a built-in theme, how to write SCSS, and the role of Bootstrap.
+Everything in that section also works for a single document except you'll put the options in your document header, not in `_quarto.yml`.
 
-::: todo
-[CVW] `_brand.yml` for custom colors (`background`, `foreground`, `primary`, plus
-`link`) and fonts (`base`, `headings`, `monospace` via Google/Bunny). Include the
-code-color note (`monospace-inline`/`monospace-block`) since changing `background`
-affects code-block contrast — bridges to accessibility. Link to the brand.yml docs
-and @sec-websites-theme for dark brands and layering with a theme.
-:::
+This section ends with two appearance topics that are specific to documents: the title block and tables.
 
-### Light and dark content {#sec-html-light-dark-content}
+### Page layout {#sec-html-grid}
 
-::: todo
-[CVW] We should link here from quick ref table at the start of the Figures and Tables chapter, for "How do I get light and dark mode figures?"
-:::
+Quarto lays out an HTML page on a grid of columns: sidebar, body, and margin.
+The `grid` option sets the widths of these columns and the gutters between them.
+@fig-html-grid-anatomy shows the options on the layout for a document with a table of contents or other content in the right margin, at three screen widths.
 
-When you give your document both a light and a dark theme, readers can switch between them with a toggle:
+![The `grid` options, and how blocks with three of the column classes move as the screen gets narrower](images/html-grid-anatomy.svg){#fig-html-grid-anatomy .border fig-alt="Three browser windows of decreasing width, each with a gray block labelled .column-body, a pink block labelled .column-margin, and a blue block labelled .column-page. In the widest, brackets mark body-width over the body column, gutter-width over the gap between body and margin, margin-width over the margin column, and a dashed sidebar-width over the short distance the .column-page block extends left of the body. In the middle window, the margin column remains but the .column-page block no longer extends left of the body. In the narrowest window, everything is in one column, with the .column-margin block above the body."}
+
+| Option          | Default | Controls                                                                                   |
+|:----------------|:--------|:-------------------------------------------------------------------------------------------|
+| `body-width`    | 800px   | The body column                                                                            |
+| `margin-width`  | 250px   | The margin column, where margin content and the table of contents go                       |
+| `gutter-width`  | 1.5em   | The space between the body and the margin column, and at the edges of the page             |
+| `sidebar-width` | 250px   | How far content with a class like `.column-page` extends to the left of the body          |
+
+Think of the column widths in `grid` as maximums: a column is this wide when there's room, and narrower when there isn't.
+
+For example, to make the body column wider:
 
 ```{.yaml filename="report.qmd"}
----
-format:
-  html:
-    theme:
-      light: flatly
-      dark: darkly
----
+{{< include _examples/html/grid/_grid.yml >}}
 ```
 
-You'll learn more about light and dark themes, including light and dark brands, in @sec-websites-theme.
+The layout depends on what is next to the body:
 
-Although text and backgrounds change with the theme, 
-images will not.
-An image with a light background might look great in your light theme, but stick out in your dark theme.
-To provide an integrated look, provide two versions of the image that Quarto switches depending on the theme.
+* If your document has no table of contents and no margin content, there is no margin column, and `margin-width` has no effect.
 
-Depending on how your content is generated you either add `.light-content` and `.dark-content` classes, or use the `renderings` code cell option.
+* If you set `toc-location: left`, the table of contents goes in a column on the left, and `sidebar-width` sets the width of that column.
+  This sidebar column gets preference over the margin column,
+  so it collapses inline last.. 
 
-#### Images and other content
+### Built-in themes {#sec-html-themes}
 
-Add the class `.light-content` to content that should appear only in light mode, and `.dark-content` to content that should appear only in dark mode.
-For example, for an image with a light and a dark version:
+The easiest way to change the appearance of your document is to use one of Quarto's 25 themes included themes from [Bootswatch](https://bootswatch.com).
+To use one, set `theme` in the document header:
 
-```{.markdown filename="report.qmd"}
-![](diagram-light.png){.light-content fig-alt="..."}
-
-![](diagram-dark.png){.dark-content fig-alt="..."}
+```{.yaml filename="report.qmd"}
+{{< include _examples/html/themes/_flatly.yml >}}
 ```
 
-Both images are present in the HTML, but only one will be visible at a time.
-Give both versions the same alternative text. 
+The result is shown in @fig-html-themes-flatly.
 
-The classes work on any element, not only images.
-For example, you could use a fenced div to show a note only in dark mode:
+![The Route Punctuality Report with the `flatly` theme](images/html-themes-flatly.png){#fig-html-themes-flatly .border fig-alt="The Route Punctuality Report in the flatly theme: a bold sans-serif title and On-time performance heading in dark grey, a sentence with a teal-green underlined link, and a table of three routes with peak and off-peak on-time rates, separated by thin grey lines."}
 
-```{.markdown filename="report.qmd"}
-::: {.dark-content}
-The diagrams on this page use the dark color scheme.
-:::
-```
-
-If your images needs to be cross-referencable you'll need to use the fenced div syntax (@sec-syntax-variations):
-
-```{.markdown filename="report.qmd"}
-::: {#fig-diagram}
-![](diagram-light.png){.light-content fig-alt="..."}
-
-![](diagram-dark.png){.dark-content fig-alt="..."}
-
-The architecture of the system.
-:::
-```
-
-#### Computational figures
-
-For an image made by a code cell, use the `renderings` code cell option.
-For example, set `renderings: [light, dark]`, and produce two plots in your code cell:
-
-::: {.panel-tabset group="language"}
-
-## R
-
-````{.markdown filename="report.qmd" .code-overflow-wrap}
-```{{r}}
-{{< include _examples/html/light-dark-content/_rate-plot.R >}}
-```
-````
-
-## Python
-
-````{.markdown filename="report.qmd" .code-overflow-wrap}
-```{{python}}
-{{< include _examples/html/light-dark-content/_rate-plot.py >}}
-```
-````
-
-:::
-
-Quarto adds the `.light-content` class to the first output and the `.dark-content` class to the second.
-A single `fig-alt` string applies to both renderings, so the light and dark plots get the same alternative text.
-
-To add a caption and cross-reference, use the fenced div syntax, as for images:
-
-````{.markdown .code-overflow-wrap filename="report.qmd"}
-@fig-rate shows on-time rates across the network's routes.
-
-::: {#fig-rate}
-
-```{{r}}
-#| echo: false
-{{< include _examples/html/light-dark-content/_rate-crossref.R >}}
-```
-
-On-time rate by route
-
-:::
-````
-
-The plot switches along with the rest of the page (@fig-html-light-dark-content-crossref).
-
-::: {#fig-html-light-dark-content-crossref layout-ncol="2"}
-![Light mode](images/html-light-dark-content-crossref.png){#fig-html-light-dark-content-crossref-light .border fig-alt="A heading, a sentence linking to Figure 1, and a captioned bar chart of on-time rates, with dark text and dark grey bars on a white page."}
-
-![Dark mode](images/html-light-dark-content-crossref-dark.png){#fig-html-light-dark-content-crossref-dark .border fig-alt="The same heading, sentence, and captioned bar chart, with white text and light grey bars on a dark grey page."}
-
-The cross-referenced figure, with the page in light mode and in dark mode.
-:::
-
-### Custom CSS and SCSS
+If you don't set `theme`, you get the theme `default`.
+The available themes are: `default`, `cerulean`, `cosmo`, `cyborg`, `darkly`, `flatly`, `journal`, `litera`, `lumen`, `lux`, `materia`, `minty`, `morph`, `pulse`, `quartz`, `sandstone`, `simplex`, `sketchy`, `slate`, `solar`, `spacelab`, `superhero`, `united`, `vapor`, `yeti`, and `zephyr`.
 
 ::: todo
-[CVW] Deliberately abbreviated, anchored on *fixing a contrast problem flagged by
-`axe`*. One sentence on CSS vs SCSS, the two injection points (`css` and `theme`),
-then a single worked example bumping a low-contrast link/text color to pass the
-check — cross-ref back to @sec-html-accessibility. Forward-link to @sec-websites-theme
-(Adding CSS or SCSS) and the html-themes Sass-variables docs for everything deeper,
-including Bootstrap.
+[CVW] Confirm the theme count and list against the quarto-cli source (`src/resources/formats/html/bootstrap/themes/`).
 :::
+
+### Colors and fonts with **brand.yml** {#sec-html-brand}
+
+Sometimes just tweaking a few colors and the font is enough to give your document your own style.
+The easiest way to do this in Quarto is through [**brand.yml**](https://posit-dev.github.io/brand-yml/).
+For a single standalone document the easiest way to use brand.yml is to set colors and fonts with the `brand` document option. 
+
+For example, the three colors that have the most effect on a document are `foreground` (the text color), `background` (the page color), and `primary` (the accent color):
+
+```{.yaml filename="report.qmd"}
+{{< include _examples/html/brand/_colors.yml >}}
+```
+
+The result is shown in @fig-html-brand-colors.
+
+![The Route Punctuality Report with brand colors](images/html-brand-colors.png){#fig-html-brand-colors .border fig-alt="The Route Punctuality Report on a warm off-white background: a title and On-time performance heading in dark slate text, a sentence with a dark green underlined link, and a table of three routes with peak and off-peak on-time rates, separated by thin grey lines."}
+
+You can set fonts under the `typography` key. 
+One available source is[Google Fonts](https://fonts.google.com)
+List the font in `fonts`, then use `base` to set the font for the document:
+
+```{.yaml filename="report.qmd"}
+{{< include _examples/html/brand/_fonts.yml >}}
+```
+
+![The Route Punctuality Report with brand colors and fonts](images/html-brand-fonts.png){#fig-html-brand-fonts .border fig-alt="The Route Punctuality Report with the same colors as the previous figure. All the text, including the title, the On-time performance heading, the sentence with a dark green link, and the table of three routes, is in a serif font."}
+
+Change `source: google` to `source: bunny` if you prefer [Bunny Fonts](https://fonts.bunny.net), a GDPR-compliant alternative to Google Fonts.
+
+**brand.yml** has many more options.
+You can read about them in @sec-websites-theme, and in the Quarto documentation [Guide to using **brand.yml**](https://quarto.org/docs/authoring/brand.html).
+To use a brand together with a built-in theme, see @sec-brand-theme.
+
+### Custom CSS {#sec-html-css}
+
+A theme or brand give big appearance changes, but if you need more control over individual elements you can also write your CSS rules.
+CSS (Cascading Style Sheets) is the language that browsers use to style HTML.
+A CSS rule has a selector, which identifies the elements to style, and declarations, which set the style.
+
+For example, Quarto puts a thin line under each level 2 heading.
+This rule removes the line:
+
+```{.css filename="styles.css"}
+{{< include _examples/html/css/styles.css >}}
+```
+
+To add the rule to your document, save it in a file and give the path to the file in `css`:
+
+```{.yaml filename="report.qmd"}
+{{< include _examples/html/css/_report.yml >}}
+```
+
+Quarto's themes are written in SCSS, a language that extends CSS with features like variables.
+You can also add your own SCSS file with `theme`.
+This lets you change Quarto's variables in one place.
+You can learn how in @sec-websites-theme.
 
 ### Title block
 

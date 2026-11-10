@@ -4,9 +4,6 @@ color:
   primary: "#0B6E4F"
 typography:
   fonts:
-    - family: Source Serif 4
+    - family: Lora
       source: google
-    - family: Source Sans 3
-      source: google
-  base: Source Serif 4
-  headings: Source Sans 3
+  base: Lora

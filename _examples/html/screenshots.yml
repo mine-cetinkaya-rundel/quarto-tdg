@@ -1,3 +1,15 @@
+- image: html-brand-colors.png
+  source: _examples/html/brand/colors.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-10T22:53:22Z'
+- image: html-brand-fonts.png
+  source: _examples/html/brand/fonts.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-10T22:53:24Z'
 - image: html-citations-train-punctuality-ieee.png
   source: _examples/html/citations/train-punctuality.qmd
   selector: main
