@@ -1,0 +1,28 @@
+---
+# Keep this header the same as _fonts.yml (the book shows that file).
+# `brand` does not work from an included header. See ../README.md.
+title: "Route Punctuality Report"
+brand:
+  color:
+    foreground: "#1F2A2E"
+    background: "#FAF7F0"
+    primary: "#0B6E4F"
+  typography:
+    fonts:
+      - family: Source Serif 4
+        source: google
+      - family: Source Sans 3
+        source: google
+    base: Source Serif 4
+    headings: Source Sans 3
+---
+
+## On-time performance
+
+The [network timetable](https://example.com) lists every route.
+
+| Route           | Peak (%) | Off-peak (%) |
+|:----------------|:--------:|:------------:|
+| Harbour–Airport | 71       | 85           |
+| West Loop       | 88       | 94           |
+| University Line | 90       | 96           |

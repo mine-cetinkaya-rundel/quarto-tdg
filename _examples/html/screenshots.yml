@@ -4,111 +4,152 @@
   profile: ieee
   expand: 16
   width: 800
-  generated: '2026-11-09T17:39:29Z'
+  generated: '2026-11-09T21:29:36Z'
 - image: html-citations-train-punctuality.png
   source: _examples/html/citations/train-punctuality.qmd
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-09T16:29:45Z'
+  generated: '2026-11-09T21:29:37Z'
 - image: html-code-blocks-filename.png
   source: _examples/html/code-blocks/filename.qmd
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-09T16:29:05Z'
+  generated: '2026-11-09T21:29:39Z'
 - image: html-code-blocks-highlight.png
   source: _examples/html/code-blocks/highlight.qmd
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-09T16:29:03Z'
+  generated: '2026-11-09T21:29:41Z'
 - image: html-code-features-code-annotation.png
   source: _examples/html/code-features/code-annotation.qmd
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-06T19:57:49Z'
+  generated: '2026-11-09T21:29:43Z'
 - image: html-code-features-code-fold.png
   source: _examples/html/code-features/code-fold.qmd
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-06T19:57:43Z'
+  generated: '2026-11-09T21:29:46Z'
 - image: html-code-features-code-tools.png
   source: _examples/html/code-features/code-tools.qmd
   selector: main, .dropdown-menu.show
   click: '#quarto-code-tools-menu'
   expand: 16
   width: 800
-  generated: '2026-11-06T19:57:46Z'
+  generated: '2026-11-09T21:29:49Z'
 - image: html-code-features-copy-button.png
   source: _examples/html/code-features/copy-button.qmd
   selector: .code-copy-outer-scaffold
   hover: .code-copy-outer-scaffold
   expand: 16
   width: 800
-  generated: '2026-11-06T19:57:39Z'
+  generated: '2026-11-09T21:29:51Z'
 - image: html-computational-outputs-figures.png
   source: _examples/html/computational-outputs/figures.qmd
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-09T17:53:02Z'
+  generated: '2026-11-09T21:29:54Z'
 - image: html-first-document-train-punctuality-xref-hover.png
   source: _examples/html/first-document/train-punctuality.qmd
   selector: '#recommendations, .tippy-box'
   hover: '#recommendations a.quarto-xref'
   expand: 16
   width: 800
-  generated: '2026-11-09T16:29:34Z'
+  generated: '2026-11-09T21:29:56Z'
 - image: html-first-document-train-punctuality.png
   source: _examples/html/first-document/train-punctuality.qmd
   selector: main
   expand: 16
-  generated: '2026-10-28T18:49:03Z'
+  generated: '2026-11-09T21:29:58Z'
 - image: html-light-dark-content-crossref-dark.png
   source: _examples/html/light-dark-content/rate-plot.qmd
   selector: '#with-a-caption-and-cross-reference'
   expand: 16
   width: 800
   color-scheme: dark
-  generated: '2026-10-28T18:50:13Z'
+  generated: '2026-11-09T21:30:02Z'
 - image: html-light-dark-content-crossref.png
   source: _examples/html/light-dark-content/rate-plot.qmd
   selector: '#with-a-caption-and-cross-reference'
   expand: 16
   width: 800
-  generated: '2026-10-28T18:50:09Z'
+  generated: '2026-11-09T21:30:04Z'
 - image: html-math-equations.png
   source: _examples/html/math/equations.qmd
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-09T17:39:46Z'
+  generated: '2026-11-09T21:30:06Z'
 - image: html-navigation-other-links.png
   source: _examples/html/navigation/other-links.qmd
   selector: '#quarto-content'
   width: 800
-  generated: '2026-11-09T17:25:37Z'
+  generated: '2026-11-09T21:30:08Z'
 - image: html-navigation-toc-margin.png
   source: _examples/html/navigation/toc.qmd
   selector: '#title-block-header, #on-time-performance > h2, #TOC'
   expand: 16
-  generated: '2026-11-09T17:22:37Z'
+  generated: '2026-11-09T21:30:10Z'
 - image: html-navigation-toc-narrow.png
   source: _examples/html/navigation/toc.qmd
   width: 450
   height: 885
-  generated: '2026-11-09T17:18:39Z'
+  generated: '2026-11-09T21:30:10Z'
 - image: html-navigation-toc.png
   source: _examples/html/navigation/toc.qmd
   selector: 'main, #TOC'
   expand: 16
-  generated: '2026-11-09T16:28:54Z'
+  generated: '2026-11-09T21:30:12Z'
+- image: html-page-layout-columns-medium.png
+  source: _examples/html/page-layout/columns.qmd
+  selector: main
+  expand: 16
+  width: 880
+  generated: '2026-11-09T22:32:17Z'
+- image: html-page-layout-columns-narrow.png
+  source: _examples/html/page-layout/columns.qmd
+  selector: main
+  expand: 16
+  width: 450
+  height: 900
+  generated: '2026-11-09T21:30:14Z'
+- image: html-page-layout-columns.png
+  source: _examples/html/page-layout/columns.qmd
+  selector: main
+  expand: 16
+  generated: '2026-11-09T21:30:15Z'
+- image: html-page-layout-toc-overlap.png
+  source: _examples/html/page-layout/toc-overlap.qmd
+  selector: '#title-block-header, #summary, #quarto-toc-toggle'
+  expand: 16
+  generated: '2026-11-09T21:30:17Z'
+- image: html-raw-html-license.png
+  source: _examples/html/raw-html/license.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-10T16:35:04Z'
+- image: html-raw-html-meter.png
+  source: _examples/html/raw-html/meter.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-10T16:30:25Z'
 - image: html-tabsets-route-tabs.png
   source: _examples/html/tabsets/route-tabs.qmd
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-06T20:54:49Z'
+  generated: '2026-11-09T21:30:18Z'
+- image: html-themes-flatly.png
+  source: _examples/html/themes/flatly.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-10T21:26:23Z'

@@ -39,6 +39,19 @@ Start the names of these files with an underscore (`_toc-options.yml`, `_dark-mo
 The underscore tells the screenshot tooling to skip the file.
 If a fragment also needs a rendered screenshot, keep a separate complete file and make a note of it in `screenshots.yml`.
 
+### Header-only fragments
+
+When the book shows only the YAML header of an example, put the header (with its `---` delimiters) in `_{example}.yml`.
+The complete file `{example}.qmd` starts with `{{< include _{example}.yml >}}`, followed by the body.
+Then the header has one source, and the screenshot always matches the code in the book.
+Examples: `themes/_flatly.yml` and `css/_report.yml`.
+
+This does not work for `brand`.
+Quarto reads `brand` before it expands shortcodes, so a `brand` option from an included header (or from `metadata-files`) has no effect.
+For `brand/colors.qmd` and `brand/fonts.qmd`, the complete file has the header inline, and `_colors.yml` and `_fonts.yml` are copies of it.
+If you change one of these headers, make the same change in both files.
+Do not put comments in the `_*.yml` copies, because the book shows them.
+
 ## Subject matter
 
 Use the same subject as the Typst chapter where possible: transit punctuality data (routes such as Harbour–Airport, West Loop, University Line).
@@ -68,6 +81,8 @@ Give every figure an ID that matches (`#fig-html-first-document-train-punctualit
 ### Taking screenshots
 
 `screenshot-examples.R` renders an example and captures it with headless Chrome (chromote).
+The page loads from a temporary local HTTP server (`python3 -m http.server`), not from `file://`.
+Chrome does not run Quarto's `quarto.js` (an ES module) from `file://`, so page behaviour such as the collapsed table of contents is missing there.
 It records every image in `screenshots.yml`, as the Typst examples do.
 Run it from the project root:
 

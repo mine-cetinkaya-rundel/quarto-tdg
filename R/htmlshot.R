@@ -28,28 +28,66 @@ htmlshot <- function(
   color_scheme <- match.arg(color_scheme, c("light", "dark"))
   b <- ChromoteSession$new(width = width, height = height)
   on.exit(b$close(), add = TRUE)
+  # Hide scrollbars before loading so the layout width is exactly `width`
+  # (chromote's screenshot() hides them, but only by resizing after load)
+  b$Emulation$setScrollbarsHidden(hidden = TRUE)
+
+  # Serve over HTTP: Quarto loads quarto.js as an ES module, which Chrome
+  # blocks on file://, so page behaviour (e.g. TOC collapse) would be missing.
+  url <- serve_dir(dirname(normalizePath(html)))
+  on.exit(attr(url, "server")$kill(), add = TRUE)
 
   loaded <- b$Page$loadEventFired(wait_ = FALSE)
-  b$Page$navigate(paste0("file://", normalizePath(html)), wait_ = FALSE)
+  b$Page$navigate(paste0(url, "/", utils::URLencode(basename(html))), wait_ = FALSE)
   b$wait_for(loaded)
+  # Let Quarto's scroll/layout scripts (and their CSS transitions) settle
+  Sys.sleep(0.5)
   set_color_scheme(b, color_scheme)
   # Avoid capturing before web fonts are applied
   b$Runtime$evaluate("document.fonts.ready.then(() => true)", awaitPromise = TRUE)
-  # The first capture (captureBeyondViewport) shifts the layout by a few px, so
-  # take a throwaway one before measuring
-  b$screenshot(filename = tempfile(fileext = ".png"), show = FALSE)
   if (!is.null(click)) click_element(b, click)
   if (!is.null(hover)) hover_element(b, hover)
 
   # Quarto sets `html { height: 100% }`, and chromote clips selector bounds to
   # the <html> box, so anything below the first screen is cut off. Measure the
   # clip rectangle in page coordinates here and pass it as `cliprect` instead.
-  if (is.null(selector)) {
-    page_height <- js_value(b, "document.documentElement.scrollHeight")
-    cliprect <- c(0, 0, width, if (full_page) page_height else height)
-  } else {
-    cliprect <- selector_rect(b, selector, expand)
+  measure <- function() {
+    if (is.null(selector)) {
+      page_height <- js_value(b, "document.documentElement.scrollHeight")
+      c(0, 0, width, if (full_page) page_height else height)
+    } else {
+      selector_rect(b, selector, expand)
+    }
   }
+  cliprect <- measure()
+
+  # If the clip fits in the viewport, capture it directly. chromote's
+  # screenshot() and captureBeyondViewport both resize the page, and Quarto
+  # reacts to resize events (e.g. it mispositions the collapsed-TOC toggle).
+  scroll <- js_value(b, "[window.scrollX, window.scrollY]")
+  # Don't let `expand` push the clip past the page's right edge (or scrollbar)
+  client_width <- js_value(b, "document.documentElement.clientWidth")
+  cliprect[3] <- min(cliprect[3], scroll[[1]] + client_width - cliprect[1])
+  in_view <- cliprect[1] >= scroll[[1]] && cliprect[2] >= scroll[[2]] &&
+    cliprect[1] + cliprect[3] <= scroll[[1]] + width &&
+    cliprect[2] + cliprect[4] <= scroll[[2]] + height
+  if (in_view) {
+    shot <- b$Page$captureScreenshot(
+      format = "png",
+      clip = list(
+        x = cliprect[1], y = cliprect[2],
+        width = cliprect[3], height = cliprect[4],
+        scale = scale
+      )
+    )
+    writeBin(jsonlite::base64_dec(shot$data), filename)
+    return(invisible(filename))
+  }
+
+  # The first capture (captureBeyondViewport) shifts the layout by a few px, so
+  # take a throwaway one and measure again
+  b$screenshot(filename = tempfile(fileext = ".png"), show = FALSE)
+  cliprect <- measure()
 
   b$screenshot(
     filename = filename,
@@ -59,6 +97,32 @@ htmlshot <- function(
     options = list(captureBeyondViewport = TRUE)
   )
   invisible(filename)
+}
+
+# Start a static file server for `dir` on a free local port. Returns the base
+# URL with the processx handle in attr "server"; the caller kills it.
+serve_dir <- function(dir) {
+  for (i in 1:10) {
+    port <- sample(20000:40000, 1)
+    p <- processx::process$new(
+      "python3",
+      c("-m", "http.server", port, "--bind", "127.0.0.1", "--directory", dir),
+      stdout = NULL, stderr = NULL
+    )
+    url <- paste0("http://127.0.0.1:", port)
+    for (j in 1:50) {
+      ok <- tryCatch({
+        con <- url(url, open = "rb")
+        close(con)
+        TRUE
+      }, error = function(e) FALSE, warning = function(w) FALSE)
+      if (ok) return(structure(url, server = p))
+      if (!p$is_alive()) break
+      Sys.sleep(0.1)
+    }
+    p$kill()
+  }
+  stop("Could not start a local HTTP server for ", dir)
 }
 
 click_element <- function(b, selector) {

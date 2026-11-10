@@ -1,0 +1,9 @@
+{{< include _report.yml >}}
+
+## On-time performance
+
+Off-peak services outperform peak services on every route.
+
+::: {.column-margin}
+Peak hours are 7–9am and 4–6pm on weekdays.
+:::

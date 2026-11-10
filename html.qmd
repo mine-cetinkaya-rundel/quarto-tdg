@@ -59,7 +59,7 @@ Some features you might lose include:
 
 In general, you'll always want to examine your rendered document from the preview, not open the resulting `.html`.
 
-## HTML is responsive and interactive
+## HTML is responsive and interactive {#sec-html-responsive}
 
 It's worth pausing to highlight some of the properties unique to HTML output.
 (These also apply to other formats that produce `.html` like RevealJS).
@@ -103,7 +103,7 @@ Come back and finish with what we choose to include/omit in this chapter: e.g. "
 
 ## Navigation
 
-### Table of contents
+### Table of contents {#sec-html-toc}
 
 A table of contents gives readers an outline of your document, along with quick navigation to sections.
 
@@ -145,7 +145,7 @@ For example, the first figure in the first section becomes Figure 1.1.
 
 Additional document options control the maximum heading level included (`toc-depth`), the level of headings to show initially (`toc-expand`), and where the table of contents is displayed (`toc-location`).
 
-### Links
+### Links {#sec-html-links}
 
 You can create links using the usual markdown link syntax:
 
@@ -435,7 +435,11 @@ The figure appears directly below the surrounding prose with a numbered caption,
 You'll find the code cell options for captions, alternative text and cross-references, along with many more details about figures and tables from code, in @sec-figtab.
 
 Figures and tables, whether they come from code or not, also pick up some of your document's appearance settings.
-You'll learn how to provide light and dark versions of images and plots in @sec-html-light-dark-content, and how Quarto styles tables in @sec-html-tables-appearance.
+You'll learn how Quarto styles tables in @sec-html-tables-appearance.
+
+::: todo
+[CVW] Link to light and dark versions of figures (`@sec-figtab-light-dark`) once it lands in the Figures and tables chapter. See #36 and branch `figtab-light-dark`.
+:::
 
 The sections below cover a few things that are specific to HTML: figure formats, table formats, and interactive widgets.
 
@@ -558,55 +562,170 @@ There are some limitations to keep in mind:
 [CVW] Screenshot for @fig-html-widgets-leaflet. Verify `embed-resources: true` captures everything for Jupyter widgets (the widget manager loads modules from a CDN at runtime). Consider moving to a "Computational outputs" chapter in the reorg.
 :::
 
-## Page layout and margin content
+## Full width and margin content {#sec-html-page-layout}
 
-::: todo
-[CVW] Article layout: full-width (`.column-page`) and margin content
-(`.column-margin`), margin figures/notes, sidenotes. Parallels Typst's
-full-width/margin section. Keep curated. 
-Put citations in margin with `citation-location`.
-:::
+On wide screens, your content appears in the middle of the page, in what Quarto calls the **body** column.
+You can move content out of the body column with column classes.
+For example, use might use `.column-margin` for a short aside: 
 
-## Raw HTML
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/page-layout/_columns-margin.qmd >}}
+````
 
-::: todo
-[CVW] The escape hatch when markdown isn't enough — parallels Typst's "Raw Typst
-blocks". Raw HTML blocks (` ```{=html} `) and inline raw HTML; passes straight
-through and is ignored by non-HTML formats. Common uses: embedding an iframe,
-widget, or custom element. Caution: raw HTML bypasses Quarto processing, so
-accessibility (alt text, semantic markup, contrast) is on you — tie back to
-@sec-html-accessibility. Link to the Pandoc/raw-content docs.
-:::
+Or give a wide table more room by applying `.column-page`:
 
-## Including HTML or Javascript before or after your body
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/page-layout/_columns-wide.qmd >}}
+````
 
-`include-before` `include-in-header` `include-after`.
+You can see the result of both in @fig-html-page-layout-columns.
 
-## Defaults worth knowing
+![A margin note next to the first paragraph, and a table wider than the body text](images/html-page-layout-columns.png){#fig-html-page-layout-columns .border fig-alt="Two lines of body text with a short grey note in the right margin, followed by a six-column table that extends past both edges of the body text, then a final line of body text."}
+
+The full set of columns classes documented in [Article layout](https://quarto.org/docs/authoring/article-layout.html#available-columns) is available in HTML.
+
+There are code cell and document options to place figures and tables in certain columns.
+See @sec-page-columns for more details.
+
+### Columns and responsive layout
+
+You saw in @sec-html-responsive that HTML output is responsive to the size of a readers screen.
+As a screen becomes narrower the column classes collapse.
+Below 992px any classes that use it, lose their extra width on the left (@fig-html-page-layout-columns-medium). 
+
+![The document from @fig-html-page-layout-columns on a medium-width screen](images/html-page-layout-columns-medium.png){#fig-html-page-layout-columns-medium .border fig-alt="The same document in a medium-width window. The margin note is still in the right margin. The table still extends across the margin on the right, but only slightly past the left edge of the body text, and its column headers wrap onto two lines." width="75%"}
+
+Below 768px everything except `.column-screen` is body width, and margin content moves inline (@fig-html-page-layout-columns-narrow).
+
+![The document from @fig-html-page-layout-columns on a narrow screen](images/html-page-layout-columns-narrow.png){#fig-html-page-layout-columns-narrow .border fig-alt="The same document in a narrow window. The margin note appears in grey between the first and second paragraphs. The table is the same width as the text and its right columns are cut off." width="50%"}
+
+When margin content or wide content overlaps with the table of contents, the table of contents collapses to a button (@fig-html-page-layout-toc-overlap).
+
+![The table of contents collapses when a margin note is next to it](images/html-page-layout-toc-overlap.png){#fig-html-page-layout-toc-overlap .border fig-alt="A document title, a Summary heading, and a sentence. A grey note is in the right margin. Above it, at the top of the margin, is a small button labelled Table of contents with a down arrow, in place of the full list of sections."}
+
+If you are using column classes, it's a good idea to check your layout at a narrow device width and verify your content makes sense when the columns collapse. 
+
+You can also put footnotes, citations, and figure captions in the margin (@sec-column-classes).
+To change the width of the body and margin columns, use the `grid` option (@sec-html-grid).
+
+## Raw HTML {#sec-html-raw-html}
+
+If you want to include HTML syntax that propagates as-is to the final HTML file use a raw HTML block.
+For example, HTML has a [`<meter>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/meter) element for displaying a value in a known range.
+There is no equivalent Quarto markdown syntax that creates this element.
+To use one in your Quarto document, use the HTML syntax inside a raw HTML block:
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/raw-html/meter.qmd >}}
+````
+
+![A peak on-time rate shown with a `<meter>` element](images/html-raw-html-meter.png){#fig-html-raw-html-meter .border fig-alt="A heading reading Peak on-time rate above the label Coastal Express and a horizontal gauge about two-thirds full in red."}
+
+Another common use is to embed an iframe.
+Iframes are windows onto other web pages: an [`<iframe>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe) element displays another page inside a rectangle on your page, and readers can interact with it as if they had visited that page.
+Two common uses are to embed an app, e.g. a Shiny app, hosted on another site, or embed HTML slides like those covered in @sec-presentations.
+There is no native syntax, so it belongs in a raw HTML block. 
+Here's an example that uses an iframe to embed a map hosted on `openstreetmap.org`:
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/raw-html/iframe.qmd >}}
+````
+
+It's also common for other projects to provide HTML you can copy and paste to your own sites. 
+For example, the [Creative Commons (CC) chooser](https://creativecommons.org/chooser/) provides an HTML snippet to display and link a CC license. 
+Copy the snippet and drop it in a raw HTML block:
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/raw-html/license.qmd >}}
+````
+
+![A Creative Commons license notice pasted from the license chooser](images/html-raw-html-license.png){#fig-html-raw-html-license .border fig-alt="A heading reading License above the sentence This work is licensed under CC BY-SA 4.0, where CC BY-SA 4.0 is a link followed by the Creative Commons, Attribution and ShareAlike icons."}
+
+If you need to add HTML to the `<head>` element, or are adding HTML to the start or end of your document, you should use one of the `include-` options covered in @sec-html-include. 
+
+## Including HTML with `include-` options {#sec-html-include}
+
+The `include-` options take raw content and insert it, without processing, at a fixed place in your HTML output:
+
+| Option                | Where the content goes                                | Typical use                                                                                        |
+|:----------------------|:------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
+| `include-in-header`   | The end of `<head>`                                   | `<meta>` tags, `<script>` tags that load a JavaScript library from a CDN, or third-party snippets like analytics |
+| `include-before-body` | The start of the main content, before the title block | A banner, like a "Draft" notice                                                                    |
+| `include-after-body`  | The end of `<body>`, after the main content           | A footer, or scripts that need the page loaded                                                     |
+
+As an example, consider requesting your page not be indexed by search engines.
+The usual approach is to add a specific `meta` tag to the header:
+
+````{.yaml filename="report.qmd"}
+{{< include _examples/html/include/noindex.qmd >}}
+````
+
+Notice the snippet itself is passed in the header to the `text` subkey.
+This works well for short snippets, but you can instead provide a path to a file that holds your snippet.
+For example, if you've stored the CC snippet from @sec-html-raw-html in `license.html`:
+
+```{.html filename="license.html" .code-overflow-wrap}
+{{< include _examples/html/include/license.html >}}
+```
+
+You can include it at the end of your content with:
+
+````{.yaml filename="report.qmd"}
+{{< include _examples/html/include/footer.qmd >}}
+````
+
+## Other HTML features {#sec-html-other-features}
+
+We've covered the most important HTML features but there are a few more that are useful to know about.
+We point you at the Quarto documentation for the details.
 
 ### Section anchors
 
-By default, the headings in your document will get a anchor link right next to them.
-These provide a quick way for people to share direct links to sections in your page.
-They appear after the heading, only visible on hover, look like (put real anchor icon here).
-Readers click on the link, then copy the URL from their web browser to share.
-The part in the URL after the `#` is known as ...
+By default, each heading in your document gets an anchor link: a []{.bi .bi-link-45deg role="img" aria-label="link"} icon after the heading text that is visible when a reader hovers over the heading.
+Anchor links give readers a quick way to share a direct link to a section.
+A reader clicks the icon, then copies the URL from their browser's address bar.
+Figures and tables with a cross-reference identifier also get an anchor link.
 
-```{.markdown filename="document.qmd"}
-## Section {#my-section}
+Recall from @sec-html-links that Quarto creates identifiers automatically, but you can also set your own:
 
+```{.markdown filename="report.qmd"}
+## Data methods {#data}
 ```
 
 Start the identifier with `sec-` if you also want to cross-reference the section.
 
-Turn off with `anchor-sections: false`
+To turn off anchor links, set `anchor-sections: false`.
+Read more in the [Anchor Sections](https://quarto.org/docs/output-formats/html-basics.html#anchor-sections) section of the Quarto documentation.
 
-::: todo
-[CVW] Behaviours HTML enables by default: citation/cross-ref hover popups,
-external-link icons, anchor-on-hover section links, smooth scrolling, code copy.
-State they're on by default; link to html-basics docs for toggling/customizing.
-(Absorbs the small "appearance" items so they don't each get a section.)
-:::
+### Reference popups
+
+You saw in @fig-html-crossrefs-hover that readers can hover over a cross-reference to see a preview.
+Footnotes and citations get the same treatment by default.
+
+To turn off the popups, set `footnotes-hover: false`, `citations-hover: false`, or `crossrefs-hover: false`.
+Read more in the [Reference Popups](https://quarto.org/docs/output-formats/html-basics.html#reference-popups) section of the Quarto documentation.
+
+### External links
+
+By default, links to other sites look the same as links within your document, and they open in the same browser tab.
+To mark external links with a []{.bi .bi-box-arrow-up-right role="img" aria-label="box with an arrow pointing out"} icon, set `link-external-icon: true`.
+Read more in the [External Links](https://quarto.org/docs/output-formats/html-basics.html#external-links) section of the Quarto documentation.
+
+### Smooth scrolling
+
+By default, when a reader clicks a link to another place in the page, like an entry in the table of contents, the browser jumps straight there.
+Set `smooth-scroll: true` to make the browser scroll to the new place instead.
+Scrolling helps readers keep track of where they are in the document.
+Read more in the [Smooth Scrolling](https://quarto.org/docs/output-formats/html-basics.html#smooth-scrolling) section of the Quarto documentation.
+
+### Lightbox figures
+
+Set `lightbox: true` to let readers click an image to see a larger view of it.
+The larger view fills the browser window and includes the figure caption.
+
+A lightbox is most useful for detailed figures, like maps or plots with many small labels, that are hard to read at body width.
+You can also turn on the lightbox for individual images, and group images into a gallery.
+Read more on the [Lightbox Figures](https://quarto.org/docs/output-formats/html-lightbox-figures.html) page of the Quarto documentation.
 
 ## Making accessible HTML {#sec-html-accessibility}
 
@@ -831,6 +950,10 @@ Packages that style their own tables, like gt and great_tables, opt out of the B
 ## Sharing HTML
 
 ### `quarto publish`
+
+```{.bash}
+quarto publish report.qmd
+```
 
 ::: todo
 [CVW] Easiest option. As seen in @sec-sharing. Website publishing covered in @sec-website-publish / @sec-ci.
