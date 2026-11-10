@@ -389,10 +389,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sec-html-accessibility" id="toc-sec-html-accessibility" class="nav-link" data-scroll-target="#sec-html-accessibility"><span class="header-section-number">9.15</span> Making accessible HTML</a></li>
   <li><a href="#sec-html-customizing-appearance" id="toc-sec-html-customizing-appearance" class="nav-link" data-scroll-target="#sec-html-customizing-appearance"><span class="header-section-number">9.16</span> Customizing appearance</a>
   <ul class="collapse">
-  <li><a href="#built-in-themes" id="toc-built-in-themes" class="nav-link" data-scroll-target="#built-in-themes"><span class="header-section-number">9.16.1</span> Built-in themes</a></li>
-  <li><a href="#brand.yml" id="toc-brand.yml" class="nav-link" data-scroll-target="#brand.yml"><span class="header-section-number">9.16.2</span> brand.yml</a></li>
-  <li><a href="#sec-html-light-dark-content" id="toc-sec-html-light-dark-content" class="nav-link" data-scroll-target="#sec-html-light-dark-content"><span class="header-section-number">9.16.3</span> Light and dark content</a></li>
-  <li><a href="#custom-css-and-scss" id="toc-custom-css-and-scss" class="nav-link" data-scroll-target="#custom-css-and-scss"><span class="header-section-number">9.16.4</span> Custom CSS and SCSS</a></li>
+  <li><a href="#sec-html-grid" id="toc-sec-html-grid" class="nav-link" data-scroll-target="#sec-html-grid"><span class="header-section-number">9.16.1</span> Page layout</a></li>
+  <li><a href="#sec-html-themes" id="toc-sec-html-themes" class="nav-link" data-scroll-target="#sec-html-themes"><span class="header-section-number">9.16.2</span> Built-in themes</a></li>
+  <li><a href="#sec-html-brand" id="toc-sec-html-brand" class="nav-link" data-scroll-target="#sec-html-brand"><span class="header-section-number">9.16.3</span> Colors and fonts with <strong>brand.yml</strong></a></li>
+  <li><a href="#sec-html-css" id="toc-sec-html-css" class="nav-link" data-scroll-target="#sec-html-css"><span class="header-section-number">9.16.4</span> Custom CSS</a></li>
   <li><a href="#title-block" id="toc-title-block" class="nav-link" data-scroll-target="#title-block"><span class="header-section-number">9.16.5</span> Title block</a></li>
   <li><a href="#sec-html-tables-appearance" id="toc-sec-html-tables-appearance" class="nav-link" data-scroll-target="#sec-html-tables-appearance"><span class="header-section-number">9.16.6</span> Tables</a></li>
   </ul></li>
@@ -1237,7 +1237,7 @@ Figure&nbsp;9.21: The table of contents collapses when a margin note is next to 
 </figure>
 </div>
 <p>If you are using column classes, it’s a good idea to check your layout at a narrow device width and verify your content makes sense when the columns collapse.</p>
-<p>You can also put footnotes, citations, and figure captions in the margin (<a href="authoring.html#sec-column-classes" class="quarto-xref"><span>Section 12.15.2</span></a>). To change the width of the body and margin columns, use the <code>grid</code> option (<span class="quarto-unresolved-ref">?sec-html-grid</span>).</p>
+<p>You can also put footnotes, citations, and figure captions in the margin (<a href="authoring.html#sec-column-classes" class="quarto-xref"><span>Section 12.15.2</span></a>). To change the width of the body and margin columns, use the <code>grid</code> option (<a href="#sec-html-grid" class="quarto-xref"><span>Section 9.16.1</span></a>).</p>
 </section>
 </section>
 <section id="sec-html-raw-html" class="level2" data-number="9.12">
@@ -1407,206 +1407,205 @@ Figure&nbsp;9.23: A Creative Commons license notice pasted from the license choo
 <section id="sec-html-accessibility" class="level2" data-number="9.15">
 <h2 data-number="9.15" class="anchored" data-anchor-id="sec-html-accessibility"><span class="header-section-number">9.15</span> Making accessible HTML</h2>
 <div class="todo">
-<p>[CVW] HTML is generally the most accessible format. Practical best practices: semantic headings, alt text, color contrast, descriptive link text, table headers. The <code>axe: true</code> checker (axe-core): enabling it, <code>document</code>/<code>json</code>/<code>console</code> output, using it inside a debug profile to avoid shipping reports. Link to the html-accessibility docs. When axe flags a contrast violation, point forward to <a href="#sec-html-customizing-appearance" class="quarto-xref"><span>Section 9.16</span></a> for the CSS/SCSS fix.</p>
+<p>[CVW] HTML is generally the most accessible format. Practical best practices: semantic headings, alt text, color contrast, descriptive link text, table headers. The <code>axe: true</code> checker (axe-core): enabling it, <code>document</code>/<code>json</code>/<code>console</code> output, using it inside a debug profile to avoid shipping reports. Link to the html-accessibility docs.</p>
 </div>
 </section>
 <section id="sec-html-customizing-appearance" class="level2" data-number="9.16">
 <h2 data-number="9.16" class="anchored" data-anchor-id="sec-html-customizing-appearance"><span class="header-section-number">9.16</span> Customizing appearance</h2>
-<div class="todo">
-<p>[CVW] Abbreviated, for a first <em>single</em> HTML document (document-level YAML, not <code>_quarto.yml</code>). The comprehensive treatment lives in <a href="websites.html#sec-websites-theme" class="quarto-xref"><span>Section 14.6</span></a>; this section just gets readers started and links forward. Intro: three-tier escalation (built-in theme → brand → CSS/SCSS), scoped to one document. State up front that dark mode, combining brand with a built-in theme, and the role of Bootstrap are covered in <a href="websites.html#sec-websites-theme" class="quarto-xref"><span>Section 14.6</span></a>. This section also covers styling the title (header) block.</p>
+<p>In this section you’ll learn basic ways to change how your HTML document looks. It starts with how to adjust the horizontal space devoted to the body and margin columns (<a href="#sec-html-grid" class="quarto-xref"><span>Section 9.16.1</span></a>) Then it covers theming: the colors, fonts, borders and space on your page.</p>
+<p>There are three levels of customization. Each gives you more control than the one before:</p>
+<ol type="1">
+<li>A built-in theme, set with <code>theme</code> (<a href="#sec-html-themes" class="quarto-xref"><span>Section 9.16.2</span></a>).</li>
+<li>Your own colors and fonts, set with <code>brand</code> (<a href="#sec-html-brand" class="quarto-xref"><span>Section 9.16.3</span></a>).</li>
+<li>Your own CSS rules, added with <code>css</code> (<a href="#sec-html-css" class="quarto-xref"><span>Section 9.16.4</span></a>).</li>
+</ol>
+<p>This section covers what we think are the most useful tweaks for a single document. We delay more in-depth coverage of theming to <a href="websites.html#sec-websites-theme" class="quarto-xref"><span>Section 14.6</span></a> on Websites. There you’ll learn about dark mode, how to combine <strong>brand.yml</strong> with a built-in theme, how to write SCSS, and the role of Bootstrap. Everything in that section also works for a single document except you’ll put the options in your document header, not in <code>_quarto.yml</code>.</p>
+<p>This section ends with two appearance topics that are specific to documents: the title block and tables.</p>
+<section id="sec-html-grid" class="level3" data-number="9.16.1">
+<h3 data-number="9.16.1" class="anchored" data-anchor-id="sec-html-grid"><span class="header-section-number">9.16.1</span> Page layout</h3>
+<p>Quarto lays out an HTML page on a grid of columns: sidebar, body, and margin. The <code>grid</code> option sets the widths of these columns and the gutters between them. <a href="#fig-html-grid-anatomy" class="quarto-xref">Figure&nbsp;<span>9.24</span></a> shows the options on the layout for a document with a table of contents or other content in the right margin, at three screen widths.</p>
+<div id="fig-html-grid-anatomy" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three browser windows of decreasing width, each with a gray block labelled .column-body, a pink block labelled .column-margin, and a blue block labelled .column-page. In the widest, brackets mark body-width over the body column, gutter-width over the gap between body and margin, margin-width over the margin column, and a dashed sidebar-width over the short distance the .column-page block extends left of the body. In the middle window, the margin column remains but the .column-page block no longer extends left of the body. In the narrowest window, everything is in one column, with the .column-margin block above the body.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-html-grid-anatomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/html-grid-anatomy.svg" class="border img-fluid figure-img" alt="Three browser windows of decreasing width, each with a gray block labelled .column-body, a pink block labelled .column-margin, and a blue block labelled .column-page. In the widest, brackets mark body-width over the body column, gutter-width over the gap between body and margin, margin-width over the margin column, and a dashed sidebar-width over the short distance the .column-page block extends left of the body. In the middle window, the margin column remains but the .column-page block no longer extends left of the body. In the narrowest window, everything is in one column, with the .column-margin block above the body.">
 </div>
-<section id="built-in-themes" class="level3" data-number="9.16.1">
-<h3 data-number="9.16.1" class="anchored" data-anchor-id="built-in-themes"><span class="header-section-number">9.16.1</span> Built-in themes</h3>
-<div class="todo">
-<p>[CVW] Set <code>theme:</code> in the document’s <code>format: html</code> block; mention the default theme; Bootswatch as the gallery (link to bootswatch.com). Forward-ref <a href="websites.html#sec-websites-theme" class="quarto-xref"><span>Section 14.6</span></a> for applying site-wide and the light/dark toggle.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-html-grid-anatomy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.24: The <code>grid</code> options, and how blocks with three of the column classes move as the screen gets narrower
+</figcaption>
+</figure>
 </div>
-</section>
-<section id="brand.yml" class="level3" data-number="9.16.2">
-<h3 data-number="9.16.2" class="anchored" data-anchor-id="brand.yml"><span class="header-section-number">9.16.2</span> brand.yml</h3>
-<div class="todo">
-<p>[CVW] <code>_brand.yml</code> for custom colors (<code>background</code>, <code>foreground</code>, <code>primary</code>, plus <code>link</code>) and fonts (<code>base</code>, <code>headings</code>, <code>monospace</code> via Google/Bunny). Include the code-color note (<code>monospace-inline</code>/<code>monospace-block</code>) since changing <code>background</code> affects code-block contrast — bridges to accessibility. Link to the brand.yml docs and <a href="websites.html#sec-websites-theme" class="quarto-xref"><span>Section 14.6</span></a> for dark brands and layering with a theme.</p>
-</div>
-</section>
-<section id="sec-html-light-dark-content" class="level3" data-number="9.16.3">
-<h3 data-number="9.16.3" class="anchored" data-anchor-id="sec-html-light-dark-content"><span class="header-section-number">9.16.3</span> Light and dark content</h3>
-<div class="todo">
-<p>[CVW] We should link here from quick ref table at the start of the Figures and Tables chapter, for “How do I get light and dark mode figures?”</p>
-</div>
-<p>When you give your document both a light and a dark theme, readers can switch between them with a toggle:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 7%">
+<col style="width: 77%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Option</th>
+<th style="text-align: left;">Default</th>
+<th style="text-align: left;">Controls</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>body-width</code></td>
+<td style="text-align: left;">800px</td>
+<td style="text-align: left;">The body column</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>margin-width</code></td>
+<td style="text-align: left;">250px</td>
+<td style="text-align: left;">The margin column, where margin content and the table of contents go</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>gutter-width</code></td>
+<td style="text-align: left;">1.5em</td>
+<td style="text-align: left;">The space between the body and the margin column, and at the edges of the page</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sidebar-width</code></td>
+<td style="text-align: left;">250px</td>
+<td style="text-align: left;">How far content with a class like <code>.column-page</code> extends to the left of the body</td>
+</tr>
+</tbody>
+</table>
+<p>Think of the column widths in <code>grid</code> as maximums: a column is this wide when there’s room, and narrower when there isn’t.</p>
+<p>For example, to make the body column wider:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">light</span><span class="kw">:</span><span class="at"> flatly</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">dark</span><span class="kw">:</span><span class="at"> darkly</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Route Punctuality Report"</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">grid</span><span class="kw">:</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">body-width</span><span class="kw">:</span><span class="at"> 900px</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">margin-width</span><span class="kw">:</span><span class="at"> 250px</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>You’ll learn more about light and dark themes, including light and dark brands, in <a href="websites.html#sec-websites-theme" class="quarto-xref"><span>Section 14.6</span></a>.</p>
-<p>Although text and backgrounds change with the theme, images will not. An image with a light background might look great in your light theme, but stick out in your dark theme. To provide an integrated look, provide two versions of the image that Quarto switches depending on the theme.</p>
-<p>Depending on how your content is generated you either add <code>.light-content</code> and <code>.dark-content</code> classes, or use the <code>renderings</code> code cell option.</p>
-<section id="images-and-other-content" class="level4" data-number="9.16.3.1">
-<h4 data-number="9.16.3.1" class="anchored" data-anchor-id="images-and-other-content"><span class="header-section-number">9.16.3.1</span> Images and other content</h4>
-<p>Add the class <code>.light-content</code> to content that should appear only in light mode, and <code>.dark-content</code> to content that should appear only in dark mode. For example, for an image with a light and a dark version:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>report.qmd</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="al">![](diagram-light.png)</span>{.light-content fig-alt="..."}</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="al">![](diagram-dark.png)</span>{.dark-content fig-alt="..."}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Both images are present in the HTML, but only one will be visible at a time. Give both versions the same alternative text.</p>
-<p>The classes work on any element, not only images. For example, you could use a fenced div to show a note only in dark mode:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>report.qmd</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>::: {.dark-content}</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>The diagrams on this page use the dark color scheme.</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>If your images needs to be cross-referencable you’ll need to use the fenced div syntax (<span class="quarto-unresolved-ref">?sec-syntax-variations</span>):</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>report.qmd</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-diagram}</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="al">![](diagram-light.png)</span>{.light-content fig-alt="..."}</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="al">![](diagram-dark.png)</span>{.dark-content fig-alt="..."}</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>The architecture of the system.</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<p>The layout depends on what is next to the body:</p>
+<ul>
+<li><p>If your document has no table of contents and no margin content, there is no margin column, and <code>margin-width</code> has no effect.</p></li>
+<li><p>If you set <code>toc-location: left</code>, the table of contents goes in a column on the left, and <code>sidebar-width</code> sets the width of that column. This sidebar column gets preference over the margin column, so it collapses inline last..</p></li>
+</ul>
 </section>
-<section id="computational-figures" class="level4" data-number="9.16.3.2">
-<h4 data-number="9.16.3.2" class="anchored" data-anchor-id="computational-figures"><span class="header-section-number">9.16.3.2</span> Computational figures</h4>
-<p>For an image made by a code cell, use the <code>renderings</code> code cell option. For example, set <code>renderings: [light, dark]</code>, and produce two plots in your code cell:</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
-<div class="tab-content" data-group="language">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<section id="sec-html-themes" class="level3" data-number="9.16.2">
+<h3 data-number="9.16.2" class="anchored" data-anchor-id="sec-html-themes"><span class="header-section-number">9.16.2</span> Built-in themes</h3>
+<p>The easiest way to change the appearance of your document is to use one of Quarto’s 25 themes included themes from <a href="https://bootswatch.com">Bootswatch</a>. To use one, set <code>theme</code> in the document header:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-filename="report.qmd"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: rate-plot</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| renderings: [light, dark]</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: A bar chart of on-time rates for five routes, all between 85% and 95%.</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(trains, <span class="fu">aes</span>(<span class="at">x =</span> route, <span class="at">y =</span> rate)) <span class="sc">+</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"On-time rate (%)"</span>)</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">ink =</span> <span class="st">"white"</span>, <span class="at">paper =</span> <span class="st">"#222222"</span>)</span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Route Punctuality Report"</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> flatly</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>report.qmd</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-filename="report.qmd"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: rate-plot</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| renderings: [light, dark]</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: A bar chart of on-time rates for five routes, all between 85% and 95%.</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> (</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    ggplot(trains, aes(x<span class="op">=</span><span class="st">"route"</span>, y<span class="op">=</span><span class="st">"rate"</span>))</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> geom_col()</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> labs(x<span class="op">=</span><span class="st">""</span>, y<span class="op">=</span><span class="st">"On-time rate (%)"</span>)</span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> theme_minimal()</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>dark <span class="op">=</span> theme(</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    plot_background<span class="op">=</span>element_rect(fill<span class="op">=</span><span class="st">"#222222"</span>),</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span>element_text(color<span class="op">=</span><span class="st">"white"</span>),</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    panel_grid<span class="op">=</span>element_line(color<span class="op">=</span><span class="st">"#444444"</span>),</span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>p.show()</span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>(p <span class="op">+</span> dark).show()</span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-</div>
-<p>Quarto adds the <code>.light-content</code> class to the first output and the <code>.dark-content</code> class to the second. A single <code>fig-alt</code> string applies to both renderings, so the light and dark plots get the same alternative text.</p>
-<p>To add a caption and cross-reference, use the fenced div syntax, as for images:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>report.qmd</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-filename="report.qmd"><pre class="sourceCode markdown code-overflow-wrap code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>@fig-rate shows on-time rates across the network's routes.</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>::: {#fig-rate}</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| renderings: [light, dark]</span></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-alt: A bar chart of on-time rates for five routes, all between 85% and 95%.</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">ink =</span> <span class="st">"white"</span>, <span class="at">paper =</span> <span class="st">"#222222"</span>)</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>On-time rate by route</span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>The plot switches along with the rest of the page (<a href="#fig-html-light-dark-content-crossref" class="quarto-xref">Figure&nbsp;<span>9.24</span></a>).</p>
-<div id="fig-html-light-dark-content-crossref" class="quarto-layout-panel">
+<p>The result is shown in <a href="#fig-html-themes-flatly" class="quarto-xref">Figure&nbsp;<span>9.25</span></a>.</p>
+<div id="fig-html-themes-flatly" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The Route Punctuality Report in the flatly theme: a bold sans-serif title and On-time performance heading in dark grey, a sentence with a teal-green underlined link, and a table of three routes with peak and off-peak on-time rates, separated by thin grey lines.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-html-light-dark-content-crossref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-html-light-dark-content-crossref" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-html-light-dark-content-crossref-light" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A heading, a sentence linking to Figure 1, and a captioned bar chart of on-time rates, with dark text and dark grey bars on a white page.">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-html-light-dark-content-crossref-light-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/html-light-dark-content-crossref.png" class="border img-fluid figure-img" data-ref-parent="fig-html-light-dark-content-crossref" alt="A heading, a sentence linking to Figure 1, and a captioned bar chart of on-time rates, with dark text and dark grey bars on a white page.">
+<div aria-describedby="fig-html-themes-flatly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/html-themes-flatly.png" class="border img-fluid figure-img" alt="The Route Punctuality Report in the flatly theme: a bold sans-serif title and On-time performance heading in dark grey, a sentence with a teal-green underlined link, and a table of three routes with peak and off-peak on-time rates, separated by thin grey lines.">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-html-light-dark-content-crossref-light-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Light mode
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-html-themes-flatly-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.25: The Route Punctuality Report with the <code>flatly</code> theme
 </figcaption>
 </figure>
 </div>
-</div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-html-light-dark-content-crossref" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-html-light-dark-content-crossref-dark" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The same heading, sentence, and captioned bar chart, with white text and light grey bars on a dark grey page.">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-html-light-dark-content-crossref-dark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/html-light-dark-content-crossref-dark.png" class="border img-fluid figure-img" data-ref-parent="fig-html-light-dark-content-crossref" alt="The same heading, sentence, and captioned bar chart, with white text and light grey bars on a dark grey page.">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-html-light-dark-content-crossref-dark-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Dark mode
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-html-light-dark-content-crossref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9.24: The cross-referenced figure, with the page in light mode and in dark mode.
-</figcaption>
-</figure>
-</div>
-</section>
-</section>
-<section id="custom-css-and-scss" class="level3" data-number="9.16.4">
-<h3 data-number="9.16.4" class="anchored" data-anchor-id="custom-css-and-scss"><span class="header-section-number">9.16.4</span> Custom CSS and SCSS</h3>
+<p>If you don’t set <code>theme</code>, you get the theme <code>default</code>. The available themes are: <code>default</code>, <code>cerulean</code>, <code>cosmo</code>, <code>cyborg</code>, <code>darkly</code>, <code>flatly</code>, <code>journal</code>, <code>litera</code>, <code>lumen</code>, <code>lux</code>, <code>materia</code>, <code>minty</code>, <code>morph</code>, <code>pulse</code>, <code>quartz</code>, <code>sandstone</code>, <code>simplex</code>, <code>sketchy</code>, <code>slate</code>, <code>solar</code>, <code>spacelab</code>, <code>superhero</code>, <code>united</code>, <code>vapor</code>, <code>yeti</code>, and <code>zephyr</code>.</p>
 <div class="todo">
-<p>[CVW] Deliberately abbreviated, anchored on <em>fixing a contrast problem flagged by <code>axe</code></em>. One sentence on CSS vs SCSS, the two injection points (<code>css</code> and <code>theme</code>), then a single worked example bumping a low-contrast link/text color to pass the check — cross-ref back to <a href="#sec-html-accessibility" class="quarto-xref"><span>Section 9.15</span></a>. Forward-link to <a href="websites.html#sec-websites-theme" class="quarto-xref"><span>Section 14.6</span></a> (Adding CSS or SCSS) and the html-themes Sass-variables docs for everything deeper, including Bootstrap.</p>
+<p>[CVW] Confirm the theme count and list against the quarto-cli source (<code>src/resources/formats/html/bootstrap/themes/</code>).</p>
 </div>
+</section>
+<section id="sec-html-brand" class="level3" data-number="9.16.3">
+<h3 data-number="9.16.3" class="anchored" data-anchor-id="sec-html-brand"><span class="header-section-number">9.16.3</span> Colors and fonts with <strong>brand.yml</strong></h3>
+<p>Sometimes just tweaking a few colors and the font is enough to give your document your own style. The easiest way to do this in Quarto is through <a href="https://posit-dev.github.io/brand-yml/"><strong>brand.yml</strong></a>. For a single standalone document the easiest way to use brand.yml is to set colors and fonts with the <code>brand</code> document option.</p>
+<p>For example, the three colors that have the most effect on a document are <code>foreground</code> (the text color), <code>background</code> (the page color), and <code>primary</code> (the accent color):</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>report.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Route Punctuality Report"</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">brand</span><span class="kw">:</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">color</span><span class="kw">:</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">foreground</span><span class="kw">:</span><span class="at"> </span><span class="st">"#1F2A2E"</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">background</span><span class="kw">:</span><span class="at"> </span><span class="st">"#FAF7F0"</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#0B6E4F"</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The result is shown in <a href="#fig-html-brand-colors" class="quarto-xref">Figure&nbsp;<span>9.26</span></a>.</p>
+<div id="fig-html-brand-colors" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The Route Punctuality Report on a warm off-white background: a title and On-time performance heading in dark slate text, a sentence with a dark green underlined link, and a table of three routes with peak and off-peak on-time rates, separated by thin grey lines.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-html-brand-colors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/html-brand-colors.png" class="border img-fluid figure-img" alt="The Route Punctuality Report on a warm off-white background: a title and On-time performance heading in dark slate text, a sentence with a dark green underlined link, and a table of three routes with peak and off-peak on-time rates, separated by thin grey lines.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-html-brand-colors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.26: The Route Punctuality Report with brand colors
+</figcaption>
+</figure>
+</div>
+<p>You can set fonts under the <code>typography</code> key. One available source is<a href="https://fonts.google.com">Google Fonts</a> List the font in <code>fonts</code>, then use <code>base</code> to set the font for the document:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>report.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Route Punctuality Report"</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">brand</span><span class="kw">:</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">color</span><span class="kw">:</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">foreground</span><span class="kw">:</span><span class="at"> </span><span class="st">"#1F2A2E"</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">background</span><span class="kw">:</span><span class="at"> </span><span class="st">"#FAF7F0"</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> </span><span class="st">"#0B6E4F"</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">typography</span><span class="kw">:</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fonts</span><span class="kw">:</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Lora</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">base</span><span class="kw">:</span><span class="at"> Lora</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="fig-html-brand-fonts" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The Route Punctuality Report with the same colors as the previous figure. All the text, including the title, the On-time performance heading, the sentence with a dark green link, and the table of three routes, is in a serif font.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-html-brand-fonts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/html-brand-fonts.png" class="border img-fluid figure-img" alt="The Route Punctuality Report with the same colors as the previous figure. All the text, including the title, the On-time performance heading, the sentence with a dark green link, and the table of three routes, is in a serif font.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-html-brand-fonts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.27: The Route Punctuality Report with brand colors and fonts
+</figcaption>
+</figure>
+</div>
+<p>Change <code>source: google</code> to <code>source: bunny</code> if you prefer <a href="https://fonts.bunny.net">Bunny Fonts</a>, a GDPR-compliant alternative to Google Fonts.</p>
+<p><strong>brand.yml</strong> has many more options. You can read about them in <a href="websites.html#sec-websites-theme" class="quarto-xref"><span>Section 14.6</span></a>, and in the Quarto documentation <a href="https://quarto.org/docs/authoring/brand.html" class="quarto-docs"><span class="docs-lead">Guide</span> to using <strong>brand.yml</strong></a>. To use a brand together with a built-in theme, see <a href="websites.html#sec-brand-theme" class="quarto-xref"><span>Section 14.6.3</span></a>.</p>
+</section>
+<section id="sec-html-css" class="level3" data-number="9.16.4">
+<h3 data-number="9.16.4" class="anchored" data-anchor-id="sec-html-css"><span class="header-section-number">9.16.4</span> Custom CSS</h3>
+<p>A theme or brand give big appearance changes, but if you need more control over individual elements you can also write your CSS rules. CSS (Cascading Style Sheets) is the language that browsers use to style HTML. A CSS rule has a selector, which identifies the elements to style, and declarations, which set the style.</p>
+<p>For example, Quarto puts a thin line under each level 2 heading. This rule removes the line:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>styles.css</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37" data-filename="styles.css"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>h2 {</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">border-bottom</span><span class="ch">:</span> <span class="dv">none</span><span class="op">;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>To add the rule to your document, save it in a file and give the path to the file in <code>css</code>:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>report.qmd</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-filename="report.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Route Punctuality Report"</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Quarto’s themes are written in SCSS, a language that extends CSS with features like variables. You can also add your own SCSS file with <code>theme</code>. This lets you change Quarto’s variables in one place. You can learn how in <a href="websites.html#sec-websites-theme" class="quarto-xref"><span>Section 14.6</span></a>.</p>
 </section>
 <section id="title-block" class="level3" data-number="9.16.5">
 <h3 data-number="9.16.5" class="anchored" data-anchor-id="title-block"><span class="header-section-number">9.16.5</span> Title block</h3>
@@ -1622,13 +1621,13 @@ Figure&nbsp;9.24: The cross-referenced figure, with the page in light mode and i
 <div class="code-with-filename-file">
 <pre><strong>report.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Route    <span class="pp">|</span> On time <span class="pp">|</span> Total <span class="pp">|</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|--------:|------:|</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Northern <span class="pp">|</span>     142 <span class="pp">|</span>   154 <span class="pp">|</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Central  <span class="pp">|</span>      98 <span class="pp">|</span>   110 <span class="pp">|</span></span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Circle   <span class="pp">|</span>     201 <span class="pp">|</span>   215 <span class="pp">|</span></span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>: Punctuality by route {.striped .hover}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39" data-filename="report.qmd"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Route    <span class="pp">|</span> On time <span class="pp">|</span> Total <span class="pp">|</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|--------:|------:|</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Northern <span class="pp">|</span>     142 <span class="pp">|</span>   154 <span class="pp">|</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Central  <span class="pp">|</span>      98 <span class="pp">|</span>   110 <span class="pp">|</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Circle   <span class="pp">|</span>     201 <span class="pp">|</span>   215 <span class="pp">|</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>: Punctuality by route {.striped .hover}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The available classes are:</p>
 <div class="table-responsive">
@@ -1680,7 +1679,7 @@ Figure&nbsp;9.24: The cross-referenced figure, with the page in light mode and i
 <h2 data-number="9.17" class="anchored" data-anchor-id="sharing-html"><span class="header-section-number">9.17</span> Sharing HTML</h2>
 <section id="quarto-publish" class="level3" data-number="9.17.1">
 <h3 data-number="9.17.1" class="anchored" data-anchor-id="quarto-publish"><span class="header-section-number">9.17.1</span> <code>quarto publish</code></h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish report.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish report.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="todo">
 <p>[CVW] Easiest option. As seen in <a href="sharing.html" class="quarto-xref"><span>Chapter 6</span></a>. Website publishing covered in <a href="websites.html#sec-website-publish" class="quarto-xref"><span>Section 14.9</span></a> / <a href="websites.html#sec-ci" class="quarto-xref"><span>Section 14.10</span></a>.</p>
 </div>
@@ -1693,12 +1692,12 @@ Figure&nbsp;9.24: The cross-referenced figure, with the page in light mode and i
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Self Contained HTML</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Self Contained HTML</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>When rendered this ensures all required dependencies are embedded directly in output <code>.html</code> file. You can then send, or otherwise share this one file (e.g.&nbsp;<code>document.html</code>) and it will appear the same to your viewers as it does to you.</p>
 <div class="todo">
@@ -1709,13 +1708,13 @@ Figure&nbsp;9.24: The cross-referenced figure, with the page in light mode and i
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Self Contained HTML</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self-contained-math</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42" data-filename="document.qmd"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Self Contained HTML</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">self-contained-math</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="share-a-directory" class="level3" data-number="9.17.3">
