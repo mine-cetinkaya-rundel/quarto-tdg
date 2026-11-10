@@ -457,18 +457,8 @@ Each of the wider three has `-left` and `-right` variants for one-sided expansio
 
 ![Extent column classes on a single page](images/typst-column-layout-extents.png){#fig-typst-column-layout-extents .border fig-alt="A page laid out with one rectangle per column class, sized to its width: a small body rectangle at top, a margin rectangle in the right margin, three body-outset rectangles slightly wider than the body, three page-inset rectangles wider still, and three page rectangles extending to the page margins."}
 
-For document-wide defaults, set `tbl-column` and `fig-column` in the document header:
-
-```{.yaml filename="report.qmd"}
----
-format: typst
-fig-column: page
-tbl-column: page
----
-```
-
-Both apply to every cross-referenceable table or figure in the document — markdown pipe tables, list tables, and computational outputs alike.
-Tables and figures without an identifier are unaffected, as are non-cross-referenceable images and tables.
+To place figures and tables in a column, including setting a default for the whole document, see @sec-page-columns.
+You can also put footnotes, citations, and captions in the margin with document options (@sec-column-classes).
 
 
 When you place content outside the default body column, the layout mechanism of your document changes from a simple single body area to a layout using the Typst [marginalia package](https://typst.app/universe/package/marginalia/) to manage the margin allocation.

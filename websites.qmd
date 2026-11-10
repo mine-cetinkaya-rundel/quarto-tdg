@@ -901,6 +901,12 @@ You can specify the properties `light` and `dark` to `theme` to add a light/dark
 The property you list first (`light` or `dark`) will be the default for the page. 
 Viewers can then switch themes via a toggle in the navigation bar.
 
+Text and backgrounds switch with the theme, but images don't.
+
+::: todo
+[CVW] Link to light and dark versions of figures (`@sec-figtab-light-dark`) once it lands in the Figures and tables chapter. See #36.
+:::
+
 ::: {.callout-tip}
 
 ## Choose `light` and `dark` themes that are similar except for color
@@ -995,6 +1001,12 @@ and `_brand-light.yml`  defines a light mode with a mint background with charcoa
 ```{.yaml filename="_brand-light.yml"}
 {{< include _examples/websites/brand-dark/_brand-light.yml >}}
 ```
+
+As with light and dark themes, images don't switch with the brand.
+
+::: todo
+[CVW] Link to light and dark versions of figures (`@sec-figtab-light-dark`) once it lands in the Figures and tables chapter. See #36.
+:::
 
 ### Combine **brand.yml** with a built-in theme {#sec-brand-theme}
 
