@@ -2,3 +2,4 @@
 **/*.quarto_ipynb
 *.html
 *_files/
+!license.html
