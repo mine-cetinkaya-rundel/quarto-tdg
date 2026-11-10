@@ -798,7 +798,7 @@ In this case, a general troubleshooting process might look like:
 
 * Ask for help using your reproducible example.
 
-### Asking for help
+### Asking for help {#sec-ask-for-help}
 
 If you can't figure out the problem yourself, your next step is to ask someone. 
 A good question includes:

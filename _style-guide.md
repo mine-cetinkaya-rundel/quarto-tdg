@@ -28,7 +28,7 @@ This style guide summarizes the writing conventions and Quarto syntax patterns u
 
 #### Chapter Organization
 1. **Chapter title with identifier**: Start with a level-1 heading and cross-reference ID
-2. **Overview section**: Begin chapters with an "Overview" section that:
+2. **Opening material, no "Overview" heading**: Do not add an explicit `## Overview` section. The overview is the first chunk of material after the chapter title, before the first `##` heading. It:
    - Explains what the chapter covers
    - Provides context and motivation
    - Outlines the structure with forward references to sections
@@ -43,8 +43,6 @@ This style guide summarizes the writing conventions and Quarto syntax patterns u
 **Example structure:**
 ```markdown
 # Chapter Title {#sec-chapter-name}
-
-## Overview
 
 Brief introduction explaining what this chapter covers...
 
@@ -148,6 +146,13 @@ In this chapter, you'll dive into the three big components of a website:
 - "You set code cell options using YAML with hashpipe (or other language appropriate) comments at the top of a code cell."
 - "You set project level options using YAML in `_quarto.yml`."
 
+### Punctuation and Spelling
+
+- Use American spelling (e.g., "color", "center", "labeled", "labeling")
+- Always put a comma after "e.g." and "i.e." ("e.g., a table")
+- Use the Oxford comma in lists of three or more ("captions, identifiers, and alternative text")
+- Avoid slashes as shorthand in prose: write "figure or table", not "figure/table". Slashes are fine between option names, e.g., `fig-cap`/`tbl-cap`
+
 ### Callouts
 
 Use callouts to highlight important information:
@@ -170,7 +175,7 @@ Content of the callout...
 ### Tables
 
 - Use tables for reference information and comparisons
-- Include descriptive captions with cross-reference IDs
+- Include descriptive captions, ending with a period, with cross-reference IDs
 - Use `tbl-colwidths` when needed to control column proportions
 - Keep table content concise
 
@@ -221,6 +226,7 @@ tbl-colwidths: [20, 80]
 - Prefix section IDs with `sec-`
 - Prefix figure IDs with `fig-`
 - Prefix table IDs with `tbl-`
+- Prefix listing IDs with `lst-`
 
 ### Code Blocks
 
@@ -264,6 +270,22 @@ ggplot(data, aes(x, y)) + geom_point()
 ```
 ````
 
+#### Plain block, listing, or figure
+
+Choose how to present an example by what it contains:
+
+| Use | When | Example |
+|:--|:--|:--|
+| Plain code block | A short snippet that completes the sentence before it (end that sentence with a colon). The text does not refer to it again. | A 3-line document option, `fig-align: left` |
+| Listing (`#lst-`) | One code block that the text refers to by number, or that is long or complete enough to stand alone. | `@lst-seaborn-figure`, `@lst-navbar-simple` |
+| Figure (`#fig-`) | Any R/Python (or other) tabset; code next to its rendered output; or syntax variants side by side as sub-figures. | `@fig-tbl-gt`, `@fig-panel-subfigures`, `@fig-figure-syntax` |
+
+**Conventions:**
+- Never put a tabset in a `#lst-` div. Use `#fig-`, even if the tabs contain only code
+- Never put a single code block, with no tabset or rendered output, in a `#fig-` div. Use a listing or a plain block
+- A plain code block has no caption. Put any explanation in the text before or after the block
+- Refer to listings and figures with `@lst-` or `@fig-` only. Don't add "Figure" or "Listing" before the reference, because Quarto adds it
+
 ### Figures
 
 ```markdown
@@ -291,6 +313,7 @@ Overall figure caption
 - Name image files with a chapter prefix: `{chapter}-{description}.png` (e.g., `typst-train-punctuality.png`)
 - Use PNG format for screenshots
 - Include figure captions that can stand alone
+- End figure, table, and listing captions with a period. This rule doesn't apply to placeholder captions in example source (e.g., `Caption`) or to short sub-captions in a panel (e.g., "Markdown figure")
 
 ### Callouts
 
@@ -399,7 +422,7 @@ Ordered list:
 ```
 
 **Conventions:**
-- Use `-` for unordered lists (consistent throughout)
+- Use `-` or `*` for unordered lists, but use the same marker throughout a list
 - Blank line before first list item
 - Indent nested items with 2 spaces
 - Can use `1.` for all numbered items (auto-renumbered)

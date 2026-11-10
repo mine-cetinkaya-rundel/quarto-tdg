@@ -1,0 +1,59 @@
+---
+title: "Python Examples"
+format: html
+---
+
+```{python}
+{{< include ../_code-snippets/setup.py >}}
+```
+
+```{python}
+#| label: bill-scatter
+
+{{< include ../_code-snippets/bill-scatter.py >}}
+
+```
+
+
+```{python}
+#| label: size-scatter
+
+{{< include ../_code-snippets/size-scatter.py >}}
+```
+
+
+```{python}
+#| label: size-dist
+
+{{< include ../_code-snippets/size-dist.py >}}
+```
+
+
+```{python}
+#| label: island-bar
+
+{{< include ../_code-snippets/island-bar.py >}}
+```
+
+
+```{python}
+#| label: species-count
+
+{{< include ../_code-snippets/species-count.py >}}
+  
+```
+
+
+```{python}
+#| label: species-year
+
+{{< include ../_code-snippets/species-year.py >}}
+```
+
+
+
+```{python}
+#| label: big-penguins
+
+{{< include ../_code-snippets/big-penguins.py >}}
+```

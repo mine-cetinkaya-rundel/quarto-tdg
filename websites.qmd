@@ -201,7 +201,7 @@ In addition to relative links you can use absolute links.
 Absolute links start with slash (`/`) and are relative to the project root.
 It's particularly important to use absolute links in content that may be reused via an `include` shortcode at various levels in your site.
 
-#### Linking to sections or IDs
+#### Linking to sections or IDs {#sec-websites-anchors}
 
 You can link to a specific location within a page using the fragment identifier, a hash (`#`) followed by an identifier.
 In Quarto, all section headers are given identifiers automatically which makes it easy to link directly to a section.

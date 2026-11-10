@@ -1,0 +1,42 @@
+---
+echo: false
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+::: {#multiple-figures}
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: Physical dimensions of penguins
+#| fig-alt: 
+#|   - "Scatter plot of bill length vs. depth showing distinct species clustering."
+#|   - "Scatter plot of flipper length vs. body mass showing a strong positive relationship."
+#| fig-subcap: 
+#|   - "Penguin bill length versus depth by species"
+#|   - "Penguin flipper length versus body mass by species"
+
+{{< include ../_code-snippets/bill-scatter.R >}}
+
+{{< include ../_code-snippets/size-scatter.R >}}
+```
+
+:::
+
+::: {#multiple-tables}
+
+```{r}
+#| label: tbl-species-count
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
+#| tbl-subcap: 
+#|   - "Total"
+#|   - "By year"
+
+{{< include ../_code-snippets/species-count.R >}}
+
+{{< include ../_code-snippets/species-year.R >}}
+```
+
+:::
