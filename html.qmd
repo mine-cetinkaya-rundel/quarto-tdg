@@ -434,9 +434,6 @@ The figure appears directly below the surrounding prose with a numbered caption,
 
 You'll find the code cell options for captions, alternative text and cross-references, along with many more details about figures and tables from code, in @sec-figtab.
 
-Figures and tables, whether they come from code or not, also pick up some of your document's appearance settings.
-You'll learn how Quarto styles tables in @sec-html-tables-appearance.
-
 ::: todo
 [CVW] Link to light and dark versions of figures (`@sec-figtab-light-dark`) once it lands in the Figures and tables chapter. See #36 and branch `figtab-light-dark`.
 :::
@@ -470,7 +467,6 @@ Any code that produces a markdown or HTML table will result in a table in your H
 Markdown tables are a good choice for simple tables. 
 Markdown tables from code behave just like raw markdown tables you might write by hand with one exception: Quarto adds extra classes to the resulting `<table>` element. 
 This means markdown tables produced computationally look visually different from those produced by markdown directly.
-You can learn more about these classes in @sec-html-tables-appearance.
 
 HTML tables are a better fit when you need more complicated table structure, like merged cells, hierarchical headers, or styling that depends on cell contents. 
 HTML is also a common output for dedicated table packages.
@@ -674,6 +670,20 @@ You can include it at the end of your content with:
 {{< include _examples/html/include/footer.qmd >}}
 ````
 
+## Title block {#sec-html-title-block}
+
+::: todo
+[CVW] The header block at the top of an HTML doc. VERIFY the exact field list
+against the quarto-cli *source* (the HTML title-block template/partial), not the
+docs. Tentative default-block fields to confirm: `title`, `subtitle`, `author`
+(with `affiliation`, `orcid`/`email`/`url`), `date`, `doi`, `abstract`; banner
+style adds `description` and `categories`; broader scholarly fields (`keywords`,
+`funding`, `copyright`, `license`, `citation`) likely aren't in the default top
+block. HTML-specific styling: `title-block-banner` (a color or image banner) and
+`title-block-style`. Connect back to @sec-html-first-document, where the default
+block first appears. Link to the front-matter and title-block docs for readers.
+:::
+
 ## Other HTML features {#sec-html-other-features}
 
 We've covered the most important HTML features but there are a few more that are useful to know about.
@@ -739,9 +749,7 @@ html-accessibility docs.
 
 ## Customizing appearance {#sec-html-customizing-appearance}
 
-In this section you'll learn basic ways to change how your HTML document looks.
-It starts with how to adjust the horizontal space devoted to the body and margin columns (@sec-html-grid)
-Then it covers theming: the colors, fonts, borders and space on your page.
+In this section you'll learn basic ways to change how your HTML document looks with theming: the colors, fonts, borders and space on your page.
 
 There are three levels of customization. 
 Each gives you more control than the one before:
@@ -754,39 +762,6 @@ This section covers what we think are the most useful tweaks for a single docume
 We delay more in-depth coverage of theming to @sec-websites-theme on Websites.
 There you'll learn about dark mode, how to combine **brand.yml** with a built-in theme, how to write SCSS, and the role of Bootstrap.
 Everything in that section also works for a single document except you'll put the options in your document header, not in `_quarto.yml`.
-
-This section ends with two appearance topics that are specific to documents: the title block and tables.
-
-### Page layout {#sec-html-grid}
-
-Quarto lays out an HTML page on a grid of columns: sidebar, body, and margin.
-The `grid` option sets the widths of these columns and the gutters between them.
-@fig-html-grid-anatomy shows the options on the layout for a document with a table of contents or other content in the right margin, at three screen widths.
-
-![The `grid` options, and how blocks with three of the column classes move as the screen gets narrower](images/html-grid-anatomy.svg){#fig-html-grid-anatomy .border fig-alt="Three browser windows of decreasing width, each with a gray block labelled .column-body, a pink block labelled .column-margin, and a blue block labelled .column-page. In the widest, brackets mark body-width over the body column, gutter-width over the gap between body and margin, margin-width over the margin column, and a dashed sidebar-width over the short distance the .column-page block extends left of the body. In the middle window, the margin column remains but the .column-page block no longer extends left of the body. In the narrowest window, everything is in one column, with the .column-margin block above the body."}
-
-| Option          | Default | Controls                                                                                   |
-|:----------------|:--------|:-------------------------------------------------------------------------------------------|
-| `body-width`    | 800px   | The body column                                                                            |
-| `margin-width`  | 250px   | The margin column, where margin content and the table of contents go                       |
-| `gutter-width`  | 1.5em   | The space between the body and the margin column, and at the edges of the page             |
-| `sidebar-width` | 250px   | How far content with a class like `.column-page` extends to the left of the body          |
-
-Think of the column widths in `grid` as maximums: a column is this wide when there's room, and narrower when there isn't.
-
-For example, to make the body column wider:
-
-```{.yaml filename="report.qmd"}
-{{< include _examples/html/grid/_grid.yml >}}
-```
-
-The layout depends on what is next to the body:
-
-* If your document has no table of contents and no margin content, there is no margin column, and `margin-width` has no effect.
-
-* If you set `toc-location: left`, the table of contents goes in a column on the left, and `sidebar-width` sets the width of that column.
-  This sidebar column gets preference over the margin column,
-  so it collapses inline last.. 
 
 ### Built-in themes {#sec-html-themes}
 
@@ -864,56 +839,38 @@ You can also add your own SCSS file with `theme`.
 This lets you change Quarto's variables in one place.
 You can learn how in @sec-websites-theme.
 
-### Title block
+## Advanced customization {#sec-html-advanced-customization}
 
-::: todo
-[CVW] The header block at the top of an HTML doc. VERIFY the exact field list
-against the quarto-cli *source* (the HTML title-block template/partial), not the
-docs. Tentative default-block fields to confirm: `title`, `subtitle`, `author`
-(with `affiliation`, `orcid`/`email`/`url`), `date`, `doi`, `abstract`; banner
-style adds `description` and `categories`; broader scholarly fields (`keywords`,
-`funding`, `copyright`, `license`, `citation`) likely aren't in the default top
-block. HTML-specific styling: `title-block-banner` (a color or image banner) and
-`title-block-style`. Connect back to @sec-html-first-document, where the default
-block first appears. Link to the front-matter and title-block docs for readers.
-:::
+### Column widths {#sec-html-grid}
 
-### Tables {#sec-html-tables-appearance}
+Quarto lays out an HTML page on a grid of columns: sidebar, body, and margin.
+The `grid` option sets the widths of these columns and the gutters between them.
+@fig-html-grid-anatomy shows the options on the layout for a document with a table of contents or other content in the right margin, at three screen widths.
 
-Quarto styles tables in HTML with [Bootstrap](https://getbootstrap.com/docs/5.3/content/tables/), the CSS framework behind Quarto's HTML themes.
-Every markdown table gets Bootstrap's base table styling, so it matches your theme's fonts and colors.
+![The `grid` options, and how blocks with three of the column classes move as the screen gets narrower](images/html-grid-anatomy.svg){#fig-html-grid-anatomy .border fig-alt="Three browser windows of decreasing width, each with a gray block labelled .column-body, a pink block labelled .column-margin, and a blue block labelled .column-page. In the widest, brackets mark body-width over the body column, gutter-width over the gap between body and margin, margin-width over the margin column, and a dashed sidebar-width over the short distance the .column-page block extends left of the body. In the middle window, the margin column remains but the .column-page block no longer extends left of the body. In the narrowest window, everything is in one column, with the .column-margin block above the body."}
 
-You can add more Bootstrap styles to a pipe table (@sec-markdown-pipe-tables) with classes in the caption line:
+| Option          | Default | Controls                                                                                   |
+|:----------------|:--------|:-------------------------------------------------------------------------------------------|
+| `body-width`    | 800px   | The body column                                                                            |
+| `margin-width`  | 250px   | The margin column, where margin content and the table of contents go                       |
+| `gutter-width`  | 1.5em   | The space between the body and the margin column, and at the edges of the page             |
+| `sidebar-width` | 250px   | How far content with a class like `.column-page` extends to the left of the body          |
 
-```{.markdown filename="report.qmd"}
-| Route    | On time | Total |
-|----------|--------:|------:|
-| Northern |     142 |   154 |
-| Central  |      98 |   110 |
-| Circle   |     201 |   215 |
+Think of the column widths in `grid` as maximums: a column is this wide when there's room, and narrower when there isn't.
 
-: Punctuality by route {.striped .hover}
+For example, to make the body column wider:
+
+```{.yaml filename="report.qmd"}
+{{< include _examples/html/grid/_grid.yml >}}
 ```
 
-The available classes are:
+The layout depends on what is next to the body:
 
-| Class         | Effect                                             |
-|---------------|----------------------------------------------------|
-| `.striped`    | Shades every other row                             |
-| `.hover`      | Highlights the row under the mouse pointer         |
-| `.bordered`   | Adds borders on all sides of every cell            |
-| `.borderless` | Removes all borders                                |
-| `.sm`         | Makes the table more compact, with less cell padding and smaller text |
-| `.responsive` | Scrolls the table horizontally when it is wider than the page |
+* If your document has no table of contents and no margin content, there is no margin column, and `margin-width` has no effect.
 
-: Bootstrap classes for pipe tables in HTML {.responsive tbl-colwidths="[25, 75]"}
-
-Use these classes only for appearance.
-Other formats ignore them, so a table with `.striped` in HTML is a plain table in Typst.
-
-Tables from code cells get slightly different defaults.
-When a code cell outputs a markdown table, or a plain HTML table, Quarto adds the `.sm` and `.striped` styles.
-Packages that style their own tables, like gt and great_tables, opt out of the Bootstrap styling, so the package's styles apply instead.
+* If you set `toc-location: left`, the table of contents goes in a column on the left, and `sidebar-width` sets the width of that column.
+  This sidebar column gets preference over the margin column,
+  so it collapses inline last.. 
 
 ## Sharing HTML
 
