@@ -39,7 +39,7 @@ When rendered the result is `train-punctuality.html`, shown in @fig-html-first-d
 ![The rendered output of `train-punctuality.qmd`](images/html-first-document-train-punctuality.png){#fig-html-first-document-train-punctuality .border fig-alt="A rendered HTML page showing a Route Punctuality Report with a table of on-time rates by route and a recommendations section."}
 
 
-## Preview vs. render
+## Preview vs. render {#sec-html-preview}
 
 When you call `quarto preview` on an document targeting `format: html`, there are two steps Quarto takes. 
 First, it renders the document, then it serves it with a local webserver. The preview you see comes from pointing your browser at this webserver: you'll see the URL starting with something like `http://localhost`.
@@ -1158,23 +1158,33 @@ To style the status, you would add a rule for `.report-status` to a CSS file (@s
 If you use the same partial in many projects, or want to share it, you can bundle it into a format extension.
 Read more in the Quarto documentation on [Custom Formats](https://quarto.org/docs/extensions/formats.html).
 
-## Sharing HTML
+## Sharing HTML {#sec-html-sharing}
 
-### `quarto publish`
+In order for someone else to see your rendered HTML document exactly as you do, they need all of the files it depends on.
+This includes the automatically generated CSS and Javascript files, along with any local files, like images, you might have included.
 
-```{.bash}
+You have two options:
+
+* Publish the document to the web and share a URL.
+* Embed all the supporting files in a single `.html` file and share that file.
+
+### Publish and share a URL {#sec-html-sharing-publish}
+
+The easiest option is to publish your document with `quarto publish`, as you saw in @sec-sharing:
+
+``` {.bash filename="Terminal"}
 quarto publish report.qmd
 ```
 
-::: todo
-[CVW] Easiest option. As seen in @sec-sharing. Website publishing covered in @sec-website-publish / @sec-ci.
-:::
+Quarto renders your document, finds all the files that it needs, and uploads them to the provider that you select.
+The provider serves the files from a web server.
+You share a URL, and your readers only need a web browser.
+For most documents, this is the best option.
+Readers get all the features in this chapter, and you can easily update the content at the same URL by running `quarto publish` again.
 
 ### Self-contained HTML {#sec-sharing-other-ways}
 
-By default, sharing the rendered `.html` will not include its dependencies and when viewed will be missing images and stylesheets. 
-
-To create a self-contained `.html` file you can share, set the `embed-resources` option to `true`:
+If you want to share a single file, i.e., as an email attachment, you can embed all the resources in your rendered document by setting the `embed-resources` option to `true`:
 
 ``` {.yaml filename="document.qmd"}
 ---
@@ -1185,12 +1195,9 @@ format:
 ---
 ```
 
-When rendered this ensures all required dependencies are embedded directly in output `.html` file.
-You can then send, or otherwise share this one file (e.g. `document.html`) and it will appear the same to your viewers as it does to you.
-
-::: todo
-[CVW] What features may be missing if someone view (i.e. `file://` vs `https://`). 
-:::
+When you render, Quarto embeds the supporting files directly in the output `.html` file.
+Your readers usually open the file directly in their browser. 
+The limitations mentioned in @sec-html-preview don't apply because the JavaScript modules are no longer external resources.
 
 If your document contains math, and you might view it offline, add `self-contained-math: true` to ensure the math libraries are also embedded (by default they aren't because they are quite large):
 
@@ -1203,10 +1210,6 @@ format:
     self-contained-math: true
 ---
 ```
-
-### Share a directory
-
-Another option for HTML output is to use a project, set an output directory (`output-dir`), render and share the entire directory.
 
 ## Wrapping up
 
