@@ -1127,8 +1127,7 @@ To see the template and partials for your version of Quarto, look at their sourc
 
 There is more than one `title-block.html`.
 The default title block comes from `templates/title-block.html`.
-If you set `title-block-banner` or `title-block-style`, Quarto uses a different file, in `templates/banner/`, `templates/manuscript/`, or `pandoc/`.
-Start from the file that matches your options.
+But, if you set `title-block-banner` Quarto uses the partial in `templates/banner/`.
 
 :::
 
