@@ -1166,7 +1166,7 @@ This includes the automatically generated CSS and Javascript files, along with a
 You have two options:
 
 * Publish the document to the web and share a URL.
-* Embed all the supporting files in a single `.html` file and share that file.
+* Embed all the supporting files in a single self-contained HTML file and share that file.
 
 ### Publish and share a URL {#sec-html-sharing-publish}
 
