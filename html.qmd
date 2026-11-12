@@ -672,17 +672,227 @@ You can include it at the end of your content with:
 
 ## Title block {#sec-html-title-block}
 
-::: todo
-[CVW] The header block at the top of an HTML doc. VERIFY the exact field list
-against the quarto-cli *source* (the HTML title-block template/partial), not the
-docs. Tentative default-block fields to confirm: `title`, `subtitle`, `author`
-(with `affiliation`, `orcid`/`email`/`url`), `date`, `doi`, `abstract`; banner
-style adds `description` and `categories`; broader scholarly fields (`keywords`,
-`funding`, `copyright`, `license`, `citation`) likely aren't in the default top
-block. HTML-specific styling: `title-block-banner` (a color or image banner) and
-`title-block-style`. Connect back to @sec-html-first-document, where the default
-block first appears. Link to the front-matter and title-block docs for readers.
+The metadata from your document header is used to build a **title block** at the top of your document.
+The document in @sec-html-first-document had a title block built from just `title` and `author` (@fig-html-first-document-train-punctuality-title-block).
+
+![The title block of `train-punctuality.qmd`](images/html-first-document-train-punctuality-title-block.png){#fig-html-first-document-train-punctuality-title-block .border fig-alt="The heading Route Punctuality Report, with a small grey label reading Author above the name Dr. Sarah Okonkwo."}
+
+### Title block fields
+
+The title block can display more fields if you set them.
+@fig-html-title-block-default shows a title block that uses most of fields you can display.
+
+![The default title block](images/html-title-block-default.png){#fig-html-title-block-default .border fig-alt="A title block with the heading Route Punctuality Report, the subtitle Q3 2026, two tags reading Transport and Operations, and a one-line description. Below, an Authors column lists Sarah Okonkwo, PhD, with email and ORCID icons, and Tom Reyes. An Affiliations column lists Regional Rail Authority and University of Somewhere, as a link, next to Sarah, and Regional Rail Authority next to Tom. Below are Published and Modified dates, then an Abstract."}
+
+Here's the document header that produced it:
+
+````{.yaml filename="report.qmd"}
+{{< include _examples/html/title-block/_default.yml >}}
+````
+
+Each author is an item in a list, with a `name` and an optional `affiliation`.
+An affiliation can be a name only, or have a `name` and a `url`.
+Because the authors have affiliations, Quarto lists authors and affiliations in two columns.
+
+@tbl-html-title-block-fields lists all the fields that Quarto displays in the title block, with examples.
+
+::: {#tbl-html-title-block-fields}
+
+::: {.list-table header-rows=1 widths='1,2,2' aligns=l,l,l}
+
+* - Option
+  - Description
+  - Example
+
+* - `title`
+  - The main heading
+  - 
+
+    ```yaml
+    title: Route Punctuality Report
+    ```
+
+* - `subtitle`
+  - Larger text under the title
+  - 
+
+    ```yaml
+    subtitle: Q3 2026
+    ```
+
+* - `description`
+  - A short summary under the title
+  - 
+
+    ```yaml
+    description: On-time performance by route.
+    ```
+
+* - `categories`
+  - Tags under the title
+  - 
+
+    ```yaml
+    categories: [transport, operations]
+    ```
+
+* - `author`
+  - A single author or array of authors, with optional links,email and ORCID.
+  - 
+
+    ```yaml
+    author: Sarah Okonkwo
+    ```
+
+    ```yaml
+    author: 
+      - Sarah Okonkwo
+      - Tom Reyes
+    ```
+
+    ```yaml
+    author:
+      name: Sarah Okonkwo
+      affiliation: Regional Rail Authority
+    ```
+
+* - `affiliation`
+  - Affiliations of each author. Set it inside an author, or list them once in a top-level `affiliations` and refer to them by `id`.
+  - 
+
+    ```yaml
+    author:
+      - name: Tom Reyes
+        affiliation: Regional Rail Authority
+    ```
+
+    ```yaml
+    author:
+      - name: Sarah Okonkwo
+        affiliation:
+          - Regional Rail Authority
+          - University of Somewhere
+    ```
+
+    ```yaml
+    author:
+      - name: Sarah Okonkwo
+        affiliation:
+          - ref: rra
+      - name: Tom Reyes
+        affiliation:
+          - ref: rra
+    affiliations:
+      - id: rra
+        name: Regional Rail Authority
+    ```
+
+* - `date`
+  - Published date. A date, or one of `today`, `now`, or `last-modified`. Quarto will format the date based on the document's language.
+  - 
+
+    ```yaml
+    date: 2026-10-01
+    ```
+
+    ```yaml
+    date: today
+    ```
+
+* - `date-modified`
+  - Modified date. Takes the same values as `date`.
+  - 
+
+    ```yaml
+    date-modified: last-modified
+    ```
+
+* - `doi`
+  - DOI, linked to `doi.org`
+  - 
+
+    ```yaml
+    doi: 10.5555/12345678
+    ```
+
+* - `abstract`
+  - Abstract. A block of text below the other fields
+  - 
+
+    ```yaml
+    abstract: |
+      We summarize on-time rates
+      by route.
+    ```
+
+* - `keywords`
+  - Keywords, a comma-separated list
+  - 
+
+    ```yaml
+    keywords: [punctuality, rail]
+    ```
+
 :::
+
+Fields displayed in the HTML title block.
+:::
+
+Other author and affiliation keys, like `corresponding` or `department`, aren't displayed in the HTML title block, but other formats can use them.
+The [Front Matter](https://quarto.org/docs/authoring/front-matter.html) documentation lists all the available keys along with additional examples.
+
+### Banner title block
+
+For a more prominent title block, add the document option `title-block-banner`:
+
+````{.yaml filename="report.qmd"}
+{{< include _examples/html/title-block/_banner.yml >}}
+````
+
+The title, subtitle, description, and categories move into a colored full-width banner based on your theme, and the other fields stay below it (@fig-html-title-block-banner).
+
+![A banner title block](images/html-title-block-banner.png){#fig-html-title-block-banner .border fig-alt="The same title block, but the title, subtitle, description, and tags are in white text on a full-width blue banner. The authors, affiliations, dates, and abstract are below the banner on a white background."}
+
+You can also set a custom color, use an image, or customize the labels used for each field.
+Find the details on [Title Block](https://quarto.org/docs/authoring/title-blocks.html) in the Quarto documentation.
+
+If you want to add fields to the title block, or change its layout, you'll need to provide your own title block partial.
+You'll see an example in @sec-html-advanced-customization.
+
+## Appendix {#sec-html-appendix}
+
+At the end of an HTML document, Quarto collects material that supports the main content into an appendix.
+If you have citations or footnotes, they will go there automatically. 
+
+You can add your own sections to the appendix by adding the `.appendix` class to a heading:
+
+````{.markdown .code-overflow-wrap filename="report.qmd"}
+## Acknowledgments {.appendix}
+
+Thanks to the operations team at the Regional Rail Authority for the timetable data.
+````
+
+Quarto will move the section from its place in the document to the appendix.
+
+Some additional sections can be added via document options. For example, the `license` option (see [Creating Citeable Articles](https://quarto.org/docs/authoring/create-citeable-articles.html)), adds a "Reuse" section, and 
+the `citation` option (see [Front Matter](https://quarto.org/docs/authoring/front-matter.html#license)) adds a "Citation" section:
+
+````{.yaml filename="report.qmd"}
+---
+title: Route Punctuality Report
+author: Sarah Okonkwo
+date: 2026-10-01
+license: CC BY
+citation:
+  url: https://example.com/punctuality.html
+---
+````
+
+@fig-html-appendix-report shows the result of combining a custom section with the `license` and `citation` options.
+
+![An appendix with a custom section, a license, and a citation](images/html-appendix-report.png){#fig-html-appendix-report .border fig-alt="An appendix below a horizontal rule with three sections. Acknowledgments contains one sentence. Reuse contains a link reading CC BY 4.0. Citation contains a BibTeX entry for Okonkwo 2026 in a code block, then the line For attribution, please cite this work as, followed by Okonkwo, Sarah. 2026. Route Punctuality Report. October 1, and the URL."}
+
+
 
 ## Other HTML features {#sec-html-other-features}
 
@@ -765,7 +975,7 @@ Everything in that section also works for a single document except you'll put th
 
 ### Built-in themes {#sec-html-themes}
 
-The easiest way to change the appearance of your document is to use one of Quarto's 25 themes included themes from [Bootswatch](https://bootswatch.com).
+The easiest way to change the appearance of your document is to use one of the 25 [Bootswatch](https://bootswatch.com) themes included with Quarto.
 To use one, set `theme` in the document header:
 
 ```{.yaml filename="report.qmd"}
@@ -778,10 +988,6 @@ The result is shown in @fig-html-themes-flatly.
 
 If you don't set `theme`, you get the theme `default`.
 The available themes are: `default`, `cerulean`, `cosmo`, `cyborg`, `darkly`, `flatly`, `journal`, `litera`, `lumen`, `lux`, `materia`, `minty`, `morph`, `pulse`, `quartz`, `sandstone`, `simplex`, `sketchy`, `slate`, `solar`, `spacelab`, `superhero`, `united`, `vapor`, `yeti`, and `zephyr`.
-
-::: todo
-[CVW] Confirm the theme count and list against the quarto-cli source (`src/resources/formats/html/bootstrap/themes/`).
-:::
 
 ### Colors and fonts with **brand.yml** {#sec-html-brand}
 
@@ -817,11 +1023,11 @@ To use a brand together with a built-in theme, see @sec-brand-theme.
 
 ### Custom CSS {#sec-html-css}
 
-A theme or brand give big appearance changes, but if you need more control over individual elements you can also write your CSS rules.
+A theme or brand give big appearance changes, but if you need more control over individual elements you can also write your own CSS rules.
 CSS (Cascading Style Sheets) is the language that browsers use to style HTML.
 A CSS rule has a selector, which identifies the elements to style, and declarations, which set the style.
 
-For example, Quarto puts a thin line under each level 2 heading.
+For example, by default Quarto puts a thin line under each level 2 heading.
 This rule removes the line:
 
 ```{.css filename="styles.css"}
@@ -870,7 +1076,88 @@ The layout depends on what is next to the body:
 
 * If you set `toc-location: left`, the table of contents goes in a column on the left, and `sidebar-width` sets the width of that column.
   This sidebar column gets preference over the margin column,
-  so it collapses inline last.. 
+  so it collapses inline last..
+
+### Custom title block {#sec-html-partials}
+
+In @sec-html-title-block you saw document options you set than populate the title block that sits at the top of your document.
+If you want to include additional fields in this block, or customize its structure, you'll need to provide your own **template partial**.
+
+A complete discussion of partials and templates is beyond the scope of this book, but we'll work through a small example of adding a "Report Status" item to the title block to give you a feel for the kind of customization available.
+
+First, a little about how your source ends up as an HTML document.
+When you render, Quarto translates your markdown to HTML, but that translated content isn't a complete page on its own.
+Quarto wraps it in boilerplate from a **template**, for HTML this is a file called `template.html`.
+The template is broken into small pieces, the **partials**, that the template includes in order.
+Here is a simplified version of `template.html`, with most of its content replaced by `...`:
+
+```{.html filename="template.html"}
+{{< include _examples/html/partials/_template-simplified.html >}}
+```
+
+The placeholder `$body$`, nested inside the HTML tags `<html>` and `<body>`, is where the content from your `.qmd` goes after its translated.
+The title block comes from the partial `title-block.html`, included in the template with `$title-block.html()$` 
+a few lines before `$body$`.
+
+Quarto lets you replace one partial with your own copy without touching the rest of the template.
+A common workflow is to start from the default template and edit it.
+
+Here is a simplified version of the default `title-block.html`:
+
+```{.html .code-overflow-wrap filename="title-block.html"}
+{{< include _examples/html/partials/_title-block-default.html >}}
+```
+
+The dollar signs (`$`) signal Pandoc's template syntax. 
+In particular, they are used to pull in values from the document metadata, e.g., `$title$` is replaced with the value of `title` from your document header.
+Everything else is HTML that goes into the output as written.
+You can read more about this syntax in the [Pandoc manual](https://pandoc.org/MANUAL.html#template-syntax).
+
+In plain language the part of the partial we've highlighted says:
+
+* If `title` is set, add it inside an H1 heading with the class `title`, then
+* if `subtitle` is set, add it inside a paragraph with the classes `subtitle` and `lead`.
+
+::: callout-note
+
+## Partials and templates change over time
+
+We've documented the template and partials as of the time of writing, but they can change as Quarto evolves.
+To see the template and partials for your version of Quarto, look at their source in the [`quarto-cli` repo](https://github.com/quarto-dev/quarto-cli/) at <https://github.com/quarto-dev/quarto-cli/tree/v1.11.9/src/resources/formats/html/templates>, replacing `v1.11.9` with your version of Quarto.
+
+There is more than one `title-block.html`.
+The default title block comes from `templates/title-block.html`.
+If you set `title-block-banner` or `title-block-style`, Quarto uses a different file, in `templates/banner/`, `templates/manuscript/`, or `pandoc/`.
+Start from the file that matches your options.
+
+:::
+
+To add a field to the title block, start by adding it to the document header.
+This example uses `report-status`, a key that Quarto doesn't use itself:
+
+```{.yaml filename="report.qmd"}
+{{< include _examples/html/partials/_report.yml >}}
+```
+
+The `template-partials` option tells Quarto to use your copy of `title-block.html`, from the same folder as `report.qmd`, in place of the default.
+
+Next, copy the default `title-block.html` into your project.
+After the subtitle, add three lines that follow the same pattern as the subtitle:
+
+```{.html filename="title-block.html"}
+{{< include _examples/html/partials/_title-block-status.html >}}
+```
+
+When rendered, the status shows under the title (@fig-html-partials-report).
+
+![The title block with a custom `report-status` field](images/html-partials-report.png){#fig-html-partials-report .border fig-alt="A title block with the heading Route Punctuality Report, the line Status: Provisional below it in plain text, and then a small grey label reading Author above the name Sarah Okonkwo."}
+
+Notice we set a class on the new paragraph but otherwise did no styling: there are no colors, sizes, or positions.
+It's good practice to keep content and style separate: the partial controls *what* is in the title block, and a stylesheet controls how it looks.
+To style the status, you would add a rule for `.report-status` to a CSS file (@sec-html-css), or an SCSS file (@sec-websites-theme).
+
+If you use the same partial in many projects, or want to share it, you can bundle it into a format extension.
+Read more in the Quarto documentation on [Custom Formats](https://quarto.org/docs/extensions/formats.html).
 
 ## Sharing HTML
 

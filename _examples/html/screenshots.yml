@@ -1,3 +1,9 @@
+- image: html-appendix-report.png
+  source: _examples/html/appendix/report.qmd
+  selector: '#quarto-appendix'
+  expand: 16
+  width: 800
+  generated: '2026-11-12T16:58:46Z'
 - image: html-brand-colors.png
   source: _examples/html/brand/colors.qmd
   selector: main
@@ -67,6 +73,12 @@
   expand: 16
   width: 800
   generated: '2026-11-09T21:29:54Z'
+- image: html-first-document-train-punctuality-title-block.png
+  source: _examples/html/first-document/train-punctuality.qmd
+  selector: '#title-block-header'
+  expand: 16
+  width: 800
+  generated: '2026-11-12T19:03:00Z'
 - image: html-first-document-train-punctuality-xref-hover.png
   source: _examples/html/first-document/train-punctuality.qmd
   selector: '#recommendations, .tippy-box'
@@ -141,6 +153,11 @@
   selector: '#title-block-header, #summary, #quarto-toc-toggle'
   expand: 16
   generated: '2026-11-09T21:30:17Z'
+- image: html-partials-report.png
+  source: _examples/html/partials/report.qmd
+  selector: '#title-block-header'
+  expand: 16
+  generated: '2026-11-12T19:13:57Z'
 - image: html-raw-html-license.png
   source: _examples/html/raw-html/license.qmd
   selector: main
@@ -165,3 +182,14 @@
   expand: 16
   width: 800
   generated: '2026-11-10T21:26:23Z'
+- image: html-title-block-banner.png
+  source: _examples/html/title-block/banner.qmd
+  selector: '#title-block-header, main'
+  width: 800
+  generated: '2026-11-12T17:07:07Z'
+- image: html-title-block-default.png
+  source: _examples/html/title-block/default.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-12T17:07:06Z'
