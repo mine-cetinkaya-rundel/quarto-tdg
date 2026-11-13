@@ -375,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#website-metadata" id="toc-website-metadata" class="nav-link" data-scroll-target="#website-metadata"><span class="header-section-number">14.9.1</span> Website metadata</a></li>
   <li><a href="#quarto-publish" id="toc-quarto-publish" class="nav-link" data-scroll-target="#quarto-publish"><span class="header-section-number">14.9.2</span> <code>quarto publish</code></a></li>
-  <li><a href="#publish-_site" id="toc-publish-_site" class="nav-link" data-scroll-target="#publish-_site"><span class="header-section-number">14.9.3</span> Publish <code>_site/</code></a></li>
+  <li><a href="#sec-website-publish-site" id="toc-sec-website-publish-site" class="nav-link" data-scroll-target="#sec-website-publish-site"><span class="header-section-number">14.9.3</span> Publish <code>_site/</code></a></li>
   <li><a href="#providers" id="toc-providers" class="nav-link" data-scroll-target="#providers"><span class="header-section-number">14.9.4</span> Providers</a></li>
   </ul></li>
   <li><a href="#sec-ci" id="toc-sec-ci" class="nav-link" data-scroll-target="#sec-ci"><span class="header-section-number">14.10</span> Continuous integration</a>
@@ -2531,8 +2531,8 @@ Figure&nbsp;14.26: The <code>quarto publish</code> process for a website. The we
 </figure>
 </div>
 </section>
-<section id="publish-_site" class="level3" data-number="14.9.3">
-<h3 data-number="14.9.3" class="anchored" data-anchor-id="publish-_site"><span class="header-section-number">14.9.3</span> Publish <code>_site/</code></h3>
+<section id="sec-website-publish-site" class="level3" data-number="14.9.3">
+<h3 data-number="14.9.3" class="anchored" data-anchor-id="sec-website-publish-site"><span class="header-section-number">14.9.3</span> Publish <code>_site/</code></h3>
 <p>Once you’ve rendered your website, the <code>_site/</code> folder contains everything needed for your website. So, if your website host isn’t supported by <code>quarto publish</code>, you simply need to get the contents of <code>_site/</code> to your provider. It you go this route, you’ll always need to manually run a full render before transferring <code>_site/</code>. From the root of your website project run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>As a concrete example, Netlify (although also supported by <code>quarto publish</code>) has a drag and drop UI for deploying a website called <a href="https://app.netlify.com/drop">Netlify Drop</a>. Drop in <code>_site/</code>, and Netlify will give you a URL at which your site is available.</p>
