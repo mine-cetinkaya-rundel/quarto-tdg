@@ -44,10 +44,10 @@ When rendered the result is `train-punctuality.html`, shown in @fig-html-first-d
 ![The rendered output of `train-punctuality.qmd`](images/html-first-document-train-punctuality.png){#fig-html-first-document-train-punctuality .border fig-alt="A rendered HTML page showing a Route Punctuality Report with a table of on-time rates by route and a recommendations section."}
 
 
-## Preview vs. render {#sec-html-preview}
+## Preview, don't open {#sec-html-preview}
 
 When you call `quarto preview` on an document targeting `format: html`, there are two steps Quarto takes. 
-First, it renders the document, then it serves it with a local webserver. The preview you see comes from pointing your browser at this webserver: you'll see the URL starting with something like `http://localhost`.
+First, it renders the document, then it serves it with a local webserver. The preview you see comes from pointing your browser at this webserver: you'll see the URL starting with something like `http://localhost`, or `http://127.0.0.1`
 
 This is subtly different from rendering your document and opening the resulting `.html` file in your browser.
 If you do that, you'll see the URL starts with `file://`.
@@ -63,19 +63,18 @@ Some features you might lose include:
 * tabsets in the same `group` switching together.
 
 In general, you'll always want to examine your rendered document from the preview, not open the resulting `.html`.
-This also matters when you share your rendered `.html` file, since your readers will likely open it from a `file://` address.
-If you want to share a single file, you can embed the JavaScript directly in the document (@sec-sharing-other-ways), so these features work even when the file is opened directly.
+
+When you share your document, publishing it and sharing the URL is the preferred method. 
+However, if you want to send someone the rendered `.html`, and have them open it directly, you can avoid losing the above features by embedding the JavaScript directly in the document as described in  @sec-sharing-other-ways.
 
 ## HTML is responsive and interactive {#sec-html-responsive}
 
-It's worth pausing to highlight some of the properties unique to HTML output.
-(These also apply to other formats that produce `.html` like RevealJS).
-
+It's worth pausing to highlight some of the properties unique to HTML^[We are talking about `format: html` in this chapter, but these HTML properties apply to other formats that produce `.html` files like `format: revealjs` and `format: dashboard`] output.
 We call HTML output **responsive** because it responds to the properties of the browser window in which it is viewed:
 
-* Your main body content resizes. On small screens, the full width of the screen is used for your content. On a larger screen, your content only takes up the middle column, and other things, like a table of contents, lie in the margin.
+* On small screens, the full width of the screen is used for your content. On larger screens, your content only takes up the middle column, and other things, like a table of contents, lie in the margin.
 
-* Images, by default, resize to fit the width of the content.
+* Images, by default, resize to fit the width of the main content.
 
 * Panel layouts (@sec-layout-panel) that lay out components out in a row, collapse into columns on small screens.
 
@@ -90,7 +89,7 @@ On a wide screen the table of contents sits in the right margin, but on a narrow
 The Route Punctuality Report from @sec-html-first-document viewed at two screen widths
 :::
 
-We call HTML **interactive** because readers actions can change the visible content:
+We call HTML **interactive** because readers' actions can change the visible content:
 
 * Readers can hover over cross-references, footnotes and citations to see the linked content (@fig-html-crossrefs-hover).
 
@@ -104,9 +103,8 @@ These HTML features do benefit many readers but you should keep in mind their li
 
 * Responsive and interactive features may pose accessibility challenges.
 
-::: todo
-Come back and finish with what we choose to include/omit in this chapter: e.g. "we choose to omit interactive features that won't serve you in other formats". Or, "we'll point you to the docs for many interactive features"
-:::
+Throughout this chapter, we'll point out features that respond to screen size or to reader actions.
+For most of them, we describe what the feature does and when it helps your readers, then point you to the Quarto documentation for the full set of options.
 
 ## Title block {#sec-html-title-block}
 
@@ -342,8 +340,7 @@ For example, the first figure in the first section becomes Figure 1.1.
 Additional document options control the maximum heading level included (`toc-depth`), the level of headings to show initially (`toc-expand`), and where the table of contents is displayed (`toc-location`).
 
 By default, when a reader clicks an entry in the table of contents, or any other link to a place in the page, the browser jumps straight there.
-Set `smooth-scroll: true` to make the browser scroll to the new place instead.
-Scrolling helps readers keep track of where they are in the document.
+Set `smooth-scroll: true` to make the browser scroll to the new spot instead.
 Read more in the [Smooth Scrolling](https://quarto.org/docs/output-formats/html-basics.html#smooth-scrolling) section of the Quarto documentation.
 
 ### Links {#sec-html-links}
@@ -360,13 +357,6 @@ To link to sections in your document use the identifier for the section.
 Quarto adds identifiers to all sections automatically by kebab-casing, and deduplicating, the section headings.
 For instance a section defined by `## Data methods`, can be linked to using `#data-methods` for the target.
 
-By default, each heading in your document gets an anchor link: a []{.bi .bi-link-45deg role="img" aria-label="link"} icon after the heading text that is visible when a reader hovers over the heading.
-Anchor links give readers a quick way to share a direct link to a section.
-A reader clicks the icon, then copies the URL from their browser's address bar.
-Figures and tables with a cross-reference identifier also get an anchor link.
-To turn off anchor links, set `anchor-sections: false` (see [Anchor Sections](https://quarto.org/docs/output-formats/html-basics.html#anchor-sections) in the Quarto documentation).
-
-You can find the identifier for a section by clicking its anchor link in the preview and examining the URL.
 Alternatively, set your own identifier on a section inside curly braces:
 
 ```{.markdown filename="report.qmd"}
@@ -375,9 +365,13 @@ Alternatively, set your own identifier on a section inside curly braces:
 
 Start the identifier with `sec-` if you also want to cross-reference the section.
 
+By default, each heading also gets an anchor link: a []{.bi .bi-link-45deg role="img" aria-label="link"} icon after the heading text that is visible when a reader hovers over the heading.
+Anchor links give readers a quick way to share a direct link to a section.
+A reader clicks the icon, then copies the URL from their browser's address bar.
+To turn off anchor links, set `anchor-sections: false` (see [Anchor Sections](https://quarto.org/docs/output-formats/html-basics.html#anchor-sections) in the Quarto documentation).
+
 By default, links to other sites look the same as links within your document, and they open in the same browser tab.
-To mark external links with a []{.bi .bi-box-arrow-up-right role="img" aria-label="box with an arrow pointing out"} icon, set `link-external-icon: true`.
-Read more in the [External Links](https://quarto.org/docs/output-formats/html-basics.html#external-links) section of the Quarto documentation.
+To mark external links with a []{.bi .bi-box-arrow-up-right role="img" aria-label="box with an arrow pointing out"} icon, set `link-external-icon: true` (see [External Links](https://quarto.org/docs/output-formats/html-basics.html#external-links) in the Quarto documentation).
 
 ### Cross references
 
@@ -404,9 +398,9 @@ There are a few other elements you can add via document options for navigation.
 These are shown below the table of contents, usually in the right margin but configurable with `toc-location`.
 These are shown under the following headings:
 
-* Other links: add with `other-links`
-* Code links: add with `code-links` 
-* Other formats: added automatically when more than one `format` is specified, or with `other-formats`.
+* **Other formats***: added automatically when more than one `format` is specified, or with `other-formats`
+* **Other links**: add with `other-links`
+* **Code links**: add with `code-links` 
 
 @fig-html-navigation-other-links shows a document with all three.
 
@@ -510,17 +504,17 @@ It's useful to know these exist but we point you to the documentation for the de
 
 * **Copy button**: Every code block gets a button to copy its contents to the clipboard.
   The button appears when a reader hovers over the block (@fig-html-code-features-copy-button).
-  You don't need to do anything to get it, but you can turn it off or keep it always visible with `code-copy`.
+  You don't need to do anything to get it, but you can turn it off or keep it always visible with the `code-copy` document option.
   Read more in the [Copy Button](https://quarto.org/docs/output-formats/html-code.html#copy-button) section of the Quarto documentation.
 
   ![The copy button in the top right corner of a code block](images/html-code-features-copy-button.png){#fig-html-code-features-copy-button .border fig-alt="A code block of R code with a clipboard icon in its top right corner."}
 
-* **Code folding**: Set `code-fold: true` to hide the code of executable cells behind a "Code" toggle, so readers see the output first and expand the code only if they want it (@fig-html-code-features-code-fold).
+* **Code folding**: Set the document option `code-fold: true` to hide the code of executable cells behind a "Code" toggle, so readers see the output first and expand the code only if they want it (@fig-html-code-features-code-fold).
   Read more in the [Folding Code](https://quarto.org/docs/output-formats/html-code.html#folding-code) section of the Quarto documentation.
 
   ![A folded code cell, with its output still visible](images/html-code-features-code-fold.png){#fig-html-code-features-code-fold .border fig-alt="A collapsed toggle labelled Code above a printed data frame of three routes and their peak and off-peak on-time rates."}
 
-* **Code tools**: Set `code-tools: true` to add a "Code" menu next to the document title.
+* **Code tools**: Set document option `code-tools: true` to add a "Code" menu next to the document title.
   The menu lets readers show or hide all the code at once, and view the source of the whole document (@fig-html-code-features-code-tools).
   Read more in the [Code Tools](https://quarto.org/docs/output-formats/html-code.html#code-tools) section of the Quarto documentation.
 
@@ -619,7 +613,7 @@ To cite an item in the bibliography, specify the bibliography file in `bibliogra
 {{< include _examples/html/citations/train-punctuality.qmd >}}
 ````
 
-The citation renders in the text, and Quarto adds a References section at the end of the document, as shown in @fig-html-citations.
+The citation renders in the text, and Quarto adds a References section in the Appendix at the end of the document, as shown in @fig-html-citations.
 
 ![Default citation style](images/html-citations-train-punctuality.png){#fig-html-citations .border fig-alt="A sentence ending in the author-date citation (Office of Rail and Road 2023), followed by a References section with the full entry."}
 
@@ -710,13 +704,13 @@ You'll learn how to change the size of figures, along with other figure options,
 Any code that produces a markdown or HTML table will result in a table in your HTML document.
 
 Markdown tables are a good choice for simple tables. 
-Markdown tables from code behave just like raw markdown tables you might write by hand with one exception: Quarto adds extra classes to the resulting `<table>` element. 
-This means markdown tables produced computationally look visually different from those produced by markdown directly.
+Markdown tables from code behave just like raw markdown tables you might write by hand with one exception: Quarto styles them a little differently.
+Tables from code get shaded alternate rows and more compact spacing, so they can look different from a table you wrote by hand in the same document.
 
 HTML tables are a better fit when you need more complicated table structure, like merged cells, hierarchical headers, or styling that depends on cell contents. 
 HTML is also a common output for dedicated table packages.
 Quarto keeps the structure of an HTML table: its rows, cells, merged cells, and any classes or inline styles on individual cells.
-However, Quarto may change the `<table>` element itself, adding its own classes and removing any inline styles.
+However, Quarto may change the `<table>` element itself, adding the same row shading and spacing as markdown tables, and removing any inline styles.
 If your rendered table looks drastically different from the one you expected, Quarto's table processing is often the culprit.
 
 Some Quarto-aware table packages will provide an option to turn this processing off. 
@@ -739,33 +733,53 @@ These are often called **widgets**.
 
 In HTML output, widgets usually just work: put the code that creates the widget in a code cell, and the rendered document includes the widget along with the JavaScript it needs.
 
-For example, here's a map made with the leaflet package in R and the ipyleaflet package in Python:
+For example, @fig-html-widgets-leaflet-code makes a map with the leaflet package in R and the ipyleaflet package in Python, and @fig-html-widgets-leaflet shows the result.
 
-::: {.panel-tabset group="language"}
+::: {#fig-html-widgets-leaflet-code}
+:::: {.panel-tabset group="language"}
 
 ## R
 
 ````{.markdown filename="report.qmd"}
+{{< include _examples/html/widgets/_leaflet-intro.md >}}
+
 ```{{r}}
-library(leaflet)
-leaflet() |>
-  addTiles() |>
-  setView(lng = 174.768, lat = -36.852, zoom = 12)
+{{< include _examples/html/widgets/leaflet-cell.R >}}
 ```
 ````
 
 ## Python
 
 ````{.markdown filename="report.qmd"}
+{{< include _examples/html/widgets/_leaflet-intro.md >}}
+
 ```{{python}}
-from ipyleaflet import Map
-Map(center=(-36.852, 174.768), zoom=12)
+{{< include _examples/html/widgets/leaflet-cell.py >}}
 ```
 ````
 
+::::
+
+A code cell that makes an interactive map.
 :::
 
-![An interactive leaflet map in an HTML document](){#fig-html-widgets-leaflet .border fig-alt=""}
+::: {.content-visible when-format="html"}
+:::: {#fig-html-widgets-leaflet .border}
+{{< include _examples/html/widgets/_leaflet-intro.md >}}
+
+```{r}
+#| echo: false
+#| fig-height: 3
+{{< include _examples/html/widgets/leaflet-cell.R >}}
+```
+
+An interactive leaflet map in an HTML document.
+::::
+:::
+
+::: {.content-visible unless-format="html"}
+![An interactive leaflet map in an HTML document.](images/html-widgets-leaflet.png){#fig-html-widgets-leaflet .border fig-alt="The sentence Drag to pan, and use the buttons or scroll to zoom, above a street map of central Auckland and its harbour. Zoom in and zoom out buttons are in the top left corner of the map, and a Leaflet and OpenStreetMap credit is in the bottom right corner."}
+:::
 
 You don't need to find widget packages with special Quarto support.
 Quarto relies on the same mechanisms that display widgets in other places:
@@ -780,14 +794,9 @@ There are some limitations to keep in mind:
   Your code runs only when you render.
   In the rendered document, the widget's interactions happen in the browser, so anything that needs to run R or Python again won't work.
 
-* **Readers may need an internet connection.**
-  Many widgets get content from the web when they display.
-  If your readers might be offline, test your document without a connection.
-
-* **Widgets need their supporting files.**
-  For R widgets, Quarto puts the JavaScript and CSS in the `_files` folder next to your `.html` file.
-  If you share only the `.html` file, the widgets don't display.
-  Use `embed-resources: true` (@sec-sharing-other-ways) or share the whole folder.
+* **`embed-resources` might not be enough for offline readers.**
+  Some widgets get their JavaScript libraries, or content like map tiles, from the web when they display, and Quarto can't embed these.
+  If you share a self-contained file (@sec-sharing-other-ways) with readers who might be offline, open it without a connection to check your widgets.
 
 * **Widgets are HTML only.**
   When you render to a static format like PDF you get a static version of the widget or nothing.
@@ -800,7 +809,7 @@ There are some limitations to keep in mind:
   Not all widgets work with a keyboard or a screen reader, so give important results in the text too (see @sec-html-accessibility-interactive).
 
 ::: todo
-[CVW] Screenshot for @fig-html-widgets-leaflet. Verify `embed-resources: true` captures everything for Jupyter widgets (the widget manager loads modules from a CDN at runtime). Consider moving to a "Computational outputs" chapter in the reorg.
+[CVW] Consider moving to a "Computational outputs" chapter in the reorg.
 :::
 
 ## Full width and margin content {#sec-html-page-layout}
@@ -828,6 +837,10 @@ The full set of columns classes documented in [Article layout](https://quarto.or
 There are code cell and document options to place figures and tables in certain columns.
 See @sec-page-columns for more details.
 
+[Lightbox Figures](https://quarto.org/docs/output-formats/html-lightbox-figures.html) are another option for detailed figures, like maps or plots with many small labels, that are hard to read at body width.
+Set `lightbox: true` to let readers click an image to see a larger view of it.
+The larger view fills the browser window and includes the figure caption.
+
 ### Columns and responsive layout
 
 You saw in @sec-html-responsive that HTML output is responsive to the size of a readers screen.
@@ -848,15 +861,6 @@ If you are using column classes, it's a good idea to check your layout at a narr
 
 You can also put footnotes, citations, and figure captions in the margin (@sec-column-classes).
 To change the width of the body and margin columns, use the `grid` option (@sec-html-grid).
-
-### Lightbox figures
-
-Set `lightbox: true` to let readers click an image to see a larger view of it.
-The larger view fills the browser window and includes the figure caption.
-
-A lightbox is most useful for detailed figures, like maps or plots with many small labels, that are hard to read at body width.
-You can also turn on the lightbox for individual images, and group images into a gallery.
-Read more on the [Lightbox Figures](https://quarto.org/docs/output-formats/html-lightbox-figures.html) page of the Quarto documentation.
 
 ## Raw HTML {#sec-html-raw-html}
 
@@ -1123,8 +1127,6 @@ We delay more in-depth coverage of theming to @sec-websites-theme on Websites.
 There you'll learn about dark mode, how to combine **brand.yml** with a built-in theme, how to write SCSS, and the role of Bootstrap.
 Everything in that section also works for a single document except you'll put the options in your document header, not in `_quarto.yml`.
 
-Whichever level you use, check that your colors still have enough contrast (@sec-html-accessibility-color).
-
 ### Built-in themes {#sec-html-themes}
 
 The easiest way to change the appearance of your document is to use one of the 25 [Bootswatch](https://bootswatch.com) themes included with Quarto.
@@ -1158,7 +1160,7 @@ The result is shown in @fig-html-brand-colors.
 ![The Route Punctuality Report with brand colors](images/html-brand-colors.png){#fig-html-brand-colors .border fig-alt="The Route Punctuality Report on a warm off-white background: a title and On-time performance heading in dark slate text, a sentence with a dark green underlined link, and a table of three routes with peak and off-peak on-time rates, separated by thin grey lines."}
 
 You can set fonts under the `typography` key. 
-One available source is[Google Fonts](https://fonts.google.com)
+One available source is [Google Fonts](https://fonts.google.com)
 List the font in `fonts`, then use `base` to set the font for the document:
 
 ```{.yaml filename="report.qmd"}
@@ -1270,7 +1272,8 @@ A complete discussion of partials and templates is beyond the scope of this book
 
 First, a little about how your source ends up as an HTML document.
 When you render, Quarto translates your markdown to HTML, but that translated content isn't a complete page on its own.
-Quarto wraps it in boilerplate from a **template**, for HTML this is a file called `template.html`.
+Quarto wraps it in boilerplate from a **template**.
+For HTML this template is a file called `template.html`.
 The template is broken into small pieces, the **partials**, that the template includes in order.
 Here is a simplified version of `template.html`, with most of its content replaced by `...`:
 

@@ -77,7 +77,7 @@
   selector: main
   expand: 16
   width: 800
-  generated: '2026-11-09T21:29:54Z'
+  generated: '2026-11-13T20:05:47Z'
 - image: html-first-document-train-punctuality-title-block.png
   source: _examples/html/first-document/train-punctuality.qmd
   selector: '#title-block-header'
@@ -198,3 +198,9 @@
   expand: 16
   width: 800
   generated: '2026-11-12T17:07:06Z'
+- image: html-widgets-leaflet.png
+  source: _examples/html/widgets/leaflet.qmd
+  selector: main
+  expand: 16
+  width: 800
+  generated: '2026-11-13T20:26:35Z'
