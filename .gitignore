@@ -6,7 +6,7 @@ _book/
 **/*.quarto_ipynb
 /.venv/
 
-**/*.quarto_ipynb
+**/*.quarto_ipynb*
 
 /.luarc.json
 
