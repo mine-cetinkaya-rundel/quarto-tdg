@@ -74,3 +74,4 @@ crossref:
 
 filters: 
   - list-table
+  - _filters/quarto-docs-links.lua

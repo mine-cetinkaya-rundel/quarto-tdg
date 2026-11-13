@@ -1,0 +1,4 @@
+```r
+punctuality <- read.csv("punctuality.csv")
+punctuality$gap <- punctuality$off_peak - punctuality$peak
+```

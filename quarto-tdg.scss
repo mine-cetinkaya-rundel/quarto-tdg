@@ -3,6 +3,16 @@
 $primary: #39729E !default;
 $font-size-root: 18px !default;
 
+// Secondary text (figure/table captions, margin content, asides).
+// Quarto's default (theme-dim($body-color, 25%) = #6d7a86) fails
+// WCAG AA contrast on white (4.39:1); this gives 4.97:1.
+$body-secondary: #66717d !default;
+
+// Quarto's default (translucent $progress-bg = #eceef1 over white) drops
+// the a11y highlight-style token colors just below WCAG AA (4.35-4.44:1);
+// this lighter background keeps them all at >= 4.8:1.
+$code-block-bg: #f8f9fa !default;
+
 /*-- scss:rules --*/
 .dir-str {
   @extend .p-2;
@@ -82,6 +92,13 @@ span.todo {
 
 /* Headings ------------------------------------------------------ */
 
+// Quarto sets opacity: 0.9 on h3-h6, which washes out anything inside a
+// heading below WCAG AA: section numbers ($body-secondary -> 4.07:1) and
+// badges (white on $primary -> 4.22:1).
+h3, h4, h5, h6 {
+  opacity: 1;
+}
+
 #title-block-header.quarto-title-block.default .quarto-title h1.title {
   margin-bottom: 0.5rem;
 }
@@ -110,4 +127,36 @@ code a:any-link {
 
 pre.sourceCode.error {
   border: #c41919 solid 2px;
+}
+
+/* Links to the Quarto docs (issue #34) ------------------------ */
+
+// a.quarto-docs and .docs-lead are added by _filters/quarto-docs-links.lua.
+
+// Quarto mark from Iconify (vscode-icons:file-type-quarto). Used as a mask
+// so the icon takes the link color: the brand blue (#74aadb) is only
+// ~2.5:1 on white, $primary is ~5.2:1. content: "" keeps it out of the
+// accessibility tree.
+$quarto-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill-rule='evenodd' d='M15 15.24V2C7.96 2.5 2.38 8.2 2 15.24Zm1.76 0H30A14.05 14.05 0 0 0 16.76 2zM15 17H2.02a14 14 0 0 0 12.96 12.95V17zm1.76 0v13a14 14 0 0 0 13.22-12.98H16.76z'/%3E%3C/svg%3E");
+
+@mixin quarto-mark {
+  content: "";
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  vertical-align: -0.1em;
+  background-color: currentColor;
+  -webkit-mask: $quarto-icon no-repeat center / contain;
+  mask: $quarto-icon no-repeat center / contain;
+}
+
+// .docs-lead wraps the first word, so the icon never wraps onto a line
+// by itself.
+a.quarto-docs .docs-lead {
+  white-space: nowrap;
+
+  &::before {
+    @include quarto-mark;
+    margin-right: 0.2em;
+  }
 }

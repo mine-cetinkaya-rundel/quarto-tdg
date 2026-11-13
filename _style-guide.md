@@ -119,9 +119,12 @@ In this chapter, you'll dive into the three big components of a website:
 - **Backward references**: Remind readers of previously covered material
 - **Use descriptive link text**: Make clear what the link points to
 - **Consistent reference style**: Use `@sec-`, `@fig-`, `@tbl-` prefixes consistently
+- **Links to the Quarto documentation**: Make the link text the exact title of the page or section you link to, as it appears on quarto.org. Say that it is the Quarto documentation in the surrounding sentence, not in the link text. The book adds a Quarto icon to these links automatically, but screen readers do not announce the icon, so the sentence must make the destination clear.
 
 **Examples:**
-- "You'll learn more about [external links in the Quarto documentation](https://quarto.org/docs/...)"
+- "Read more in the [Copy Button](https://quarto.org/docs/output-formats/html-code.html#copy-button) section of the Quarto documentation."
+- "You can read more about these in the Quarto documentation for [Code links and other links](https://quarto.org/docs/...) and [Including Other Formats](https://quarto.org/docs/...)."
+- Avoid: "Read more about [code tools in the Quarto documentation](https://quarto.org/docs/...)."
 - "Later in @sec-websites-navigation you'll learn about adding site navigation..."
 - "Recall from @sec-authoring that..."
 

@@ -532,6 +532,33 @@ To number and cross-reference a display equation, add an identifier starting wit
 Math syntax examples and their rendered output
 :::
 
+### Defining your own commands {#sec-equations-macros}
+
+If you write the same notation often, you can define your own TeX commands, or macros, with `\newcommand`.
+Put each definition on its own line in the body of your document, outside any `$` or `$$`.
+@fig-math-macros shows an example rendered to `format: html`.
+
+::: {#fig-math-macros}
+::: {.markdown filename="document.qmd"}
+````markdown
+{{< include _examples/authoring/math/macros.md >}}
+````
+:::
+
+::: {}
+![](images/authoring-math-macros.png){.border fig-alt="Rendered output shows the text 'For any bold x in the real numbers to the power n,' followed by the centered display equation 'Var of bold x is greater than or equal to 0.'"}
+:::
+
+Macro definitions in markdown and the rendered output
+:::
+
+Quarto replaces each use of a command with its definition before it writes the output, so the same definitions work for `html`, `revealjs`, and `typst`.
+
+To share definitions between the documents in a project, put them in a file, for example `_macros.qmd`, and include it at the top of each document (@sec-includes):
+
+```{.markdown filename="document.qmd"}
+{{{< include _macros.qmd >}}}
+```
 
 ### Theorems and proofs {#sec-theorems-proofs}
 
@@ -1012,7 +1039,7 @@ There are two common ways to control layout:
 
 * **Column classes** arrange content across different widths of the page, useful when you need to give content more horizontal space, or put elements in the margin.
 
-### Panel layouts
+### Panel layouts {#sec-layout-panel}
 
 Use a fenced div with the `layout-ncol` key-value attribute to arrange content in multiple columns.
 It's best to be explicit about what each item is by nesting them each in their own fenced div. 
@@ -1055,7 +1082,7 @@ In HTML formats, the layout is responsive so that on smaller screens the items w
 Use the `layout-nrow` attribute if you'd prefer to specify the grid by the number of rows, or for more complicated layouts use the `layout` attribute. 
 You can see more examples using figures and tables as content in @sec-figtab-layout.
 
-### Column classes
+### Column classes {#sec-column-classes}
 
 For `format: html` and `format: pdf`, the page is divided into a body content area and a right margin.
 By default, your content will be placed in the body area.
@@ -1096,7 +1123,24 @@ Column page right syntax and rendered output
 Additional classes are available to provide more horizontal whitespace, and for `format: html` columns that expand to the left, and to the full screen width.
 See the [Quarto documentation](https://quarto.org/docs/authoring/article-layout.html#available-columns) for the full list of classes.
 
-You can also see more examples with figures and tables, including computational outputs in @sec-figtab-layout.
+For figures and tables, including computational outputs and document-wide defaults, see @sec-page-columns.
+
+Some document options also put content in the margin:
+
+* `reference-location: margin` puts footnotes in the margin, next to where they are referenced, as sidenotes.
+* `citation-location: margin` puts the full citation in the margin, next to where you cite it.
+* `cap-location: margin` puts figure and table captions in the margin.
+
+For example:
+
+```{.yaml filename="report.qmd"}
+---
+reference-location: margin
+citation-location: margin
+---
+```
+
+These options work for both `format: html` and `format: typst`.
 
 ## Raw blocks {#sec-raw-blocks}
 

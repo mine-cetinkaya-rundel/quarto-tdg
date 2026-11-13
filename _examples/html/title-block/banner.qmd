@@ -1,0 +1,7 @@
+{{< include _default.yml >}}
+
+{{< include _banner.yml >}}
+
+## On-time performance
+
+Only two of the six routes met the on-time threshold in Q3.

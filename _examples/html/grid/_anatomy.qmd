@@ -1,0 +1,29 @@
+---
+# Probe page for images/html-grid-anatomy.svg (built by build-anatomy.R).
+# Default grid options. The margin block makes Quarto use the default grid,
+# the same grid as a document with a table of contents on the right.
+format:
+  html:
+    include-in-header:
+      text: |
+        <style>
+        .blk { border-radius: 2px; margin-bottom: 1rem; }
+        .blk-body { background: #d6d6d6; height: 110px; }
+        .blk-margin { background: #efc7d3; height: 80px; }
+        .blk-page { background: #b9cfe2; height: 50px; }
+        </style>
+---
+
+::: column-margin
+::: {.blk .blk-margin}
+:::
+:::
+
+::: {.column-body .blk .blk-body}
+:::
+
+::: {.column-page .blk .blk-page}
+:::
+
+::: {.column-body .blk .blk-body .blk-body-2}
+:::

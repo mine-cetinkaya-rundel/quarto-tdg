@@ -1,0 +1,23 @@
+---
+title: "Route Punctuality Report"
+author: "Dr. Sarah Okonkwo"
+format:
+  html: default
+  typst: default
+toc: true
+other-links:
+  - text: Network timetable
+    href: https://example.com/timetable
+code-links:
+  - text: Analysis code
+    icon: github
+    href: https://github.com/example/punctuality
+---
+
+## On-time performance
+
+Off-peak services consistently outperform peak services across all routes.
+
+## Recommendations
+
+Use the University Line and West Loop as benchmarks for network-wide improvement.

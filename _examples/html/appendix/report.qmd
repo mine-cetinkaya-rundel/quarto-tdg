@@ -1,0 +1,16 @@
+---
+title: Route Punctuality Report
+author: Sarah Okonkwo
+date: 2026-10-01
+license: CC BY
+citation:
+  url: https://example.com/punctuality.html
+---
+
+## On-time performance
+
+Only two of the six routes met the on-time threshold in Q3.
+
+## Acknowledgments {.appendix}
+
+Thanks to the operations team at the Regional Rail Authority for the timetable data.

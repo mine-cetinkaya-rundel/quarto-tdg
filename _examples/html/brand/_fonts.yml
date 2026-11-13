@@ -1,0 +1,13 @@
+---
+title: "Route Punctuality Report"
+brand:
+  color:
+    foreground: "#1F2A2E"
+    background: "#FAF7F0"
+    primary: "#0B6E4F"
+  typography:
+    fonts:
+      - family: Lora
+        source: google
+    base: Lora
+---

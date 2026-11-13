@@ -1,0 +1,11 @@
+{{< include _flatly.yml >}}
+
+## On-time performance
+
+The [network timetable](https://example.com) lists every route.
+
+| Route           | Peak (%) | Off-peak (%) |
+|:----------------|:--------:|:------------:|
+| Harbour–Airport | 71       | 85           |
+| West Loop       | 88       | 94           |
+| University Line | 90       | 96           |

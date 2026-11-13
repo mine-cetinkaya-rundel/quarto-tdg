@@ -901,6 +901,12 @@ You can specify the properties `light` and `dark` to `theme` to add a light/dark
 The property you list first (`light` or `dark`) will be the default for the page. 
 Viewers can then switch themes via a toggle in the navigation bar.
 
+Text and backgrounds switch with the theme, but images don't.
+
+::: todo
+[CVW] Link to light and dark versions of figures (`@sec-figtab-light-dark`) once it lands in the Figures and tables chapter. See #36.
+:::
+
 ::: {.callout-tip}
 
 ## Choose `light` and `dark` themes that are similar except for color
@@ -995,6 +1001,12 @@ and `_brand-light.yml`  defines a light mode with a mint background with charcoa
 ```{.yaml filename="_brand-light.yml"}
 {{< include _examples/websites/brand-dark/_brand-light.yml >}}
 ```
+
+As with light and dark themes, images don't switch with the brand.
+
+::: todo
+[CVW] Link to light and dark versions of figures (`@sec-figtab-light-dark`) once it lands in the Figures and tables chapter. See #36.
+:::
 
 ### Combine **brand.yml** with a built-in theme {#sec-brand-theme}
 
@@ -1486,7 +1498,7 @@ The `publish` command is primary just moving `_site/` to the right place on your
 
 ![The `quarto publish` process for a website. The website project is rendered locally, then the rendered site, `site/` (or `docs/`), is uploaded to the website host.](images/website-publish.jpg){#fig-website-publish fig-alt="A diagram of the publishing process. An arrow labeled 'render' points from a folder called `website/` that contains two files (`index.qmd` and `_quarto.yml`) to a folder called `_site/` containing the file `index.html` and folder `site-libs`. Both folders are inside a box labelled 'Your computer'. An arrow labelled 'publish' points from the `_site` folder to the same folder in a box labelled 'Website host'"}
 
-### Publish `_site/`
+### Publish `_site/` {#sec-website-publish-site}
 
 Once you've rendered your website, the `_site/` folder contains everything needed for your website.
 So, if your website host isn't supported by `quarto publish`, you simply need to get the contents of `_site/` to your provider.

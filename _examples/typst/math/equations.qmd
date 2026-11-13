@@ -1,5 +1,7 @@
-The mean on-time rate, $\bar{x}$, summarises performance across all routes.
+The network on-time rate, $p$, pools trips across all $n$ routes, where route $i$ ran $t_i$ trips and $k_i$ of them were on time:
 
 $$
-\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
-$$ {#eq-mean}
+p = \frac{\sum_{i=1}^{n} k_i}{\sum_{i=1}^{n} t_i}
+$$ {#eq-network-rate}
+
+Because @eq-network-rate weights each route by its number of trips, the busiest routes have the most influence on the network rate.

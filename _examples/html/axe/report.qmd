@@ -1,0 +1,11 @@
+---
+title: Route Punctuality Report
+format:
+  html:
+    axe:
+      output: document
+---
+
+@fig-punctuality shows on-time rates across the network's routes.
+
+![On-time rate by route](punctuality.png){#fig-punctuality}
