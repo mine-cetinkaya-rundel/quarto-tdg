@@ -4,6 +4,11 @@
   expand: 16
   width: 800
   generated: '2026-11-12T16:58:46Z'
+- image: html-axe-report.png
+  source: _examples/html/axe/report.qmd
+  width: 800
+  height: 560
+  generated: '2026-11-13T18:27:13Z'
 - image: html-brand-colors.png
   source: _examples/html/brand/colors.qmd
   selector: main

@@ -552,7 +552,7 @@ There are some limitations to keep in mind:
 
 * **Widgets add weight and may not be accessible.**
   Each widget library adds JavaScript that readers must download.
-  Not all widgets work with a keyboard or a screen reader, so give important results in the text too.
+  Not all widgets work with a keyboard or a screen reader, so give important results in the text too (see @sec-html-accessibility-interactive).
 
 ::: todo
 [CVW] Screenshot for @fig-html-widgets-leaflet. Verify `embed-resources: true` captures everything for Jupyter widgets (the widget manager loads modules from a CDN at runtime). Consider moving to a "Computational outputs" chapter in the reorg.
@@ -949,13 +949,217 @@ Read more on the [Lightbox Figures](https://quarto.org/docs/output-formats/html-
 
 ## Making accessible HTML {#sec-html-accessibility}
 
-::: todo
-[CVW] HTML is generally the most accessible format. Practical best practices:
-semantic headings, alt text, color contrast, descriptive link text, table headers.
-The `axe: true` checker (axe-core): enabling it, `document`/`json`/`console`
-output, using it inside a debug profile to avoid shipping reports. Link to the
-html-accessibility docs.
+Accessibility is about increasing the reach of your documents.
+An HTML document that's well-structured can be used by more people --- like readers who navigate with a screen reader, who zoom to 400%, or who use only a keyboard.
+
+The [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/) are the most widely accepted standard for what counts as "accessible".
+When a regulation says your document must be accessible, it almost always points to these guidelines.
+WCAG was written for the web, so it applies directly to your HTML documents.
+Assistive technologies, like screen readers, have supported HTML for decades.
+That's one reason HTML is the best choice for accessible documents.
+
+It's useful to think about the division of responsibility in creating accessible documents between Quarto and you.
+Consider a section heading:
+
+```{.markdown filename="report.qmd"}
+## Methods of data collection
+```
+
+Quarto's responsibility is to translate this markdown into the correct HTML heading markup, so a screen reader announces it as a heading and a reader can jump to it.
+Your responsibility is to:
+
+- Use headings to structure your document into sections and subsections.
+- Use the right syntax, `##` at the start of the line, so Quarto recognizes it as a heading.
+- Use the right heading level, so the heading fits the structure of the rest of your document.
+- Write a heading that accurately describes what's in the section.
+
+In this section, you'll learn how to check your document automatically with `axe` (@sec-html-axe), and what passing those checks does and doesn't tell you.
+Then you'll learn some best practices, including how to approach interactive content, and finally what to expect from the manual checks that automated tools can't replace (@sec-html-manual-checks).
+
+### Check your document with `axe` {#sec-html-axe}
+
+Some WCAG requirements are easily checked by automated tools.
+Quarto includes one such tool, [axe-core](https://github.com/dequelabs/axe-core).
+To run the default set of axe-core checks on your document and display the results on the rendered page itself set `output: document` under the `axe` option:
+
+````{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/axe/report.qmd >}}
+````
+
+When you preview the document, a report of the problems axe finds appears at the bottom of the page, as shown in @fig-html-axe-report.
+Each problem in the report includes its severity, the WCAG level and success criterion it relates to, and a description of the problem.
+Here, the figure's image has no alternative text, which fails WCAG 2.0 success criterion 1.1.1 (level A).
+
+![The `axe` report for `report.qmd` covers the bottom of the page](images/html-axe-report.png){#fig-html-axe-report .border fig-alt="A rendered HTML page titled Route Punctuality Report with a bar chart. Below the figure caption, a box across the bottom of the page reads: Critical, WCAG 2.0 A (1.1.1): Ensure img elements have alternative text or a role of none or presentation. Images must have alternative text. Below that is a link reading img."}
+
+To fix this problem, you would add alternative text with the `fig-alt` attribute (see @sec-markdown-figures):
+
+```{.markdown filename="report.qmd" .code-overflow-wrap}
+{{< include _examples/html/axe/_fig-alt.md >}}
+```
+
+When you preview again, the report says "No axe-core violations found."
+
+The checks don't happen when Quarto renders your document.
+Instead, Quarto adds axe to the page, and axe runs the checks in your browser when the page loads.
+Your render won't fail if axe finds problems, it's your responsibility to open the page and look at the results.
+
+::: callout-important
+## Remove `axe` before you share
+
+With `output: document`, the report is part of the page, so anyone who opens your document will see it.
+Remove the `axe` option before you share your document.
+In a project, you might instead put `axe` in a [project profile](https://quarto.org/docs/projects/profiles.html) that you only use while you work.
 :::
+
+By default, axe checks rules from several WCAG versions and levels, along with some of its own best-practice rules.
+If you are working toward a specific WCAG version and level, set `standard`:
+
+```{.yaml filename="report.qmd"}
+format:
+  html:
+    axe:
+      output: document
+      standard: wcag22aa
+```
+
+Levels are cumulative, so `wcag22aa` checks the level A and AA rules for WCAG 2.2 and the earlier versions it builds on.
+When you set `standard`, axe skips its best-practice rules.
+Add `best-practice: true` to check them too.
+
+The `axe` option can also send its results to your browser's developer console, or output them as JSON for automated tools.
+Read more on the [HTML Accessibility Checks](https://quarto.org/docs/output-formats/html-accessibility.html) page of the Quarto documentation.
+
+### What does it mean to pass `axe` checks?
+
+Passing `axe` checks is a useful first step to ensuring an accessible document, but it doesn't mean your document is accessible.
+Automated checks cover only part of WCAG.
+Deque, the company behind axe-core, reports that automated testing found a little over half of the accessibility issues in its audits ([The Automated Accessibility Coverage Report](https://www.deque.com/automated-accessibility-coverage-report/)).
+
+There are three big limitations to be aware of:
+
+#### Checks can't judge whether content is meaningful {.unnumbered}
+
+Many WCAG requirements need human judgment.
+For example, consider success criterion 1.1.1:
+
+> WCAG 2.2: 1.1.1 Non-text Content (Level A): All non-text content that is presented to the user has a text alternative that serves the equivalent purpose, except for the situations listed below. ...
+
+An automated check can confirm that an image has alternative text, but it can't check that the text "serves the equivalent purpose".
+Alternative text of "chart" passes the check, but tells your reader nothing about what the chart shows.
+As a human, meeting requirements that need human judgment is your responsibility.
+
+#### Checks only see one state of the page {.unnumbered}
+
+The checks run once, when the page loads.
+They see the page at one window width, in one color mode, and with interactive content in its initial state.
+This means they may miss problems that only appear in another state, like in the content of a collapsed callout, a tabset panel other than the first, or your dark theme.
+
+#### Checks can't interact with the page {.unnumbered}
+
+Some WCAG requirements are about how a reader interacts with the page.
+For example, a reader must be able to reach and use everything on the page with only a keyboard, move through it in a sensible order, and zoom in without content getting lost or cut off.
+Automated checks look at the markup of the page, but don't interact with the page the way a reader does.
+Evaluating these requirements requires manual testing by a person (@sec-html-manual-checks).
+
+### Accessibility best practices
+
+The following best practices will help you meet most WCAG AA requirements.
+For each one, we note what `axe` can and can't check for you.
+
+#### Use semantic structure
+
+Your HTML needs to mark up content based on what it is, not how it looks: a section heading needs to be a heading element, not just big and bold text.
+Quarto's markdown encourages this naturally --- when you write `## Recommendations`, Quarto knows it is a second-level heading and produces an `<h2>` element.
+Avoid raw HTML or styled text that only looks like a heading.
+
+Your document's `title` becomes the only first-level heading on the page, so start the headings in your document body at `##`.
+Be careful not to skip heading levels, e.g., jumping from `##` to `####` without an intervening `###`.
+Skipping levels can make navigation difficult for screen reader users.
+`axe` flags skipped heading levels as a best-practice problem, so you'll only see it if you haven't set `standard`, or you've set `best-practice: true`.
+
+#### Communicate a logical reading order
+
+Quarto encourages this naturally too: the reading order is the same as the top-to-bottom order of elements in your `.qmd`.
+This is true even when the layout moves content visually.
+For example, content you place in the margin (@sec-html-page-layout) appears beside the body on wide screens, and inline with the body on narrow ones, but a screen reader always reaches it in the position it has in your `.qmd`.
+As long as you write your `.qmd` to read from top-to-bottom, you'll meet this requirement.
+
+#### Set required metadata
+
+The `title` in your document header sets the `<title>` of the page, which browsers show in the tab and screen readers announce when the page opens.
+The `lang` option sets the language of the page, so a screen reader knows how to pronounce your text.
+
+Always set `title`, and if your document is written in a language other than English, set `lang` appropriately.
+
+If a phrase is in a different language from the rest of your document, mark it with a span and a `lang` attribute, like `[bonjour]{lang="fr"}`.
+
+#### Provide alternative text for all images
+
+`axe` will flag images without alt text --- but you still need to write meaningful descriptions yourself.
+Add alt text with the `fig-alt` attribute or code cell option (see @sec-markdown-figures).
+
+If an image is purely decorative and adds nothing to the content, set `fig-alt=""`.
+Empty alt text tells a screen reader to skip the image, and passes the `axe` check.
+
+You don't need to add alt text to equations.
+With the default `html-math-method`, MathJax generates spoken text for each equation, and lets readers explore an equation part by part with a keyboard.
+
+#### Use informative titles, headings, alternative text, and link text
+
+No automated check can tell whether a field's content is meaningful --- only that the field is set.
+"My document", "Section 4", "chart", or "click here" pass every automated check and leave your reader with nothing to navigate by.
+It's your responsibility to ensure these accurately describe their content.
+
+#### Use color choices that are readable
+
+There must be sufficient contrast between foreground and background, both in textual elements (body text, headings, code blocks, syntax highlighting, etc.) and in any parts of a figure important for understanding it (points, bars, lines, key icons, etc.).
+Meaning shouldn't depend on color alone --- supplement with labels, patterns, or shape.
+
+`axe` checks the contrast of most text on the page, so it will catch problems from your theme or brand colors (@sec-html-customizing-appearance).
+If you use both a light and a dark theme, check the page in each mode, since `axe` only checks the one it loads in.
+The default syntax highlighting theme, `arrow`, is designed for accessibility, as is `a11y`.
+
+`axe` can't check text or colors inside an image, like the labels and bars of a plot.
+It also can't tell when meaning depends on color alone.
+These are your responsibility.
+
+#### Give tables header rows and captions
+
+A header row lets a screen reader tell a reader which column a cell belongs to.
+Add captions to tables (see @sec-markdown-tables).
+Markdown tables get a header row automatically but tables from code depend on the package that makes them. 
+Check that the header cells come through as headers.
+
+Avoid using tables just to lay out content side-by-side.
+Use the panel layout attributes instead (@sec-layout-panel). 
+
+#### Be wary of interactive content {#sec-html-accessibility-interactive}
+
+How accessible an interactive output is, like a widget (@sec-html-computational-outputs), depends on the library that makes it, not on Quarto.
+Many widgets are hard or impossible to use with a keyboard or a screen reader, and `axe` only sees a widget in its state when the page loads.
+Before you add interactivity, ask whether your reader needs it.
+If they do, give them an equivalent, like a summary of the main results in the text, a table of the data, or a static figure with alt text.
+
+### Manual checks {#sec-html-manual-checks}
+
+Automated checks like `axe` aren't enough to show your document meets an accessibility standard: some requirements can only be checked by a person.
+If your document needs to meet a standard, for example, to comply with a regulation, expect it to get manual checks too.
+These might come from an accessibility team's audit or an outside reviewer, or you might be asked to do them yourself.
+Typical checks include using the page with only a keyboard, zooming to 200% and 400%, viewing the page on a narrow screen, and reading the page with a screen reader.
+
+Quarto is responsible for the parts of the page it generates, like the table of contents, tabsets, code blocks, and the responsive layout.
+If a manual check finds a problem in one of these parts, it's a bug in Quarto, and it isn't your job to fix it.
+Instead, look for the problem in [Quarto's issues](https://github.com/quarto-dev/quarto-cli/issues), and report it if it isn't already tracked.
+
+Pay close attention to widgets, like interactive plots and tables (@sec-html-accessibility-interactive).
+Quarto doesn't control the markup that R and Python packages produce, so widgets are a common source of problems in manual checks.
+For example, a reader using a keyboard may not be able to reach the controls that zoom a plot or sort a table, and a screen reader may announce a plot as an unlabeled graphic, or skip it entirely.
+Widgets can also break when a reader zooms in, with controls that overlap or get cut off.
+
+If you're doing the checks yourself, two are quick to start with.
+Press Tab repeatedly to move through the page, and check that you can reach every link and control, and can always see where you are.
+Then zoom your browser to 200%, and check that nothing is cut off or overlaps.
 
 ## Customizing appearance {#sec-html-customizing-appearance}
 

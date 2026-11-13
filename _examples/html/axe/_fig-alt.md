@@ -1,0 +1,1 @@
+![On-time rate by route](punctuality.png){#fig-punctuality fig-alt="A bar chart of on-time rates by route, showing values between roughly 85% and 95% across the Northern, Central, Circle, District, and Jubilee routes."}
