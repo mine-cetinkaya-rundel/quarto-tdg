@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-06216b1265abaaf207c96828e2dfb919.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b46219f99c753df7b0632319f2381fd1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -1208,19 +1208,19 @@ Snippet&nbsp;15.3: The equivalent header for the files in <a href="#lst-format" 
 <section id="execution-options-set-in-code-cells" class="level3" data-number="15.7.1">
 <h3 data-number="15.7.1" class="anchored" data-anchor-id="execution-options-set-in-code-cells"><span class="header-section-number">15.7.1</span> Execution options set in code cells</h3>
 <p>Execution options are set in code cells using YAML syntax after a special comment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>```{r}
+#| echo: false
+
+```</code></pre>
 <p>Execution options need to be specified before any code, and are prefaced by the native comment character for the code cell language (<code>#</code> for <code>r</code>, <code>python</code> and <code>julia</code>), followed by a pipe (<code>|</code>), and a space.</p>
 <p>You can use the same YAML syntax as in the document header, but for multiline statements, remember to preface each line with the cell option comment. For example, to use a literal block string:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: |</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">#|   Here's a long caption</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#|   spread over two lines</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>```{r}
+#| fig-cap: |
+#|   Here's a long caption
+#|   spread over two lines
+
+plot(1:10)
+```</code></pre>
 </section>
 <section id="execution-options-set-in-the-document-header" class="level3" data-number="15.7.2">
 <h3 data-number="15.7.2" class="anchored" data-anchor-id="execution-options-set-in-the-document-header"><span class="header-section-number">15.7.2</span> Execution options set in the document header</h3>
@@ -1235,10 +1235,10 @@ Snippet&nbsp;15.3: The equivalent header for the files in <a href="#lst-format" 
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can override the document level setting by setting the option in a code cell:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>```{r}
+#| echo: true
+
+```</code></pre>
 <p>When you move an option in this way it behaves just like a document option:</p>
 <ol type="1">
 <li><p>To figure out if an option is supported at the document level look in the reference guide for your target formats.</p></li>
