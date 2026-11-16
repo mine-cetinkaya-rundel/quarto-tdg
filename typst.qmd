@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # PDF {#sec-typst}
 
 ## Overview
@@ -49,7 +53,7 @@ format: typst
 Here's a short but complete example, with some common content types — headings, 
 a table, and cross-references:
 
-````{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="train-punctuality.qmd"}
 {{< include _examples/typst/first-document/train-punctuality.qmd >}}
 ````
 
@@ -99,7 +103,7 @@ Items in the table of contents and cross-references are automatically clickable 
 
 You can also use markdown link syntax to add links directly to other sections in your document, or to external resources:
 
-```{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
+```{.markdown .code-overflow-wrap filename="train-punctuality.qmd"}
 {{< include _examples/typst/links/_recommendations.qmd >}}
 ```
 
@@ -117,7 +121,7 @@ A common format for this is BibTeX (`.bib`):
 
 To cite an item in the bibliography, specify the bibliography file in `bibliography` and use the `@` syntax in your text:
 
-````{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="train-punctuality.qmd"}
 {{< include _examples/typst/citations/train-punctuality.qmd >}}
 ````
 
@@ -146,7 +150,7 @@ You can read more about citations in @sec-citations, including about various `@`
 When you author to Typst from Quarto, use TeX math syntax to write your equations.
 Use single dollar signs (`$...$`) for inline math, and double dollar signs (`$$...$$`) for display equations:
 
-````{.markdown filename="equations.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="equations.qmd"}
 {{< include _examples/typst/math/equations.qmd >}}
 ````
 
@@ -166,7 +170,7 @@ You can read more about writing equations, including cross-referencing, in @sec-
 Alt text makes an equation accessible to screen readers and is required to meet the PDF/UA-1 standard (you'll learn more about this standard in @sec-pdf-accessibility).
 You can add alternative text to cross-referenced display equations with an `alt=` attribute:
 
-````{.markdown filename="equations.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="equations.qmd"}
 {{< include _examples/typst/math/equations-alt.qmd >}}
 ````
 
@@ -185,7 +189,7 @@ There is currently no way to add alt text to inline math in `format: typst`.
 When you use one of Quarto's theorem environments, you'll get special styling in Typst.
 To declare a theorem, you wrap it in a fenced div with an identifier that starts with `#thm-`:
 
-````{.markdown filename="theorem.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="theorem.qmd"}
 {{< include _examples/typst/math/theorem.qmd >}}
 ````
 
@@ -224,7 +228,7 @@ When you include a code block, it will get automatic syntax highlighting based
 on the language you specify.
 For example, here's a code block specified as `r`:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/typst/code-blocks/highlight.qmd >}}
 ````
 
@@ -262,7 +266,7 @@ A comparison of the `github` theme for syntax highlighting and Typst's native `i
 
 You can add a `filename` attribute to label the code block:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/typst/code-blocks/filename.qmd >}}
 ````
 
@@ -284,16 +288,16 @@ For example, here's a cell that produces a figure:
 ::: {.panel-tabset}
 ## R
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
-```{{r}}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
+```{r}
 {{< include _examples/typst/computational-outputs/figure-cell.R >}}
 ```
 ````
 
 ## Python
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
-```{{python}}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
+```{python}
 {{< include _examples/typst/computational-outputs/figure-cell.py >}}
 ```
 ````
@@ -346,16 +350,16 @@ For example, the following code blocks use the `gt` package in R and `great_tabl
 ::: {.panel-tabset}
 ## R
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
-```{{r}}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
+```{r}
 {{< include _examples/typst/computational-outputs/tables.R >}}
 ```
 ````
 
 ## Python
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
-```{{python}}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
+```{python}
 {{< include _examples/typst/computational-outputs/tables.py >}}
 ```
 ````
@@ -389,7 +393,7 @@ To let cross-referenceable tables break across pages, add a raw Typst block afte
 title: "Route Punctuality Report"
 ---
 
-```{{=typst}}
+```{=typst}
 #show figure: set block(breakable: true)
 ```
 ````
@@ -431,7 +435,7 @@ Sometimes you may want to break out of that column and use the full page width, 
 
 Add the `.column-margin` class to a fenced div to push content into the margin as an aside:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/typst/column-layout/margin.qmd >}}
 ````
 
@@ -439,7 +443,7 @@ Add the `.column-margin` class to a fenced div to push content into the margin a
 
 Use the `.column-page` class to widen content across the page, extending beyond the body text:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/typst/column-layout/page.qmd >}}
 ````
 
@@ -962,7 +966,7 @@ color:
 You can access that color in raw Typst blocks with `brand-color.primary`.
 For example, you could have only first-level headings appear using your primary color by using a show rule on headings that targets only `level: 1` with a set rule on `text()` setting `fill` to `brand-color.primary`:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/typst/raw-typst/_heading-color.qmd >}}
 ````
 
