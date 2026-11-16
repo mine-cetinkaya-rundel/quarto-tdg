@@ -75,7 +75,6 @@ crossref:
   lst-prefix: Snippet
 
 filters: 
-  - list-table
   - _filters/quarto-docs-links.lua
   - custom-callout
 
