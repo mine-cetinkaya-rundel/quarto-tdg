@@ -113,6 +113,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>
+div.callout-todo.callout {
+  border-left-color: #bf6bc9;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgba(191, 107, 201, 0.13);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
@@ -902,8 +915,18 @@ Figure&nbsp;10.10: A code block labelled with its filename, <code>analysis.R</co
 </figcaption>
 </figure>
 </div>
-<div class="todo">
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>[CVW] <a href="#fig-typst-code-blocks-filename" class="quarto-xref">Figure&nbsp;<span>10.10</span></a> currently shows the pre-fix behaviour: the filename label isn’t rendered. Regenerate the screenshot and remove this note once <a href="https://github.com/quarto-dev/quarto-cli/pull/14170" class="uri">https://github.com/quarto-dev/quarto-cli/pull/14170</a> is merged.</p>
+</div>
 </div>
 </section>
 </section>

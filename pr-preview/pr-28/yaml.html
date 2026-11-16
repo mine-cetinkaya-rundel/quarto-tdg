@@ -113,6 +113,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>
+div.callout-todo.callout {
+  border-left-color: #bf6bc9;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgba(191, 107, 201, 0.13);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+</style>
 
 
 </head>
@@ -882,11 +895,11 @@ Figure&nbsp;17.1
 Table&nbsp;17.1: The three kinds of options you can set in Quarto
 </figcaption>
 <div aria-describedby="tbl-options-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
+<table id="tbl-options" class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 25%">
-<col style="width: 38%">
+<col style="width: 34%">
+<col style="width: 26%">
+<col style="width: 39%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -897,21 +910,21 @@ Table&nbsp;17.1: The three kinds of options you can set in Quarto
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Projects</td>
+<td style="text-align: left;"><p>Projects</p></td>
 <td style="text-align: left;"><p>Project options</p>
 <p>Project metadata</p></td>
-<td style="text-align: left;"><code>_quarto.yml</code></td>
+<td style="text-align: left;"><p><code>_quarto.yml</code></p></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Formats</td>
+<td style="text-align: left;"><p>Formats</p></td>
 <td style="text-align: left;"><p>Document options</p>
 <p>Document metadata</p></td>
 <td style="text-align: left;"><p>Document header</p>
 <p><code>_quarto.yml</code></p></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Code Cells</td>
-<td style="text-align: left;">Execution options</td>
+<td style="text-align: left;"><p>Code Cells</p></td>
+<td style="text-align: left;"><p>Execution options</p></td>
 <td style="text-align: left;"><p>Code cells, i.e.&nbsp;after <code>#|</code></p>
 <p>Document header</p>
 <p><code>_quarto.yml</code></p></td>
