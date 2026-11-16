@@ -1060,7 +1060,7 @@ You'll see more examples of raw blocks in @sec-html and @sec-typst.
 ## Shortcodes {#sec-shortcodes}
 
 Shortcodes are special commands that are replaced with specific content when the document is rendered.
-The shortcode syntax uses double curly braces and angle brackets: `{{< shortcode-name  >}}`.
+The shortcode syntax uses double curly braces and angle brackets: `{{{< shortcode-name  >}}}`.
 The shortcode name can by followed by additional arguments or key-value pairs.
 
 As an example, the `meta` shortcode inserts values from the document metadata into your document.
