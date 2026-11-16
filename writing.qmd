@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # Writing content {#sec-writing}
 
 Beyond the document header and executable code cells, the content of a Quarto document is written in markdown.
@@ -13,11 +17,11 @@ Here's some example markdown in a Quarto document:
 ```` {.markdown filename="document.qmd"}
 ## My First Section
 
-This is the first paragraph with some **bold text** and *italic text*.
+This is the first paragraph with some **bold text** and _italic text_.
 You can also include `code` to show function names or variables.
 
 Here's a second paragraph with a [link to Quarto](https://quarto.org).
-You might also want to use *italic text* for emphasis.
+You might also want to use _italic text_ for emphasis.
 ````
 
 Markdown is a popular format, so the syntax above may be familiar.
@@ -32,7 +36,7 @@ The example above illustrates components of markdown syntax that are common acro
 
 * Bold: text surrounded by `**`
 
-* Italic: text surrounded by `*`
+* Italic: text surrounded by `_`
 
 * Code: text surrounded by `` ` ``
 
@@ -49,7 +53,7 @@ But you may soon be looking for richer content like tables, figures, code blocks
 Adding these components is a matter of adding the appropriate Quarto markdown.
 As a teaser, here's an example contains a callout and a cross-reference:
 
-````{.markdown filename="document.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="document.qmd"}
 {{< include _examples/writing/features/document.qmd >}}
 ````
 
@@ -107,7 +111,7 @@ There is a distinction between:
 * **Code cells**, sometimes also called **code chunks**, are code that will be executed and replaced with computational output. Code cells use the syntax:
 
     ````markdown
-    ```{{r}}
+    ```{r}
     # Code to be executed
     ```
     ````

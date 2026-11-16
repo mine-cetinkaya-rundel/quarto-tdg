@@ -735,7 +735,7 @@ sidebar: teaching
 
 ### Hybrid navigation {#sec-hybrid}
 
-Hybrid navigation \index{hybrid navigation} combines a top navigation bar with multiple side navigation bars. 
+Hybrid navigation `\index{hybrid navigation}`{=latex} combines a top navigation bar with multiple side navigation bars. 
 Links in the top bar, take users to a section of the website with its own side navigation.
 
 For example, the Quarto documentation site uses hybrid navigation to separate the documentation into, for instance, Guide and Reference (@fig-hybrid-example).
@@ -893,7 +893,7 @@ Website navigation elements
 
 ## Website theming {#sec-websites-theme}
 
-We use the term **theme** \index{theme!website} to describe the visual appearance of your site --- things like colors, borders and typography.
+We use the term **theme** `\index{theme!website}`{=latex} to describe the visual appearance of your site --- things like colors, borders and typography.
 Because a website is a collection of HTML documents, you control your website theme the same way you control the theme of HTML documents.
 Since you usually want a consistent theme across all your pages, 
 you'll specify these HTML document theme options globally in `_quarto.yml`.
@@ -1394,7 +1394,7 @@ You can find a list of the Bootstrap SCSS variables available by examining the [
 
 ## About Pages {#sec-websites-about-pages}
 
-**About pages** \index{about page} are a special kind of page that combines your page content and document metadata into an attractive template---great for "About" pages and other landing pages.
+**About pages** `\index{about page}`{=latex} are a special kind of page that combines your page content and document metadata into an attractive template---great for "About" pages and other landing pages.
 
 ![An example of an About Page using the `trestles` template. Document metadata is used to populate the left side of the page. Document content is used to populate the right side of the page.](images/website-about.png){#fig-about-page fig-alt="Screenshot of a page using an `about` template. The page is divided vertically. On the left: an image, with the `title` Drake Lab, and `subtitle` Data Science below it, and two links to GitHub and ResearchGate below the title. On the right some placeholder content."}
 
@@ -1438,7 +1438,7 @@ You can read more in the [Quarto documentation on About Pages](https://quarto.or
 
 ## Listings {#sec-websites-listings}
 
-**Listings** \index{listings} are a special kind of page that contains an automatically generated list of content.
+**Listings** `\index{listings}`{=latex} are a special kind of page that contains an automatically generated list of content.
 Listings are often used to create blogs, but can also be used more generally any time you want a list of similar pages or items, like talks, publications, projects or people.
 
 @fig-website-listing shows three examples of listing pages: a blog, a people listing , and a list of publications.
@@ -1637,7 +1637,7 @@ You can read more about the details of publishing in the [Publishing Guide](http
 ## Continuous integration {#sec-ci}
 
 The methods discussed in @sec-website-publish involve you manually invoking publishing, e.g. by running `quarto publish`. 
-**Continuous integration** \index{continuous integration} is a term for an automatic publishing process where publishing is triggered by some other event.
+**Continuous integration** `\index{continuous integration}`{=latex} is a term for an automatic publishing process where publishing is triggered by some other event.
 That event might an action like pushing to a GitHub repository, or be based on a schedule.
 
 When talking about continuous integration there could be up to three other parties involved: the host for your source code (usually in a Git repo), the provider of the continuous integration service, and the publishing venue. 
@@ -1776,7 +1776,7 @@ You'll learn more about GitHub Actions in the next section.
 
 ### GitHub Actions
 
-GitHub Actions \index{GitHub Actions} are the most common method for setting up continuous integration for publishing Quarto websites.
+GitHub Actions `\index{GitHub Actions}`{=latex} are the most common method for setting up continuous integration for publishing Quarto websites.
 GitHub Actions are defined by a workflow, a series of steps that will be run on servers (usually GitHub's), in the context of a GitHub repository.
 
 To use GitHub Actions you necessarily need to have your website in a repository on GitHub.
