@@ -1,6 +1,9 @@
 project:
   type: book
   output-dir: _book
+  render:
+    - "**/*.qmd"
+    - "!renv/"
 
 book:
   title: "Quarto: The Practical Guide"
