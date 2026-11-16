@@ -73,7 +73,6 @@ crossref:
   lst-prefix: Snippet
 
 filters: 
-  - list-table
   - custom-callout
 
 custom-callout:
