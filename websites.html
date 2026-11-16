@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c78ddbba298a60aa887e417ee4b0b060.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-06216b1265abaaf207c96828e2dfb919.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -113,6 +113,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>
+div.callout-todo.callout {
+  border-left-color: #bf6bc9;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgba(191, 107, 201, 0.13);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+</style>
 
 
 </head>
@@ -1513,10 +1526,10 @@ Table&nbsp;14.7: Website navigation elements
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-navigation.html#top-navigation">Top navigation</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#top-navigation">Top navigation</a><br>
 Navigation bar that appears at top of page<br>
-See <a href="#sec-navbar" class="quarto-xref"><span>Section 14.5.2</span></a></td>
-<td style="text-align: left;"><img src="images/website-navbar-highlight.png" class="img-fluid figure-img" alt="Screenshot of webpage with the bar along top that includes a logo, title, and navigation links is highlighted."></td>
+See <a href="#sec-navbar" class="quarto-xref"><span>Section 14.5.2</span></a></p></td>
+<td style="text-align: left;"><p><img src="images/website-navbar-highlight.png" class="img-fluid figure-img" alt="Screenshot of webpage with the bar along top that includes a logo, title, and navigation links is highlighted."></p></td>
 <td style="text-align: left;"><p><code>navbar</code>:</p>
 <ul>
 <li><p>under <code>website</code> in <code>_quarto.yml</code></p></li>
@@ -1524,10 +1537,10 @@ See <a href="#sec-navbar" class="quarto-xref"><span>Section 14.5.2</span></a></t
 </ul></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-navigation.html#side-navigation">Side navigation</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#side-navigation">Side navigation</a><br>
 Navigation bar that appears on the left side of page<br>
-See <a href="#sec-sidebar" class="quarto-xref"><span>Section 14.5.3</span></a></td>
-<td style="text-align: left;"><img src="images/website-sidebar-highlight.png" class="img-fluid figure-img" alt="Screenshot of webpage with navigation bar on the right of the page highlighted."></td>
+See <a href="#sec-sidebar" class="quarto-xref"><span>Section 14.5.3</span></a></p></td>
+<td style="text-align: left;"><p><img src="images/website-sidebar-highlight.png" class="img-fluid figure-img" alt="Screenshot of webpage with navigation bar on the right of the page highlighted."></p></td>
 <td style="text-align: left;"><p><code>sidebar</code>:</p>
 <ul>
 <li><p>under <code>website</code> in <code>_quarto.yml</code></p></li>
@@ -1535,9 +1548,9 @@ See <a href="#sec-sidebar" class="quarto-xref"><span>Section 14.5.3</span></a></
 </ul></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-search.html">Search</a><br>
-Search box that appears in top or side navigation</td>
-<td style="text-align: left;"><img src="images/website-search.jpeg" class="img-fluid figure-img" alt="Screenshot of webpage with search icon in top navigation bar highlighted"></td>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-search.html">Search</a><br>
+Search box that appears in top or side navigation</p></td>
+<td style="text-align: left;"><p><img src="images/website-search.jpeg" class="img-fluid figure-img" alt="Screenshot of webpage with search icon in top navigation bar highlighted"></p></td>
 <td style="text-align: left;"><p><code>search</code>:</p>
 <ul>
 <li><p>set options under <code>website</code> in <code>_quarto.yml</code></p></li>
@@ -1545,9 +1558,9 @@ Search box that appears in top or side navigation</td>
 </ul></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-navigation.html#breadcrumbs">Breadcrumbs</a><br>
-Links above page title that indicate location in sidebar hierarchy</td>
-<td style="text-align: left;"><img src="images/website-breadcrumbs.jpeg" class="img-fluid figure-img" alt="Screenshot of webpage with 'Guide > Websites > Website Navigation' highlighted above the page title 'Website Navigation'."></td>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#breadcrumbs">Breadcrumbs</a><br>
+Links above page title that indicate location in sidebar hierarchy</p></td>
+<td style="text-align: left;"><p><img src="images/website-breadcrumbs.jpeg" class="img-fluid figure-img" alt="Screenshot of webpage with 'Guide > Websites > Website Navigation' highlighted above the page title 'Website Navigation'."></p></td>
 <td style="text-align: left;"><p><code>breadcrumbs</code>:</p>
 <ul>
 <li><p>under <code>website</code> in <code>_quarto.yml</code></p></li>
@@ -1555,9 +1568,9 @@ Links above page title that indicate location in sidebar hierarchy</td>
 </ul></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-navigation.html#back-to-top">Back to top</a><br>
-Link at the bottom of page to return to the top of the page</td>
-<td style="text-align: left;"><img src="images/website-back-to-top.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with a button 'Back to Top' highlighted at the bottom of the page,"></td>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#back-to-top">Back to top</a><br>
+Link at the bottom of page to return to the top of the page</p></td>
+<td style="text-align: left;"><p><img src="images/website-back-to-top.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with a button 'Back to Top' highlighted at the bottom of the page,"></p></td>
 <td style="text-align: left;"><p><code>back-to-top-navigation</code>:</p>
 <ul>
 <li><p>under <code>website</code> in <code>_quarto.yml</code></p></li>
@@ -1571,9 +1584,9 @@ Content to put in footer on all pages</td>
 <td style="text-align: left;"><code>page-footer</code> under <code>website</code> in <code>_quarto.yml</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-navigation.html#page-navigation">Page navigation</a><br>
-Links at the bottom of page to previous and next page (as defined in sidebar)</td>
-<td style="text-align: left;"><img src="images/website-page-navigation.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with links to the next and previous page at the bottom of the page highlighted."></td>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#page-navigation">Page navigation</a><br>
+Links at the bottom of page to previous and next page (as defined in sidebar)</p></td>
+<td style="text-align: left;"><p><img src="images/website-page-navigation.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with links to the next and previous page at the bottom of the page highlighted."></p></td>
 <td style="text-align: left;"><p><code>page-navigation</code>:</p>
 <ul>
 <li><p>under <code>website</code> in <code>_quarto.yml</code></p></li>
@@ -1581,9 +1594,9 @@ Links at the bottom of page to previous and next page (as defined in sidebar)</t
 </ul></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://quarto.org/docs/output-formats/html-basics.html#table-of-contents">Table of contents</a><br>
-A table of contents to navigate sections within a page, usually shown on right</td>
-<td style="text-align: left;"><img src="images/website-toc-highlight.png" class="img-fluid figure-img" alt="Screenshot of a webpage with a table of contents listing sections on the current page positioned on the right of the page highighted."></td>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/output-formats/html-basics.html#table-of-contents">Table of contents</a><br>
+A table of contents to navigate sections within a page, usually shown on right</p></td>
+<td style="text-align: left;"><p><img src="images/website-toc-highlight.png" class="img-fluid figure-img" alt="Screenshot of a webpage with a table of contents listing sections on the current page positioned on the right of the page highighted."></p></td>
 <td style="text-align: left;"><p><code>toc</code>,<code>toc-depth</code>, <code>toc-expand</code>, <code>toc-title</code>, <code>toc-location</code>:</p>
 <ul>
 <li><p><code>_quarto.yml</code> (under <code>format:html</code> or at top-level)</p></li>
@@ -1597,9 +1610,9 @@ Links to Github for the page source, to edit the page source, or open an issue.<
 <td style="text-align: left;"><code>repo-url</code> and <code>repo-actions</code> under <code>website</code> in <code>_quarto.yml</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://quarto.org/docs/output-formats/html-multi-format.html">Other formats</a><br>
-Links to other formats shown below table of contents</td>
-<td style="text-align: left;"><img src="images/website-other-formats.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with links under an 'Other Formats' label beneath the table of contents highlighted."></td>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/output-formats/html-multi-format.html">Other formats</a><br>
+Links to other formats shown below table of contents</p></td>
+<td style="text-align: left;"><p><img src="images/website-other-formats.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with links under an 'Other Formats' label beneath the table of contents highlighted."></p></td>
 <td style="text-align: left;"><p><code>format</code>:</p>
 <ul>
 <li><p>in <code>_quarto.yml</code></p></li>
@@ -2226,8 +2239,8 @@ Table&nbsp;14.8: Examples of Bootstrap classes used in Quarto markdown syntax
 </div></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://getbootstrap.com/docs/5.3/utilities/borders/">Border Utility</a></td>
-<td style="text-align: left;"><code>border</code> , <code>rounded</code> and more</td>
+<td style="text-align: left;"><p><a href="https://getbootstrap.com/docs/5.3/utilities/borders/">Border Utility</a></p></td>
+<td style="text-align: left;"><p><code>border</code> , <code>rounded</code> and more</p></td>
 <td style="text-align: left;"><p><code>&lt;div&gt;</code></p>
 <p>Also applies to <code>&lt;span&gt;</code>, and <code>&lt;img&gt;</code></p></td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>::: {.border .rounded .border-primary .p-2}</span>
