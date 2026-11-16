@@ -6,6 +6,4 @@ Authors@R: c(
   )
 URL: https://github.com/mine-cetinkaya-rundel/quarto-tdg
 Suggests:
-    addmins,
     usethis
-Remotes: mine-cetinkaya-rundel/addmins
