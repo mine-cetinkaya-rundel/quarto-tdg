@@ -33,7 +33,7 @@ Finally, you'll learn how to share your HTML document with others (@sec-html-sha
 Since HTML is the default format in Quarto, you've already worked with a few HTML documents. 
 But, to be concrete, here's a short but complete example, with some common content types:
 
-````{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="train-punctuality.qmd"}
 {{< include _examples/html/first-document/train-punctuality.qmd >}}
 ````
 
@@ -134,7 +134,7 @@ Because the authors have affiliations, Quarto lists authors and affiliations in 
 
 ::: {#tbl-html-title-block-fields}
 
-::: {.list-table header-rows=1 widths='1,2,2' aligns=l,l,l}
+::: {.list-table header-rows=1 widths='1,2,2' aligns="l,l,l"}
 
 * - Option
   - Description
@@ -142,41 +142,31 @@ Because the authors have affiliations, Quarto lists authors and affiliations in 
 
 * - `title`
   - The main heading
-  - 
-
-    ```yaml
+  - ```yaml
     title: Route Punctuality Report
     ```
 
 * - `subtitle`
   - Larger text under the title
-  - 
-
-    ```yaml
+  - ```yaml
     subtitle: Q3 2026
     ```
 
 * - `description`
   - A short summary under the title
-  - 
-
-    ```yaml
+  - ```yaml
     description: On-time performance by route.
     ```
 
 * - `categories`
   - Tags under the title
-  - 
-
-    ```yaml
+  - ```yaml
     categories: [transport, operations]
     ```
 
 * - `author`
   - A single author or array of authors, with optional links, email and ORCID.
-  - 
-
-    ```yaml
+  - ```yaml
     author: Sarah Okonkwo
     ```
 
@@ -194,9 +184,7 @@ Because the authors have affiliations, Quarto lists authors and affiliations in 
 
 * - `affiliation`
   - Affiliations of each author. Set it inside an author, or list them once in a top-level `affiliations` and refer to them by `id`.
-  - 
-
-    ```yaml
+  - ```yaml
     author:
       - name: Tom Reyes
         affiliation: Regional Rail Authority
@@ -225,9 +213,7 @@ Because the authors have affiliations, Quarto lists authors and affiliations in 
 
 * - `date`
   - Published date. A date, or one of `today`, `now`, or `last-modified`. Quarto will format the date based on the document's language.
-  - 
-
-    ```yaml
+  - ```yaml
     date: 2026-10-01
     ```
 
@@ -237,25 +223,19 @@ Because the authors have affiliations, Quarto lists authors and affiliations in 
 
 * - `date-modified`
   - Modified date. Takes the same values as `date`.
-  - 
-
-    ```yaml
+  - ```yaml
     date-modified: last-modified
     ```
 
 * - `doi`
   - DOI, linked to `doi.org`
-  - 
-
-    ```yaml
+  - ```yaml
     doi: 10.5555/12345678
     ```
 
 * - `abstract`
   - Abstract. A block of text below the other fields
-  - 
-
-    ```yaml
+  - ```yaml
     abstract: |
       We summarize on-time rates
       by route.
@@ -263,9 +243,7 @@ Because the authors have affiliations, Quarto lists authors and affiliations in 
 
 * - `keywords`
   - Keywords, a comma-separated list
-  - 
-
-    ```yaml
+  - ```yaml
     keywords: [punctuality, rail]
     ```
 
@@ -448,7 +426,7 @@ When you include a code block, it will get automatic syntax highlighting based
 on the language you specify.
 For example, here's a code block specified as `r`:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/code-blocks/highlight.qmd >}}
 ````
 
@@ -480,7 +458,7 @@ Adding a filename to a code block can provide additional context about where cod
 
 Add one with the `filename` attribute:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/code-blocks/filename.qmd >}}
 ````
 
@@ -533,7 +511,7 @@ Tabsets work best for alternatives where a reader only needs to see one: the sam
 
 To create a tabset, put your content in a fenced div with the class `.panel-tabset`:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/tabsets/route-tabs.qmd >}}
 ````
 
@@ -554,7 +532,7 @@ In static formats like PDF and MS Word, all tabs will be rendered one after anot
 
 When your document has more than one tabset with the same tabs, give each of them the same `group` attribute:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/tabsets/grouped-tabs.qmd >}}
 ````
 
@@ -566,7 +544,7 @@ The reader's browser also remembers the choice, so the same tab is selected when
 You write equations for HTML the same way as for any other format: with TeX math syntax.
 Use single dollar signs (`$...$`) for inline math, and double dollar signs (`$$...$$`) for display equations:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/math/equations.qmd >}}
 ````
 
@@ -608,7 +586,7 @@ A common format for this is BibTeX (`.bib`):
 
 To cite an item in the bibliography, specify the bibliography file in `bibliography` and use the `@` syntax in your text:
 
-````{.markdown filename="train-punctuality.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="train-punctuality.qmd"}
 {{< include _examples/html/citations/train-punctuality.qmd >}}
 ````
 
@@ -651,7 +629,7 @@ For example, here's a cell that produces a figure:
 ::: {.panel-tabset group="language"}
 ## R
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 ```{{r}}
 {{< include _examples/html/computational-outputs/figure-cell.R >}}
 ```
@@ -659,7 +637,7 @@ For example, here's a cell that produces a figure:
 
 ## Python
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 ```{{python}}
 {{< include _examples/html/computational-outputs/figure-cell.py >}}
 ```
@@ -818,13 +796,13 @@ On wide screens, your content appears in the middle of the page, in what Quarto 
 You can move content out of the body column with column classes.
 For example, you might use `.column-margin` for a short aside: 
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/page-layout/_columns-margin.qmd >}}
 ````
 
 Or give a wide table more room by applying `.column-page`:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/page-layout/_columns-wide.qmd >}}
 ````
 
@@ -869,7 +847,7 @@ For example, HTML has a [`<meter>`](https://developer.mozilla.org/en-US/docs/Web
 There is no equivalent Quarto markdown syntax that creates this element.
 To use one in your Quarto document, use the HTML syntax inside a raw HTML block:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/raw-html/meter.qmd >}}
 ````
 
@@ -881,7 +859,7 @@ Two common uses are to embed an app, e.g. a Shiny app, hosted on another site, o
 There is no native syntax, so it belongs in a raw HTML block. 
 Here's an example that uses an iframe to embed a map hosted on `openstreetmap.org`:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/raw-html/iframe.qmd >}}
 ````
 
@@ -889,7 +867,7 @@ It's also common for other projects to provide HTML you can copy and paste to yo
 For example, the [Creative Commons (CC) chooser](https://creativecommons.org/chooser/) provides an HTML snippet to display and link a CC license. 
 Copy the snippet and drop it in a raw HTML block:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/raw-html/license.qmd >}}
 ````
 
@@ -932,7 +910,7 @@ Some WCAG requirements are easily checked by automated tools.
 Quarto includes one such tool, [axe-core](https://github.com/dequelabs/axe-core).
 To run the default set of axe-core checks on your document and display the results on the rendered page itself, set `output: document` under the `axe` option:
 
-````{.markdown filename="report.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/axe/report.qmd >}}
 ````
 
@@ -944,7 +922,7 @@ Here, the figure's image has no alternative text, which fails WCAG 2.0 success c
 
 To fix this problem, you would add alternative text with the `fig-alt` attribute (see @sec-markdown-figures):
 
-```{.markdown filename="report.qmd" .code-overflow-wrap}
+```{.markdown .code-overflow-wrap filename="report.qmd"}
 {{< include _examples/html/axe/_fig-alt.md >}}
 ```
 
@@ -1253,7 +1231,7 @@ Notice the snippet itself is passed in the header to the `text` subkey.
 This works well for short snippets, but you can instead provide a path to a file that holds your snippet.
 For example, if you've stored the CC snippet from @sec-html-raw-html in `license.html`:
 
-```{.html filename="license.html" .code-overflow-wrap}
+```{.html .code-overflow-wrap filename="license.html"}
 {{< include _examples/html/include/license.html >}}
 ```
 
