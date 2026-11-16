@@ -203,6 +203,25 @@ Common syntax for inline text elements in Quarto markdown. TODO: Element column 
 :::
 
 
+## Literal characters {#sec-escaping}
+
+Markdown uses some characters for syntax, like `_` for emphasis, `@` for citations and cross-references, and `[` for links.
+If you want the literal character, escape it with a backslash (`\`):
+
+```markdown
+The answer is 2\*3\*4. Follow \@quarto for news.
+Replace \<name\> with yours. Type a backslash: \\.
+```
+
+This renders as:
+
+> The answer is 2\*3\*4. Follow \@quarto for news.
+> Replace \<name\> with yours. Type a backslash: \\.
+
+When the text is code, like a file name or a function, use inline code instead.
+For example, `` `_quarto.yml` `` needs no escapes to show `_quarto.yml`.
+
+
 ## Lists
 
 You can create an unordered list by starting each line with `-` (or `*` or `+`) followed by a space, 

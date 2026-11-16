@@ -67,3 +67,13 @@ Read the chapters relevant to your work.
 Each chapter is about mastering a core aspect of Quarto: Markdown, Projects, Websites, Options, Troubleshooting.
 These chapters give you the deeper understanding that helps you use Quarto more productively, navigate the documentation, and solve problems independently.
 
+
+## What about Quarto 2?
+
+Quarto 2 is a new version of Quarto, that as of writing, is in development.
+Quarto 2 changes much of how Quarto works behind the scenes, but the goal is for it to do everything Quarto 1 can do.
+We've written this book with Quarto 2 in mind, so what we teach you here will carry over to Quarto 2.
+
+That said there are a few places where Quarto 1 and Quarto 2 fundamentally differ, and what we teach you here will not work in Quarto 2. 
+We've documented these in @sec-q2.
+

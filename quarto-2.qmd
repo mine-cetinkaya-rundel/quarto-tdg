@@ -1,0 +1,115 @@
+# Quarto 2 {#sec-q2}
+
+Quarto 2 is in development. 
+The examples in this book use syntax that works in Quarto 1 and Quarto 2 where possible. 
+This appendix lists the cases where that is not possible. 
+
+## More characters need to be escaped 
+
+@sec-escaping explains how to escape characters that markdown uses for syntax.
+In many cases, Quarto 1 will correctly guess when you meant to show a literal character.
+Quarto 2 never guesses: a character is read as the start of markup and Quarto 2 stops with an error if the markup does not end.
+
+Consequently, you'll find you need to escape more characters in Quarto 2.
+For example, each line below works in Quarto 1:
+
+```markdown
+Edit _quarto.yml and _brand.yml.
+It costs $5 and $10.
+Pass { a, b } to the function.
+A lone ` in prose.
+The `a.rs`'s module.
+```
+
+ In Quarto 2, each line is an error:
+
+| Line           | Quarto 2 error                              |
+| -------------- | ------------------------------------------- |
+| `_quarto.yml`  | Q-2-5, unclosed underscore emphasis         |
+| `$5`           | parse error, `$` starts inline math         |
+| `{ a, b }`     | parse error, braces are only for attributes |
+| a lone `` ` `` | parse error, `` ` `` starts a code span     |
+| `` `a.rs`'s `` | Q-2-7, `'` after a code span starts a quote |
+
+To fix the errors, escape each character with a backslash: 
+
+```markdown
+Edit \_quarto.yml and \_brand.yml.
+It costs \$5 and \$10.
+Pass \{ a, b \} to the function.
+A lone \` in prose.
+The `a.rs`\'s module.
+```
+
+The backslashes are harmless in Quarto 1, so this example will render in both Quarto 1 and Quarto 2.
+
+If the text is code, use a code span instead, for example `` `_quarto.yml` ``.
+
+## Footnotes with more than one paragraph
+
+@sec-footnotes describes the footnote syntax.
+In Quarto 1 a multi-paragraph footnote uses indentation:
+
+```markdown
+Here is some text that needs a long footnote.[^longnote]
+
+[^longnote]: Here's the footnote contents with multiple blocks.
+
+    Subsequent paragraphs are indented to show that they
+    belong to the previous footnote.
+```
+
+In Quarto 2, a multi-paragraph footnote needs to be in a fenced div:
+
+```markdown
+Here is some text that needs a long footnote.[^longnote]
+
+::: ^longnote
+Here's the footnote contents with multiple blocks.
+
+Subsequent paragraphs are not indented. The div holds them.
+:::
+```
+
+These syntaxes are exclusive, Quarto 2 does not accept the indented paragraph and Quarto 1 does not
+recognize the fenced div as a footnote.
+
+A footnote with one paragraph uses the same syntax in both versions.
+
+## Math macros
+
+@sec-equations-macros describes how to define macros.
+In Quarto 1, you can define `\newcommand` in the body of the document, outside any `$` or `$$`. 
+The macros then apply to all the math in the document:
+
+```markdown
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\Var}{\operatorname{Var}}
+
+For any $\vect{x} \in \R^n$,
+
+$$
+\Var(\vect{x}) \geq 0.
+$$
+```
+
+Quarto 2 does not accept a `\newcommand` outside math and inside math `\newcommand` only applies to the math expression that contains it. 
+
+In Quarto 2, you must put each definition in each expression that uses the macro:
+
+```markdown
+For any $\newcommand{\R}{\mathbb{R}}\newcommand{\vect}[1]{\mathbf{#1}}\vect{x} \in \R^n$,
+
+$$
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\Var}{\operatorname{Var}}
+\Var(\vect{x}) \geq 0.
+$$
+```
+
+You can use this syntax in Quarto 1, but it repeats each definition.
+@sec-equations-macros also shows how to share macros between documents with an include
+file, for example `_macros.qmd`. 
+In Quarto 2, this does not work.
+
