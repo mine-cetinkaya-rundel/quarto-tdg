@@ -1,0 +1,14 @@
+# Settings for Quarto 2 (q2) only. Render with: q2 render --profile q2
+# q2 books need citeproc in filters (Quarto 1 reads it as a file path).
+#
+# Known error: references.qmd is also in book.appendices (Quarto 1 needs
+# it there), so q2 renders it twice and reports "artifact key
+# 'search-page/references.html' has conflicting content". The output is
+# correct. `appendices: !prefer [jupyter.qmd]` here removes the error, but
+# q2 exports QUARTO_PROFILE=q2 to code cells, and the Quarto 1 call in
+# projects.qmd then fails on the unknown `!prefer` tag.
+book:
+  references: references.qmd
+
+filters:
+  - citeproc
