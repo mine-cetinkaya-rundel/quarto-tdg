@@ -769,6 +769,7 @@ A code cell that makes an interactive map.
 ```{r}
 #| echo: false
 #| fig-height: 3
+#| eval: !expr knitr::is_html_output()
 {{< include _examples/html/widgets/leaflet-cell.R >}}
 ```
 
