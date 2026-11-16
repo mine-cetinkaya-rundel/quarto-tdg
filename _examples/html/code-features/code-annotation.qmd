@@ -1,0 +1,8 @@
+```r
+punctuality <- read.csv("punctuality.csv") # <1>
+punctuality$gap <- punctuality$off_peak - punctuality$peak # <2>
+punctuality[order(-punctuality$gap), ] # <3>
+```
+1. Read the on-time rates for each route.
+2. Calculate the difference between off-peak and peak on-time rates.
+3. Sort the routes so the largest gap is first.

@@ -1,0 +1,10 @@
+```{python}
+#| echo: false
+{{< include data.py >}}
+```
+
+## Renderings
+
+```{python}
+{{< include _rate-plot.py >}}
+```

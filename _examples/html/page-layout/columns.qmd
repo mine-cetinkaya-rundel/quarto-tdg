@@ -1,0 +1,3 @@
+{{< include _columns-margin.qmd >}}
+
+{{< include _columns-wide.qmd >}}

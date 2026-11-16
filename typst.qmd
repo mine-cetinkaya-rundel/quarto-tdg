@@ -137,6 +137,8 @@ csl: chicago-author-date
 
 ![Chicago author-date citation style, the default for HTML formats](images/typst-citations-chicago-train-punctuality.png){#fig-typst-citations-chicago .border fig-alt="A short PDF document showing a Chicago author-date in-text citation and a bibliography entry."}
 
+You can find a list of available styles in the Typst documentation for [Bibliography](https://typst.app/docs/reference/model/bibliography/#parameters-style), or alternatively provide a URL to `csl` as described for HTML in @sec-html-citations.
+
 You can read more about citations in @sec-citations, including about various `@` syntax variations.
 
 ## Mathematical equations
@@ -148,7 +150,7 @@ Use single dollar signs (`$...$`) for inline math, and double dollar signs (`$$.
 {{< include _examples/typst/math/equations.qmd >}}
 ````
 
-![Inline and display math rendered in Typst](images/typst-math-equations.png){#fig-typst-math-equations .border fig-alt="A PDF showing an inline mean symbol in a sentence and a numbered display equation for the sample mean."}
+![Inline and display math rendered in Typst](images/typst-math-equations.png){#fig-typst-math-equations .border fig-alt="A PDF showing a sentence with inline symbols p, t sub i and k sub i, a numbered display equation for the network on-time rate as a ratio of two sums, and a sentence with a link to Equation 1."}
 
 ::: {.callout-note}
 ## Typst has its own math syntax
@@ -168,7 +170,7 @@ You can add alternative text to cross-referenced display equations with an `alt=
 {{< include _examples/typst/math/equations-alt.qmd >}}
 ````
 
-![Display equation with alt text](images/typst-math-equations-alt.png){#fig-typst-math-equations-alt .border fig-alt="A PDF showing a numbered display equation for the sample mean."}
+![Display equation with alt text](images/typst-math-equations-alt.png){#fig-typst-math-equations-alt .border fig-alt="A PDF showing a numbered display equation for the network on-time rate as a ratio of two sums."}
 
 ::: {.callout-caution}
 
@@ -455,18 +457,8 @@ Each of the wider three has `-left` and `-right` variants for one-sided expansio
 
 ![Extent column classes on a single page](images/typst-column-layout-extents.png){#fig-typst-column-layout-extents .border fig-alt="A page laid out with one rectangle per column class, sized to its width: a small body rectangle at top, a margin rectangle in the right margin, three body-outset rectangles slightly wider than the body, three page-inset rectangles wider still, and three page rectangles extending to the page margins."}
 
-For document-wide defaults, set `tbl-column` and `fig-column` in the document header:
-
-```{.yaml filename="report.qmd"}
----
-format: typst
-fig-column: page
-tbl-column: page
----
-```
-
-Both apply to every cross-referenceable table or figure in the document — markdown pipe tables, list tables, and computational outputs alike.
-Tables and figures without an identifier are unaffected, as are non-cross-referenceable images and tables.
+To place figures and tables in a column, including setting a default for the whole document, see @sec-page-columns.
+You can also put footnotes, citations, and captions in the margin with document options (@sec-column-classes).
 
 
 When you place content outside the default body column, the layout mechanism of your document changes from a simple single body area to a layout using the Typst [marginalia package](https://typst.app/universe/package/marginalia/) to manage the margin allocation.
@@ -553,12 +545,12 @@ As a human, meeting rules that require human judgment is your responsibility.
 #### Meeting PDF/UA-1 does not mean your document meets WCAG {.unnumbered}
 
 The rules in PDF/UA-1 cover structural requirements that are necessary for accessibility, but they don't cover all the content-level requirements in WCAG. 
-For example, consider the rule:
+For example, consider WCAG success criterion 1.4.3:
 
 > WCAG 2.1: 1.4.3 Contrast (Minimum): The visual presentation of text and images of text has a contrast ratio of at least 4.5:1, except for the following: ...
 
-This rule has no PDF/UA-1 equivalent, so you can fully meet all machine- and human-checkable PDF/UA-1 requirements without meeting WCAG.
-Some tools can check additional WCAG rules but these are beyond the automated checks you'll get from Quarto.
+This success criterion has no PDF/UA-1 equivalent, so you can fully meet all machine- and human-checkable PDF/UA-1 requirements without meeting WCAG.
+Some tools can check additional WCAG requirements but these are beyond the automated checks you'll get from Quarto.
 
 ### Accessibility best practices
 

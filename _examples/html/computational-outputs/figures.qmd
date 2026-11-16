@@ -1,0 +1,10 @@
+```{r}
+#| echo: false
+{{< include data.R >}}
+```
+
+@fig-punctuality shows on-time rates across the network's routes.
+
+```{r}
+{{< include figure-cell.R >}}
+```

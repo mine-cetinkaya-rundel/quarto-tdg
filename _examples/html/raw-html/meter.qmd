@@ -1,0 +1,6 @@
+## Peak on-time rate
+
+```{=html}
+<label for="coastal-express">Coastal Express</label>
+<meter id="coastal-express" value="0.65" low="0.75" high="0.85" optimum="1">65%</meter>
+```

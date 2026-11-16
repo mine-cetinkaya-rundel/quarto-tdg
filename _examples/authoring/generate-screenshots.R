@@ -13,6 +13,7 @@ image_dir <- here("images")
 screenshots <- tribble(
   ~file,                      ~id,
   "tables/markdown-table.qmd"          , "tbl-perf",
+  "math/macros.qmd"                    , "math-macros",
 )
 
 screenshots <- screenshots |>

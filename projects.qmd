@@ -394,6 +394,7 @@ If you would like to specify common metadata for documents inside a sub-director
 :::
 
 Using `_quarto.yml` can help reduce duplication in the metadata of your documents, but once you have related documents in a project, you often also find you have duplicated content. You can reduce duplication of content by using the include shortcode described in @sec-includes.
+
 #### Multiple Formats
 
 You can set defaults for more than one format in `_quarto.yml` by nesting them under `format`:

@@ -1,0 +1,19 @@
+## Route details
+
+::: {.panel-tabset}
+
+### Harbour–Airport
+
+On time for 71% of peak services and 85% of off-peak services.
+Most delays happen at the airport terminal loop.
+
+### West Loop
+
+On time for 88% of peak services and 94% of off-peak services.
+
+### University Line
+
+On time for 90% of peak services and 96% of off-peak services.
+The best performing route in the network.
+
+:::
