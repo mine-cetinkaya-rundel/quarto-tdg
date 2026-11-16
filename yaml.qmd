@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # Options {#sec-yaml}
 
 ## Overview 
@@ -148,7 +152,7 @@ YAML might be interpreting literally but Quarto/Pandoc might escape somewhere?
 
 ### Long strings
 
-For strings that are longer than you'd comfortably put on a single line, or need explicit line breaks, you can use what YAML calls **block scalars** \index{block scalar}.
+For strings that are longer than you'd comfortably put on a single line, or need explicit line breaks, you can use what YAML calls **block scalars** `\index{block scalar}`{=latex}.
 
 There are two styles: literal and folded.
 
@@ -782,7 +786,7 @@ For options in the later category, just like document options, you can increase 
 Execution options are set in code cells using YAML syntax after a special comment:
 
 ````
-```{{r}}
+```{r}
 #| echo: false
 
 ```
@@ -798,7 +802,7 @@ but for multiline statements, remember to preface each line with the cell option
 For example, to use a literal block string:
 
 ````
-```{{r}}
+```{r}
 #| fig-cap: |
 #|   Here's a long caption
 #|   spread over two lines
@@ -821,7 +825,7 @@ echo: false
 You can override the document level setting by setting the option in a code cell:
 
 ````
-```{{r}}
+```{r}
 #| echo: true
 
 ```
