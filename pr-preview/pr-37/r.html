@@ -104,7 +104,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-78d786e26805db0cc8c03c0109336878.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fbf8b10b01064a7b781531c7b7d66a79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -134,6 +134,19 @@ div.csl-indent {
 }</script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<style>
+div.callout-todo.callout {
+  border-left-color: #bf6bc9;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgba(191, 107, 201, 0.13);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+</style>
 
 
 </head>
@@ -740,7 +753,7 @@ Figure&nbsp;7.1: Penguins with longer flippers tend to be heavier.
 <li><code>fig-align</code>: Alignment: <code>left</code>, <code>center</code>, or <code>right</code></li>
 <li><code>fig-dpi</code>: Resolution in dots per inch</li>
 <li><code>fig-width</code> and <code>fig-height</code>: Figure dimensions in inches</li>
-<li><code>out-width</code> and <code>out-height</code>: Output dimensions as percentage (80%), pixels (400px), or page metrics (0.5)</li>
+<li><code>out-width</code> and <code>out-height</code>: Output dimensions as percentage (80%), pixels (400px), or page metrics (<code>0.5\linewidth</code>)</li>
 </ul></li>
 <li>Finally, some relate to caching:
 <ul>

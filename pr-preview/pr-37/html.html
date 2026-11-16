@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-78d786e26805db0cc8c03c0109336878.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fbf8b10b01064a7b781531c7b7d66a79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -123,6 +123,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
 <script src="site_libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<style>
+div.callout-todo.callout {
+  border-left-color: #bf6bc9;
+}
+div.callout-todo.callout-style-default .callout-header {
+  background-color: rgba(191, 107, 201, 0.13);
+}
+div.callout-todo .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.callout-titled .callout-icon::before {
+  content: '📝';
+  background-image: none;
+}
+</style>
 
 
 </head>
@@ -852,8 +865,18 @@ Figure&nbsp;9.7: Hovering over a cross-reference shows a preview of the table it
 </figcaption>
 </figure>
 </div>
-<div class="todo">
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>[CVW] The typst chapter doesn’t have this section. Do we need it here? Do we need it there? We use it in the “first document”, so we need to introduce the syntax earlier in the book.</p>
+</div>
 </div>
 </section>
 <section id="sec-html-reference-popups" class="level3" data-number="9.6.4">
@@ -1309,8 +1332,18 @@ Figure&nbsp;9.20: Rendered output of the figure cell, with the figure inserted d
 </figure>
 </div>
 <p>You’ll find the code cell options for captions, alternative text and cross-references, along with many more details about figures and tables from code, in <span class="quarto-unresolved-ref">?sec-figtab</span>.</p>
-<div class="todo">
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>[CVW] Link to light and dark versions of figures (<code>@sec-figtab-light-dark</code>) once it lands in the Figures and tables chapter. See #36 and branch <code>figtab-light-dark</code>.</p>
+</div>
 </div>
 <p>The sections below cover a few things that are specific to HTML: figure formats, table formats, and interactive widgets.</p>
 <section id="figure-formats" class="level3" data-number="9.12.1">
@@ -1403,8 +1436,8 @@ Figure&nbsp;9.21: A code cell that makes an interactive map.
 <p>Drag to pan, and use the buttons or scroll to zoom:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-591e841ebccd2456c62a" style="width:100%;height:278px;"></div>
-<script type="application/json" data-for="htmlwidget-591e841ebccd2456c62a">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"setView":[[-36.852,174.768],12,[]]},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-4eac18b8e5a327218381" style="width:100%;height:278px;"></div>
+<script type="application/json" data-for="htmlwidget-4eac18b8e5a327218381">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]}],"setView":[[-36.852,174.768],12,[]]},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1425,8 +1458,18 @@ Figure&nbsp;9.22: An interactive leaflet map in an HTML document.
 <li><p><strong>Widgets are HTML only.</strong> When you render to a static format like PDF you get a static version of the widget or nothing. With the knitr engine, rendering fails unless the webshot2 package is installed. If it is installed, Quarto includes a screenshot of the widget. With the jupyter engine, you get a static image only if the package also provides one in its output bundle. If you render to more than one format, consider using conditional content to show a static plot or table in the other formats (see <a href="https://quarto.org/docs/authoring/conditional.html" class="quarto-docs"><span class="docs-lead">Conditional</span> Content</a> in the Quarto documentation).</p></li>
 <li><p><strong>Widgets add weight and may not be accessible.</strong> Each widget library adds JavaScript that readers must download. Not all widgets work with a keyboard or a screen reader, so give important results in the text too (see <a href="#sec-html-accessibility-interactive" class="quarto-xref"><span>Section 9.15.3.8</span></a>).</p></li>
 </ul>
-<div class="todo">
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>[CVW] Consider moving to a “Computational outputs” chapter in the reorg.</p>
+</div>
 </div>
 </section>
 </section>
