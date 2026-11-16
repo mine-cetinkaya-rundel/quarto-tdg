@@ -798,74 +798,97 @@ website:
 @tbl-nav-elements summarizes other navigation elements beyond the top bar and side bar.
 We've included `sidebar` and `navbar` for completeness.
 
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| Element                                                                                            |                                                                                                                                                                                        | Option                                                                               |
-+:===================================================================================================+:=======================================================================================================================================================================================+:=====================================================================================+
-| [Top navigation](https://quarto.org/docs/websites/website-navigation.html#top-navigation)\         | ![](images/website-navbar-highlight.png){fig-alt="Screenshot of webpage with the bar along top that includes a logo, title, and navigation links is highlighted."}                     | `navbar`:                                                                            |
-| Navigation bar that appears at top of page\                                                        |                                                                                                                                                                                        |                                                                                      |
-| See @sec-navbar                                                                                    |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   disable for a page in document header                                            |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [Side navigation](https://quarto.org/docs/websites/website-navigation.html#side-navigation)\       | ![](images/website-sidebar-highlight.png){fig-alt="Screenshot of webpage with navigation bar on the right of the page highlighted."}                                                   | `sidebar`:                                                                           |
-| Navigation bar that appears on the left side of page\                                              |                                                                                                                                                                                        |                                                                                      |
-| See @sec-sidebar                                                                                   |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   disable for a page in document header                                            |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [Search](https://quarto.org/docs/websites/website-search.html)\                                    | ![](images/website-search.jpeg){fig-alt="Screenshot of webpage with search icon in top navigation bar highlighted"}                                                                    | `search`:                                                                            |
-| Search box that appears in top or side navigation                                                  |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   set options under `website` in `_quarto.yml`                                     |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   enable/disable under `navbar` or `sidebar`, nested in `website` in `_quarto.yml` |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [Breadcrumbs](https://quarto.org/docs/websites/website-navigation.html#breadcrumbs)\               | ![](images/website-breadcrumbs.jpeg){fig-alt="Screenshot of webpage with 'Guide > Websites > Website Navigation' highlighted above the page title 'Website Navigation'."}              | `breadcrumbs`:                                                                       |
-| Links above page title that indicate location in sidebar hierarchy                                 |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [Back to top](https://quarto.org/docs/websites/website-navigation.html#back-to-top)\               | ![](images/website-back-to-top.jpeg){fig-alt="Screenshot of a webpage with a button 'Back to Top' highlighted at the bottom of the page,"}                                             | `back-to-top-navigation`:                                                            |
-| Link at the bottom of page to return to the top of the page                                        |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [Page footer](https://quarto.org/docs/websites/website-navigation.html#page-footer)\               | ![](images/website-footer.jpeg){fig-alt="Screenshot of a webpage with the footer at the bottom of the page."}                                                                          | `page-footer` under `website` in `_quarto.yml`                                       |
-| Content to put in footer on all pages                                                              |                                                                                                                                                                                        |                                                                                      |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [Page navigation](https://quarto.org/docs/websites/website-navigation.html#page-navigation)\       | ![](images/website-page-navigation.jpeg){fig-alt="Screenshot of a webpage with links to the next and previous page at the bottom of the page highlighted."}                            | `page-navigation`:                                                                   |
-| Links at the bottom of page to previous and next page (as defined in sidebar)                      |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   under `website` in `_quarto.yml`                                                 |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [Table of contents](https://quarto.org/docs/output-formats/html-basics.html#table-of-contents)\    | ![](images/website-toc-highlight.png){fig-alt="Screenshot of a webpage with a table of contents listing sections on the current page positioned on the right of the page highighted."} | `toc`,`toc-depth`, `toc-expand`, `toc-title`, `toc-location`:                        |
-| A table of contents to navigate sections within a page, usually shown on right                     |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   `_quarto.yml` (under `format:html` or at top-level)                              |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [GitHub links](https://quarto.org/docs/websites/website-navigation.html#github-links)\             | ![](images/website-github-links.png){fig-alt="Screenshot of a webpage with links to 'Edit this page' and 'Report an Issue' highlighted below the table of contents."}                  | `repo-url` and `repo-actions` under `website` in `_quarto.yml`                       |
-| Links to Github for the page source, to edit the page source, or open an issue.                    |                                                                                                                                                                                        |                                                                                      |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [Other formats](https://quarto.org/docs/output-formats/html-multi-format.html)\                    | ![](images/website-other-formats.jpeg){fig-alt="Screenshot of a webpage with links under an 'Other Formats' label beneath the table of contents highlighted."}                         | `format`:                                                                            |
-| Links to other formats shown below table of contents                                               |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   in `_quarto.yml`                                                                 |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | `format-links`:                                                                      |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   in `_quarto.yml`                                                                 |
-|                                                                                                    |                                                                                                                                                                                        |                                                                                      |
-|                                                                                                    |                                                                                                                                                                                        | -   in document header                                                               |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
-| [Other links](https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links)\ | ![](images/website-other-links.jpeg){fig-alt="Screenshot of a webpage with links under an 'Other Links' and 'Code Links' label beneath the table of contents highlighted."}            | `code-links`, `other-links`, usually, in document header.                            |
-| Links listed below table of contents in the "Code Links" or "Other Links" sections                 |                                                                                                                                                                                        |                                                                                      |
-+----------------------------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
+::: {#tbl-nav-elements .list-table tbl-colwidths="[30, 40, 30]" header-rows="1" aligns="l,l,l"}
+Website navigation elements
 
-: Website navigation elements {#tbl-nav-elements tbl-colwidths="[30, 40, 30]"}
+* - Element
+  -
+  - Option
+* - [Top navigation](https://quarto.org/docs/websites/website-navigation.html#top-navigation)\
+    Navigation bar that appears at top of page\
+    See @sec-navbar
+  - ![](images/website-navbar-highlight.png){fig-alt="Screenshot of webpage with the bar along top that includes a logo, title, and navigation links is highlighted."}
+  - `navbar`:
+
+    -   under `website` in `_quarto.yml`
+
+    -   disable for a page in document header
+* - [Side navigation](https://quarto.org/docs/websites/website-navigation.html#side-navigation)\
+    Navigation bar that appears on the left side of page\
+    See @sec-sidebar
+  - ![](images/website-sidebar-highlight.png){fig-alt="Screenshot of webpage with navigation bar on the right of the page highlighted."}
+  - `sidebar`:
+
+    -   under `website` in `_quarto.yml`
+
+    -   disable for a page in document header
+* - [Search](https://quarto.org/docs/websites/website-search.html)\
+    Search box that appears in top or side navigation
+  - ![](images/website-search.jpeg){fig-alt="Screenshot of webpage with search icon in top navigation bar highlighted"}
+  - `search`:
+
+    -   set options under `website` in `_quarto.yml`
+
+    -   enable/disable under `navbar` or `sidebar`, nested in `website` in `_quarto.yml`
+* - [Breadcrumbs](https://quarto.org/docs/websites/website-navigation.html#breadcrumbs)\
+    Links above page title that indicate location in sidebar hierarchy
+  - ![](images/website-breadcrumbs.jpeg){fig-alt="Screenshot of webpage with 'Guide > Websites > Website Navigation' highlighted above the page title 'Website Navigation'."}
+  - `breadcrumbs`:
+
+    -   under `website` in `_quarto.yml`
+
+    -   in document header
+* - [Back to top](https://quarto.org/docs/websites/website-navigation.html#back-to-top)\
+    Link at the bottom of page to return to the top of the page
+  - ![](images/website-back-to-top.jpeg){fig-alt="Screenshot of a webpage with a button 'Back to Top' highlighted at the bottom of the page,"}
+  - `back-to-top-navigation`:
+
+    -   under `website` in `_quarto.yml`
+
+    -   in document header
+* - [Page footer](https://quarto.org/docs/websites/website-navigation.html#page-footer)\
+    Content to put in footer on all pages
+  - ![](images/website-footer.jpeg){fig-alt="Screenshot of a webpage with the footer at the bottom of the page."}
+  - `page-footer` under `website` in `_quarto.yml`
+* - [Page navigation](https://quarto.org/docs/websites/website-navigation.html#page-navigation)\
+    Links at the bottom of page to previous and next page (as defined in sidebar)
+  - ![](images/website-page-navigation.jpeg){fig-alt="Screenshot of a webpage with links to the next and previous page at the bottom of the page highlighted."}
+  - `page-navigation`:
+
+    -   under `website` in `_quarto.yml`
+
+    -   in document header
+* - [Table of contents](https://quarto.org/docs/output-formats/html-basics.html#table-of-contents)\
+    A table of contents to navigate sections within a page, usually shown on right
+  - ![](images/website-toc-highlight.png){fig-alt="Screenshot of a webpage with a table of contents listing sections on the current page positioned on the right of the page highighted."}
+  - `toc`,`toc-depth`, `toc-expand`, `toc-title`, `toc-location`:
+
+    -   `_quarto.yml` (under `format:html` or at top-level)
+
+    -   in document header
+* - [GitHub links](https://quarto.org/docs/websites/website-navigation.html#github-links)\
+    Links to Github for the page source, to edit the page source, or open an issue.
+  - ![](images/website-github-links.png){fig-alt="Screenshot of a webpage with links to 'Edit this page' and 'Report an Issue' highlighted below the table of contents."}
+  - `repo-url` and `repo-actions` under `website` in `_quarto.yml`
+* - [Other formats](https://quarto.org/docs/output-formats/html-multi-format.html)\
+    Links to other formats shown below table of contents
+  - ![](images/website-other-formats.jpeg){fig-alt="Screenshot of a webpage with links under an 'Other Formats' label beneath the table of contents highlighted."}
+  - `format`:
+
+    -   in `_quarto.yml`
+
+    -   in document header
+
+    `format-links`:
+
+    -   in `_quarto.yml`
+
+    -   in document header
+* - [Other links](https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links)\
+    Links listed below table of contents in the "Code Links" or "Other Links" sections
+  - ![](images/website-other-links.jpeg){fig-alt="Screenshot of a webpage with links under an 'Other Links' and 'Code Links' label beneath the table of contents highlighted."}
+  - `code-links`, `other-links`, usually, in document header.
+:::
 
 
 ## Website theming {#sec-websites-theme}
@@ -1296,32 +1319,75 @@ When rendered, you'll get a link that looks like a button:
 You'll need to pay attention to the kind of object Bootstrap classes apply to and match to the appropriate Quarto syntax.
 @tbl-bootstrap-classes gives some examples of applying Bootstrap classes to a span, div, and table.
 
-+--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
-| Component                                                                            | Class                         | Element                     | Quarto Markdown                                      | Rendered                                                                   |
-+:=====================================================================================+:==============================+:============================+:=====================================================+:===========================================================================+
-| [Badge](https://getbootstrap.com/docs/5.3/components/badge/)                         | `badge`                       | `<span>`                    | `### Example heading [New]{.badge .text-bg-primary}` | ::: {.border .p-2}                                                         |
-|                                                                                      |                               |                             |                                                      | ### Example heading [New]{.badge .text-bg-primary} {.unnumbered .unlisted} |
-|                                                                                      |                               |                             |                                                      | :::                                                                        |
-+--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
-| [Border Utility](https://getbootstrap.com/docs/5.3/utilities/borders/)               | `border` , `rounded` and more | `<div>`                     | ``` markdown                                         |                                                                            |
-|                                                                                      |                               |                             | ::: {.border .rounded .border-primary .p-2}          | ::: {.border .rounded .border-primary .p-2}                                |
-|                                                                                      |                               |  Also applies to  `<span>`, |                                                      |                                                                            |
-|                                                                                      |                               |  and `<img>`                | Some content                                         | Some content                                                               |
-|                                                                                      |                               |                             |                                                      |                                                                            |
-|                                                                                      |                               |                             | :::                                                  | :::                                                                        |
-|                                                                                      |                               |                             | ```                                                  |                                                                            |         
-+--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
-| [Accented Tables](https://getbootstrap.com/docs/5.3/content/tables/#accented-tables) | `table-striped`               | `<table>`                   | ``` markdown                                         | |       |                                                                  |
-|                                                                                      |                               |                             | |       |                                            | |-------|                                                                  |
-|                                                                                      |                               |                             | |-------|                                            | | Row 1 |                                                                  |
-|                                                                                      |                               |                             | | Row 1 |                                            | | Row 2 |                                                                  |
-|                                                                                      |                               |                             | | Row 2 |                                            |                                                                            |
-|                                                                                      |                               |                             |                                                      | : {.table-striped}                                                         |
-|                                                                                      |                               |                             | : {.table-striped}                                   |                                                                            |
-|                                                                                      |                               |                             | ```                                                  |                                                                            |
-+--------------------------------------------------------------------------------------+-------------------------------+-----------------------------+------------------------------------------------------+----------------------------------------------------------------------------+
+::: {#tbl-bootstrap-classes .list-table .column-page tbl-colwidths="[10, 10, 10, 40, 30]" header-rows="1" aligns="l,l,l,l,l"}
+Examples of Bootstrap classes used in Quarto markdown syntax
 
-: Examples of Bootstrap classes used in Quarto markdown syntax {#tbl-bootstrap-classes .column-page tbl-colwidths="[10, 10, 10, 40, 30]"}
+* - Component
+  - Class
+  - Element
+  - Quarto Markdown
+  - Rendered
+* - [Badge](https://getbootstrap.com/docs/5.3/components/badge/)
+  - `badge`
+  - `<span>`
+  - `### Example heading [New]{.badge .text-bg-primary}`
+  - ::: {.content-visible when-format="html"}
+    ::: {.border .p-2}
+    ### Example heading [New]{.badge .text-bg-primary} {.unnumbered .unlisted}
+    :::
+    :::
+
+    ::: {.content-visible unless-format="html"}
+    ![](images/websites-bootstrap-classes-badge.png){fig-alt="The text Example heading followed by a blue badge that reads New, inside a light gray border."}
+    :::
+* - [Border Utility](https://getbootstrap.com/docs/5.3/utilities/borders/)
+  - `border` , `rounded` and more
+  - `<div>`
+
+     Also applies to  `<span>`,
+     and `<img>`
+  - ``` markdown
+    ::: {.border .rounded .border-primary .p-2}
+
+    Some content
+
+    :::
+    ```
+  - ::: {.content-visible when-format="html"}
+    ::: {.border .rounded .border-primary .p-2}
+
+    Some content
+
+    :::
+    :::
+
+    ::: {.content-visible unless-format="html"}
+    ![](images/websites-bootstrap-classes-border.png){fig-alt="The text Some content inside a blue border with rounded corners."}
+    :::
+* - [Accented Tables](https://getbootstrap.com/docs/5.3/content/tables/#accented-tables)
+  - `table-striped`
+  - `<table>`
+  - ``` markdown
+    |       |
+    |-------|
+    | Row 1 |
+    | Row 2 |
+
+    : {.table-striped}
+    ```
+  - ::: {.content-visible when-format="html"}
+    |       |
+    |-------|
+    | Row 1 |
+    | Row 2 |
+
+    : {.table-striped}
+    :::
+
+    ::: {.content-visible unless-format="html"}
+    ![](images/websites-bootstrap-classes-table-striped.png){fig-alt="A table with two rows, Row 1 and Row 2. Row 1 has a gray background."}
+    :::
+:::
 
 #### Bootstrap SCSS variables
 
@@ -1617,31 +1683,53 @@ _site/
 └── site_libs
 ```
 
-+---------------+--------------------+-------------------------+------------------------------+------------------------------------------+
-| Code/Render   | On your computer   | In the repo             | On CI                        | Tools required on CI                     |
-+:==============+:===================+:========================+:=============================+:=========================================+
-| Local/Local   | `quarto render`    | ``` {.default .dir-str} | When triggered,\             | -   None                                 |
-|               |                    | website/                | deploys `_site`              |                                          |
-|               |                    | ├──_site/               |                              |                                          |
-|               |                    | ├──_quarto.yml          |                              |                                          |
-|               |                    | └──index.qmd            |                              |                                          |
-|               |                    | ```                     |                              |                                          |
-+---------------+--------------------+-------------------------+------------------------------+------------------------------------------+
-| Local/Remote  | `quarto render`    | ``` {.default .dir-str} | When triggered,\             | -   Quarto CLI                           |
-|               |                    | website/                | renders based on `_freeze`,\ |                                          |
-|               |                    | ├──_freeze/             | and publishes.\              |                                          |
-|               |                    | ├──_quarto.yml          | E.g. `quarto publish`        |                                          |
-|               |                    | └──index.qmd            |                              |                                          |
-|               |                    | ```                     |                              |                                          |
-+---------------+--------------------+-------------------------+------------------------------+------------------------------------------+
-| Remote/Remote | Nothing required.\ | ``` {.default .dir-str} | When triggered,\             | -   Quarto CLI                           |
-|               |                    | website/                | renders\                     |                                          |
-|               |                    | ├──_quarto.yml          | and publishes.\              | -   R/Python/Julia and required packages |
-|               |                    | └──index.qmd            | E.g. `quarto publish`        |                                          |
-|               |                    | ```                     |                              |                                          |
-+---------------+--------------------+-------------------------+------------------------------+------------------------------------------+
+::: {#tbl-website-ci .list-table .column-page header-rows="1" widths="16,21,26,31,43" aligns="l,l,l,l,l"}
+Continuous integration options
 
-: Continuous integration options {#tbl-website-ci .column-page}
+* - Code/Render
+  - On your computer
+  - In the repo
+  - On CI
+  - Tools required on CI
+* - Local/Local
+  - `quarto render`
+  - ``` {.default .dir-str}
+    website/
+    ├──_site/
+    ├──_quarto.yml
+    └──index.qmd
+    ```
+  - When triggered,\
+    deploys `_site`
+  - -   None
+* - Local/Remote
+  - `quarto render`
+  - ``` {.default .dir-str}
+    website/
+    ├──_freeze/
+    ├──_quarto.yml
+    └──index.qmd
+    ```
+  - When triggered,\
+    renders based on `_freeze`,\
+    and publishes.\
+    E.g. `quarto publish`
+  - -   Quarto CLI
+* - Remote/Remote
+  - Nothing required.\
+  - ``` {.default .dir-str}
+    website/
+    ├──_quarto.yml
+    └──index.qmd
+    ```
+  - When triggered,\
+    renders\
+    and publishes.\
+    E.g. `quarto publish`
+  - -   Quarto CLI
+
+    -   R/Python/Julia and required packages
+:::
 
 
 ### Local code execution and local render
