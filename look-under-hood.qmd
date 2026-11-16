@@ -479,7 +479,7 @@ Quarto will use the detected installation and process the `.tex` file as many ti
 
 @fig-render-process-pdf shows part of the PDF output that results for `pdf-r.qmd`.
 
-[![A portion of the final PDF document produced by pdf-r.qmd](images/look-under-hood-pdf.png){#fig-render-process-pdf fig-alt="A screenshot of a PDF document with the title 'My document'. Below the title is a table of contents followed by a section called `A computation`."}](_examples/look-under-hood/render-process.pdf)
+![A portion of the final PDF document produced by pdf-r.qmd](images/look-under-hood-pdf.png){#fig-render-process-pdf fig-alt="A screenshot of a PDF document with the title 'My document'. Below the title is a table of contents followed by a section called `A computation`."}
 
 ## A multi-format document
 
