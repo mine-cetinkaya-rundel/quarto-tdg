@@ -73,5 +73,11 @@ crossref:
   lst-prefix: Snippet
 
 filters: 
-  - list-table
   - _filters/quarto-docs-links.lua
+  - custom-callout
+
+custom-callout:
+  todo:
+    icon-symbol: "📝"
+    color: "#bf6bc9"
+    title: "TO-DO"

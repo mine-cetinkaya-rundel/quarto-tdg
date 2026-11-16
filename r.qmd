@@ -130,8 +130,13 @@ With `paged`, the same code cell produces a table readers can page through:
 
 ```{r}
 #| echo: false
+#| eval: !expr knitr::is_html_output()
 rmarkdown::paged_table(penguins)
 ```
+
+::: {.content-visible unless-format="html"}
+![](images/r-paged-table.png){width=70% fig-alt="A table of the penguins data showing the first ten rows and four columns: species, island, bill_length_mm and bill_depth_mm. Below the table, the text '1-10 of 344 rows' and links to pages 1 to 35."}
+:::
 
 :::
 
@@ -348,7 +353,7 @@ The knitr engine supports a large set of cell-level options.
   - `fig-align`: Alignment: `left`, `center`, or `right`
   - `fig-dpi`: Resolution in dots per inch
   - `fig-width` and `fig-height`: Figure dimensions in inches
-  - `out-width` and `out-height`: Output dimensions as percentage (80%), pixels (400px), or page metrics (0.5\linewidth)
+  - `out-width` and `out-height`: Output dimensions as percentage (80%), pixels (400px), or page metrics (`0.5\linewidth`)
 
 - Finally, some relate to caching:
   - `cache`: Enable caching for the cell
