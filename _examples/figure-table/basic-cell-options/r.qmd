@@ -1,0 +1,42 @@
+---
+echo: false
+---
+
+```{r}
+{{< include ../_code-snippets/setup.R >}}
+```
+
+:::{#basic-cell-options-table}
+
+```{r}
+#| label: tbl-species-count
+#| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
+
+{{< include ../_code-snippets/species-count.R >}}
+```
+:::
+
+:::{#basic-cell-options-figure}
+
+```{r}
+#| label: fig-scatter
+#| fig-cap: "Penguin bill length versus depth by species"
+#| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
+
+{{< include ../_code-snippets/bill-scatter.R >}}
+```
+
+:::
+
+
+```{r}
+#| label: tbl-example
+#| tbl-cap: 
+#|   - "Cars"
+#|   - "Pressure"
+#| layout-ncol: 2
+
+library(knitr)
+kable(head(cars))
+kable(head(pressure))
+```
