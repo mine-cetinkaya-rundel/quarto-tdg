@@ -798,7 +798,7 @@ website:
 @tbl-nav-elements summarizes other navigation elements beyond the top bar and side bar.
 We've included `sidebar` and `navbar` for completeness.
 
-::: {#tbl-nav-elements .list-table header-rows="1" widths="30,40,30" aligns="l,l,l"}
+::: {#tbl-nav-elements .list-table tbl-colwidths="[30, 40, 30]" header-rows="1" aligns="l,l,l"}
 Website navigation elements
 
 * - Element
@@ -1307,7 +1307,7 @@ When rendered, you'll get a link that looks like a button:
 You'll need to pay attention to the kind of object Bootstrap classes apply to and match to the appropriate Quarto syntax.
 @tbl-bootstrap-classes gives some examples of applying Bootstrap classes to a span, div, and table.
 
-::: {#tbl-bootstrap-classes .list-table .column-page header-rows="1" widths="10,10,10,40,30" aligns="l,l,l,l,l"}
+::: {#tbl-bootstrap-classes .list-table .column-page tbl-colwidths="[10, 10, 10, 40, 30]" header-rows="1" aligns="l,l,l,l,l"}
 Examples of Bootstrap classes used in Quarto markdown syntax
 
 * - Component
