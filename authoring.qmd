@@ -1,6 +1,7 @@
 ---
 bibliography: example.bib
 client: "ACME Corp"
+engine: markdown
 ---
 
 # Markdown {#sec-authoring}
