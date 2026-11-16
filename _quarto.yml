@@ -50,6 +50,7 @@ book:
 
   appendices:
     - jupyter.qmd
+    - quarto-2.qmd
     - references.qmd
 
 bibliography: references.bib
