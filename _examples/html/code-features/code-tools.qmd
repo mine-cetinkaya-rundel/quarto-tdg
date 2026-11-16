@@ -1,0 +1,15 @@
+---
+title: "Route Punctuality Report"
+code-fold: true
+code-tools: true
+---
+
+```{r}
+punctuality <- data.frame(
+  route = c("Harbour–Airport", "West Loop", "University Line"),
+  peak = c(71, 88, 90),
+  off_peak = c(85, 94, 96)
+)
+punctuality$gap <- punctuality$off_peak - punctuality$peak
+punctuality
+```

@@ -15,3 +15,5 @@ _book/
 _examples/**/*.pdf
 !_examples/typst/page-layout/_anatomy.pdf
 !_examples/typst/page-layout/_marginalia.pdf
+
+*settings.json

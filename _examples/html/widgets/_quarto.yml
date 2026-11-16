@@ -1,0 +1,5 @@
+format:
+  html:
+    fig-height: 3
+execute:
+  echo: false

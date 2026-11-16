@@ -1,0 +1,22 @@
+---
+title: Route Punctuality Report
+subtitle: Q3 2026
+description: On-time performance across the regional network.
+author:
+  - name: Sarah Okonkwo
+    degrees: PhD
+    email: s.okonkwo@example.com
+    orcid: 0000-0002-1825-0097
+    affiliation:
+      - Regional Rail Authority
+      - name: University of Somewhere
+        url: https://example.com
+  - name: Tom Reyes
+    affiliation: Regional Rail Authority
+date: 2026-10-01
+date-modified: 2026-11-12
+categories: [transport, operations]
+abstract: |
+  We summarize on-time rates by route and recommend
+  timetable changes for the worst-performing lines.
+---
