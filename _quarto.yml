@@ -79,10 +79,3 @@ crossref:
 
 filters: 
   - _filters/quarto-docs-links.lua
-  - custom-callout
-
-custom-callout:
-  todo:
-    icon-symbol: "📝"
-    color: "#bf6bc9"
-    title: "TO-DO"
