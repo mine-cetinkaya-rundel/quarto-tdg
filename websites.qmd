@@ -1319,8 +1319,14 @@ Examples of Bootstrap classes used in Quarto markdown syntax
   - `badge`
   - `<span>`
   - `### Example heading [New]{.badge .text-bg-primary}`
-  - ::: {.border .p-2}
+  - ::: {.content-visible when-format="html"}
+    ::: {.border .p-2}
     ### Example heading [New]{.badge .text-bg-primary} {.unnumbered .unlisted}
+    :::
+    :::
+
+    ::: {.content-visible unless-format="html"}
+    ![](images/websites-bootstrap-classes-badge.png){fig-alt="The text Example heading followed by a blue badge that reads New, inside a light gray border."}
     :::
 * - [Border Utility](https://getbootstrap.com/docs/5.3/utilities/borders/)
   - `border` , `rounded` and more
@@ -1335,10 +1341,16 @@ Examples of Bootstrap classes used in Quarto markdown syntax
 
     :::
     ```
-  - ::: {.border .rounded .border-primary .p-2}
+  - ::: {.content-visible when-format="html"}
+    ::: {.border .rounded .border-primary .p-2}
 
     Some content
 
+    :::
+    :::
+
+    ::: {.content-visible unless-format="html"}
+    ![](images/websites-bootstrap-classes-border.png){fig-alt="The text Some content inside a blue border with rounded corners."}
     :::
 * - [Accented Tables](https://getbootstrap.com/docs/5.3/content/tables/#accented-tables)
   - `table-striped`
@@ -1351,12 +1363,18 @@ Examples of Bootstrap classes used in Quarto markdown syntax
 
     : {.table-striped}
     ```
-  - |       |
+  - ::: {.content-visible when-format="html"}
+    |       |
     |-------|
     | Row 1 |
     | Row 2 |
 
     : {.table-striped}
+    :::
+
+    ::: {.content-visible unless-format="html"}
+    ![](images/websites-bootstrap-classes-table-striped.png){fig-alt="A table with two rows, Row 1 and Row 2. Row 1 has a gray background."}
+    :::
 :::
 
 #### Bootstrap SCSS variables
