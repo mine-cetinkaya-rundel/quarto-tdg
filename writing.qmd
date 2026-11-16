@@ -13,11 +13,11 @@ Here's some example markdown in a Quarto document:
 ```` {.markdown filename="document.qmd"}
 ## My First Section
 
-This is the first paragraph with some **bold text** and *italic text*.
+This is the first paragraph with some **bold text** and _italic text_.
 You can also include `code` to show function names or variables.
 
 Here's a second paragraph with a [link to Quarto](https://quarto.org).
-You might also want to use *italic text* for emphasis.
+You might also want to use _italic text_ for emphasis.
 ````
 
 Markdown is a popular format, so the syntax above may be familiar.
@@ -32,7 +32,7 @@ The example above illustrates components of markdown syntax that are common acro
 
 * Bold: text surrounded by `**`
 
-* Italic: text surrounded by `*`
+* Italic: text surrounded by `_`
 
 * Code: text surrounded by `` ` ``
 

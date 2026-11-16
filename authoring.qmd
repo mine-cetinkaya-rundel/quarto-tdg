@@ -98,7 +98,7 @@ You can also use them inside many of the other block-level elements discussed in
 
 ::: {#tbl-inline-text-elements}
 
-::: {.list-table header-rows=1 widths='1,2,1' aligns=l,l,l } 
+::: {.list-table header-rows=1 widths='1,2,1' aligns="l,l,l" } 
 
 
 * - Element
@@ -106,127 +106,93 @@ You can also use them inside many of the other block-level elements discussed in
   - Markdown Syntax
 
 * - []{rowspan=7} **Text formatting**
-  - *italics*, **bold**, ***bold italics***
-  - 
-
-    ``` markdown
-    *italics*, **bold**, ***bold italics***
+  - _italics_, **bold**, _**bold italics**_
+  - ``` markdown
+    _italics_, **bold**, _**bold italics**_
     ```
 
 * - superscript^2^ / subscript~2~
-  - 
-
-    ``` markdown
+  - ``` markdown
     superscript^2^ / subscript~2~
     ```
 
 * - ~~strikethrough~~
-  - 
-
-    ``` markdown
+  - ``` markdown
     ~~strikethrough~~
     ```
 
 * - `verbatim code`
-  - 
-
-    ``` markdown
+  - ``` markdown
     `verbatim code`
     ```
 
 * - [smallcaps]{.smallcaps}
-  - 
-
-    ``` markdown
+  - ``` markdown
     [smallcaps]{.smallcaps}
     ```
 
 * - [underlined]{.underline}
-  - 
-
-    ``` markdown
+  - ``` markdown
     [underlined]{.underline}
     ```
 
 * - [highlighted]{.mark}
-  - 
-    
-    ``` markdown
+  - ``` markdown
     [highlighted]{.mark}
     ```
 
 * - []{rowspan=3} **Links**
   - <https://quarto.org>
-  -
-
-    ``` markdown
+  - ``` markdown
     <https://quarto.org>
     ```
 
 * - [Quarto](https://quarto.org)
-  -
-
-    ``` markdown
+  - ``` markdown
     [Quarto](https://quarto.org)
     ```  
 
 * - [Links section](#links)
-  - 
-
-    ``` markdown
+  - ``` markdown
     [Links section](#links)
     ```
 
 * - **Math** @sec-equations
   - Inline math: $E = mc^{2}$
-  - 
-
-    ``` markdown
+  - ``` markdown
     Inline math: $E = mc^{2}$
     ```
 
 * - []{rowspan=2} **Cross-references** See @sec-crossreferences
   - @fig-elephant
-  -
-
-    ``` markdown
+  - ``` markdown
     @fig-elephant
     ```
 
 * - @sec-authoring
-  -
-
-    ``` markdown
+  - ``` markdown
     @sec-authoring
     ```
 
 * - []{rowspan=3} **Citations** @sec-citations
   - @knuth1984 shows ...
-  -
-
-    ``` markdown
+  - ``` markdown
     @knuth1984 shows ...
     ```
 
 * - ... [@knuth1984]
-  -
-
-    ``` markdown
+  - ``` markdown
     ... [@knuth1984]
     ```
 
 * - [@knuth1984; @wickham2023]
-  - 
-
-    ``` markdown
+  - ``` markdown
     [@knuth1984; @wickham2023]
     ```
 
 * - **Footnotes** @sec-footnotes
   - An inline note.^[Content]
-  - 
-
-    ``` markdown
+  - ``` markdown
     An inline note.^[Content]
     ```
 :::
@@ -420,7 +386,7 @@ it will be included in your Quarto document.
 To add an identifier and caption to the table use the code cell options `label` and `tbl-cap` respectively:
 
 ````markdown
-```{{LANGUAGE}}
+```{LANGUAGE}
 #| label: tbl-example
 #| tbl-cap: "Caption"
 
@@ -477,7 +443,7 @@ If the output from an executable code cell is an image, it will be automatically
 To add an identifier, caption, or alternative text use the code cell options `label`, `fig-cap`, and `fig-alt` respectively:
 
 ````markdown
-```{{LANGUAGE}}
+```{LANGUAGE}
 #| label: fig-quarto
 #| fig-cap: "Caption"
 #| fig-alt: "Alternative text"
@@ -502,16 +468,14 @@ To number and cross-reference a display equation, add an identifier starting wit
 
 ::: {#tbl-math-examples}
 
-::: {.list-table header-rows=1 widths='1,2,1' aligns=l,l,l }
+::: {.list-table header-rows=1 widths='1,2,1' aligns="l,l,l" }
 * - Element
   - Output
   - Markdown Syntax
 
 * - Inline math
   - ... $E = mc^{2}$ ...
-  - 
-
-    ``` markdown
+  - ``` markdown
     ... $E = mc^{2}$ ...
     ```
 * - Display math
@@ -519,9 +483,7 @@ To number and cross-reference a display equation, add an identifier starting wit
     $$
     E = mc^{2}
     $$
-  - 
-
-    ``` markdown
+  - ``` markdown
     The formula is: 
     $$
     E = mc^{2}
@@ -552,7 +514,7 @@ The Pythagorean theorem (@thm-pyth) is fundamental to Euclidean geometry.
 
 ::: {#tbl-theorem-prefixes}
 
-::: {.list-table header-rows=1 widths='1,2' aligns=l,l}
+::: {.list-table header-rows=1 widths='1,2' aligns="l,l"}
 * - Prefix
   - Block
 
@@ -613,7 +575,7 @@ For computational outputs, like figures and tables generated from code cells, yo
 You can see an example for a table in @sec-computational-table, a figure in @sec-computational-figure, and many more details in @sec-figtab-crossrefs.
 
 ::: {#tbl-crossref-prefixes}
-::: {.list-table header-rows=1 widths='1,2,2' aligns=l,l,l}
+::: {.list-table header-rows=1 widths='1,2,2' aligns="l,l,l"}
 
 * - Element Type
   - Prefix
@@ -621,17 +583,13 @@ You can see an example for a table in @sec-computational-table, a figure in @sec
 
 * - Figure
   - `fig-`
-  - 
-    
-    ```` markdown
+  - ```` markdown
     ![Caption](image.png){#fig-elephant}
     ````
 
 * - Table
   - `tbl-`
-  - 
-    
-    ```` markdown
+  - ```` markdown
     | Header 1 | Header 2 |
     |----------|----------|
     | Data 1   | Data 2   |
@@ -641,17 +599,13 @@ You can see an example for a table in @sec-computational-table, a figure in @sec
 
 * - Section
   - `sec-`
-  - 
-    
-    ```` markdown
+  - ```` markdown
     ## Introduction {#sec-intro}
     ````
 
 * - Equation
   - `eq-`
-  - 
-    
-    ```` markdown
+  - ```` markdown
     $$
     a^2 + b^2 = c^2 
     $$ {#eq-py}
@@ -659,18 +613,14 @@ You can see an example for a table in @sec-computational-table, a figure in @sec
 
 * - Code listing
   - `lst-`
-  - 
-    
-    ```` markdown
+  - ```` markdown
     ```{#lst-example .python}
     ```
     ````
 
 * - Theorem
   - `thm-`, see [Quarto docs](https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs) for other theorem-like environments
-  - 
-    
-    ```` markdown
+  - ```` markdown
     ::: {#thm-main}
     ## Theorem name
 
@@ -680,9 +630,7 @@ You can see an example for a table in @sec-computational-table, a figure in @sec
 
 * - Callouts
   - `nte-`, `tip-`, `wrn-`, `imp-`, `cau-`
-  - 
-
-    ``` markdown
+  - ``` markdown
     :::{#nte-df .callout-note}
     ## Heading
 
@@ -701,7 +649,7 @@ Once labeled, you can cross-reference an element using the `@` syntax.
 
 ::: {#tbl-crossref-examples}
 
-::: {.list-table header-rows=1 aligns=l,l,l}
+::: {.list-table header-rows=1 aligns="l,l,l"}
 
 * - Description
   - Output
@@ -767,30 +715,22 @@ When you render your document, Quarto will automatically generate a bibliography
 - - Markdown Syntax
   - Output
 
-- -
-
-    ``` markdown
+- - ``` markdown
     @knuth1984 shows ...
     ```
   - @knuth1984 shows ...
 
-- -
-
-    ``` markdown
+- - ``` markdown
     ... [@knuth1984]
     ```
   - ... [@knuth1984]
 
-- - 
-
-    ``` markdown
+- - ``` markdown
     As Knuth [-@knuth1984] shows ...
     ```
   - As Knuth [-@knuth1984] shows ...
 
-- - 
-
-    ``` markdown
+- - ``` markdown
     [@knuth1984; @wickham2023]
     ```
   - [@knuth1984; @wickham2023]
@@ -984,25 +924,22 @@ Syntax and rendered output for a note callout
 
 Additional key-value attributes can be added to callouts to customize their behavior:
 
-::: {.list-table header-rows=1 widths='1,3' aligns=l,l}
+::: {.list-table header-rows=1 widths='1,3' aligns="l,l"}
 
 * - Key
   - Values
 
 * - `appearance` 
-  - 
-    - `"default"`: Standard callout with colored background and border
+  - - `"default"`: Standard callout with colored background and border
     - `"simple"`: Lighter styling with minimal background
     - `"minimal"`: Most subtle styling with just a left border
 
 * - `collapse` 
-  - 
-    - `true`: Callout starts collapsed and can be expanded by clicking
+  - - `true`: Callout starts collapsed and can be expanded by clicking
     - `false`: Callout starts expanded and can be collapsed by clicking
 
 * - `icon`
-  -
-    - `true`: Shows the icon for the callout type (default)
+  - - `true`: Shows the icon for the callout type (default)
     - `false`: Hides the icon
 
 :::
