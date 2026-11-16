@@ -27,32 +27,6 @@
       ],
       "Hash": "dbfa2adb83f8063640982459e153f650"
     },
-    "KernSmooth": {
-      "Package": "KernSmooth",
-      "Version": "2.23-26",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "stats"
-      ],
-      "Hash": "2fb39782c07b5ad422b0448ae83f64c4"
-    },
-    "MASS": {
-      "Package": "MASS",
-      "Version": "7.3-65",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "grDevices",
-        "graphics",
-        "methods",
-        "stats",
-        "utils"
-      ],
-      "Hash": "a41d0fc833ea756a1136b60a437efe26"
-    },
     "R6": {
       "Package": "R6",
       "Version": "2.6.1",
@@ -306,35 +280,6 @@
       ],
       "Hash": "645cd21d708d14c2732a34b2ccba87b8"
     },
-    "class": {
-      "Package": "class",
-      "Version": "7.3-23",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "MASS",
-        "R",
-        "stats",
-        "utils"
-      ],
-      "Hash": "d0cb9cc838c3b43560bd958fc4317fdc"
-    },
-    "classInt": {
-      "Package": "classInt",
-      "Version": "0.4-11",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "KernSmooth",
-        "R",
-        "class",
-        "e1071",
-        "grDevices",
-        "graphics",
-        "stats"
-      ],
-      "Hash": "f2af70314a63d7f025ae668f08bd933a"
-    },
     "cli": {
       "Package": "cli",
       "Version": "3.6.6",
@@ -397,19 +342,6 @@
         "utils"
       ],
       "Hash": "859d96e65ef198fd43e82b9628d593ef"
-    },
-    "crosstalk": {
-      "Package": "crosstalk",
-      "Version": "1.2.2",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R6",
-        "htmltools",
-        "jsonlite",
-        "lazyeval"
-      ],
-      "Hash": "8b008bc619e0bbebb5646b3d37efdad1"
     },
     "curl": {
       "Package": "curl",
@@ -545,22 +477,6 @@
         "vctrs"
       ],
       "Hash": "7f6db50cf8183cce63c06510fc74a318"
-    },
-    "e1071": {
-      "Package": "e1071",
-      "Version": "1.7-17",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "class",
-        "grDevices",
-        "graphics",
-        "methods",
-        "proxy",
-        "stats",
-        "utils"
-      ],
-      "Hash": "9d516dde384526d4784166f888cd2c6c"
     },
     "evaluate": {
       "Package": "evaluate",
@@ -999,69 +915,6 @@
       ],
       "Hash": "824c180e69b9be79ab96a985e233c470"
     },
-    "lattice": {
-      "Package": "lattice",
-      "Version": "0.22-9",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "grDevices",
-        "graphics",
-        "grid",
-        "stats",
-        "utils"
-      ],
-      "Hash": "91febc38a877968922d0d37d5db0f674"
-    },
-    "lazyeval": {
-      "Package": "lazyeval",
-      "Version": "0.2.3",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "rlang"
-      ],
-      "Hash": "2757e46c2633dd5854f62615df70d0d7"
-    },
-    "leaflet": {
-      "Package": "leaflet",
-      "Version": "2.2.3",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "RColorBrewer",
-        "crosstalk",
-        "htmltools",
-        "htmlwidgets",
-        "jquerylib",
-        "leaflet.providers",
-        "magrittr",
-        "methods",
-        "png",
-        "raster",
-        "rlang",
-        "scales",
-        "sf",
-        "stats",
-        "viridisLite",
-        "xfun"
-      ],
-      "Hash": "da8aa03b2885c2b934923e6a53fe592a"
-    },
-    "leaflet.providers": {
-      "Package": "leaflet.providers",
-      "Version": "3.0.0",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "htmltools"
-      ],
-      "Hash": "44f8de73eeddd3d7277d5fa17f863c08"
-    },
     "lifecycle": {
       "Package": "lifecycle",
       "Version": "1.0.5",
@@ -1218,16 +1071,6 @@
       ],
       "Hash": "01f28d4278f15c76cddbea05899c5d6f"
     },
-    "png": {
-      "Package": "png",
-      "Version": "0.1-9",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "961c433971606243a724eb19b1075e60"
-    },
     "prettyunits": {
       "Package": "prettyunits",
       "Version": "1.2.0",
@@ -1281,18 +1124,6 @@
         "rlang"
       ],
       "Hash": "62cb899ed5fff70d4e918ec1b762bf7c"
-    },
-    "proxy": {
-      "Package": "proxy",
-      "Version": "0.4-29",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "stats",
-        "utils"
-      ],
-      "Hash": "b6c826e897b46b163c51a3b990113a21"
     },
     "ps": {
       "Package": "ps",
@@ -1364,20 +1195,6 @@
         "R"
       ],
       "Hash": "f146a5bfc94db048309712535d4d0aee"
-    },
-    "raster": {
-      "Package": "raster",
-      "Version": "3.6-32",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "methods",
-        "sp",
-        "terra"
-      ],
-      "Hash": "1e193fc2c727a6f83cf95d9e16024423"
     },
     "reactR": {
       "Package": "reactR",
@@ -1563,18 +1380,6 @@
       ],
       "Hash": "2804ddcd7737082306c559d919886546"
     },
-    "s2": {
-      "Package": "s2",
-      "Version": "1.1.13",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "wk"
-      ],
-      "Hash": "f134f2684eebe5dda5aca5a63af6e2c4"
-    },
     "sass": {
       "Package": "sass",
       "Version": "0.4.10",
@@ -1617,45 +1422,6 @@
         "R"
       ],
       "Hash": "501e055085951f035b26577d219e1a79"
-    },
-    "sf": {
-      "Package": "sf",
-      "Version": "1.1-3",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "DBI",
-        "R",
-        "Rcpp",
-        "classInt",
-        "grDevices",
-        "graphics",
-        "grid",
-        "methods",
-        "s2",
-        "stats",
-        "tools",
-        "units",
-        "utils"
-      ],
-      "Hash": "20d487acd286530ae32a07d955d1a77e"
-    },
-    "sp": {
-      "Package": "sp",
-      "Version": "2.2-4",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "grDevices",
-        "graphics",
-        "grid",
-        "lattice",
-        "methods",
-        "stats",
-        "utils"
-      ],
-      "Hash": "1459a8860fd547794f04c8b42869fe46"
     },
     "stringi": {
       "Package": "stringi",
@@ -1710,19 +1476,6 @@
         "utils"
       ],
       "Hash": "1f930828d6590af5da47b3ab4fe161e6"
-    },
-    "terra": {
-      "Package": "terra",
-      "Version": "1.9-50",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "Rcpp",
-        "methods",
-        "stats"
-      ],
-      "Hash": "e64a4216e400db78db4f6ed2d72695f4"
     },
     "textshaping": {
       "Package": "textshaping",
@@ -1870,17 +1623,6 @@
       ],
       "Hash": "09e3961e87b7bafa4a9340bbb34aeda8"
     },
-    "units": {
-      "Package": "units",
-      "Version": "1.0-1",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "Rcpp"
-      ],
-      "Hash": "14743a941151a12449e8af67497c7b96"
-    },
     "utf8": {
       "Package": "utf8",
       "Version": "1.2.6",
@@ -1975,16 +1717,6 @@
         "graphics"
       ],
       "Hash": "d979712ec72df779bc2d30bcc5d0d541"
-    },
-    "wk": {
-      "Package": "wk",
-      "Version": "0.9.5",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R"
-      ],
-      "Hash": "10fb21ed42dbd4ed9162aaab818146e3"
     },
     "xfun": {
       "Package": "xfun",
