@@ -1,20 +1,20 @@
+---
+engine: markdown
+---
+
 # Computational figures and tables {#sec-figure-table-computational}
 
-```{r}
-#| eval: false
-#| label: screenshots
-#| include: false
+<!--
+This chapter runs no code (engine: markdown), so quoted cells can use
+single braces.
 
-# Regenerates the screenshots for this chapter and figure-table.qmd.
-# See _examples/figure-table/README.md.
+Regenerate the screenshots for this chapter and figure-table.qmd
+(see _examples/figure-table/README.md):
 source("_examples/figure-table/generate-screenshots.R")
-```
-```{r}
-#| eval: false
-#| label: code-setup
-#| include: false
-{{< include _examples/figure-table/_code-snippets/setup.R >}}
-```
+
+Setup for running the code snippets interactively:
+_examples/figure-table/_code-snippets/setup.R
+-->
 
 This chapter covers topics specific to figures and tables that are the output of executable code cells.
 Producing figures and tables with code has many advantages:
@@ -74,7 +74,7 @@ The code to generate the example figures and tables is shown without any other c
 If you want to recreate them, you'll need the setup code as shown in @fig-setup.
 We also show the rendered examples without the code; that is, we set `echo: false` in our document header:
 
-```{.yaml filename="document.qmd" .code-overflow-wrap}
+```{.yaml .code-overflow-wrap filename="document.qmd"}
 ---
 echo: false
 ---
@@ -86,13 +86,13 @@ echo: false
 
 ## R
 
-````{.r filename="setup.R" .code-overflow-wrap}
+````{.r .code-overflow-wrap filename="setup.R"}
 {{< include _examples/figure-table/_code-snippets/setup.R >}}
 ````
 
 ## Python
 
-```{.python filename="setup.py" .code-overflow-wrap}
+```{.python .code-overflow-wrap filename="setup.py"}
 {{< include _examples/figure-table/_code-snippets/setup.py >}}
 ```
 
@@ -119,7 +119,7 @@ For example, in @fig-figure-quick the code cell produces a figure.
 ````{.markdown .code-overflow-wrap}
 Some text before the code cell.
 
-```{{r}}
+```{r}
 {{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
 ```
 
@@ -131,7 +131,7 @@ Some text after the code cell.
 ````{.markdown .code-overflow-wrap}
 Some text before the code cell.
 
-```{{python}}
+```{python}
 {{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
 ```
 
@@ -170,7 +170,7 @@ For example, @fig-figures uses the same code as @fig-figure-quick but adds an id
 ## R
 
 ````{.markdown .code-overflow-wrap}
-```{{r}}
+```{r}
 #| label: fig-scatter
 #| fig-cap: "Penguin bill length versus depth by species"
 #| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
@@ -182,7 +182,7 @@ For example, @fig-figures uses the same code as @fig-figure-quick but adds an id
 ## Python
 
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 #| label: fig-scatter
 #| fig-cap: "Penguin bill length versus depth by species"
 #| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
@@ -214,7 +214,7 @@ and start the label with `tbl-` to make it cross-referenceable.
 ## R
 
 ````{.markdown .code-overflow-wrap}
-```{{r}}
+```{r}
 #| label: tbl-species-count
 #| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
 
@@ -225,7 +225,7 @@ and start the label with `tbl-` to make it cross-referenceable.
 ## Python
 
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 #| label: tbl-species-count
 #| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
 
@@ -260,7 +260,7 @@ As a concrete example, @fig-fenced-div-code-figure gives the same labeled and ca
 
 ````{.markdown .code-overflow-wrap}
 ::: {#fig-scatter}
-```{{r}}
+```{r}
 #| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
 
 {{< include _examples/figure-table/_code-snippets/bill-scatter.R >}}
@@ -275,7 +275,7 @@ Penguin bill length versus depth by species
 
 ````{.markdown .code-overflow-wrap}
 ::: {#fig-scatter}
-```{{python}}
+```{python}
 #| fig-alt: "Scatter plot of bill length vs. depth showing distinct species clustering."
 
 {{< include _examples/figure-table/_code-snippets/bill-scatter.py >}}
@@ -302,7 +302,7 @@ The equivalent fenced div syntax for @fig-figures.
 ````{.markdown .code-overflow-wrap}
 ::: {#tbl-species-count}
 
-```{{r}}
+```{r}
 {{< include _examples/figure-table/_code-snippets/species-count.R >}}
 ```
 
@@ -315,7 +315,7 @@ Number of penguins sampled from each species in the Palmer Archipelago
 ````{.markdown .code-overflow-wrap}
 ::: {#tbl-species-count}
 
-```{{python}}
+```{python}
 {{< include _examples/figure-table/_code-snippets/species-count.py >}}
 ```
 
@@ -355,7 +355,7 @@ and for `format: typst` it is 5.5 × 3.5 inches.
 You can override these defaults using `fig-width` and `fig-height` document options.
 For example, the following sets the default figure size to 4 × 6 inches for `html` output:
 
-```{.yaml filename="document.qmd" .code-overflow-wrap}
+```{.yaml .code-overflow-wrap filename="document.qmd"}
 ---
 format:
   html:    
@@ -378,7 +378,7 @@ How you do this depends on the engine.
 With the `knitr` engine, use the `fig-width` and `fig-height` code cell options, specified in inches, to customize figure size for individual plots:
 
 ````{.markdown .code-overflow-wrap}
-```{{r}}
+```{r}
 #| fig-width: 4
 #| fig-height: 6
 
@@ -398,7 +398,7 @@ For plotting packages that use matplotlib and respect its defaults, you can set 
 For example, the following code creates a scatterplot of seaborn's own `penguins` data using [seaborn](https://seaborn.pydata.org): 
 
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 import seaborn as sns
 penguins = sns.load_dataset("penguins")
 sns.scatterplot(
@@ -412,7 +412,7 @@ With no further adjustment, the size of the figure will reflect the default `fig
 To change the size of the figure you change the matplotlib default plot size using `rcParams`:
 
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 import matplotlib as mpl
 mpl.rcParams['figure.figsize'] = (8, 4)
 
@@ -427,7 +427,7 @@ This mimics the way the `jupyter` engine sets the default plot sizes and will ap
 Alternatively, to apply a new default for a single plot, use `rc_context`:
 
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 import matplotlib as mpl
 with mpl.rc_context({'figure.figsize': (8, 4)}):
     sns.scatterplot(
@@ -440,7 +440,7 @@ For packages that don't use matplotlib, or don't respect its defaults, you'll ne
 For example, in plotnine you can resize a plot through the `figure_size` argument to the `theme()` function:
 
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 (
     ggplot(penguins, aes(x="bill_length_mm", y="bill_depth_mm"))
     + geom_point(aes(color="species"))
@@ -459,7 +459,7 @@ For example, for `format: html`, images will be PNG (`.png`) by default; for `fo
 You can override these defaults using the `fig-format` document option.
 For example, the following sets the default figure format to `svg` for `html` output:
 
-````{.yaml filename="document.qmd" .code-overflow-wrap}
+````{.yaml .code-overflow-wrap filename="document.qmd"}
 ---
 format:
   html:
@@ -474,7 +474,7 @@ For raster image formats like `png` and `jpg`, you can also control the resoluti
 
 For example, the following sets the default figure resolution to 300 dots per inch (DPI) for `html` output:
 
-````{.yaml filename="document.qmd" .code-overflow-wrap}
+````{.yaml .code-overflow-wrap filename="document.qmd"}
 ---
 format:
   html:
@@ -497,7 +497,7 @@ To arrange the figures in the panel, see @sec-multiple-outputs.
 ## R
  
 ````{.markdown .code-overflow-wrap}
-```{{r}}
+```{r}
 #| label: fig-scatter
 #| fig-cap: Physical dimensions of penguins
 #| fig-alt: 
@@ -516,7 +516,7 @@ To arrange the figures in the panel, see @sec-multiple-outputs.
 ## Python
  
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 #| label: fig-scatter
 #| fig-cap: Physical dimensions of penguins
 #| fig-alt: 
@@ -588,7 +588,7 @@ The `kable()` function from the [knitr](https://yihui.org/knitr/) package produc
 Pass your table object to `kable()` and it will return the markdown table:
 
 ````{.markdown .code-overflow-wrap}
-```{{r}}
+```{r}
 {{< include _examples/figure-table/_code-snippets/species-count-markdown.R >}}
 ```
 ````
@@ -622,7 +622,7 @@ A general approach to create markdown tables is:
 For example, to apply this strategy to a summary table created by Polars:
 
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 {{< include _examples/figure-table/_code-snippets/species-count-markdown.py >}}
 ```
 ````
@@ -655,7 +655,7 @@ For example, @fig-intermediate-markdown-table shows a simplified excerpt from th
 
 ## R
  
-````{.markdown filename="document.html.md" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="document.html.md"}
 ::: {.cell-output-display}
 
 ```{=html}
@@ -673,7 +673,7 @@ For example, @fig-intermediate-markdown-table shows a simplified excerpt from th
  
 ## Python
  
-````{.markdown filename="document.html.md" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="document.html.md"}
 ::: {.cell-output .cell-output-display execution_count=8}
 ```{=html}
 <div id="jnzyjbmsji" ...>
@@ -724,7 +724,7 @@ To arrange the tables in the panel, see @sec-multiple-outputs.
 ## R
  
 ````{.markdown .code-overflow-wrap}
-```{{r}}
+```{r}
 #| label: tbl-species-count
 #| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
 #| tbl-subcap: 
@@ -740,7 +740,7 @@ To arrange the tables in the panel, see @sec-multiple-outputs.
 ## Python
  
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 #| label: tbl-species-count
 #| tbl-cap: "Number of penguins sampled from each species in the Palmer Archipelago"
 #| tbl-subcap: 
@@ -798,7 +798,7 @@ The execution engine translates the output of your code cell into markdown.
 A good way to see what it has done is to examine the intermediate markdown after the engine has finished.
 Set `keep-md: true` in your document header:
 
-```{.yaml filename="document.qmd" .code-overflow-wrap}
+```{.yaml .code-overflow-wrap filename="document.qmd"}
 ---
 title: My Document
 keep-md: true
@@ -859,7 +859,7 @@ For example, if your code saves an image to a path defined in `image_path`, @fig
 ## R
  
 ````{.markdown .code-overflow-wrap}
-```{{r}}
+```{r}
 #| echo: false
 #| output: asis
 
@@ -870,7 +870,7 @@ cat(paste0("![Caption](", image_path, "){#fig-plot1 fig-alt='Alt text'}\n"))
 ## Python
  
 ````{.markdown .code-overflow-wrap}
-```{{python}}
+```{python}
 #| echo: false
 #| output: asis
 
