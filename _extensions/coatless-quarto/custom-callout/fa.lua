@@ -1,3 +1,4 @@
+-- Icons in the solid font (fa-solid-900.woff2)
 local fa_icons = {
   ["fa-0"] = "\\30",
   ["fa-1"] = "\\31",
@@ -1999,6 +2000,10 @@ local fa_icons = {
   ["fa-record-vinyl"] = "\\f8d9",
   ["fa-walkie-talkie"] = "\\f8ef",
   ["fa-caravan"] = "\\f8ff",
+}
+
+-- Icons in the brands font (fa-brands-400.woff2)
+local fa_brand_icons = {
   ["fa-firefox-browser"] = "\\e007",
   ["fa-ideal"] = "\\e013",
   ["fa-microblog"] = "\\e01a",
@@ -2584,11 +2589,43 @@ local fa_icons = {
   ["fa-umbraco"] = "\\f8e8",
 }
 
--- Function to get Unicode value for a FontAwesome icon name
+---Gets the CSS Unicode escape for a FontAwesome icon name
+---@param icon_name string The icon class, such as "fa-thumbs-up"
+---@return string|nil unicode The escape, or nil if the icon is unknown
 local function fa_unicode(icon_name)
-  return fa_icons[icon_name] or nil
+  return fa_icons[icon_name] or fa_brand_icons[icon_name]
+end
+
+---Checks whether a FontAwesome icon is in the brands font
+---@param icon_name string The icon class, such as "fa-github"
+---@return boolean is_brand True if the icon needs the brands font
+local function fa_is_brand(icon_name)
+  return fa_brand_icons[icon_name] ~= nil
+end
+
+---Lists the names of a FontAwesome icon: the given name first, then the other
+---names for the same icon in the same font (older or newer names), sorted
+---@param icon_name string The icon class, such as "fa-house"
+---@return string[] names The icon classes, or an empty list if the icon is unknown
+local function fa_aliases(icon_name)
+  local icons = fa_brand_icons[icon_name] and fa_brand_icons or fa_icons
+  local unicode = icons[icon_name]
+  if unicode == nil then
+    return {}
+  end
+  local others = {}
+  for name, code in pairs(icons) do
+    if code == unicode and name ~= icon_name then
+      others[#others + 1] = name
+    end
+  end
+  table.sort(others)
+  table.insert(others, 1, icon_name)
+  return others
 end
 
 return {
-  fa_unicode = fa_unicode
+  fa_unicode = fa_unicode,
+  fa_is_brand = fa_is_brand,
+  fa_aliases = fa_aliases
 }
