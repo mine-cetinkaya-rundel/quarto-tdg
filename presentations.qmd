@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # Presentations {#sec-presentations}
 
 In addition to long-form documents, you can also use Quarto to create presentations.
@@ -26,7 +30,7 @@ The best way to learn Quarto presentations is to start with a working example.
 The following presentation demonstrates many of the features you'll use most often: a custom theme, incremental bullet points, code with side-by-side output, and speaker notes. 
 You can copy this into a new `.qmd` file and render it to see the result immediately, then modify it to explore how each option works. 
 
-````{.markdown filename="punctuality.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="punctuality.qmd"}
 {{< include _examples/presentations/first-presentation/punctuality.qmd >}}
 ````
 
@@ -51,7 +55,7 @@ See the Pandoc documentation on [structuring the slide show](https://pandoc.org/
 
 The title slide is auto-generated from YAML metadata:
 
-````{.yaml filename="title-slide.qmd" .code-overflow-wrap}
+````{.yaml .code-overflow-wrap filename="title-slide.qmd"}
 {{< include _examples/presentations/authoring/title-slide.qmd >}}
 ````
 
@@ -63,7 +67,7 @@ By default, the title slide is centered while all other slides are top-aligned.
 To disable centering on the title slide, set `center-title-slide: false`. 
 For full control, you can replace the title slide entirely by supplying a custom `title-slide.html` template partial:
 
-````{.yaml filename="title-slide.qmd" .code-overflow-wrap}
+````{.yaml .code-overflow-wrap filename="title-slide.qmd"}
 ---
 title: Route Punctuality
 author: Dr. Sarah Okonkwo
@@ -438,7 +442,7 @@ To display the code, set `echo: true` globally in YAML or per cell with `#| echo
 You can highlight specific lines in code blocks:
 
 ````` markdown
-```{{python}}
+```{python}
 #| code-line-numbers="2,4"
 def example():
     highlighted = True  # Line 2
@@ -450,7 +454,7 @@ def example():
 For progressive highlighting through slide steps, use the pipe separator:
 
 ````` markdown
-```{{python}}
+```{python}
 #| code-line-numbers="|1|2|3"
 first_step = 1
 second_step = 2
@@ -508,7 +512,7 @@ format:
 For executable code cells, place annotations in the source code rather than using cell options:
 
 ````markdown
-```{{python}}
+```{python}
 import pandas as pd  # <1>
 df = pd.read_csv("data.csv")  # <2>
 ```
@@ -540,7 +544,7 @@ format:
 With the `knitr` engine, you can also override these per cell:
 
 ```` markdown
-```{{r}}
+```{r}
 #| fig-width: 6
 #| fig-height: 4
 plot(cars)
@@ -550,7 +554,7 @@ plot(cars)
 The `fig-asp` option (`knitr` only) sets the height-to-width aspect ratio and overrides `fig-height` when both are specified:
 
 ```` markdown
-```{{r}}
+```{r}
 #| fig-width: 6
 #| fig-asp: 0.618
 plot(cars)
@@ -561,7 +565,7 @@ With the `jupyter` engine, `fig-width` and `fig-height` have no effect at the ce
 For cell-level control with Matplotlib, set the figure size directly in Python:
 
 ```` markdown
-```{{python}}
+```{python}
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots(figsize=(6, 4))
@@ -572,7 +576,7 @@ ax.plot([1, 2, 3])
 To control the *displayed* size of the output image independently of its generated dimensions, use `out-width` and `out-height`, which accept CSS values and work at the cell level with both engines:
 
 ```` markdown
-```{{r}}
+```{r}
 #| out-width: "70%"
 plot(cars)
 ```
@@ -607,7 +611,7 @@ You can control where code output appears using `output-location`:
 Example:
 
 ````` markdown
-```{{python}}
+```{python}
 #| output-location: column
 import matplotlib.pyplot as plt
 plt.plot([1, 2, 3])
