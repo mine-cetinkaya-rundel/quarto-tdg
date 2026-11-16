@@ -1,0 +1,20 @@
+---
+include-in-header:
+  text: |
+    <style>#sub-references img { max-width: 200px; }</style>
+---
+
+::: {#sub-references}
+
+::: {#fig-animals}
+
+![Elephant](../../../images/elephant.png){#fig-elephant fig-alt="Line drawing of an elephant."}
+
+![Panther](../../../images/panther.png){#fig-panther fig-alt="Line drawing of a panther."}
+
+Two animals.
+:::
+
+@fig-animals shows two animals. @fig-elephant is an elephant.
+
+:::

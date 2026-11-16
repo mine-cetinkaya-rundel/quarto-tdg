@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" role="img" aria-labelledby="svg-title svg-desc">
+  <title id="svg-title">The parts of a cross-reference to a table</title>
+  <desc id="svg-desc">The text See Table 1 ..., where Table 1 is a link, and below it the crossref options that make up the link: tbl-prefix, a space, and tbl-labels. Each option and the part of the link it controls share a color: Table is tbl-prefix and 1 is tbl-labels.</desc>
+
+  <!-- Highlights behind the rendered parts -->
+  <rect x="114" y="76" width="93" height="46" rx="6" fill="#7FCDB3"/>
+  <rect x="213" y="76" width="24" height="46" rx="6" fill="#BFE3F7"/>
+
+  <!-- Rendered text; textLength pins each width so the highlights fit in any font -->
+  <g font-family="-apple-system, system-ui, 'Segoe UI', Roboto, sans-serif" font-size="40" fill="#888">
+    <text x="40" y="110" textLength="65" lengthAdjust="spacingAndGlyphs">See</text>
+    <text x="116" y="110" fill="#222" textLength="89" lengthAdjust="spacingAndGlyphs">Table</text>
+    <text x="215" y="110" fill="#222" textLength="20" lengthAdjust="spacingAndGlyphs">1</text>
+    <text x="246" y="110">&#8230;</text>
+  </g>
+
+  <!-- Template row: one pill per crossref option -->
+  <g stroke-width="2.5">
+    <rect x="116" y="152" width="180" height="48" rx="8" fill="#7FCDB3" stroke="#009E73"/>
+    <rect x="332" y="152" width="180" height="48" rx="8" fill="#BFE3F7" stroke="#56B4E9"/>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="26" fill="#222" text-anchor="middle">
+    <text x="206" y="185" textLength="156" lengthAdjust="spacingAndGlyphs">tbl-prefix</text>
+    <text x="422" y="185" textLength="156" lengthAdjust="spacingAndGlyphs">tbl-labels</text>
+  </g>
+  <text x="314" y="188" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="34" fill="#999" text-anchor="middle">&#9251;</text>
+  <g font-family="-apple-system, system-ui, 'Segoe UI', Roboto, sans-serif" font-size="40" fill="#888">
+    <text x="40" y="190" textLength="65" lengthAdjust="spacingAndGlyphs">See</text>
+    <text x="528" y="190">&#8230;</text>
+  </g>
+</svg>

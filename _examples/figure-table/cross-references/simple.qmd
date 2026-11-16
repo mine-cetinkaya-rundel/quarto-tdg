@@ -1,0 +1,29 @@
+
+::: {#fig-id}
+![](path/to/image.jpg){fig-alt="Alt text"}
+
+Caption
+:::
+
+::: {#tbl-id}
+| Column 1 | Column 2 |
+|----------|----------|
+| Cell A   | Cell B   |
+
+Caption
+:::
+
+::: {#simple}
+
+See @tbl-id. 
+@fig-id shows ...
+
+:::
+
+
+::: {#link}
+
+See the [summary table](#tbl-id). 
+The [scatterplot](#fig-id) shows ...
+
+:::

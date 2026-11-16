@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 250" role="img" aria-labelledby="svg-title svg-desc">
+  <title id="svg-title">The parts of a table caption</title>
+  <desc id="svg-desc">The caption Table 1: Penguins sampled from ... and, below it, the crossref options that make it up: tbl-title, a space, tbl-labels, title-delim, a space, then the caption text. Each option and the part of the caption it controls share a color: Table is tbl-title, 1 is tbl-labels, and the colon is title-delim.</desc>
+
+  <!-- Highlights behind the rendered parts -->
+  <rect x="78" y="76" width="93" height="46" rx="6" fill="#F3C770"/>
+  <rect x="177" y="76" width="24" height="46" rx="6" fill="#BFE3F7"/>
+  <rect x="203" y="76" width="12" height="46" rx="3" fill="#E0A9C7"/>
+
+  <!-- Rendered caption; textLength pins each width so the highlights fit in any font -->
+  <g font-family="-apple-system, system-ui, 'Segoe UI', Roboto, sans-serif" font-size="40" fill="#222">
+    <text x="80" y="110" textLength="89" lengthAdjust="spacingAndGlyphs">Table</text>
+    <text x="179" y="110" textLength="20" lengthAdjust="spacingAndGlyphs">1</text>
+    <text x="205" y="110" textLength="8" lengthAdjust="spacingAndGlyphs">:</text>
+    <text x="226" y="110" fill="#888">Penguins sampled from &#8230;</text>
+  </g>
+
+  <!-- Template row: one pill per crossref option -->
+  <g stroke-width="2.5">
+    <rect x="80" y="152" width="164" height="48" rx="8" fill="#F3C770" stroke="#E69F00"/>
+    <rect x="280" y="152" width="180" height="48" rx="8" fill="#BFE3F7" stroke="#56B4E9"/>
+    <rect x="466" y="152" width="196" height="48" rx="8" fill="#E0A9C7" stroke="#CC79A7"/>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="26" fill="#222" text-anchor="middle">
+    <text x="162" y="185" textLength="140" lengthAdjust="spacingAndGlyphs">tbl-title</text>
+    <text x="370" y="185" textLength="156" lengthAdjust="spacingAndGlyphs">tbl-labels</text>
+    <text x="564" y="185" textLength="172" lengthAdjust="spacingAndGlyphs">title-delim</text>
+  </g>
+  <!-- Spaces -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="34" fill="#999" text-anchor="middle">
+    <text x="262" y="188">&#9251;</text>
+    <text x="680" y="188">&#9251;</text>
+  </g>
+  <text x="698" y="190" font-family="-apple-system, system-ui, 'Segoe UI', Roboto, sans-serif" font-size="40" fill="#888">Penguins sampled from &#8230;</text>
+</svg>
