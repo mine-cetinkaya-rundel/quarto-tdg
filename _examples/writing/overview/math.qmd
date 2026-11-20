@@ -1,0 +1,5 @@
+The formula is:
+
+$$
+E = mc^{2}
+$$
