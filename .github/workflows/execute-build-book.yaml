@@ -1,15 +1,17 @@
 on:
   workflow_dispatch:
   
-name: Execute Code, Render and Deploy Book to Netlify
+name: Execute Code and Open a PR with Freeze Updates
 
 env:
-  isExtPR: ${{ github.event.pull_request.head.repo.fork == true }}
   RUST_BACKTRACE: 1
 
 jobs:
   execute-build-book:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -33,14 +35,11 @@ jobs:
         with:
           cache-version: 1
           
-      - name: Install Python and Dependencies
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
-          cache: 'pip'
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
 
       - name: Install Python Packages
-        run: pip install -r requirements.txt
+        run: uv sync --locked
 
       - name: Remove freezer
         run: |
@@ -49,21 +48,19 @@ jobs:
       - name: Render book to all format
         # Add any command line argument needed
         run: |
-          quarto render
+          uv run quarto render
 
-      - name: Deploy to Netlify
-        if: contains(env.isExtPR, 'false')
-        id: netlify-deploy
-        uses: nwtgck/actions-netlify@v1.1
+      - name: Open a PR with freeze updates
+        uses: peter-evans/create-pull-request@v7
         with:
-          publish-dir: './_book'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message:
-            'Deploy from GHA: ${{ github.event.pull_request.title || github.event.head_commit.message }} (${{ github.sha }})'
-          enable-pull-request-comment: false
-          enable-commit-comment: false
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1
+          add-paths: _freeze
+          branch: freeze-update/${{ github.ref_name }}
+          delete-branch: true
+          commit-message: Update freeze files
+          title: Update freeze files
+          body: |
+            This PR has the `_freeze/` files from a run of the workflow that executes all the code in the book.
+
+            - Branch: `${{ github.ref_name }}`
+            - Commit: ${{ github.sha }}
+            - Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
