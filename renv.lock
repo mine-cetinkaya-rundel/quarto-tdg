@@ -1503,7 +1503,7 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.3.2",
+      "Version": "1.3.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1516,7 +1516,7 @@
         "tools",
         "utils"
       ],
-      "Hash": "1f930828d6590af5da47b3ab4fe161e6"
+      "Hash": "126701734d3ff52e755d64bb79dc41ba"
     },
     "textshaping": {
       "Package": "textshaping",
