@@ -33,14 +33,11 @@ jobs:
         with:
           cache-version: 1
           
-      - name: Install Python and Dependencies
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
-          cache: 'pip'
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
 
       - name: Install Python Packages
-        run: pip install -r requirements.txt
+        run: uv sync --locked
 
       - name: Remove freezer
         run: |
@@ -49,4 +46,4 @@ jobs:
       - name: Render book to all format
         # Add any command line argument needed
         run: |
-          quarto render
+          uv run quarto render
