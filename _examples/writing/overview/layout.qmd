@@ -1,0 +1,7 @@
+::: {#fig-animals layout-ncol=2}
+![Elephant](images/elephant.png){#fig-elephant width="40%"}
+
+![Panther](images/panther.png){#fig-panther width="40%"}
+
+Two animals side-by-side
+:::

@@ -1,0 +1,6 @@
+| Algorithm         | Accuracy |
+|-------------------|----------|
+| Random Forest     | 96.7%    |
+| Linear Regression | 74.8%    |
+
+: Training performance {#tbl-perf}

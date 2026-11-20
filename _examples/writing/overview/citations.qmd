@@ -1,0 +1,5 @@
+---
+bibliography: references.bib
+---
+
+Quarto builds on the idea of literate programming [@knuth1984].

@@ -1,16 +1,24 @@
 # Setting options {#sec-options}
 
-Throughout this book, you've been setting options to control how your documents look and behave.
-You've set a document title in the header, specified an output format, and controlled whether code is displayed in your output.
+Options are the way you control how your documents look and behave.
+You've seen a document title and an output format in the document header, and controlled whether code is displayed in your output with a code cell option.
 These options all use the same underlying syntax: YAML.
 
-This chapter makes that syntax explicit.
-You'll learn the three places where you can set options and the essential YAML syntax rules you need to write them correctly.
+In this you'll learn the three places where you can set options and the essential YAML syntax rules you need to write them correctly.
 For the full details of YAML syntax and troubleshooting tips, see @sec-yaml.
 
 ## Three places to set options
 
 There are three places you'll commonly set options: in the document header, under a format key, and in code cells.
+
+::: {.callout-tip}
+
+## A fourth place: `_quarto.yml`
+
+In @sec-projects you'll learn about another place to put option for Quarto projects, the confguration file: `_quarto.yml`. 
+It also uses the same YAML syntax described in this chapter.
+
+:::
 
 ### Document header
 
@@ -61,7 +69,7 @@ Common options include `echo` (whether to show the code), `eval` (whether to run
 
 ## YAML syntax essentials
 
-All three places use YAML syntax.
+All three locations where you can specify options expect YAML syntax.
 Here are the essential rules you need to know.
 
 ### Key-value pairs
@@ -129,7 +137,7 @@ Without quotes, `2.0` would be interpreted as a number and `true` as a boolean.
 
 ## Getting help from your IDE
 
-If you're using RStudio, VS Code, or Positron with the Quarto extension, your editor can help you write YAML correctly.
+If you're using RStudio, Positron, or VS Code with the Quarto extension, your editor can help you write YAML correctly.
 
 **Completion** suggests valid option names and values as you type.
 This helps you discover what options are available and avoid typos.
