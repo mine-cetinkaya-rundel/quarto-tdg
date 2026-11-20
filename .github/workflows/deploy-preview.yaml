@@ -23,13 +23,8 @@ jobs:
         with:
           tinytex: true
 
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
-        with:
-          use-public-rspm: true
-
-      - name: Set up renv
-        uses: r-lib/actions/setup-renv@v2
+      - name: Check freeze files
+        run: quarto run scripts/check-freeze.ts
 
       - name: Render
         uses: quarto-dev/quarto-actions/render@v2
