@@ -29,7 +29,9 @@ gh workflow run execute-build-book.yaml
 
 The workflow installs the R packages from `renv.lock` and the Python packages from `uv.lock`. Then it deletes `_freeze/` and renders the book, so every code cell runs. If the workflow fails, a lockfile or a chapter does not work in a clean environment.
 
-The last step of the workflow deploys the rendered book to Netlify. The workflow does not commit the new `_freeze/` files.
+If the new `_freeze/` files are different from the committed files, the workflow opens a pull request with the changes. The workflow does not deploy the book.
+
+To use a branch other than `main`, add `--ref <branch>`. The pull request then targets that branch.
 
 ### Reproducing the R environment locally
 
