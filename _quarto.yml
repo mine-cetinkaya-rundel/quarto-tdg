@@ -44,8 +44,8 @@ book:
         - authoring.qmd
         - projects.qmd
         - websites.qmd
-        - yaml.qmd
-        - look-under-hood.qmd
+        - mastering-options.qmd
+        - troubleshooting.qmd
         - more.qmd
 
   appendices:
