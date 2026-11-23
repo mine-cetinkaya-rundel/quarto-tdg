@@ -169,12 +169,12 @@ If you want reader input, like a slider or a dropdown, to drive your outputs, Qu
 
 [Shiny](https://shiny.posit.co) is a framework for building interactive web applications in R or Python.
 When you set `server: shiny` in a document header, your document becomes a Shiny app: the document provides the layout and narrative, code cells define inputs and outputs, and a live R or Python process updates the outputs as readers change the inputs.
-Shiny suits interactivity that needs your code to rerun, for example, refitting a model with reader-chosen settings.
+Shiny is a good choice when the interactivity you want requires code to rerun, such as refitting a model with reader-chosen settings.
 
-However, unlike every other output in this book, an interactive Shiny document isn't static HTML.
-It needs a server running R or Python, like Posit Connect or shinyapps.io, so you can't publish it to services like GitHub Pages.
+However, a Shiny document isn't static HTML.
+It needs a server running R or Python, like Posit Connect or shinyapps.io, so you can't publish it to static hosts like GitHub Pages.
 You also need to keep track of which code cells run when you render and which run for each reader.
-If you already have a standalone Shiny app, or the app is the main event, it is often simpler to deploy the app on its own and embed it in your document with an `<iframe>` in a raw HTML block (@sec-html-raw-html).
+If you already have a standalone Shiny app, or the app is the main event, it's often simpler to deploy the app on its own and embed it in your document with an `<iframe>` in a raw HTML block (@sec-html-raw-html).
 
 ::: callout-tip
 
