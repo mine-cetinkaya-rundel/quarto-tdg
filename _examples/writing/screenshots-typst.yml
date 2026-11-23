@@ -1,0 +1,5 @@
+- image: writing-basics-document-typst.png
+  source: _examples/writing/basics/document.qmd
+  profile: typst
+  density: 200
+  generated: 2026-11-20T20:59:27Z

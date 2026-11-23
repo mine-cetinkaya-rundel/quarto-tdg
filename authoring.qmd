@@ -28,7 +28,7 @@ For example, as list items, inside fenced divs, or inside table cells.
 You cannot use code cells inline with text or inside section headings.
 
 
-## Sections
+## Sections {#sec-markdown-sections}
 
 Use markdown headings to structure your document into sections and subsections.
 Markdown headings are created by prefixing text with one or more `#` characters, 
@@ -90,7 +90,7 @@ This is a second paragraph, separated by a blank line.
 
 Quarto ignores line breaks within a paragraph, which means you can wrap your text across multiple lines without affecting the final rendered output.
 
-## Text
+## Text {#sec-markdown-text}
 
 Beyond plain text, @tbl-inline-text-elements summarizes the most common things you want to put inside a paragraph or heading: formatted text, links, cross-references, citations, math and footnotes.
 
@@ -203,7 +203,7 @@ Common syntax for inline text elements in Quarto markdown. TODO: Element column 
 :::
 
 
-## Lists
+## Lists {#sec-markdown-lists}
 
 You can create an unordered list by starting each line with `-` (or `*` or `+`) followed by a space, 
 ensuring there is a blank line before the first element:
