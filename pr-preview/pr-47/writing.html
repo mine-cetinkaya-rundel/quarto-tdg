@@ -414,7 +414,44 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <li><p>Links: text inside square brackets (<code>[]</code>) followed by a URL in parentheses (<code>()</code>)</p></li>
 </ul>
 <p>When rendered the structure described by markdown is translated to the relevant components in the target format, e.g.&nbsp;HTML tags for <code>format: html</code>, or Typst functions for <code>format: typst</code>.</p>
-<p>TODO: screenshots of rendered output</p>
+<p><a href="#fig-writing-basics-document" class="quarto-xref">Figure&nbsp;<span>3.1</span></a> shows <code>document.qmd</code> rendered with <code>format: html</code> and with <code>format: typst</code>.</p>
+<div id="fig-writing-basics-document" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-writing-basics-document-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-writing-basics-document-html" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A rendered HTML page with the heading My First Section, followed by two paragraphs. The paragraphs show bold text, italic text, the word code in a monospace font on a gray background, and an underlined blue link that reads link to Quarto.">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-writing-basics-document-html-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/writing-basics-document-html.png" class="border img-fluid figure-img" data-ref-parent="fig-writing-basics-document" alt="A rendered HTML page with the heading My First Section, followed by two paragraphs. The paragraphs show bold text, italic text, the word code in a monospace font on a gray background, and an underlined blue link that reads link to Quarto.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-writing-basics-document-html-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) <code>format: html</code>
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-writing-basics-document-typst" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A rendered PDF page with the heading My First Section in a serif font, followed by two paragraphs. The paragraphs show bold text, italic text, and the word code in a monospace font. The link text, link to Quarto, looks the same as the text around it.">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-writing-basics-document-typst-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/writing-basics-document-typst.png" class="border img-fluid figure-img" data-ref-parent="fig-writing-basics-document" alt="A rendered PDF page with the heading My First Section in a serif font, followed by two paragraphs. The paragraphs show bold text, italic text, and the word code in a monospace font. The link text, link to Quarto, looks the same as the text around it.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-writing-basics-document-typst-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) <code>format: typst</code>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-writing-basics-document-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: <code>document.qmd</code> rendered to two formats.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="features-of-quarto-markdown" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="features-of-quarto-markdown"><span class="header-section-number">3.2</span> Features of Quarto markdown</h2>
@@ -443,24 +480,91 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Fenced divs are used in Quarto to implement lots of different block level treatments: callouts, figure or table panels, and complex layouts.</p></li>
 </ul>
-<p><a href="authoring.html" class="quarto-xref"><span>Chapter 12</span></a> covers the most useful features of Quarto markdown in more detail.</p>
+<p><a href="authoring.html" class="quarto-xref"><span>Chapter 12</span></a> covers the most useful features of Quarto markdown in more detail. For a quick tour, <a href="#tbl-writing-quick-reference" class="quarto-xref">Table&nbsp;<span>3.1</span></a> shows an example of each feature, along with a pointer to the section of <a href="authoring.html" class="quarto-xref"><span>Chapter 12</span></a> where you can learn more.</p>
+<div id="tbl-writing-quick-reference" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-writing-quick-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: Quick reference for common Quarto markdown syntax
+</figcaption>
+<div aria-describedby="tbl-writing-quick-reference-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Element</th>
+<th style="text-align: left;">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Headings</strong>, <a href="authoring.html#sec-markdown-sections" class="quarto-xref"><span>Section 12.2</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-headings.png" class="border img-fluid figure-img" style="width:100.0%" alt="A rendered HTML page with a large bold heading, Section, underlined by a thin gray rule, followed by a smaller bold heading, Subsection."></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Text formatting</strong>, <a href="authoring.html#sec-markdown-text" class="quarto-xref"><span>Section 12.4</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-text.png" class="border img-fluid figure-img" style="width:100.0%" alt="A rendered sentence showing the words italic, bold, code in a monospace font on a gray background, struck through with a line through it, underlined, highlighted with a yellow background, and small caps, followed by m with a superscript 2 and H2O with a subscript 2."></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Links</strong>, <a href="authoring.html#sec-markdown-text" class="quarto-xref"><span>Section 12.4</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-links.png" class="border img-fluid figure-img" style="width:100.0%" alt="The sentence Link to Quarto, or show the URL itself: https://quarto.org, where Quarto and https://quarto.org are blue underlined links."></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Lists</strong>, <a href="authoring.html#sec-markdown-lists" class="quarto-xref"><span>Section 12.5</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-lists.png" class="border img-fluid figure-img" style="width:100.0%" alt="A rendered compact bulleted list with three items: First item, Second item, and Third item."></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Code blocks</strong>, <a href="authoring.html#sec-code-blocks" class="quarto-xref"><span>Section 12.6</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-code-blocks.png" class="border img-fluid figure-img" style="width:100.0%" alt="A rendered code block with a gray header reading query.sql above the syntax highlighted code SELECT * FROM table;."></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Tables</strong>, <a href="authoring.html#sec-markdown-tables" class="quarto-xref"><span>Section 12.7</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-tables.png" class="border img-fluid figure-img" style="width:100.0%" alt="A rendered table captioned Table 1: Training performance, with columns Algorithm and Accuracy and two rows: Random Forest, 96.7%, and Linear Regression, 74.8%."></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Figures</strong>, <a href="authoring.html#sec-markdown-figures" class="quarto-xref"><span>Section 12.8</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-figures.png" class="border img-fluid figure-img" style="width:100.0%" alt="A rendered line drawing of an elephant, centered, with the caption Figure 1: Elephant below it."></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Math</strong>, <a href="authoring.html#sec-equations" class="quarto-xref"><span>Section 12.9</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-math.png" class="border img-fluid figure-img" style="width:100.0%" alt="The text The formula is:, followed by the equation E equals m c squared, typeset and centered on its own line."></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cross-references</strong>, <a href="authoring.html#sec-crossreferences" class="quarto-xref"><span>Section 12.10</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-crossrefs.png" class="border img-fluid figure-img" style="width:100.0%" alt="The sentence See Figure 1 and Table 1, where Figure 1 and Table 1 are blue underlined links."></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Citations</strong>, <a href="authoring.html#sec-citations" class="quarto-xref"><span>Section 12.11</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-citations.png" class="border img-fluid figure-img" style="width:100.0%" alt="The sentence Quarto builds on the idea of literate programming (Knuth 1984), where Knuth 1984 is a blue link. Below a horizontal rule, a References heading lists: Knuth, Donald E. 1984. Literate Programming. The Computer Journal 27 (2): 97–111."></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Footnotes</strong>, <a href="authoring.html#sec-footnotes" class="quarto-xref"><span>Section 12.12</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-footnotes.png" class="border img-fluid figure-img" style="width:100.0%" alt="The sentence Here is some text that needs a footnote, followed by a blue superscript 1. Below a horizontal rule, a Footnotes heading lists: 1. Here is the footnote contents, followed by a return arrow link."></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Callouts</strong>, <a href="authoring.html#sec-callouts" class="quarto-xref"><span>Section 12.14</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-callouts.png" class="border img-fluid figure-img" style="width:100.0%" alt="A rendered note callout with a blue left border and an information icon. The light blue header reads Types of callout, and the body reads: There are five types of callouts, including: note, tip, warning, caution, and important, with each type in a monospace font."></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Layout</strong>, <a href="authoring.html#sec-layout" class="quarto-xref"><span>Section 12.15</span></a></td>
+<td style="text-align: left;"><img src="images/writing-overview-layout.png" class="border img-fluid figure-img" style="width:100.0%" alt="Two line drawings side by side: an elephant on the left captioned (a) Elephant, and a panther on the right captioned (b) Panther. Below both, the shared caption Figure 1: Two animals side-by-side."></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 </section>
 <section id="things-to-watch-out-for" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="things-to-watch-out-for"><span class="header-section-number">3.3</span> Things to watch out for</h2>
 <section id="white-space-matters-sometimes" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="white-space-matters-sometimes"><span class="header-section-number">3.3.1</span> White space matters (sometimes)</h3>
 <p>You can often ignore whitespace when you are writing Quarto markdown. For example, extra spaces inline with text are ignored, as are newlines within a paragraph. That is, the following markdown snippets are equivalent:</p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>A sentence  with   weird     spacing.   And    another.</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>This is on a new line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>A sentence with weird spacing. And another. This is on a new line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
 <p>However, there are some places white space is important:</p>
 <ul>
 <li><p><strong>Blank lines</strong>: you must have a blank line before the items in a list, and before a code block or cell. Without the blank line, Quarto won’t identify the component correctly, so you’ll get list items that all appear on a single line, or a code block syntax (the <code>```</code>) showing up in the rendered document.</p></li>
@@ -470,7 +574,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="the-difference-between-code-blocks-and-code-cells" class="level3" data-number="3.3.2">
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="the-difference-between-code-blocks-and-code-cells"><span class="header-section-number">3.3.2</span> The difference between code blocks and code cells</h3>
-<p>There is a distinction between:</p>
+<p>There is a distinction between <strong>code cells</strong> and <strong>code blocks</strong>:</p>
 <ul>
 <li><p><strong>Code cells</strong>, sometimes also called <strong>code chunks</strong>, are code that will be executed and replaced with computational output. Code cells use the syntax:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>

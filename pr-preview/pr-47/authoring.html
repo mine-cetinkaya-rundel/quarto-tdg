@@ -403,10 +403,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#markdown-text" id="toc-markdown-text" class="nav-link active" data-scroll-target="#markdown-text"><span class="header-section-number">12.1</span> Markdown text</a></li>
-  <li><a href="#sections" id="toc-sections" class="nav-link" data-scroll-target="#sections"><span class="header-section-number">12.2</span> Sections</a></li>
+  <li><a href="#sec-markdown-sections" id="toc-sec-markdown-sections" class="nav-link" data-scroll-target="#sec-markdown-sections"><span class="header-section-number">12.2</span> Sections</a></li>
   <li><a href="#paragraphs" id="toc-paragraphs" class="nav-link" data-scroll-target="#paragraphs"><span class="header-section-number">12.3</span> Paragraphs</a></li>
-  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><span class="header-section-number">12.4</span> Text</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">12.5</span> Lists</a></li>
+  <li><a href="#sec-markdown-text" id="toc-sec-markdown-text" class="nav-link" data-scroll-target="#sec-markdown-text"><span class="header-section-number">12.4</span> Text</a></li>
+  <li><a href="#sec-markdown-lists" id="toc-sec-markdown-lists" class="nav-link" data-scroll-target="#sec-markdown-lists"><span class="header-section-number">12.5</span> Lists</a></li>
   <li><a href="#sec-code-blocks" id="toc-sec-code-blocks" class="nav-link" data-scroll-target="#sec-code-blocks"><span class="header-section-number">12.6</span> Code blocks</a></li>
   <li><a href="#sec-markdown-tables" id="toc-sec-markdown-tables" class="nav-link" data-scroll-target="#sec-markdown-tables"><span class="header-section-number">12.7</span> Tables</a>
   <ul class="collapse">
@@ -472,8 +472,8 @@ window.Quarto = {
 <p>Everything that isn’t the document header or an executable code cell is interpreted as Quarto markdown. Quarto markdown inherits much of Pandoc’s markdown syntax, but uses its own parser. This means you can use familiar markdown syntax, though there are some differences from Pandoc. The rest of this chapter outlines the most useful Quarto markdown syntax.</p>
 <p>While we distinguish between executable code cells and markdown in the source document, this distinction disappears after rendering. When cells execute, their output becomes markdown and is treated identically to other markdown content. Executable code cells produce block-level markdown, so you can only use them where block elements are allowed. For example, as list items, inside fenced divs, or inside table cells. You cannot use code cells inline with text or inside section headings.</p>
 </section>
-<section id="sections" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="sections"><span class="header-section-number">12.2</span> Sections</h2>
+<section id="sec-markdown-sections" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="sec-markdown-sections"><span class="header-section-number">12.2</span> Sections</h2>
 <p>Use markdown headings to structure your document into sections and subsections. Markdown headings are created by prefixing text with one or more <code>#</code> characters, followed by a space, and the heading title:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Section</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -515,8 +515,8 @@ Tip&nbsp;12.1: What are attributes?
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>This is a second paragraph, separated by a blank line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Quarto ignores line breaks within a paragraph, which means you can wrap your text across multiple lines without affecting the final rendered output.</p>
 </section>
-<section id="text" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="text"><span class="header-section-number">12.4</span> Text</h2>
+<section id="sec-markdown-text" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="sec-markdown-text"><span class="header-section-number">12.4</span> Text</h2>
 <p>Beyond plain text, <a href="#tbl-inline-text-elements" class="quarto-xref">Table&nbsp;<span>12.1</span></a> summarizes the most common things you want to put inside a paragraph or heading: formatted text, links, cross-references, citations, math and footnotes.</p>
 <p>These elements are called <strong>inline text elements</strong>, because they are used inline with text, inside what are called <strong>block elements</strong> like paragraphs and headings. You can also use them inside many of the other block-level elements discussed in this chapter like as list items, inside tables, and inside callouts.</p>
 <div id="tbl-inline-text-elements" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -619,8 +619,8 @@ Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown. TODO
 </figure>
 </div>
 </section>
-<section id="lists" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="lists"><span class="header-section-number">12.5</span> Lists</h2>
+<section id="sec-markdown-lists" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="sec-markdown-lists"><span class="header-section-number">12.5</span> Lists</h2>
 <p>You can create an unordered list by starting each line with <code>-</code> (or <code>*</code> or <code>+</code>) followed by a space, ensuring there is a blank line before the first element:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="an">My list:</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
