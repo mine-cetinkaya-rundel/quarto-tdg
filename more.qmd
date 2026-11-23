@@ -2,7 +2,7 @@
 title: Doing more with Quarto
 ---
 
-This book has been a curated collection of what we think are the most useful parts of Quarto for most people. 
+This book is a curated collection of what we think are the most useful parts of Quarto for most people. 
 However, there is much more to Quarto!
 In this chapter, we briefly cover some of the things we omitted from the book and why or when they might be useful to you.
 
