@@ -1,0 +1,7 @@
+## My First Section
+
+This is the first paragraph with some **bold text** and _italic text_.
+You can also include `code` to show function names or variables.
+
+Here's a second paragraph with a [link to Quarto](https://quarto.org).
+You might also want to use _italic text_ for emphasis.

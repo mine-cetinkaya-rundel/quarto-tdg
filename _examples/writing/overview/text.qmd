@@ -1,0 +1,1 @@
+Text can be _italic_, **bold**, `code`, ~~struck through~~, [underlined]{.underline}, [highlighted]{.mark}, or [small caps]{.smallcaps}, with superscripts like m^2^ and subscripts like H~2~O.

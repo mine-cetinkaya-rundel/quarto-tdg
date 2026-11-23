@@ -23,6 +23,9 @@ jobs:
         with:
           tinytex: true
 
+      - name: Check freeze files
+        run: quarto run scripts/check-freeze.ts
+
       - name: Render
         uses: quarto-dev/quarto-actions/render@v2
 

@@ -1,0 +1,12 @@
+::: {#xref}
+See @fig-elephant and @tbl-perf.
+:::
+
+![Elephant](images/elephant.png){#fig-elephant width="25%"}
+
+| Algorithm         | Accuracy |
+|-------------------|----------|
+| Random Forest     | 96.7%    |
+| Linear Regression | 74.8%    |
+
+: Training performance {#tbl-perf}
