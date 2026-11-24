@@ -148,9 +148,9 @@ You can also use them inside many of the other block elements discussed in this 
     [Quarto](https://quarto.org)
     ```  
 
-* - [Layout section](#sec-layout)
+* - [Paragraphs section](#paragraphs)
   - ``` markdown
-    [Layout section](#sec-layout)
+    [Paragraphs section](#paragraphs)
     ```
 
 * - **Math** @sec-equations
