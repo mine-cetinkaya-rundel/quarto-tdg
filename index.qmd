@@ -47,6 +47,7 @@ It differs in several key ways:
 
 The official Quarto website remains the definitive reference.
 We'll point you there for specific details and advanced features.
+When we do, we use a special link style, like this one to the [Guide](https://quarto.org/docs/guide/).
 The official site also includes hands-on tutorials that are excellent for learning specific tasks.
 
 ## How to read this book
