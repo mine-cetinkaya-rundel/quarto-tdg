@@ -4,8 +4,6 @@ tbl-colwidths: [20, 80]
 
 # Websites {#sec-websites}
 
-## Overview
-
 Quarto websites are a special type of Quarto project for building...well, websites.
 By adding a single configuration file, you can turn any collection of Quarto documents into a website.
 Quarto websites are a great way to showcase your work, build documentation, or share your learning progress.
@@ -14,11 +12,11 @@ In this chapter, you'll start with the minimal building blocks for a functional 
 
 Then, you'll dive into the three big components of a website:
 
-* Content: In @sec-website-structure you'll learn how pages in a website are built from Quarto documents in a project, how to cross-link pages, and to control what does and doesn't end up on your site. Later, you'll also learn about two special kinds of pages **About pages** in @sec-websites-about-pages and **Listings** in @sec-websites-listings.
+* **Content:** In @sec-website-structure you'll learn how pages in a website are built from Quarto documents in a project, how to cross-link pages, and to control what does and doesn't end up on your site. Later, you'll also learn about two special kinds of pages **About pages** in @sec-websites-about-pages and **Listings** in @sec-websites-listings.
 
-* Navigation: In @sec-websites-navigation you'll learn about adding site navigation, so your viewers can easily locate content on your site. 
+* **Navigation:** In @sec-websites-navigation you'll learn about adding site navigation, so your viewers can easily locate content on your site. 
 
-* Appearance: In @sec-websites-theme you'll learn how to customize the appearance of your site by controlling colors, fonts and more.
+* **Appearance:** In @sec-websites-theme you'll learn how to customize the appearance of your site by controlling colors, fonts and more.
 
 Finally, in @sec-website-publish you'll learn how to get your website out in the world, and in @sec-ci tools for automating the publishing process.
 
@@ -1886,7 +1884,7 @@ Setup Python
 
 :::::
 
-## Wrapping Up
+## Wrapping up
 
 In this chapter, you learned about the key components of a Quarto website: content, navigation, and appearance. 
 You also learned about a few techniques for publishing your site.
@@ -1895,8 +1893,6 @@ But, there are many other features we haven't talked about.
 Some notable ones include:
 
 * Drafts: Set `draft: true` to be able to preview pages, but not have them included in a site render, <https://quarto.org/docs/websites/website-drafts.html>.
-
-* Comments: Integrate third-party tools to allow your readers to leave comments on your pages, <https://quarto.org/docs/output-formats/html-basics.html#commenting>.
 
 * Announcements: Add a bar to the top of the site for crucial info, <https://quarto.org/docs/websites/website-tools.html#announcement-bar>.
 
