@@ -19,14 +19,10 @@ show_tree <- function(dir, ...) {
 
 So far, we've concentrated on single Quarto documents: a single `.qmd` which defines all of its Quarto options in its header.
 In this chapter, you'll learn about Quarto projects: a way to organize collections of Quarto documents.
-You'll learn:
 
--   What a Quarto project is
--   How to create one, or turn an existing folder into one
--   How working with a project differs from working with single files
--   How to render all or part of a Quarto project
--   How to set project level Quarto settings
--   How to specify common metadata for documents in the project
+You'll start by learning what a Quarto project is (@sec-overview), and how to create one or turn an existing folder into one.
+You'll then see how working with a project differs from working with single files, and how to render all or part of a project (@sec-render-a-project).
+Finally, you'll learn how to set project-level options (@sec-project-options) and common metadata shared by the documents in the project (@sec-common-metadata).
 
 ## What is a Quarto Project? {#sec-overview}
 
@@ -578,15 +574,15 @@ We don't cover books and manuscripts in this book, but you can read about when y
 
 There's plenty more you can do with projects that we didn't cover. A few worth knowing about:
 
-* **Computational environments.** A project is a natural place to record the packages your code depends on, for example with `renv` for R, or a virtual environment for Python. This makes it easier for collaborators, and CI services, to reproduce your results. You can learn more in [Virtual Environments](https://quarto.org/docs/projects/virtual-environments.html).
+* **Computational environments.** A project is a natural place to record the packages your code depends on, for example with `renv` for R, or a virtual environment for Python. This makes it easier for collaborators, and CI services, to reproduce your results. You can learn more on [Virtual Environments](https://quarto.org/docs/projects/virtual-environments.html) in the Quarto documentation.
 
-* **Freeze.** The `freeze` execution option stops Quarto from re-running a document's code during a full project render. Quarto stores the results in `_freeze/`, which you commit, so collaborators and CI services can render your project without your computational environment. Be aware that with `freeze: auto` any edit to a document, even to its prose, re-runs its code. With `freeze: true` a project render ignores edits to a frozen document completely, until you render that document directly. You can learn more in [Managing Execution](https://quarto.org/docs/projects/code-execution.html).
+* **Freeze.** The `freeze` execution option stops Quarto from re-running a document's code during a full project render. Quarto stores the results in `_freeze/`, which you commit, so collaborators and CI services can render your project without your computational environment. Be aware that with `freeze: auto` any edit to a document, even to its prose, re-runs its code. With `freeze: true` a project render ignores edits to a frozen document completely, until you render that document directly. You can learn more on [Managing Execution](https://quarto.org/docs/projects/code-execution.html) in the Quarto documentation.
 
-* **Pre- and post-render scripts.** The `pre-render` and `post-render` project options run your own scripts before and after a render, for example to prepare data or check the links in your output. You can learn more in [Project Scripts](https://quarto.org/docs/projects/scripts.html).
+* **Pre- and post-render scripts.** The `pre-render` and `post-render` project options run your own scripts before and after a render, for example to prepare data or check the links in your output. You can learn more on [Project Scripts](https://quarto.org/docs/projects/scripts.html) in the Quarto documentation.
 
-* **Project profiles.** A profile, like `_quarto-production.yml`, holds options that Quarto merges over `_quarto.yml` when you activate it. Profiles let one project render differently in different situations, for example a public and an internal version, or freeze locally but run all code in production. You can learn more in [Project Profiles](https://quarto.org/docs/projects/profiles.html).
+* **Project profiles.** A profile, like `_quarto-production.yml`, holds options that Quarto merges over `_quarto.yml` when you activate it. Profiles let one project render differently in different situations, for example a public and an internal version, or freeze locally but run all code in production. You can learn more on [Project Profiles](https://quarto.org/docs/projects/profiles.html) in the Quarto documentation.
 
-* **Custom project types.** If you often create projects with the same structure or settings, you can package them as a custom project type in an extension, which others can then use as a starting point. You can learn more in [Project Types](https://quarto.org/docs/extensions/project-types.html).
+* **Custom project types.** If you often create projects with the same structure or settings, you can package them as a custom project type in an extension, which others can then use as a starting point. You can learn more on [Project Types](https://quarto.org/docs/extensions/project-types.html) in the Quarto documentation.
 
 
 ```{r}
