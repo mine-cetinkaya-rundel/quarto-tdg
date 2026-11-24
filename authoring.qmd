@@ -852,10 +852,10 @@ This content is inside a div with no attributes
 ```
 
 The attributes may include an identifier (starting with `#`), 
-one or more classes (starting with `.`), and key-value pairs (`key='value'`):
+one or more classes (starting with `.`), and key-value pairs (`key="value"`):
 
 ``` {.markdown .code-overflow-wrap}
-::: {#id .class1 .class2 key='value'}
+::: {#id .class1 .class2 key="value"}
 This content is inside a div with an identifier, two classes, and a key-value attribute
 :::
 ```
@@ -863,7 +863,7 @@ This content is inside a div with an identifier, two classes, and a key-value at
 You can also nest fenced divs inside one another:
 
 ``` markdown
-::::: {#id .class1 .class2 key='value'}
+::::: {#id .class1 .class2 key="value"}
 
 ::: {}
 Content inside the nested div
