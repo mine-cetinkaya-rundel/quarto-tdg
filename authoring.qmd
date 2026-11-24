@@ -148,9 +148,9 @@ You can also use them inside many of the other block elements discussed in this 
     [Quarto](https://quarto.org)
     ```  
 
-* - [Links section](#links)
+* - [Layout section](#sec-layout)
   - ``` markdown
-    [Links section](#links)
+    [Layout section](#sec-layout)
     ```
 
 * - **Math** @sec-equations
@@ -702,30 +702,30 @@ See @tip-bib for an example `references.bib` file.
 Then you can cite references from the bibliography file using their identifiers and the citation syntax described in @tbl-citation-syntax.
 
 ::: {#tbl-citation-syntax}
-:::{.list-table header-cols=1}
+:::{.list-table header-rows=1}
 
-- - Markdown syntax
-  - Output
+- - Output
+  - Markdown syntax
 
-- - ``` markdown
+- - @knuth1984 shows ...
+  - ``` markdown
     @knuth1984 shows ...
     ```
-  - @knuth1984 shows ...
 
-- - ``` markdown
+- - ... [@knuth1984]
+  - ``` markdown
     ... [@knuth1984]
     ```
-  - ... [@knuth1984]
 
-- - ``` markdown
+- - As Knuth [-@knuth1984] shows ...
+  - ``` markdown
     As Knuth [-@knuth1984] shows ...
     ```
-  - As Knuth [-@knuth1984] shows ...
 
-- - ``` markdown
+- - [@knuth1984; @wickham2023]
+  - ``` markdown
     [@knuth1984; @wickham2023]
     ```
-  - [@knuth1984; @wickham2023]
 
 :::
 
