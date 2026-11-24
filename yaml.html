@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-926b22b37253dc75f456d1968459d318.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -829,7 +829,7 @@ Figure&nbsp;15.1
 <p>This particular form of message that ends with <code>which must instead be x</code>, is a common culprit of being too brief to be helpful. Quarto will often report one value, <code>x</code>, often the first alphabetically, but in reality there are many values that the option could take.</p>
 </div>
 </div>
-<p>For validation errors like this you should look for an example in the Guide section of Quarto. In the section <a href="https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links">“Code and Other Links”</a> you can see an example showing Quarto was expecting an array of objects:</p>
+<p>For validation errors like this you should look for an example in the Guide section of Quarto. In the section <a href="https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links" class="quarto-docs"><span class="docs-lead">“Code and Other Links”</span></a> you can see an example showing Quarto was expecting an array of objects:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
@@ -873,7 +873,7 @@ Figure&nbsp;15.1
 </section>
 <section id="what-are-the-possible-options" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="what-are-the-possible-options"><span class="header-section-number">15.4</span> What are the possible options?</h2>
-<p>The best place to find out what options are available is the <a href="http://quarto.org/docs/reference">Reference section of the Quarto documentation</a>. These pages are automatically generated from the YAML schema defined in the source code of the Quarto CLI.</p>
+<p>The best place to find out what options are available is the <a href="http://quarto.org/docs/reference" class="quarto-docs"><span class="docs-lead">Reference</span> section of the Quarto documentation</a>. These pages are automatically generated from the YAML schema defined in the source code of the Quarto CLI.</p>
 <p>The options available depend on where the option will be applied. From smallest to largest scope these are: to a code cell, to a document format, or to a project.</p>
 <p>Those scopes also map to where you put the option: inside the code cell, in the document header, or in <code>_quarto.yml</code>. However, you can generally apply options to a larger scope, by placing them in the corresponding location. For example, <code>echo</code> is a code cell option, but you can use it in the document header to apply to formats, or you can use it in <code>_quarto.yml</code> to apply to all documents in a project.</p>
 <p><a href="#tbl-options" class="quarto-xref">Table&nbsp;<span>15.1</span></a> matches the sections of the Reference Guide, to the other names for the same options, and where the options might be found. In the following sections, you’ll work through these scopes from largest to smallest and learn some general principles to help you put your options in the right place.</p>
@@ -984,7 +984,7 @@ Table&nbsp;15.1: The three kinds of options you can set in Quarto
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">title</span><span class="kw">:</span><span class="at"> My document</span></span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>That is, the options <code>title</code> and <code>toc</code> are HTML format options. It’s convenient to be able to put things at the top-level, but internally, Quarto will move those options under each format. This is why Quarto’s <a href="https://quarto.org/docs/reference/">reference pages</a> are laid out by format—options are supported, or not, depending on the output format.</p>
+<p>That is, the options <code>title</code> and <code>toc</code> are HTML format options. It’s convenient to be able to put things at the top-level, but internally, Quarto will move those options under each format. This is why Quarto’s <a href="https://quarto.org/docs/reference/" class="quarto-docs"><span class="docs-lead">reference</span> pages</a> are laid out by format—options are supported, or not, depending on the output format.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1198,7 +1198,7 @@ Snippet&nbsp;15.3: The equivalent header for the files in <a href="#lst-format" 
 </section>
 <section id="sec-execution-options" class="level2" data-number="15.7">
 <h2 data-number="15.7" class="anchored" data-anchor-id="sec-execution-options"><span class="header-section-number">15.7</span> Execution options</h2>
-<p>We use the term <strong>execution options</strong> to describe options you can set in code cells. The set of options available depends on your execution engine: <a href="https://quarto.org/docs/reference/cells/cells-knitr.html"><code>knitr</code></a>, <a href="https://quarto.org/docs/reference/cells/cells-jupyter.html"><code>jupyter</code></a> or <a href="https://quarto.org/docs/reference/cells/cells-ojs.html"><code>ojs</code></a>.</p>
+<p>We use the term <strong>execution options</strong> to describe options you can set in code cells. The set of options available depends on your execution engine: <a href="https://quarto.org/docs/reference/cells/cells-knitr.html" class="quarto-docs"><span class="docs-lead"><code>knitr</code></span></a>, <a href="https://quarto.org/docs/reference/cells/cells-jupyter.html" class="quarto-docs"><span class="docs-lead"><code>jupyter</code></span></a> or <a href="https://quarto.org/docs/reference/cells/cells-ojs.html" class="quarto-docs"><span class="docs-lead"><code>ojs</code></span></a>.</p>
 <p>You can generally split execution options into two types:</p>
 <ul>
 <li><p>information that is unique to a code cell like identifiers (<code>label</code>, <code>lst-label</code>), captions (<code>fig-cap</code>, <code>tbl-cap</code>, <code>lst-cap</code>, <code>fig-subcap</code>, <code>tbl-subcap</code>, <code>fig-scap</code>) or other annotation (<code>fig-alt</code>, <code>fig-link</code>).</p></li>

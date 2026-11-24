@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-926b22b37253dc75f456d1968459d318.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -433,7 +433,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <p>Many extensions include Lua code that Quarto runs when you render. Only add extensions from authors you trust.</p>
 </div>
 </div>
-<p>You can learn how to build your own extensions in <a href="https://quarto.org/docs/extensions/creating.html">Creating Extensions</a> in the Quarto documentation.</p>
+<p>You can learn how to build your own extensions in <a href="https://quarto.org/docs/extensions/creating.html" class="quarto-docs"><span class="docs-lead">Creating</span> Extensions</a> in the Quarto documentation.</p>
 </section>
 <section id="sec-other-formats" class="level2" data-number="17.2">
 <h2 data-number="17.2" class="anchored" data-anchor-id="sec-other-formats"><span class="header-section-number">17.2</span> Other formats</h2>
@@ -443,7 +443,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <p>You can render to Word with <code>format: docx</code>. Word output relies heavily on Pandoc’s conversion, with fewer Quarto-specific additions than HTML or Typst. Quarto handles callouts, cross-references and figure layouts, but many other features render in a simpler form.</p>
 <p>Your control over appearance in <code>docx</code> is also limited. You style Word output with a reference document: a Word file whose paragraph styles you customize. Only certain elements, and certain properties of those elements are customizable, and there is no mechanism for changes beyond these. There is currently no brand.yml support.</p>
 <p>A common reason to prefer Word output is to get feedback from non-Quarto authors via track changes. Unfortunately, there is no easy backward path from an edited <code>.docx</code> to your <code>.qmd</code> source. You’ll need to copy any changes back to your <code>.qmd</code> source by hand.</p>
-<p>You can learn more in <a href="https://quarto.org/docs/output-formats/ms-word.html">Word Basics</a> and <a href="https://quarto.org/docs/output-formats/ms-word-templates.html">Word Templates</a> in the Quarto documentation. PowerPoint slides, <code>format: pptx</code>, work in a similar way and have similar limitations; see <a href="https://quarto.org/docs/presentations/powerpoint.html">PowerPoint</a>.</p>
+<p>You can learn more in <a href="https://quarto.org/docs/output-formats/ms-word.html" class="quarto-docs"><span class="docs-lead">Word</span> Basics</a> and <a href="https://quarto.org/docs/output-formats/ms-word-templates.html" class="quarto-docs"><span class="docs-lead">Word</span> Templates</a> in the Quarto documentation. PowerPoint slides, <code>format: pptx</code>, work in a similar way and have similar limitations; see <a href="https://quarto.org/docs/presentations/powerpoint.html" class="quarto-docs"><span class="docs-lead">PowerPoint</span></a>.</p>
 </section>
 <section id="markdown-gfm-hugo-md-and-docusaurus-md" class="level3" data-number="17.2.2">
 <h3 data-number="17.2.2" class="anchored" data-anchor-id="markdown-gfm-hugo-md-and-docusaurus-md"><span class="header-section-number">17.2.2</span> Markdown: <code>gfm</code>, <code>hugo-md</code> and <code>docusaurus-md</code></h3>
@@ -453,23 +453,23 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <li><code>hugo-md</code> produces Markdown for a <a href="https://gohugo.io">Hugo</a> website</li>
 <li><code>docusaurus-md</code> produces Markdown for a <a href="https://docusaurus.io">Docusaurus</a> documentation site</li>
 </ul>
-<p>In each case, the other system is in charge of the final output, so Quarto’s HTML features, like themes and navigation, don’t apply. You can learn more in <a href="https://quarto.org/docs/output-formats/gfm.html">GitHub (GFM)</a>, <a href="https://quarto.org/docs/output-formats/hugo.html">Hugo</a> and <a href="https://quarto.org/docs/output-formats/docusaurus.html">Docusaurus</a> in the Quarto documentation.</p>
+<p>In each case, the other system is in charge of the final output, so Quarto’s HTML features, like themes and navigation, don’t apply. You can learn more in <a href="https://quarto.org/docs/output-formats/gfm.html" class="quarto-docs"><span class="docs-lead">GitHub</span> (GFM)</a>, <a href="https://quarto.org/docs/output-formats/hugo.html" class="quarto-docs"><span class="docs-lead">Hugo</span></a> and <a href="https://quarto.org/docs/output-formats/docusaurus.html" class="quarto-docs"><span class="docs-lead">Docusaurus</span></a> in the Quarto documentation.</p>
 </section>
 <section id="pdf-via-latex-pdf-and-beamer" class="level3" data-number="17.2.3">
 <h3 data-number="17.2.3" class="anchored" data-anchor-id="pdf-via-latex-pdf-and-beamer"><span class="header-section-number">17.2.3</span> PDF via LaTeX: <code>pdf</code> and <code>beamer</code></h3>
 <p>In <a href="typst.html" class="quarto-xref"><span>Chapter 10</span></a>, we explained why we use Typst to create PDFs. The alternative, <code>format: pdf</code>, creates a PDF via LaTeX instead. LaTeX is the better path when your target venue provides its own LaTeX template, as many journals do, or when you already rely on LaTeX packages, for example, for advanced math. Many of the journal article extensions (<a href="#sec-extensions" class="quarto-xref"><span>Section 17.1</span></a>) use LaTeX. To use LaTeX, you need a TeX distribution. Quarto recommends TinyTeX, which you can install with the command <code>quarto install tinytex</code>.</p>
 <p>Similar to Typst, you can keep the intermediate file, <code>.tex</code> for LaTeX, by setting <code>keep-tex: true</code>. The <code>.tex</code> file can be compiled outside of Quarto, so it’s often what a publisher asks for. Be aware that any edits you make to the <code>.tex</code> file will be overwritten the next time you render, so make your changes in the <code>.qmd</code> file instead.</p>
-<p>For slides, <code>format: beamer</code> uses LaTeX to create PDF presentations. You can learn more in <a href="https://quarto.org/docs/output-formats/pdf-basics.html">PDF Basics</a> and <a href="https://quarto.org/docs/presentations/beamer.html">Beamer</a> in the Quarto documentation.</p>
+<p>For slides, <code>format: beamer</code> uses LaTeX to create PDF presentations. You can learn more in <a href="https://quarto.org/docs/output-formats/pdf-basics.html" class="quarto-docs"><span class="docs-lead">PDF</span> Basics</a> and <a href="https://quarto.org/docs/presentations/beamer.html" class="quarto-docs"><span class="docs-lead">Beamer</span></a> in the Quarto documentation.</p>
 </section>
 <section id="dashboards-dashboard" class="level3" data-number="17.2.4">
 <h3 data-number="17.2.4" class="anchored" data-anchor-id="dashboards-dashboard"><span class="header-section-number">17.2.4</span> Dashboards: <code>dashboard</code></h3>
 <p>A dashboard arranges content, like plots, tables, and key numbers, into a single full-screen page, rather than a long scrolling document. Use <code>format: dashboard</code> when your readers want to take in results at a glance.</p>
 <p>A dashboard is a single <code>.qmd</code> file or Jupyter notebook where you arrange content, often computational plots and tables, as <strong>cards</strong>. Cards are arranged into rows and columns by using a simple syntax that relies on markdown headings.</p>
-<p>A dashboard is static by default, so you can publish it anywhere you can publish HTML. For a dashboard that responds to reader input, you can add Shiny or Observable (<a href="#sec-interactivity" class="quarto-xref"><span>Section 17.5</span></a>). You can learn more in <a href="https://quarto.org/docs/dashboards/">Dashboards</a> in the Quarto documentation.</p>
+<p>A dashboard is static by default, so you can publish it anywhere you can publish HTML. For a dashboard that responds to reader input, you can add Shiny or Observable (<a href="#sec-interactivity" class="quarto-xref"><span>Section 17.5</span></a>). You can learn more in <a href="https://quarto.org/docs/dashboards/" class="quarto-docs"><span class="docs-lead">Dashboards</span></a> in the Quarto documentation.</p>
 </section>
 <section id="any-pandoc-format" class="level3" data-number="17.2.5">
 <h3 data-number="17.2.5" class="anchored" data-anchor-id="any-pandoc-format"><span class="header-section-number">17.2.5</span> Any Pandoc format</h3>
-<p>Quarto can render to any format Pandoc supports, including OpenDocument (<code>odt</code>), EPUB (<code>epub</code>), JATS XML (<code>jats</code>, but see <a href="#sec-manuscripts" class="quarto-xref"><span>Section 17.4</span></a>), Jupyter notebooks (<code>ipynb</code>) and many wiki formats. These formats get less attention from Quarto than the ones we’ve discussed, so Quarto-specific features like callouts and cross-references may be simpler or missing. You can find the full list in <a href="https://quarto.org/docs/output-formats/all-formats.html">All Formats</a> in the Quarto documentation.</p>
+<p>Quarto can render to any format Pandoc supports, including OpenDocument (<code>odt</code>), EPUB (<code>epub</code>), JATS XML (<code>jats</code>, but see <a href="#sec-manuscripts" class="quarto-xref"><span>Section 17.4</span></a>), Jupyter notebooks (<code>ipynb</code>) and many wiki formats. These formats get less attention from Quarto than the ones we’ve discussed, so Quarto-specific features like callouts and cross-references may be simpler or missing. You can find the full list in <a href="https://quarto.org/docs/output-formats/all-formats.html" class="quarto-docs"><span class="docs-lead">All</span> Formats</a> in the Quarto documentation.</p>
 </section>
 </section>
 <section id="sec-books" class="level2" data-number="17.3">
@@ -482,14 +482,14 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <li>Citations from every chapter are collected into a single bibliography</li>
 </ul>
 <p>When you render to HTML, you get a website with sidebar navigation in chapter order. When you render to PDF via Typst or LaTeX, or to EPUB or Word, you get a single file containing every chapter.</p>
-<p>You can learn more in <a href="https://quarto.org/docs/books/">Books</a> in the Quarto documentation.</p>
+<p>You can learn more in <a href="https://quarto.org/docs/books/" class="quarto-docs"><span class="docs-lead">Books</span></a> in the Quarto documentation.</p>
 </section>
 <section id="sec-manuscripts" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="sec-manuscripts"><span class="header-section-number">17.4</span> Quarto manuscripts</h2>
 <p>A manuscript project is designed for publishing a scholarly article alongside the computations behind it. The output is a website: the article itself is the main page, with links to other formats, such as a PDF in a journal’s style, a Word version for reviewers, and JATS XML for submission, as well as links to the notebooks that produced the results. Readers can view each notebook as HTML or download its source. You can also embed outputs from those notebooks into the article, so your analysis can live in notebooks while the article focuses on the narrative.</p>
 <p>JATS (Journal Article Tag Suite) is the XML standard that many publishers and archives, like PubMed Central, use to store and exchange articles. When you list <code>jats</code> as one of your manuscript’s formats, Quarto also produces a MECA (Manuscript Exchange Common Approach) bundle, a zip file that packages your article and its supporting files, including your notebooks, into a single file suitable for sending to a publisher. In the JATS output, your notebooks are included as sub-articles, so the computations travel with the article rather than only being linked from it.</p>
 <p>Use a manuscript when you want readers, reviewers, or publishers to be able to dig into your code and results, not just read your article. If all you need is an article in a journal’s format, you don’t need a manuscript project; a single document with a journal format extension (<a href="#sec-extensions" class="quarto-xref"><span>Section 17.1</span></a>) is enough.</p>
-<p>You can learn more in <a href="https://quarto.org/docs/manuscripts/">Manuscripts</a> in the Quarto documentation, and about the MECA bundle in <a href="https://quarto.org/docs/manuscripts/components.html#meca-bundle">Using Manuscripts</a>.</p>
+<p>You can learn more in <a href="https://quarto.org/docs/manuscripts/" class="quarto-docs"><span class="docs-lead">Manuscripts</span></a> in the Quarto documentation, and about the MECA bundle in <a href="https://quarto.org/docs/manuscripts/components.html#meca-bundle" class="quarto-docs"><span class="docs-lead">Using</span> Manuscripts</a>.</p>
 </section>
 <section id="sec-interactivity" class="level2" data-number="17.5">
 <h2 data-number="17.5" class="anchored" data-anchor-id="sec-interactivity"><span class="header-section-number">17.5</span> Interactivity</h2>
@@ -512,12 +512,12 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <p>The downsides are that apps can take a while to load, not every package is available in the browser, and readers can see all your code and data. You can learn how to use Shinylive in Quarto in the <a href="https://quarto-ext.github.io/shinylive/"><code>shinylive</code> extension documentation</a>, and more about Shinylive itself for <a href="https://shiny.posit.co/py/get-started/shinylive.html">Python</a> and <a href="https://posit-dev.github.io/r-shinylive/">R</a>.</p>
 </div>
 </div>
-<p>You can learn more about using <a href="https://quarto.org/docs/interactive/shiny/">Shiny with Quarto</a> in the Quarto documentation.</p>
+<p>You can learn more about using <a href="https://quarto.org/docs/interactive/shiny/" class="quarto-docs"><span class="docs-lead">Shiny</span> with Quarto</a> in the Quarto documentation.</p>
 </section>
 <section id="observable" class="level3" data-number="17.5.2">
 <h3 data-number="17.5.2" class="anchored" data-anchor-id="observable"><span class="header-section-number">17.5.2</span> Observable</h3>
 <p><a href="https://observablehq.com/documentation/cells/observable-javascript">Observable JS</a> (OJS) is a flavor of JavaScript designed for exploring and visualizing data. You can write OJS in Quarto documents inside <code>{ojs}</code> code cells. The code runs in the reader’s browser, not when you render. OJS cells are reactive: when a reader changes an input, every cell that depends on it reruns. Because nothing runs on a server, you can publish a document with OJS anywhere you can publish HTML.</p>
-<p>You can learn more in <a href="https://quarto.org/docs/interactive/ojs/">Observable JS</a> in the Quarto documentation.</p>
+<p>You can learn more in <a href="https://quarto.org/docs/interactive/ojs/" class="quarto-docs"><span class="docs-lead">Observable</span> JS</a> in the Quarto documentation.</p>
 </section>
 </section>
 <section id="sec-wrapping-up" class="level2" data-number="17.6">
