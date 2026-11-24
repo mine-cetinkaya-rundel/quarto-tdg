@@ -19,7 +19,7 @@ You'll start by learning more about YAML syntax.
 Then, you'll see some ways things can go wrong.
 Finally, you'll learn more about how to find out what options are available, and where to put them.
 
-## General YAML syntax
+## General YAML syntax {#sec-yaml-syntax}
 
 In this section you'll learn the necessary YAML fundamentals to avoid syntax errors when setting options.
 Although the syntax applies generally to any YAML, all the examples you'll see are valid Quarto options and values.
@@ -181,9 +181,9 @@ title: >
 :::
 
 ::: {#fig-block-strings layout-ncol="2"}
-![Rendered title using literal (`|`) block scalar](images/yaml-block-literal.png){#fig-block-strings-literal .border fig-alt="A screenshot of a title that reads 'A title' then a line break followed by 'spanning two lines'."}
+![Rendered title using literal (`|`) block scalar](images/mastering-options-block-literal.png){#fig-block-strings-literal .border fig-alt="A screenshot of a title that reads 'A title' then a line break followed by 'spanning two lines'."}
 
-![Rendered title using folded (`>`) block scalar](images/yaml-block-folded.png){#fig-block-strings-folded .border fig-alt="A screenshot of a title that reads 'A title collapsed into one line' all on a single line."}
+![Rendered title using folded (`>`) block scalar](images/mastering-options-block-folded.png){#fig-block-strings-folded .border fig-alt="A screenshot of a title that reads 'A title collapsed into one line' all on a single line."}
 :::
 
 Depending on where the string value is used, line breaks may or may not mean anything to Quarto.
@@ -204,7 +204,7 @@ format:
 
 The value `default` doesn't have a special YAML meaning--- it's something Quarto adds for certain options where the value is usually another mapping, but you just want the default values for all properties.
 
-## What happens when you get it wrong?
+## What happens when you get it wrong? {#sec-yaml-errors}
 
 When you render a project or document, one of the first things that happens is the options are parsed and validated.
 When you make a mistake in setting an option there are a few possible outcomes:
@@ -444,7 +444,7 @@ It will warn you when:
 -   the name of an option isn't valid (but only in situations where free-form options aren't allowed)
 -   indention is inconsistent
 
-## What are the possible options?
+## What are the possible options? {#sec-yaml-reference}
 
 The best place to find out what options are available is the [Reference section of the Quarto documentation](http://quarto.org/docs/reference).
 These pages are automatically generated from the YAML schema defined in the source code of the Quarto CLI.
@@ -543,7 +543,7 @@ To understand what these variations mean, and when to use them, you'll dive into
 
 Consider the following document header:
 
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 title: My document
 toc: true
@@ -553,7 +553,7 @@ format: html
 
 From Quarto's perspective, this is equivalent to the header:
 
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 format:
   html:
@@ -577,7 +577,7 @@ This is why Quarto's [reference pages](https://quarto.org/docs/reference/) are l
 Quarto assumes any options you specify at the top-level should be applied to all formats.
 For example, if we extend our document header to add the `pdf` format:
 
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 title: My document
 toc: true
@@ -604,7 +604,7 @@ This is a good example of why this behavior exists---you'll want many options to
 Option values nested under a format will override any specified at the top level.
 For example, you might want `toc: true` for most formats, but override it for `revealjs`:
 
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 title: My document
 toc: true
@@ -672,7 +672,7 @@ An example of project level options
 
 For any document in the project, that would be equivalent to setting the following in the document header:
 
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 format:
   html:
@@ -690,7 +690,7 @@ The result of `quarto render` on @lst-format-no-opts and @lst-format-opts is onl
 
 ::::: {#lst-format}
 ::: {#lst-format-no-opts}
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 format: html
 ---
@@ -700,7 +700,7 @@ format: html
 :::
 
 ::: {#lst-format-opts}
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 format: 
   html:
@@ -716,7 +716,7 @@ A document that sets a format in the document header
 
 ::::: {#lst-format-result}
 ::: {#lst-format-result-no-opts}
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 format: 
   html:
@@ -727,7 +727,7 @@ format:
 :::
 
 ::: {#lst-format-result-opts}
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 format: 
   html:
@@ -743,7 +743,7 @@ The equivalent header for the files in @lst-format when merged with the settings
 If you want to specify some format specific options in a document, but maintain the full list of target formats from `_quarto.yml`, specify all formats in the document header.
 For example, to override some HTML options, but use the PDF options from `_quarto.yml`, add `pdf: default` to the list of formats:
 
-``` yaml
+``` {.yaml filename="document.qmd"}
 ---
 format: 
   html:
@@ -785,7 +785,7 @@ For options in the later category, just like document options, you can increase 
 
 Execution options are set in code cells using YAML syntax after a special comment:
 
-````
+````{.markdown filename="document.qmd"}
 ```{r}
 #| echo: false
 
@@ -801,7 +801,7 @@ You can use the same YAML syntax as in the document header,
 but for multiline statements, remember to preface each line with the cell option comment.
 For example, to use a literal block string:
 
-````
+````{.markdown filename="document.qmd"}
 ```{r}
 #| fig-cap: |
 #|   Here's a long caption
@@ -824,7 +824,7 @@ echo: false
 
 You can override the document level setting by setting the option in a code cell:
 
-````
+````{.markdown filename="document.qmd"}
 ```{r}
 #| echo: true
 
@@ -854,7 +854,7 @@ Some common ones include `message`, `collapse` and `prompt`.
 You can set these for all code cells using the `knitr: chunk_opts` option.
 For example, to suppress all messages:
 
-```{.yaml}
+```{.yaml filename="document.qmd"}
 ---
 title: "Untitled"
 format: html
@@ -876,6 +876,21 @@ echo: false
 ```
 
 You can then override this at the document or cell level as usual.
+
+## Wrapping up
+
+Most problems with options start as YAML problems.
+A misplaced indent or a missing quote often still gives you valid YAML, just not the YAML you meant, and Quarto can't warn you about that (@sec-yaml-errors).
+So when an option doesn't do what you expect, check the YAML first (@sec-yaml-syntax).
+
+For everything else, the Quarto documentation [Reference](https://quarto.org/docs/reference/) is your guide (@sec-yaml-reference).
+It tells you an option's name and the values it accepts.
+Where you find an option in the Reference also tells you where it can go: project options go in `_quarto.yml`, format options go in the document header, and code cell options go in a code cell.
+You can often move an option to a larger scope, like moving a document option to `_quarto.yml` to apply it to every document in a project.
+A code cell option can only move to the document header if it is also listed as an option for your format (@sec-execution-options).
+
+If your YAML is right and the Reference says the option belongs where you put it, but you still don't get what you expect, the next chapter can help.
+In @sec-troubleshooting, you'll learn what Quarto does when it renders a document, and how to use that to track down a problem.
 
 
 
