@@ -4,7 +4,7 @@ Quarto: The Definitive Guide
 
 ## Workflow
 
-The book is rendered and deployed to Netlify via a [GitHub action](.github/workflows/build-book.yaml). Changes to the `main` branch trigger a deployment to the published site. Pull requests trigger a deployment preview.
+The book is rendered and deployed to GitHub Pages via a [GitHub action](.github/workflows/build-book.yaml). Changes to the `main` branch trigger a deployment to the published site. Pull requests trigger a deployment preview.
 
 Substantive changes are proposed using pull requests. 
 
@@ -13,11 +13,25 @@ The book project sets [`freeze` to `auto`](https://github.com/mine-cetinkaya-run
 1. Locally render the book
 2. Examine the git diff for changes to `_freeze/`, and commit changes to relevant files.
 
-The GitHub actions that render the book do not execute any code. Before they render, they run `scripts/check-freeze.ts`. If you change a chapter with executable code and do not commit its `_freeze/` files, this check fails and names the chapter to render. To run the same check locally:
+The GitHub actions that render the book for a push or a pull request do not execute any code. Before they render, they run `scripts/check-freeze.ts`. If you change a chapter with executable code and do not commit its `_freeze/` files, this check fails and names the chapter to render. To run the same check locally:
 
 ```bash
 quarto run scripts/check-freeze.ts
 ```
+
+### Re-executing all code
+
+The [Execute Code workflow](.github/workflows/execute-build-book.yaml) executes all the code in the book. It does not start automatically. To start it, use the **Run workflow** button on the Actions tab, or run:
+
+```bash
+gh workflow run execute-build-book.yaml
+```
+
+The workflow installs the R packages from `renv.lock` and the Python packages from `uv.lock`. Then it deletes `_freeze/` and renders the book, so every code cell runs. If the workflow fails, a lockfile or a chapter does not work in a clean environment.
+
+If the new `_freeze/` files are different from the committed files, the workflow opens a pull request with the changes. The workflow does not deploy the book.
+
+To use a branch other than `main`, add `--ref <branch>`. The pull request then targets that branch.
 
 ### Reproducing the R environment locally
 
