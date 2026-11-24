@@ -890,6 +890,23 @@ Contents of the div.
 
 :::
 
+## Spans {#sec-spans}
+
+A **span** is the inline version of a fenced div.
+Where a fenced div adds attributes to a block of content, a span adds attributes to a piece of text inside a paragraph, heading, list item, or other block.
+
+To create a span, put the text inside square brackets, and then put the attributes inside curly braces directly after the closing bracket:
+
+```markdown
+This is [some text]{#my-span .class1 key="value"}.
+```
+
+Spans use the same attributes as fenced divs: an identifier, classes, and key-value pairs, in that order (see @tip-attributes).
+
+You've already seen spans in @tbl-inline-text-elements.
+The `.smallcaps`, `.underline`, and `.mark` classes change the appearance of text in most output formats.
+
+
 ## Callouts {#sec-callouts}
 
 Callouts are special fenced divs with one of the callout classes: `.callout-note`, `.callout-tip`, `.callout-warning`, `.callout-caution`, or `.callout-important`.
@@ -1108,6 +1125,8 @@ You'll learn more about project structure in @sec-projects.
 ## Other features
 
 - **Diagrams**: create diagrams directly in your markdown using Mermaid or Graphviz syntax. See the [Diagrams](https://quarto.org/docs/authoring/diagrams.html) page in the Quarto documentation for details.
+
+- **Conditional content**: show or hide content depending on the output format by adding the `.content-visible` or `.content-hidden` class to a fenced div, along with an attribute like `when-format="html"`. See the [Conditional Content](https://quarto.org/docs/authoring/conditional.html) page in the Quarto documentation for details.
 
 ## Wrapping up
 
