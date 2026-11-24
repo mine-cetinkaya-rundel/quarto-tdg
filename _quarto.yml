@@ -39,7 +39,7 @@ book:
         - typst.qmd
         - presentations.qmd
 
-    - part: part-going-deeper.qmd
+    - part: mastering.qmd
       chapters:
         - authoring.qmd
         - projects.qmd
