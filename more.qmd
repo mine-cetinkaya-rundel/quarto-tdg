@@ -1,6 +1,4 @@
----
-title: Doing more with Quarto
----
+# Doing more with Quarto {#sec-doing-more}
 
 This book is a curated collection of what we think are the most useful parts of Quarto for most people. 
 However, there is much more to Quarto!
