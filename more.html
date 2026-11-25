@@ -498,6 +498,19 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <h3 data-number="17.5.1" class="anchored" data-anchor-id="shiny"><span class="header-section-number">17.5.1</span> Shiny</h3>
 <p><a href="https://shiny.posit.co">Shiny</a> is a framework for building interactive web applications in R or Python. When you set <code>server: shiny</code> in a document header, your document becomes a Shiny app: the document provides the layout and narrative, code cells define inputs and outputs, and a live R or Python process updates the outputs as readers change the inputs. Shiny is a good choice when the interactivity you want requires code to rerun, such as refitting a model with reader-chosen settings.</p>
 <p>However, a Shiny document isn’t static HTML. It needs a server running R or Python, like Posit Connect or shinyapps.io, so you can’t publish it to static hosts like GitHub Pages. You also need to keep track of which code cells run when you render and which run for each reader. If you already have a standalone Shiny app, or the app is the main event, it’s often simpler to deploy the app on its own and embed it in your document with an <code>&lt;iframe&gt;</code> in a raw HTML block (<span class="quarto-unresolved-ref">?sec-html-raw-html</span>).</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[CVW] Confirm that section in HTML chapter is still called <code>@sec-html-raw-html</code> after #37 is merged. Another potential place to link to is <a href="authoring.html#sec-raw-blocks" class="quarto-xref"><span>Section 12.16</span></a>.</p>
+</div>
+</div>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

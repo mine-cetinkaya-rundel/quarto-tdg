@@ -522,7 +522,7 @@ Tip&nbsp;12.1: What are attributes?
 <div id="tbl-inline-text-elements" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-inline-text-elements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown. TODO: Element column entries will span rows.
+Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown.
 </figcaption>
 <div aria-describedby="tbl-inline-text-elements-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -617,6 +617,19 @@ Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown. TODO
 </table>
 </div>
 </figure>
+</div>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[CVW] Element column entries in <a href="#tbl-inline-text-elements" class="quarto-xref">Table&nbsp;<span>12.1</span></a> will span rows.</p>
+</div>
 </div>
 </section>
 <section id="sec-markdown-lists" class="level2" data-number="12.5">
@@ -733,7 +746,19 @@ Figure&nbsp;12.2: Code block syntax and its rendered output
 <section id="sec-markdown-tables" class="level2" data-number="12.7">
 <h2 data-number="12.7" class="anchored" data-anchor-id="sec-markdown-tables"><span class="header-section-number">12.7</span> Tables</h2>
 <p>The simplest way to add a table to a Quarto document is to create a <strong>markdown pipe table</strong>, however cells in a markdown pipe table cannot contain block content like multiple paragraphs, code cells, or lists. To have cells with complicated cell contents, you can use an alternative syntax called <strong>list tables</strong>. You can also use <strong>HTML table syntax</strong>, regardless of your target format, to create tables in Quarto documents. You won’t usually write HTML syntax by hand, but it is a common output from computational packages that create tables.</p>
-<p>Tables are so important in Quarto documents that we dedicate an entire part of this book to them. For more details, see <span class="quarto-unresolved-ref">?sec-figtab</span>.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[CVW] This used to say tables get “an entire part of this book” and point to <code>@sec-figtab</code>, but we’re not planning on a full part anymore. Add a reference to wherever tables are covered in more depth.</p>
+</div>
+</div>
 <section id="sec-markdown-pipe-tables" class="level3" data-number="12.7.1">
 <h3 data-number="12.7.1" class="anchored" data-anchor-id="sec-markdown-pipe-tables"><span class="header-section-number">12.7.1</span> Markdown pipe tables</h3>
 <p>The simplest syntax for a table in Quarto markdown is known as the <strong>pipe table</strong>, named because columns are separated by the pipe (<code>|</code>) character. A pipe table consists of column headers, a separator row of dashes (<code>-</code>) and pipes (<code>|</code>), and data rows with pipe-separated cells.</p>
@@ -762,7 +787,19 @@ Figure&nbsp;12.3: Markdown syntax and rendered output for a markdown pipe table
 </section>
 <section id="list-tables" class="level3" data-number="12.7.2">
 <h3 data-number="12.7.2" class="anchored" data-anchor-id="list-tables"><span class="header-section-number">12.7.2</span> List tables</h3>
-<p>TODO: Revisit this once the <code>list-tables</code> extension is bundled with Quarto. Specifically, where does the caption go.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[CVW] Revisit this once the <code>list-tables</code> extension is bundled with Quarto. Specifically, where does the caption go?</p>
+</div>
+</div>
 <p>List tables use markdown list syntax to create tables where cells can contain multiple paragraphs, code cells, or lists. List tables need to be wrapped in a fenced div with the class <code>list-table</code>. Inside the div, each row is represented as list item, with each cell as an subitem.</p>
 <p>For example, to create the same table content as <a href="#fig-markdown-table" class="quarto-xref">Figure&nbsp;<span>12.3</span></a> using a list table, you would include the following in your document:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-perf .list-table}</span>
@@ -843,7 +880,19 @@ Figure&nbsp;12.3: Markdown syntax and rendered output for a markdown pipe table
 <section id="sec-markdown-figures" class="level2" data-number="12.8">
 <h2 data-number="12.8" class="anchored" data-anchor-id="sec-markdown-figures"><span class="header-section-number">12.8</span> Images and figures</h2>
 <p>You can include images in your document either from an image file, or from the output of an executable code cell.</p>
-<p>Figures are so important in Quarto documents that we dedicate an entire part of this book to them. For more details, see <span class="quarto-unresolved-ref">?sec-figtab</span>.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[CVW] This used to say figures get “an entire part of this book” and point to <code>@sec-figtab</code>, but we’re not planning on a full part anymore. Add a reference to wherever figures are covered in more depth.</p>
+</div>
+</div>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1033,7 +1082,20 @@ Table&nbsp;12.3: Identifier prefixes for theorem-like and proof-like blocks.
 <li><p><strong>Add an identifier</strong> to the element you want to reference using an identifier that starts with a specific prefix.</p></li>
 <li><p><strong>Reference the element</strong> elsewhere in your document using <code>@</code> followed by the identifier.</p></li>
 </ol>
-<p><a href="#tbl-crossref-prefixes" class="quarto-xref">Table&nbsp;<span>12.4</span></a> give examples of common elements, their prefixes and an example of adding the identifier as an attribute. For computational outputs, like figures and tables generated from code cells, you add the identifier using the <code>label</code> code cell option. You can see an example for a table in <a href="#sec-computational-table" class="quarto-xref"><span>Section 12.7.4</span></a>, a figure in <a href="#sec-computational-figure" class="quarto-xref"><span>Section 12.8.2</span></a>, and many more details in <span class="quarto-unresolved-ref">?sec-figtab-crossrefs</span>.</p>
+<p><a href="#tbl-crossref-prefixes" class="quarto-xref">Table&nbsp;<span>12.4</span></a> give examples of common elements, their prefixes and an example of adding the identifier as an attribute. For computational outputs, like figures and tables generated from code cells, you add the identifier using the <code>label</code> code cell option. You can see an example for a table in <a href="#sec-computational-table" class="quarto-xref"><span>Section 12.7.4</span></a> and a figure in <a href="#sec-computational-figure" class="quarto-xref"><span>Section 12.8.2</span></a>.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[CVW] This sentence used to end “and many more details in <code>@sec-figtab-crossrefs</code>”, which pointed to <code>figure-table.qmd</code> chapter. Add a new reference if the details live elsewhere.</p>
+</div>
+</div>
 <div id="tbl-crossref-prefixes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-crossref-prefixes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1507,7 +1569,20 @@ Figure&nbsp;12.9: Two-column layout syntax and rendered output
 </figure>
 </div>
 <p>The content inside each item can be any block content, including paragraphs, lists, code cells, images, or tables. Further items will fill into new rows and Quarto will allocate vertical space as needed. In HTML formats, the layout is responsive so that on smaller screens the items will stack vertically.</p>
-<p>Use the <code>layout-nrow</code> attribute if you’d prefer to specify the grid by the number of rows, or for more complicated layouts use the <code>layout</code> attribute. You can see more examples using figures and tables as content in <span class="quarto-unresolved-ref">?sec-figtab-layout</span>.</p>
+<p>Use the <code>layout-nrow</code> attribute if you’d prefer to specify the grid by the number of rows, or for more complicated layouts use the <code>layout</code> attribute.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[CVW] Removed “You can see more examples using figures and tables as content in <code>@sec-figtab-layout</code>”; that section was in the removed <code>figure-table.qmd</code> chapter. Add a new reference if those examples live elsewhere.</p>
+</div>
+</div>
 </section>
 <section id="column-classes" class="level3 page-columns page-full" data-number="12.15.2">
 <h3 data-number="12.15.2" class="anchored" data-anchor-id="column-classes"><span class="header-section-number">12.15.2</span> Column classes</h3>
@@ -1545,7 +1620,19 @@ Figure&nbsp;12.11: Column page right syntax and rendered output
 </figure>
 </div>
 <p>Additional classes are available to provide more horizontal whitespace, and for <code>format: html</code> columns that expand to the left, and to the full screen width. See the <a href="https://quarto.org/docs/authoring/article-layout.html#available-columns" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation</a> for the full list of classes.</p>
-<p>You can also see more examples with figures and tables, including computational outputs in <span class="quarto-unresolved-ref">?sec-figtab-layout</span>.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[CVW] Removed “You can also see more examples with figures and tables, including computational outputs in <code>@sec-figtab-layout</code>”; that section was in the removed <code>figure-table.qmd</code> chapter. Add a new reference if those examples live elsewhere.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="sec-raw-blocks" class="level2" data-number="12.16">
