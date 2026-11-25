@@ -144,9 +144,9 @@ Note that for executing code cells in Quarto documents in Positron, you'll need 
 
 - For Python, you need the jupyter package:
 
-```bash
-pip install jupyter
-```
+    ```bash
+    pip install jupyter
+    ```
 
 ::: todo
 [MCR] A screenshot of Quarto help that appears as you type?
