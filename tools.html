@@ -430,7 +430,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </header>
 
 
-<p>In this chapter, you’ll learn how Quarto documents are structured, how to render and preview them from the command line, how to author them interactively in various integrated development environments (IDEs) such as Positron and RStudio, which other tools you can use for Quarto authoring, and how to choose the right tool for your workflow. We spend more time on Positron than on RStudio because RStudio’s Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.</p>
+<p>In this chapter, you’ll learn how to render and preview Quarto documents from the command line, how to author them interactively in various integrated development environments (IDEs) such as Positron and RStudio, which other tools you can use for Quarto authoring, and how to choose the right tool for your workflow. We spend more time on Positron than on RStudio because RStudio’s Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -479,7 +479,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Click *Preview* or run <span class="in">`quarto preview document.qmd`</span> in the Terminal.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>If you would like to follow along as you read, you can create a new Quarto document with the same structure, title it <code>document.qmd</code>, and experiment with the features of the Quarto CLI and various IDEs in the remainder of this chapter.</p>
+<p>If you would like to follow along as you read, you can create a new Quarto document with the same structure, save it as <code>document.qmd</code>, and experiment with the features of the Quarto CLI and various IDEs in the remainder of this chapter.</p>
 <section id="sec-quarto-cli" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-quarto-cli"><span class="header-section-number">2.1</span> Quarto CLI</h2>
 <p>Before diving into specific IDEs, let’s start with the fundamentals: the Quarto Command Line Interface (CLI). The Quarto CLI is the core tool that powers all Quarto rendering. You can run Quarto CLI commands in any standard Terminal application as well as in the Terminal tab in RStudio or the Terminal panel in Positron.</p>
@@ -522,7 +522,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
 <p>Positron’s Quarto support comes from the Quarto VS Code extension, which Positron includes as a <em>bootstrapped extension</em>—it behaves just as if you had installed it yourself, updates automatically as new versions appear in the extension gallery, and can be uninstalled if you ever need to.</p>
-<p>Positron ships with its own copy of the Quarto CLI, but you aren’t locked into it. If you’d prefer to use a version of Quarto that you’ve installed yourself—say, to match the version your project uses elsewhere—that generally works automatically. When you need finer control over exactly which Quarto is used, set the <i class="fa-solid fa-cog" aria-label="cog"></i> <a href="https://positron.posit.co/quarto.html#managing-quarto-installations"><strong>Quarto: Path</strong></a> setting (<code>quarto.path</code>) to point at the installation you want. You can do this at the user or workspace level.</p>
+<p>Positron ships with its own copy of the Quarto CLI, but you aren’t locked into it. If you’ve installed Quarto yourself—say, to match the version your project uses elsewhere—Positron uses that installation by default: a Quarto on your system <code>PATH</code>, or one installed with pip in your active Python environment, takes priority over the bundled copy. To prefer the bundled copy instead, turn on the <i class="fa-solid fa-cog" aria-label="cog"></i> <strong>Quarto: Use Bundled Quarto In Positron</strong> setting (<code>quarto.useBundledQuartoInPositron</code>). When you need finer control over exactly which Quarto is used, set the <i class="fa-solid fa-cog" aria-label="cog"></i> <a href="https://positron.posit.co/quarto.html#managing-quarto-installations"><strong>Quarto: Path</strong></a> setting (<code>quarto.path</code>) to point at the installation you want; it overrides both of the other options. You can do this at the user or workspace level.</p>
 <p>To see which version is currently active, check Positron’s bottom status bar (<a href="#fig-positron-status-bar-quarto-version" class="quarto-xref">Figure&nbsp;<span>2.1</span></a>). After changing your Quarto version, restart Positron so the status bar updates.</p>
 <div id="fig-positron-status-bar-quarto-version" class="quarto-float quarto-figure quarto-figure-center anchored" alt="The left end of Positron's status bar showing, from left to right, the remote connection icon, the Git branch 'main*', a sync icon, zero errors and zero warnings, a debug icon, and the text 'Quarto: 1.11.9'.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -538,13 +538,13 @@ Figure&nbsp;2.1: The active Quarto version shown in Positron’s status bar.
 <section id="creating-documents-positron" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="creating-documents-positron"><span class="header-section-number">2.2.2</span> Creating documents</h3>
 <p>To create a new Quarto document in Positron, use the <strong>Quarto: New Quarto Document</strong> command from the Command Palette, the <strong>File &gt; New File…</strong> menu (<a href="#fig-positron-new-file-quarto-document" class="quarto-xref">Figure&nbsp;<span>2.2</span></a>), or the <strong>New</strong> button in the toolbar. This will open a new untitled <code>.qmd</code> file in the Editor, with a placeholder YAML header. Save the file with a <code>.qmd</code> extension to enable Quarto features such as preview and completion.</p>
-<div id="fig-positron-new-file-quarto-document" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Positron's New File picker with a search box reading 'Select File Type or Enter File Name...' above a list of file types: Text File, R File, Python File, Jupyter Notebook, Quarto Document, and Quarto Project. The Quarto Document row is highlighted.">
+<div id="fig-positron-new-file-quarto-document" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Positron's New File picker with a search box reading 'Select File Type or Enter File Name...' above a list of file types: Text File, R File, Python File, Jupyter Notebook, Quarto Document, and Quarto Project. The Text File row is selected.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-positron-new-file-quarto-document-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/tools-positron-new-file-quarto-document.png" class="img-fluid figure-img" alt="Positron's New File picker with a search box reading 'Select File Type or Enter File Name...' above a list of file types: Text File, R File, Python File, Jupyter Notebook, Quarto Document, and Quarto Project. The Quarto Document row is highlighted.">
+<img src="images/tools-positron-new-file-quarto-document.png" class="img-fluid figure-img" alt="Positron's New File picker with a search box reading 'Select File Type or Enter File Name...' above a list of file types: Text File, R File, Python File, Jupyter Notebook, Quarto Document, and Quarto Project. The Text File row is selected.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-positron-new-file-quarto-document-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: The <strong>File &gt; New File…</strong> picker in Positron, with the Quarto Document option highlighted.
+Figure&nbsp;2.2: The <strong>File &gt; New File…</strong> picker in Positron, which includes the Quarto Document option.
 </figcaption>
 </figure>
 </div>
@@ -556,7 +556,7 @@ Figure&nbsp;2.2: The <strong>File &gt; New File…</strong> picker in Positron, 
 <li><p>Previewing: render <code>.qmd</code> files and view the result side by side with your source, using the <strong>Quarto: Preview</strong> command, <kbd title="linux: Ctrl-Shift-K, mac: Shift-Command-K, windows: Ctrl-Shift-K" aria-hidden="true" data-linux="Ctrl-Shift-K" data-mac="Shift-Command-K" data-windows="Ctrl-Shift-K"></kbd><span class="visually-hidden"></span>, or the <strong>Preview</strong> button in the toolbar (see <a href="#previewing-and-rendering-other-formats-positron">Previewing and rendering other formats</a> and <a href="#render-on-save-positron">Render on Save</a>).</p></li>
 <li><p>Dual editor modes: switch between source and visual editing (see <a href="#visual-editor-positron">Visual editor</a>).</p></li>
 <li><p>Polyglot language support: first-class support for R and Python makes Positron an excellent choice for Quarto projects with computational cells in either language or both languages (see <a href="#contextual-assistance-positron">Contextual assistance</a>).</p></li>
-<li><p>Interactive code execution: run individual code cells in the Console without rendering the entire document (see <a href="#running-code-cells-positron">Running code cells</a> and <a href="#inline-output-positron">Inline output</a>).</p></li>
+<li><p>Interactive code execution: insert code cells and run them individually in the Console without rendering the entire document (see <a href="#inserting-code-cells-positron">Inserting code cells</a>, <a href="#running-code-cells-positron">Running code cells</a>, and <a href="#inline-output-positron">Inline output</a>).</p></li>
 <li><p>Code completion and diagnostics: as you type, Positron suggests valid Quarto and YAML options and flags syntax errors, helping you catch problems before you render (see <a href="#yaml-intelligence-positron">YAML intelligence</a>).</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -703,6 +703,7 @@ Figure&nbsp;2.3: A Quarto document open in Positron’s Editor, with its rendere
 <section id="inline-output-positron" class="level3" data-number="2.2.9">
 <h3 data-number="2.2.9" class="anchored" data-anchor-id="inline-output-positron"><span class="header-section-number">2.2.9</span> Inline output</h3>
 <p>By default, running a code cell sends it to the Console, as described above. Positron can instead display cell output <em>inline</em>, directly beneath each cell in the Editor—much like a Jupyter notebook (<a href="#fig-positron-inline-output" class="quarto-xref">Figure&nbsp;<span>2.4</span></a>). To use this feature, you must first turn on the <i class="fa-solid fa-cog" aria-label="cog"></i> <a href="https://positron.posit.co/quarto-inline-output.html"><strong>Quarto &gt; Inline Output: Enabled</strong></a> setting (<code>quarto.inlineOutput.enabled</code>) in your user or workspace settings.</p>
+<p>Turning on inline output also changes the execution model. Rather than sharing a single Console across every document, Positron gives each <code>.qmd</code> file its own isolated R or Python session, so objects you create in the Console or in another document aren’t available to it.</p>
 <div id="fig-positron-inline-output" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Positron's Editor showing a Quarto document with a YAML header (title 'Inline output', format html) and an R code cell containing plot(cars). Below the cell, a status line reads '42ms' with a green check mark, and below that a scatterplot of dist against speed appears inside the Editor, with buttons to close, copy, open, and save the plot.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-positron-inline-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -713,7 +714,6 @@ Figure&nbsp;2.4: A Quarto document in Positron with inline output turned on: the
 </figcaption>
 </figure>
 </div>
-<p>Turning on inline output also changes the execution model. Rather than sharing a single Console across every document, Positron gives each <code>.qmd</code> file its own isolated R or Python session, so objects you create in the Console or in another document aren’t available to it.</p>
 </section>
 <section id="contextual-assistance-positron" class="level3" data-number="2.2.10">
 <h3 data-number="2.2.10" class="anchored" data-anchor-id="contextual-assistance-positron"><span class="header-section-number">2.2.10</span> Contextual assistance</h3>
@@ -747,8 +747,6 @@ Figure&nbsp;2.6: A live preview of a Mermaid diagram in Positron: the diagram’
 <section id="previewing-and-rendering-other-formats-positron" class="level3" data-number="2.2.12">
 <h3 data-number="2.2.12" class="anchored" data-anchor-id="previewing-and-rendering-other-formats-positron"><span class="header-section-number">2.2.12</span> Previewing and rendering other formats</h3>
 <p>The <strong>Quarto: Preview</strong> command renders and previews your document’s <em>default</em> format. To preview a different format, use the <strong>Quarto: Preview Format</strong> command (<a href="#fig-positron-preview-format" class="quarto-xref">Figure&nbsp;<span>2.7</span></a>), which offers a list of formats to choose from—those declared in the document plus standard options like PDF and MS Word. After you preview a different format, the <strong>Quarto: Preview</strong> command and its keyboard shortcut rebind to that format for the duration of the preview; run the <strong>Quarto: Preview Format</strong> command again to switch back.</p>
-<p>Embedded, side-by-side preview is available for HTML- and PDF-based formats, including <code>revealjs</code> and <code>beamer</code> slides. For Word and other formats, Positron renders the file, but you’ll open it in an external application to view the result.</p>
-<p>Because preview renders only one format at a time, use the <strong>Quarto: Render Document</strong> command when a document declares multiple formats and you want to produce all of them. This command lets you render all declared formats at once, or selectively render any declared or standard format, such as PDF or MS Word.</p>
 <div id="fig-positron-preview-format" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Positron's quick pick for the Quarto: Preview Format command, with an empty search box above four options. Preview HTML (format: html) is listed under Declared Formats and is highlighted. Preview PDF (Typst) (format: typst), Preview PDF (LaTeX) (format: pdf), and Preview MS Word (format: docx) are listed under Other Formats.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-positron-preview-format-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -759,6 +757,8 @@ Figure&nbsp;2.7: The list of formats offered by the <strong>Quarto: Preview Form
 </figcaption>
 </figure>
 </div>
+<p>Embedded, side-by-side preview is available for HTML- and PDF-based formats, including <code>revealjs</code> and <code>beamer</code> slides. For Word and other formats, Positron renders the file, but you’ll open it in an external application to view the result.</p>
+<p>Because preview renders only one format at a time, use the <strong>Quarto: Render Document</strong> command when a document declares multiple formats and you want to produce all of them. This command lets you render all declared formats at once, or selectively render any declared or standard format, such as PDF or MS Word.</p>
 </section>
 <section id="render-on-save-positron" class="level3" data-number="2.2.13">
 <h3 data-number="2.2.13" class="anchored" data-anchor-id="render-on-save-positron"><span class="header-section-number">2.2.13</span> Render on Save</h3>
@@ -788,19 +788,16 @@ Figure&nbsp;2.7: The list of formats offered by the <strong>Quarto: Preview Form
 </section>
 <section id="projects-positron" class="level3" data-number="2.2.15">
 <h3 data-number="2.2.15" class="anchored" data-anchor-id="projects-positron"><span class="header-section-number">2.2.15</span> Projects</h3>
-<p>To create a project for a Quarto document or a set of related documents, run the <strong>Quarto: Create Project</strong> command from the Command Palette, or choose <strong>Quarto Project</strong> from the <strong>File &gt; New File…</strong> menu. Positron asks you to pick a project type (<strong>Default</strong>, <strong>Website</strong>, <strong>Blog</strong>, <strong>Book</strong>, or <strong>Manuscript</strong>), then creates the project and opens its folder.</p>
-<div class="callout callout-style-simple callout-todo callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>To create a project for a Quarto document or a set of related documents, run the <strong>Quarto: Create Project</strong> command from the Command Palette, or choose <strong>Quarto Project</strong> from the <strong>File &gt; New File…</strong> menu. Positron asks you to pick a project type (<strong>Default</strong>, <strong>Website</strong>, <strong>Blog</strong>, <strong>Book</strong>, or <strong>Manuscript</strong>), as shown in <a href="#fig-positron-create-project" class="quarto-xref">Figure&nbsp;<span>2.8</span></a>, then creates the project and opens its folder.</p>
+<div id="fig-positron-create-project" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Positron's quick pick titled 'Create Quarto Project (1/2)' with a search box reading 'Select project type' above five options, each with a short description: Default Project (Simple project with starter document), Website Project (Website with index and about pages), Blog Project (Blog with index/about pages and posts), Book Project (Book with chapters and bibliography), and Manuscript Project (Scientific manuscript with multiple formats). Default Project is highlighted.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-positron-create-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/tools-positron-create-project.png" class="img-fluid figure-img" alt="Positron's quick pick titled 'Create Quarto Project (1/2)' with a search box reading 'Select project type' above five options, each with a short description: Default Project (Simple project with starter document), Website Project (Website with index and about pages), Blog Project (Blog with index/about pages and posts), Book Project (Book with chapters and bibliography), and Manuscript Project (Scientific manuscript with multiple formats). Default Project is highlighted.">
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Todo</span>TO-DO
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>[MCR] Screenshot of the Create Quarto Project project-type picker?</p>
-</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-positron-create-project-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.8: The first step of the <strong>Quarto: Create Project</strong> command, where you choose a project type.
+</figcaption>
+</figure>
 </div>
 </section>
 <section id="yaml-intelligence-positron" class="level3" data-number="2.2.16">
