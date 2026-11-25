@@ -89,7 +89,7 @@ Or you can use `--help` with any command to see available options and usage info
 quarto render --help
 ```
 
-The same basic workflow applies whether you work from the Terminal or from an IDE. 
+The same basic workflow applies whether you work from the Terminal or from an IDE.
 IDEs such as Positron, RStudio, and VS Code provide buttons, keyboard shortcuts, and preview panes for these tasks, but the underlying Quarto workflow is the same.
 
 Now that we have introduced the basic document structure and foundational CLI commands, let's explore how different IDEs integrate these capabilities into their interfaces to support your authoring experience.
@@ -146,10 +146,11 @@ Here's an overview; the subsections that follow cover each in more depth:
 
 Note that for executing code cells in Quarto documents in Positron, you'll need to install some packages depending on your language of choice.
 
-- For R, you need the knitr package:
+- For R, you need the knitr and rmarkdown packages:
 
     ```r
     install.packages("knitr")
+    install.packages("rmarkdown")
     ```
 
 - For Python, you need the jupyter package:
@@ -200,7 +201,7 @@ Editing an `.ipynb` for Quarto differs from a `.qmd` file in a few ways:
 - Code cell options use the same `#|` comment prefix as `.qmd` files and must appear at the very start of the cell.
 
 Rendering and preview work just as they do for `.qmd` files: run the **Quarto: Preview** command once, and the preview refreshes each time you save.
-One key difference is execution—`.qmd` files are always executed when rendered, but when rendering an `.ipynb`, Quarto does *not* run the cells by default, assuming you've already executed them while editing.
+One key difference is execution; `.qmd` files are always executed by default when rendered, but when rendering an `.ipynb`, Quarto does *not* run the cells by default, assuming you've already executed them while editing.
 To execute cells during rendering, pass the `--execute` flag:
 
 ```bash
@@ -271,8 +272,8 @@ It shows a preview of LaTeX math as you edit an equation, and a thumbnail previe
 ### Live preview {#live-preview-positron}
 
 When you're writing LaTeX math or a Mermaid or Graphviz diagram, you can open a live preview that re-renders automatically as you type.
-Click the **Preview** button above the code block, or use the {{< kbd mac=Shift-Command-L win=Ctrl-Shift-L linux=Ctrl-Shift-L >}} shortcut.
-The preview appears in the Quarto assist panel alongside your document, so you can catch mistakes in an equation or diagram without rendering the whole file.
+Click the **Preview** button above the code, or use the {{< kbd mac=Shift-Command-L win=Ctrl-Shift-L linux=Ctrl-Shift-L >}} shortcut.
+The preview appears alongside your document, so you can catch mistakes in an equation or diagram without rendering the whole file.
 
 ::: todo
 [MCR] Screenshot or GIF of a live diagram preview?
@@ -303,12 +304,17 @@ When you do want automatic rendering, you have three ways to enable **Render on 
 2. Search for `quarto.render` in settings and enable the ⚙️ [**Quarto > Render: Render on Save**](https://quarto.org/docs/tools/positron/index.html#render-on-save) setting (`quarto.render.renderOnSave`) to make it the default for all documents.
 3. Set the `editor` option in your front matter (or project `_quarto.yml`), which overrides the Positron setting:
 
-```yaml
-editor:
-  render-on-save: true
-```
+    ```yaml
+    editor:
+      render-on-save: true
+    ```
 
 With **Render on Save** enabled, the preview refreshes automatically each time you save.
+
+::: callout-note
+Jupyter notebooks (`.ipynb`) are the exception to this default.
+Once you start a preview of a notebook with the **Quarto: Preview** command, the preview refreshes each time you save the notebook, without you having to enable **Render on Save** (see [Editing notebooks](#editing-notebooks-positron)).
+:::
 
 ### External preview {#external-preview-positron}
 
@@ -328,21 +334,21 @@ Positron provides several additional features and tools that enhance your Quarto
 
 - Navigate long documents easily using the document outline panel in the primary sidebar.
 
-::: todo
-[MCR] Screenshot of outline panel? Also, is it called panel?
-:::
+    ::: todo
+    [MCR] Screenshot of outline panel? Also, is it called panel?
+    :::
 
 - Insert common code patterns quickly with built-in code snippets using the **Snippets: Insert Snippet** command.
 
-::: todo
-[MCR] Screenshot of adding columns to slides maybe?
-:::
+    ::: todo
+    [MCR] Screenshot of adding columns to slides maybe?
+    :::
 
-- Version control your Quarto documents directly from the IDE with its Git integration, which also adds certain files to `.gitignore` when you create a new Quarto project.
+- Version control your Quarto documents directly from the IDE with its Git integration.
 
-::: todo
-[MCR] Screenshot of .quarto in .gitignore?
-:::
+    ::: todo
+    [MCR] Screenshot of .quarto in .gitignore?
+    :::
 
 - Open a Terminal already set to the correct working directory, for running Quarto CLI commands.
 
@@ -483,7 +489,8 @@ While Positron and RStudio offer rich, integrated experiences for Quarto authori
 ### VS Code
 
 Visual Studio Code with the Quarto extension provides excellent support for authoring Quarto documents.
-The extension offers preview, syntax highlighting, code completion, and integrated terminal access.
+This is the same extension that Positron bundles, so most of the Quarto features described in @sec-positron—preview, the visual editor, completion for YAML options, the Assist Panel, and running code cells—work the same way in VS Code.
+The main difference is language support: Positron has R and Python support built in, while in VS Code you need to install the language extensions yourself to get completion and code execution in cells (the Python and Jupyter extensions for Python, the R extension for R, or the Julia extension for Julia).
 VS Code is particularly popular among Python developers and those who work across multiple programming languages.
 
 To get started with VS Code, first install VS Code from [code.visualstudio.com](https://code.visualstudio.com). Then install the Quarto CLI from [quarto.org](https://quarto.org/docs/get-started/) and the Quarto extension from the VS Code Marketplace.
@@ -495,7 +502,9 @@ Similar to Positron and RStudio, you can preview documents with the keyboard sho
 If you're already working with Jupyter notebooks (`.ipynb` files), you can use Quarto to render them to various output formats.
 JupyterLab provides an interactive environment for working with notebooks, and the Quarto CLI can render these notebooks just as it renders `.qmd` files.
 
-You can also work with `.qmd` files directly in JupyterLab by installing the Quarto extension, which offers preview and rendering capabilities within the JupyterLab interface.
+You can also install the Quarto JupyterLab extension, which displays Quarto-specific markdown—such as callouts, divs, and Mermaid diagrams—correctly in your notebook's markdown cells, and shows the document's front matter as a title block.
+Rendering happens through the Quarto CLI, for example by running `quarto preview notebook.ipynb` in JupyterLab's Terminal.
+The preview updates automatically each time you save the notebook, so you can keep a browser window with the preview open alongside JupyterLab.
 
 To learn more about using Quarto with JupyterLab, refer to the Quarto documentation at <https://quarto.org/docs/tools/jupyter-lab.html>.
 
@@ -525,7 +534,7 @@ The best tool for Quarto authoring depends on your specific needs and existing w
 
 - If you already use VS Code for development, adding the Quarto extension gives you powerful Quarto capabilities in your familiar environment.
 
-- If your workflow is notebook-first, JupyterLab lets you keep authoring in `.ipynb` files and render them with Quarto, with optional `.qmd` support via the Quarto extension.
+- If your workflow is notebook-first, JupyterLab lets you keep authoring in `.ipynb` files and render them with Quarto, with the Quarto extension displaying Quarto markdown in your cells.
 
 - If you prefer keyboard-driven, terminal-based workflows, editors like Neovim or Vim can be configured to work effectively with Quarto.
 
