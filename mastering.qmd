@@ -1,0 +1,46 @@
+# Mastering Quarto {.unnumbered}
+
+By now, you can write, render and share a Quarto document in the format of your choice.
+This part is about mastering Quarto.
+Each chapter takes one core aspect of Quarto---Markdown, Figures and tables, Projects, Websites, Options and Troubleshooting---and gives you a deeper understanding of how it works.
+That understanding helps you use Quarto more productively, find your way around the Quarto documentation, and solve problems on your own.
+
+## Mastering your content
+
+In @sec-writing you took a quick tour of the markdown you write in a `.qmd`, and the format chapters showed you what that content looks like in HTML, Typst and Revealjs.
+The first three chapters help you master that content:
+
+- @sec-authoring covers Quarto markdown in full, from text formatting and lists to equations, cross-references, citations and footnotes.
+- @sec-figure-table and @sec-figure-table-computational are a pair.
+  The first covers what applies to every figure and table: captions, cross-references and layout.
+  The second covers figures and tables produced by code cells, such as their size, format and resolution.
+
+## Mastering projects
+
+A project is a folder of documents that Quarto treats as a whole.
+Projects let you share options across documents, render them together, and control where the output goes.
+Websites are one kind of project:
+
+- @sec-projects shows you how to organize, configure and render a Quarto project.
+- @sec-websites builds on projects to turn that folder into a website, with navigation, a theme and a place to publish it.
+
+## Mastering how Quarto works
+
+The next two chapters are less about particular features and more about the understanding that helps you use all of them:
+
+- @sec-yaml builds on @sec-options.
+  You'll learn how to find the option you need, where to put it, and how to get the YAML right.
+- @sec-troubleshooting explains what Quarto does when you render a document, and uses that to help you track down problems.
+
+## Beyond this book
+
+No book can cover all of Quarto.
+@sec-doing-more closes the book with the features we didn't cover, such as extensions, other formats and project types, and interactivity.
+It tells you when you might want them and where to learn more.
+
+## How to read this part
+
+Unlike Getting Started, you don't need to read this part in order.
+Read @sec-projects before @sec-websites and @sec-yaml, since both rely on how projects work.
+Read @sec-figure-table before @sec-figure-table-computational.
+Otherwise, read the chapters in any order, or come back to them as a reference when you need them.

@@ -8,6 +8,12 @@ code-overflow: wrap
 So far, we haven't talked much about what happens behind the scenes when you run `quarto render`.
 
 In this chapter, you'll learn more about what Quarto does under the hood, so you can troubleshoot problems when they occur.
+You'll start by following a few documents through the render process, step by step.
+Then, in @sec-troubleshooting-tips, you'll use what you've learned to track down problems.
+
+This chapter comes late in the book because it draws on almost everything before it.
+The render process involves code cells and computational engines (@sec-code, @sec-r and @sec-python), output formats (@sec-html and @sec-typst), and options (@sec-yaml).
+Most of the chapter is about single documents, because a project render is a collection of document renders, but you'll see where projects fit in too.
 
 ## What does Quarto do?
 
@@ -27,7 +33,7 @@ The document in @lst-render-html-r-raw, `html-r.qmd`, is a Quarto document that 
 
 ::: {#lst-render-html-r-raw}
 ````{.markdown}
-{{< include _examples/look-under-hood/html-r.qmd >}}
+{{< include _examples/troubleshooting/html-r.qmd >}}
 ````
 
 `html-r.qmd` is a Quarto document with R code cells and placeholder text, targeting HTML output.
@@ -36,7 +42,7 @@ The document in @lst-render-html-r-raw, `html-r.qmd`, is a Quarto document that 
 The process this file undergoes when you call `quarto render` is illustrated in @fig-render-html-r.
 You'll dive into the details of each step below.
 
-![The `quarto render` process for `html-r.qmd`](images/look-under-hood-render-html-r.jpg){#fig-render-html-r fig-alt="Diagram showing a `.qmd` file entering a box labelled Quarto, it flows through `knitr` to a `.html.md` file, then through Pandoc, exiting the box as a `.html` file along with a folder with the name `_files.`."}
+![The `quarto render` process for `html-r.qmd`](images/troubleshooting-render-html-r.jpg){#fig-render-html-r fig-alt="Diagram showing a `.qmd` file entering a box labelled Quarto, it flows through `knitr` to a `.html.md` file, then through Pandoc, exiting the box as a `.html` file along with a folder with the name `_files.`."}
 
 ### Before the computational engine {#sec-engine-selection}
 
@@ -53,9 +59,9 @@ It's at this stage you'll get errors about malformed YAML in your document heade
 You can learn more about common YAML issues in @sec-yaml.
 
 Each input file is only ever run through one computational engine: `knitr`, `jupyter`, or `julia`.
-[^look-under-hood-1] With no additional information from the metadata (e.g. none of `engine`, `jupyter`, nor `knitr`), Quarto will choose the engine based on the file extension and the language of executable code cells in the document.
+[^troubleshooting-1] With no additional information from the metadata (e.g. none of `engine`, `jupyter`, nor `knitr`), Quarto will choose the engine based on the file extension and the language of executable code cells in the document.
 
-[^look-under-hood-1]: We use lower-case engine names, e.g. `knitr` vs. Knitr, because a computational engine is more than the tool that does the execution.
+[^troubleshooting-1]: We use lower-case engine names, e.g. `knitr` vs. Knitr, because a computational engine is more than the tool that does the execution.
     For example, although the Jupyter project [NBClient](https://github.com/jupyter/nbclient) does the execution when the engine is `jupyter`, the `jupyter` engine also encompasses translating the `.qmd` to an `.ipynb` and back again after execution---tasks that are handled by Quarto itself.
 
 For `.qmd` documents, Quarto will use:
@@ -91,7 +97,7 @@ These are replaced by Markdown, albeit with some special classes attached.
 
 ::: {#lst-render-html-r-md}
 ```` markdown
-{{< include _examples/look-under-hood/html-r.html.md >}}
+{{< include _examples/troubleshooting/html-r.html.md >}}
 ````
 
 `html-r.html.md` the intermediate Markdown created after passing `html-r.qmd` through the `knitr` engine.
@@ -153,12 +159,12 @@ Common errors that arise during execution by the computational engine are discus
 
 ### Pandoc
 
-The Markdown file is passed along to Pandoc[^look-under-hood-2] for conversion into the desired output format.
+The Markdown file is passed along to Pandoc[^troubleshooting-2] for conversion into the desired output format.
 Pandoc's role in rendering provides many of the features for [authoring](#sec-authoring) Quarto documents.
 For example, the syntax you learned for headings, quotations, lists, tables, links and footnotes is the syntax defined by Pandoc (see [Pandoc's Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) on the Pandoc documentation site).
 Other more complicated features, like the default handling of citations with `citeproc`, also come directly from Pandoc (see [Citations](https://pandoc.org/MANUAL.html#citations) on the Pandoc documentation site).
 
-[^look-under-hood-2]: Quarto includes a particular version of Pandoc.
+[^troubleshooting-2]: Quarto includes a particular version of Pandoc.
     You don't need to install or manage it separately, and it won't interfere with any other version of Pandoc you have installed.
     If you ever need to run Quarto's Pandoc, you can with `quarto pandoc`.
 
@@ -166,9 +172,9 @@ However, Quarto adds many of its own features beyond those available in Pandoc.
 These are added via an established mechanism for customizing Pandoc output: filters.
 When Pandoc reads an input file, it translates it into an abstract representation known as an abstract syntax tree.
 Filters are functions that operate on this abstract syntax tree, transforming it before it is written out to the desired format.
-Cross-references, shortcodes[^look-under-hood-3], and code annotation are examples of features that Quarto adds via filters.
+Cross-references, shortcodes[^troubleshooting-3], and code annotation are examples of features that Quarto adds via filters.
 
-[^look-under-hood-3]: Most shortcodes are implemented as filters, but there are two exceptions `include` and `embed`.
+[^troubleshooting-3]: Most shortcodes are implemented as filters, but there are two exceptions `include` and `embed`.
 
 For documents targeting the HTML format the output file returned to you is the output returned from Pandoc.
 An excerpt from `html-r.html`, the HTML file returned from `quarto render html-r.qmd` is shown in @lst-render-html-r-html.
@@ -211,7 +217,7 @@ The fenced divs have been literally converted to `<div>` elements, and code bloc
 This HTML file requires some additional resources for a browser to correctly render it, but Quarto provides them all in `html-r_files/`.
 When you open `html-r.qmd` in a browser you'll see the final rendered document (@fig-html-r-html).
 
-![The HTML document that is produced with `quarto render html-r.qmd`](images/look-under-hood-r-html.png){#fig-html-r-html fig-alt="Screenshot of a webpage. Page starts with the heading 'My document', shows the output of two R code cells, and ends with a paragraph of text."}
+![The HTML document that is produced with `quarto render html-r.qmd`](images/troubleshooting-r-html.png){#fig-html-r-html fig-alt="Screenshot of a webpage. Page starts with the heading 'My document', shows the output of two R code cells, and ends with a paragraph of text."}
 
 ::: callout-tip
 ## Templates contribute document boilerplate
@@ -281,7 +287,7 @@ The output printed by `quarto render` when run on `html-r.qmd`.
 
 ::: {#lst-render-html-python-raw}
 ```` {.markdown}
-{{< include _examples/look-under-hood/html-python.qmd >}}
+{{< include _examples/troubleshooting/html-python.qmd >}}
 ````
 
 `html-python.qmd` a Quarto document with Python code cells and placeholder text, targeting HTML output.
@@ -289,7 +295,7 @@ The output printed by `quarto render` when run on `html-r.qmd`.
 
 In @fig-render-html-python we show the process of rendering `html-python.qmd`, greying those parts that are the same as the process for `html-r.qmd`.
 
-![The `quarto render` process for `html-python.qmd`](images/look-under-hood-render-html-python.jpg){#fig-render-html-python fig-alt="Diagram showing a `.qmd` file entering a box labelled Quarto, it flows through `jupyter` to a `.html.md` file, then through Pandoc, exiting the box as a `.html` file along with a folder with the name `_files.`. Everything is greyed out except the `jupyter` box."}
+![The `quarto render` process for `html-python.qmd`](images/troubleshooting-render-html-python.jpg){#fig-render-html-python fig-alt="Diagram showing a `.qmd` file entering a box labelled Quarto, it flows through `jupyter` to a `.html.md` file, then through Pandoc, exiting the box as a `.html` file along with a folder with the name `_files.`. Everything is greyed out except the `jupyter` box."}
 
 ### Before computational engine
 
@@ -306,7 +312,7 @@ Just like when `knitr` processed `html-r.qmd`, the `jupyter` engine has replaced
 
 ::: {#lst-render-html-python-md}
 ```` {.markdown}
-{{< include _examples/look-under-hood/html-python.html.md >}}
+{{< include _examples/troubleshooting/html-python.html.md >}}
 ````
 
 `html-python.html.md`, the intermediate Markdown created after passing `html-python.qmd` through the `jupyter` engine.
@@ -373,7 +379,7 @@ This document is identical to `html-r.qmd` except instead of targeting the HTML 
 
 ::: {#lst-render-pdf-r-raw}
 ```` {.markdown}
-{{< include _examples/look-under-hood/pdf-r.qmd >}}
+{{< include _examples/troubleshooting/pdf-r.qmd >}}
 ````
 
 `pdf-r.qmd` a Quarto document with R code cells that targets the PDF format.
@@ -381,7 +387,7 @@ This document is identical to `html-r.qmd` except instead of targeting the HTML 
 
 @fig-render-pdf-r shows the process of rendering `pdf-r.qmd`, again greying those parts that are the same as the process for `html-r.qmd`.
 
-![The `quarto render` process for `pdf-r.qmd`](images/look-under-hood-render-pdf-r.jpg){#fig-render-pdf-r fig-alt="Diagram showing a `.qmd` file entering a box labelled Quarto, it flows through `knitr` to a `.pdf.md` file, through Pandoc to a `.tex` file, then through TeX and exiting the box as a `.pdf` file. Everything is greyed out except the `.pdf.md`, `.tex` and `.pdf` files, and the TeX box."}
+![The `quarto render` process for `pdf-r.qmd`](images/troubleshooting-render-pdf-r.jpg){#fig-render-pdf-r fig-alt="Diagram showing a `.qmd` file entering a box labelled Quarto, it flows through `knitr` to a `.pdf.md` file, through Pandoc to a `.tex` file, then through TeX and exiting the box as a `.pdf` file. Everything is greyed out except the `.pdf.md`, `.tex` and `.pdf` files, and the TeX box."}
 
 ### Before the computational engine
 
@@ -395,7 +401,7 @@ In @lst-render-pdf-r-md you can see the intermediate Markdown file that is produ
 
 ::: {#lst-render-pdf-r-md}
 ```` {.markdown}
-{{< include _examples/look-under-hood/pdf-r.pdf.md >}}
+{{< include _examples/troubleshooting/pdf-r.pdf.md >}}
 ````
 
 `pdf-r.pdf.md` the intermediate Markdown file after the `knitr` engine has exectuted the code in `pdf-r.qmd`
@@ -482,7 +488,7 @@ Quarto will use the detected installation and process the `.tex` file as many ti
 
 @fig-render-process-pdf shows part of the PDF output that results for `pdf-r.qmd`.
 
-![A portion of the final PDF document produced by pdf-r.qmd](images/look-under-hood-pdf.png){#fig-render-process-pdf fig-alt="A screenshot of a PDF document with the title 'My document'. Below the title is a table of contents followed by a section called `A computation`."}
+![A portion of the final PDF document produced by pdf-r.qmd](images/troubleshooting-pdf.png){#fig-render-process-pdf fig-alt="A screenshot of a PDF document with the title 'My document'. Below the title is a table of contents followed by a section called `A computation`."}
 
 ## A multi-format document
 
@@ -502,7 +508,7 @@ format:
 Before the computational engine, Quarto recognizes that more than one format is a target.
 Each format is then generated in series and passes through the render process independently: the computational engine is run for each format; an intermediate Markdown file is generated for each format; Pandoc is run for each format; and any post-Pandoc steps are completed for each format.
 
-![The process for rendering a file that targets both HTML and PDF](images/look-under-hood-render-multiformat.jpg){#fig-render-multiformat fig-alt="Diagram of a quarto file entering Quarto and splitting into two processes: render to HTML; and render to PDF."}
+![The process for rendering a file that targets both HTML and PDF](images/troubleshooting-render-multiformat.jpg){#fig-render-multiformat fig-alt="Diagram of a quarto file entering Quarto and splitting into two processes: render to HTML; and render to PDF."}
 
 ## Other variations
 
@@ -552,7 +558,7 @@ For example, for websites Quarto needs to run through all documents to build the
 Some projects may also involve `freeze`.
 When freezing a document it is the intermediate Markdown file that gets put in the freezer, effectively removing the computational engine step when the freezer is activated.
 
-## Troubleshooting
+## Troubleshooting tips {#sec-troubleshooting-tips}
 
 In this section, you'll learn some tips for troubleshooting problems when they do occur.
 
@@ -818,4 +824,19 @@ Some good venues to ask questions are the [discussion board on the `quarto-cli` 
 What about the `./quarto` folder?
 Why is it automatically added to `.gitignore`? -->
 
-## Wrapping Up
+## Wrapping up
+
+In this chapter, you followed documents through the `quarto render` process.
+Quarto reads the document header and chooses an engine.
+The engine executes the code cells and writes an intermediate Markdown file.
+Pandoc converts that Markdown to the target format, and some formats, like PDF, need another step after Pandoc.
+You also saw how the process changes for other engines, formats and types of input, and how preview, projects and freeze fit in.
+
+Knowing which step a problem happens in is most of the work of troubleshooting:
+
+-   Errors about your YAML happen before the engine runs.
+-   Errors from your code come from the engine.
+-   Output that doesn't look right usually comes from the Markdown the engine produced, or from Pandoc.
+
+Once you know the step, use `quarto check`, the intermediate Markdown file (`keep-md: true`), and a minimal example to narrow the problem down.
+If you still can't solve it, you'll have everything you need to ask a good question.

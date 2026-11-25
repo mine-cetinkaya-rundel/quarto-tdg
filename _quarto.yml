@@ -39,13 +39,13 @@ book:
         - typst.qmd
         - presentations.qmd
 
-    - part: part-going-deeper.qmd
+    - part: mastering.qmd
       chapters:
         - authoring.qmd
         - projects.qmd
         - websites.qmd
-        - yaml.qmd
-        - look-under-hood.qmd
+        - mastering-options.qmd
+        - troubleshooting.qmd
         - more.qmd
 
   appendices:

@@ -28,14 +28,19 @@ This style guide summarizes the writing conventions and Quarto syntax patterns u
 
 #### Chapter Organization
 1. **Chapter title with identifier**: Start with a level-1 heading and cross-reference ID
-2. **Overview section**: Begin chapters with an "Overview" section that:
+2. **Chapter introduction**: Begin chapters with introductory text directly under the chapter title, with no `## Overview` heading. The introduction:
    - Explains what the chapter covers
    - Provides context and motivation
    - Outlines the structure with forward references to sections
+
+   Use an explicit `## Overview` section only when the introduction needs its own subsections. Without it, those `###` headings would skip a level.
 3. **Progressive complexity**: Move from simple to complex concepts
 4. **Practical examples**: Include concrete, working examples throughout
 
 #### Section Headings
+- Use sentence case for chapter, section and callout headings: capitalize only the first word and proper nouns (e.g., "Create a project", "What is a Quarto project?", "Wrapping up")
+  - Keep proper nouns and product names capitalized as usual (Quarto, RStudio, Positron, Git)
+  - Keep code, file names and options in backticks exactly as written (e.g., "Project configuration --- `_quarto.yml`")
 - Use descriptive, action-oriented headings
 - Include cross-reference identifiers for major sections
 - Maintain consistent heading hierarchy (don't skip levels)
@@ -43,8 +48,6 @@ This style guide summarizes the writing conventions and Quarto syntax patterns u
 **Example structure:**
 ```markdown
 # Chapter Title {#sec-chapter-name}
-
-## Overview
 
 Brief introduction explaining what this chapter covers...
 
@@ -138,7 +141,8 @@ In this chapter, you'll dive into the three big components of a website:
   - Extensions: `.qmd`, `.html`
   - URLs and paths: `_site/`, `{ base }/about.html`
 - **Italics** for occasional emphasis (e.g., "...things you *do* want") - use sparingly
-- **Tool/language capitalization**: Capitalize names such as Julia, Jupyter, Markdown, Pandoc, Knitr (use lower case only when talking about particular commands, e.g., "running the pandoc command")
+- **Tool/language capitalization**: Capitalize names such as Julia, Jupyter, Pandoc, Knitr (use lower case only when talking about particular commands, e.g., "running the pandoc command")
+- **markdown**: Use lower case "markdown" for markdown in general, including Quarto markdown and Pandoc markdown (e.g., "Quarto reads your markdown with Pandoc's markdown reader"). Capitalize "Markdown" only when you refer explicitly to John Gruber's original Markdown syntax.
 
 #### Metadata Terminology
 
@@ -470,7 +474,7 @@ project/
 ## Best Practices Summary
 
 ### Writing
-1. Start with overview, build progressively
+1. Start with an introduction under the chapter title, build progressively
 2. Show examples before or alongside explanations
 3. Use forward and backward references liberally
 4. Include practical, realistic examples
