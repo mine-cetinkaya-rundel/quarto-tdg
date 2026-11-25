@@ -68,7 +68,9 @@ Inside a code cell, you can only include:
 ::: {.callout-tip}
 ## Add a code cell using a shortcut
 
-TODO: Link back to tools
+::: todo
+[CVW] Link back to tools.
+:::
 :::
 
 ## Code cell options {#sec-code-cell-options}

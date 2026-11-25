@@ -165,7 +165,11 @@ You can read more about writing equations, including cross-referencing, in @sec-
 
 ### Alt text {#sec-typst-math-alt}
 
-Alt text makes an equation accessible to screen readers and is required to meet the PDF/UA-1 standard (you'll learn more about this standard in @sec-accessibility).
+::: todo
+[CVW] Confirm that `sec-html-accessibility` is the correct reference intended here, after #37 is merged.
+:::
+
+Alt text makes an equation accessible to screen readers and is required to meet the PDF/UA-1 standard (you'll learn more about this standard in @sec-html-accessibility).
 You can add alternative text to cross-referenced display equations with an `alt=` attribute:
 
 ````{.markdown .code-overflow-wrap filename="equations.qmd"}

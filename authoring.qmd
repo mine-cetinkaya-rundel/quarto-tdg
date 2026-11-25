@@ -313,8 +313,10 @@ To have cells with complicated cell contents, you can use an alternative syntax 
 You can also use **HTML table syntax**, regardless of your target format, to create tables.
 You won't usually write HTML syntax by hand, but it is a common output from computational packages that create tables.
 
-Tables are so important in Quarto documents that we dedicate an entire part of this book to them.
-For more details, see @sec-figtab.
+
+::: todo
+[CVW] This used to say tables get "an entire part of this book" and point to `@sec-figtab`, but we're not planning on a full part anymore. Add a reference to wherever tables are covered in more depth.
+:::
 
 ### Markdown pipe tables {#sec-markdown-pipe-tables}
 
@@ -390,8 +392,10 @@ To add an identifier and caption to the table, use the code cell options `label`
 
 You can include images in your document either from an image file or from the output of an executable code cell.
 
-Figures are so important in Quarto documents that we dedicate an entire part of this book to them.
-For more details, see @sec-figtab.
+
+::: todo
+[CVW] This used to say figures get "an entire part of this book" and point to `@sec-figtab`, but we're not planning on a full part anymore. Add a reference to wherever figures are covered in more depth.
+:::
 
 ::: {.callout-tip}
 
@@ -565,7 +569,11 @@ To create a cross-reference you need to do two things:
 
 @tbl-crossref-prefixes gives examples of common elements, their prefixes, and an example of adding the identifier as an attribute.
 For computational outputs, like figures and tables generated from code cells, you add the identifier using the `label` code cell option.
-You can see an example for a table in @sec-computational-table, a figure in @sec-computational-figure, and many more details in @sec-figtab-crossrefs.
+You can see an example for a table in @sec-computational-table and a figure in @sec-computational-figure.
+
+::: todo
+[CVW] This sentence used to end "and many more details in `@sec-figtab-crossrefs`", which pointed to `figure-table.qmd` chapter. Add a new reference if the details live elsewhere.
+:::
 
 ::: {#tbl-crossref-prefixes}
 ::: {.list-table header-rows=1 widths='1,2,2' aligns="l,l,l"}
@@ -1008,7 +1016,10 @@ Additional items fill new rows, and Quarto allocates vertical space as needed.
 In HTML formats, the layout is responsive so that on smaller screens the items will stack vertically.
 
 Use the `layout-nrow` attribute if you'd prefer to specify the grid by the number of rows, or, for more complicated layouts, use the `layout` attribute.
-You can see more examples using figures and tables as content in @sec-figtab-layout.
+
+::: todo
+[CVW] Removed "You can see more examples using figures and tables as content in `@sec-figtab-layout`"; that section was in the removed `figure-table.qmd` chapter. Add a new reference if those examples live elsewhere.
+:::
 
 ### Column classes
 
@@ -1051,7 +1062,9 @@ Column page right syntax and rendered output
 Other classes give content more horizontal space and, for `format: html`, let it extend to the left or across the full screen width.
 See the [Available Columns](https://quarto.org/docs/authoring/article-layout.html#available-columns) section of Article Layout in the Quarto documentation for the full list of classes.
 
-You can also see more examples with figures and tables, including computational outputs, in @sec-figtab-layout.
+::: todo
+[CVW] Removed "You can also see more examples with figures and tables, including computational outputs in `@sec-figtab-layout`"; that section was in the removed `figure-table.qmd` chapter. Add a new reference if those examples live elsewhere.
+:::
 
 ## Raw blocks {#sec-raw-blocks}
 

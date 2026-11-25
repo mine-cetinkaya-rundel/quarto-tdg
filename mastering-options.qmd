@@ -218,7 +218,7 @@ When you make a mistake in setting an option there are a few possible outcomes:
 It's hard to enumerate all the ways you can make a mistake, but we'll give a couple of examples for each of these outcomes in the hope it helps you track down yours.
 
 ::: todo
-Add an icon for PDF version of the red-border error examples.
+[CVW] Add an icon for error examples in the PDF version, since the red border doesn't carry over.
 :::
 
 Some examples in this chapter will result in an error from `quarto render`---we've highlighted these examples with a red border, like this:
