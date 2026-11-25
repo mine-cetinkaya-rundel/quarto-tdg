@@ -62,7 +62,7 @@ Quarto documents are plain text files with the extension `.qmd` and they consist
 
     ```` markdown
     ```{{python}}
-    # R code here
+    # Python code here
     ```
     ````
 
