@@ -43,12 +43,12 @@ Quarto documents are plain text files with the extension `.qmd` and they consist
 
 1. **YAML header:** Configuration metadata enclosed by `---` markers, specifying the title, format, and various options for your document.
 
-```markdown
----
-title: Document title
-format: html
----
-```
+    ```markdown
+    ---
+    title: Document title
+    format: html
+    ---
+    ```
 
 2. **Code cells:** Executable blocks marked with three backticks  ` ``` ` and the name of the language in curly braces `{r}` containing your computational code,e.g.,
 
