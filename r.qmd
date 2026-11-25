@@ -151,7 +151,7 @@ knitr::kable(species_mass, digits = 0)
 
 :::
 
-Adding the `label` and `tbl-cap` options turns the result into a numbered table with a caption that you can cross-reference (@sec-computational-table).
+You can further improve this display by adding a `label` and `tbl-cap` to turn it into a numbered table with a caption that you can cross-reference (@sec-computational-table).
 For more control over styling, table packages such as [**gt**](https://gt.rstudio.com/) work the same way: the code cell returns a table, and Quarto includes it in your document.
 
 If you want readers to be able to search and sort the data themselves, you can use an interactive table widget such as `DT::datatable(penguins)`.
