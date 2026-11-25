@@ -138,9 +138,9 @@ Note that for executing code cells in Quarto documents in Positron, you'll need 
 
 - For R, you need the knitr package:
 
-```r
-install.packages("knitr")
-```
+    ```r
+    install.packages("knitr")
+    ```
 
 - For Python, you need the jupyter package:
 
