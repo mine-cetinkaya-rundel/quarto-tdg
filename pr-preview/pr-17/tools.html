@@ -373,7 +373,9 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
   <li><a href="#previewing-and-rendering-other-formats-positron" id="toc-previewing-and-rendering-other-formats-positron" class="nav-link" data-scroll-target="#previewing-and-rendering-other-formats-positron"><span class="header-section-number">2.3.11</span> Previewing and rendering other formats</a></li>
   <li><a href="#render-on-save-positron" id="toc-render-on-save-positron" class="nav-link" data-scroll-target="#render-on-save-positron"><span class="header-section-number">2.3.12</span> Render on Save</a></li>
   <li><a href="#external-preview-positron" id="toc-external-preview-positron" class="nav-link" data-scroll-target="#external-preview-positron"><span class="header-section-number">2.3.13</span> External preview</a></li>
-  <li><a href="#additional-features-positron" id="toc-additional-features-positron" class="nav-link" data-scroll-target="#additional-features-positron"><span class="header-section-number">2.3.14</span> Additional Positron features</a></li>
+  <li><a href="#projects-positron" id="toc-projects-positron" class="nav-link" data-scroll-target="#projects-positron"><span class="header-section-number">2.3.14</span> Projects</a></li>
+  <li><a href="#yaml-intelligence-positron" id="toc-yaml-intelligence-positron" class="nav-link" data-scroll-target="#yaml-intelligence-positron"><span class="header-section-number">2.3.15</span> YAML intelligence</a></li>
+  <li><a href="#additional-features-positron" id="toc-additional-features-positron" class="nav-link" data-scroll-target="#additional-features-positron"><span class="header-section-number">2.3.16</span> Additional Positron features</a></li>
   </ul></li>
   <li><a href="#sec-rstudio" id="toc-sec-rstudio" class="nav-link" data-scroll-target="#sec-rstudio"><span class="header-section-number">2.4</span> RStudio</a>
   <ul class="collapse">
@@ -425,16 +427,16 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </header>
 
 
-<p>In this chapter, you’ll learn how Quarto documents are structured, how to render and preview them from the command line, how Positron and RStudio support interactive authoring, and how to choose the right tool for your workflow. We detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring. We spend more time on Positron than on RStudio because RStudio’s Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.</p>
+<p>In this chapter, you’ll learn how Quarto documents are structured, how to render and preview them from the command line, how to author them interactively in Positron and RStudio, which other tools you can use for Quarto authoring, and how to choose the right tool for your workflow. We spend more time on Positron than on RStudio because RStudio’s Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.</p>
 <section id="document-structure" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="document-structure"><span class="header-section-number">2.1</span> Document structure</h2>
-<p>Quarto documents comprise three main components: a YAML header for metadata, markdown text for content, and code cells for executable code.</p>
+<p>Quarto documents comprise three main components: a YAML header for metadata, Markdown text for content, and code cells for executable code.</p>
 <ol type="1">
 <li>YAML header: Metadata enclosed by <code>---</code> markers, including the title, format, theme, and other document options.</li>
 <li>Markdown text: Formatted text using standard Markdown syntax for headings, lists, links, emphasis, and more.</li>
 <li>Code cells: Executable code cells marked with <code>```{r}</code> or <code>```{python}</code> that can include optional cell options to control execution and output.</li>
 </ol>
-<p>We will focus on the first two components, the YAML header and markdown text, before diving into code cells and execution in <a href="code.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
+<p>We will focus on the first two components, the YAML header and Markdown text, before diving into code cells and execution in <a href="code.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>document.qmd</strong></pre>
@@ -472,7 +474,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <section id="sec-quarto-cli" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-quarto-cli"><span class="header-section-number">2.2</span> Quarto CLI</h2>
 <p>Before diving into specific IDEs, let’s start with the fundamentals: the Quarto Command Line Interface (CLI). The Quarto CLI is the core tool that powers all Quarto rendering. You can run Quarto CLI commands in any standard Terminal application as well as in the Terminal tab in RStudio or the Terminal panel in Positron.</p>
-<p>The most fundamental Quarto command is <code>quarto render</code>, which converts your Quarto document into the desired output format. Quarto uses the term render to describe the process of taking this source document and producing a new file that combines the output from the executed code cells with the Markdown. You can render a specific Quarto document in the current directory in the Terminal with:</p>
+<p>Quarto uses the term <em>render</em> for the process of taking a source document, executing its code cells, and producing a new file that combines the code output with the Markdown. The most fundamental Quarto command is <code>quarto render</code>, which renders your document into the desired output format. You can render a specific Quarto document in the current directory in the Terminal with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>By default, Quarto will render your document in the format specified in the YAML header, falling back to HTML if none is specified. You can override the output format using the <code>--to</code> option:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render document.qmd <span class="at">--to</span> pdf</span>
@@ -484,7 +486,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <p>Beyond rendering and previewing, the Quarto CLI offers several other helpful commands.</p>
 <p>To see which version of Quarto you have installed, run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To verify that your installation and its dependencies (such as Jupyter, knitr, and LaTeX) are correctly configured, as well as displaying other information that can be helpful for troubleshooting (see <a href="look-under-hood.html" class="quarto-xref"><span>Chapter 16</span></a> for more on this), run:</p>
+<p>To verify that your installation and its dependencies (such as Jupyter, knitr, and LaTeX) are correctly configured, and to see other information that helps with troubleshooting (see <a href="look-under-hood.html" class="quarto-xref"><span>Chapter 16</span></a>), run:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When your document is ready to share, <code>quarto publish</code> can render and push it to a variety of destinations:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> publish document.qmd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -493,16 +495,24 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or you can use <code>--help</code> with any command to see available options and usage information.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The same basic workflow applies whether you work from the Terminal or from an IDE. IDEs such as Positron, RStudio, and VS Code provide buttons, keyboard shortcuts, and preview panes for these tasks, but the underlying Quarto workflow is the same.</p>
+<p>The same basic workflow applies whether you work from the Terminal or from an IDE. IDEs such as Positron, RStudio, and VS Code add buttons, keyboard shortcuts, and preview panes for these tasks, but they run the same Quarto CLI commands behind the scenes.</p>
 <p>Now that we have introduced the basic document structure and foundational CLI commands, let’s explore how different IDEs integrate these capabilities into their interfaces to support your authoring experience.</p>
 </section>
 <section id="sec-positron" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="sec-positron"><span class="header-section-number">2.3</span> Positron</h2>
-<p>Positron is a next-generation data science IDE that comes pre-configured for Quarto—the Quarto CLI is built in, and the Quarto VS Code extension is bundled. Additionally, Positron offers specialized features for Quarto authoring, such as integrated rendering and preview for Quarto documents, completion and diagnostics for Quarto options, and full R and Python support for code that is inside code cells in a Quarto document, including interactive execution of code in the Console, code completion, help, and diagnostics.</p>
+<p>Positron is a next-generation data science IDE that comes pre-configured for Quarto. Along with integrated rendering and preview, it gives the code in your cells the same R and Python support you’d get in a script: interactive execution in the Console, code completion, help, and diagnostics.</p>
 <section id="installation-positron" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="installation-positron"><span class="header-section-number">2.3.1</span> Installation</h3>
 <p>To get started with Quarto in Positron, download and install Positron from <a href="https://positron.posit.co">positron.posit.co</a>. Since Quarto is built into Positron, no additional installation is required. Depending on your language of choice, you’ll also need to have R or Python installed on your system—R from <a href="https://cran.r-project.org">cran.r-project.org</a> or Python from <a href="https://www.python.org">python.org</a>.</p>
-<p>Positron’s Quarto support comes from the bundled Quarto extension, which is included as a <em>bootstrapped extension</em>—it behaves just as if you had installed it yourself, updates automatically as new versions appear in the extension gallery, and can be uninstalled if you ever need to.</p>
+<p>To execute code cells in Quarto documents, install the packages for your language of choice:</p>
+<ul>
+<li><p>For R, you need the knitr and rmarkdown packages:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"knitr"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rmarkdown"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>For Python, you need the jupyter package:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<p>Positron’s Quarto support comes from the Quarto VS Code extension, which Positron includes as a <em>bootstrapped extension</em>—it behaves just as if you had installed it yourself, updates automatically as new versions appear in the extension gallery, and can be uninstalled if you ever need to.</p>
 <p>Positron ships with its own copy of the Quarto CLI, but you aren’t locked into it. If you’d prefer to use a version of Quarto that you’ve installed yourself—say, to match the version your project uses elsewhere—that generally works automatically. When you need finer control over exactly which Quarto is used, set the ⚙️ <a href="https://positron.posit.co/quarto.html#managing-quarto-installations"><strong>Quarto: Path</strong></a> setting (<code>quarto.path</code>) to point at the installation you want. You can do this at the user or workspace level.</p>
 <p>To see which version is currently active, check Positron’s bottom status bar. After changing your Quarto version, restart Positron so the status bar updates.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
@@ -540,33 +550,13 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <h3 data-number="2.3.3" class="anchored" data-anchor-id="core-features-positron"><span class="header-section-number">2.3.3</span> Core features</h3>
 <p>Positron provides several features that make Quarto authoring efficient and productive. Here’s an overview; the subsections that follow cover each in more depth:</p>
 <ul>
-<li><p>Previewing: render <code>.qmd</code> files and view the result side by side with your source, using the <strong>Quarto: Preview</strong> command, the keyboard shortcut (<kbd title="linux: Ctrl-Shift-K, mac: Shift-Command-K, windows: Ctrl-Shift-K" aria-hidden="true" data-linux="Ctrl-Shift-K" data-mac="Shift-Command-K" data-windows="Ctrl-Shift-K"></kbd><span class="visually-hidden"></span>), or the <strong>Preview</strong> button in the toolbar.</p></li>
+<li><p>Previewing: render <code>.qmd</code> files and view the result side by side with your source, using the <strong>Quarto: Preview</strong> command, <kbd title="linux: Ctrl-Shift-K, mac: Shift-Command-K, windows: Ctrl-Shift-K" aria-hidden="true" data-linux="Ctrl-Shift-K" data-mac="Shift-Command-K" data-windows="Ctrl-Shift-K"></kbd><span class="visually-hidden"></span>, or the <strong>Preview</strong> button in the toolbar (see <a href="#previewing-and-rendering-other-formats-positron">Previewing and rendering other formats</a> and <a href="#render-on-save-positron">Render on Save</a>).</p></li>
 <li><p>Dual editor modes: switch between source and visual editing (see <a href="#visual-editor-positron">Visual editor</a>).</p></li>
-<li><p>Polyglot language support: first-class support for R and Python makes Positron an excellent choice for Quarto projects with computational cells in either language or both languages.</p></li>
-<li><p>Interactive code execution: run individual code cells in the Console without rendering the entire document (see <a href="#running-code-cells-positron">Running code cells</a>).</p></li>
-<li><p>Code completion and diagnostics: as you type, Positron suggests valid Quarto and YAML options and flags syntax errors, helping you catch problems before you render.</p></li>
+<li><p>Polyglot language support: first-class support for R and Python makes Positron an excellent choice for Quarto projects with computational cells in either language or both languages (see <a href="#contextual-assistance-positron">Contextual assistance</a>).</p></li>
+<li><p>Interactive code execution: run individual code cells in the Console without rendering the entire document (see <a href="#running-code-cells-positron">Running code cells</a> and <a href="#inline-output-positron">Inline output</a>).</p></li>
+<li><p>Code completion and diagnostics: as you type, Positron suggests valid Quarto and YAML options and flags syntax errors, helping you catch problems before you render (see <a href="#yaml-intelligence-positron">YAML intelligence</a>).</p>
+<p>::: todo [MCR] A screenshot of Quarto help that appears as you type? :::</p></li>
 </ul>
-<p>Note that for executing code cells in Quarto documents in Positron, you’ll need to install some packages depending on your language of choice.</p>
-<ul>
-<li><p>For R, you need the knitr and rmarkdown packages:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"knitr"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rmarkdown"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p>For Python, you need the jupyter package:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install jupyter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
-</ul>
-<div class="callout callout-style-simple callout-todo callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Todo</span>TO-DO
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>[MCR] A screenshot of Quarto help that appears as you type?</p>
-</div>
-</div>
 </section>
 <section id="basic-workflow-positron" class="level3" data-number="2.3.4">
 <h3 data-number="2.3.4" class="anchored" data-anchor-id="basic-workflow-positron"><span class="header-section-number">2.3.4</span> Basic workflow</h3>
@@ -581,7 +571,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="visual-editor-positron" class="level3" data-number="2.3.5">
 <h3 data-number="2.3.5" class="anchored" data-anchor-id="visual-editor-positron"><span class="header-section-number">2.3.5</span> Visual editor</h3>
-<p>The dual editor modes noted above give you access to Positron’s visual editor, a WYSIWYM (“what you see is what you mean”) interface for editing Quarto markdown without working directly in the source. Use the <strong>Edit in Visual Mode</strong> and <strong>Edit in Source Mode</strong> commands or the keyboard shortcut (<kbd title="linux: Ctrl-Shift-F4, mac: Shift-Command-F4, windows: Ctrl-Shift-F4" aria-hidden="true" data-linux="Ctrl-Shift-F4" data-mac="Shift-Command-F4" data-windows="Ctrl-Shift-F4"></kbd><span class="visually-hidden"></span>) to switch between modes. Beyond basic formatting, it supports many of Quarto’s richer constructs, including tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX. The visual editor’s support is still somewhat limited in Positron, though: it’s a great fit for rich-text authoring, but running code and other language features aren’t available in visual mode, so switch to source mode when you need them. We keep the coverage brief here and highlight visual-editor features throughout the book where they’re relevant.</p>
+<p>Positron’s visual editor is a WYSIWYM (“what you see is what you mean”) interface for editing Quarto Markdown without working directly in the source. Use the <strong>Edit in Visual Mode</strong> and <strong>Edit in Source Mode</strong> commands or <kbd title="linux: Ctrl-Shift-F4, mac: Shift-Command-F4, windows: Ctrl-Shift-F4" aria-hidden="true" data-linux="Ctrl-Shift-F4" data-mac="Shift-Command-F4" data-windows="Ctrl-Shift-F4"></kbd><span class="visually-hidden"></span> to switch between modes. Beyond basic formatting, it supports many of Quarto’s richer constructs, including tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX. Though the visual editor’s support is still somewhat limited in Positron, it’s a great fit for rich-text authoring. We keep the coverage brief here and highlight visual-editor features throughout the book where they’re relevant.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -602,10 +592,10 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <p>Editing an <code>.ipynb</code> for Quarto differs from a <code>.qmd</code> file in a few ways:</p>
 <ul>
 <li><p>YAML front matter goes in the first cell, which should be a Raw cell containing the title, author, and any other document options. Use the cell type menu at the bottom right of a cell to switch it to Raw.</p></li>
-<li><p>Markdown cells accept any valid Quarto markdown, including features such as cross-references.</p></li>
+<li><p>Markdown cells accept any valid Quarto Markdown, including features such as cross-references.</p></li>
 <li><p>Code cell options use the same <code>#|</code> comment prefix as <code>.qmd</code> files and must appear at the very start of the cell.</p></li>
 </ul>
-<p>Rendering and preview work just as they do for <code>.qmd</code> files: run the <strong>Quarto: Preview</strong> command once, and the preview refreshes each time you save. One key difference is execution; <code>.qmd</code> files are always executed by default when rendered, but when rendering an <code>.ipynb</code>, Quarto does <em>not</em> run the cells by default, assuming you’ve already executed them while editing. To execute cells during rendering, pass the <code>--execute</code> flag:</p>
+<p>Run the <strong>Quarto: Preview</strong> command once to start a preview; unlike <code>.qmd</code> files, notebooks refresh the preview each time you save, without <strong>Render on Save</strong> enabled. Another key difference is execution: <code>.qmd</code> files are executed by default when rendered, but when rendering an <code>.ipynb</code>, Quarto does <em>not</em> run the cells by default, assuming you’ve already executed them while editing. To execute cells during rendering, pass the <code>--execute</code> flag:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render notebook.ipynb <span class="at">--execute</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or enable it in the notebook’s YAML front matter:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
@@ -629,7 +619,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="running-code-cells-positron" class="level3" data-number="2.3.7">
 <h3 data-number="2.3.7" class="anchored" data-anchor-id="running-code-cells-positron"><span class="header-section-number">2.3.7</span> Running code cells</h3>
-<p>The interactive execution introduced above is supported by a full set of commands to run R and Python cells, with output appearing in the Console. You can run the current cell, the next or previous cell, all cells, the cells above or below the cursor, or just the selected line(s):</p>
+<p>Positron provides a full set of commands for running R and Python cells, with output appearing in the Console. You can run the current cell, the next or previous cell, all cells, the cells above or below the cursor, or just the selected line(s):</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -672,12 +662,12 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </tr>
 </tbody>
 </table>
-<p>You can insert a new code cell with <kbd title="linux: Ctrl-Shift-I, mac: Shift-Command-I, windows: Ctrl-Shift-I" aria-hidden="true" data-linux="Ctrl-Shift-I" data-mac="Shift-Command-I" data-windows="Ctrl-Shift-I"></kbd><span class="visually-hidden"></span>. Completion and execution for R and Python cells is built in to Positron. To add completion and execution for Julia, install the Julia extension.</p>
+<p>You can insert a new code cell with <kbd title="linux: Ctrl-Shift-I, mac: Shift-Command-I, windows: Ctrl-Shift-I" aria-hidden="true" data-linux="Ctrl-Shift-I" data-mac="Shift-Command-I" data-windows="Ctrl-Shift-I"></kbd><span class="visually-hidden"></span>. Completion and execution for R and Python cells are built into Positron. To add completion and execution for Julia, install the Julia extension.</p>
 </section>
 <section id="inline-output-positron" class="level3" data-number="2.3.8">
 <h3 data-number="2.3.8" class="anchored" data-anchor-id="inline-output-positron"><span class="header-section-number">2.3.8</span> Inline output</h3>
-<p>By default, running a code cell sends it to the Console, as described above. Positron can instead display cell output <em>inline</em>, directly beneath each cell in the Editor—much like a Jupyter notebook or RStudio’s R Notebooks. To use this feature, you must first turn on the ⚙️ <a href="https://positron.posit.co/quarto-inline-output.html"><strong>Quarto &gt; Inline Output: Enabled</strong></a> setting (<code>quarto.inlineOutput.enabled</code>) in your user or workspace settings.</p>
-<p>Turning on inline output also changes the execution model. Rather than sharing a single Console across every document, Positron gives each <code>.qmd</code> file its own isolated R or Python session.</p>
+<p>By default, running a code cell sends it to the Console, as described above. Positron can instead display cell output <em>inline</em>, directly beneath each cell in the Editor—much like a Jupyter notebook. To use this feature, you must first turn on the ⚙️ <a href="https://positron.posit.co/quarto-inline-output.html"><strong>Quarto &gt; Inline Output: Enabled</strong></a> setting (<code>quarto.inlineOutput.enabled</code>) in your user or workspace settings.</p>
+<p>Turning on inline output also changes the execution model. Rather than sharing a single Console across every document, Positron gives each <code>.qmd</code> file its own isolated R or Python session, so objects you create in the Console or in another document aren’t available to it.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -695,7 +685,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <section id="contextual-assistance-positron" class="level3" data-number="2.3.9">
 <h3 data-number="2.3.9" class="anchored" data-anchor-id="contextual-assistance-positron"><span class="header-section-number">2.3.9</span> Contextual assistance</h3>
 <p>While you edit R and Python code cells, Positron offers the same assistance you’d get in a script or the Console: completion for functions and their arguments, help tooltips as you type or hover over a function, and full documentation in the Help pane when you press F1 with the cursor in a function.</p>
-<p>For assistance with the prose and math around your code, run the <strong>Quarto: Show Assist Panel</strong> command to open a panel in the sidebar that updates based on where your cursor is. It shows a preview of LaTeX math as you edit an equation, and a thumbnail preview when your cursor is on a markdown image—handy for confirming you’ve referenced the right file.</p>
+<p>For assistance with the prose and math around your code, run the <strong>Quarto: Show Assist Panel</strong> command to open a panel in the sidebar that updates based on where your cursor is. It shows a preview of LaTeX math as you edit an equation, and a thumbnail preview when your cursor is on a Markdown image—handy for confirming you’ve referenced the right file.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -748,7 +738,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="render-on-save-positron" class="level3" data-number="2.3.12">
 <h3 data-number="2.3.12" class="anchored" data-anchor-id="render-on-save-positron"><span class="header-section-number">2.3.12</span> Render on Save</h3>
-<p>By default, Positron does not re-render your document every time you save—rendering can be slow if it involves long-running computations, and it’s useful to be able to save freely without triggering a full render. When you do want automatic rendering, you have three ways to enable <strong>Render on Save</strong>:</p>
+<p>By default, Positron does not re-render your document every time you save—rendering can be slow if it involves long-running computations, and it’s useful to be able to save freely without triggering a full render. This differs from running <code>quarto preview</code> yourself in the Terminal (see <a href="#sec-quarto-cli" class="quarto-xref"><span>Section 2.2</span></a>): the <strong>Quarto: Preview</strong> command starts the preview with <code>--no-watch-inputs</code>, which turns off the automatic re-render on save, so Positron can decide when to re-render based on your <strong>Render on Save</strong> setting. When you do want automatic rendering, you have three ways to enable <strong>Render on Save</strong>:</p>
 <ol type="1">
 <li><p>Check the <strong>Render on Save</strong> checkbox in the Editor toolbar for the current document.</p></li>
 <li><p>Search for <code>quarto.render</code> in settings and enable the ⚙️ <a href="https://quarto.org/docs/tools/positron/index.html#render-on-save" class="quarto-docs"><span class="docs-lead"><strong>Quarto &gt; Render: Render on Save</strong></span></a> setting (<code>quarto.render.renderOnSave</code>) to make it the default for all documents.</p></li>
@@ -785,8 +775,29 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </div>
 </div>
 </section>
-<section id="additional-features-positron" class="level3" data-number="2.3.14">
-<h3 data-number="2.3.14" class="anchored" data-anchor-id="additional-features-positron"><span class="header-section-number">2.3.14</span> Additional Positron features</h3>
+<section id="projects-positron" class="level3" data-number="2.3.14">
+<h3 data-number="2.3.14" class="anchored" data-anchor-id="projects-positron"><span class="header-section-number">2.3.14</span> Projects</h3>
+<p>To create a project for a Quarto document or a set of related documents, run the <strong>Quarto: Create Project</strong> command from the Command Palette, or choose <strong>Quarto Project</strong> from the <strong>File &gt; New File…</strong> menu. Positron asks you to pick a project type (<strong>Default</strong>, <strong>Website</strong>, <strong>Blog</strong>, <strong>Book</strong>, or <strong>Manuscript</strong>), then creates the project and opens its folder.</p>
+<div class="callout callout-style-simple callout-todo callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Todo</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>[MCR] Screenshot of the Create Quarto Project project-type picker?</p>
+</div>
+</div>
+</section>
+<section id="yaml-intelligence-positron" class="level3" data-number="2.3.15">
+<h3 data-number="2.3.15" class="anchored" data-anchor-id="yaml-intelligence-positron"><span class="header-section-number">2.3.15</span> YAML intelligence</h3>
+<p>Positron provides code completion for the YAML you write in Quarto documents, covering project files, the document’s YAML front matter, and executable cell options. As you type, it suggests valid keys and values, which helps you discover options and avoid typos. If your YAML is invalid, Positron also flags it when you save the document, so you can fix it before rendering.</p>
+</section>
+<section id="additional-features-positron" class="level3" data-number="2.3.16">
+<h3 data-number="2.3.16" class="anchored" data-anchor-id="additional-features-positron"><span class="header-section-number">2.3.16</span> Additional Positron features</h3>
 <p>Positron provides several additional features and tools that enhance your Quarto workflow:</p>
 <ul>
 <li><p>Get help from Posit Assistant, the AI assistant built into recent versions of Positron, which connects to your live R or Python session to help you author, explore, and debug. Its Quarto-specific skills include authoring <code>.qmd</code> documents—covering cross-references, callouts, citations, diagrams, and YAML options—generating reports from a conversation, and publishing your work to Posit Connect Cloud.</p></li>
@@ -802,7 +813,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="sec-rstudio" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="sec-rstudio"><span class="header-section-number">2.4</span> RStudio</h2>
-<p>RStudio is an IDE specifically designed for R, and it provides excellent support for Quarto authoring. RStudio comes with Quarto pre-installed and provides a rich set of features that make it easy to create, edit, and render Quarto documents, including syntax highlighting, code completion, integrated rendering and preview, and support for both visual and source editing modes.</p>
+<p>RStudio is an IDE designed specifically for R, and it has long supported Quarto authoring. It comes with Quarto pre-installed, so you can create, edit, and render Quarto documents without any additional setup.</p>
 <section id="installation-rstudio" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="installation-rstudio"><span class="header-section-number">2.4.1</span> Installation</h3>
 <p>To get started with Quarto in RStudio, download and install the latest version of RStudio from <a href="https://posit.co/download/rstudio-desktop/">posit.co/download/rstudio-desktop</a>. Also make sure that you have R installed on your system, which you can get from <a href="https://cran.r-project.org">cran.r-project.org</a>.</p>
@@ -828,10 +839,10 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="core-features-rstudio"><span class="header-section-number">2.4.3</span> Core features</h3>
 <p>Like Positron, RStudio provides several features that make Quarto authoring efficient and productive. Here’s an overview; the subsections that follow cover each in more depth:</p>
 <ul>
-<li><p>Rendering and preview: render <code>.qmd</code> files to HTML, PDF, Word, or other formats with the <strong>Render</strong> button or the keyboard shortcut (<kbd title="linux: Ctrl-Shift-K, mac: Shift-Command-K, windows: Ctrl-Shift-K" aria-hidden="true" data-linux="Ctrl-Shift-K" data-mac="Shift-Command-K" data-windows="Ctrl-Shift-K"></kbd><span class="visually-hidden"></span>).</p></li>
-<li><p>Dual editor modes: switch between source and visual editing.</p></li>
-<li><p>Interactive code execution: run individual code cells without rendering the entire document.</p></li>
-<li><p>Code completion and diagnostics: as you type, RStudio suggests valid Quarto and YAML options and flags errors before you render.</p></li>
+<li><p>Rendering and preview: render <code>.qmd</code> files to HTML, PDF, Word, or other formats with the <strong>Render</strong> button or <kbd title="linux: Ctrl-Shift-K, mac: Shift-Command-K, windows: Ctrl-Shift-K" aria-hidden="true" data-linux="Ctrl-Shift-K" data-mac="Shift-Command-K" data-windows="Ctrl-Shift-K"></kbd><span class="visually-hidden"></span> (see <a href="#previewing-and-rendering-other-formats-rstudio">Previewing and rendering other formats</a> and <a href="#render-on-save-rstudio">Render on Save</a>).</p></li>
+<li><p>Dual editor modes: switch between source and visual editing (see <a href="#visual-editor-rstudio">Visual editor</a>).</p></li>
+<li><p>Interactive code execution: run individual code cells without rendering the entire document (see <a href="#running-code-cells-rstudio">Running code cells</a> and <a href="#inline-output-rstudio">Inline output</a>).</p></li>
+<li><p>Code completion and diagnostics: as you type, RStudio suggests valid Quarto and YAML options and flags errors before you render (see <a href="#yaml-intelligence-rstudio">YAML intelligence</a>).</p></li>
 </ul>
 </section>
 <section id="basic-workflow-rstudio" class="level3" data-number="2.4.4">
@@ -850,7 +861,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="visual-editor-rstudio" class="level3" data-number="2.4.5">
 <h3 data-number="2.4.5" class="anchored" data-anchor-id="visual-editor-rstudio"><span class="header-section-number">2.4.5</span> Visual editor</h3>
-<p>RStudio pioneered the visual editor that Positron later inherited, so the experience described in <a href="#sec-positron" class="quarto-xref"><span>Section 2.3</span></a> largely carries over: a WYSIWYM interface covering tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX. Switch between source and visual modes with the buttons in the Editor toolbar or the keyboard shortcut (<kbd title="linux: Ctrl-Shift-F4, mac: Shift-Command-F4, windows: Ctrl-Shift-F4" aria-hidden="true" data-linux="Ctrl-Shift-F4" data-mac="Shift-Command-F4" data-windows="Ctrl-Shift-F4"></kbd><span class="visually-hidden"></span>).</p>
+<p>RStudio pioneered the visual editor that Positron later inherited, so the experience described in the <a href="#visual-editor-positron">Visual editor</a> section for Positron largely carries over: a WYSIWYM interface covering tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX. Switch between source and visual modes with the buttons in the Editor toolbar or <kbd title="linux: Ctrl-Shift-F4, mac: Shift-Command-F4, windows: Ctrl-Shift-F4" aria-hidden="true" data-linux="Ctrl-Shift-F4" data-mac="Shift-Command-F4" data-windows="Ctrl-Shift-F4"></kbd><span class="visually-hidden"></span>.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -884,7 +895,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="inline-output-rstudio" class="level3" data-number="2.4.7">
 <h3 data-number="2.4.7" class="anchored" data-anchor-id="inline-output-rstudio"><span class="header-section-number">2.4.7</span> Inline output</h3>
-<p>RStudio pioneered inline output for R Markdown, and the same behavior is available for Quarto documents: cell output can appear directly beneath each cell in the Editor instead of in the Console (see <a href="#sec-positron" class="quarto-xref"><span>Section 2.3</span></a> for the equivalent Positron feature). Toggle between inline and console output from the gear (settings) menu in the Editor toolbar, or set a default for all documents in RStudio’s global options.</p>
+<p>Cell output can appear directly beneath each cell in the Editor instead of in the Console (see the <a href="#inline-output-positron">Inline output</a> section for the equivalent Positron feature). Toggle between inline and console output from the gear (settings) menu in the Editor toolbar, or set a default for all documents in RStudio’s global options.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -901,7 +912,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="contextual-assistance-rstudio" class="level3" data-number="2.4.8">
 <h3 data-number="2.4.8" class="anchored" data-anchor-id="contextual-assistance-rstudio"><span class="header-section-number">2.4.8</span> Contextual assistance</h3>
-<p>While you edit cells, RStudio offers the same kinds of assistance as Positron: completion for functions and their arguments, function documentation via F1, and help in the Help pane.</p>
+<p>While you edit cells, RStudio offers the same kinds of assistance as Positron: completion for functions and their arguments, and function documentation in the Help pane when you press F1.</p>
 </section>
 <section id="previewing-and-rendering-other-formats-rstudio" class="level3" data-number="2.4.9">
 <h3 data-number="2.4.9" class="anchored" data-anchor-id="previewing-and-rendering-other-formats-rstudio"><span class="header-section-number">2.4.9</span> Previewing and rendering other formats</h3>
@@ -922,7 +933,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="render-on-save-rstudio" class="level3" data-number="2.4.10">
 <h3 data-number="2.4.10" class="anchored" data-anchor-id="render-on-save-rstudio"><span class="header-section-number">2.4.10</span> Render on Save</h3>
-<p>Like Positron, RStudio can re-render your document automatically each time you save. Enable the <strong>Render on Save</strong> checkbox in the Editor toolbar; RStudio then refreshes the preview whenever you save the file.</p>
+<p>Like Positron, RStudio can re-render your document automatically each time you save. Enable the <strong>Render on Save</strong> checkbox in the Editor toolbar; RStudio then refreshes the preview whenever you save the file. RStudio doesn’t support the <code>editor: render-on-save</code> front matter option (see <a href="#render-on-save-positron">Render on Save</a>), so use the checkbox instead.</p>
 </section>
 <section id="external-preview-rstudio" class="level3" data-number="2.4.11">
 <h3 data-number="2.4.11" class="anchored" data-anchor-id="external-preview-rstudio"><span class="header-section-number">2.4.11</span> External preview</h3>
@@ -943,8 +954,8 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="projects-rstudio" class="level3" data-number="2.4.12">
 <h3 data-number="2.4.12" class="anchored" data-anchor-id="projects-rstudio"><span class="header-section-number">2.4.12</span> Projects</h3>
-<p>To create a project for a Quarto document or a set of related documents, use the <strong>File &gt; New Project…</strong> menu, choose <strong>New Directory</strong>, and then select <strong>Quarto Project</strong>.</p>
-<p>The New Project wizard can create plain document projects as well as websites and books. It also provides options to initialize a <a href="https://git-scm.com/">git</a> repository and set up an <a href="https://rstudio.github.io/renv/">renv</a> environment, which help make your project reproducible from the start.</p>
+<p>To create a project for a Quarto document or a set of related documents, use the <strong>File &gt; New Project…</strong> menu, choose <strong>New Directory</strong>, and then select a project type: <strong>Quarto Project</strong>, <strong>Quarto Website</strong>, <strong>Quarto Blog</strong>, <strong>Quarto Book</strong>, or <strong>Quarto Manuscript</strong>.</p>
+<p>The New Project wizard also provides options to initialize a <a href="https://git-scm.com/">git</a> repository and set up an <a href="https://rstudio.github.io/renv/">renv</a> environment, which help make your project reproducible from the start.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -978,7 +989,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="additional-features-rstudio" class="level3" data-number="2.4.14">
 <h3 data-number="2.4.14" class="anchored" data-anchor-id="additional-features-rstudio"><span class="header-section-number">2.4.14</span> Additional RStudio features</h3>
-<p>Like Positron, RStudio also offers an integrated terminal and Git integration.</p>
+<p>Like Positron, RStudio has a built-in Terminal and Git integration through the Git pane.</p>
 <p>The document outline looks a bit different in RStudio, where it is located in the Editor pane.</p>
 <div class="callout callout-style-simple callout-todo callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1020,13 +1031,12 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <section id="jupyterlab" class="level3" data-number="2.5.2">
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="jupyterlab"><span class="header-section-number">2.5.2</span> JupyterLab</h3>
 <p>If you’re already working with Jupyter notebooks (<code>.ipynb</code> files), you can use Quarto to render them to various output formats. JupyterLab provides an interactive environment for working with notebooks, and the Quarto CLI can render these notebooks just as it renders <code>.qmd</code> files.</p>
-<p>You can also install the Quarto JupyterLab extension, which displays Quarto-specific markdown—such as callouts, divs, and Mermaid diagrams—correctly in your notebook’s markdown cells, and shows the document’s front matter as a title block. Rendering happens through the Quarto CLI, for example by running <code>quarto preview notebook.ipynb</code> in JupyterLab’s Terminal. The preview updates automatically each time you save the notebook, so you can keep a browser window with the preview open alongside JupyterLab.</p>
+<p>You can also install the Quarto JupyterLab extension, which displays Quarto-specific Markdown—such as callouts, divs, and Mermaid diagrams—correctly in your notebook’s Markdown cells, and shows the document’s front matter as a title block. Rendering happens through the Quarto CLI, for example by running <code>quarto preview notebook.ipynb</code> in JupyterLab’s Terminal. The preview updates automatically each time you save the notebook, so you can keep a browser window with the preview open alongside JupyterLab.</p>
 <p>To learn more about using Quarto with JupyterLab, refer to the Quarto documentation at <a href="https://quarto.org/docs/tools/jupyter-lab.html" class="uri quarto-docs"><span class="docs-lead">https://quarto.org/docs/tools/jupyter-lab.html</span></a>.</p>
 </section>
 <section id="neovim-and-vim" class="level3" data-number="2.5.3">
 <h3 data-number="2.5.3" class="anchored" data-anchor-id="neovim-and-vim"><span class="header-section-number">2.5.3</span> Neovim and Vim</h3>
-<p>For developers who prefer terminal-based editors, both Neovim and Vim can be configured to work with Quarto documents. Community-developed plugins provide features like syntax highlighting, code execution, and preview integration.</p>
-<p>To learn more about using Quarto with Neovim and Vim, refer to the Quarto documentation at <a href="https://quarto.org/docs/tools/neovim.html" class="uri quarto-docs"><span class="docs-lead">https://quarto.org/docs/tools/neovim.html</span></a>.</p>
+<p>For developers who prefer terminal-based editors, both Neovim and Vim can be configured to work with Quarto documents. For Neovim, plugins provide features like syntax highlighting, code execution, and preview integration; to learn more, refer to the Quarto documentation at <a href="https://quarto.org/docs/tools/neovim.html" class="uri quarto-docs"><span class="docs-lead">https://quarto.org/docs/tools/neovim.html</span></a>. For Vim, the <a href="https://github.com/quarto-dev/quarto-vim">quarto-vim</a> plugin provides syntax highlighting for <code>.qmd</code> files.</p>
 </section>
 <section id="other-editors" class="level3" data-number="2.5.4">
 <h3 data-number="2.5.4" class="anchored" data-anchor-id="other-editors"><span class="header-section-number">2.5.4</span> Other editors</h3>
@@ -1043,10 +1053,10 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <h2 data-number="2.6" class="anchored" data-anchor-id="sec-choosing-tool"><span class="header-section-number">2.6</span> Choosing a tool</h2>
 <p>The best tool for Quarto authoring depends on your specific needs and existing workflow:</p>
 <ul>
-<li><p>If you primarily work with R, RStudio provides the most integrated experience with excellent support for R-specific features.</p></li>
-<li><p>If you’re working with multiple languages, Jupyter notebooks, or prefer a modern IDE, Positron offers a rich set of features, with strong support for both R and Python.</p></li>
+<li><p>If you primarily work with R, RStudio provides the most integrated experience, with robust support for R-specific features.</p></li>
+<li><p>If you work in both R and Python, or with Jupyter notebooks, Positron offers a rich set of features, with strong support for both languages.</p></li>
 <li><p>If you already use VS Code for development, adding the Quarto extension gives you powerful Quarto capabilities in your familiar environment.</p></li>
-<li><p>If your workflow is notebook-first, JupyterLab lets you keep authoring in <code>.ipynb</code> files and render them with Quarto, with the Quarto extension displaying Quarto markdown in your cells.</p></li>
+<li><p>If your workflow is notebook-first, JupyterLab lets you keep authoring in <code>.ipynb</code> files and render them with Quarto, with the Quarto extension displaying Quarto Markdown in your cells.</p></li>
 <li><p>If you prefer keyboard-driven, terminal-based workflows, editors like Neovim or Vim can be configured to work effectively with Quarto.</p></li>
 </ul>
 <p>Whichever editor you choose, the core Quarto workflow is the same: write plain-text source, preview as you develop, render to produce the final output, and use projects to make the work reproducible.</p>
