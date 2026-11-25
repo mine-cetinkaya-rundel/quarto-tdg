@@ -217,7 +217,7 @@ quarto convert notebook.qmd
 
 ### Running code cells {#running-code-cells-positron}
 
-The interactive execution introduced above is supported by a full set of commands to run R, Python, and Julia cells, with output appearing in the Console.
+The interactive execution introduced above is supported by a full set of commands to run R and Python cells, with output appearing in the Console.
 You can run the current cell, the next or previous cell, all cells, the cells above or below the cursor, or just the selected line(s):
 
 | Command | macOS | Windows/Linux |
