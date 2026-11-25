@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # Options {#sec-yaml}
 
 ## Overview 
@@ -148,7 +152,7 @@ YAML might be interpreting literally but Quarto/Pandoc might escape somewhere?
 
 ### Long strings
 
-For strings that are longer than you'd comfortably put on a single line, or need explicit line breaks, you can use what YAML calls **block scalars** \index{block scalar}.
+For strings that are longer than you'd comfortably put on a single line, or need explicit line breaks, you can use what YAML calls **block scalars** `\index{block scalar}`{=latex}.
 
 There are two styles: literal and folded.
 
@@ -456,26 +460,32 @@ For example, `echo` is a code cell option, but you can use it in the document he
 to the other names for the same options, and where the options might be found.
 In the following sections, you'll work through these scopes from largest to smallest and learn some general principles to help you put your options in the right place.
 
-+-------------------------+-------------------+-----------------------------+
-| Reference Guide Section | Other names       | Where they might occur      |
-+:========================+:==================+:============================+
-| Projects                | Project options   | `_quarto.yml`               |
-|                         |                   |                             |
-|                         | Project metadata  |                             |
-+-------------------------+-------------------+-----------------------------+
-| Formats                 | Document options  | Document header             |
-|                         |                   |                             |
-|                         | Document metadata | `_quarto.yml`               |
-|                         |                   |                             |
-+-------------------------+-------------------+-----------------------------+
-| Code Cells              | Execution options | Code cells, i.e. after `#|` |
-|                         |                   |                             |
-|                         |                   | Document header             |
-|                         |                   |                             |
-|                         |                   | `_quarto.yml`               |
-+-------------------------+-------------------+-----------------------------+
+::: {#tbl-options .list-table header-rows="1" widths="26,20,30" aligns="l,l,l"}
+The three kinds of options you can set in Quarto
 
-: The three kinds of options you can set in Quarto {#tbl-options}
+* - Reference Guide Section
+  - Other names
+  - Where they might occur
+* - Projects
+  - Project options
+
+    Project metadata
+  - `_quarto.yml`
+* - Formats
+  - Document options
+
+    Document metadata
+  - Document header
+
+    `_quarto.yml`
+* - Code Cells
+  - Execution options
+  - Code cells, i.e. after `#|`
+
+    Document header
+
+    `_quarto.yml`
+:::
 
 
 ## Project options
@@ -776,7 +786,7 @@ For options in the later category, just like document options, you can increase 
 Execution options are set in code cells using YAML syntax after a special comment:
 
 ````
-```{{r}}
+```{r}
 #| echo: false
 
 ```
@@ -792,7 +802,7 @@ but for multiline statements, remember to preface each line with the cell option
 For example, to use a literal block string:
 
 ````
-```{{r}}
+```{r}
 #| fig-cap: |
 #|   Here's a long caption
 #|   spread over two lines
@@ -815,7 +825,7 @@ echo: false
 You can override the document level setting by setting the option in a code cell:
 
 ````
-```{{r}}
+```{r}
 #| echo: true
 
 ```

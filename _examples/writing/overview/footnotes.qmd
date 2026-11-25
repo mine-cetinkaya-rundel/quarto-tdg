@@ -1,0 +1,1 @@
+Here is some text that needs a footnote.^[Here is the footnote contents.]

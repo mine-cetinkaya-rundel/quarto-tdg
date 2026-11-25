@@ -1,4 +1,4 @@
-# Jupyter {#jupyter}
+# Jupyter {#sec-jupyter}
 
 If you're a JupyterLab or Jupyter ecosystem user, you can use Quarto to render your .ipynb files.
 

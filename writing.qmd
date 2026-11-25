@@ -1,3 +1,7 @@
+---
+engine: markdown
+---
+
 # Writing content {#sec-writing}
 
 Beyond the document header and executable code cells, the content of a Quarto document is written in markdown.
@@ -10,14 +14,8 @@ We'll tease you with some of the rich content you can create with Quarto markdow
 Markdown is a plaintext syntax for describing document structure.
 Here's some example markdown in a Quarto document:
 
-```` {.markdown filename="document.qmd"}
-## My First Section
-
-This is the first paragraph with some **bold text** and *italic text*.
-You can also include `code` to show function names or variables.
-
-Here's a second paragraph with a [link to Quarto](https://quarto.org).
-You might also want to use *italic text* for emphasis.
+````{.markdown filename="document.qmd"}
+{{< include _examples/writing/basics/document.qmd >}}
 ````
 
 Markdown is a popular format, so the syntax above may be familiar.
@@ -32,7 +30,7 @@ The example above illustrates components of markdown syntax that are common acro
 
 * Bold: text surrounded by `**`
 
-* Italic: text surrounded by `*`
+* Italic: text surrounded by `_`
 
 * Code: text surrounded by `` ` ``
 
@@ -40,7 +38,17 @@ The example above illustrates components of markdown syntax that are common acro
 
 When rendered the structure described by markdown is translated to the relevant components in the target format, e.g. HTML tags for `format: html`, or Typst functions for `format: typst`.
 
-TODO: screenshots of rendered output
+@fig-writing-basics-document shows `document.qmd` rendered with `format: html` and with `format: typst`.
+
+::: {#fig-writing-basics-document}
+::: {layout-ncol=2}
+![`format: html`](images/writing-basics-document-html.png){#fig-writing-basics-document-html .border fig-alt="A rendered HTML page with the heading My First Section, followed by two paragraphs. The paragraphs show bold text, italic text, the word code in a monospace font on a gray background, and an underlined blue link that reads link to Quarto."}
+
+![`format: typst`](images/writing-basics-document-typst.png){#fig-writing-basics-document-typst .border fig-alt="A rendered PDF page with the heading My First Section in a serif font, followed by two paragraphs. The paragraphs show bold text, italic text, and the word code in a monospace font. The link text, link to Quarto, looks the same as the text around it."}
+:::
+
+`document.qmd` rendered to two formats.
+:::
 
 ## Features of Quarto markdown
 
@@ -49,7 +57,7 @@ But you may soon be looking for richer content like tables, figures, code blocks
 Adding these components is a matter of adding the appropriate Quarto markdown.
 As a teaser, here's an example contains a callout and a cross-reference:
 
-````{.markdown filename="document.qmd" .code-overflow-wrap}
+````{.markdown .code-overflow-wrap filename="document.qmd"}
 {{< include _examples/writing/features/document.qmd >}}
 ````
 
@@ -70,6 +78,58 @@ The above example illustrates two pieces of syntax you'll see often in Quarto ma
   Fenced divs are used in Quarto to implement lots of different block level treatments: callouts, figure or table panels, and complex layouts.
 
 @sec-authoring covers the most useful features of Quarto markdown in more detail.
+For a quick tour, @tbl-writing-quick-reference shows an example of each feature, along with a pointer to the section of @sec-authoring where you can learn more.
+
+::: {#tbl-writing-quick-reference}
+
+::: {.list-table header-rows=1 widths='1,2' aligns="l,l"}
+
+* - Element
+  - Output
+
+* - **Headings**, @sec-markdown-sections
+  - ![](images/writing-overview-headings.png){.border width="100%" fig-alt="A rendered HTML page with a large bold heading, Section, underlined by a thin gray rule, followed by a smaller bold heading, Subsection."}
+
+* - **Text formatting**, @sec-markdown-text
+  - ![](images/writing-overview-text.png){.border width="100%" fig-alt="A rendered sentence showing the words italic, bold, code in a monospace font on a gray background, struck through with a line through it, underlined, highlighted with a yellow background, and small caps, followed by m with a superscript 2 and H2O with a subscript 2."}
+
+* - **Links**, @sec-markdown-text
+  - ![](images/writing-overview-links.png){.border width="100%" fig-alt="The sentence Link to Quarto, or show the URL itself: https://quarto.org, where Quarto and https://quarto.org are blue underlined links."}
+
+* - **Lists**, @sec-markdown-lists
+  - ![](images/writing-overview-lists.png){.border width="100%" fig-alt="A rendered compact bulleted list with three items: First item, Second item, and Third item."}
+
+* - **Code blocks**, @sec-code-blocks
+  - ![](images/writing-overview-code-blocks.png){.border width="100%" fig-alt="A rendered code block with a gray header reading query.sql above the syntax highlighted code SELECT * FROM table;."}
+
+* - **Tables**, @sec-markdown-tables
+  - ![](images/writing-overview-tables.png){.border width="100%" fig-alt="A rendered table captioned Table 1: Training performance, with columns Algorithm and Accuracy and two rows: Random Forest, 96.7%, and Linear Regression, 74.8%."}
+
+* - **Figures**, @sec-markdown-figures
+  - ![](images/writing-overview-figures.png){.border width="100%" fig-alt="A rendered line drawing of an elephant, centered, with the caption Figure 1: Elephant below it."}
+
+* - **Math**, @sec-equations
+  - ![](images/writing-overview-math.png){.border width="100%" fig-alt="The text The formula is:, followed by the equation E equals m c squared, typeset and centered on its own line."}
+
+* - **Cross-references**, @sec-crossreferences
+  - ![](images/writing-overview-crossrefs.png){.border width="100%" fig-alt="The sentence See Figure 1 and Table 1, where Figure 1 and Table 1 are blue underlined links."}
+
+* - **Citations**, @sec-citations
+  - ![](images/writing-overview-citations.png){.border width="100%" fig-alt="The sentence Quarto builds on the idea of literate programming (Knuth 1984), where Knuth 1984 is a blue link. Below a horizontal rule, a References heading lists: Knuth, Donald E. 1984. Literate Programming. The Computer Journal 27 (2): 97–111."}
+
+* - **Footnotes**, @sec-footnotes
+  - ![](images/writing-overview-footnotes.png){.border width="100%" fig-alt="The sentence Here is some text that needs a footnote, followed by a blue superscript 1. Below a horizontal rule, a Footnotes heading lists: 1. Here is the footnote contents, followed by a return arrow link."}
+
+* - **Callouts**, @sec-callouts
+  - ![](images/writing-overview-callouts.png){.border width="100%" fig-alt="A rendered note callout with a blue left border and an information icon. The light blue header reads Types of callout, and the body reads: There are five types of callouts, including: note, tip, warning, caution, and important, with each type in a monospace font."}
+
+* - **Layout**, @sec-layout
+  - ![](images/writing-overview-layout.png){.border width="100%" fig-alt="Two line drawings side by side: an elephant on the left captioned (a) Elephant, and a panther on the right captioned (b) Panther. Below both, the shared caption Figure 1: Two animals side-by-side."}
+
+:::
+
+Quick reference for common Quarto markdown syntax
+:::
 
 ## Things to watch out for
 
@@ -79,8 +139,6 @@ You can often ignore whitespace when you are writing Quarto markdown.
 For example, extra spaces inline with text are ignored, as are newlines within a paragraph.
 That is, the following markdown snippets are equivalent:
 
-::: {layout-ncol=2}
-
 ``` {.markdown}
 A sentence  with   weird     spacing.   And    another.
 This is on a new line.
@@ -89,8 +147,6 @@ This is on a new line.
 ```{.markdown}
 A sentence with weird spacing. And another. This is on a new line.
 ```
-
-:::
 
 However, there are some places white space is important:
 
@@ -102,12 +158,12 @@ If your content isn't rendering as expected, double-check your use of whitespace
 
 ### The difference between code blocks and code cells
 
-There is a distinction between:
+There is a distinction between **code cells** and **code blocks**:
 
 * **Code cells**, sometimes also called **code chunks**, are code that will be executed and replaced with computational output. Code cells use the syntax:
 
     ````markdown
-    ```{{r}}
+    ```{r}
     # Code to be executed
     ```
     ````

@@ -27,16 +27,18 @@ You need only one of the following:
 
 - **Python**: Install Python and the `jupyter` package. Check the `Checking Python 3 installation` section in the `quarto check`  output.
 
-## Syntax
+## Code cell syntax
 
 A code cell starts and ends with three backticks. 
-The language is specified in curly braces after the opening backticks:
+The language is specified in curly braces after the opening backticks, as shown in @fig-code-cell-syntax.
+
+::: {#fig-code-cell-syntax}
 
 ::: {.panel-tabset group="language"}
 
 ## R
 
-````markdown
+````{.markdown filename="document.qmd"}
 ```{{r}}
 # R code goes here
 ```
@@ -44,11 +46,15 @@ The language is specified in curly braces after the opening backticks:
 
 ## Python
 
-````markdown
+````{.markdown filename="document.qmd"}
 ```{{python}}
 # Python code goes here
 ```
 ````
+
+:::
+
+An empty code cell in R and Python.
 
 :::
 
@@ -69,13 +75,15 @@ TODO: Link back to tools
 
 Code cell options control how a code cell is executed and how its output appears in your document. 
 You set options using a special comment at the top of the code cell that starts with `#|`.
-For example, set the `echo` option to `false`:
+For example, @fig-code-cell-option sets the `echo` option to `false`.
+
+::: {#fig-code-cell-option}
 
 ::: {.panel-tabset group="language"}
 
 ## R
  
-````{.markdown}
+````{.markdown filename="document.qmd"}
 ```{{r}}
 #| echo: false
 1 + 1
@@ -84,13 +92,17 @@ For example, set the `echo` option to `false`:
  
 ## Python
  
-````{.markdown}
+````{.markdown filename="document.qmd"}
 ```{{python}}
 #| echo: false
 1 + 1
 ```
 ````
  
+:::
+
+A code cell with the `echo` option set to `false`.
+
 :::
 
 Each option should be on its own line (starting with `#|`). 
@@ -103,7 +115,7 @@ Some options control how your code is executed or appears in your output:
 
 These options can generally be set for all code cells by moving the option to the document header:
 
-```yaml
+```{.yaml filename="document.qmd"}
 ---
 title: "My Document"
 echo: false
@@ -117,6 +129,114 @@ Other options might add information specific to the code cell:
 - `fig-cap`: Adds a caption to a figure produced by the code cell.
 
 You'll learn how to know which options are available and where to put them in  @sec-execution-options.
+
+## Inline code {#sec-inline-code}
+
+In addition to code cells, you can embed code directly within your markdown text using inline code, inserting computed values into your narrative without manually copying them.
+
+The syntax uses single backticks with the language in curly braces, `{r}` or `{python}`, immediately after the opening backtick, as shown in @fig-inline-code.
+
+::: {#fig-inline-code}
+
+::: {.panel-tabset group="language"}
+
+## R
+
+```{.markdown filename="document.qmd"}
+The mean temperature was `{{r}} mean(c(68, 72, 75, 71))` degrees.
+```
+
+## Python
+
+```{.markdown filename="document.qmd"}
+The mean temperature was `{{python}} sum([68, 72, 75, 71]) / 4` degrees.
+```
+
+:::
+
+Inline code that computes a mean temperature within a sentence.
+
+:::
+
+We recommend that you avoid complex function calls or operations that do significant work in inline code and instead compute values in a code cell and then reference them inline, as in @fig-inline-precomputed.
+
+::: {#fig-inline-precomputed}
+
+::: {.panel-tabset group="language"}
+
+## R
+
+````{.markdown filename="document.qmd"}
+```{{r}}
+temps <- c(68, 72, 75, 71)
+avg_temp <- mean(temps)
+```
+
+The mean temperature was `{{r}} avg_temp` degrees.
+````
+
+## Python
+
+````{.markdown filename="document.qmd"}
+```{{python}}
+temps = [68, 72, 75, 71]
+avg_temp = sum(temps) / len(temps)
+```
+
+The mean temperature was `{{python}} avg_temp` degrees.
+````
+
+:::
+
+A value computed in a code cell and referenced with inline code.
+
+:::
+
+```{r}
+#| include: false
+temps <- c(68, 72, 75, 71)
+avg_temp <- mean(temps)
+```
+
+In either language, this renders as: The mean temperature was `r avg_temp` degrees.
+
+By default, inline code produces plain text.
+To generate markdown-formatted output, wrap the result in `I()` in R, or `Markdown()` from `IPython.display` in Python, as shown in @fig-inline-markdown.
+
+::: {#fig-inline-markdown}
+
+::: {.panel-tabset group="language"}
+
+## R
+
+```{.markdown filename="document.qmd"}
+The result is `{{r}} I("**significant**")`.
+```
+
+## Python
+
+````{.markdown filename="document.qmd"}
+```{{python}}
+from IPython.display import Markdown
+```
+
+The result is `{{python}} Markdown("**significant**")`.
+````
+
+:::
+
+Inline code that produces markdown output.
+
+:::
+
+This produces bold text in the rendered output.
+
+::: callout-note
+## Inline code in YAML
+
+Inline code cannot be used directly in YAML strings, such as titles or figure captions.
+For dynamic captions, use the cross-reference div syntax instead (see @sec-crossreferences).
+:::
 
 ## Basics of execution
 

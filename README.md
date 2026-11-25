@@ -13,7 +13,11 @@ The book project sets [`freeze` to `auto`](https://github.com/mine-cetinkaya-run
 1. Locally render the book
 2. Examine the git diff for changes to `_freeze/`, and commit changes to relevant files.
 
-Since the GitHub action that renders the book does not execute any code, forgetting to commit to `_freeze` will result in a failed check on the PR.
+The GitHub actions that render the book do not execute any code. Before they render, they run `scripts/check-freeze.ts`. If you change a chapter with executable code and do not commit its `_freeze/` files, this check fails and names the chapter to render. To run the same check locally:
+
+```bash
+quarto run scripts/check-freeze.ts
+```
 
 ### Reproducing the R environment locally
 

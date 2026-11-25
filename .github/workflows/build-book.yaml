@@ -25,6 +25,9 @@ jobs:
           # uncomment below and fill to pin a version
           # version: 0.9.105
 
+      - name: Check freeze files
+        run: quarto run scripts/check-freeze.ts
+
       - name: Render book to all format
         # Add any command line argument needed
         run: |

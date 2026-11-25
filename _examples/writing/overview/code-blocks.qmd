@@ -1,0 +1,3 @@
+```{.sql filename="query.sql"}
+SELECT * FROM table;
+```
