@@ -39,7 +39,7 @@ You can also download development versions of Quarto at <https://quarto.org/docs
 
 ## Document structure
 
-Quarto documents and plain text files with the extension `.qmd` and they consist of three main components:
+Quarto documents are plain text files with the extension `.qmd` and they consist of three main components:
 
 1. **YAML header:** Configuration metadata enclosed by `---` markers, specifying the title, format, and various options for your document.
 
