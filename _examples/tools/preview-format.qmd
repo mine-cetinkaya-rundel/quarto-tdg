@@ -1,0 +1,29 @@
+---
+title: "My first Quarto document"
+author: "Jane Doe"
+format: html
+---
+
+## Getting started
+
+Quarto turns plain text into polished documents.
+
+### Install Quarto
+
+Download Quarto from the [official website](https://quarto.org).
+
+### Create a file
+
+Save your text in a file ending in `.qmd`.
+
+## Sharing your work
+
+Once you are **happy** with your document, render it to share.
+
+### Choose a format
+
+Pick `html`, `typst`, or `docx` as your output.
+
+### Render the document
+
+Click *Preview* or run `quarto preview document.qmd` in the Terminal.

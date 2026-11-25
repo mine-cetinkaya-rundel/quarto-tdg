@@ -1,0 +1,5 @@
+The sample mean is:
+
+$$
+\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}
+$$

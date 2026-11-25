@@ -1,0 +1,12 @@
+How Quarto renders a document:
+
+```{mermaid}
+flowchart LR
+  A[document.qmd] --> B{Code cells?}
+  B -- R --> C[knitr]
+  B -- Python --> D[Jupyter]
+  C --> E[document.md]
+  D --> E
+  E --> F[Pandoc]
+  F --> G[HTML, PDF, Word]
+```

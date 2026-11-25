@@ -1,21 +1,22 @@
 # Your Quarto workflow {#sec-tools}
 
-In this chapter, you’ll learn how Quarto documents are structured, how to render and preview them from the command line, how to author them interactively in Positron and RStudio, which other tools you can use for Quarto authoring, and how to choose the right tool for your workflow.
+In this chapter, you’ll learn how Quarto documents are structured, how to render and preview them from the command line, how to author them interactively in various integrated development environments (IDEs) such as Positron and RStudio, which other tools you can use for Quarto authoring, and how to choose the right tool for your workflow.
 We spend more time on Positron than on RStudio because RStudio's Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.
 
-## Document structure
+::: todo
+[MCR] Decide if the last sentence above should be taken out.
+:::
 
-Quarto documents comprise three main components: a YAML header for metadata, Markdown text for content, and code cells for executable code.
+In @sec-document-structure, we introduced the three main components of a Quarto document: a YAML header for metadata, Markdown text for content, and code cells for executable code.
+In this chapter, we will focus on the first two components, the YAML header and Markdown text, before diving into code cells and execution in @sec-code.
 
-1. YAML header: Metadata enclosed by `---` markers, including the title, format, theme, and other document options.
-2. Markdown text: Formatted text using standard Markdown syntax for headings, lists, links, emphasis, and more.
-3. Code cells: Executable code cells marked with ` ```{r} ` or ` ```{python} ` that can include optional cell options to control execution and output.
-
-We will focus on the first two components, the YAML header and Markdown text, before diving into code cells and execution in @sec-code.
+The following example shows the basic structure of a Quarto document with a YAML header and Markdown text.
 
 ````{.markdown filename="document.qmd"}
 {{< include _examples/tools/document.qmd >}}
 ````
+
+If you would like to follow along as you read, you can create a new Quarto document with the same structure, title it `document.qmd`, and experiment with the features of the Quarto CLI and various IDEs in the remainder of this chapter.
 
 ## Quarto CLI {#sec-quarto-cli}
 
@@ -123,25 +124,21 @@ Positron's Quarto support comes from the Quarto VS Code extension, which Positro
 
 Positron ships with its own copy of the Quarto CLI, but you aren't locked into it.
 If you'd prefer to use a version of Quarto that you've installed yourself—say, to match the version your project uses elsewhere—that generally works automatically.
-When you need finer control over exactly which Quarto is used, set the ⚙️ [**Quarto: Path**](https://positron.posit.co/quarto.html#managing-quarto-installations) setting (`quarto.path`) to point at the installation you want.
+When you need finer control over exactly which Quarto is used, set the {{< fa cog >}} [**Quarto: Path**](https://positron.posit.co/quarto.html#managing-quarto-installations) setting (`quarto.path`) to point at the installation you want.
 You can do this at the user or workspace level.
 
-To see which version is currently active, check Positron's bottom status bar.
+To see which version is currently active, check Positron's bottom status bar (@fig-positron-status-bar-quarto-version).
 After changing your Quarto version, restart Positron so the status bar updates.
 
-::: todo
-[MCR] Screenshot of the status bar showing the active Quarto version?
-:::
+![The active Quarto version shown in Positron's status bar.](images/tools-positron-status-bar-quarto-version.png){#fig-positron-status-bar-quarto-version fig-alt="The left end of Positron's status bar showing, from left to right, the remote connection icon, the Git branch 'main*', a sync icon, zero errors and zero warnings, a debug icon, and the text 'Quarto: 1.11.9'."}
 
 ### Creating documents {#creating-documents-positron}
 
-To create a new Quarto document in Positron, use the **Quarto: New Quarto Document** command from the Command Palette, the **File > New File...** menu, or the **New** button in the toolbar.
+To create a new Quarto document in Positron, use the **Quarto: New Quarto Document** command from the Command Palette, the **File > New File...** menu (@fig-positron-new-file-quarto-document), or the **New** button in the toolbar.
 This will open a new untitled `.qmd` file in the Editor, with a placeholder YAML header.
 Save the file with a `.qmd` extension to enable Quarto features such as preview and completion.
 
-::: todo
-[MCR] Screenshot of the New File menu or picker with the Quarto Document option?
-:::
+![The **File > New File...** picker in Positron, with the Quarto Document option highlighted.](images/tools-positron-new-file-quarto-document.png){#fig-positron-new-file-quarto-document fig-alt="Positron's New File picker with a search box reading 'Select File Type or Enter File Name...' above a list of file types: Text File, R File, Python File, Jupyter Notebook, Quarto Document, and Quarto Project. The Quarto Document row is highlighted."}
 
 ### Core features {#core-features-positron}
 
@@ -167,11 +164,11 @@ Here's an overview; the subsections that follow cover each in more depth:
 The typical workflow for authoring Quarto documents in Positron follows these steps:
 
 1. Create or open a `.qmd` file in the Editor.
-2. Preview your document by executing the **Quarto: Preview** command to render and display the output.
+2. Preview your document by executing the **Quarto: Preview** command to render and display the output side by side with your source (@fig-positron-preview).
 3. Iterate on your content by making edits and re-running the preview. You can optionally enable the **Render on Save** checkbox to automatically update the preview whenever you save your file.
 4. Execute code interactively by running individual code cells using the **Run Cell** button, which allows you to test your code without rendering the entire document.
 
-![](images/tools-positron-hello-python.png){fig-alt="Positron with a Quarto document titled 'Penguins, meet Quarto!' open on the left side and the rendered version of the document on the right side."}
+![A Quarto document open in Positron's Editor, with its rendered preview alongside.](images/tools-positron-hello-python.png){#fig-positron-preview fig-alt="Positron with a Quarto document titled 'Penguins, meet Quarto!' open on the left side and the rendered version of the document on the right side."}
 
 ### Visual editor {#visual-editor-positron}
 
@@ -182,7 +179,7 @@ Though the visual editor's support is still somewhat limited in Positron, it's a
 We keep the coverage brief here and highlight visual-editor features throughout the book where they're relevant.
 
 ::: todo
-[MCR] Screenshot of the Positron visual editor.
+[MCR] Screenshot of the Positron visual editor if we decide to keep this.
 :::
 
 ### Editing notebooks {#editing-notebooks-positron}
@@ -225,6 +222,20 @@ quarto convert notebook.qmd
 [MCR] Screenshot of the Notebook Editor with a Raw front-matter cell?
 :::
 
+### Inserting code cells {#inserting-code-cells-positron}
+
+To insert a new code cell in a `.qmd` file, click the **Insert Code Cell** button in the Editor toolbar, or run the **Quarto: Insert Code Cell** command from the Command Palette.
+You can also use the keyboard shortcut {{< kbd mac=Shift-Command-I win=Ctrl-Shift-I linux=Ctrl-Shift-I >}}.
+
+Positron chooses the language for the new cell as follows:
+
+1. If the cursor is inside a code cell, the command splits that cell in two at the cursor, so both halves keep the same language.
+2. Otherwise, it uses the language of the closest code cell above the cursor, or the first cell below the cursor if there is none above.
+3. If the document has no code cells yet, it uses the language of your foreground interpreter session, for example R or Python.
+4. If none of these apply, it offers a list of languages to choose from.
+
+If you have text selected, it is placed inside the new cell.
+
 ### Running code cells {#running-code-cells-positron}
 
 Positron provides a full set of commands for running R and Python cells, with output appearing in the Console.
@@ -240,48 +251,42 @@ You can run the current cell, the next or previous cell, all cells, the cells ab
 | **Run Cells Above** | {{< kbd mac=Shift-Option-Command-P win=Ctrl-Shift-Alt-P linux=Ctrl-Shift-Alt-P >}} |
 | **Run Cells Below** | {{< kbd mac=Shift-Option-Command-N win=Ctrl-Shift-Alt-N linux=Ctrl-Shift-Alt-N >}} |
 
-You can insert a new code cell with {{< kbd mac=Shift-Command-I win=Ctrl-Shift-I linux=Ctrl-Shift-I >}}.
 Completion and execution for R and Python cells are built into Positron.
 To add completion and execution for Julia, install the Julia extension.
 
 ### Inline output {#inline-output-positron}
 
 By default, running a code cell sends it to the Console, as described above.
-Positron can instead display cell output *inline*, directly beneath each cell in the Editor—much like a Jupyter notebook.
-To use this feature, you must first turn on the ⚙️ [**Quarto > Inline Output: Enabled**](https://positron.posit.co/quarto-inline-output.html) setting (`quarto.inlineOutput.enabled`) in your user or workspace settings.
+Positron can instead display cell output *inline*, directly beneath each cell in the Editor—much like a Jupyter notebook (@fig-positron-inline-output).
+To use this feature, you must first turn on the {{< fa cog >}} [**Quarto > Inline Output: Enabled**](https://positron.posit.co/quarto-inline-output.html) setting (`quarto.inlineOutput.enabled`) in your user or workspace settings.
+
+![A Quarto document in Positron with inline output turned on: the plot from the code cell appears directly beneath the cell in the Editor.](images/tools-positron-inline-output.png){#fig-positron-inline-output fig-alt="Positron's Editor showing a Quarto document with a YAML header (title 'Inline output', format html) and an R code cell containing plot(cars). Below the cell, a status line reads '42ms' with a green check mark, and below that a scatterplot of dist against speed appears inside the Editor, with buttons to close, copy, open, and save the plot."}
 
 Turning on inline output also changes the execution model.
 Rather than sharing a single Console across every document, Positron gives each `.qmd` file its own isolated R or Python session, so objects you create in the Console or in another document aren't available to it.
-
-::: todo
-[MCR] Screenshot of a `.qmd` with inline output beneath a cell?
-:::
 
 ### Contextual assistance {#contextual-assistance-positron}
 
 While you edit R and Python code cells, Positron offers the same assistance you'd get in a script or the Console: completion for functions and their arguments, help tooltips as you type or hover over a function, and full documentation in the Help pane when you press F1 with the cursor in a function.
 
 For assistance with the prose and math around your code, run the **Quarto: Show Assist Panel** command to open a panel in the sidebar that updates based on where your cursor is.
-It shows a preview of LaTeX math as you edit an equation, and a thumbnail preview when your cursor is on a Markdown image—handy for confirming you've referenced the right file.
+It shows a preview of LaTeX math as you edit an equation (@fig-positron-assist-panel-equation), and a thumbnail preview when your cursor is on a Markdown image—handy for confirming you've referenced the right file.
 
-::: todo
-[MCR] Screenshot of the Assist Panel showing an image thumbnail or equation?
-:::
+![The Assist Panel in Positron's sidebar previewing the equation under the cursor, alongside the equation's source in the Editor.](images/tools-positron-assist-panel-equation.png){#fig-positron-assist-panel-equation fig-alt="On the left, Positron's sidebar shows a panel titled 'QUARTO: EQUATION' containing the rendered formula x-bar equals the sum of x sub i from i equals 1 to n, divided by n. On the right, the Editor shows the LaTeX source of the same equation between double dollar signs, with a 'Preview' link above it and the rendered equation displayed beneath it."}
 
 ### Live preview {#live-preview-positron}
 
 When you're writing LaTeX math or a Mermaid or Graphviz diagram, you can open a live preview that re-renders automatically as you type.
 Click the **Preview** button above the code, or use the {{< kbd mac=Shift-Command-L win=Ctrl-Shift-L linux=Ctrl-Shift-L >}} shortcut.
 The preview appears alongside your document, so you can catch mistakes in an equation or diagram without rendering the whole file.
+You can see the live preview of an equation, beneath its source, in @fig-positron-assist-panel-equation; @fig-positron-live-preview-diagram shows the live preview of a diagram.
 
-::: todo
-[MCR] Screenshot or GIF of a live diagram preview?
-:::
+![A live preview of a Mermaid diagram in Positron: the diagram's source is in the Editor on the left and the rendered flowchart is in the Viewer on the right.](images/tools-positron-live-preview-diagram.png){#fig-positron-live-preview-diagram fig-alt="On the left, Positron's Editor shows a Quarto document with the line 'How Quarto renders a document:' and a mermaid code cell defining a left-to-right flowchart. On the right, the rendered flowchart shows document.qmd leading to a 'Code cells?' decision, which branches to knitr for R and Jupyter for Python; both lead to document.md, then to Pandoc, then to 'HTML, PDF, Word'."}
 
 ### Previewing and rendering other formats {#previewing-and-rendering-other-formats-positron}
 
 The **Quarto: Preview** command renders and previews your document's *default* format.
-To preview a different format, use the **Quarto: Preview Format** command, which offers a list of formats to choose from—those declared in the document plus standard options like PDF and MS Word.
+To preview a different format, use the **Quarto: Preview Format** command (@fig-positron-preview-format), which offers a list of formats to choose from—those declared in the document plus standard options like PDF and MS Word.
 After you preview a different format, the **Quarto: Preview** command and its keyboard shortcut rebind to that format for the duration of the preview; run the **Quarto: Preview Format** command again to switch back.
 
 Embedded, side-by-side preview is available for HTML- and PDF-based formats, including `revealjs` and `beamer` slides.
@@ -290,9 +295,7 @@ For Word and other formats, Positron renders the file, but you'll open it in an 
 Because preview renders only one format at a time, use the **Quarto: Render Document** command when a document declares multiple formats and you want to produce all of them.
 This command lets you render all declared formats at once, or selectively render any declared or standard format, such as PDF or MS Word.
 
-::: todo
-[MCR] Screenshot of the Preview Format quick pick?
-:::
+![The list of formats offered by the **Quarto: Preview Format** command for a document that declares `format: html`.](images/tools-positron-preview-format.png){#fig-positron-preview-format fig-alt="Positron's quick pick for the Quarto: Preview Format command, with an empty search box above four options. Preview HTML (format: html) is listed under Declared Formats and is highlighted. Preview PDF (Typst) (format: typst), Preview PDF (LaTeX) (format: pdf), and Preview MS Word (format: docx) are listed under Other Formats."}
 
 ### Render on Save {#render-on-save-positron}
 
@@ -301,7 +304,7 @@ This differs from running `quarto preview` yourself in the Terminal (see @sec-qu
 When you do want automatic rendering, you have three ways to enable **Render on Save**:
 
 1. Check the **Render on Save** checkbox in the Editor toolbar for the current document.
-2. Search for `quarto.render` in settings and enable the ⚙️ [**Quarto > Render: Render on Save**](https://quarto.org/docs/tools/positron/index.html#render-on-save) setting (`quarto.render.renderOnSave`) to make it the default for all documents.
+2. Search for `quarto.render` in settings and enable the {{< fa cog >}} [**Quarto > Render: Render on Save**](https://quarto.org/docs/tools/positron/index.html#render-on-save) setting (`quarto.render.renderOnSave`) to make it the default for all documents.
 3. Set the `editor` option in your front matter (or project `_quarto.yml`), which overrides the Positron setting:
 
     ```yaml
@@ -319,12 +322,8 @@ Once you start a preview of a notebook with the **Quarto: Preview** command, the
 ### External preview {#external-preview-positron}
 
 By default, the rendered preview opens in a side-by-side panel inside Positron.
-If you'd rather preview in an external browser—or suppress the automatic preview entirely—change the ⚙️ [**Quarto > Render: Preview Type**](https://quarto.org/docs/tools/positron/index.html#external-preview) setting (`quarto.render.previewType`).
+If you'd rather preview in an external browser—or suppress the automatic preview entirely—change the {{< fa cog >}} [**Quarto > Render: Preview Type**](https://quarto.org/docs/tools/positron/index.html#external-preview) setting (`quarto.render.previewType`).
 Search for `quarto preview type` in user or workspace settings to find the setting, which offers three choices: `internal` (the default side-by-side panel), `external` (open in your default browser), and `none` (render without opening a preview).
-
-::: todo
-[MCR] Screenshot of the Preview Type setting dropdown?
-:::
 
 ### Projects {#projects-positron}
 
@@ -349,21 +348,9 @@ Positron provides several additional features and tools that enhance your Quarto
 
 - Navigate long documents easily using the document outline panel in the primary sidebar.
 
-  ::: todo
-  [MCR] Screenshot of outline panel? Also, is it called panel?
-  :::
-
 - Insert common code patterns quickly with built-in code snippets using the **Snippets: Insert Snippet** command.
 
-  ::: todo
-  [MCR] Screenshot of adding columns to slides maybe?
-  :::
-
 - Version control your Quarto documents directly from the IDE with its Git integration.
-
-  ::: todo
-  [MCR] Screenshot of .quarto in .gitignore?
-  :::
 
 - Open a Terminal already set to the correct working directory, for running Quarto CLI commands.
 
@@ -415,6 +402,15 @@ Switch between source and visual modes with the buttons in the Editor toolbar or
 
 ::: todo
 [MCR] Screenshot of the RStudio visual editor.
+:::
+
+### Inserting code cells {#inserting-code-cells-rstudio}
+
+To insert a new code cell in a `.qmd` file, click the **Insert a new code chunk** button in the Editor toolbar, choose **Code > Insert Chunk** from the menu, or use the keyboard shortcut {{< kbd mac=Option-Command-I win=Ctrl-Alt-I linux=Ctrl-Alt-I >}}.
+The button has a dropdown that lets you pick the language of the new cell, such as R or Python, while the menu and shortcut insert a cell in the document's default language.
+
+::: todo
+[MCR] Confirm the button's label, the menu path, and the shortcut, and how RStudio picks the language for the menu and shortcut (e.g., does it follow the previous cell?). Screenshot of the button's language dropdown?
 :::
 
 ### Running code cells {#running-code-cells-rstudio}

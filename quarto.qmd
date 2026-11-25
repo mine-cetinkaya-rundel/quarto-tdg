@@ -44,7 +44,7 @@ The current **release** version of Quarto represents a stable version for genera
 Unless you've been specifically directed to use a pre-release version, or you need a version with a recently fixed bug, you should use the current release.
 :::
 
-## Document structure
+## Document structure {#sec-document-structure}
 
 Quarto documents are plain text files with the extension `.qmd` and they consist of three main components:
 
