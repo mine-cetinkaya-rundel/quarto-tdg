@@ -508,12 +508,14 @@ JupyterLab provides an interactive environment for working with notebooks, and t
 
 You can also work with `.qmd` files directly in JupyterLab by installing the Quarto extension, which offers preview and rendering capabilities within the JupyterLab interface.
 
-To learn more about using Quarto with JupyterLab, refer to the Quarto documentation at <https://quarto.org/docs/jupyter>.
+To learn more about using Quarto with JupyterLab, refer to the Quarto documentation at <https://quarto.org/docs/tools/jupyter-lab.html>.
 
 ### Neovim and Vim
 
 For developers who prefer terminal-based editors, both Neovim and Vim can be configured to work with Quarto documents.
 Community-developed plugins provide features like syntax highlighting, code execution, and preview integration.
+
+To learn more about using Quarto with Neovim and Vim, refer to the Quarto documentation at <https://quarto.org/docs/tools/neovim.html>.
 
 ### Other editors
 
