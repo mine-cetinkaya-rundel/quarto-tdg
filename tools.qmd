@@ -1,42 +1,35 @@
 # Your Quarto workflow {#sec-tools}
 
-You do not need a specific tool to author and render Quarto documents.
-You can author Quarto documents in any plain text editor and render them with the `quarto render` command in your computer's terminal.
-
-However, we recommend using an integrated development environment (IDE) when working with Quarto for features like preview and live rendering that let you see how your content will look as you write, syntax highlighting, project management, version control integration, debugging tools, and efficiency and productivity features such as snippets, templates, and keyboard shortcuts.
-Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting, which can help you quickly find the right syntax and catch errors.
-
 In this chapter, you’ll learn how to render and preview Quarto documents from the command line, how Quarto executes R and Python code, how Positron and RStudio support interactive authoring, and how to choose the right tool for your workflow.
 We detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring.
 We spend more time on Positron than on RStudio because RStudio's Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.
 
 ## Document structure
 
-Quarto documents are plain-text files that use Markdown for formatting and can include executable code cells.
-They have the file extension `.qmd` and can be rendered to various output formats, including HTML, PDF, Word documents, and more.
-They comprise three main components: a YAML header for metadata, markdown text for content, and code cells for executable code.
+Quarto documents comprise three main components: a YAML header for metadata, markdown text for content, and code cells for executable code.
 
 1. YAML header: Metadata enclosed by `---` markers, including the title, format, theme, and other document options.
 2. Markdown text: Formatted text using standard Markdown syntax for headings, lists, links, emphasis, and more.
 3. Code cells: Executable code cells marked with ` ```{r} ` or ` ```{python} ` that can include optional cell options to control execution and output.
 
+We will focus on the first two components, the YAML header and markdown text, before diving into code cells and execution in @sec-code.
+
+````{.markdown filename="document.qmd"}
+{{< include _examples/tools/document.qmd >}}
+````
+
 ## Quarto CLI {#sec-quarto-cli}
 
 Before diving into specific IDEs, let's start with the fundamentals: the Quarto Command Line Interface (CLI).
-The Quarto CLI is the core tool that powers all Quarto rendering, regardless of which editor you use.
+The Quarto CLI is the core tool that powers all Quarto rendering.
+You can run Quarto CLI commands in any standard Terminal application as well as in the Terminal pane in RStudio or Positron.
 
 The most fundamental Quarto command is `quarto render`, which converts your Quarto document into the desired output format.
 Quarto uses the term render to describe the process of taking this source document and producing a new file that combines the output from the executed code cells with the Markdown.
-You can render a specific Quarto document in the Terminal with:
+You can render a specific Quarto document in the current directory in the Terminal with:
 
 ```bash
 quarto render document.qmd
-```
-
-Alternatively, you can render all Quarto documents in the current directory with:
-
-```bash
-quarto render
 ```
 
 By default, Quarto will render your document in the format specified in the YAML header, falling back to HTML if none is specified.
@@ -47,7 +40,7 @@ quarto render document.qmd --to pdf
 quarto render document.qmd --to docx
 ```
 
-While `quarto render` creates the output file and stops, `quarto preview` renders your document, opens it in your web browser, and automatically re-renders when you save changes to the source file:
+While `quarto render` creates the output file and stops, `quarto preview` renders your document, opens it, and automatically re-renders it when you save changes to the source file:
 
 ```bash
 quarto preview document.qmd
@@ -56,7 +49,10 @@ quarto preview document.qmd
 This command is particularly useful during active authoring, as it lets you see your changes immediately without having to manually rerun the render command.
 The preview server will continue running until you stop it (typically with {{< kbd Ctrl-C >}} in the Terminal).
 
-Preview isn't limited to single documents: run `quarto preview` in a project directory—such as a website or book—and Quarto serves the whole project, refreshing whichever pages you edit.
+By default, `quarto render` and `quarto preview` operate on a single document at a time.
+If you have multiple Quarto documents you want to render at once, you can organize them as a Quarto project (a collection of related documents in a single directory, such as a website or book).
+When you run `quarto render` in a project directory, Quarto will operate on all documents in the project according to the project configuration and `quarto preview` will serve the whole project, refreshing whichever pages you edit.
+We will discuss projects in more detail in @sec-projects.
 
 Beyond rendering and previewing, the Quarto CLI offers several other helpful commands.
 
@@ -66,17 +62,20 @@ To see which version of Quarto you have installed, run:
 quarto --version
 ```
 
-To verify that your installation and its dependencies (such as Jupyter, knitr, and LaTeX) are correctly configured, run:
+To verify that your installation and its dependencies (such as Jupyter, knitr, and LaTeX) are correctly configured, as well as displaying other information that can be helpful for troubleshooting (see @sec-troubleshooting for more on this), run:
 
 ```bash
 quarto check
 ```
 
-When your document is ready to share, `quarto publish` can render and push it to a variety of destinations, including GitHub Pages, Posit Connect, and Posit Connect Cloud:
+When your document is ready to share, `quarto publish` can render and push it to a variety of destinations:
 
 ```bash
 quarto publish document.qmd
 ```
+
+This commands starts an interactive session that guides you through the process of publishing your document to the selected destination, including GitHub Pages, Posit Connect, and Posit Connect Cloud.
+See @sec-sharing for more details on publishing Quarto documents.
 
 To get help, you can use the following command:
 
@@ -93,54 +92,7 @@ quarto render --help
 The same basic workflow applies whether you work from the terminal or from an IDE. 
 IDEs such as Positron, RStudio, and VS Code provide buttons, keyboard shortcuts, and preview panes for these tasks, but the underlying Quarto workflow is the same.
 
-## Computation engines {#sec-engines}
-
-Quarto delegates the execution of your code to a computation engine—knitr for R and Jupyter for Python (and other languages with Jupyter kernels).
-The concepts in this section apply no matter which editor you use, so we cover them here before turning to specific IDEs.
-
-A quick note on terminology: knitr and R Markdown traditionally call a block of executable code a *chunk*, while Jupyter calls it a *cell*.
-Quarto's documentation—and this book—use *cell*, but you'll see both terms in the wild, and they mean the same thing.
-
-### Knitr engine
-
-Quarto is designed to be highly compatible with existing [R Markdown](https://rmarkdown.rstudio.com/) documents—you can generally render an existing `.Rmd` file with Quarto without any changes.
-
-The main difference to be aware of is how cell options are specified.
-In Quarto, cell options are typically written as special comments at the top of the cell using the `#|` prefix, rather than on the line that opens the cell:
-
-```{{r}}
-#| echo: false
-#| fig-cap: "Air Quality"
-library(ggplot2)
-ggplot(airquality, aes(Temp, Ozone)) +
-  geom_point() +
-  geom_smooth(method = "loess", se = FALSE)
-```
-
-This makes it easier to work with longer options like `fig-cap`, `fig-subcap`, and `fig-alt`, and to edit cell options in structured editors such as notebooks.
-Since options use YAML syntax rather than R syntax, when you need an R expression for a value, you need to prefix it with `!expr`:
-
-```
-#| fig-cap: !expr 'paste("Air", "Quality")'
-```
-
-### Jupyter engine
-
-To execute Python code, Quarto documents use the Jupyter engine.
-These documents include a `jupyter` option in the YAML front matter that specifies the kernel to use:
-
-```yaml
----
-title: Matplotlib Demo
-author: Norah Smith
-jupyter: python3
----
-```
-
-One execution behavior worth remembering: when you render a `.qmd` file, Quarto always executes its cells, but when you render an `.ipynb` notebook, Quarto does *not* execute cells by default—it assumes you already ran them while editing.
-We return to this asymmetry when discussing notebook editing in Positron (@sec-positron).
-
-Now that you understand the foundational CLI commands and how Quarto executes code, let's explore how different IDEs integrate these capabilities into their interfaces to support your authoring experience.
+Now that we have introduced the basic document structure and foundational CLI commands, let's explore how different IDEs integrate these capabilities into their interfaces to support your authoring experience.
 
 ## Positron {#sec-positron}
 
