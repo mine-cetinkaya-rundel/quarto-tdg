@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c78ddbba298a60aa887e417ee4b0b060.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/kbd/kbd.js"></script>
 <link href="site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -600,7 +600,7 @@ Note&nbsp;13.1: What gets rendered?
 <div class="callout-body-container callout-body">
 <p>Quarto will render all valid Quarto input files (e.g.&nbsp;<code>.qmd</code>, <code>.ipynb</code>, <code>.md</code>, <code>.Rmd</code>, etc.) except files or folders that start with <code>_</code>, or <code>.</code>, or a file matching <code>README.*md</code>.</p>
 <p>All formats specifed in each file will be rendered.</p>
-<p>You can also specify exactly what you do and do not want rendered with the <code>render</code> key in <code>_quarto.yml</code>. See <a href="https://quarto.org/docs/projects/quarto-projects.html#render-targets">Render Targets</a> in the Quarto documentation for more information.</p>
+<p>You can also specify exactly what you do and do not want rendered with the <code>render</code> key in <code>_quarto.yml</code>. See <a href="https://quarto.org/docs/projects/quarto-projects.html#render-targets" class="quarto-docs"><span class="docs-lead">Render</span> Targets</a> in the Quarto documentation for more information.</p>
 </div>
 </div>
 <p>To preview a project when using the <code>default</code> project type, you must specify a file:</p>
@@ -711,7 +711,7 @@ Figure&nbsp;13.4: The contents of <code>ds-project/</code> after rendering when 
 <p>You usually don’t need to set <code>output-dir</code> for other project types because they have a default. For example, websites render to a <code>_site/</code> folder, and books to a <code>_book/</code> folder.</p>
 </div>
 </div>
-<p>You can see other available project options on the <a href="https://quarto.org/docs/reference/projects/core.html">Project Options</a> reference page in the Quarto documentation.</p>
+<p>You can see other available project options on the <a href="https://quarto.org/docs/reference/projects/core.html" class="quarto-docs"><span class="docs-lead">Project</span> Options</a> reference page in the Quarto documentation.</p>
 <p>Some project types also set project-level options under a key that matches their type. For instance, when a project is a website, site level settings are set under the <code>website</code> key:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -839,7 +839,7 @@ Figure&nbsp;13.4: The contents of <code>ds-project/</code> after rendering when 
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you would like to specify common metadata for documents inside a sub-directory our your project, you can do so by adding a file called <code>_metadata.yml</code> to the sub-directory. Read more in the Quarto Documentation at <a href="https://quarto.org/docs/projects/quarto-projects.html#directory-metadata">Directory Metadata</a>.</p>
+<p>If you would like to specify common metadata for documents inside a sub-directory our your project, you can do so by adding a file called <code>_metadata.yml</code> to the sub-directory. Read more in the Quarto Documentation at <a href="https://quarto.org/docs/projects/quarto-projects.html#directory-metadata" class="quarto-docs"><span class="docs-lead">Directory</span> Metadata</a>.</p>
 </div>
 </div>
 <p>Using <code>_quarto.yml</code> can help reduce duplication in the metadata of your documents, but once you have related documents in a project, you often also find you have duplicated content. You can reduce duplication of content by using the include shortcode described in <a href="authoring.html#sec-includes" class="quarto-xref"><span>Section 12.18</span></a>. #### Multiple Formats</p>
@@ -970,7 +970,7 @@ Figure&nbsp;13.4: The contents of <code>ds-project/</code> after rendering when 
 </section>
 <section id="rendering-a-project" class="level4" data-number="13.7.1.2">
 <h4 data-number="13.7.1.2" class="anchored" data-anchor-id="rendering-a-project"><span class="header-section-number">13.7.1.2</span> Rendering a Project</h4>
-<p>RStudio will detect when an RStudio project is also a Quarto project and display a <strong>Build</strong> pane. The <strong>Render</strong> button in this pane will render the entire project. You can also access this command via the shortcut <kbd title="linux: win=Shift-Control-B, mac: Shift-Command-B, windows: Shift-Control-B" aria-hidden="true" data-linux="win=Shift-Control-B" data-mac="Shift-Command-B" data-windows="Shift-Control-B"></kbd><span class="visually-hidden"></span>.</p>
+<p>RStudio will detect when an RStudio project is also a Quarto project and display a <strong>Build</strong> pane. The <strong>Render</strong> button in this pane will render the entire project. You can also access this command via the shortcut <kbd title="linux: Shift-Control-B, mac: Shift-Command-B, windows: Shift-Control-B" aria-hidden="true" data-linux="Shift-Control-B" data-mac="Shift-Command-B" data-windows="Shift-Control-B"></kbd><span class="visually-hidden"></span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/projects-rstudio-build.png" class="img-fluid figure-img" alt="Screenshot of the Build Pane in RStudio showing a button labelled Render Project."></p>
@@ -1023,10 +1023,13 @@ Figure&nbsp;13.4: The contents of <code>ds-project/</code> after rendering when 
 <section id="wrapping-up" class="level2" data-number="13.8">
 <h2 data-number="13.8" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">13.8</span> Wrapping Up</h2>
 <p>You’ve seen how a Quarto project allows you to organize, configure and render a folder of documents. Project are particularly useful when you have a set of documents that share some metadata. But, even without shared metadata, the ability to easily render a directory of documents is a good reason to use a project. And as you’ll see later websites, books and manuscripts are special types of projects.</p>
-<p>As you start using projects you might find these other sections of the book useful:</p>
+<p>There’s plenty more you can do with projects that we didn’t cover. A few worth knowing about:</p>
 <ul>
-<li><p>To control computational dependencies for a project it is common to set up a computational environment. You can learn more in <a href="r.html" class="quarto-xref"><span>Chapter 7</span></a> and <a href="python.html" class="quarto-xref"><span>Chapter 8</span></a>.</p></li>
-<li><p>If you find yourself creating many project with the same structure or settings you might want to define a custom project type. You can read more in <a href="more.html#sec-extensions" class="quarto-xref"><span>Section 17.3</span></a>.</p></li>
+<li><p><strong>Computational environments.</strong> A project is a natural place to record the packages your code depends on, for example with <code>renv</code> for R, or a virtual environment for Python. This makes it easier for collaborators, and CI services, to reproduce your results. You can learn more in <a href="https://quarto.org/docs/projects/virtual-environments.html" class="quarto-docs"><span class="docs-lead">Virtual</span> Environments</a>.</p></li>
+<li><p><strong>Freeze.</strong> The <code>freeze</code> execution option stops Quarto from re-running a document’s code during a full project render. Quarto stores the results in <code>_freeze/</code>, which you commit, so collaborators and CI services can render your project without your computational environment. Be aware that with <code>freeze: auto</code> any edit to a document, even to its prose, re-runs its code. With <code>freeze: true</code> a project render ignores edits to a frozen document completely, until you render that document directly. You can learn more in <a href="https://quarto.org/docs/projects/code-execution.html" class="quarto-docs"><span class="docs-lead">Managing</span> Execution</a>.</p></li>
+<li><p><strong>Pre- and post-render scripts.</strong> The <code>pre-render</code> and <code>post-render</code> project options run your own scripts before and after a render, for example to prepare data or check the links in your output. You can learn more in <a href="https://quarto.org/docs/projects/scripts.html" class="quarto-docs"><span class="docs-lead">Project</span> Scripts</a>.</p></li>
+<li><p><strong>Project profiles.</strong> A profile, like <code>_quarto-production.yml</code>, holds options that Quarto merges over <code>_quarto.yml</code> when you activate it. Profiles let one project render differently in different situations, for example a public and an internal version, or freeze locally but run all code in production. You can learn more in <a href="https://quarto.org/docs/projects/profiles.html" class="quarto-docs"><span class="docs-lead">Project</span> Profiles</a>.</p></li>
+<li><p><strong>Custom project types.</strong> If you often create projects with the same structure or settings, you can package them as a custom project type in an extension, which others can then use as a starting point. You can learn more in <a href="https://quarto.org/docs/extensions/project-types.html" class="quarto-docs"><span class="docs-lead">Project</span> Types</a>.</p></li>
 </ul>
 
 

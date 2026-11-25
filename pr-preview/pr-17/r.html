@@ -104,7 +104,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c78ddbba298a60aa887e417ee4b0b060.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -485,7 +485,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </div>
 </div>
 <p>The <code>[1]</code> is R’s index for the first element of the result.</p>
-<p>Output like this is fine for showing your work, but if a number belongs in a sentence, you don’t want to copy it out of the output by hand. Instead, save the result in a code cell and insert it into your text with inline code (<a href="code.html#sec-inline-code" class="quarto-xref"><span>Section 4.3.1</span></a>):</p>
+<p>Output like this is fine for showing your work, but if a number belongs in a sentence, you don’t want to copy it out of the output by hand. Instead, save the result in a code cell and insert it into your text with inline code (<a href="code.html#sec-inline-code" class="quarto-xref"><span>Section 4.4</span></a>):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>avg_mass <span class="ot">&lt;-</span> <span class="fu">mean</span>(penguins<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -753,7 +753,7 @@ Figure&nbsp;7.1: Penguins with longer flippers tend to be heavier.
 <li><code>fig-align</code>: Alignment: <code>left</code>, <code>center</code>, or <code>right</code></li>
 <li><code>fig-dpi</code>: Resolution in dots per inch</li>
 <li><code>fig-width</code> and <code>fig-height</code>: Figure dimensions in inches</li>
-<li><code>out-width</code> and <code>out-height</code>: Output dimensions as percentage (80%), pixels (400px), or page metrics (0.5)</li>
+<li><code>out-width</code> and <code>out-height</code>: Output dimensions as percentage (80%), pixels (400px), or page metrics (<code>0.5\linewidth</code>)</li>
 </ul></li>
 <li>Finally, some relate to caching:
 <ul>
@@ -761,7 +761,7 @@ Figure&nbsp;7.1: Penguins with longer flippers tend to be heavier.
 <li><code>dependson</code>: Specify cells this one depends on</li>
 </ul></li>
 </ul>
-<p>For a complete list of knitr cell options, see the <a href="https://quarto.org/docs/reference/cells/cells-knitr.html">Quarto reference</a>.</p>
+<p>For a complete list of knitr cell options, see the <a href="https://quarto.org/docs/reference/cells/cells-knitr.html" class="quarto-docs"><span class="docs-lead">Quarto</span> reference</a>.</p>
 </section>
 </section>
 <section id="sec-df-print" class="level2" data-number="7.4">
@@ -1028,7 +1028,7 @@ Mean body mass: 5076 grams.</code></pre>
 <li>On Windows only, the R installation recorded in the registry, and failing that, an <code>R</code> directory under <code>%programfiles%</code></li>
 </ol>
 <p>On macOS and Linux there are no further fallbacks: if none of the first three locate R, Quarto tries to run <code>R</code> directly and the render fails if your shell can’t resolve it.</p>
-<p>If Quarto is using a different R than you expect, you can override the lookup by setting <code>QUARTO_R</code> to the path of your preferred R binary. You can give it either the binary itself or the directory containing it, and Quarto warns you if the path doesn’t exist rather than silently moving on. In a Quarto project, one way to do this is an <a href="https://quarto.org/docs/projects/environment.html"><code>_environment</code> file</a> alongside <code>_quarto.yml</code>:</p>
+<p>If Quarto is using a different R than you expect, you can override the lookup by setting <code>QUARTO_R</code> to the path of your preferred R binary. You can give it either the binary itself or the directory containing it, and Quarto warns you if the path doesn’t exist rather than silently moving on. In a Quarto project, one way to do this is an <a href="https://quarto.org/docs/projects/environment.html" class="quarto-docs"><span class="docs-lead"><code>_environment</code></span> file</a> alongside <code>_quarto.yml</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_environment</strong></pre>
@@ -1127,7 +1127,7 @@ Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbo
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>For more information, see Quarto documentation on execution context information at <a href="https://quarto.org/docs/advanced/quarto-execute-info.html" class="uri">https://quarto.org/docs/advanced/quarto-execute-info.html</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>For more information, see Quarto documentation on execution context information at <a href="https://quarto.org/docs/advanced/quarto-execute-info.html" class="uri quarto-docs"><span class="docs-lead">https://quarto.org/docs/advanced/quarto-execute-info.html</span></a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>For situations like this, we refer readers to the R Markdown Cookbook <span class="citation" data-cites="xie2020">(<a href="references.html#ref-xie2020" role="doc-biblioref">Xie et al. 2020</a>)</span> for knitr functionality on <a href="https://pkg.yihui.org/rmarkdown-cookbook/child-document">child documents</a> and <a href="https://pkg.yihui.org/rmarkdown-cookbook/knit-expand"><code>knit_expand()</code></a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>

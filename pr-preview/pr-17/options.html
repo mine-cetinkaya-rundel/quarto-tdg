@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c78ddbba298a60aa887e417ee4b0b060.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -393,11 +393,24 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </header>
 
 
-<p>Throughout this book, you’ve been setting options to control how your documents look and behave. You’ve set a document title in the header, specified an output format, and controlled whether code is displayed in your output. These options all use the same underlying syntax: YAML.</p>
-<p>This chapter makes that syntax explicit. You’ll learn the three places where you can set options and the essential YAML syntax rules you need to write them correctly. For the full details of YAML syntax and troubleshooting tips, see <a href="yaml.html" class="quarto-xref"><span>Chapter 15</span></a>.</p>
+<p>Options are the way you control how your documents look and behave. You’ve seen a document title and an output format in the document header, and controlled whether code is displayed in your output with a code cell option. These options all use the same underlying syntax: YAML.</p>
+<p>In this you’ll learn the three places where you can set options and the essential YAML syntax rules you need to write them correctly. For the full details of YAML syntax and troubleshooting tips, see <a href="yaml.html" class="quarto-xref"><span>Chapter 15</span></a>.</p>
 <section id="three-places-to-set-options" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="three-places-to-set-options"><span class="header-section-number">5.1</span> Three places to set options</h2>
 <p>There are three places you’ll commonly set options: in the document header, under a format key, and in code cells.</p>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>A fourth place: <code>_quarto.yml</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In <a href="projects.html" class="quarto-xref"><span>Chapter 13</span></a> you’ll learn about another place to put option for Quarto projects, the confguration file: <code>_quarto.yml</code>. It also uses the same YAML syntax described in this chapter.</p>
+</div>
+</div>
 <section id="document-header" class="level3" data-number="5.1.1">
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="document-header"><span class="header-section-number">5.1.1</span> Document header</h3>
 <p>The document header is the YAML block at the top of your <code>.qmd</code> file, enclosed by <code>---</code>. Options set here apply to the entire document:</p>
@@ -434,7 +447,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="yaml-syntax-essentials" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="yaml-syntax-essentials"><span class="header-section-number">5.2</span> YAML syntax essentials</h2>
-<p>All three places use YAML syntax. Here are the essential rules you need to know.</p>
+<p>All three locations where you can specify options expect YAML syntax. Here are the essential rules you need to know.</p>
 <section id="key-value-pairs" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="key-value-pairs"><span class="header-section-number">5.2.1</span> Key-value pairs</h3>
 <p>Options are written as key-value pairs separated by a colon and a space:</p>
@@ -473,7 +486,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </section>
 <section id="getting-help-from-your-ide" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="getting-help-from-your-ide"><span class="header-section-number">5.3</span> Getting help from your IDE</h2>
-<p>If you’re using RStudio, VS Code, or Positron with the Quarto extension, your editor can help you write YAML correctly.</p>
+<p>If you’re using RStudio, Positron, or VS Code with the Quarto extension, your editor can help you write YAML correctly.</p>
 <p><strong>Completion</strong> suggests valid option names and values as you type. This helps you discover what options are available and avoid typos.</p>
 <p><strong>Validation</strong> highlights errors in your YAML, such as incorrect indentation or invalid values. Look for squiggly underlines or error markers in the gutter.</p>
 <p>When things go wrong and you’re not sure why, see <a href="yaml.html" class="quarto-xref"><span>Chapter 15</span></a> for troubleshooting tips and a deeper understanding of YAML syntax.</p>

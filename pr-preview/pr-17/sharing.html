@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c78ddbba298a60aa887e417ee4b0b060.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -354,11 +354,13 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-publish-web" id="toc-sec-publish-web" class="nav-link active" data-scroll-target="#sec-publish-web"><span class="header-section-number">6.1</span> Publishing to the web</a></li>
-  <li><a href="#sec-publishing-process" id="toc-sec-publishing-process" class="nav-link" data-scroll-target="#sec-publishing-process"><span class="header-section-number">6.2</span> The publishing process</a></li>
-  <li><a href="#updating-published-documents" id="toc-updating-published-documents" class="nav-link" data-scroll-target="#updating-published-documents"><span class="header-section-number">6.3</span> Updating published documents</a></li>
-  <li><a href="#sec-repro" id="toc-sec-repro" class="nav-link" data-scroll-target="#sec-repro"><span class="header-section-number">6.4</span> Sharing document source</a></li>
-  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">6.5</span> Next steps</a></li>
+  <li><a href="#sec-publish-web" id="toc-sec-publish-web" class="nav-link active" data-scroll-target="#sec-publish-web"><span class="header-section-number">6.1</span> Publishing to the web</a>
+  <ul class="collapse">
+  <li><a href="#sec-publishing-process" id="toc-sec-publishing-process" class="nav-link" data-scroll-target="#sec-publishing-process"><span class="header-section-number">6.1.1</span> The publishing process</a></li>
+  <li><a href="#updating-published-documents" id="toc-updating-published-documents" class="nav-link" data-scroll-target="#updating-published-documents"><span class="header-section-number">6.1.2</span> Updating published documents</a></li>
+  </ul></li>
+  <li><a href="#sec-repro" id="toc-sec-repro" class="nav-link" data-scroll-target="#sec-repro"><span class="header-section-number">6.2</span> Sharing document source</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">6.3</span> Next steps</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/sharing.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -384,7 +386,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </header>
 
 
-<p>When we talk about <em>publishing</em> Quarto documents, we usually mean making the rendered documents available to others via the web. In this chapter, you’ll learn the basics of Quarto’s built-in tools for publishing your content. For more details on specific providers and other ways to share documents, see <a href="websites.html#sec-website-publish" class="quarto-xref"><span>Section 14.9</span></a>.</p>
+<p>Once you are happy with your Quarto document, you’ll want to share it with others: we call this <strong>publishing</strong> Quarto documents. It usually means making the rendered documents available to others via the web. In this chapter, you’ll learn the basics of Quarto’s built-in tools for publishing your content to the web, along with some tips for sharing your Quarto source.</p>
 <section id="sec-publish-web" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="sec-publish-web"><span class="header-section-number">6.1</span> Publishing to the web</h2>
 <p>The quickest way to publish a single document is via the <code>quarto publish</code> command, providing the document filename as an argument:</p>
@@ -430,7 +432,7 @@ Figure&nbsp;6.1: After publishing, Quarto opens a browser to the content view on
 </figcaption>
 </figure>
 </div>
-<p>The URL Quarto returns is for managing your content, not for sharing. To find your shareable URL, navigate to <strong>Settings</strong> &gt; <strong>URL</strong>, as shown in <a href="#fig-posit-connect-cloud-settings" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>.</p>
+<p>For Posit Connect Cloud, the URL Quarto returns is for managing your content, not for sharing. To find your shareable URL, navigate to <strong>Settings</strong> &gt; <strong>URL</strong>, as shown in <a href="#fig-posit-connect-cloud-settings" class="quarto-xref">Figure&nbsp;<span>6.2</span></a>.</p>
 <div id="fig-posit-connect-cloud-settings" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Screenshot of the Settings URL page on Posit Connect Cloud showing the Default URL.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-posit-connect-cloud-settings-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -441,10 +443,9 @@ Figure&nbsp;6.2: The Settings &gt; URL page shows the Default URL for sharing yo
 </figcaption>
 </figure>
 </div>
-<p>Shareable URLs end in <code>.share.connect.posit.cloud</code>. By default, URLs use an auto-generated identifier, but you can customize them to something memorable like <code>cwickham-document.share.connect.posit.cloud</code>. Share the URL and anyone can view your rendered content.</p>
-</section>
-<section id="sec-publishing-process" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="sec-publishing-process"><span class="header-section-number">6.2</span> The publishing process</h2>
+<p>Shareable URLs end in <code>.share.connect.posit.cloud</code>. By default, URLs use an auto-generated identifier, but you can customize them to something memorable like <code>my-document.share.connect.posit.cloud</code>. Share the URL and anyone can view your rendered content.</p>
+<section id="sec-publishing-process" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="sec-publishing-process"><span class="header-section-number">6.1.1</span> The publishing process</h3>
 <p>The <code>quarto publish</code> command relies on local rendering—that is, your Quarto documents are rendered locally on your computer using your local installation of the Quarto CLI. Only the output files are then transferred to the publishing provider. In <a href="#fig-pub-process" class="quarto-xref">Figure&nbsp;<span>6.3</span></a> we illustrate this as two separate steps—render then publish— but they both occur when you run the <code>quarto publish</code> command.</p>
 <div id="fig-pub-process" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A diagram of the publishing process. An arrow labeled Render points from a file with extension .qmd to a collection of files including one with extension .html, a folder labelled _files/ and a file with extension .jpg. An arrow labelled publish points from this collection of files to the same collection of files on connect.posit.cloud.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -458,8 +459,8 @@ Figure&nbsp;6.3: The <code>quarto publish</code> process. Input files are render
 </div>
 <p>Quarto generates a single self-contained output file for some output formats, like PDF or Word documents. This single output file is the only thing that needs to be transferred to the provider to share it with others. However, for some formats, notably HTML, Quarto generates a collection of files, which might depend on other local files like images. All of these files and their dependencies need to be transferred to the provider to publish the content successfully. The advantage of <code>quarto publish</code> is that Quarto identifies all these required files for you.</p>
 </section>
-<section id="updating-published-documents" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="updating-published-documents"><span class="header-section-number">6.3</span> Updating published documents</h2>
+<section id="updating-published-documents" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="updating-published-documents"><span class="header-section-number">6.1.2</span> Updating published documents</h3>
 <p>When you use <code>quarto publish</code> details about what and where you publish are stored in a file called <code>_publish.yml</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -473,8 +474,9 @@ Figure&nbsp;6.3: The <code>quarto publish</code> process. Input files are render
 <p>This means when you run <code>quarto publish</code> on a document or project a second time, you’ll be given the option of using the same details—in effect updating your published content.</p>
 <p>The details in <code>_publish.yml</code> aren’t sensitive (there are no authentication details) so you can check it into version control.</p>
 </section>
-<section id="sec-repro" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="sec-repro"><span class="header-section-number">6.4</span> Sharing document source</h2>
+</section>
+<section id="sec-repro" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="sec-repro"><span class="header-section-number">6.2</span> Sharing document source</h2>
 <p>A huge advantage of Quarto’s plain text format is that you can share snippets that others can copy and paste. You’ve seen plenty of examples in this book already, but to be concrete here’s another one:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
@@ -505,8 +507,8 @@ Figure&nbsp;6.3: The <code>quarto publish</code> process. Input files are render
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="in">````</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The same quadruple backtick approach works in many other venues that use Markdown like GitHub Issues, GitHub Discussions and the <a href="forum.posit.co">Posit Community Forum</a>. You generally don’t need to double curly braces in these venues because they won’t attempt to execute any code.</p>
 </section>
-<section id="next-steps" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">6.5</span> Next steps</h2>
+<section id="next-steps" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="next-steps"><span class="header-section-number">6.3</span> Next steps</h2>
 <p>In this chapter you’ve seen that sharing your rendered Quarto documents is as simple as running <code>quarto publish</code>. This model of publishing relies on local rendering, but more complicated models like continuous integration exist and you’ll learn about them in later chapters.</p>
 <p>There’s nothing special about Quarto source documents, or stand-alone outputs like PDFs, so you can share them in your usual ways.</p>
 <p>When you’re ready to publish projects like websites or books, or want to explore other publishing providers like GitHub Pages or Netlify, see <a href="websites.html" class="quarto-xref"><span>Chapter 14</span></a>.</p>

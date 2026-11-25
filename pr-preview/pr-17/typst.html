@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c78ddbba298a60aa887e417ee4b0b060.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -460,7 +460,7 @@ window.Quarto = {
 <li><p>You need to work with existing LaTeX templates, like a journal article template.</p></li>
 <li><p>You already rely on LaTeX packages for advanced typesetting of math or equations.</p></li>
 </ul>
-<p>If you are in these situations, you may find the <a href="https://quarto.org/docs/output-formats/pdf-basics.htmlv">PDF Basics guide</a> in the Quarto documentation a better place to start.</p>
+<p>If you are in these situations, you may find the <a href="https://quarto.org/docs/output-formats/pdf-basics.htmlv" class="quarto-docs"><span class="docs-lead">PDF</span> Basics guide</a> in the Quarto documentation a better place to start.</p>
 <p>Readers who use screen readers and other assistive technologies generally have a smoother experience with HTML (<a href="html.html" class="quarto-xref"><span>Chapter 9</span></a>) than with PDF. If that describes part of your audience — or if accessibility is a primary concern — HTML is often the better target. Accessible PDFs are possible (we’ll cover that in <a href="#sec-pdf-accessibility" class="quarto-xref"><span>Section 10.11</span></a>), but the tooling ecosystem is younger.</p>
 <p>In the next section, you’ll create your first PDF document with <code>format: typst</code>. Then, you’ll cover the types of content you’ll most likely need in your first few documents: navigation, citations, math, code blocks, and computational outputs.</p>
 <p>In <a href="#sec-pdf-accessibility" class="quarto-xref"><span>Section 10.11</span></a>, you’ll learn the keys to creating accessible PDFs, and in <a href="#sec-customizing-appearance" class="quarto-xref"><span>Section 10.12</span></a>, how to customize the page layout, fonts, and colors of your document.</p>
@@ -1575,7 +1575,7 @@ Figure&nbsp;10.22: The example rendered: <code>.column-body</code> text is inset
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38" data-filename="Terminal"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> use brand org/repo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Check out the <a href="https://quarto.org/docs/authoring/brand.html#quarto-use-brand">Quarto documentation on <code>use brand</code></a> for getting brand from other locations.</p>
+<p>Check out the <a href="https://quarto.org/docs/authoring/brand.html#quarto-use-brand" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation on <code>use brand</code></a> for getting brand from other locations.</p>
 <p>If your external brand defines a light and dark brand, your PDF document will use the <code>light</code> one by default. You can select the <code>dark</code> one with <code>brand-mode</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -2076,7 +2076,7 @@ Figure&nbsp;10.35: First page rendered with the custom <code>page.typ</code> par
 </figcaption>
 </figure>
 </div>
-<p>If you find yourself using the same partial across many projects, or want to share is more widely, you could bundle it into a Typst format extension. You can read more about building Typst format extensions in the <a href="https://quarto.org/docs/output-formats/typst-custom-formats.html">Quarto documentation on Typst customization</a>.</p>
+<p>If you find yourself using the same partial across many projects, or want to share is more widely, you could bundle it into a Typst format extension. You can read more about building Typst format extensions in the <a href="https://quarto.org/docs/output-formats/typst-custom-formats.html" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation on Typst customization</a>.</p>
 </section>
 </section>
 <section id="wrapping-up" class="level2" data-number="10.14">
@@ -2084,10 +2084,10 @@ Figure&nbsp;10.35: First page rendered with the custom <code>page.typ</code> par
 <p>In this chapter, you created your first PDF with <code>format: typst</code>, then worked through the types of content you’ll most often use: navigation, links, citations, math, code blocks, and computational outputs. You saw how to make a PDF accessible by targeting the PDF/UA-1 standard, and how to customize its appearance through document options and brand. When you need further customization, you can use <code>set</code> and <code>show</code> rules in raw Typst blocks, and template partials.</p>
 <p>There’s plenty more you can do with <code>format: typst</code> that we didn’t cover. Two more worth knowing about:</p>
 <ul>
-<li><p><strong>Typst books.</strong> This chapter focused on single documents, but Typst output works in Quarto <a href="https://quarto.org/docs/books/">books</a> too.</p></li>
-<li><p><strong>Prebuilt templates.</strong> The community publishes Typst formats, such as journal article templates, that you can add to your project with <code>quarto use template</code>. A good place to look for them is on <a href="https://quarto.org/docs/extensions/listing-formats.html">Quarto’s format listing</a> and the community-run <a href="https://m.canouil.dev/quarto-extensions/">Quarto extensions listing</a>.</p></li>
+<li><p><strong>Typst books.</strong> This chapter focused on single documents, but Typst output works in Quarto <a href="https://quarto.org/docs/books/" class="quarto-docs"><span class="docs-lead">books</span></a> too.</p></li>
+<li><p><strong>Prebuilt templates.</strong> The community publishes Typst formats, such as journal article templates, that you can add to your project with <code>quarto use template</code>. A good place to look for them is on <a href="https://quarto.org/docs/extensions/listing-formats.html" class="quarto-docs"><span class="docs-lead">Quarto’s</span> format listing</a> and the community-run <a href="https://m.canouil.dev/quarto-extensions/">Quarto extensions listing</a>.</p></li>
 </ul>
-<p>We only covered a subset of the document options available for <code>format: typst</code>. For the full set, see the <a href="https://quarto.org/docs/reference/formats/typst.html">Typst format reference</a> in the Quarto documentation.</p>
+<p>We only covered a subset of the document options available for <code>format: typst</code>. For the full set, see the <a href="https://quarto.org/docs/reference/formats/typst.html" class="quarto-docs"><span class="docs-lead">Typst</span> format reference</a> in the Quarto documentation.</p>
 
 
 </section>

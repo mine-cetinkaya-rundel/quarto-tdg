@@ -104,7 +104,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c78ddbba298a60aa887e417ee4b0b060.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -403,10 +403,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#markdown-text" id="toc-markdown-text" class="nav-link active" data-scroll-target="#markdown-text"><span class="header-section-number">12.1</span> Markdown text</a></li>
-  <li><a href="#sections" id="toc-sections" class="nav-link" data-scroll-target="#sections"><span class="header-section-number">12.2</span> Sections</a></li>
+  <li><a href="#sec-markdown-sections" id="toc-sec-markdown-sections" class="nav-link" data-scroll-target="#sec-markdown-sections"><span class="header-section-number">12.2</span> Sections</a></li>
   <li><a href="#paragraphs" id="toc-paragraphs" class="nav-link" data-scroll-target="#paragraphs"><span class="header-section-number">12.3</span> Paragraphs</a></li>
-  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><span class="header-section-number">12.4</span> Text</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">12.5</span> Lists</a></li>
+  <li><a href="#sec-markdown-text" id="toc-sec-markdown-text" class="nav-link" data-scroll-target="#sec-markdown-text"><span class="header-section-number">12.4</span> Text</a></li>
+  <li><a href="#sec-markdown-lists" id="toc-sec-markdown-lists" class="nav-link" data-scroll-target="#sec-markdown-lists"><span class="header-section-number">12.5</span> Lists</a></li>
   <li><a href="#sec-code-blocks" id="toc-sec-code-blocks" class="nav-link" data-scroll-target="#sec-code-blocks"><span class="header-section-number">12.6</span> Code blocks</a></li>
   <li><a href="#sec-markdown-tables" id="toc-sec-markdown-tables" class="nav-link" data-scroll-target="#sec-markdown-tables"><span class="header-section-number">12.7</span> Tables</a>
   <ul class="collapse">
@@ -472,8 +472,8 @@ window.Quarto = {
 <p>Everything that isn’t the document header or an executable code cell is interpreted as Quarto markdown. Quarto markdown inherits much of Pandoc’s markdown syntax, but uses its own parser. This means you can use familiar markdown syntax, though there are some differences from Pandoc. The rest of this chapter outlines the most useful Quarto markdown syntax.</p>
 <p>While we distinguish between executable code cells and markdown in the source document, this distinction disappears after rendering. When cells execute, their output becomes markdown and is treated identically to other markdown content. Executable code cells produce block-level markdown, so you can only use them where block elements are allowed. For example, as list items, inside fenced divs, or inside table cells. You cannot use code cells inline with text or inside section headings.</p>
 </section>
-<section id="sections" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="sections"><span class="header-section-number">12.2</span> Sections</h2>
+<section id="sec-markdown-sections" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="sec-markdown-sections"><span class="header-section-number">12.2</span> Sections</h2>
 <p>Use markdown headings to structure your document into sections and subsections. Markdown headings are created by prefixing text with one or more <code>#</code> characters, followed by a space, and the heading title:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Section</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -515,8 +515,8 @@ Tip&nbsp;12.1: What are attributes?
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>This is a second paragraph, separated by a blank line.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Quarto ignores line breaks within a paragraph, which means you can wrap your text across multiple lines without affecting the final rendered output.</p>
 </section>
-<section id="text" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="text"><span class="header-section-number">12.4</span> Text</h2>
+<section id="sec-markdown-text" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="sec-markdown-text"><span class="header-section-number">12.4</span> Text</h2>
 <p>Beyond plain text, <a href="#tbl-inline-text-elements" class="quarto-xref">Table&nbsp;<span>12.1</span></a> summarizes the most common things you want to put inside a paragraph or heading: formatted text, links, cross-references, citations, math and footnotes.</p>
 <p>These elements are called <strong>inline text elements</strong>, because they are used inline with text, inside what are called <strong>block elements</strong> like paragraphs and headings. You can also use them inside many of the other block-level elements discussed in this chapter like as list items, inside tables, and inside callouts.</p>
 <div id="tbl-inline-text-elements" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -541,8 +541,8 @@ Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown. TODO
 <tbody>
 <tr class="odd">
 <td rowspan="7" style="text-align: left;"> <strong>Text formatting</strong></td>
-<td style="text-align: left;"><em>italics</em>, <strong>bold</strong>, <strong><em>bold italics</em></strong></td>
-<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>*italics*, **bold**, ***bold italics***</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td style="text-align: left;"><em>italics</em>, <strong>bold</strong>, <em><strong>bold italics</strong></em></td>
+<td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>_italics_, **bold**, _**bold italics**_</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">superscript<sup>2</sup> / subscript<sub>2</sub></td>
@@ -619,8 +619,8 @@ Table&nbsp;12.1: Common syntax for inline text elements in Quarto markdown. TODO
 </figure>
 </div>
 </section>
-<section id="lists" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="lists"><span class="header-section-number">12.5</span> Lists</h2>
+<section id="sec-markdown-lists" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="sec-markdown-lists"><span class="header-section-number">12.5</span> Lists</h2>
 <p>You can create an unordered list by starting each line with <code>-</code> (or <code>*</code> or <code>+</code>) followed by a space, ensuring there is a blank line before the first element:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="an">My list:</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -677,7 +677,7 @@ Figure&nbsp;12.1: List syntax and its rendered output
 </figcaption>
 </figure>
 </div>
-<p>Quarto also supports task lists and definition lists. See the <a href="https://quarto.org/docs/authoring/markdown-basics.html#lists">Quarto documentation</a> for details on these specialized list types.</p>
+<p>Quarto also supports task lists and definition lists. See the <a href="https://quarto.org/docs/authoring/markdown-basics.html#lists" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation</a> for details on these specialized list types.</p>
 </section>
 <section id="sec-code-blocks" class="level2" data-number="12.6">
 <h2 data-number="12.6" class="anchored" data-anchor-id="sec-code-blocks"><span class="header-section-number">12.6</span> Code blocks</h2>
@@ -785,17 +785,14 @@ Figure&nbsp;12.3: Markdown syntax and rendered output for a markdown pipe table
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>::: {.list-table}</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- Code</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>Model for the mean</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- </span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="in">```r</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summary</span>(<span class="fu">lm</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> cyl, <span class="at">data =</span> mtcars))</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    $$</span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    \beta_0 + \beta_1 \text{wt} + \beta_2 \text{cyl}</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>    $$</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>- ```r</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    summary(lm(mpg ~ wt + cyl, data = mtcars))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="in">  - $$</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="in">    \beta_0 + \beta_1 \text{wt} + \beta_2 \text{cyl}</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="in">    $$</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="in">:::</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="sec-html-tables" class="level3" data-number="12.7.3">
 <h3 data-number="12.7.3" class="anchored" data-anchor-id="sec-html-tables"><span class="header-section-number">12.7.3</span> HTML tables</h3>
@@ -1086,7 +1083,7 @@ Table&nbsp;12.4: Common cross-reference types
 </tr>
 <tr class="even">
 <td style="text-align: left;">Theorem</td>
-<td style="text-align: left;"><code>thm-</code>, see <a href="https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs">Quarto docs</a> for other theorem-like environments</td>
+<td style="text-align: left;"><code>thm-</code>, see <a href="https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs" class="quarto-docs"><span class="docs-lead">Quarto</span> docs</a> for other theorem-like environments</td>
 <td style="text-align: left;"><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>::: {#thm-main}</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Theorem name</span></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1148,7 +1145,7 @@ Table&nbsp;12.5: Examples of cross-reference syntax and their rendered output
 </div>
 </figure>
 </div>
-<p>For more details on cross-referencing specific element types, see the <a href="https://quarto.org/docs/authoring/cross-references.html">Quarto documentation</a>.</p>
+<p>For more details on cross-referencing specific element types, see the <a href="https://quarto.org/docs/authoring/cross-references.html" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation</a>.</p>
 <div class="rendered quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -1466,7 +1463,7 @@ Figure&nbsp;12.8: Syntax and rendered output for a note callout
 </tr>
 </tbody>
 </table>
-<p>See more examples in the <a href="https://quarto.org/docs/authoring/callouts.html">Quarto documentation</a>.</p>
+<p>See more examples in the <a href="https://quarto.org/docs/authoring/callouts.html" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation</a>.</p>
 </section>
 <section id="sec-layout" class="level2 page-columns page-full" data-number="12.15">
 <h2 data-number="12.15" class="anchored" data-anchor-id="sec-layout"><span class="header-section-number">12.15</span> Layout</h2>
@@ -1547,7 +1544,7 @@ Figure&nbsp;12.11: Column page right syntax and rendered output
 </figcaption>
 </figure>
 </div>
-<p>Additional classes are available to provide more horizontal whitespace, and for <code>format: html</code> columns that expand to the left, and to the full screen width. See the <a href="https://quarto.org/docs/authoring/article-layout.html#available-columns">Quarto documentation</a> for the full list of classes.</p>
+<p>Additional classes are available to provide more horizontal whitespace, and for <code>format: html</code> columns that expand to the left, and to the full screen width. See the <a href="https://quarto.org/docs/authoring/article-layout.html#available-columns" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation</a> for the full list of classes.</p>
 <p>You can also see more examples with figures and tables, including computational outputs in <span class="quarto-unresolved-ref">?sec-figtab-layout</span>.</p>
 </section>
 </section>
@@ -1581,7 +1578,7 @@ Figure&nbsp;12.12: Shortcode syntax and rendered output for the <code>meta</code
 </figcaption>
 </figure>
 </div>
-<p>You can find a list of built-in shortcodes in the <a href="https://quarto.org/docs/authoring/shortcodes.html">Quarto documentation</a>. You can also add shortcodes via extensions (<a href="more.html#sec-extensions" class="quarto-xref"><span>Section 17.3</span></a>).</p>
+<p>You can find a list of built-in shortcodes in the <a href="https://quarto.org/docs/authoring/shortcodes.html" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation</a>. You can also add shortcodes via extensions (<a href="more.html#sec-extensions" class="quarto-xref"><span>Section 17.1</span></a>).</p>
 </section>
 <section id="sec-includes" class="level2" data-number="12.18">
 <h2 data-number="12.18" class="anchored" data-anchor-id="sec-includes"><span class="header-section-number">12.18</span> Includes</h2>
@@ -1606,7 +1603,7 @@ Figure&nbsp;12.12: Shortcode syntax and rendered output for the <code>meta</code
 <section id="other-features" class="level2" data-number="12.19">
 <h2 data-number="12.19" class="anchored" data-anchor-id="other-features"><span class="header-section-number">12.19</span> Other features</h2>
 <ul>
-<li><strong>Diagrams</strong>: create diagrams directly in your markdown using Mermaid or Graphviz syntax—see the <a href="https://quarto.org/docs/authoring/diagrams.html">Quarto diagrams documentation</a> for details.</li>
+<li><strong>Diagrams</strong>: create diagrams directly in your markdown using Mermaid or Graphviz syntax—see the <a href="https://quarto.org/docs/authoring/diagrams.html" class="quarto-docs"><span class="docs-lead">Quarto</span> diagrams documentation</a> for details.</li>
 </ul>
 </section>
 <section id="wrapping-up" class="level2" data-number="12.20">
