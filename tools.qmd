@@ -231,7 +231,7 @@ You can run the current cell, the next or previous cell, all cells, the cells ab
 | Run Cells Below | ⇧⌥⌘N | Ctrl+Shift+Alt+N |
 
 You can insert a new code cell with ⇧⌘I (Ctrl+Shift+I on Windows/Linux).
-Enhanced features like completion and execution are built in for R and Python cells; for Julia, install the Julia extension to enable them.
+Completion and execution for R and Python cells is built-in to Positron.
 
 ### Inline output {#inline-output-positron}
 
@@ -278,7 +278,7 @@ For Word and other formats, Positron renders the file, but you'll open it in an 
 
 Because preview renders only one format at a time, use the Quarto: Render Document command when a document declares multiple formats and you want to produce all of them.
 This command lets you render all declared formats at once, or selectively render any declared or standard format, such as PDF or MS Word.
-
+Completion and execution for R and Python cells is built-in to Positron. To add completion and execution for Julia, install the Julia extension.
 ::: todo
 [MCR] Screenshot of the Preview Format quick pick?
 :::
