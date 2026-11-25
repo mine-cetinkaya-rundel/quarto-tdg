@@ -158,9 +158,9 @@ Here's an overview; the subsections that follow cover each in more depth:
 
 - Code completion and diagnostics: as you type, Positron suggests valid Quarto and YAML options and flags syntax errors, helping you catch problems before you render (see [YAML intelligence](#yaml-intelligence-positron)).
 
-    ::: todo
-    [MCR] A screenshot of Quarto help that appears as you type?
-    :::
+  ::: todo
+  [MCR] A screenshot of Quarto help that appears as you type?
+  :::
 
 ### Basic workflow {#basic-workflow-positron}
 
@@ -349,21 +349,21 @@ Positron provides several additional features and tools that enhance your Quarto
 
 - Navigate long documents easily using the document outline panel in the primary sidebar.
 
-    ::: todo
-    [MCR] Screenshot of outline panel? Also, is it called panel?
-    :::
+  ::: todo
+  [MCR] Screenshot of outline panel? Also, is it called panel?
+  :::
 
 - Insert common code patterns quickly with built-in code snippets using the **Snippets: Insert Snippet** command.
 
-    ::: todo
-    [MCR] Screenshot of adding columns to slides maybe?
-    :::
+  ::: todo
+  [MCR] Screenshot of adding columns to slides maybe?
+  :::
 
 - Version control your Quarto documents directly from the IDE with its Git integration.
 
-    ::: todo
-    [MCR] Screenshot of .quarto in .gitignore?
-    :::
+  ::: todo
+  [MCR] Screenshot of .quarto in .gitignore?
+  :::
 
 - Open a Terminal already set to the correct working directory, for running Quarto CLI commands.
 

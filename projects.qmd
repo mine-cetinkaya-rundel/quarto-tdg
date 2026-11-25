@@ -43,7 +43,10 @@ From a practical perspective, using a Quarto project has two benefits:
 # Code to generate a pretty tree
 dir <- path("temp-dirs", "ds-project")
 dir_create(dir, "data")
-file_create(dir, c("data/records.csv", "README.md", "01-import.qmd", "02-visualize.qmd"))
+file_create(
+  dir,
+  c("data/records.csv", "README.md", "01-import.qmd", "02-visualize.qmd")
+)
 dir_tree(dir)
 ```
 
@@ -133,7 +136,9 @@ quarto create project default project-name project-title
 Quarto will then create the folder, e.g. `project-name` and populate it with `_quarto.yml` and a Quarto document with the same name as the project title, `project-title.qmd`:
 
 ```{r}
-system("cd temp-dirs && quarto create project default project-name project-title")
+system(
+  "cd temp-dirs && quarto create project default project-name project-title"
+)
 fs::dir_tree("temp-dirs/project-name")
 ```
 
@@ -248,7 +253,10 @@ You could set `output-dir` to `reports`:
 ```{r}
 dir2 <- path("temp-dirs", "ds-project2")
 dir_create(dir2, "data")
-file_create(dir2, c("data/records.csv", "README.md", "01-import.qmd", "02-visualize.qmd"))
+file_create(
+  dir2,
+  c("data/records.csv", "README.md", "01-import.qmd", "02-visualize.qmd")
+)
 config_path <- file_create(dir2, "_quarto.yml")
 write_yaml(list(project = list(`output-dir` = "reports")), config_path)
 system("cd temp-dirs/ds-project2 && quarto render")

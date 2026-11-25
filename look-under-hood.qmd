@@ -219,7 +219,10 @@ When you open `html-r.qmd` in a browser you'll see the final rendered document (
 Converting the Markdown to HTML commands isn't enough to have a complete HTML document.
 The converted content is pasted into a template that adds the boilerplate required to form a complete document.
 Quarto has default templates it uses unless otherwise specified.
-You'll learn more about templates and customizing them in @sec-templates.
+
+::: todo
+[CVW] Removed "You'll learn more about templates and customizing them in `@sec-templates`"; `templates.qmd` was removed in commit 4313b54. Point to the Typst templates section (`@sec-typst-templates`) or another chapter, or leave it out.
+:::
 :::
 
 ### Monitoring the process on the command line
