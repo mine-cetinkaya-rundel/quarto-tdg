@@ -117,7 +117,7 @@ Finally, you'll see a couple of options for excluding documents from your site o
 The structure of your files in your project directly translates to their structure in `site/`, and consequently, to where your pages will be available on your website.
 
 Consider the website project in @fig-website-dir.
-The project root is `my-website/`: the top-level directory, defined by the presence of `_quarto.yml`.
+The project root is `my-website/`: the top-level directory, defined by the presence of `_quarto.yml` (@sec-project-root).
 To the right of each file, you'll see the URL at which the file will be available.
 
 ::: {#fig-website-dir}
@@ -196,7 +196,7 @@ Quarto handles the translation so that the link in the rendered `index.html` wil
 One advantage of using `.qmd` is that Quarto will complain if it can't find the document at the path you specified.
 
 In addition to relative links you can use absolute links.
-Absolute links start with slash (`/`) and are relative to the project root.
+Absolute links start with slash (`/`) and are relative to the project root (@sec-project-root).
 It's particularly important to use absolute links in content that may be reused via an `include` shortcode at various levels in your site.
 
 #### Linking to sections or IDs
