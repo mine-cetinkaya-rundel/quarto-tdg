@@ -417,7 +417,7 @@ The path to the image is relative to the current document.
 ## Project-relative paths
 
 If you preface the path with `/`, it is interpreted as a path relative to the project root.
-You'll learn more about project structure in @sec-projects.
+You'll learn more about the project root and project-relative paths in @sec-project-root.
 
 :::
 
@@ -1118,7 +1118,7 @@ Prefix files that contain content to include with an underscore (`_`), so that Q
 ## Project-relative paths
 
 If you preface the path with `/`, it is interpreted as a path relative to the project root.
-You'll learn more about project structure in @sec-projects.
+You'll learn more about the project root and project-relative paths in @sec-project-root.
 
 :::
 
