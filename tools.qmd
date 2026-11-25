@@ -119,12 +119,22 @@ After changing your Quarto version, restart Positron so the status bar updates.
 [MCR] Screenshot of the status bar showing the active Quarto version?
 :::
 
+### Creating documents
+
+To create a new Quarto document in Positron, use the File > New File... command and choose Quarto Document (`.qmd`), or run the New File command from the Command Palette.
+Positron opens a new untitled `.qmd` file in the Editor, ready for you to add a YAML header, text, and code cells.
+Save the file with a `.qmd` extension to enable Quarto features such as preview and completion.
+
+::: todo
+[MCR] Screenshot of the New File menu or picker with the Quarto Document option?
+:::
+
 ### Core features {#core-features-positron}
 
 Positron provides several features that make Quarto authoring efficient and productive.
 Here's an overview; the subsections that follow cover each in more depth:
 
-- Previewing: render `.qmd` files and view the result side by side with your source, using the Quarto: Preview command, the keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux), or the Preview button in the toolbar.
+- Previewing: render `.qmd` files and view the result side by side with your source, using the Quarto: Preview command, the keyboard shortcut ({{< kbd mac=Shift-Command-K >}} on macOS, {{< kbd win=Ctrl-Shift-K linux=Ctrl-Shift-K >}} on Windows/Linux), or the Preview button in the toolbar.
 
 - Dual editor modes: switch between source and visual editing (see [Visual editor](#visual-editor-positron)).
 
@@ -166,7 +176,7 @@ The typical workflow for authoring Quarto documents in Positron follows these st
 ### Visual editor {#visual-editor-positron}
 
 The dual editor modes noted above give you access to Positron's visual editor, a WYSIWYM ("what you see is what you mean") interface for editing Quarto markdown without working directly in the source.
-Use the Edit in Visual Mode / Edit in Source Mode commands or the keyboard shortcut (⇧⌘F4 on macOS, Ctrl+Shift+F4 on Windows/Linux) to switch between modes.
+Use the Edit in Visual Mode / Edit in Source Mode commands or the keyboard shortcut ({{< kbd mac=Shift-Command-F4 >}} on macOS, {{< kbd win=Ctrl-Shift-F4 linux=Ctrl-Shift-F4 >}} on Windows/Linux) to switch between modes.
 Beyond basic formatting, it supports many of Quarto's richer constructs, including tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX.
 The visual editor's support is still somewhat limited in Positron, though: it's a great fit for rich-text authoring, but running code and other language features aren't available in visual mode, so switch to source mode when you need them.
 We keep the coverage brief here and highlight visual-editor features throughout the book where they're relevant.
@@ -222,15 +232,15 @@ You can run the current cell, the next or previous cell, all cells, the cells ab
 
 | Command | macOS | Windows/Linux |
 |---|---|---|
-| Run Current Cell | ⇧⌘Enter | Ctrl+Shift+Enter |
-| Run Selected Line(s) | ⌘Enter | Ctrl+Enter |
-| Run Next Cell | ⌥⌘N | Ctrl+Alt+N |
-| Run Previous Cell | ⌥⌘P | Ctrl+Alt+P |
-| Run All Cells | ⌥⌘R | Ctrl+Alt+R |
-| Run Cells Above | ⇧⌥⌘P | Ctrl+Shift+Alt+P |
-| Run Cells Below | ⇧⌥⌘N | Ctrl+Shift+Alt+N |
+| Run Current Cell | {{< kbd mac=Shift-Command-Enter >}} | {{< kbd win=Ctrl-Shift-Enter linux=Ctrl-Shift-Enter >}} |
+| Run Selected Line(s) | {{< kbd mac=Command-Enter >}} | {{< kbd win=Ctrl-Enter linux=Ctrl-Enter >}} |
+| Run Next Cell | {{< kbd mac=Option-Command-N >}} | {{< kbd win=Ctrl-Alt-N linux=Ctrl-Alt-N >}} |
+| Run Previous Cell | {{< kbd mac=Option-Command-P >}} | {{< kbd win=Ctrl-Alt-P linux=Ctrl-Alt-P >}} |
+| Run All Cells | {{< kbd mac=Option-Command-R >}} | {{< kbd win=Ctrl-Alt-R linux=Ctrl-Alt-R >}} |
+| Run Cells Above | {{< kbd mac=Shift-Option-Command-P >}} | {{< kbd win=Ctrl-Shift-Alt-P linux=Ctrl-Shift-Alt-P >}} |
+| Run Cells Below | {{< kbd mac=Shift-Option-Command-N >}} | {{< kbd win=Ctrl-Shift-Alt-N linux=Ctrl-Shift-Alt-N >}} |
 
-You can insert a new code cell with ⇧⌘I (Ctrl+Shift+I on Windows/Linux).
+You can insert a new code cell with {{< kbd mac=Shift-Command-I >}} ({{< kbd win=Ctrl-Shift-I linux=Ctrl-Shift-I >}} on Windows/Linux).
 Completion and execution for R and Python cells is built-in to Positron.
 
 ### Inline output {#inline-output-positron}
@@ -260,7 +270,7 @@ It shows a preview of LaTeX math as you edit an equation, and a thumbnail previe
 ### Live preview
 
 When you're writing LaTeX math or a Mermaid or Graphviz diagram, you can open a live preview that re-renders automatically as you type.
-Click the Preview button above the code block, or use the ⇧⌘L shortcut (Ctrl+Shift+L on Windows/Linux).
+Click the Preview button above the code block, or use the {{< kbd mac=Shift-Command-L >}} shortcut ({{< kbd win=Ctrl-Shift-L linux=Ctrl-Shift-L >}} on Windows/Linux).
 The preview appears in the Quarto assist panel alongside your document, so you can catch mistakes in an equation or diagram without rendering the whole file.
 
 ::: todo
@@ -269,7 +279,7 @@ The preview appears in the Quarto assist panel alongside your document, so you c
 
 ### Previewing and rendering other formats {#previewing-and-rendering-other-formats-positron}
 
-The Quarto: Preview command renders and previews your document's *default* format.
+The **Quarto: Preview** command renders and previews your document's *default* format.
 To preview a different format, use the Quarto: Preview Format command, which offers a list of formats to choose from—those declared in the document plus standard options like PDF and MS Word.
 After you preview a different format, Quarto: Preview and its keyboard shortcut rebind to that format for the duration of the preview; run Quarto: Preview Format again to switch back.
 
@@ -279,6 +289,7 @@ For Word and other formats, Positron renders the file, but you'll open it in an 
 Because preview renders only one format at a time, use the Quarto: Render Document command when a document declares multiple formats and you want to produce all of them.
 This command lets you render all declared formats at once, or selectively render any declared or standard format, such as PDF or MS Word.
 Completion and execution for R and Python cells is built-in to Positron. To add completion and execution for Julia, install the Julia extension.
+
 ::: todo
 [MCR] Screenshot of the Preview Format quick pick?
 :::
@@ -321,7 +332,7 @@ Positron provides several additional features and tools that enhance your Quarto
 [MCR] Screenshot of outline panel? Also, is it called panel?
 :::
 
-- Insert common code patterns quickly with built-in code snippets
+- Insert common code patterns quickly with built-in code snippets using the **Snippets: Insert Snippet** command.
 
 ::: todo
 [MCR] Screenshot of adding columns to slides maybe?
@@ -359,7 +370,7 @@ This opens the New Quarto Document dialog, where you can give the document a tit
 Like Positron, RStudio provides several features that make Quarto authoring efficient and productive.
 Here's an overview; the subsections that follow cover each in more depth:
 
-- Rendering and preview: render `.qmd` files to HTML, PDF, Word, or other formats with the Render button or the keyboard shortcut (⇧⌘K on macOS, Ctrl+Shift+K on Windows/Linux).
+- Rendering and preview: render `.qmd` files to HTML, PDF, Word, or other formats with the Render button or the keyboard shortcut ({{< kbd mac=Shift-Command-K >}} on macOS, {{< kbd win=Ctrl-Shift-K linux=Ctrl-Shift-K >}} on Windows/Linux).
 
 - Dual editor modes: switch between source and visual editing.
 
@@ -369,13 +380,17 @@ Here's an overview; the subsections that follow cover each in more depth:
 
 ### Basic workflow {#basic-workflow-rstudio}
 
-The authoring loop in RStudio mirrors the one described for Positron above: create or open a `.qmd` file, click the Render button (or press ⇧⌘K / Ctrl+Shift+K) to preview the output, then iterate as you edit.
+The authoring loop in RStudio mirrors the one described for Positron above: create or open a `.qmd` file, click the Render button (or press {{< kbd mac=Shift-Command-K >}} / {{< kbd win=Ctrl-Shift-K linux=Ctrl-Shift-K >}}) to preview the output, then iterate as you edit.
 You can enable Render on Save so the preview refreshes automatically, and run individual code cells as you go rather than rendering the whole document each time.
+
+::: callout-note
+RStudio's Render button actually calls `quarto preview`.
+:::
 
 ### Visual editor {#visual-editor-rstudio}
 
 RStudio pioneered the visual editor that Positron later inherited, so the experience described in @sec-positron largely carries over: a WYSIWYM interface covering tables, citations, cross-references, footnotes, divs and spans, definition lists, attributes, and raw HTML or LaTeX.
-Switch between source and visual modes with the buttons in the editor toolbar or the keyboard shortcut (⇧⌘F4 on macOS, Ctrl+Shift+F4 on Windows/Linux).
+Switch between source and visual modes with the buttons in the editor toolbar or the keyboard shortcut ({{< kbd mac=Shift-Command-F4 >}} on macOS, {{< kbd win=Ctrl-Shift-F4 linux=Ctrl-Shift-F4 >}} on Windows/Linux).
 
 ::: todo
 [MCR] Screenshot of the RStudio visual editor.
@@ -384,7 +399,7 @@ Switch between source and visual modes with the buttons in the editor toolbar or
 ### Running code cells {#running-code-cells-rstudio}
 
 As in Positron, you can execute code cells interactively rather than rendering the whole document.
-Each cell has a Run button in its top-right corner, and ⇧⌘Enter (Ctrl+Shift+Enter on Windows/Linux) runs the current cell, with additional commands to run the next cell or all cells above or below.
+Each cell has a Run button in its top-right corner, and {{< kbd mac=Shift-Command-Enter >}} ({{< kbd win=Ctrl-Shift-Enter linux=Ctrl-Shift-Enter >}} on Windows/Linux) runs the current cell, with additional commands to run the next cell or all cells above or below.
 
 ::: todo
 [MCR] Confirm RStudio's default cell-execution shortcuts against the current keyboard shortcut reference.
@@ -484,8 +499,7 @@ VS Code is particularly popular among Python developers and those who work acros
 
 To get started with VS Code, first install VS Code from [code.visualstudio.com](https://code.visualstudio.com). Then install the Quarto CLI from [quarto.org](https://quarto.org/docs/get-started/) and the Quarto extension from the VS Code Marketplace.
 
-Similar to Positron and RStudio, you can preview documents with the keyboard shortcut ⇧⌘K (Ctrl+Shift+K on Windows/Linux) and run individual code cells with ⇧⌘Enter (Ctrl+Shift+Enter on Windows/Linux).
-
+Similar to Positron and RStudio, you can preview documents with the keyboard shortcut {{< kbd mac=Shift-Command-K >}} ({{< kbd win=Ctrl-Shift-K linux=Ctrl-Shift-K >}} on Windows/Linux) and run individual code cells with {{< kbd mac=Shift-Command-Enter >}} ({{< kbd win=Ctrl-Shift-Enter linux=Ctrl-Shift-Enter >}} on Windows/Linux).
 ### JupyterLab
 
 If you're already working with Jupyter notebooks (`.ipynb` files), you can use Quarto to render them to various output formats.
