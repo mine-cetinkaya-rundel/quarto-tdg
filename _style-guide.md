@@ -38,6 +38,9 @@ This style guide summarizes the writing conventions and Quarto syntax patterns u
 4. **Practical examples**: Include concrete, working examples throughout
 
 #### Section Headings
+- Use sentence case for chapter, section and callout headings: capitalize only the first word and proper nouns (e.g., "Create a project", "What is a Quarto project?", "Wrapping up")
+  - Keep proper nouns and product names capitalized as usual (Quarto, RStudio, Positron, Git)
+  - Keep code, file names and options in backticks exactly as written (e.g., "Project configuration --- `_quarto.yml`")
 - Use descriptive, action-oriented headings
 - Include cross-reference identifiers for major sections
 - Maintain consistent heading hierarchy (don't skip levels)
