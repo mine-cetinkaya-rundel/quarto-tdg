@@ -187,7 +187,7 @@ Editing an `.ipynb` for Quarto differs from a `.qmd` file in a few ways:
 
 - Markdown cells accept any valid Quarto markdown, including features such as cross-references.
 
-- Cell options use the same `#|` comment prefix as `.qmd` files and must appear at the very start of the cell.
+- Code cell options use the same `#|` comment prefix as `.qmd` files and must appear at the very start of the cell.
 
 Rendering and preview work just as they do for `.qmd` files: run the Quarto: Preview command once, and the preview refreshes each time you save.
 One key difference is execution—`.qmd` files are always executed when rendered, but when rendering an `.ipynb`, Quarto does *not* run the cells by default, assuming you've already executed them while editing.
