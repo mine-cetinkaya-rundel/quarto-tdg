@@ -1,6 +1,6 @@
 # Your Quarto workflow {#sec-tools}
 
-In this chapter, you’ll learn how to render and preview Quarto documents from the command line, how Quarto executes R and Python code, how Positron and RStudio support interactive authoring, and how to choose the right tool for your workflow.
+In this chapter, you’ll learn how Quarto documents are structured, how to render and preview them from the command line, how Positron and RStudio support interactive authoring, and how to choose the right tool for your workflow.
 We detail how to use Positron and RStudio with Quarto, as well as briefly introduce other tools you might use for Quarto authoring.
 We spend more time on Positron than on RStudio because RStudio's Quarto support is mature and well documented elsewhere, whereas Positron is newer and its Quarto features are less widely covered.
 
@@ -22,7 +22,7 @@ We will focus on the first two components, the YAML header and markdown text, be
 
 Before diving into specific IDEs, let's start with the fundamentals: the Quarto Command Line Interface (CLI).
 The Quarto CLI is the core tool that powers all Quarto rendering.
-You can run Quarto CLI commands in any standard Terminal application as well as in the Terminal pane in RStudio or Positron.
+You can run Quarto CLI commands in any standard Terminal application as well as in the Terminal tab in RStudio or the Terminal panel in Positron.
 
 The most fundamental Quarto command is `quarto render`, which converts your Quarto document into the desired output format.
 Quarto uses the term render to describe the process of taking this source document and producing a new file that combines the output from the executed code cells with the Markdown.
@@ -109,7 +109,7 @@ Positron's Quarto support comes from the bundled Quarto extension, which is incl
 
 Positron ships with its own copy of the Quarto CLI, but you aren't locked into it.
 If you'd prefer to use a version of Quarto that you've installed yourself—say, to match the version your project uses elsewhere—that generally works automatically.
-When you need finer control over exactly which Quarto is used, set the ⚙️ **Quarto: Path** setting to point at the installation you want.
+When you need finer control over exactly which Quarto is used, set the ⚙️ [**Quarto: Path**](https://positron.posit.co/quarto.html#managing-quarto-installations) setting (`quarto.path`) to point at the installation you want.
 You can do this at the user or workspace level.
 
 To see which version is currently active, check Positron's bottom status bar.
@@ -166,7 +166,7 @@ Note that for executing code cells in Quarto documents in Positron, you'll need 
 
 The typical workflow for authoring Quarto documents in Positron follows these steps:
 
-1. Create or open a `.qmd` file in the Editor pane.
+1. Create or open a `.qmd` file in the Editor.
 2. Preview your document by executing the **Quarto: Preview** command to render and display the output.
 3. Iterate on your content by making edits and re-running the preview. You can optionally enable the **Render on Save** checkbox to automatically update the preview whenever you save your file.
 4. Execute code interactively by running individual code cells using the **Run Cell** button, which allows you to test your code without rendering the entire document.
@@ -247,8 +247,8 @@ To add completion and execution for Julia, install the Julia extension.
 ### Inline output {#inline-output-positron}
 
 By default, running a code cell sends it to the Console, as described above.
-Positron can instead display cell output *inline*, directly beneath each cell in the source editor—much like a Jupyter notebook or RStudio's R Notebooks.
-To use this feature, you must first enable it in your user or workspace settings.
+Positron can instead display cell output *inline*, directly beneath each cell in the Editor—much like a Jupyter notebook or RStudio's R Notebooks.
+To use this feature, you must first turn on the ⚙️ [**Quarto > Inline Output: Enabled**](https://positron.posit.co/quarto-inline-output.html) setting (`quarto.inlineOutput.enabled`) in your user or workspace settings.
 
 Turning on inline output also changes the execution model.
 Rather than sharing a single Console across every document, Positron gives each `.qmd` file its own isolated R or Python session.
@@ -297,10 +297,10 @@ This command lets you render all declared formats at once, or selectively render
 ### Render on Save {#render-on-save-positron}
 
 By default, Positron does not re-render your document every time you save—rendering can be slow if it involves long-running computations, and it's useful to be able to save freely without triggering a full render.
-When you do want automatic rendering, you have three ways to enable Render on Save:
+When you do want automatic rendering, you have three ways to enable **Render on Save**:
 
-1. Check the **Render on Save** checkbox in the editor toolbar for the current document.
-2. Search for `quarto.render` in settings and enable the ⚙️ **Quarto > Render: Render on Save** setting to make it the default for all documents.
+1. Check the **Render on Save** checkbox in the Editor toolbar for the current document.
+2. Search for `quarto.render` in settings and enable the ⚙️ [**Quarto > Render: Render on Save**](https://quarto.org/docs/tools/positron/index.html#render-on-save) setting to make it the default for all documents.
 3. Set the `editor` option in your front matter (or project `_quarto.yml`), which overrides the Positron setting:
 
 ```yaml
@@ -308,13 +308,13 @@ editor:
   render-on-save: true
 ```
 
-With Render on Save enabled, the preview refreshes automatically each time you save.
+With **Render on Save** enabled, the preview refreshes automatically each time you save.
 
 ### External preview {#external-preview-positron}
 
 By default, the rendered preview opens in a side-by-side panel inside Positron.
-If you'd rather preview in an external browser—or suppress the automatic preview entirely—change the ⚙️ **Quarto > Render: Preview Type** setting.
-Search for `quarto preview type` in user or workspace settings to find it, which offers three choices: `internal` (the default side-by-side panel), `external` (open in your default browser), and `none` (render without opening a preview).
+If you'd rather preview in an external browser—or suppress the automatic preview entirely—change the ⚙️ [**Quarto > Render: Preview Type**](https://quarto.org/docs/tools/positron/index.html#external-preview) setting.
+Search for `quarto preview type` in user or workspace settings to find the setting, which offers three choices: `internal` (the default side-by-side panel), `external` (open in your default browser), and `none` (render without opening a preview).
 
 ::: todo
 [MCR] Screenshot of the Preview Type setting dropdown?
@@ -358,7 +358,7 @@ Also make sure that you have R installed on your system, which you can get from 
 
 ### Creating documents {#creating-documents-rstudio}
 
-To create a new Quarto document in RStudio, use the File > New File > Quarto Document… command.
+To create a new Quarto document in RStudio, use the **File > New File > Quarto Document…** menu.
 This opens the New Quarto Document dialog, where you can give the document a title and author and choose a default output format before RStudio creates a ready-to-edit `.qmd` file.
 
 ::: todo
@@ -443,7 +443,7 @@ You can change where previews appear—for example, opening them in a separate w
 
 ### Projects {#projects-rstudio}
 
-To create a project for a Quarto document or a set of related documents, use the File > New Project… command, choose New Directory, and then select Quarto Project.
+To create a project for a Quarto document or a set of related documents, use the **File > New Project…** menu, choose **New Directory**, and then select **Quarto Project**.
 
 The New Project wizard can create plain document projects as well as websites and books.
 It also provides options to initialize a [git](https://git-scm.com/) repository and set up an [renv](https://rstudio.github.io/renv/) environment, which help make your project reproducible from the start.
@@ -451,17 +451,6 @@ It also provides options to initialize a [git](https://git-scm.com/) repository 
 ::: todo
 [MCR] Screenshot of the Create Quarto Project wizard?
 :::
-
-### Python environments {#python-environments-rstudio}
-
-You can author Quarto documents that use the Jupyter engine in RStudio, for example to execute Python code.
-To work within a Python virtual environment (venv), use the File > New Project… command, choose the Jupyter engine, and specify the packages you'd like to seed the environment with.
-RStudio then activates this environment automatically whenever you open the project.
-You can install additional packages later from the RStudio Terminal tab, for example:
-
-```bash
-python3 -m pip install scikit-learn
-```
 
 ### YAML intelligence {#yaml-intelligence-rstudio}
 
@@ -540,7 +529,7 @@ The best tool for Quarto authoring depends on your specific needs and existing w
 
 - If you prefer keyboard-driven, terminal-based workflows, editors like Neovim or Vim can be configured to work effectively with Quarto.
 
-Whichever editor you choose, the core Quarto workflow is the same: write plain-text source, preview as you develop, render to produce the final output, and use projects/environments to make the work reproducible.
+Whichever editor you choose, the core Quarto workflow is the same: write plain-text source, preview as you develop, render to produce the final output, and use projects to make the work reproducible.
 
 ::: todo
 [MCR] Try all shortcuts with default settings before finalizing.
