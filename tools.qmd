@@ -134,7 +134,7 @@ Save the file with a `.qmd` extension to enable Quarto features such as preview 
 Positron provides several features that make Quarto authoring efficient and productive.
 Here's an overview; the subsections that follow cover each in more depth:
 
-- Previewing: render `.qmd` files and view the result side by side with your source, using the Quarto: Preview command, the keyboard shortcut ({{< kbd mac=Shift-Command-K >}} on macOS, {{< kbd win=Ctrl-Shift-K linux=Ctrl-Shift-K >}} on Windows/Linux), or the Preview button in the toolbar.
+- Previewing: render `.qmd` files and view the result side by side with your source, using the **Quarto: Preview command**, the keyboard shortcut ({{< kbd mac=Shift-Command-K >}} on macOS, {{< kbd win=Ctrl-Shift-K linux=Ctrl-Shift-K >}} on Windows/Linux), or the **Preview** button in the toolbar.
 
 - Dual editor modes: switch between source and visual editing (see [Visual editor](#visual-editor-positron)).
 
@@ -167,8 +167,8 @@ Note that for executing code cells in Quarto documents in Positron, you'll need 
 The typical workflow for authoring Quarto documents in Positron follows these steps:
 
 1. Create or open a `.qmd` file in the Editor pane.
-2. Preview your document by executing the Quarto: Preview command to render and display the output.
-3. Iterate on your content by making edits and re-running the preview. You can optionally enable *Render on Save* to automatically update the preview whenever you save your file.
+2. Preview your document by executing the **Quarto: Preview** command to render and display the output.
+3. Iterate on your content by making edits and re-running the preview. You can optionally enable **Render on Save** by checking the box next to it to automatically update the preview whenever you save your file.
 4. Execute code interactively by running individual code cells using the Run Cell button, which allows you to test your code without rendering the entire document.
 
 ![](images/tools-positron-hello-python.png){fig-alt="Positron with a Quarto document titled 'Penguins, meet Quarto!' open on the left side and the rendered version of the document on the right side."}
@@ -500,12 +500,15 @@ VS Code is particularly popular among Python developers and those who work acros
 To get started with VS Code, first install VS Code from [code.visualstudio.com](https://code.visualstudio.com). Then install the Quarto CLI from [quarto.org](https://quarto.org/docs/get-started/) and the Quarto extension from the VS Code Marketplace.
 
 Similar to Positron and RStudio, you can preview documents with the keyboard shortcut {{< kbd mac=Shift-Command-K >}} ({{< kbd win=Ctrl-Shift-K linux=Ctrl-Shift-K >}} on Windows/Linux) and run individual code cells with {{< kbd mac=Shift-Command-Enter >}} ({{< kbd win=Ctrl-Shift-Enter linux=Ctrl-Shift-Enter >}} on Windows/Linux).
+
 ### JupyterLab
 
 If you're already working with Jupyter notebooks (`.ipynb` files), you can use Quarto to render them to various output formats.
 JupyterLab provides an interactive environment for working with notebooks, and the Quarto CLI can render these notebooks just as it renders `.qmd` files.
 
 You can also work with `.qmd` files directly in JupyterLab by installing the Quarto extension, which offers preview and rendering capabilities within the JupyterLab interface.
+
+To learn more about using Quarto with JupyterLab, refer to the Quarto documentation at <https://quarto.org/docs/jupyter>.
 
 ### Neovim and Vim
 
