@@ -177,7 +177,8 @@ We keep the coverage brief here and highlight visual-editor features throughout 
 
 ### Editing notebooks
 
-In addition to the source and visual editors for `.qmd` files, Positron includes a Notebook Editor for authoring Jupyter notebooks (`.ipynb`) that are rendered with Quarto.
+In addition to the source and visual editors for `.qmd` files, Positron includes a Notebook Editor for authoring Jupyter notebooks (`.ipynb`).
+You can render Jupyter notebooks with Quarto just like you can `.qmd` files.
 This is a natural fit if you already work in notebooks or prefer a cell-based interface.
 
 Editing an `.ipynb` for Quarto differs from a `.qmd` file in a few ways:
