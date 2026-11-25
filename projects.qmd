@@ -20,11 +20,11 @@ show_tree <- function(dir, ...) {
 So far, we've concentrated on single Quarto documents: a single `.qmd` which defines all of its Quarto options in its header.
 In this chapter, you'll learn about Quarto projects: a way to organize collections of Quarto documents.
 
-You'll start by learning what a Quarto project is (@sec-overview), and how to create one or turn an existing folder into one.
+You'll start by learning what a Quarto project is (@sec-overview), how to create one or turn an existing folder into one, and how the project root affects the paths you write (@sec-project-root).
 You'll then see how working with a project differs from working with single files, and how to render all or part of a project (@sec-render-a-project).
 Finally, you'll learn how to set project-level options (@sec-project-options) and common metadata shared by the documents in the project (@sec-common-metadata).
 
-## What is a Quarto Project? {#sec-overview}
+## What is a Quarto project? {#sec-overview}
 
 From a technical perspective, a Quarto project is simply a folder that contains the file `_quarto.yml`.
 From a practical perspective, using a Quarto project has two benefits:
@@ -103,14 +103,14 @@ You'll learn about a few more project-level options in @sec-project-options and 
 
 ::: {.callout-tip}
 
-## RStudio Projects
+## RStudio projects
 
 The file that identifies a folder as a Quarto project, `_quarto.yml`, is distinct from the file that identifies a folder as an RStudio project, `folder_name.Rproj`. 
 However, in practice the concept of what makes a folder a "project" is the same, and folders are often both a Quarto project and RStudio project, and include both files.
 
 :::
 
-## Create a Project
+## Create a project
 
 You've already seen how you can create a project in an existing directory by adding the file `_quarto.yml`. 
 You can also create a project in a new directory using the `quarto create` command:
@@ -143,15 +143,63 @@ writeLines(lines)
 cat('```\n')
 ```
 
+## The project root {#sec-project-root}
+
+The folder that contains `_quarto.yml` is the **project root**.
+For `ds-project`, the project root is the `ds-project/` folder.
+The project root is the starting point for project-relative paths.
+
 ::: {.callout-caution}
 
 ## Don't nest `_quarto.yml` files
 
-Each project should have one, and only one, `_quarto.yml` file. Its location defines the project root for the purpose of `quarto render` and you are likely to get unexpected behaviour if you have a `_quarto.yml` file in a subfolder.
+Each project should have one, and only one, `_quarto.yml` file. Its location defines the project root for the purpose of `quarto render` and you are likely to get unexpected behavior if you have a `_quarto.yml` file in a subfolder.
 
 :::
 
-## Render and Preview a Project {#sec-render-a-project}
+Suppose `ds-project` also has a document in the `data/` folder and a logo in an `images/` folder (@fig-dir-root).
+
+::: {#fig-dir-root}
+
+```{.dir-str}
+ds-project/
+├── _quarto.yml
+├── 01-import.qmd
+├── 02-visualize.qmd
+├── data/
+│   ├── provenance.qmd
+│   └── records.csv
+└── images/
+    └── logo.png
+```
+
+The `ds-project` folder with a document, `data/provenance.qmd`, in a subfolder.
+
+:::
+
+Paths in a document, like the path to an image, are relative to that document.
+So, to include the logo in `provenance.qmd`, you step up out of `data/` with `../`:
+
+```{.markdown filename="data/provenance.qmd"}
+![](../images/logo.png){fig-alt="The project logo."}
+```
+
+If you start a path with `/`, it's relative to the project root instead:
+
+```{.markdown filename="data/provenance.qmd"}
+![](/images/logo.png){fig-alt="The project logo."}
+```
+
+The path `/images/logo.png` refers to the same file from any document in the project, so it still works if you move the document, or reuse the line with the include shortcode (@sec-includes).
+
+You can use `/` in links too, but in a `default` project a link to another Quarto document, like `/01-import.qmd`, points at the source file, not the rendered `01-import.html`.
+Links between rendered documents are a feature of websites (@sec-websites-links).
+
+Avoid paths that go up out of the project folder, like `../../shared/logo.png` from `data/provenance.qmd`, which points to a `shared/` folder next to `ds-project/`.
+They break when someone else renders the project, or when you move the project.
+Instead, copy the file into the project.
+
+## Render and preview a project {#sec-render-a-project}
 
 From the project directory, you can render all of the files in the project by rendering without specifying a file:
 
@@ -195,7 +243,7 @@ quarto preview index.qmd
 Quarto will render just enough of the project to display the requested document and open a preview. 
 As you interact with the preview, e.g. follow a link in one document to another, Quarto will render any additional files as needed.
 
-## Project Configuration --- `_quarto.yml`
+## Project configuration --- `_quarto.yml`
 
 The file `_quarto.yml` provides project configuration. Typically it will include project-level options, project options specific to the project type, and document-level options common to documents in the project.
 
@@ -210,8 +258,7 @@ website:                         #<2>
   navbar:                        #<2>
     search: true                 #<2>
 
-execute:                         #<3>
-  echo: false                    #<3>
+echo: false                      #<3>
 
 format:                          #<3>
   html:                          #<3>
@@ -223,7 +270,7 @@ format:                          #<3>
 
 If you are curious what a more complicated `_quarto.yml` might look like, you could look at the [`_quarto.yml` file on GitHub](https://github.com/mine-cetinkaya-rundel/quarto-tdg/blob/main/_quarto.yml) for the project that builds this book.
 
-### Project Level Options {#sec-project-options}
+### Project level options {#sec-project-options}
 
 Project level options are set under the `project` key. You've already seen projects might have a `type` and `title`. 
 
@@ -295,7 +342,7 @@ website:
     search: true
 ```
 
-### Common Metadata {#sec-common-metadata}
+### Common metadata {#sec-common-metadata}
 
 Document options, like those you normally set in a YAML header, can also be set in `_quarto.yml`. 
 Options set in `_quarto.yml` will be applied to all Quarto files in the project, and reduce repetition by specifying common options in a single location.
@@ -395,7 +442,7 @@ If you would like to specify common metadata for documents inside a sub-director
 
 Using `_quarto.yml` can help reduce duplication in the metadata of your documents, but once you have related documents in a project, you often also find you have duplicated content. You can reduce duplication of content by using the include shortcode described in @sec-includes.
 
-#### Multiple Formats
+#### Multiple formats
 
 You can set defaults for more than one format in `_quarto.yml` by nesting them under `format`:
 
@@ -487,7 +534,7 @@ Since `.qmd` files are plain text, they are ideal for storing in a version contr
 A common approach is to have a Git repository for each Quarto project, and to commit all source files (`.qmd`, `_quarto.yml`, images, etc.).
 Sharing your source then becomes as easy as hosting the repository on something like GitHub, GitLab or BitBucket.
 
-We'll point out certain files or folders you may, or may not, want to commit as we introduce them.
+We point out certain files or folders you may, or may not, want to commit as we introduce them.
 However, we list a few items common to most projects in the sections below.
 
 ### `.gitignore`
@@ -499,7 +546,7 @@ You should generally commit any changes Quarto makes to `.gitignore`.
 
 ### Output files and directories
 
-In general, you don't need to commit rendered document files or the output directory (e.g. `_site/` for websites, `_book/` for books, `_manuscript` for manuscripts, or the value of `output-dir`) because they can always be recreated by rendering them.
+In general, you don't need to commit rendered document files or the output directory (e.g. `_site/` for websites, `_book/` for books, `_manuscript/` for manuscripts, or the value of `output-dir/`) because they can always be recreated by rendering them.
 However, there are some circumstances it makes sense to commit them:
 
 -   You are producing stand-alone files and the hosted repo is the venue for sharing them.
@@ -514,13 +561,13 @@ You can read more about them for your tool in this section.
 
 ### RStudio
 
-#### Creating a Project
+#### Creating a project
 
 You can create a new project in RStudio using **File** > **New Project**. Select to create a project in a **New Directory** then select **Quarto Project**. 
 
 ![New Project dialog in RStudio. Quarto project options include Quarto Project, Quarto Website, Quarto Blog and Quarto Book.](images/projects-rstudio-new.png){fig-alt="A screenshot of the new project dialog in RStudio."}
 
-#### Rendering a Project
+#### Rendering a project
 
 RStudio will detect when an RStudio project is also a Quarto project and display a **Build** pane. The **Render** button in this pane will render the entire project. You can also access this command via the shortcut {{< kbd mac=Shift-Command-B win=Shift-Control-B linux=Shift-Control-B >}}. 
 
@@ -532,7 +579,7 @@ If you add `_quarto.yml` to an existing RStudio project, you may need to close a
 
 :::
 
-#### Previewing a Document
+#### Previewing a document
 
 If you have a document in your project open in the Editor window you can use the usual Render button (or shortcut) to preview the document. This command is equivalent to running:
 
@@ -544,21 +591,21 @@ This is useful when you are editing the file, but it is not equivalent to render
 
 #### Publishing
 
-In RStudio when you have a Quarto document or project open, you'll see a **Publish** ![](https://docs.posit.co/connect/user/images/publishIcon_2x.png){width="32" fig-alt="RStudio's Publish icon"} button in the Editor.
-This button can facilitate publishing to RPubs, Posit Connect and Posit Cloud.
-Behind the scenes, this button uses the rsconnect R package rather than `quarto publish`. If you use RStudio and are publishing to one of RPubs, Posit Connect or Posit Cloud we recommend reading the RStudio documentation on Publishing (<https://docs.posit.co/ide/user/ide/guide/publish/publishing.html>).
+In RStudio when you have a Quarto document or project open, you'll see a **Publish** ![](https://docs.posit.co/connect/user/images/publishIcon_2x.png){width="32" fig-alt=""} button in the Editor.
+This button can facilitate publishing to Posit Connect and Posit Connect Cloud.
+Behind the scenes, this button uses the rsconnect R package rather than `quarto publish`. If you use RStudio and are publishing to Posit Connect or Posit Connect Cloud we recommend reading the [RStudio documentation on Publishing](https://docs.posit.co/ide/user/ide/guide/publish/publishing.html).
 
-### VS Code w/ Quarto Extension
+### Positron 
 
-#### Creating a Project
+#### Creating a project
 
 You can create a new project with the **Quarto: Create Project** command. You will be prompted for a type, location and directory name. 
 
-#### Rendering a Project
+#### Rendering a project
 
 Render your entire project with the **Quarto: Render Project** command.
 
-#### Previewing a Document
+#### Previewing a document
 
 If you have a document in your project open, you can use the usual Preview button, shortcut or **Quarto: Preview** command to preview the document. This is useful when you are editing the file, but it is not equivalent to rendering the project. In particular, it won't render all formats, nor render other files unless they are explicitly needed. 
 
