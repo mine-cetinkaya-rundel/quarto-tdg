@@ -85,7 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-926b22b37253dc75f456d1968459d318.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -511,7 +511,7 @@ Figure&nbsp;14.1: The contents of <code>_site/</code> for a minimal Quarto websi
 <section id="file-structure-translates-to-url-structure" class="level3" data-number="14.3.1">
 <h3 data-number="14.3.1" class="anchored" data-anchor-id="file-structure-translates-to-url-structure"><span class="header-section-number">14.3.1</span> File structure translates to URL structure</h3>
 <p>The structure of your files in your project directly translates to their structure in <code>site/</code>, and consequently, to where your pages will be available on your website.</p>
-<p>Consider the website project in <a href="#fig-website-dir" class="quarto-xref">Figure&nbsp;<span>14.2</span></a>. The project root is <code>my-website/</code>: the top-level directory, defined by the presence of <code>_quarto.yml</code>. To the right of each file, you’ll see the URL at which the file will be available.</p>
+<p>Consider the website project in <a href="#fig-website-dir" class="quarto-xref">Figure&nbsp;<span>14.2</span></a>. The project root is <code>my-website/</code>: the top-level directory, defined by the presence of <code>_quarto.yml</code> (<a href="projects.html#sec-project-root" class="quarto-xref"><span>Section 13.3</span></a>). To the right of each file, you’ll see the URL at which the file will be available.</p>
 <div id="fig-website-dir" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-website-dir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -614,7 +614,7 @@ Table&nbsp;14.1: In-text link syntax
 </div>
 <p>This is an example of a relative link—it uses the path relevant to the document in which it is located. In this case, the result is a link to <code>about.html</code> located at the same level in <code>_site/</code> as <code>index.html</code>.</p>
 <p>Notice that the link used the extension <code>.qmd</code>. Quarto handles the translation so that the link in the rendered <code>index.html</code> will point correctly at <code>about.html</code>. One advantage of using <code>.qmd</code> is that Quarto will complain if it can’t find the document at the path you specified.</p>
-<p>In addition to relative links you can use absolute links. Absolute links start with slash (<code>/</code>) and are relative to the project root. It’s particularly important to use absolute links in content that may be reused via an <code>include</code> shortcode at various levels in your site.</p>
+<p>In addition to relative links you can use absolute links. Absolute links start with slash (<code>/</code>) and are relative to the project root (<a href="projects.html#sec-project-root" class="quarto-xref"><span>Section 13.3</span></a>). It’s particularly important to use absolute links in content that may be reused via an <code>include</code> shortcode at various levels in your site.</p>
 </section>
 <section id="linking-to-sections-or-ids" class="level4" data-number="14.3.2.2">
 <h4 data-number="14.3.2.2" class="anchored" data-anchor-id="linking-to-sections-or-ids"><span class="header-section-number">14.3.2.2</span> Linking to sections or IDs</h4>
@@ -658,7 +658,7 @@ Table&nbsp;14.1: In-text link syntax
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or for elements that are created inline add a anchor in the curly braces following the element. For example, to an image:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Caption](image.png)</span>{#my-figure}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You might recognize that this is very similar to adding a cross-reference, except we didn’t start the identifier with one of the <a href="https://quarto.org/docs/authoring/cross-references.html#reserved-prefixes">recognized cross-reference prefixes</a>.</p>
+<p>You might recognize that this is very similar to adding a cross-reference, except we didn’t start the identifier with one of the <a href="https://quarto.org/docs/authoring/cross-references.html#reserved-prefixes" class="quarto-docs"><span class="docs-lead">recognized</span> cross-reference prefixes</a>.</p>
 </section>
 <section id="external-links" class="level4" data-number="14.3.2.3">
 <h4 data-number="14.3.2.3" class="anchored" data-anchor-id="external-links"><span class="header-section-number">14.3.2.3</span> External Links</h4>
@@ -668,7 +668,7 @@ Table&nbsp;14.1: In-text link syntax
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Quarto website links</span><span class="co">](https://quarto.org/docs/websites/#linking)</span>{.external}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can additionally supply other attributes to include in the link in the curly braces. For example you might add <code>target="_blank"</code> to open the link in a new tab or window:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Quarto website links</span><span class="co">](https://quarto.org/docs/websites/#linking)</span>{.external target="_blank"}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You can learn more about <a href="https://quarto.org/docs/output-formats/html-basics.html#external-links">external links in the Quarto documentation</a>.</p>
+<p>You can learn more about <a href="https://quarto.org/docs/output-formats/html-basics.html#external-links" class="quarto-docs"><span class="docs-lead">external</span> links in the Quarto documentation</a>.</p>
 </section>
 </section>
 <section id="cross-references" class="level3" data-number="14.3.3">
@@ -849,7 +849,7 @@ Figure&nbsp;14.4: Configuration for navigation with a single navigation item lin
 <div id="tbl-nav-item" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-nav-item-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14.2: Properties of navigation items. Source: <a href="https://quarto.org/docs/reference/projects/websites.html#nav-items">Quarto documentation</a>
+Table&nbsp;14.2: Properties of navigation items. Source: <a href="https://quarto.org/docs/reference/projects/websites.html#nav-items" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation</a>
 </figcaption>
 <div aria-describedby="tbl-nav-item-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -976,7 +976,7 @@ Table&nbsp;14.3: Content options for <code>navbar</code>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>search</code></td>
-<td style="text-align: left;">By default a search box will be shown in the navigation bar. You can omit the search box by setting <code>search: false</code>. To control the search options, use the <code>search</code> option at the <code>website</code> level, see <a href="https://quarto.org/docs/websites/website-search.html">Website Search in the Quarto Documentation</a> for more details.</td>
+<td style="text-align: left;">By default a search box will be shown in the navigation bar. You can omit the search box by setting <code>search: false</code>. To control the search options, use the <code>search</code> option at the <code>website</code> level, see <a href="https://quarto.org/docs/websites/website-search.html" class="quarto-docs"><span class="docs-lead">Website</span> Search in the Quarto Documentation</a> for more details.</td>
 </tr>
 </tbody>
 </table>
@@ -1361,7 +1361,7 @@ Figure&nbsp;14.11: Automatically generated side navigation bar for the project s
 </div>
 </div>
 </div>
-<p>You can also generate <em>parts</em> of your navigation automatically, by specifying a directory name or glob pattern. See the <a href="https://quarto.org/docs/websites/website-navigation.html#auto-generation">Quarto documentation on Auto Generation</a> for more examples.</p>
+<p>You can also generate <em>parts</em> of your navigation automatically, by specifying a directory name or glob pattern. See the <a href="https://quarto.org/docs/websites/website-navigation.html#auto-generation" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation on Auto Generation</a> for more examples.</p>
 </section>
 <section id="omitting-navigation-1" class="level4" data-number="14.4.3.3">
 <h4 data-number="14.4.3.3" class="anchored" data-anchor-id="omitting-navigation-1"><span class="header-section-number">14.4.3.3</span> Omitting navigation</h4>
@@ -1522,7 +1522,7 @@ Table&nbsp;14.7: Website navigation elements
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#top-navigation">Top navigation</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#top-navigation" class="quarto-docs"><span class="docs-lead">Top</span> navigation</a><br>
 Navigation bar that appears at top of page<br>
 See <a href="#sec-navbar" class="quarto-xref"><span>Section 14.4.2</span></a></p></td>
 <td style="text-align: left;"><p><img src="images/website-navbar-highlight.png" class="img-fluid figure-img" alt="Screenshot of webpage with the bar along top that includes a logo, title, and navigation links is highlighted."></p></td>
@@ -1533,7 +1533,7 @@ See <a href="#sec-navbar" class="quarto-xref"><span>Section 14.4.2</span></a></p
 </ul></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#side-navigation">Side navigation</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#side-navigation" class="quarto-docs"><span class="docs-lead">Side</span> navigation</a><br>
 Navigation bar that appears on the left side of page<br>
 See <a href="#sec-sidebar" class="quarto-xref"><span>Section 14.4.3</span></a></p></td>
 <td style="text-align: left;"><p><img src="images/website-sidebar-highlight.png" class="img-fluid figure-img" alt="Screenshot of webpage with navigation bar on the right of the page highlighted."></p></td>
@@ -1544,7 +1544,7 @@ See <a href="#sec-sidebar" class="quarto-xref"><span>Section 14.4.3</span></a></
 </ul></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-search.html">Search</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-search.html" class="quarto-docs"><span class="docs-lead">Search</span></a><br>
 Search box that appears in top or side navigation</p></td>
 <td style="text-align: left;"><p><img src="images/website-search.jpeg" class="img-fluid figure-img" alt="Screenshot of webpage with search icon in top navigation bar highlighted"></p></td>
 <td style="text-align: left;"><p><code>search</code>:</p>
@@ -1554,7 +1554,7 @@ Search box that appears in top or side navigation</p></td>
 </ul></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#breadcrumbs">Breadcrumbs</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#breadcrumbs" class="quarto-docs"><span class="docs-lead">Breadcrumbs</span></a><br>
 Links above page title that indicate location in sidebar hierarchy</p></td>
 <td style="text-align: left;"><p><img src="images/website-breadcrumbs.jpeg" class="img-fluid figure-img" alt="Screenshot of webpage with 'Guide > Websites > Website Navigation' highlighted above the page title 'Website Navigation'."></p></td>
 <td style="text-align: left;"><p><code>breadcrumbs</code>:</p>
@@ -1564,7 +1564,7 @@ Links above page title that indicate location in sidebar hierarchy</p></td>
 </ul></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#back-to-top">Back to top</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#back-to-top" class="quarto-docs"><span class="docs-lead">Back</span> to top</a><br>
 Link at the bottom of page to return to the top of the page</p></td>
 <td style="text-align: left;"><p><img src="images/website-back-to-top.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with a button 'Back to Top' highlighted at the bottom of the page,"></p></td>
 <td style="text-align: left;"><p><code>back-to-top-navigation</code>:</p>
@@ -1574,13 +1574,13 @@ Link at the bottom of page to return to the top of the page</p></td>
 </ul></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-navigation.html#page-footer">Page footer</a><br>
+<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-navigation.html#page-footer" class="quarto-docs"><span class="docs-lead">Page</span> footer</a><br>
 Content to put in footer on all pages</td>
 <td style="text-align: left;"><img src="images/website-footer.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with the footer at the bottom of the page."></td>
 <td style="text-align: left;"><code>page-footer</code> under <code>website</code> in <code>_quarto.yml</code></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#page-navigation">Page navigation</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/websites/website-navigation.html#page-navigation" class="quarto-docs"><span class="docs-lead">Page</span> navigation</a><br>
 Links at the bottom of page to previous and next page (as defined in sidebar)</p></td>
 <td style="text-align: left;"><p><img src="images/website-page-navigation.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with links to the next and previous page at the bottom of the page highlighted."></p></td>
 <td style="text-align: left;"><p><code>page-navigation</code>:</p>
@@ -1590,7 +1590,7 @@ Links at the bottom of page to previous and next page (as defined in sidebar)</p
 </ul></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><p><a href="https://quarto.org/docs/output-formats/html-basics.html#table-of-contents">Table of contents</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/output-formats/html-basics.html#table-of-contents" class="quarto-docs"><span class="docs-lead">Table</span> of contents</a><br>
 A table of contents to navigate sections within a page, usually shown on right</p></td>
 <td style="text-align: left;"><p><img src="images/website-toc-highlight.png" class="img-fluid figure-img" alt="Screenshot of a webpage with a table of contents listing sections on the current page positioned on the right of the page highighted."></p></td>
 <td style="text-align: left;"><p><code>toc</code>,<code>toc-depth</code>, <code>toc-expand</code>, <code>toc-title</code>, <code>toc-location</code>:</p>
@@ -1600,13 +1600,13 @@ A table of contents to navigate sections within a page, usually shown on right</
 </ul></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-navigation.html#github-links">GitHub links</a><br>
+<td style="text-align: left;"><a href="https://quarto.org/docs/websites/website-navigation.html#github-links" class="quarto-docs"><span class="docs-lead">GitHub</span> links</a><br>
 Links to Github for the page source, to edit the page source, or open an issue.</td>
 <td style="text-align: left;"><img src="images/website-github-links.png" class="img-fluid figure-img" alt="Screenshot of a webpage with links to 'Edit this page' and 'Report an Issue' highlighted below the table of contents."></td>
 <td style="text-align: left;"><code>repo-url</code> and <code>repo-actions</code> under <code>website</code> in <code>_quarto.yml</code></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><p><a href="https://quarto.org/docs/output-formats/html-multi-format.html">Other formats</a><br>
+<td style="text-align: left;"><p><a href="https://quarto.org/docs/output-formats/html-multi-format.html" class="quarto-docs"><span class="docs-lead">Other</span> formats</a><br>
 Links to other formats shown below table of contents</p></td>
 <td style="text-align: left;"><p><img src="images/website-other-formats.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with links under an 'Other Formats' label beneath the table of contents highlighted."></p></td>
 <td style="text-align: left;"><p><code>format</code>:</p>
@@ -1621,7 +1621,7 @@ Links to other formats shown below table of contents</p></td>
 </ul></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><a href="https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links">Other links</a><br>
+<td style="text-align: left;"><a href="https://quarto.org/docs/output-formats/html-basics.html#code-links-and-other-links" class="quarto-docs"><span class="docs-lead">Other</span> links</a><br>
 Links listed below table of contents in the “Code Links” or “Other Links” sections</td>
 <td style="text-align: left;"><img src="images/website-other-links.jpeg" class="img-fluid figure-img" alt="Screenshot of a webpage with links under an 'Other Links' and 'Code Links' label beneath the table of contents highlighted."></td>
 <td style="text-align: left;"><code>code-links</code>, <code>other-links</code>, usually, in document header.</td>
@@ -1844,7 +1844,7 @@ Figure&nbsp;14.17: Specifying Google Fonts for headings, body text and code
 </figure>
 </div>
 <p>You can also specify <code>logo</code> in <strong>brand.yml</strong> as an alternative way to include a logo in top or side navigation. However, if you aren’t using <strong>brand.yml</strong> across projects, or formats, it may be easier to specify it directly in <code>_quarto.yml</code> as shown in <a href="#sec-websites-navigation" class="quarto-xref"><span>Section 14.4</span></a>.</p>
-<p>You can read about all the options available in the <a href="https://quarto.org/docs/authoring/brand.html">Quarto documentation Guide to using <strong>brand.yml</strong></a>.</p>
+<p>You can read about all the options available in the <a href="https://quarto.org/docs/authoring/brand.html" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation Guide to using <strong>brand.yml</strong></a>.</p>
 <section id="dark-mode-1" class="level4" data-number="14.5.2.1">
 <h4 data-number="14.5.2.1" class="anchored" data-anchor-id="dark-mode-1"><span class="header-section-number">14.5.2.1</span> Dark mode</h4>
 <p>To specify a light and dark theme, and add a light/dark toggle to your site, you can specify two brand files in your website configuration:</p>
@@ -2015,7 +2015,7 @@ Figure&nbsp;14.19: Explicitly setting heading color to override <code>lux</code>
 <section id="scss" class="level4 page-columns page-full" data-number="14.5.4.2">
 <h4 data-number="14.5.4.2" class="anchored" data-anchor-id="scss"><span class="header-section-number">14.5.4.2</span> SCSS</h4>
 <p>To add SCSS to a Quarto document you need to provide a file split into sections using a special annotation. The content of these sections is then spliced into Quarto’s SCSS before it gets compiled to CSS. Adding your own SCSS allows you to set (or change) variables that affect many parts of the final CSS.</p>
-<p>Here, we’ll only touch on the two most commonly edited sections: <code>rules</code> and <code>defaults</code>. You can read more in the Quarto documentation on <a href="https://quarto.org/docs/output-formats/html-themes-more.html">More about Quarto Themes</a>.</p>
+<p>Here, we’ll only touch on the two most commonly edited sections: <code>rules</code> and <code>defaults</code>. You can read more in the Quarto documentation on <a href="https://quarto.org/docs/output-formats/html-themes-more.html" class="quarto-docs"><span class="docs-lead">More</span> about Quarto Themes</a>.</p>
 <section id="rules-rules" class="level5" data-number="14.5.4.2.1">
 <h5 data-number="14.5.4.2.1" class="anchored" data-anchor-id="rules-rules"><span class="header-section-number">14.5.4.2.1</span> Rules (<code>rules</code>)</h5>
 <p>The <code>rules</code> section is the last section and contains CSS rules, but with the added benefit of SCSS features. For example, you could take a CSS rule from above, and instead place it in a SCSS file, along with the <em>required</em> annotation <code>/*-- scss:rules --*/</code>:</p>
@@ -2088,7 +2088,7 @@ Figure&nbsp;14.20: A website the adds a rule via SCSS to set page titles to a da
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60" data-filename="styles.scss"><pre class="sourceCode scss code-with-copy"><code class="sourceCode scss"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">/*-- scss:defaults --*/</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="va">$h2-font-size</span>: <span class="dv">1.5</span><span class="dt">em</span><span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>All the available SCSS variables are listed in the Quarto documentation under <a href="https://quarto.org/docs/output-formats/html-themes.html#sass-variables">Sass Variables</a>. Many of the SCSS variables duplicate the functionality you get via <strong>brand.yml</strong>. For websites, the variables that are most useful are those around navigation. In particular, <code>navbar-bg</code>, <code>navbar-fg</code>, <code>navbar-hl</code>, control the color of the top navigation bar background, text (e.g.&nbsp;foreground), and text on hover, and <code>sidebar-bg</code>, <code>sidebar-fg</code>, and <code>sidebar-hl</code> do the same for the side navigation bar.</p>
+<p>All the available SCSS variables are listed in the Quarto documentation under <a href="https://quarto.org/docs/output-formats/html-themes.html#sass-variables" class="quarto-docs"><span class="docs-lead">Sass</span> Variables</a>. Many of the SCSS variables duplicate the functionality you get via <strong>brand.yml</strong>. For websites, the variables that are most useful are those around navigation. In particular, <code>navbar-bg</code>, <code>navbar-fg</code>, <code>navbar-hl</code>, control the color of the top navigation bar background, text (e.g.&nbsp;foreground), and text on hover, and <code>sidebar-bg</code>, <code>sidebar-fg</code>, and <code>sidebar-hl</code> do the same for the side navigation bar.</p>
 <p>As an example, you might want to override <strong>brand.yml</strong> selection of <code>primary</code> for the navigation bar (<a href="#fig-scss-defaults" class="quarto-xref">Figure&nbsp;<span>14.21</span></a>):</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -2340,12 +2340,12 @@ Snippet&nbsp;14.5: The document header for the about page shown in <a href="#fig
 </div>
 </figure>
 </div>
-<p>You can read more in the <a href="https://quarto.org/docs/websites/website-about.html">Quarto documentation on About Pages</a>.</p>
+<p>You can read more in the <a href="https://quarto.org/docs/websites/website-about.html" class="quarto-docs"><span class="docs-lead">Quarto</span> documentation on About Pages</a>.</p>
 </section>
 <section id="sec-websites-listings" class="level2" data-number="14.7">
 <h2 data-number="14.7" class="anchored" data-anchor-id="sec-websites-listings"><span class="header-section-number">14.7</span> Listings</h2>
 <p><strong>Listings</strong> are a special kind of page that contains an automatically generated list of content. Listings are often used to create blogs, but can also be used more generally any time you want a list of similar pages or items, like talks, publications, projects or people.</p>
-<p><a href="#fig-website-listing" class="quarto-xref">Figure&nbsp;<span>14.24</span></a> shows three examples of listing pages: a blog, a people listing , and a list of publications. The appearance of the items is controlled by the <code>type</code> of listing: <code>default</code>, <code>grid</code>, or <code>table</code>. If you need more customization you can also build your own custom <code>template</code> (see <a href="https://quarto.org/docs/websites/website-listings-custom.html">Custom Listings</a> in the Quarto documentation).</p>
+<p><a href="#fig-website-listing" class="quarto-xref">Figure&nbsp;<span>14.24</span></a> shows three examples of listing pages: a blog, a people listing , and a list of publications. The appearance of the items is controlled by the <code>type</code> of listing: <code>default</code>, <code>grid</code>, or <code>table</code>. If you need more customization you can also build your own custom <code>template</code> (see <a href="https://quarto.org/docs/websites/website-listings-custom.html" class="quarto-docs"><span class="docs-lead">Custom</span> Listings</a> in the Quarto documentation).</p>
 <div id="fig-website-listing" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-website-listing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2604,8 +2604,8 @@ Table&nbsp;14.9: A comparison of three popular publishing providers
 <p><a href="https://pages.github.com">GitHub Pages</a> is a hosting service provided by GitHub at the repository level. If you are storing your source on GitHub anyway, it makes sense to also publish via GitHub Pages.</p>
 <p>When you publish, Quarto creates a special <code>gh-pages</code> branch, renders your document or project to this branch, and pushes this branch to GitHub. This branch is then processed on GitHub’s side, making it available at a URL of the form <code>{ user }.github.io/repo-name</code>.</p>
 <p>If you use GitHub through one of its “Free” plans you can only use GitHub Pages on public repositories. If you’d prefer your source documents weren’t available publicly you’ll either need to upgrade your GitHub plan, or use something like Netlify or Posit Connect Cloud instead.</p>
-<p>You can read more about publishing to GitHub with <code>quarto publish</code> on the <a href="https://quarto.org/docs/publishing/github-pages.html#publish-command">GitHub Pages page</a> in the Quarto documentation.</p>
-<p>An alternative to using <code>quarto publish</code> is to commit your rendered document or site to your repository in a <code>docs/</code> folder and set GitHub Pages to publish from there. You can read more about this workflow at <a href="https://quarto.org/docs/publishing/github-pages.html#render-to-docs">Render to <code>docs</code></a> on the Quarto documentation website.</p>
+<p>You can read more about publishing to GitHub with <code>quarto publish</code> on the <a href="https://quarto.org/docs/publishing/github-pages.html#publish-command" class="quarto-docs"><span class="docs-lead">GitHub</span> Pages page</a> in the Quarto documentation.</p>
+<p>An alternative to using <code>quarto publish</code> is to commit your rendered document or site to your repository in a <code>docs/</code> folder and set GitHub Pages to publish from there. You can read more about this workflow at <a href="https://quarto.org/docs/publishing/github-pages.html#render-to-docs" class="quarto-docs"><span class="docs-lead">Render</span> to <code>docs</code></a> on the Quarto documentation website.</p>
 </section>
 <section id="sec-publishing-netlify" class="level4" data-number="14.8.4.2">
 <h4 data-number="14.8.4.2" class="anchored" data-anchor-id="sec-publishing-netlify"><span class="header-section-number">14.8.4.2</span> Netlify</h4>
@@ -2617,13 +2617,13 @@ Table&nbsp;14.9: A comparison of three popular publishing providers
 </div>
 <p><a href="https://www.netlify.com">Netlify</a> provides services for building, deploying, and managing websites. When you publish to Netlify using <code>quarto publish</code>, your document or site will be set up as what Netlify calls a <a href="https://docs.netlify.com/cli/get-started/#manual-deploys">manual deploy</a>—you deploy by <em>manually</em> running <code>quarto publish</code>. Your output files are sent to Netlify and Netlify serves them at a URL of the form <code>{ random identifier }.netlify.app</code>.</p>
 <p>You can manage your deployed site via Netlify’s website, and Netlify includes some neat features like one-click rollbacks to a previously deployed site, and the ability to use a custom domain. Netlify’s free plans limit how many sites you can have and how much bandwidth is used to serve them. However, these limits will likely not be reached for low-traffic personal sites.</p>
-<p>Rather than using <code>quarto publish</code> you can get Netlify to deploy from Git provider. In this workflow, you commit your rendered document or site to your repository in a folder (e.g.&nbsp;<code>docs/</code> or <code>_site/</code>) and connect Netlify to your Git provider, setting the folder as the <em>Publish</em> directory. You can read more about this on the Quarto documentation website at <a href="https://quarto.org/docs/publishing/netlify.html#publish-from-git-provider">Publish from a Git Provider</a>.</p>
+<p>Rather than using <code>quarto publish</code> you can get Netlify to deploy from Git provider. In this workflow, you commit your rendered document or site to your repository in a folder (e.g.&nbsp;<code>docs/</code> or <code>_site/</code>) and connect Netlify to your Git provider, setting the folder as the <em>Publish</em> directory. You can read more about this on the Quarto documentation website at <a href="https://quarto.org/docs/publishing/netlify.html#publish-from-git-provider" class="quarto-docs"><span class="docs-lead">Publish</span> from a Git Provider</a>.</p>
 <p>Netlify excels in continuous integration and you can set it up to preview deployments based on branches or pull requests. These features require a more complicated publishing setup you’ll learn about in <a href="#sec-ci" class="quarto-xref"><span>Section 14.9</span></a>.</p>
 </section>
 <section id="other-providers" class="level4" data-number="14.8.4.3">
 <h4 data-number="14.8.4.3" class="anchored" data-anchor-id="other-providers"><span class="header-section-number">14.8.4.3</span> Other providers</h4>
 <p>You are most likely to use <a href="https://posit.co/products/enterprise/connect/">Posit Connect</a> or <a href="https://www.atlassian.com/software/confluence">Confluence</a> in organizational settings where your IT department will manage them. <a href="https://huggingface.co">Hugging Face</a> has a more complicated setup and probably only makes sense if you are using Hugging Face beyond Quarto already.</p>
-<p>You can read more about the details of publishing in the <a href="https://quarto.org/docs/publishing/">Publishing Guide</a> on the Quarto documentation website.</p>
+<p>You can read more about the details of publishing in the <a href="https://quarto.org/docs/publishing/" class="quarto-docs"><span class="docs-lead">Publishing</span> Guide</a> on the Quarto documentation website.</p>
 </section>
 </section>
 </section>
@@ -2894,13 +2894,13 @@ Snippet&nbsp;14.9: Setup Python
 <p>In this chapter, you learned about the key components of a Quarto website: content, navigation, and appearance. You also learned about a few techniques for publishing your site.</p>
 <p>But, there are many other features we haven’t talked about. Some notable ones include:</p>
 <ul>
-<li><p>Drafts: Set <code>draft: true</code> to be able to preview pages, but not have them included in a site render, <a href="https://quarto.org/docs/websites/website-drafts.html" class="uri">https://quarto.org/docs/websites/website-drafts.html</a>.</p></li>
-<li><p>Announcements: Add a bar to the top of the site for crucial info, <a href="https://quarto.org/docs/websites/website-tools.html#announcement-bar" class="uri">https://quarto.org/docs/websites/website-tools.html#announcement-bar</a>.</p></li>
+<li><p>Drafts: Set <code>draft: true</code> to be able to preview pages, but not have them included in a site render, <a href="https://quarto.org/docs/websites/website-drafts.html" class="uri quarto-docs"><span class="docs-lead">https://quarto.org/docs/websites/website-drafts.html</span></a>.</p></li>
+<li><p>Announcements: Add a bar to the top of the site for crucial info, <a href="https://quarto.org/docs/websites/website-tools.html#announcement-bar" class="uri quarto-docs"><span class="docs-lead">https://quarto.org/docs/websites/website-tools.html#announcement-bar</span></a>.</p></li>
 </ul>
 <p>You can find comprehensive lists of all your options are in the Reference in the Quarto documentation:</p>
 <ul>
-<li><p>You find website-level options in <a href="https://quarto.org/docs/reference/projects/websites.html">Projects &gt; Websites</a>.</p></li>
-<li><p>You find page-level options (that could be set site-wide in <code>_quarto.yml</code>) in <a href="https://quarto.org/docs/reference/formats/html.html">Formats &gt; HTML</a>.</p></li>
+<li><p>You find website-level options in <a href="https://quarto.org/docs/reference/projects/websites.html" class="quarto-docs"><span class="docs-lead">Projects</span> &gt; Websites</a>.</p></li>
+<li><p>You find page-level options (that could be set site-wide in <code>_quarto.yml</code>) in <a href="https://quarto.org/docs/reference/formats/html.html" class="quarto-docs"><span class="docs-lead">Formats</span> &gt; HTML</a>.</p></li>
 </ul>
 
 

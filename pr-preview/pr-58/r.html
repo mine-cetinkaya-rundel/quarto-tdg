@@ -104,7 +104,7 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-926b22b37253dc75f456d1968459d318.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -587,7 +587,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </div>
 </div>
 </div>
-<p>Adding the <code>label</code> and <code>tbl-cap</code> options turns the result into a numbered table with a caption that you can cross-reference (<a href="authoring.html#sec-computational-table" class="quarto-xref"><span>Section 12.7.4</span></a>). For more control over styling, table packages such as <a href="https://gt.rstudio.com/"><strong>gt</strong></a> work the same way: the code cell returns a table, and Quarto includes it in your document.</p>
+<p>Adding the <code>label</code> and <code>tbl-cap</code> options turns the result into a numbered table with a caption that you can cross-reference (<a href="authoring.html#sec-computational-table" class="quarto-xref"><span>Section 12.6.4</span></a>). For more control over styling, table packages such as <a href="https://gt.rstudio.com/"><strong>gt</strong></a> work the same way: the code cell returns a table, and Quarto includes it in your document.</p>
 <p>If you want readers to be able to search and sort the data themselves, you can use an interactive table widget such as <code>DT::datatable(penguins)</code>. Widgets only work in HTML output; <a href="#sec-interactive-output-r" class="quarto-xref"><span>Section 7.7</span></a> covers them, along with what to do when you also render to PDF or Word.</p>
 </section>
 <section id="a-plot" class="level3" data-number="7.1.3">
@@ -637,7 +637,7 @@ Figure&nbsp;7.1: Penguins with longer flippers tend to be heavier.
 </div>
 </div>
 </div>
-<p>The <code>fig-</code> prefix on the label makes the plot a numbered figure you can cross-reference with <code>@fig-mass-flipper</code> (<a href="authoring.html#sec-computational-figure" class="quarto-xref"><span>Section 12.8.2</span></a>). <code>fig-alt</code> adds alternative text, <code>fig-width</code> and <code>fig-height</code> set the size of the plot in inches, and <code>warning: false</code> hides the warning. You can also set <code>fig-width</code>, <code>fig-height</code>, and <code>warning</code> for every cell in the document (<a href="#sec-execution-options-r" class="quarto-xref"><span>Section 7.3</span></a>).</p>
+<p>The <code>fig-</code> prefix on the label makes the plot a numbered figure you can cross-reference with <code>@fig-mass-flipper</code> (<a href="authoring.html#sec-computational-figure" class="quarto-xref"><span>Section 12.7.2</span></a>). <code>fig-alt</code> adds alternative text, <code>fig-width</code> and <code>fig-height</code> set the size of the plot in inches, and <code>warning: false</code> hides the warning. You can also set <code>fig-width</code>, <code>fig-height</code>, and <code>warning</code> for every cell in the document (<a href="#sec-execution-options-r" class="quarto-xref"><span>Section 7.3</span></a>).</p>
 <p>How a plot looks also depends on the <em>graphics device</em> knitr uses to save it. The defaults work well, but if the text in your plots looks blurry or you want vector output, see <a href="#sec-graphics-devices" class="quarto-xref"><span>Section 7.5</span></a>. For plots readers can hover over and zoom into, pass a ggplot to <code>plotly::ggplotly()</code> (<a href="#sec-interactive-output-r" class="quarto-xref"><span>Section 7.7</span></a>).</p>
 </section>
 </section>
@@ -761,7 +761,7 @@ Figure&nbsp;7.1: Penguins with longer flippers tend to be heavier.
 <li><code>dependson</code>: Specify cells this one depends on</li>
 </ul></li>
 </ul>
-<p>For a complete list of knitr cell options, see the <a href="https://quarto.org/docs/reference/cells/cells-knitr.html">Quarto reference</a>.</p>
+<p>For a complete list of knitr cell options, see the <a href="https://quarto.org/docs/reference/cells/cells-knitr.html" class="quarto-docs"><span class="docs-lead">Quarto</span> reference</a>.</p>
 </section>
 </section>
 <section id="sec-df-print" class="level2" data-number="7.4">
@@ -1028,7 +1028,7 @@ Mean body mass: 5076 grams.</code></pre>
 <li>On Windows only, the R installation recorded in the registry, and failing that, an <code>R</code> directory under <code>%programfiles%</code></li>
 </ol>
 <p>On macOS and Linux there are no further fallbacks: if none of the first three locate R, Quarto tries to run <code>R</code> directly and the render fails if your shell can’t resolve it.</p>
-<p>If Quarto is using a different R than you expect, you can override the lookup by setting <code>QUARTO_R</code> to the path of your preferred R binary. You can give it either the binary itself or the directory containing it, and Quarto warns you if the path doesn’t exist rather than silently moving on. In a Quarto project, one way to do this is an <a href="https://quarto.org/docs/projects/environment.html"><code>_environment</code> file</a> alongside <code>_quarto.yml</code>:</p>
+<p>If Quarto is using a different R than you expect, you can override the lookup by setting <code>QUARTO_R</code> to the path of your preferred R binary. You can give it either the binary itself or the directory containing it, and Quarto warns you if the path doesn’t exist rather than silently moving on. In a Quarto project, one way to do this is an <a href="https://quarto.org/docs/projects/environment.html" class="quarto-docs"><span class="docs-lead"><code>_environment</code></span> file</a> alongside <code>_quarto.yml</code>:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>_environment</strong></pre>
@@ -1127,7 +1127,7 @@ Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbo
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>For more information, see Quarto documentation on execution context information at <a href="https://quarto.org/docs/advanced/quarto-execute-info.html" class="uri">https://quarto.org/docs/advanced/quarto-execute-info.html</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>For more information, see Quarto documentation on execution context information at <a href="https://quarto.org/docs/advanced/quarto-execute-info.html" class="uri quarto-docs"><span class="docs-lead">https://quarto.org/docs/advanced/quarto-execute-info.html</span></a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>For situations like this, we refer readers to the R Markdown Cookbook <span class="citation" data-cites="xie2020">(<a href="references.html#ref-xie2020" role="doc-biblioref">Xie et al. 2020</a>)</span> for knitr functionality on <a href="https://pkg.yihui.org/rmarkdown-cookbook/child-document">child documents</a> and <a href="https://pkg.yihui.org/rmarkdown-cookbook/knit-expand"><code>knit_expand()</code></a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>

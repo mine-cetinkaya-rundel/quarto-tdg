@@ -27,6 +27,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -50,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-926b22b37253dc75f456d1968459d318.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3277b2eb43246ba21b9eb1af72411b2a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -321,7 +356,8 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
   <ul>
   <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link active" data-scroll-target="#what-is-quarto"><span class="header-section-number">1.1</span> What is Quarto?</a></li>
   <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">1.2</span> Installation</a></li>
-  <li><a href="#tools-for-authoring" id="toc-tools-for-authoring" class="nav-link" data-scroll-target="#tools-for-authoring"><span class="header-section-number">1.3</span> Tools for authoring</a></li>
+  <li><a href="#document-structure" id="toc-document-structure" class="nav-link" data-scroll-target="#document-structure"><span class="header-section-number">1.3</span> Document structure</a></li>
+  <li><a href="#tools-for-authoring" id="toc-tools-for-authoring" class="nav-link" data-scroll-target="#tools-for-authoring"><span class="header-section-number">1.4</span> Tools for authoring</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/edit/main/quarto.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/mine-cetinkaya-rundel/quarto-tdg/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -364,7 +400,7 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 <h2 data-number="1.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.2</span> Installation</h2>
 <p>Usually when we say “Quarto” we mean the Quarto Command Line Interface (CLI). This is the tool that allows you to render Quarto documents into other formats. Specifically, it gives you the command <code>quarto render</code>.</p>
 <p>Some IDEs, like RStudio and Positron, come with the Quarto CLI bundled with them. Beyond ensuring you have a recent version of these IDEs, you don’t need to install anything else.</p>
-<p>If your IDE doesn’t bundle Quarto, or you’d like to install a version more recent than that in your IDE, you can download the latest release version of the Quarto CLI at <a href="https://quarto.org/docs/get-started/">https://quarto.org/docs/get-started</a>.</p>
+<p>If your IDE doesn’t bundle Quarto, or you’d like to install a version more recent than that in your IDE, you can download the latest release version of the Quarto CLI at <a href="https://quarto.org/docs/get-started/" class="quarto-docs"><span class="docs-lead">https://quarto.org/docs/get-started</span></a>.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -375,12 +411,33 @@ div.callout-todo.callout-style-default .callout-icon::before, div.callout-todo.c
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The current <strong>release</strong> version of Quarto represents a stable version for general use. <strong>Pre-release</strong> versions of Quarto are intended for testing, and available at <a href="https://quarto.org/docs/download/prerelease.html" class="uri">https://quarto.org/docs/download/prerelease.html</a>. Unless you’ve been specifically directed to use a pre-release version, or you need a version with a recently fixed bug, you should use the current release.</p>
+<p>The current <strong>release</strong> version of Quarto represents a stable version for general use. <strong>Pre-release</strong> versions of Quarto are intended for testing, and available at <a href="https://quarto.org/docs/download/prerelease.html" class="uri quarto-docs"><span class="docs-lead">https://quarto.org/docs/download/prerelease.html</span></a>. Unless you’ve been specifically directed to use a pre-release version, or you need a version with a recently fixed bug, you should use the current release.</p>
 </div>
 </div>
 </section>
-<section id="tools-for-authoring" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="tools-for-authoring"><span class="header-section-number">1.3</span> Tools for authoring</h2>
+<section id="document-structure" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="document-structure"><span class="header-section-number">1.3</span> Document structure</h2>
+<p>Quarto documents are plain text files with the extension <code>.qmd</code> and they consist of three main components:</p>
+<ol type="1">
+<li><p><strong>YAML header:</strong> Configuration metadata enclosed by <code>---</code> markers, specifying the title, format, and various options for your document.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> Document title</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Code cells:</strong> Executable blocks marked with three backticks <code>```</code> and the name of the language in curly braces <code>{r}</code> containing your computational code,e.g.,</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># R code here</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Python code here</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p><strong>Markdown text:</strong> Narrative content with formatting, links, images, and other markdown elements.</p></li>
+</ol>
+<p>Quarto documents can also include other elements such as figures and tables (which may be the result of executable code cells, created with markdown text, or included from an image), citations, cross-references, and more. In later chapters we go into further detail about the various components of Quarto documents.</p>
+</section>
+<section id="tools-for-authoring" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="tools-for-authoring"><span class="header-section-number">1.4</span> Tools for authoring</h2>
 <p>You do not need a specific tool for authoring and rendering Quarto documents. You can author Quarto documents in any plain text editor and render them with the <code>quarto render</code> command in your computer’s terminal.</p>
 <p>However we recommend using an integrated development environment (IDE) when working with Quarto as they can enhance your authoring experience. Some compelling reasons for using an IDE with Quarto include preview and live rendering features that allow you to see how your content will look as you write it, syntax highlighting, project management features, version control integration, debugging tools, and efficiency and productivity features like snippets, templates, and keyboard shortcuts. Additionally, most modern IDEs offer intelligent code assistance, auto-completion, and error highlighting which can help you quickly find the right syntax and catch errors.</p>
 <p>In the next chapter we go into further detail about using Quarto in various IDEs including RStudio and Positron.</p>
