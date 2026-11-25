@@ -33,10 +33,13 @@ From a practical perspective, using a Quarto project has two benefits:
 
 @fig-dir-dsproject shows the folder `ds-project`, a simple example of a data science project, that contains some Quarto documents.
 
+::: todo
+[CVW] Prettify the output of @fig-dir-dsproject so only `ds-project` shows at the top, not the full path.
+:::
+
 ::: {#fig-dir-dsproject .dir-str}
 
 ```{r}
-# TODO: prettify output so only see `ds-project` at top, not the full path
 # Code to generate a pretty tree
 dir <- path("temp-dirs", "ds-project")
 dir_create(dir, "data")

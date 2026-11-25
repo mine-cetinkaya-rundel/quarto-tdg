@@ -199,7 +199,11 @@ You can also use them inside many of the other block-level elements discussed in
 :::
 
 
-Common syntax for inline text elements in Quarto markdown. TODO: Element column entries will span rows.
+Common syntax for inline text elements in Quarto markdown.
+:::
+
+::: todo
+[CVW] Element column entries in @tbl-inline-text-elements will span rows.
 :::
 
 
@@ -349,8 +353,10 @@ Markdown syntax and rendered output for a markdown pipe table
 
 ### List tables
 
-TODO: Revisit this once the `list-tables` extension is bundled with Quarto.
-Specifically, where does the caption go.
+::: todo
+[CVW] Revisit this once the `list-tables` extension is bundled with Quarto.
+Specifically, where does the caption go?
+:::
 
 List tables use markdown list syntax to create tables where cells can contain multiple paragraphs, code cells, or lists.
 List tables need to be wrapped in a fenced div with the class `list-table`.

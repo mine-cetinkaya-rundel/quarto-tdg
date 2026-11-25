@@ -320,6 +320,24 @@ Content without a custom title...
 - Leave blank lines around callout content
 - Choose appropriate callout type: `tip`, `note`, `warning`, `important`, `caution`
 
+### To-do Notes
+
+Use the custom `todo` callout (defined under `custom-callout` in `_quarto.yml`) for notes to ourselves about unfinished work:
+
+```markdown
+::: todo
+[MCR] Screenshot of the Preview Type setting dropdown?
+:::
+```
+
+**Conventions:**
+- Start the note with the author's initials in brackets: `[MCR]` for Mine, `[CVW]` for Charlotte
+- Say what needs doing specifically enough that the other author could act on it
+- When a note depends on something external, say when it can be removed (e.g., "remove this note once <PR link> is merged")
+- Inside a list item, indent the whole block four spaces so it doesn't split the list
+- Don't write plain-text `TODO:` in prose, captions, or code comments; use the callout so every to-do is easy to find with a search for `::: todo`
+- To-do callouts render in the published book, so resolve or remove them before a release
+
 ### Fenced Divs
 
 ```markdown
