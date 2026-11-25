@@ -185,7 +185,7 @@ Editing an `.ipynb` for Quarto differs from a `.qmd` file in a few ways:
 
 - YAML front matter goes in the first cell, which should be a Raw cell containing the title, author, and any other document options. Use the cell type menu at the bottom right of a cell to switch it to Raw.
 
-- Markdown cells accept any valid Pandoc markdown, including Quarto features such as cross-references.
+- Markdown cells accept any valid Quarto markdown, including features such as cross-references.
 
 - Cell options use the same `#|` comment prefix as `.qmd` files and must appear at the very start of the cell.
 
