@@ -217,7 +217,11 @@ When you make a mistake in setting an option there are a few possible outcomes:
 
 It's hard to enumerate all the ways you can make a mistake, but we'll give a couple of examples for each of these outcomes in the hope it helps you track down yours.
 
-Some examples in this chapter will result in an error from `quarto render`---we've highlighted these examples with a red border (TODO: add an icon for PDF version), like this:
+::: todo
+Add an icon for PDF version of the red-border error examples.
+:::
+
+Some examples in this chapter will result in an error from `quarto render`---we've highlighted these examples with a red border, like this:
 
 ``` {.yaml .error filename="render_error.qmd"}
 ---
